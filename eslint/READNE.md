@@ -9,8 +9,13 @@
 
 - create .prettierrc, if you want to configure
 
+- create .eslintignore and add files to ignore
+
+- script
+
 - excecuting code with typescript
   - npm install typescript
   - npx tsc --init
   - npx tsc index.ts/server.js/app.js whatever you call the file you execute
+  - add dist (compiled typescript codes) in .eslintignore
   - node index.js
