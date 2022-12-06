@@ -5,11 +5,11 @@
 
 ## Api Endpoints
 
-### GET /advertisements
+<!-- Route für Listenansicht. Alle User haben Zugriff. -->
+### 1. GET /ads
 
 Query-Params
 
-- userId=12345667
 - search=DCI (Search-Field)
 - location=Berlin
 - page=1
@@ -23,13 +23,10 @@ Response-Body
         title: "My Title",
         description: "something",
         location: "My location",
+        category: "Provider",
+        wage: 12,
         user: {
-            name: "User Name",
-            info: {
-                telephone: "00496666666566",
-                address: "My address",
-                description: "About me text"
-            }
+            name: "User Name"
         },
         createdAt: 2022-11-11T19:46:39.731+00:00,
         updatedAt: 2022-11-11T19:46:39.731+00:00
@@ -38,7 +35,8 @@ Response-Body
 ```
 
 
-### GET /advertisements/:id
+<!-- Get Anzeige by Id. Jeder User hat Zugriff. -->
+### 2. GET /ads/:id
 
 Response-Body
 
@@ -48,13 +46,34 @@ Response-Body
         title: "My Title",
         description: "something",
         location: "My location",
+        category:"Provider",
+        wage: 12,
+        user: {
+            name: "User Name"
+        },
+        createdAt: 2022-11-11T19:46:39.731+00:00,
+        updatedAt: 2022-11-11T19:46:39.731+00:00
+    }
+```
+
+<!-- Ab hier nur mit Authorisation -->
+
+### 3. GET /ads/withAuth/:id
+
+Response-Body
+
+```javascript
+    {
+        _id: "123",
+        title: "My Title",
+        description: "something",
+        location: "My location",
+        category:"Provider",
+        contactVia: ["phone"],
+        wage: 12,
         user: {
             name: "User Name",
-            info: {
-                telephone: "00496666666566",
-                address: "My address",
-                description: "About me text"
-            }
+            telephone: "0049534643636"
         },
         createdAt: 2022-11-11T19:46:39.731+00:00,
         updatedAt: 2022-11-11T19:46:39.731+00:00
@@ -62,7 +81,8 @@ Response-Body
 ```
 
 
-### POST /advertisements
+
+### 4. POST /ads/create
 
 Post-Body
 
@@ -71,6 +91,9 @@ Post-Body
         title: "My Title",
         description: "something",
         location: "My location",
+        category: "Provider",
+        wage: 12, 
+        contactVia: ["email"]
         user: "Udel17555klmjer54gj7"
     }
 ```
@@ -83,21 +106,17 @@ Response-Body
         title: "My Title",
         description: "something",
         location: "My location",
-        user: {
-            name: "User Name",
-            info: {
-                telephone: "00496666666566",
-                address: "My address",
-                description: "About me text"
-            }
-        },
+        category: "Provider",
+        wage: 12,
+        contactVia: ["email"],
+        user: "Udel17555klmjer54gj7",
         createdAt: 2022-11-11T19:46:39.731+00:00,
         updatedAt: 2022-11-11T19:46:39.731+00:00
     }
 ```
 
 
-### POST /user/login
+### 5. POST /user/login
 
 POST-Body
 
@@ -112,13 +131,18 @@ Response-Body
 
 ```javascript
     {
+     _id: "123",
      name: "User Name",
      email: "my@mail.de",
-     avatar: "url-to-avatar"
+     avatar: "url-to-avatar",
+     sector: "Web Development",
+     city: "Berlin",
+     description: "something",
+     telephone: "00496666666666"
     }
 ```
 
-### POST /user/register
+### 6. POST /user/register
 
 POST-Body
 
@@ -126,8 +150,7 @@ POST-Body
     {
      email: "my@mail.de",
      password: "123456",
-     name: "User Name",
-     avatar: "file"
+     name: "User Name"
     }
 ```
 
@@ -135,23 +158,45 @@ Response-Body
 
 ```javascript
     {
+     _id:"123",
      name: "User Name",
-     email: "my@mail.de",
-     avatar: "url-to-avatar"
+     email: "my@mail.de"
     }
 ```
 
 
-### GET /user
+### 7. GET /user
 
 Response-Body
 
 ```javascript
     {
+     _id:"123",
      name: "User Name",
      email: "my@mail.de",
-     avatar: "url-to-avatar"
+     avatar: "url-to-avatar",
+     sector: "Web Development",
+     city: "My address",
+     telephone: "004966666666666",
+     description: "something"
     }
 ```
 
+### 8. PUT /user/profile
 
+PUT-Body
+
+```javascript
+    {
+     password: "123456"
+    }
+```
+
+Response-Body
+
+```javascript
+    {
+     user, //ohne Passwort
+     message: "Success"
+    }
+```
