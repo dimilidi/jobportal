@@ -1,13 +1,18 @@
 {
-  // registers this plugin
-  "plugins": ["prettier"],
-  "rules": {
-    // turns on the rule provided by this plugin, which runs Prettier from within ESLint
-    "prettier/prettier": "error",
-    // turns off two ESLint core rules that are problematic with this plugin
-    "arrow-body-style": "off",
-    "prefer-arrow-callback": "off"
+  "env": {
+    "browser": true,
+    "es2021": true
   },
-  // enables the config from eslint-config-prettier, which turs off some ESLint rules that conflict with Prettier
-  "extends": ["plugin:prettier/recommended"]
+  "extends": "plugin:prettier/recommended",
+  "overrides": [],
+  "parserOptions": {
+    "ecmaVersion": "latest",
+    "sourceType": "module"
+  },
+  "rules": {
+    "indent": ["warn", 2],
+    "linebreak-style": ["error", "unix"],
+    "quotes": ["error", "single"],
+    "semi": ["error", "never"]
+  }
 }
