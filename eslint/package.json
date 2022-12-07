@@ -1,0 +1,30 @@
+{
+  "name": "jobportal",
+  "version": "1.0.0",
+  "description": "test one",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "eslint": "npx eslint src/**.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dimilidi/jobportal.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dimilidi/jobportal/issues"
+  },
+  "homepage": "https://github.com/dimilidi/jobportal#readme",
+  "devDependencies": {
+    "eslint": "^8.29.0",
+    "eslint-config-node": "^4.1.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "prettier": "^2.8.0"
+  }
+}
