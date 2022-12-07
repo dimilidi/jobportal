@@ -35,9 +35,10 @@ Response-Body
 ```
 
 
-<!-- Get Anzeige by Id. Jeder User hat Zugriff. -->
+<!-- Get Anzeige by Id. -->
 ### 2. GET /ads/:id
 
+<!-- Ohne auth. Jeder User hat Zugriff. -->
 Response-Body
 
 ```javascript
@@ -56,10 +57,7 @@ Response-Body
     }
 ```
 
-<!-- Ab hier nur mit Authorisation -->
-
-### 3. GET /ads/withAuth/:id
-
+<!-- Mit auth. Nur Angemeldete haben Zugriff. -->
 Response-Body
 
 ```javascript
@@ -81,8 +79,9 @@ Response-Body
 ```
 
 
+<!-- Ab hier nur mit Authorisation -->
 
-### 4. POST /ads/create
+### 3. POST /ads/create
 
 Post-Body
 
@@ -116,9 +115,9 @@ Response-Body
 ```
 
 
-### 5. POST /user/login
+### 4. POST /user/login
 
-POST-Body
+Post-Body
 
 ```javascript
     {
@@ -142,9 +141,9 @@ Response-Body
     }
 ```
 
-### 6. POST /user/register
+### 5. POST /user/register
 
-POST-Body
+Post-Body
 
 ```javascript
     {
@@ -165,7 +164,7 @@ Response-Body
 ```
 
 
-### 7. GET /user
+### 6. GET /user
 
 Response-Body
 
@@ -182,9 +181,9 @@ Response-Body
     }
 ```
 
-### 8. PUT /user/profile
+### 7. PUT /user/edit-profile
 
-PUT-Body
+Put-Body
 
 ```javascript
     {
@@ -196,7 +195,6 @@ Response-Body
 
 ```javascript
     {
-     user, //ohne Passwort
-     message: "Success"
+     user //ohne Passwort
     }
 ```
