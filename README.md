@@ -81,7 +81,7 @@ Response-Body
 
 <!-- Ab hier nur mit Authorisation -->
 
-### 3. POST /ads/create
+### 3. POST /ads/post
 
 Post-Body
 
@@ -181,7 +181,7 @@ Response-Body
     }
 ```
 
-### 7. PUT /user/edit-profile
+### 7. PUT /user/edit-account
 
 Put-Body
 
