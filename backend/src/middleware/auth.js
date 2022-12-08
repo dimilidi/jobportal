@@ -14,3 +14,11 @@ export default async function auth(req, res, next){
   await res.send("auth middleware called")
   next()
 }
+
+export async function softAuth(req, res, next){
+  // const token = req.cookies.token
+  // const user = await User.findByAuthToken(token)
+  // req.user = user
+  await res.send("auth middleware called")
+  next()
+}
