@@ -1,4 +1,6 @@
 import mongoose from 'mongoose'
+import bcrypt from 'bcrypt'
+import jwt from 'jsonwebtoken'
 
 const userSchema = mongoose.Schema({
   name: {type: String, required: true },
@@ -11,6 +13,55 @@ const userSchema = mongoose.Schema({
   phone: Number,
 })
 
-const User = mongoose.Model("User", userSchema, "users")
+
+userSchema.statics.findByEmail = function (email) {
+  return User.findOne().where('email').equals(email)
+}
+
+userSchema.statics.findByAuthToken = function (token){
+  const decode = jwt.verify(token, process.env.TOKEN_KEY)
+  return User.findById(decode._id).where('tokens').equals(token)
+}
+
+// Instance methods
+userSchema.methods.generateAuthToken = function () {
+  const user = this
+  const token = jwt
+    .sign({_id: user._id}, process.env.TOKEN_KEY, {expiresIn: '2h'})
+    .toString()
+   
+  user.tokens.push(token)
+  
+ return token
+}
+
+userSchema.methods.checkPassword = async function (password) {
+  const user = this
+  return await bcrypt.compare(password, user.password)
+}
+
+userSchema.methods.toJSON = function (){
+  const user = this
+  const result = {
+    name: user.name,
+    email: user.email,
+    _id: user._id,
+  }
+  return result
+}
+
+
+
+userSchema.pre('save', async function (next) {
+  const user = this
+  if(user.isModified('password')) {
+    user.password = await bcrypt.hash(user.password, 10)
+  }
+
+  next()
+})
+
+
+const User = mongoose.model("User", userSchema, "users")
 
 export default User
