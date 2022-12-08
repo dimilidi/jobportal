@@ -6,7 +6,7 @@ import mongoose from 'mongoose'
 import cookieParser from 'cookie-parser'
 dotenv.config()
 
-
+mongoose.set('strictQuery', false)
 mongoose.connect(process.env.DB_CONN)
   .then(() => console.log('Datenbank läuft'))
   .catch(() => console.log('Datenbank Verbindung fehlgeschlagen'))
