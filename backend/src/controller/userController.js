@@ -15,6 +15,8 @@ export function getUser (req, res) {
 export async function register (req, res) {
   const user = new User(req.body)
   const token = user.generateAuthToken()
+  console.log(token)
+
     
   await user.save()
 
@@ -45,7 +47,6 @@ export async function login (req, res) {
   if(!passwordCheck) throw httpErrors.Unauthorized()
   
   const token = user.generateAuthToken()
-  console.log(token)
 
   
   await user.save()
