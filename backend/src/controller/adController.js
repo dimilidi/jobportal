@@ -4,14 +4,14 @@ import User from '../models/User.js'
 
 /** @type {import("express").RequestHandler} */
 export async function getAds(req, res) {
-  const ads = Ad.find().populate('user').select('name')
+  const ads = await Ad.find().populate('user', 'name')
   res.status(200).json(ads)
 }
 
 /** @type {import("express").RequestHandler} */
 export async function postAd(req, res) {
   // const user = req.user
-  const ad = req.ad
+  const ad = req.body
   const user = await User.findById('6391ed524f0a32c2282ca4f1')
 
   const newAd = new Ad({
@@ -26,15 +26,22 @@ export async function postAd(req, res) {
 
 /** @type {import("express").RequestHandler} */
 export async function getAdById(req, res) {
-  const user = req.user
-  let query = Ad.find().populate('user').select('name')
+  // const user = req.user
+  // imitate login-user
+  const user = await User.findById('6391ed524f0a32c2282ca4d1')
 
-  // if user is logged in, show ads with user name and contact data selected in contactvia
+  const adId = req.params.id
+
+  // if user is NOT logged in, populate only name of ad-creator
+  let itemToPopulate = 'name'
+
+  // if user is logged in, contact data selected in contactvia
   if (user) {
-    if (req.body.contactVia.includes('email')) query = query.select('email')
-    if (req.body.contactVia.includes('phone')) query = query.select('phone')
+    for (const item of req.body.contactVia) {
+      itemToPopulate += ` ${item}`
+    }
   }
 
-  const ads = await query
-  res.status(200).json(ads)
+  const ad = await Ad.findById(adId).populate('user', itemToPopulate)
+  res.status(200).json(ad)
 }
