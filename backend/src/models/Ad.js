@@ -7,7 +7,11 @@ const Schema = mongoose.Schema(
     description: { type: String, required: true },
     location: { type: String, required: true },
     wage: { type: Number, required: true },
-    contactVia: { type: [String], enum: ['email', 'phone'] },
+    contactVia: {
+      type: [String],
+      enum: ['email', 'phone'],
+      default: ['email'],
+    },
     user: { type: mongoose.Types.ObjectId, ref: 'User' },
   },
   {

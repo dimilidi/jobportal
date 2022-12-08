@@ -6,6 +6,6 @@ const app = express.Router()
 
 app.get('/', controller.getAds)
 app.get('/:id', controller.getAdById)
-app.post('/post', controller.createAd)
+app.post('/post', controller.postAd)
 
 export default app
