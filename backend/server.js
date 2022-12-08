@@ -4,6 +4,8 @@ import 'express-async-errors'
 import cors from 'cors'
 import mongoose from 'mongoose'
 import cookieParser from 'cookie-parser'
+import userRouter from './src/routers/userRouter.js'
+import adRouter from './src/routers/adRouter.js'
 dotenv.config()
 
 mongoose.set('strictQuery', false)
@@ -26,8 +28,8 @@ app.use(express.json())
 app.use(cookieParser())
 
 // Routers
-// app.use('/ads', adRouter)
-// app.use('/user', userRouter)
+app.use('/ads', adRouter)
+app.use('/user', userRouter)
 
 // Error Handler
 app.use((req, res, next) => {
