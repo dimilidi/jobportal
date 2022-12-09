@@ -3,7 +3,7 @@ import httpErrors from 'http-errors'
 
 export default function validate(req, res, next) {
   const errors = validationResult(req)
-  if (errors.isEmpty()) return next("validate function called with empty")
+  if (errors.isEmpty()) return next()
 
   const shortErrors = errors.array().map( (err) => {return {[err.param]: err.msg } })
 

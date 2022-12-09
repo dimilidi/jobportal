@@ -6,7 +6,8 @@ import User from '../models/User.js'
 
 /** @type {import("express").RequestHandler} */
 export function getUser (req, res) {
-  res.status(200).send(req.user)
+  const user = req.user
+  res.status(200).send(user)
 }
 
 
@@ -68,11 +69,7 @@ export async function login (req, res) {
 
 /** @type {import("express").RequestHandler} */
 export async function updateUser (req, res) {
-  // update only with AUTH possible
   const user = req.user
-
-// User Test
-// const user = await User.findById("6391f4d69085627f552b27f5")
 
   for(const key in req.body) {
     user[key] =  req.body[key]
@@ -80,4 +77,26 @@ export async function updateUser (req, res) {
   await user.save()
   
   res.status(200).send(user)
+}
+
+
+/** @type {import("express").RequestHandler} */
+export const logout = async (req, res) => {
+  // const user = req.user
+  const token = req.cookies["auth-token"]
+
+  // user.tokens.pull(token)
+  // await user.save()
+
+  const user = req.user
+ 
+
+  const filteredTokens = user.tokens.filter( el => el !== token )
+ 
+  user.tokens= filteredTokens
+  await user.save()
+  
+  res
+    .clearCookie("token")
+    .status(204).json()
 }
