@@ -1,12 +1,13 @@
-import httpErrors from 'http-errors'
 import Ad from '../models/Ad.js'
 import User from '../models/User.js'
+
 
 /** @type {import("express").RequestHandler} */
 export async function getAds(req, res) {
   const ads = await Ad.find().populate('user', 'name')
   res.status(200).json(ads)
 }
+
 
 /** @type {import("express").RequestHandler} */
 export async function postAd(req, res) {
@@ -23,6 +24,7 @@ export async function postAd(req, res) {
 
   res.status(201).json(newAd)
 }
+
 
 /** @type {import("express").RequestHandler} */
 export async function getAdById(req, res) {
