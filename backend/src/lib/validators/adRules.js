@@ -10,3 +10,4 @@ export const ad = [
   body("contactVia").isString().notEmpty(),
   validate
 ]
+

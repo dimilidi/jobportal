@@ -7,7 +7,7 @@ import {softAuth} from '../middleware/auth.js'
 const app = express.Router()
 
 app.get('/', controller.getAds)
-app.get('/:id', softAuth,  controller.getAdById) // AUTH?
-app.post('/post', auth, controller.createAd)
+app.get('/:id', controller.getAdById)
+app.post('/post', controller.postAd)
 
 export default app
