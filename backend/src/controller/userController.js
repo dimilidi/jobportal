@@ -82,18 +82,10 @@ export async function updateUser (req, res) {
 
 /** @type {import("express").RequestHandler} */
 export const logout = async (req, res) => {
-  // const user = req.user
+  const user = req.user
   const token = req.cookies["auth-token"]
 
-  // user.tokens.pull(token)
-  // await user.save()
-
-  const user = req.user
- 
-
-  const filteredTokens = user.tokens.filter( el => el !== token )
- 
-  user.tokens= filteredTokens
+  user.tokens.pull(token)
   await user.save()
   
   res
