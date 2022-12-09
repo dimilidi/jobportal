@@ -1,6 +1,4 @@
 import Ad from '../models/Ad.js'
-import User from '../models/User.js'
-
 
 /** @type {import("express").RequestHandler} */
 export async function getAds(req, res) {
@@ -8,12 +6,10 @@ export async function getAds(req, res) {
   res.status(200).json(ads)
 }
 
-
 /** @type {import("express").RequestHandler} */
 export async function postAd(req, res) {
-  // const user = req.user
+  const user = req.user
   const ad = req.body
-  const user = await User.findById('6391ed524f0a32c2282ca4f1')
 
   const newAd = new Ad({
     ...ad,
@@ -25,13 +21,9 @@ export async function postAd(req, res) {
   res.status(201).json(newAd)
 }
 
-
 /** @type {import("express").RequestHandler} */
 export async function getAdById(req, res) {
-  // const user = req.user
-  // imitate login-user
-  const user = await User.findById('6391ed524f0a32c2282ca4d1')
-
+  const user = req.user
   const adId = req.params.id
 
   // if user is NOT logged in, populate only name of ad-creator
