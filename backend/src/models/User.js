@@ -4,13 +4,13 @@ import jwt from 'jsonwebtoken'
 
 const userSchema = mongoose.Schema({
   name: { type: String, required: true },
-  email: { type: String, required: true },
+  email: { type: String, required: true, unique: true },
   password: { type: String, required: true },
   tokens: [String],
   avatar: String,
   city: String,
   description: String,
-  phone: Number,
+  phone: String
 })
 
 userSchema.statics.findByEmail = function (email) {

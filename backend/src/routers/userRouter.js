@@ -9,6 +9,7 @@ const app = express.Router()
 app.get('/', auth, controller.getUser)
 app.post('/register', validator.register, controller.register)
 app.post('/login', validator.login, controller.login)
-app.put('/edit-account', auth, controller.updateUser)
+app.post('/logout',auth,  controller.logout)
+app.put('/edit-account', auth, validator.updateUser, controller.updateUser)
 
 export default app

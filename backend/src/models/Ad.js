@@ -2,7 +2,7 @@ import mongoose from 'mongoose'
 
 const Schema = mongoose.Schema(
   {
-    title: { type: String, required: true },
+    title: { type: String, required: true, unique: true },
     category: { type: String, enum: ['offering', 'searching'] },
     description: { type: String, required: true },
     location: { type: String, required: true },

@@ -3,6 +3,7 @@ import httpErrors  from 'http-errors'
 
 export default async function auth(req, res, next){
   const token = req.cookies['auth-token']
+  console.log(token)
 
   if(!token) throw httpErrors.Unauthorized('Not authorized to access')
 
@@ -11,7 +12,7 @@ export default async function auth(req, res, next){
   if(!user) throw httpErrors.Unauthorized('You shall not pass!')
 
   req.user = user
-  // await res.send("auth middleware called")
+
   next()
 }
 
