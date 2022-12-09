@@ -17,7 +17,7 @@ userSchema.statics.findByEmail = function (email) {
   return User.findOne().where('email').equals(email)
 }
 
-userSchema.statics.findByAuthToken = function (token){
+userSchema.statics.findByAuthToken = function (token) {
   const decode = jwt.verify(token, process.env.TOKEN_KEY)
   return User.findById(decode._id).where('tokens').equals(token)
 }
@@ -25,13 +25,22 @@ userSchema.statics.findByAuthToken = function (token){
 // Instance methods
 userSchema.methods.generateAuthToken = function () {
   const user = this
+
+  // Go through the existing tokens and if expired, return null
+  user.tokens.forEach((token) => {
+    const verified = jwt.verify(token, process.env.TOKEN_KEY, (err, verified) =>
+      err ? null : verified
+    )
+    if (!verified) user.tokens.pull(token)
+  })
+
   const token = jwt
-    .sign({_id: user._id}, process.env.TOKEN_KEY, {expiresIn: '2h'})
+    .sign({ _id: user._id }, process.env.TOKEN_KEY, { expiresIn: '2h' })
     .toString()
-   
+
   user.tokens.push(token)
-  
- return token
+
+  return token
 }
 
 userSchema.methods.checkPassword = async function (password) {
@@ -39,7 +48,7 @@ userSchema.methods.checkPassword = async function (password) {
   return await bcrypt.compare(password, user.password)
 }
 
-userSchema.methods.toJSON = function (){
+userSchema.methods.toJSON = function () {
   const user = this
   const result = {
     name: user.name,
@@ -49,18 +58,15 @@ userSchema.methods.toJSON = function (){
   return result
 }
 
-
-
 userSchema.pre('save', async function (next) {
   const user = this
-  if(user.isModified('password')) {
+  if (user.isModified('password')) {
     user.password = await bcrypt.hash(user.password, 10)
   }
 
   next()
 })
 
-
-const User = mongoose.model("User", userSchema, "users")
+const User = mongoose.model('User', userSchema, 'users')
 
 export default User
