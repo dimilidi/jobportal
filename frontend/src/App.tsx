@@ -1,5 +1,4 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import "./App.css";
 
 // Components
 // import Header from '../src/Components/Header'
@@ -9,6 +8,7 @@ import AdsList from "./Pages/AdsList";
 import AuthRequired from "./Pages/AuthRequired";
 import Home from "./Pages/Home";
 import Login from "./Pages/Login";
+import NotFound from "./Pages/NotFound";
 import PostAd from "./Pages/PostAd";
 import Register from "./Pages/Register";
 import SingleAd from "./Pages/SingleAd";
@@ -27,6 +27,7 @@ function App() {
           <Route path="/post-ad" element={<PostAd />} />
           <Route path="/account" element={<Account />} />
           <Route path="/auth-required" element={<AuthRequired />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
       {/* <Footer /> */}
