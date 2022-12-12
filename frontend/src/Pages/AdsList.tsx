@@ -4,7 +4,7 @@ type Props = {}
 
 const AdsList = (props: Props) => {
   return (
-    <div>this is ads List</div>
+    <div>this is ads List !!!</div>
   )
 }
 
