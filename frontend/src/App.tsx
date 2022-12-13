@@ -1,6 +1,4 @@
-
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-
 
 // Components
 import Header from "../src/Components/Header";
@@ -16,9 +14,8 @@ import Register from "./Pages/Register";
 import SingleAd from "./Pages/SingleAd";
 
 function App() {
-
   return (
-    <div className="App">
+    <div className="h-screen">
       <Header />
       <BrowserRouter>
         <Routes>
@@ -36,7 +33,6 @@ function App() {
       <Footer />
     </div>
   );
-
 }
 
 export default App;
