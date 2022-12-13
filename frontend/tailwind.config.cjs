@@ -16,6 +16,7 @@ module.exports = {
         darkBeige: '#EEECE5',   // footer
         gray: '#515151',        // text
         lightGray: '#BDBDBD',   // form elemente 
+        transparent: 'transparent'
 
       },
       // fontFamily: {
