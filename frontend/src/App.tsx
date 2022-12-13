@@ -1,11 +1,15 @@
-import './App.css'
+import Footer from "./Components/Footer"
+import AdsList from "./Pages/AdsList"
+
 
 function App() {
 
   return (
-    <div className="App">
-     
-    </div>
+    <>
+    <AdsList />
+      <Footer/>
+    </>
+   
   )
 }
 
