@@ -4,7 +4,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 // Components
 import Header from "../src/Components/Header";
-// import Footer from '../src/Components/Footer'
+import Footer from "../src/Components/Footer";
 import Account from "./Pages/Account";
 import AdsList from "./Pages/AdsList";
 import AuthRequired from "./Pages/AuthRequired";
@@ -33,7 +33,7 @@ function App() {
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
-      <Footer /> 
+      <Footer />
     </div>
   );
 
