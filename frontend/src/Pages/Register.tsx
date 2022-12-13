@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 type Props = {
 
@@ -13,7 +14,6 @@ const handleSubmit = async (e:React.FormEvent) => {
 const Register = (props: Props) => {
   return (
     <>
-      <MobileHeader />
       <img className='iconName'/>
       <div className='signupContent'>
         <h1>Glad to help You</h1>
