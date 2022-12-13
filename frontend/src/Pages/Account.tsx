@@ -14,7 +14,6 @@ const handleClick = async (e:React.FormEvent) => {
 const Account = (props: Props) => {
   return (
     <>
-      <Header />
       <div className='profileCard'>
         <img src="" alt="User Avatar" />
         <h1>Viktoria Schulz</h1>
