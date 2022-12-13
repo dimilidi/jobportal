@@ -3,7 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 
 // Components
-import Header from "../src/Components/Header";
+import Layout from "../src/Components/Header";
 import Footer from "../src/Components/Footer";
 import Account from "./Pages/Account";
 import AdsList from "./Pages/AdsList";
@@ -19,8 +19,8 @@ function App() {
 
   return (
     <div className="App">
-      <Header />
       <BrowserRouter>
+        <Layout >
         <Routes>
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
@@ -32,8 +32,8 @@ function App() {
           <Route path="/auth-required" element={<AuthRequired />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
+        </Layout >
       </BrowserRouter>
-      <Footer />
     </div>
   );
 
