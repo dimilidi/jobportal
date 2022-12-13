@@ -14,7 +14,12 @@ const NotFound = (props: Props) => {
   return (
     <div>
       <p>Oops, we couldn't find the page!</p>
-      <UniButton text="Back" onClick={handleClick} />
+      <UniButton
+        text="Back"
+        onClick={handleClick}
+        width="133px"
+        height="34px"
+      />
     </div>
   );
 };
