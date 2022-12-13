@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 // Components
-// import Header from '../src/Components/Header'
+import Header from "../src/Components/Header";
 // import Footer from '../src/Components/Footer'
 import Account from "./Pages/Account";
 import AdsList from "./Pages/AdsList";
@@ -16,7 +16,7 @@ import SingleAd from "./Pages/SingleAd";
 function App() {
   return (
     <div className="App">
-      {/* <Header /> */}
+      <Header />
       <BrowserRouter>
         <Routes>
           <Route path="/login" element={<Login />} />
