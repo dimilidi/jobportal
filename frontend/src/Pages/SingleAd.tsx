@@ -1,11 +1,13 @@
-import React from 'react'
+import React from "react";
 
-type Props = {}
+type Props = {};
 
 const SingleAd = (props: Props) => {
   return (
-    <div>SingleAd</div>
-  )
-}
+    <div>
+      <div></div>
+    </div>
+  );
+};
 
-export default SingleAd
+export default SingleAd;
