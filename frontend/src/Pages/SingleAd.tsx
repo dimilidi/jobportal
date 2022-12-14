@@ -52,7 +52,7 @@ const SingleAd = (props: Props) => {
           <div>JOB LABEL</div>
           <div area-label="description" className="mt-3">
             <h3 className="text-[20px]">Description</h3>
-            <p className="text-gray">
+            <p className="text-gray/80 mt-2">
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum
               dignissimos expedita delectus ipsa, tempore, fugiat quae inventore
               dicta nihil aut, amet officia maiores eveniet? Neque nemo
