@@ -17,19 +17,17 @@ function App() {
   return (
     <div className="h-screen">
       <Header />
-      <BrowserRouter>
-        <Routes>
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/" element={<Home />} />
-          <Route path="/adslist" element={<AdsList />} />
-          <Route path="/ad/:id" element={<SingleAd />} />
-          <Route path="/post-ad" element={<PostAd />} />
-          <Route path="/account" element={<Account />} />
-          <Route path="/auth-required" element={<AuthRequired />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </BrowserRouter>
+      <Routes>
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/" element={<Home />} />
+        <Route path="/adslist" element={<AdsList />} />
+        <Route path="/ad/:id" element={<SingleAd />} />
+        <Route path="/post-ad" element={<PostAd />} />
+        <Route path="/account" element={<Account />} />
+        <Route path="/auth-required" element={<AuthRequired />} />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
       <Footer />
     </div>
   );

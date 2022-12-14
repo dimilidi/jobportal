@@ -81,9 +81,11 @@ const SingleAd = (props: Props) => {
       {/* Main part of single ad */}
 
       {/* image */}
-      <div>
-        <img src="" alt="" />
-      </div>
+      <img
+        src=""
+        alt=""
+        className="hidden bg-red-700 md:z-30 md:block md:w-[230px] md:h-[220px] md:absolute md:bottom-[-120px] left-[16%]"
+      />
       {/* image - END */}
 
       {/* If user exists, show ContactDetails - DESKTOP */}
