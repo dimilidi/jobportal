@@ -1,4 +1,4 @@
-import axiosClient from "./axiosClient";
+import axiosClient from "./axiosInstance";
 import { EditInputs, RegisterInputs } from "../type";
 import { LoginInputs } from "../type";
 
