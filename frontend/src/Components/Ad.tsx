@@ -1,25 +1,27 @@
-import React from 'react'
+
 
 type Props = {}
 
 function Ad({}: Props) {
   return (
-    <div className='w-full md:py-1 sm:px-5 py-[0px]'>
-        <div className='md:h-[80px] h-[110px] w-full flex sm:justify-around justify-around items-center border-lightBeige md:border-y-2 border-b-0 border-t-2 text-[14px] gap-2 md:px-0 px-3'>
+    <div className='md:py-1 md:w-[90%]   sm:px-[20px] px-1 w-full py-[0px]'>
+        <div className='md:h-[80px] md:border-y-2   h-[110px] w-full flex   justify-between items-center border-lightBeige border-b-0 border-t-2 text-[14px] px-0'>
 
-           
+
+          {/* Left */}
+        <div className="h-full flex  justify-start sm:gap-3">
              {/* Profile Image*/}
-             <div className='w-[60px] self-start'>
-                <div className='md:w-[40px] w-[50px] md:h-[50px] h-[75px] ml-[10px] mb-[20px] rounded-b-[40px] flex self-start justify-center items-end bg-lightBeige'>
-                    <div className='md:w-[30px] w-[40px] md:h-[30px] h-[40px] mb-1 self-end rounded-full bg-white'>
+             <div className='w-[50px] '>
+                <div className='md:w-[40px] md:h-[50px] w-[50px]  h-[75px] mb-[20px] rounded-b-[40px] flex self-start justify-center items-end bg-lightBeige'>
+                    <div className='md:w-[30px] md:h-[30px] w-[40px]  h-[40px] mb-1 self-end rounded-full bg-white'>
                         <img src="" alt="" />
                     </div>
                 </div>
              </div>
           
 
-            {/* Links */}
-            <div className='md:w-[500px] sm:w-[200px]  w-[180px] flex  md:flex-row flex-col  justify-start items-center'>
+           
+            <div className='md:w-[400px] md:flex-row sm:w-[200px]  w-[180px] flex  flex-col  justify-center items-center'>
                 <div className='sm:w-[200px] w-[150px] flex '>
 
                     {/* Title, Sector */}
@@ -40,17 +42,17 @@ function Ad({}: Props) {
                     </div>
                 </div>
             </div>
-          
+          </div>
            
-          {/* Rechts */}
-          <div className='md:w-[180px] w-[100px] h-full md:self-center self-end flex md:flex-row flex-col md:justify-between  justify-end md:items-center items-start gap-1 '>
+          {/* Right */}
+          <div className='md:w-[180px] w-[70px] h-full md:self-center self-end flex md:flex-row flex-col md:justify-between  justify-end md:items-center items-start gap-1  '>
             {/* Created At */}
-            <div className=' md:text-[16px]  text-[14px] text-textBlack text-opacity-50'>
+            <div className=' md:text-[16px] md:ml-[10px]  text-[14px] text-textBlack text-opacity-50'>
                 <p>20.02.2023</p>
             </div>
 
             {/* Wage */}
-            <div className='flex justify-center items-center mr-[-20px] md:h-[80px] md:w-[70px]  w-[70px] h-[60px]   md:rounded-r-[20px] md:rounded-tl-[0px]  rounded-t-[20px] bg-lightBeige md:text-[16px] text-[14px]  text-textBlack text-opacity-70'>
+            <div className='md:mr-[-15px] flex justify-center items-center md:h-[80px] md:w-[70px]  w-[70px] h-[60px]   md:rounded-r-[20px] md:rounded-tl-[0px]  rounded-t-[20px] bg-lightBeige md:text-[16px] text-[14px]  text-textBlack text-opacity-70 '>
                 <p className='text-[18px]'>
                     10€ 
                     <p className='text-[14px] text-textBlack text-opacity-50'>

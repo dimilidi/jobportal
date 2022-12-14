@@ -14,13 +14,14 @@ import NotFound from "./Pages/NotFound";
 import PostAd from "./Pages/PostAd";
 import Register from "./Pages/Register";
 import SingleAd from "./Pages/SingleAd";
+import AdMobile  from "./Components/AdMobile";
 
 function App() {
 
   return (
-    <div className="bg-background h-[100vh]">
+    <div className="bg-background min-h-screen ">
       <Header />
-      <BrowserRouter>
+      
         <Routes>
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
@@ -32,7 +33,7 @@ function App() {
           <Route path="/auth-required" element={<AuthRequired />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
-      </BrowserRouter>
+
       <Footer />
     </div>
   );
