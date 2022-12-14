@@ -18,7 +18,7 @@ import SingleAd from "./Pages/SingleAd";
 function App() {
 
   return (
-    <div className="App">
+    <div className="bg-background h-[100vh]">
       <Header />
       <BrowserRouter>
         <Routes>
