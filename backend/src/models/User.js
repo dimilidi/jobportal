@@ -10,7 +10,7 @@ const userSchema = mongoose.Schema({
   avatar: String,
   city: String,
   description: String,
-  phone: String
+  phone: String,
 })
 
 userSchema.statics.findByEmail = function (email) {
@@ -54,6 +54,10 @@ userSchema.methods.toJSON = function () {
     name: user.name,
     email: user.email,
     _id: user._id,
+    avatar: user.avatar,
+    city: user.city,
+    description: user.description,
+    phone: user.phone,
   }
   return result
 }
