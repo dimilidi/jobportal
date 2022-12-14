@@ -5,7 +5,7 @@ type Props = {}
 function Ad({}: Props) {
   return (
     <div className='w-full md:py-1 sm:px-5 py-[0px]'>
-        <div className='md:h-[80px] h-[110px] w-full flex sm:justify-around justify-around items-center border-textBlack border-opacity-25 md:border-y-2 border-b-0 border-t-2 text-[14px] gap-2 md:px-0 px-3'>
+        <div className='md:h-[80px] h-[110px] w-full flex sm:justify-around justify-around items-center border-lightBeige md:border-y-2 border-b-0 border-t-2 text-[14px] gap-2 md:px-0 px-3'>
 
            
              {/* Profile Image*/}
@@ -43,7 +43,7 @@ function Ad({}: Props) {
           
            
           {/* Rechts */}
-          <div className='md:w-[180px] w-[100px] h-full md:self-center self-end flex md:flex-row flex-col md:justify-between  justify-end items-start gap-1 '>
+          <div className='md:w-[180px] w-[100px] h-full md:self-center self-end flex md:flex-row flex-col md:justify-between  justify-end md:items-center items-start gap-1 '>
             {/* Created At */}
             <div className=' md:text-[16px]  text-[14px] text-textBlack text-opacity-50'>
                 <p>20.02.2023</p>

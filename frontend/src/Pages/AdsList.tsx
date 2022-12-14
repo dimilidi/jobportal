@@ -9,7 +9,8 @@ const AdsList = (props: Props) => {
   const navigate = useNavigate()
 
   const handleClick = () => {
-    if(true){
+    const user = true// to be replaced with state
+    if(user){
       navigate('/post-ad')
     } else {
       navigate('/auth-required')
@@ -18,13 +19,12 @@ const AdsList = (props: Props) => {
 
 
 
-
   return (
     <> 
     {/* Placeholder for the fixed heading,which hight is ignored(not recognized) */}
     <div className='h-[250px]'></div>
 
-
+   {/* Page Container */}
     <div className=' w-[100%]  mx-auto flex justify-center items-start gap-10  ' >
 
           {/* Heading with underline  */}
@@ -38,8 +38,6 @@ const AdsList = (props: Props) => {
         </h2>
         <div className='fixed top-[250px] right-0  w-[52%] min-w-[220px] border-b-[3px] border-lightGreen '></div>
       </div>
-
-     
       
       {/* Semicircle */}
       <div className='hidden lg:block fixed  right-[-3rem] top-[200px]  w-24 h-24 rounded-full bg-lightGreen'></div>
@@ -47,11 +45,8 @@ const AdsList = (props: Props) => {
       {/* Image */}
       <div className='hidden 2xl:flex w-[500px] h-[500px]  bg-blue-200'></div>
 
-
+     {/* Ads Container */}
       <div className='flex flex-wrap justify-items-center items-start space-x-14 w-[100%] lg:w-[800px]  md:w-[700px] md:h-[530px] h-[550px] overflow-y-scroll '>
-
-       
-
         {/* Ads */}
         <div className='h-full w-full flex flex-wrap justify-center  '>
           <Ad />
@@ -67,12 +62,15 @@ const AdsList = (props: Props) => {
           <Ad />
           <Ad />
         </div>
-
       </div>
 
     </div>
+
+    {/* Button Ad Post */}
     <div className='w-full h-[150px]  flex justify-center items-center'>
-      <button onClick={handleCick} className='w-[200px] mx-auto p-2 px-6 bg-lightGreen rounded-full text-white text-[20px] '>Ad Post</button>
+      <button onClick={handleClick} className='w-[200px] mx-auto p-2 px-6 bg-lightGreen rounded-full text-white text-[20px] '>
+        Ad Post
+      </button>
     </div>
   
     </>
