@@ -1,12 +1,30 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
 import Ad from '../Components/Ad'
 
 type Props = {}
 
 const AdsList = (props: Props) => {
+
+  const navigate = useNavigate()
+
+  const handleClick = () => {
+    if(true){
+      navigate('/post-ad')
+    } else {
+      navigate('/auth-required')
+    }
+  }
+
+
+
+
   return (
     <> 
+    {/* Placeholder for the fixed heading,which hight is ignored(not recognized) */}
     <div className='h-[250px]'></div>
+
+
     <div className=' w-[100%]  mx-auto flex justify-center items-start gap-10  ' >
 
           {/* Heading with underline  */}
@@ -30,7 +48,7 @@ const AdsList = (props: Props) => {
       <div className='hidden 2xl:flex w-[500px] h-[500px]  bg-blue-200'></div>
 
 
-      <div className='flex flex-wrap justify-items-center items-start space-x-14 w-[100%] lg:w-[800px]  md:w-[700px] md:max-h-[530px] h-[850px]  overflow-y-scroll '>
+      <div className='flex flex-wrap justify-items-center items-start space-x-14 w-[100%] lg:w-[800px]  md:w-[700px] md:h-[530px] h-[550px] overflow-y-scroll '>
 
        
 
@@ -52,7 +70,9 @@ const AdsList = (props: Props) => {
 
       </div>
 
-     
+    </div>
+    <div className='w-full h-[150px]  flex justify-center items-center'>
+      <button onClick={handleCick} className='w-[200px] mx-auto p-2 px-6 bg-lightGreen rounded-full text-white text-[20px] '>Ad Post</button>
     </div>
   
     </>
