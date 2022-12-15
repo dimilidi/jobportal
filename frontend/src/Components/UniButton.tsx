@@ -1,13 +1,13 @@
-import React from "react";
+import React from 'react'
 
 type Props = {
-  text: string;
-  onClick: () => void;
-  fontSize?: string;
-  width?: string;
-  height?: string;
-  className: string;
-};
+  text: string
+  onClick: () => void
+  fontSize?: string
+  width?: string
+  height?: string
+  className?: string
+}
 
 const UniButton = (props: Props) => {
   return (
@@ -24,7 +24,7 @@ const UniButton = (props: Props) => {
         {props.text}
       </button>
     </div>
-  );
-};
+  )
+}
 
-export default UniButton;
+export default UniButton

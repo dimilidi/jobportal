@@ -1,15 +1,15 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from 'react-router-dom'
 
-import UniButton from "../Components/UniButton";
+import UniButton from '../Components/UniButton'
 
-type Props = {};
+type Props = {}
 
 const NotFound = (props: Props) => {
-  const navigate = useNavigate();
+  const navigate = useNavigate()
 
   const handleClick = () => {
-    navigate(-1);
-  };
+    navigate(-1)
+  }
 
   return (
     <div>
@@ -21,7 +21,7 @@ const NotFound = (props: Props) => {
         height="34px"
       />
     </div>
-  );
-};
+  )
+}
 
-export default NotFound;
+export default NotFound

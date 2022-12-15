@@ -1,16 +1,16 @@
-import React from "react";
-import { IoMdArrowBack } from "react-icons/io";
-import { useNavigate } from "react-router-dom";
-import ContactDetails from "../Components/ContactDetails";
-import UniButton from "../Components/UniButton";
+import React from 'react'
+import { IoMdArrowBack } from 'react-icons/io'
+import { useNavigate } from 'react-router-dom'
+import ContactDetails from '../Components/ContactDetails'
+import UniButton from '../Components/UniButton'
 
-type Props = {};
+type Props = {}
 
 const SingleAd = (props: Props) => {
-  const navigate = useNavigate();
+  const navigate = useNavigate()
   const handleClick = () => {
-    navigate("/auth-required");
-  };
+    navigate('/auth-required')
+  }
   return (
     <div
       area-label="page-singleAd"
@@ -87,11 +87,10 @@ const SingleAd = (props: Props) => {
         className="hidden bg-red-700 md:z-30 md:block md:w-[230px] md:h-[220px] md:absolute md:bottom-[-120px] left-[16%]"
       />
       {/* image - END */}
-
       {/* If user exists, show ContactDetails - DESKTOP */}
       <ContactDetails className="hidden absolute md:flex md:items-center md:right-[-150px] md:top-[50%] md:translate-y-[-50%] w-[265px] h-[173px] rounded-l-[65px]" />
     </div>
-  );
-};
+  )
+}
 
-export default SingleAd;
+export default SingleAd
