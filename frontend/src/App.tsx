@@ -18,7 +18,7 @@ import AdMobile  from "./Components/AdMobile";
 function App() {
   return (
     <div className="App">
-        <Layout className=' bg-background h-screen'>
+        <Layout className=' bg-background min-h-screen'>
         <Routes>
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
