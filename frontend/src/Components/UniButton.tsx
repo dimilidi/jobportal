@@ -12,7 +12,7 @@ const UniButton = (props: Props) => {
     <div className={props.className}>
       <button
         onClick={props.onClick}
-        className='w-[190px] flex items-center justify-center rounded-full bg-lightGreen text-white h-[40px] lg:w-[250px] px-[24px] py-[12px] fontSize-[16px]'
+        className='w-[190px] flex items-center justify-center rounded-full bg-lightGreen text-white h-[40px] md:w-[250px] px-[24px] py-[12px] fontSize-[16px]'
         style={{
           fontSize: props.fontSize,
           width: props.width,
