@@ -84,11 +84,11 @@ const SingleAd = (props: Props) => {
       <img
         src=''
         alt=''
-        className='hidden bg-red-700 md:w-[230px] md:h-[220px] md:absolute md:bottom-[-60px] md:left-[16%] md:block md:z-30'
+        className='hidden bg-red-700 md:w-[230px] md:h-[220px] md:absolute md:bottom-[-200px] md:left-[16%] md:block md:z-30'
       />
       {/* image - END */}
       {/* If user exists, show ContactDetails - DESKTOP */}
-      <ContactDetails className='absolute hidden md:w-[265px] md:h-[173px] md:flex md:items-center md:right-[-150px] md:top-[50%] md:rounded-l-[65px]  md:translate-y-[-50%]' />
+      <ContactDetails className='hidden md:w-[170px] md:h-[260px] md:flex md:items-center md:absolute md:right-0 md:top-[50%] md:rounded-l-[65px]  md:translate-y-[-50%]' />
     </div>
   )
 }
