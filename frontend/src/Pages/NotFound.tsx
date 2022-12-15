@@ -15,10 +15,10 @@ const NotFound = (props: Props) => {
     <div>
       <p>Oops, we couldn't find the page!</p>
       <UniButton
-        text="Back"
+        text='Back'
         onClick={handleClick}
-        width="133px"
-        height="34px"
+        width='133px'
+        height='34px'
       />
     </div>
   )
