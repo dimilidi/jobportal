@@ -1,5 +1,6 @@
-import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import React, { useEffect, useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
+import { ToastContainer, toast } from 'react-toastify'
 
 import { RegisterInputs } from '../type'
 import useUser from '../Hooks/useUser'
@@ -9,15 +10,30 @@ import UniButton from '../Components/UniButton'
 type Props = {}
 
 const Register = (props: Props) => {
-  const { register } = useUser()
-  const initialValue = {
+  const navigate = useNavigate()
+  const { user, loading, register } = useUser()
+  const initialValue: RegisterInputs = {
     name: '',
     email: '',
     password: '',
   }
-  const [inputs, setInputs] = useState<RegisterInputs>(initialValue)
+  const [inputs, setInputs] = useState(initialValue)
   const [fetching, setFetching] = useState<boolean>(false)
   const [errors, setErrors] = useState<string[] | undefined[] | undefined>([])
+  const [success, setSuccess] = useState(true)
+  console.log(success)
+
+  // if (success) {
+  //   toast.success('Successfully logged in!', {
+  //     position: toast.POSITION.TOP_CENTER,
+  //   })
+  // }
+
+  useEffect(() => {
+    if (user && !loading) {
+      //? where to navigate? navigate('/')
+    }
+  }, [user])
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputs((prev) => ({
@@ -32,7 +48,13 @@ const Register = (props: Props) => {
     setFetching(true)
     setErrors([])
     const response = await register(inputs)
-
+    if (response.status === 201) {
+      toast.success('Successfully logged in!', {
+        position: toast.POSITION.TOP_CENTER,
+        className: '',
+      })
+      navigate('/account')
+    }
     if (response.status === 400) setErrors(response.errors)
     if (response.status === 500) setErrors(['Something went wrong!'])
     setInputs(initialValue)
@@ -41,6 +63,7 @@ const Register = (props: Props) => {
 
   return (
     <>
+      <ToastContainer autoClose={3000} />
       {fetching && <div>...Loading</div>}
       <img className='iconName' />
       <div className='signupContent'>
@@ -78,7 +101,12 @@ const Register = (props: Props) => {
             />
           </label>
           <UniButton text='Sign Up' />
-          {errors && errors.map((error) => <p>{error}</p>)}
+          {errors &&
+            errors.map((error) => (
+              <p key={error} className='text-red-600'>
+                {error}
+              </p>
+            ))}
         </form>
         <button>Login</button>
         <Link to='/login'>Or log in here!</Link>

@@ -2,6 +2,7 @@ import React, { createContext, useContext, useState, useEffect } from 'react'
 import { AxiosResponse } from 'axios'
 import axiosInstance from '../api/axiosInstance'
 import { User, RegisterInputs, LoginInputs, EditInputs } from '../type'
+import { getErrorArray } from '../utils/getErrorArray'
 
 type PromiseResult = {
   status: number
@@ -13,7 +14,7 @@ type UserHook = {
   loading: boolean
   isLoggedIn: boolean
   register: (params: RegisterInputs) => Promise<PromiseResult>
-  //   login: (params: LoginInputs) => void;
+  login: (params: LoginInputs) => Promise<PromiseResult>
   //   editAccount: (params: EditInputs) => void;
 }
 
@@ -26,8 +27,13 @@ const UserContext = createContext<UserHook>({
       status: 500,
     }
   },
-  //   login: () => null,
+  login: async () => {
+    return {
+      status: 500,
+    }
+  },
   //   editAccount: () => null,
+  // logout
 })
 
 export const UserProvider = (props: { children: React.ReactElement }) => {
@@ -41,7 +47,7 @@ export const UserProvider = (props: { children: React.ReactElement }) => {
 
   // Check if user is logged in, if yes, setUser. If not, return null.
   useEffect(() => {
-    const getUser = async () => {
+    const getUser = (async () => {
       try {
         const response: AxiosResponse<any, any> = await axiosInstance.get(
           '/user'
@@ -53,7 +59,7 @@ export const UserProvider = (props: { children: React.ReactElement }) => {
       } finally {
         setLoading(false)
       }
-    }
+    })()
   }, [])
 
   const userContext = {
@@ -62,8 +68,10 @@ export const UserProvider = (props: { children: React.ReactElement }) => {
     isLoggedIn: isLoggedIn,
     register: async (inputs: RegisterInputs) => {
       try {
-        const response = await axiosInstance.post('/user/register', inputs)
-        console.log(response)
+        const response: AxiosResponse<any, any> = await axiosInstance.post(
+          '/user/register',
+          inputs
+        )
         setUser(response.data)
         setIsLoggedIn(true)
         return {
@@ -71,12 +79,7 @@ export const UserProvider = (props: { children: React.ReactElement }) => {
         }
       } catch (err: any) {
         if (err.response && err.response.status === 400) {
-          const errors = []
-          for (const error of err.response.data.message) {
-            for (const key in error) {
-              errors.push(error[key])
-            }
-          }
+          const errors = getErrorArray(err.response.data.message)
           return {
             status: 400,
             errors: errors,
@@ -84,6 +87,37 @@ export const UserProvider = (props: { children: React.ReactElement }) => {
         }
         return {
           status: 500,
+        }
+      }
+    },
+    login: async (inputs: LoginInputs) => {
+      try {
+        const response: AxiosResponse<any, any> = await axiosInstance.post(
+          '/user/login',
+          inputs
+        )
+        console.log(response)
+        setUser(response.data)
+        setIsLoggedIn(true)
+        return {
+          status: response.status,
+        }
+      } catch (err: any) {
+        console.log(err)
+        if (err.response && err.response.status === 401) {
+          return {
+            status: 401,
+          }
+        } else if (err.response && err.response.status === 400) {
+          const errors = getErrorArray(err.response.data.message)
+          return {
+            status: 400,
+            errors: errors,
+          }
+        } else {
+          return {
+            status: 500,
+          }
         }
       }
     },
