@@ -1,4 +1,3 @@
-import React from 'react'
 import Ad from '../Components/Ad'
 
 type Props = {}
