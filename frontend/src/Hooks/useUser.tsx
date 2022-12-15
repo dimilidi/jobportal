@@ -15,6 +15,7 @@ type UserHook = {
   isLoggedIn: boolean
   register: (params: RegisterInputs) => Promise<PromiseResult>
   login: (params: LoginInputs) => Promise<PromiseResult>
+  logout: () => void
   //   editAccount: (params: EditInputs) => void;
 }
 
@@ -32,8 +33,8 @@ const UserContext = createContext<UserHook>({
       status: 500,
     }
   },
+  logout: () => null,
   //   editAccount: () => null,
-  // logout
 })
 
 export const UserProvider = (props: { children: React.ReactElement }) => {
@@ -120,6 +121,10 @@ export const UserProvider = (props: { children: React.ReactElement }) => {
           }
         }
       }
+    },
+    logout: async () => {
+      await axiosInstance.get('/user/logout')
+      setUser(null)
     },
   }
 
