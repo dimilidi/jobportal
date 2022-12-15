@@ -1,6 +1,6 @@
 type Props = {
   text: string
-  onClick: () => void
+  onClick?: () => void
   fontSize?: string
   width?: string
   height?: string

@@ -1,40 +1,72 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 
-type Props = {
+import { RegisterInputs } from '../type'
+import useUser from '../Hooks/useUser'
 
+import UniButton from '../Components/UniButton'
 
-}
-
-const handleSubmit = async (e:React.FormEvent) => {
-  e.preventDefault()
-  alert(`Submit Click`)
-} 
+type Props = {}
 
 const Register = (props: Props) => {
+  const { user } = useUser()
+  const [inputs, setInputs] = useState<RegisterInputs>({
+    name: '',
+    email: '',
+    password: '',
+  })
+
+  console.log(inputs)
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setInputs((prev) => ({
+      ...prev,
+      [e.target.name]: e.target.value,
+    }))
+  }
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    console.log('clicked')
+  }
   return (
     <>
-      <img className='iconName'/>
+      <img className='iconName' />
       <div className='signupContent'>
         <h1>Glad to help You</h1>
 
-        <form action="post">
-          <label htmlFor="userName">
+        <form onSubmit={handleSubmit}>
+          <label htmlFor='name'>
             Username
-            <input type="text" name='userName' placeholder='enter username here'/>
+            <input
+              type='text'
+              name='name'
+              placeholder='enter username here'
+              onChange={handleChange}
+            />
           </label>
-          <label htmlFor="email">
+          <label htmlFor='email'>
             Email
-            <input type="email" name='email' placeholder='enter email here'/>
+            <input
+              type='email'
+              name='email'
+              placeholder='enter email here'
+              onChange={handleChange}
+            />
           </label>
-          <label htmlFor="password">
+          <label htmlFor='password'>
             Password
-            <input type="password" name='password' placeholder='enter password here'/>
+            <input
+              type='password'
+              name='password'
+              placeholder='enter password here'
+              onChange={handleChange}
+            />
           </label>
-          <button type='submit' className='signupBtn' onSubmit={handleSubmit}>Login</button>
-          <Link to='/login'>Or log in here!</Link>
+          <UniButton text='Sign Up' />
         </form>
-
+        <button>Login</button>
+        <Link to='/login'>Or log in here!</Link>
       </div>
     </>
   )
