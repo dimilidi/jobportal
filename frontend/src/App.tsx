@@ -18,7 +18,7 @@ import SingleAd from "./Pages/SingleAd";
 function App() {
 
   return (
-    <div className="App">
+    <div className="min-h-screen">
       <Header />
       <BrowserRouter>
         <Routes>
