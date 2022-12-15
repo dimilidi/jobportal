@@ -9,14 +9,15 @@ import UniButton from '../Components/UniButton'
 type Props = {}
 
 const Register = (props: Props) => {
-  const { user } = useUser()
-  const [inputs, setInputs] = useState<RegisterInputs>({
+  const { register } = useUser()
+  const initialValue = {
     name: '',
     email: '',
     password: '',
-  })
-
-  console.log(inputs)
+  }
+  const [inputs, setInputs] = useState<RegisterInputs>(initialValue)
+  const [fetching, setFetching] = useState<boolean>(false)
+  const [errors, setErrors] = useState<string[] | undefined[] | undefined>([])
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputs((prev) => ({
@@ -27,10 +28,20 @@ const Register = (props: Props) => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    console.log('clicked')
+
+    setFetching(true)
+    setErrors([])
+    const response = await register(inputs)
+
+    if (response.status === 400) setErrors(response.errors)
+    if (response.status === 500) setErrors(['Something went wrong!'])
+    setInputs(initialValue)
+    setFetching(false)
   }
+
   return (
     <>
+      {fetching && <div>...Loading</div>}
       <img className='iconName' />
       <div className='signupContent'>
         <h1>Glad to help You</h1>
@@ -43,6 +54,7 @@ const Register = (props: Props) => {
               name='name'
               placeholder='enter username here'
               onChange={handleChange}
+              value={inputs.name}
             />
           </label>
           <label htmlFor='email'>
@@ -52,6 +64,7 @@ const Register = (props: Props) => {
               name='email'
               placeholder='enter email here'
               onChange={handleChange}
+              value={inputs.email}
             />
           </label>
           <label htmlFor='password'>
@@ -61,9 +74,11 @@ const Register = (props: Props) => {
               name='password'
               placeholder='enter password here'
               onChange={handleChange}
+              value={inputs.password}
             />
           </label>
           <UniButton text='Sign Up' />
+          {errors && errors.map((error) => <p>{error}</p>)}
         </form>
         <button>Login</button>
         <Link to='/login'>Or log in here!</Link>
