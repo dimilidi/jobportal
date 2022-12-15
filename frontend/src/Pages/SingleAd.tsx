@@ -28,7 +28,7 @@ const SingleAd = (props: Props) => {
       {/* Circle and line in background - END */}
 
       {/* Main part of single ad */}
-      <div area-label='main' className='w-[80%] md:w-[65%] flex flex-col'>
+      <div area-label='main' className='w-[80%] md:w-[50%] flex flex-col'>
         {/* Browse Job button */}
         <div
           area-label='back-button-to-jobs'
