@@ -13,10 +13,12 @@ import NotFound from "./Pages/NotFound";
 import PostAd from "./Pages/PostAd";
 import Register from "./Pages/Register";
 import SingleAd from "./Pages/SingleAd";
+import AdMobile  from "./Components/AdMobile";
 
 function App() {
 
   return (
+
     <div className="App">
       <BrowserRouter>
         <Layout className=' bg-background h-screen'>
