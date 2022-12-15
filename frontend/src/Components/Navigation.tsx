@@ -50,7 +50,7 @@ const Navigation = (props: Props) => {
 
 
     {/* BURGER MENU */}
-        <nav className='sm:hidden absolute z-10  '>            
+        <nav className='sm:hidden absolute z-40'>            
             
             {/* HANDLE BURGER MENU */}
             <div onClick={handleNavigation} className='cursor-pointer  '>
@@ -65,7 +65,9 @@ const Navigation = (props: Props) => {
                 <ul className='pt-10 w-screen h-screen  bg-background sm:flex md:hidden text-center '>
                     {
                         pages.map( (page) => (
-                            <li key={page.name} className='p-2 font-medium text-lg'> <Link to={page.url}>{page.name}</Link></li>                                
+                            <li
+                            onClick={handleNavigation} 
+                            key={page.name} className='p-2 font-medium text-lg'> <Link to={page.url}>{page.name}</Link></li>                                
                         ))
                     }
                     {/* in Pages handleLogin/logout --> user ? show Logout : Login  */}
