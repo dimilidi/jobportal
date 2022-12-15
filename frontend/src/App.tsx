@@ -1,8 +1,7 @@
-
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
 // Components
+
 import Layout from "../src/Components/Layout";
 import Account from "./Pages/Account";
 import AdsList from "./Pages/AdsList";
@@ -15,12 +14,10 @@ import Register from "./Pages/Register";
 import SingleAd from "./Pages/SingleAd";
 import AdMobile  from "./Components/AdMobile";
 
+
 function App() {
-
   return (
-
     <div className="App">
-      <BrowserRouter>
         <Layout className=' bg-background h-screen'>
         <Routes>
           <Route path="/login" element={<Login />} />
@@ -34,10 +31,8 @@ function App() {
           <Route path="*" element={<NotFound />} />
         </Routes>
         </Layout >
-      </BrowserRouter>
     </div>
-  );
-
+  )
 }
 
-export default App;
+export default App
