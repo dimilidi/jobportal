@@ -8,20 +8,42 @@ type Props = {
 
 const ContactDetails = (props: Props) => {
   return (
+    // Div with props styling
     <div className={props.className}>
-      <div className='px-6 py-12 w-[inherit] h-[inherit] rounded-[inherit] text-white bg-lightGreen'>
-        <h3 className='text-2xl font-bold'>Victoria Schulz</h3>
-        <div className='flex items-center'>
-          <MdEmail />
-          <p>etwas@etwas.de</p>
-        </div>
-        <div className='flex items-center'>
-          <BsTelephoneFill />
-          <p>8748720938</p>
-        </div>
-        <div className='flex items-center'>
-          <FaMapMarkerAlt />
-          <p>04315 Leipzig</p>
+      {/* Green Contact Box */}
+      <div
+        area-label='contact-data'
+        className='flex flex-col items-center justjustify-center gap-3 px-6 py-12 w-[inherit] h-[inherit] rounded-[inherit] text-white bg-lightGreen lg:items-start lg:gap-2'
+      >
+        {/* Name */}
+        <h3 className='self-center text-2xl font-bold'>Victoria Schulz</h3>
+
+        {/* Email, Phone, City */}
+        <div
+          area-label='box-with-contact-details'
+          className='flex flex-col gap-3 md:gap-2'
+        >
+          <div className='flex items-center'>
+            <div>
+              <MdEmail className='text-lg' />
+            </div>
+            <p className='ml-2 text-sm break-all'>
+              a-long-email-address@gmail.com
+            </p>
+          </div>
+          <div className='flex items-center'>
+            <div>
+              <BsTelephoneFill className='text-lg' />
+            </div>
+            <p className='ml-2 text-sm break-all'>+49(0)1234-4567</p>
+          </div>
+          <div className='flex items-center'>
+            <div>
+              <FaMapMarkerAlt className='text-lg' />
+            </div>
+            <p className='ml-2 text-sm break-all'>04315 Leipzig</p>
+          </div>
+          {/* Email, Phone, City - END */}
         </div>
       </div>
     </div>

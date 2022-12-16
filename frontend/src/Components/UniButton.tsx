@@ -1,8 +1,6 @@
-import React from 'react'
-
 type Props = {
   text: string
-  onClick: () => void
+  onClick?: () => void
   fontSize?: string
   width?: string
   height?: string
@@ -14,7 +12,7 @@ const UniButton = (props: Props) => {
     <div className={props.className}>
       <button
         onClick={props.onClick}
-        className="flex items-center justify-center rounded-full bg-lightGreen text-white h-[40px] w-[250px] px-[24px] py-[12px] fontSize-[16px]"
+        className='w-[190px] flex items-center justify-center rounded-full bg-lightGreen text-white h-[40px] md:w-[250px] px-[24px] py-[12px] fontSize-[16px]'
         style={{
           fontSize: props.fontSize,
           width: props.width,
