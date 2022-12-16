@@ -1,12 +1,10 @@
-
-
 type Props = {}
 
 function Ad({}: Props) {
   
   return (
     <div className='w-full px-1 py-[0px] md:py-1 md:w-[90%] sm:px-[20px]'>
-        <div className='px-0 h-[110px] w-full flex justify-between items-center border-lightBeige border-b-0 border-t-2 text-[14px] md:h-[80px] md:border-y-2'>
+        <div className='mx-auto h-[110px] w-[95%] flex justify-between items-center border-lightBeige border-b-0 border-t-2 text-[14px] md:h-[80px] md:border-y-2'>
 
           {/* Left */}
         <div className="h-full flex justify-start sm:gap-3">

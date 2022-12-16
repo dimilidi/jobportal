@@ -2,7 +2,7 @@
 
 type Props = {}
 
-function Ad({}: Props) {
+function AdMobile({}: Props) {
   return (
     <div className='px-3 py-[0px] w-full  sm:px-5 '>
         <div className='h-[110px] w-full flex justify-around items-center  text-[14px] border-y-2 border-lightBeige'>
