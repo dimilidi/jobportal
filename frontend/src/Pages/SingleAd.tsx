@@ -16,7 +16,7 @@ const SingleAd = (props: Props) => {
   return (
     <div
       area-label='page-singleAd'
-      className='relative flex justify-center text-Black'
+      className='pt-[70px] relative flex justify-center text-Black'
     >
       {/* Circle and line in the background */}
       <div
