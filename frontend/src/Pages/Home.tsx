@@ -1,13 +1,14 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
-import { GoSearch } from "react-icons/go";
+import { GoSearch } from "react-icons/go"
+import imageHome from '../assets/images/Home_group.png'
 
 type Props = {}
 
 const Home = (props: Props) => {
   return (
     <div>
-      <div className='mt-[5rem] flex flex-col items-center justify-center md:mt-[5rem] lg:mt-[15rem] md:flex-col lg:flex-row'>
+      <div className='mt-[1rem] flex flex-col items-center justify-center md:mt-[1rem] lg:mt-[11rem] md:flex-col lg:flex-row lg:mx-20'>
 
   {/* TEXT LEFT */}
         <div className='flex flex-col items-center justify-center gap-6 lg:mr-40'>
@@ -19,32 +20,47 @@ const Home = (props: Props) => {
           <p className='hidden font-light text-gray lg:inline-block'>Lorem Ipsum is simply dummy text of the has been the industry's standard<br></br> dummy text Ipsum is simply dummy is simply dummy text of the has been.</p>
           
   {/* SEARCH ohne funktionalität */}
-        <div className='mt-10 flex flex-col items-center justify-center gap-1 md:mt-10 lg:mt-6'>
+        <div className='mt-6 flex flex-col items-center justify-center gap-1 md:mt-10 lg:mt-6'>
           <div className='flex items-center justify-center'>
             <label className='relative'>
               <GoSearch className='w-[20px] absolute top-3.5 left-5 text-gray text-opacity-50 md:top-3 lg:top-4'/>
-              <input type='text'
-                      className='h-[40px] w-[250px] text-center rounded-full bg-darkBeige placeholder:text-gray placeholder:text-opacity-50 focus:outline-lightGray lg:h-[50px] md:w-[350px] lg:w-[550px]' placeholder='Search'/>
+              <input
+                type='text'
+                className='h-[40px] w-[250px] text-center rounded-full bg-darkBeige placeholder:text-gray placeholder:text-opacity-50 focus:outline-lightGray lg:h-[50px] md:w-[350px] lg:w-[550px]'
+                placeholder='Search'/>
             </label>
           </div>
 
     {/* Browser Ads button */}
-          <button className='h-[40px] w-[250px] mt-2 rounded-full bg-lightGreen text-background md:w-[350px] lg:mt-3'>
+          <button 
+            className='h-[40px] w-[250px] mt-2 rounded-full bg-lightGreen text-background md:w-[350px] lg:mt-3'>
             <NavLink to={'/adslist'}>Browser Ads</NavLink>
           </button>
         </div>
         </div>
 
   {/* IMAGE right/botton */}
-          <img className='w-[300px] h-[250px] mt-20 z-30 bg-darkGreen lg:w-[500px] lg:h-[400px]' src="https:/"></img>
+          <img
+            className='w-[250px] mt-6 z-30 lg:w-[600px]'
+            src={imageHome}>
+          </img>
       </div>
 
 
   {/* elemente (kreis-linie) */}
         <div>
-          <div className='w-[53%] absolute z-10 left-0 top-[12.5rem] border-b-[3px] border-lightGreen lg:w-[29%] md:top-[15.5rem] lg:top-[28.5rem]'></div>
-          <div className='w-[56%] absolute z-10 top-[15.5rem] right-0 border-b-[3px] border-lightGreen lg:w-[76%] md:top-[20rem] lg:top-[34.5rem]'></div>
-          <div className='w-24 h-48 hidden absolute top-[28.5rem] right-0 rounded-tl-full rounded-bl-full bg-lightGreen lg:inline-block'></div>
+          <div
+            area-label='left line'
+            className='w-[53%] block absolute z-10 left-0 top-[12rem] border-b-[2px] border-lightGreen lg:w-[35%] md:w-[53%] md:top-[16rem] lg:top-[31.5rem] lg:border-b-[4px]'>
+          </div>
+          <div
+            area-label='right line'
+            className='w-[54%] block absolute z-10 top-[15rem] right-0 border-b-[2px] border-lightGreen lg:w-[69%] md:w-[54%] md:top-[21rem] lg:top-[37.5rem] lg:border-b-[4px]'>
+          </div>
+          <div
+            area-label='circle'
+            className='hidden lg:block lg:w-[332px] lg:h-[332px] lg:absolute lg:top-[50%] lg:right-[-250px] lg:translate-y-[-50%] lg:rounded-full md:bg-lightGreen'>
+          </div>
         </div>
     </div>
   )
