@@ -1,40 +1,115 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React, { useEffect, useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
+import { ToastContainer, toast } from 'react-toastify'
 
-type Props = {
+import { RegisterInputs } from '../type'
+import useUser from '../Hooks/useUser'
 
+import UniButton from '../Components/UniButton'
 
-}
-
-const handleSubmit = async (e:React.FormEvent) => {
-  e.preventDefault()
-  alert(`Submit Click`)
-} 
+type Props = {}
 
 const Register = (props: Props) => {
+  const navigate = useNavigate()
+  const { user, loading, register } = useUser()
+  const initialValue: RegisterInputs = {
+    name: '',
+    email: '',
+    password: '',
+  }
+  const [inputs, setInputs] = useState(initialValue)
+  const [fetching, setFetching] = useState<boolean>(false)
+  const [errors, setErrors] = useState<string[] | undefined[] | undefined>([])
+  const [success, setSuccess] = useState(true)
+  console.log(success)
+
+  // if (success) {
+  //   toast.success('Successfully logged in!', {
+  //     position: toast.POSITION.TOP_CENTER,
+  //   })
+  // }
+
+  useEffect(() => {
+    if (user && !loading) {
+      //? where to navigate? navigate('/') // adlist
+    }
+  }, [user])
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setInputs((prev) => ({
+      ...prev,
+      [e.target.name]: e.target.value,
+    }))
+  }
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+
+    setFetching(true)
+    setErrors([])
+    const response = await register(inputs)
+    if (response.status === 201) {
+      toast.success('Successfully logged in!', {
+        position: toast.POSITION.TOP_CENTER,
+        className: '',
+      })
+      navigate('/account')
+    }
+    if (response.status === 400) setErrors(response.errors)
+    if (response.status === 500) setErrors(['Something went wrong!'])
+    setInputs(initialValue)
+    setFetching(false)
+  }
+
   return (
     <>
-      <img className='iconName'/>
+      <ToastContainer autoClose={3000} />
+      {fetching && <div>...Loading</div>}
+      <img className='iconName' />
       <div className='signupContent'>
         <h1>Glad to help You</h1>
 
-        <form action="post">
-          <label htmlFor="userName">
+        <form onSubmit={handleSubmit}>
+          <label htmlFor='name'>
             Username
-            <input type="text" name='userName' placeholder='enter username here'/>
+            <input
+              type='text'
+              name='name'
+              placeholder='enter username here'
+              onChange={handleChange}
+              value={inputs.name}
+            />
           </label>
-          <label htmlFor="email">
+          <label htmlFor='email'>
             Email
-            <input type="email" name='email' placeholder='enter email here'/>
+            <input
+              type='email'
+              name='email'
+              placeholder='enter email here'
+              onChange={handleChange}
+              value={inputs.email}
+            />
           </label>
-          <label htmlFor="password">
+          <label htmlFor='password'>
             Password
-            <input type="password" name='password' placeholder='enter password here'/>
+            <input
+              type='password'
+              name='password'
+              placeholder='enter password here'
+              onChange={handleChange}
+              value={inputs.password}
+            />
           </label>
-          <button type='submit' className='signupBtn' onSubmit={handleSubmit}>Login</button>
-          <Link to='/login'>Or log in here!</Link>
+          <UniButton text='Sign Up' />
+          {errors &&
+            errors.map((error) => (
+              <p key={error} className='text-red-600'>
+                {error}
+              </p>
+            ))}
         </form>
-
+        <button>Login</button>
+        <Link to='/login'>Or log in here!</Link>
       </div>
     </>
   )
