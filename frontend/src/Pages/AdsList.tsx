@@ -1,9 +1,14 @@
 import { useNavigate } from 'react-router-dom'
 import Ad from '../Components/Ad'
+import useAds from '../Hooks/useAds'
 
 type Props = {}
 
 const AdsList = (props: Props) => {
+
+  const ads = useAds()
+console.log(ads);
+
 
   const navigate = useNavigate()
 
@@ -74,3 +79,4 @@ const AdsList = (props: Props) => {
 }
 
 export default AdsList
+
