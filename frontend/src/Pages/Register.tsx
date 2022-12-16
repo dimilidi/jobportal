@@ -31,7 +31,7 @@ const Register = (props: Props) => {
 
   useEffect(() => {
     if (user && !loading) {
-      //? where to navigate? navigate('/')
+      //? where to navigate? navigate('/') // adlist
     }
   }, [user])
 

@@ -21,7 +21,7 @@ const Login = (props: Props) => {
 
   useEffect(() => {
     if (user && !loading) {
-      navigate('/')
+      navigate('/adslist')
     }
   }, [user])
 
@@ -44,6 +44,7 @@ const Login = (props: Props) => {
       setErrors(['You are not authorized to login! Please check your input'])
     if (response.status === 400) setErrors(response.errors)
     if (response.status === 500) setErrors(['Something went wrong!'])
+    setInputs(initialInputs)
     setFetching(false)
   }
   return (

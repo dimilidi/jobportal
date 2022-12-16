@@ -3,6 +3,7 @@ import { IoMdArrowBack } from 'react-icons/io'
 import { useNavigate } from 'react-router-dom'
 import ContactDetails from '../Components/ContactDetails'
 import UniButton from '../Components/UniButton'
+import AdMobile from '../Components/AdMobile'
 import thinkingGirl from '../assets/images/SingleAd_girl.png'
 
 type Props = {}
@@ -50,7 +51,7 @@ const SingleAd = (props: Props) => {
           area-label='ad'
           className='py-5 px-9 mt-8 min-w-[270px] flex flex-col item-center z-10 rounded-[21px] bg-white shadow-standard lg:min-h-[400px] '
         >
-          <div>JOB LABEL</div>
+          <AdMobile />
           <div area-label='description' className='mt-3'>
             <h3 className='text-[20px]'>Description</h3>
             <p className='mt-2 text-gray/80'>
