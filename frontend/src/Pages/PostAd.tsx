@@ -5,8 +5,7 @@ import UniButton from '../Components/UniButton'
 import imagePostAd from '../assets/images/PostAd_chef.png'
 
 type Props = {
-  text: string
-  fontSize?: string
+
 }
 
 const PostAd = (props: Props) => {
@@ -22,7 +21,7 @@ const PostAd = (props: Props) => {
       {/* CIRCLE and LINES */}
       <div 
         area-label='circle'
-        className='hidden md:block md:w-[332px] md:h-[332px] md:absolute md:top-[50%] md:left-[-250px] md:translate-y-[-50%]  md:rounded-full md:bg-lightGreen'
+        className='hidden md:block md:w-[332px] md:h-[332px] md:absolute md:top-[50%] md:left-[-250px] md:translate-y-[-50%] md:rounded-full md:bg-lightGreen'
       />
       <div 
         area-label='line'
@@ -30,7 +29,7 @@ const PostAd = (props: Props) => {
       />
 
       {/* MAIN */}
-      <div area-label='main' className='w-[80%] md:w-[50%] flex flex-col'>
+      <div area-label='main' className='w-[80%] pt-[70px] md:w-[50%] flex flex-col'>
 
       {/* TITLE - Create your Ad - MOBILE with line*/}
         <div>

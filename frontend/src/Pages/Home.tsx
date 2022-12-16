@@ -8,7 +8,7 @@ type Props = {}
 const Home = (props: Props) => {
   return (
     <div>
-      <div className='mt-[1rem] flex flex-col items-center justify-center md:mt-[1rem] lg:mt-[11rem] md:flex-col lg:flex-row lg:mx-20'>
+      <div className='mt-[1rem] pt-[70px] flex flex-col items-center justify-center md:mt-[1rem] lg:mt-[9rem] md:flex-col lg:flex-row lg:mx-20'>
 
   {/* TEXT LEFT */}
         <div className='flex flex-col items-center justify-center gap-6 lg:mr-40'>
@@ -41,7 +41,7 @@ const Home = (props: Props) => {
 
   {/* IMAGE right/botton */}
           <img
-            className='w-[250px] mt-6 z-30 lg:w-[600px]'
+            className='w-[250px] mt-10 z-30 lg:w-[600px]'
             src={imageHome}>
           </img>
       </div>
@@ -51,15 +51,15 @@ const Home = (props: Props) => {
         <div>
           <div
             area-label='left line'
-            className='w-[53%] block absolute z-10 left-0 top-[12rem] border-b-[2px] border-lightGreen lg:w-[35%] md:w-[53%] md:top-[16rem] lg:top-[31.5rem] lg:border-b-[4px]'>
+            className='w-[53%] block absolute z-10 left-0 top-[16.5rem] border-b-[2px] border-lightGreen lg:w-[35%] md:w-[53%] md:top-[20.5rem] lg:top-[31.5rem] lg:border-b-[4px]'>
           </div>
           <div
             area-label='right line'
-            className='w-[54%] block absolute z-10 top-[15rem] right-0 border-b-[2px] border-lightGreen lg:w-[69%] md:w-[54%] md:top-[21rem] lg:top-[37.5rem] lg:border-b-[4px]'>
+            className='w-[54%] block absolute z-10 top-[19.5rem] right-0 border-b-[2px] border-lightGreen lg:w-[69%] md:w-[54%] md:top-[25rem] lg:top-[37.5rem] lg:border-b-[4px]'>
           </div>
           <div
             area-label='circle'
-            className='hidden lg:block lg:w-[332px] lg:h-[332px] lg:absolute lg:top-[50%] lg:right-[-250px] lg:translate-y-[-50%] lg:rounded-full md:bg-lightGreen'>
+            className='hidden lg:block lg:w-[332px] lg:h-[332px] lg:absolute lg:top-[57%] lg:right-[-250px] lg:translate-y-[-50%] lg:rounded-full md:bg-lightGreen'>
           </div>
         </div>
     </div>
