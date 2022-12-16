@@ -1,10 +1,19 @@
-import { Link } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import { useState } from 'react'
 import {AiOutlineClose, AiOutlineMenu} from 'react-icons/ai'
+// Animation
+import { motion } from 'framer-motion'
+
 
 type Props = {}
 
 const Navigation = (props: Props) => {
+
+    // Animation
+     const animateFrom = {opacity: 0, y: -40}
+     const animateTo = {opacity: 1, y: 0}
+     
+    
 
     //PAGES
     const pages =  [
@@ -14,64 +23,128 @@ const Navigation = (props: Props) => {
         {name:'Account', url:'/account'},
         {name:'Sign up', url:'/register'},
         {name:'Login', url:'/login'},
-        {name:'Logout', url:'/'},
+        {name:'Logout', url:'/auth-required'},
     ]
 
     // HANDLE BURGER MENU
-    const [navigation, setNavigation] = useState(true)  
+    const [navigation, setNavigation] = useState(false)
 
     function handleNavigation() {
       setNavigation(!navigation)
     }
 
 
-
     // in LIST OF PAGES useUser or Context for handleLogin/Logout 
 
 
-
   return (
-    <section className='relative pr-2 pb-6'>
+    <section className='p-6 pb-6 mr-8'>
 
     {/* NAVIGATION DESKTOP */}
-        <nav className='hidden sm:flex sm:justify-end items-end justify-center' > 
-            <ul className='flex'>
-                <li className='pr-3'> <Link to='/post-ad'>Post Ad</Link></li>
-                <li className='pr-10'> <Link to='/adslist'>Ads</Link> </li>
+        <nav className='w-full hidden sm:flex sm:justify-end items-end justify-center' > 
+            <ul className='flex mr-4'>
+                <motion.li 
+                    initial={animateFrom} 
+                    animate={animateTo}
+                    transition={{delay: 0.05}}
+                    className= 
+                    'pr-6 hover:text-darkGreen '
+                > 
+                    <NavLink 
+                        className={({isActive}) =>isActive? "text-darkGreen decoration-2 decoration-darkGreen underline underline-offset-8" :""} 
+                        to='/post-ad'
+                    >
+                            Post Ad
+                    </NavLink>
+                </motion.li>
+
+                <motion.li 
+                    initial={animateFrom} 
+                    animate={animateTo}
+                    transition={{delay: 0.10}}
+                    className='pr-10 hover:text-darkGreen'
+                > 
+                    <NavLink 
+                        className={({isActive}) =>isActive? "text-darkGreen  decoration-2 decoration-lightGreen underline underline-offset-8" :""}
+                        to='/adslist'
+                    >
+                            Ads
+                    </NavLink> 
+                </motion.li>
             </ul>
 
             <ul className='flex'>
-                <li className='pr-3'> <Link to='/login'>Login</Link> </li>
-                <li className='pr-3'>|</li>
-                <li className='pr-5 font-bold'> <Link to='/register'>Sign up</Link> </li>
+                <motion.li 
+                    initial={animateFrom} 
+                    animate={animateTo}
+                    transition={{delay: 0.20}}
+                    className='pr-3 hover:text-darkGreen'
+                > 
+                    <NavLink 
+                        className={({isActive}) =>isActive? "text-darkGreen  decoration-2 decoration-lightGreen underline underline-offset-8" :""}
+                        to='/login'
+                    >
+                            Login
+                    </NavLink> 
+                </motion.li>
+
+                <motion.li 
+                    initial={animateFrom} 
+                    animate={animateTo}
+                    transition={{delay: 0.30}}
+                    className='pr-3 '
+                >
+                        |
+                </motion.li>
+
+                <motion.li 
+                    initial={animateFrom} 
+                    animate={animateTo}
+                    transition={{delay: 0.40}}
+                    className='pr-5 font-bold hover:text-darkGreen'
+                > 
+                    <NavLink 
+                         className={({isActive}) =>isActive? "text-darkGreen  decoration-2 decoration-lightGreen underline underline-offset-8" :""}
+                        to='/register'
+                    >
+                        Sign up
+                    </NavLink> 
+                </motion.li>
             </ul>
         </nav>
     {/* NAVIGATION DESKTOP END */}
 
 
     {/* BURGER MENU */}
-        <nav className='sm:hidden absolute z-40'>            
+        <nav className='sm:hidden '>            
             
             {/* HANDLE BURGER MENU */}
-            <div onClick={handleNavigation} className='cursor-pointer  '>
-                {!navigation ?  <AiOutlineClose size={30}/> :<AiOutlineMenu size={30} /> }
+            <div onClick={handleNavigation} className='z-50  absolute top-[25px] cursor-pointer'>
+                {navigation ?  <AiOutlineClose size={30}/> : <AiOutlineMenu size={30} /> }
             </div>
 
-            <div className={!navigation ? 'fixed top-5 right-7 ease-in-out duration-500': 'fixed right-[-100%]'}>
-
-
+            <div  className={navigation ? 'mt-[80px] w-screen h-screen  absolute top-0 left-0  text-center  bg-background transition duration-700' : 'translate-y-[-120%]'}>
 
                 {/* LIST OF PAGES */}
-                <ul className='pt-10 w-screen h-screen  bg-background sm:flex md:hidden text-center '>
+                <ul 
+                    className={ navigation? 'mt-8 transition duration-1000 ' : 'hidden '}
+                    >
                     {
                         pages.map( (page) => (
                             <li
-                            onClick={handleNavigation} 
-                            key={page.name} className='p-2 font-medium text-lg'> <Link to={page.url}>{page.name}</Link></li>                                
+                                key={page.name} 
+                                className={'p-6 font-medium text-4xl' }
+                                onClick={handleNavigation}
+                            > 
+                                <NavLink 
+                                    className={({isActive}) =>isActive? "text-lightGreen" :""} 
+                                    to={page.url}
+                                    >
+                                        {page.name}
+                                </NavLink>
+                            </li>                                
                         ))
                     }
-                    {/* in Pages handleLogin/logout --> user ? show Logout : Login  */}
-                
                 </ul>
             </div>
         </nav>
