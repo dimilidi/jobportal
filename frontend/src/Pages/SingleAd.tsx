@@ -1,4 +1,3 @@
-import React from 'react'
 import { IoMdArrowBack } from 'react-icons/io'
 import { useNavigate } from 'react-router-dom'
 import ContactDetails from '../Components/ContactDetails'
@@ -16,7 +15,7 @@ const SingleAd = (props: Props) => {
   return (
     <div
       area-label='page-singleAd'
-      className='pt-[70px] relative flex justify-center text-Black'
+      className='pt-[60px] relative flex justify-center text-Black lg:pt-[60px] sm:pt-[80px]'
     >
       {/* Circle and line in the background */}
       <div
@@ -49,7 +48,7 @@ const SingleAd = (props: Props) => {
         {/* Ad */}
         <div
           area-label='ad'
-          className='py-5 px-9 mt-8 min-w-[270px] flex flex-col item-center z-10 rounded-[21px] bg-white shadow-standard lg:min-h-[400px] '
+          className='py-7 px-9 mt-8 min-w-[270px] flex flex-col item-center z-10 rounded-[21px] bg-white shadow-standard lg:min-h-[400px]'
         >
           <AdMobile />
           <div area-label='description' className='mt-3'>
@@ -75,7 +74,7 @@ const SingleAd = (props: Props) => {
         <UniButton
           text='Contact'
           onClick={handleClick}
-          className='my-7 self-center lg:mb-0'
+          className='my-9 self-center lg:mb-0'
         />
 
         {/* If user exists, show ContactDetails - MOBILE */}

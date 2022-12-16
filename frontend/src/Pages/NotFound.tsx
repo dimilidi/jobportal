@@ -12,8 +12,9 @@ const NotFound = (props: Props) => {
   }
 
   return (
-    <div>
-      <p>Oops, we couldn't find the page!</p>
+    <div className='pt-[100px] h-[570px] flex flex-col justify-center items-center gap-2'>
+      <h2 className='text-[6rem]'>404</h2>
+      <p>Page not found</p>
       <UniButton
         text='Back'
         onClick={handleClick}

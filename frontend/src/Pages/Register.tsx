@@ -63,10 +63,10 @@ const Register = (props: Props) => {
 
   return (
     <>
-      <ToastContainer autoClose={3000} />
-      {fetching && <div>...Loading</div>}
-      <img className='iconName' />
-      <div className='signupContent'>
+      <div className='p-[120px]'>
+        <ToastContainer autoClose={3000} />
+        {fetching && <div>...Loading</div>}
+        <img className='iconName' />
         <h1>Glad to help You</h1>
 
         <form onSubmit={handleSubmit}>
