@@ -1,5 +1,6 @@
 import React, { useState,  useEffect } from 'react'
 import axios from 'axios'
+import axiosInstance from '../api/axiosInstance'
 
 
 type Ad = {
@@ -28,15 +29,25 @@ function useAds():AdHook{
     const [list, setList]   = useState<Ad[]>([])
 
     useEffect(() => {
-        axios.get('/ads')
-            .then((res) => {console.log(res.data);
-             })
-            .catch(() => console.log('Error'))
+        fetchAds()
     }, [])
-
+    
+    const fetchAds = async() => {
+        try {
+            const res = await axiosInstance.get('/ads');
+            const data = res.data;
+            console.table("data /ads" + data);
+            setList(data);
+        } catch (error) {
+            console.log(error)
+        }
+        //.then((res) => {console.log(res.data);
+        // })
+        //.catch(() => console.log('Error'))
+    }
 
   return (
-    <div><>{list}</></div>
+    list
   )
 }
 

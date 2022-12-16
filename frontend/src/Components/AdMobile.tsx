@@ -52,9 +52,9 @@ function Ad({}: Props) {
                 <div className='w-[70px] h-[60px] flex justify-center items-center text-[14px] text-textBlack text-opacity-70 rounded-t-[20px] bg-lightBeige md:text-[16px]'>
                     <p className='text-[18px]'>
                         10€ 
-                        <p className='text-[14px] text-textBlack text-opacity-50'>
+                        <span className='text-[14px] text-textBlack text-opacity-50'>
                             / hour
-                        </p>
+                        </span>
                     </p>
                 </div>
             </div>
