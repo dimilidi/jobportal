@@ -16,12 +16,12 @@ const SingleAd = (props: Props) => {
   return (
     <div
       area-label='page-singleAd'
-      className='pt-[70px] relative flex justify-center text-Black'
+      className='pt-[120px] md:pt-0 sm:h-[100%] relative flex justify-center items-center text-Black '
     >
       {/* Circle and line in the background */}
       <div
         area-label='circle'
-        className='hidden lg:block lg:w-[332px] lg:h-[332px] lg:absolute lg:top-[50%] lg:left-[-250px] lg:translate-y-[-50%]  lg:rounded-full lg:bg-lightGreen'
+        className='hidden lg:block lg:w-[332px] lg:h-[332px] lg:absolute lg:top-[50%] lg:left-[-250px] lg:translate-y-[-50%]  lg:rounded-full lg:bg-lightGreen xl:h-[380px] xl:w-[380px]'
       />
       <div
         area-label='line'
@@ -30,7 +30,7 @@ const SingleAd = (props: Props) => {
       {/* Circle and line in background - END */}
 
       {/* Main part of single ad */}
-      <div area-label='main' className='w-[80%] lg:w-[50%] flex flex-col'>
+      <div area-label='main' className='w-full  sm:w-[80%]  sm:h-[95vh] h-full flex flex-col lg:justify-center lg:w-[50%]  justify-end'>
         {/* Browse Job button */}
         <div
           area-label='back-button-to-jobs'
@@ -46,15 +46,19 @@ const SingleAd = (props: Props) => {
         </div>
         {/* Browse Job button - END */}
 
+
+          {/* If user exists, show ContactDetails - MOBILE */}
+          <ContactDetails className='px-1 sm:px-0 w-[100%] h-[217px] flex justify-center self-center rounded-t-[65px] lg:hidden text-8xl' />
+
         {/* Ad */}
         <div
           area-label='ad'
-          className='py-5 px-9 mt-8 min-w-[270px] flex flex-col item-center z-10 rounded-[21px] bg-white shadow-standard lg:min-h-[400px] '
+          className='py-5 px-0 sm:px-9 lg:mt-5 lg:pt-12 lg:p-26 w-full sm:min-w-[270px] flex flex-col item-center z-10 sm:rounded-[21px] bg-white shadow-standard lg:min-h-[400px] mt-0'
         >
           <AdMobile />
-          <div area-label='description' className='mt-3'>
+          <div area-label='description' className='mt-3 px-5 w-full lg:p-10 sm:py-4'>
             <h3 className='text-[20px]'>Description</h3>
-            <p className='mt-2 text-gray/80'>
+            <p className='mt-2  text-gray/80 text-justify'>
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum
               dignissimos expedita delectus ipsa, tempore, fugiat quae inventore
               dicta nihil aut, amet officia maiores eveniet? Neque nemo
@@ -78,8 +82,7 @@ const SingleAd = (props: Props) => {
           className='my-7 self-center lg:mb-0'
         />
 
-        {/* If user exists, show ContactDetails - MOBILE */}
-        <ContactDetails className='w-[258px] h-[287px] flex justify-center self-center rounded-t-[65px] lg:hidden' />
+      
       </div>
       {/* Main part of single ad */}
 
@@ -91,7 +94,7 @@ const SingleAd = (props: Props) => {
       />
       {/* image - END */}
       {/* If user exists, show ContactDetails - DESKTOP */}
-      <ContactDetails className='hidden lg:w-[200px] lg:h-[260px] lg:flex lg:items-center lg:absolute lg:right-0 lg:top-[50%] lg:rounded-l-[65px] lg:translate-y-[-50%]' />
+      <ContactDetails className='hidden lg:w-[200px] lg:h-[260px] lg:flex lg:items-center lg:absolute lg:right-0 lg:top-[50%] lg:rounded-l-[65px] lg:translate-y-[-50%] xl:w-[280px] xl:h-[350px]' />
     </div>
   )
 }

@@ -123,11 +123,11 @@ const Navigation = (props: Props) => {
                 {navigation ?  <AiOutlineClose size={30}/> : <AiOutlineMenu size={30} /> }
             </div>
 
-            <div  className={navigation ? 'z-50 mt-[80px] w-screen h-screen  absolute top-0 left-0  text-center  bg-background transition duration-700' : 'translate-y-[-120%]'}>
+            <div  className={navigation ? 'touch-none z-40 mt-[80px] w-screen h-screen  absolute top-0 left-0  text-center  bg-background transition duration-700' : 'translate-y-[-120%]'}>
 
                 {/* LIST OF PAGES */}
                 <ul 
-                    className={ navigation? 'mt-8 transition duration-1000 ' : 'hidden '}
+                    className={ navigation? 'mt-8 transition duration-1000 ' : 'hidden'}
                     >
                     {
                         pages.map( (page) => (
@@ -137,7 +137,7 @@ const Navigation = (props: Props) => {
                                 onClick={handleNavigation}
                             > 
                                 <NavLink 
-                                    className={({isActive}) =>isActive? "text-lightGreen" :""} 
+                                    className={({isActive}) =>isActive ? "text-lightGreen" : ""} 
                                     to={page.url}
                                     >
                                         {page.name}

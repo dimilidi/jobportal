@@ -1,3 +1,5 @@
+import profileImg from '../assets/images/Account_profilDefault.png'
+
 type Props = {}
 
 function Ad({}: Props) {
@@ -12,7 +14,7 @@ function Ad({}: Props) {
              <div className='w-[50px] '>
                 <div className='mb-[20px] w-[50px] h-[75px] flex self-start justify-center items-end rounded-b-[40px]  bg-lightBeige md:w-[40px] md:h-[50px]'>
                     <div className='mb-1 w-[40px]  h-[40px]  self-end rounded-full bg-white md:w-[30px] md:h-[30px]'>
-                        <img src="" alt="" />
+                        <img src={profileImg} alt="" />
                     </div>
                 </div>
              </div>
