@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import Header from '../Components/Header'
 
 type Props = {
   
@@ -13,22 +14,23 @@ const handleClick = async () => {
 const Account = (props: Props) => {
   return (
     <>
-      {/* Container For Whole Page */}
+      {/* Grid Container For Whole Page */}
       <div className=' 
-      w-[100%]  
-      grid 
-      bg-background 
-      sm:grid-cols-1 md:grid-cols-2
+      mb-[5.5rem]
+      w-[100%] md:h-[90vh]
+      grid
+      bg-background
+      sm:grid-cols-1 md:grid-cols-2 
       '>
 
         {/* User Card Container */}
         <div className='
-        m-4 p-2 max-w-[450px]
+        max-w-[450px] m-4 p-2
         flex flex-col justify-center relative  
         overflow-hidden 
         border rounded-bl-[65px] rounded-br-[65px]
         bg-white
-        sm:justify-center  
+        sm:justify-center md:mb-[4.5rem]  lg:justify-self-center lg:mb-[5.5rem]
         '>
 
           {/* Avatar BG Halfcircle */}
@@ -99,48 +101,36 @@ const Account = (props: Props) => {
           </div>
 
         </div>
+        
 
         {/* ############################################# */}
 
         {/* You Have No Ads Yet  */}
         {/* Post-Ad-Button + Browse-Jobs-Button Container */}
-        <div className='
-        m-4'>
-          <p className='
-          mt-8 mb-4  
-          text-center 
-          min-w-[850px]:absolute'>
+        <div className='m-4 lg:justify-self-center lg:min-w-[470px]'>
+          <p className='min-w-[850px]:absolute mt-8 mb-4 text-center hidden md:mt-0'>
             You have no Ads yet
           </p> 
-          <div className='
-          mb-8 mx-6 
-          flex justify-around'>
-            <button className='' onClick={handleClick}>Post Ads</button>
-            <button className='' onClick={handleClick}>Browse Jobs</button>
+          <div className='w-[100%] flex justify-evenly'>
+            <button className='py-2 border-2 rounded-3xl border-lightGreen basis-1/2' onClick={handleClick}>Post Ad</button>
+            <button className='py-2 border-2 rounded-3xl bg-lightGreen text-white basis-1/2' onClick={handleClick}>Browse Jobs</button>
           </div>
-        </div>
-          
-        {/* Horizontal Line Mobile Version */}
-        <hr className='
-        my-6 
-        md:hidden' />
 
-        {/* Your Ads: List Container*/}
-        <div className='
-        h-[600px] 
-        m-[4em]'>
-          <h4 className='
-          my-2 
-          text-center'>
-            Your Ads
-          </h4>
-          <ul className=''>
-            <li>Ad 1</li>
-            <li>Ad 2</li>
-            <li>Ad 3</li>
-          </ul>
+        {/* Horizontal Line */}
+        <hr className='my-6'/>
+
+          {/* List Box Container */}
+        <div className=''>
+          <h3 className='mb-2 text-center text-lg font-semibold'>Your Ads</h3>
+            <ul className='p-2 m-2 mb-10 border rounded-xl'>
+              <li className='mb-4'>Ad 1</li>
+              <li className='mb-4'>Ad 2</li>
+              <li className='mb-4'>Ad 3</li>
+            </ul>
         </div>
 
+        
+        </div>
       </div>
     </>
   )
