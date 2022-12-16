@@ -35,6 +35,7 @@ function AdMobile({}: Props) {
               <div className='p-1  w-[100px] flex justify-center items-center text-[10px] text-textBlack text-opacity-50 rounded-full bg-lightBeige sm:w-[120px] sm:text-[12px]'>
                 <p>Category</p>
               </div>
+
             </div>
           </div>
         </div>
@@ -62,3 +63,5 @@ function AdMobile({}: Props) {
 }
 
 export default AdMobile
+
+
