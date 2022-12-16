@@ -63,4 +63,4 @@ function AdMobile({}: Props) {
   )
 }
 
-export default Ad
+export default AdMobile

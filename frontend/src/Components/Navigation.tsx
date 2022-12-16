@@ -123,7 +123,7 @@ const Navigation = (props: Props) => {
                 {navigation ?  <AiOutlineClose size={30}/> : <AiOutlineMenu size={30} /> }
             </div>
 
-            <div  className={navigation ? 'z-40 mt-[80px] w-screen h-screen  absolute top-0 left-0  text-center  bg-background transition duration-700' : 'translate-y-[-120%]'}>
+            <div  className={navigation ? 'z-50 mt-[80px] w-screen h-screen  absolute top-0 left-0  text-center  bg-background transition duration-700' : 'translate-y-[-120%]'}>
 
                 {/* LIST OF PAGES */}
                 <ul 
