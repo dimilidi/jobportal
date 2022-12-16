@@ -6,6 +6,8 @@ import mongoose from 'mongoose'
 import cookieParser from 'cookie-parser'
 import userRouter from './src/routers/userRouter.js'
 import adRouter from './src/routers/adRouter.js'
+import path, { dirname } from 'path'
+import { fileURLToPath } from 'url'
 dotenv.config()
 
 mongoose.set('strictQuery', false)
@@ -24,6 +26,8 @@ app.use(
 )
 
 // Middleware
+const __dirname = dirname(fileURLToPath(import.meta.url))
+app.use('/assets', express.static(path.join(__dirname, 'public/assets')))
 app.use(express.json())
 app.use(cookieParser())
 
