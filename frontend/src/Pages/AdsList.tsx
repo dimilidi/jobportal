@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom'
 import Ad from '../Components/Ad'
 import man from '../assets/images/Ads_man_working.png'
+import useAds from '../Hooks/useAds'
 
 type Props = {}
 

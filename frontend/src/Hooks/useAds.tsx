@@ -27,10 +27,6 @@ type AdHook= {
 
 function useAds():AdHook{
     const [list, setList]   = useState<Ad[]>([])
-
-    useEffect(() => {
-        fetchAds()
-    }, [])
     
     const fetchAds = async() => {
         try {
@@ -41,13 +37,17 @@ function useAds():AdHook{
         } catch (error) {
             console.log(error)
         }
-        //.then((res) => {console.log(res.data);
-        // })
-        //.catch(() => console.log('Error'))
     }
 
+    useEffect(() => {
+        fetchAds()
+    }, [])
+
+    console.log('HALLLLLLOOOOOO');
+    
+
   return (
-    list
+    {}
   )
 }
 
