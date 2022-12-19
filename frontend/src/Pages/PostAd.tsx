@@ -25,6 +25,7 @@ const PostAd = () => {
   const [contactVia, setContactVia] = useState([''])
   const [checked, setChecked] = useState({ email:true, phone:false })
   // const [image, setImage] = useState('')
+ console.log(description);
  
   
   // Handle ContactVia according checkbox
@@ -57,6 +58,8 @@ const PostAd = () => {
         wage,
         contactVia
       }
+      console.log(ad);
+      
 
       const response = await axiosInstance
         .post('/ads/post', ad)
@@ -236,7 +239,7 @@ const PostAd = () => {
                   type='checkbox'
                   value='email'
                   name='contact'
-                  checked={true}
+                  checked={checked.email}
                   className='accent-darkGreen form-checkbox'
                   onChange={(e)=>setChecked({email:!checked.email, phone: checked.phone})}
                   />
@@ -249,6 +252,7 @@ const PostAd = () => {
                   type='checkbox'
                   value='phone'
                   name='contact'
+                  checked={checked.phone}
                   className='accent-darkGreen form-checkbox'
                   onChange={(e)=>setChecked({email:checked.email, phone: !checked.phone})}
                   />
@@ -276,14 +280,15 @@ const PostAd = () => {
               </div>
             </div>
           </div>
-        </form>
-      </div>
-          {/* POST AD - BUTTON */}
+        {/* POST AD - BUTTON */}
           <UniButton
             area-label='postAdButton'
             text={ads.isLoading ? 'loading' : 'Post Ad'}
             className='my-7 self-center md:mb-0'
           />
+        </form>
+      </div>
+          
       </div>
 
         {/* IMAGE right/botton */}
