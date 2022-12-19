@@ -3,6 +3,7 @@ import Ad from '../Components/Ad'
 import man from '../assets/images/Ads_man_working.png'
 import useAds from '../Hooks/useAds'
 import useUser from '../Hooks/useUser'
+import UniButton from '../Components/UniButton'
 
 type Props = {}
 
@@ -64,12 +65,12 @@ const AdsList = (props: Props) => {
 
       {/* Button Ad Post */}
       <div className='mb-[30px] mt-[25px] w-full h-[50px] flex justify-center items-center'>
-        <button
+        <UniButton
+          text='Post Ad'
           onClick={handleClick}
-          className='mx-auto p-2 px-6 w-[200px] rounded-full text-[20px] text-white bg-lightGreen '
-        >
-          Ad Post
-        </button>
+          className='my-7  w-[250px]  self-center lg:mb-0'
+
+        />
       </div>
     </>
   )

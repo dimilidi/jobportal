@@ -14,7 +14,7 @@ type Ad = {
     location:string
     wage: number
     contactVia: string
-    createdAt: Date
+    createdAt: Date 
     user: {
         name:string
         email:string

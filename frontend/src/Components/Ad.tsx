@@ -8,7 +8,7 @@ type Props = {
         location:string
         category: string
         wage:number
-        createdAt: Date
+        createdAt: Date 
     }
 }
 
@@ -60,7 +60,7 @@ function Ad({ad}: Props) {
           <div className='w-[70px] h-full flex self-end flex-col justify-end  items-start gap-1 md:w-[180px] md:flex-row md:self-center md:items-center md:justify-between'>
             {/* Created At */}
             <div className='text-[14px] text-textBlack text-opacity-50 md:ml-[10px] md:text-[16px]'>
-                <p>{ad.createdAt.toLocaleString()}</p>
+                <p>{new Date(ad.createdAt).toLocaleDateString()}</p>
             </div>
 
             {/* Wage */}

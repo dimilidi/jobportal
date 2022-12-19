@@ -39,7 +39,7 @@ const SingleAd = (props: Props) => {
   return (
     <div
       area-label='page-singleAd'
-      className='pt-[120px] md:pt-0 sm:h-[100%] relative flex justify-center items-center text-Black '
+      className='pt-[120px] h-full relative flex justify-center items-center  text-Black  lg:pt-0'
     >
       {/* Circle and line in the background */}
       <div
@@ -53,7 +53,7 @@ const SingleAd = (props: Props) => {
       {/* Circle and line in background - END */}
 
       {/* Main part of single ad */}
-      <div area-label='main' className='w-full  sm:w-[80%]  sm:h-[95vh] h-full flex flex-col lg:justify-center lg:w-[50%]  justify-end'>
+      <div area-label='main' className='w-full  sm:w-[80%]  h-full flex flex-col lg:justify-center lg:w-[60%] lg:h-[94vh]  justify-around gap-5'>
         {/* Browse Job button */}
         <div
           area-label='back-button-to-jobs'
@@ -70,28 +70,30 @@ const SingleAd = (props: Props) => {
         {/* Browse Job button - END */}
 
 
-          {/* If user exists, show ContactDetails - MOBILE */}
-          <ContactDetails className='px-1 sm:px-0 w-[100%] h-[217px] flex justify-center self-center rounded-t-[65px] lg:hidden text-8xl' />
 
         {/* Ad */}
         <div
           area-label='ad'
-          className='py-5 px-0 sm:px-9 lg:mt-5 lg:pt-12 lg:p-26 w-full sm:min-w-[270px] flex flex-col item-center z-10 sm:rounded-[21px] bg-white shadow-standard lg:min-h-[400px] mt-0'
+          className='mx-auto py-5 px-0 sm:px-3 lg:mt-5 lg:pt-12 lg:p-26 w-[85%]  flex flex-col item-center z-10 rounded-[21px] bg-white shadow-standard lg:min-h-[400px] mt-0'
         >
           <AdMobile />
-          <div area-label='description' className='mt-3 px-5 w-full lg:p-10 sm:py-4'>
+          <div area-label='description' className='mt-3 px-5 min-h-[300px] w-full lg:p-10 sm:py-4'>
             <h3 className='text-[20px]'>Description</h3>
-            <p className='mt-2  text-gray/80 text-justify'>
+            <p className='mt-2  text-gray/80 text-justify break-words'>
               {ads.ad.description}
             </p>
           </div>
         </div>
         {/* Ad - END */}
 
-        <UniButton
+
+          {/* If user exists, show ContactDetails - MOBILE */}
+          <ContactDetails className='px-1 sm:px-0 w-[250px] h-[300px] flex justify-center self-center rounded-t-[65px] lg:hidden text-8xl' />
+
+        <UniButton 
           text='Contact'
           onClick={handleClick}
-          className='my-7 self-center lg:mb-0'
+          className='my-7  w-[250px]  self-center lg:mb-0'
         />
 
       
@@ -106,7 +108,7 @@ const SingleAd = (props: Props) => {
       />
       {/* image - END */}
       {/* If user exists, show ContactDetails - DESKTOP */}
-      <ContactDetails className='hidden lg:w-[200px] lg:h-[260px] lg:flex lg:items-center lg:absolute lg:right-0 lg:top-[50%] lg:rounded-l-[65px] lg:translate-y-[-50%] xl:w-[280px] xl:h-[350px]' />
+      <ContactDetails className='hidden lg:w-[200px] lg:h-[260px] lg:flex lg:items-center lg:absolute lg:right-0 lg:top-[50%] lg:rounded-l-[65px] lg:translate-y-[-50%] xl:w-[280px] xl:h-[300px]' />
     </div>
   )
 }

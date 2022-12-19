@@ -48,7 +48,7 @@ const Navigation = (props: Props) => {
                     animate={animateTo}
                     transition={{delay: 0.05}}
                     className= 
-                    'pr-6 hover:text-darkGreen '
+                    'pr-6 hover:text-darkGreen ease-in-out duration-300'
                 > 
                     <NavLink 
                         className={({isActive}) =>isActive? "text-darkGreen decoration-2 decoration-darkGreen underline underline-offset-8" :""} 
@@ -62,7 +62,7 @@ const Navigation = (props: Props) => {
                     initial={animateFrom} 
                     animate={animateTo}
                     transition={{delay: 0.10}}
-                    className='pr-10 hover:text-darkGreen'
+                    className='pr-10 hover:text-darkGreen ease-in-out duration-300'
                 > 
                     <NavLink 
                         className={({isActive}) =>isActive? "text-darkGreen  decoration-2 decoration-lightGreen underline underline-offset-8" :""}
@@ -78,7 +78,7 @@ const Navigation = (props: Props) => {
                     initial={animateFrom} 
                     animate={animateTo}
                     transition={{delay: 0.20}}
-                    className='pr-3 hover:text-darkGreen'
+                    className='pr-3 hover:text-darkGreen ease-in-out duration-300'
                 > 
                     <NavLink 
                         className={({isActive}) =>isActive? "text-darkGreen  decoration-2 decoration-lightGreen underline underline-offset-8" :""}
@@ -101,7 +101,7 @@ const Navigation = (props: Props) => {
                     initial={animateFrom} 
                     animate={animateTo}
                     transition={{delay: 0.40}}
-                    className='pr-5 font-bold hover:text-darkGreen'
+                    className='pr-5 font-bold hover:text-darkGreen ease-in-out duration-300'
                 > 
                     <NavLink 
                          className={({isActive}) =>isActive? "text-darkGreen  decoration-2 decoration-lightGreen underline underline-offset-8" :""}

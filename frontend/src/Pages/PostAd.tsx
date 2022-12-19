@@ -20,7 +20,7 @@ const PostAd = () => {
   const [title, setTitle] = useState('')
   const [description, setDescription] = useState('')
   const [location, setLocation] = useState('')
-  const [wage, setWage] = useState(0)
+  const [wage, setWage] = useState<number>()
   const [category, setCategory] = useState('')
   const [contactVia, setContactVia] = useState([''])
   const [checked, setChecked] = useState({ email:true, phone:false })
@@ -75,9 +75,13 @@ const PostAd = () => {
       else if(response.status === 400) {
         const error = response.data.message[0] 
         const key = Object.keys(error)[0] 
-        const message = error[key] 
+        const message = error[key]
         ads.setError(message)
         toast.error(message)
+   
+
+        console.log('ERROR',ads.error);
+        
       } 
       else if(response.status === 401) {
         ads.setError('You are not logged in.')
@@ -95,7 +99,7 @@ const PostAd = () => {
   return (
     <div
       area-label='page-postAd'
-      className='relative flex justify-center text-Black'
+      className='h-[94vh]  flex justify-center text-Black'
     >
       {/* CIRCLE and LINES */}
       <div 
@@ -108,13 +112,13 @@ const PostAd = () => {
       />
 
       {/* MAIN */}
-      <div area-label='main' className='w-[80%] pt-[70px] md:w-[50%] flex flex-col'>
+      <div area-label='main' className='mt-[50px] h-full w-[85%] pt-[70px] md:w-[50%] flex flex-col '>
 
       {/* TITLE - Create your Ad - MOBILE with line*/}
         <div>
           <h1
             area-label='title-mobile'
-            className='text-4xl font-medium text-textBlack md:hidden lg:hidden'><span className='italic font-medium text-lightGreen md:hidden lg:hidden'>Create </span>your Ad
+            className='text-4xl font-medium text-textBlack md:hidden lg:hidden'><span className='italic font-medium text-lightGreen md:hidden lg:hidden'>Create </span>your ad
           </h1>
           <div 
             area-label='line'
@@ -122,14 +126,19 @@ const PostAd = () => {
         </div>
 
       {/* AD FORM */}
-      <div
+      <form 
+        area-label='form'
+        className='gap-6 md:flex-col lg:flex-row md:gap-10 lg:gap-20'
+        onSubmit={handleSubmit}
+        // className="flex flex-col justify-center"
+        >
+       <div 
         area-label='ad'
-        className='py-5 px-9 mt-8 min-w-[270px] flex flex-col item-center z-10 rounded-[21px] bg-white shadow-standard md:min-h-[400px] '
-      >
-        <form
-          area-label='form'
-          className='gap-6 md:flex-col lg:flex-row md:gap-10 lg:gap-20'
-          onSubmit={handleSubmit}
+        className='p-5 mt-8 min-w-[270px] flex flex-col item-center z-10 rounded-[21px] bg-white shadow-standard md:min-h-[400px] '
+        >
+       
+        <div
+        
         >
 
       {/* TITLE - Create your Ad */}
@@ -143,9 +152,10 @@ const PostAd = () => {
           
 
       {/* RADIO (offering- searching) */}
+      
           <div
             area-label='index-radio'
-            className='flex flex-row items-center gap-2'>
+            className='w-full flex justify-between items-center gap-2'>
             <input
               type='radio'
               value='offering'
@@ -267,11 +277,10 @@ const PostAd = () => {
                 className='flex flex-col justify-start gap-2 lg:flex-row lg:justify-end lg:gap-2'>
                 <label className='text-lightGray'>Approx. wage per hour:</label>
                 <input
-                  // type='number'
-                  type='text'
+                  type='number'
                   name='wage'
                   className='w-[30%] text-sm text-gray rounded-lg border-2 border-lightGray border-opacity-50 focus:outline-none placeholder:text-right placeholder:font-bold placeholder:opacity-50 placeholder:mr-1 lg:placeholder:mr-2' 
-                  placeholder='$'
+                  placeholder='00.00'
                   value={wage}
                   onChange={(e)=>setWage(Number(e.target.value) || 0)}
 
@@ -280,20 +289,24 @@ const PostAd = () => {
               </div>
             </div>
           </div>
-        {/* POST AD - BUTTON */}
+      
+        </div>
+        
+        </div>
+          {/* POST AD - BUTTON */}
           <UniButton
             area-label='postAdButton'
             text={ads.isLoading ? 'loading' : 'Post Ad'}
-            className='my-7 self-center md:mb-0'
+            className='my-7 mx-auto self-center md:mb-0'
           />
-        </form>
-      </div>
+      </form>
           
       </div>
 
         {/* IMAGE right/botton */}
         <img
-            className='w-[200] md:w-[230px] md:h-[300px] absolute bottom-[-160px] right-0 md:bottom-[-140px] lg:bottom-[-230px] md:right-[16%] md:block z-30'
+            className='w-[200] md:w-[230px] md:h-[300px] hidden fixed bottom-3 right-0 xl:right-80 sm:block z-30'
+        
             src={imagePostAd}>
         </img>
 
