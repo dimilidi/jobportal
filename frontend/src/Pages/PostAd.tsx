@@ -269,7 +269,7 @@ const PostAd = () => {
                   className='w-[30%] text-sm text-gray rounded-lg border-2 border-lightGray border-opacity-50 focus:outline-none placeholder:text-right placeholder:font-bold placeholder:opacity-50 placeholder:mr-1 lg:placeholder:mr-2' 
                   placeholder='$'
                   value={wage}
-                  onChange={(e)=>setWage(Number(e.target.value))}
+                  onChange={(e)=>setWage(Number(e.target.value) || 0)}
 
                 />
                 <span className='text-lightGray'>€</span>
@@ -293,7 +293,7 @@ const PostAd = () => {
         </img>
 
       <ToastContainer position="top-left"/>
-      </div>
+    </div>
   )
 }
 
