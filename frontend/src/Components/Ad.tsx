@@ -1,8 +1,20 @@
 import profileImg from '../assets/images/Account_profilDefault.png'
+import useAds from "../Hooks/useAds"
 
-type Props = {}
 
-function Ad({}: Props) {
+type Props = {
+    ad:{
+        title:string
+        location:string
+        category: string
+        wage:number
+        createdAt: Date
+    }
+}
+
+
+
+function Ad({ad}: Props) {
   
   return (
     <div className='w-full px-1 py-[0px] md:py-1 md:w-[90%] sm:px-[20px]'>
