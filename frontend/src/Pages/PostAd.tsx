@@ -1,18 +1,94 @@
-import * as React from 'react'
-// import { NavLink } from "react-router-dom"
-import { useNavigate } from 'react-router-dom'
-import UniButton from '../Components/UniButton'
+import { useEffect, useState } from "react";
+import { BiCategory } from "react-icons/bi";
+import { MdEmail } from "react-icons/md";
+import { useNavigate } from "react-router-dom";
+import axiosInstance from '../api/axiosInstance'
+import useAds from "../Hooks/useAds";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import imagePostAd from '../assets/images/PostAd_chef.png'
+import UniButton from "../Components/UniButton";
 
-type Props = {
 
-}
 
-const PostAd = (props: Props) => {
+const PostAd = () => {
+
   const navigate = useNavigate()
-  const handleClick = () => {
-    navigate('/ad/:id')
+
+  const ads = useAds()
+
+  const [title, setTitle] = useState('')
+  const [description, setDescription] = useState('')
+  const [location, setLocation] = useState('')
+  const [wage, setWage] = useState(0)
+  const [category, setCategory] = useState('')
+  const [contactVia, setContactVia] = useState([''])
+  const [checked, setChecked] = useState({ email:true, phone:false })
+  // const [image, setImage] = useState('')
+ 
+  
+  // Handle ContactVia according checkbox
+  useEffect(() => {
+    if(checked.email && checked.phone){
+      setContactVia(['email', 'phone']) 
+    } 
+    else if(!checked.email && checked.phone){
+      setContactVia(['phone']) 
+    }
+    else if(checked.email && !checked.phone){
+      setContactVia(['email']) 
+    }
+    else{
+      toast.warning('Please select a contact option!')
+    }
+  },[checked])
+
+
+  
+  const handleSubmit = async (e:React.SyntheticEvent) => {
+    e.preventDefault()
+    ads.setIsLoading(true)
+
+      const ad = {
+        title, 
+        category,
+        description, 
+        location, 
+        wage,
+        contactVia
+      }
+
+      const response = await axiosInstance
+        .post('/ads/post', ad)
+        .catch(e => e.response)
+
+      console.log(response);
+
+
+      if(response.status === 201) {
+        const id = response.data._id
+        navigate('/ad/' + id)
+      } 
+      else if(response.status === 400) {
+        const error = response.data.message[0] 
+        const key = Object.keys(error)[0] 
+        const message = error[key] 
+        ads.setError(message)
+        toast.error(message)
+      } 
+      else if(response.status === 401) {
+        ads.setError('You are not logged in.')
+        toast.warning('You are not logged in!')
+
+      } 
+      else {
+        ads.setError('Something went wrong')
+        toast.error('Something went wrong')
+      }
+      ads.setIsLoading(false)
   }
+
+
   return (
     <div
       area-label='page-postAd'
@@ -50,8 +126,8 @@ const PostAd = (props: Props) => {
         <form
           area-label='form'
           className='gap-6 md:flex-col lg:flex-row md:gap-10 lg:gap-20'
-          onSubmit={(e: React.SyntheticEvent) => {
-          e.preventDefault();}}>
+          onSubmit={handleSubmit}
+        >
 
       {/* TITLE - Create your Ad */}
           <div
@@ -71,14 +147,18 @@ const PostAd = (props: Props) => {
               type='radio'
               value='offering'
               name='case'
-              className='accent-darkGreen'/>
+              className='accent-darkGreen'
+              onChange={(e)=>setCategory(e.target.value)}
+            />
             <label className='form-label'>offering</label>
 
             <input
               type='radio'
               value='searching'
               name='case'
-              className='accent-darkGreen'/>
+              className='accent-darkGreen'
+              onChange={(e)=>setCategory(e.target.value)}
+            />
             <label className='form-label'>searching</label>
           </div>
           </div>
@@ -101,7 +181,10 @@ const PostAd = (props: Props) => {
                   name='title'
                   className='form-control block text-gray border-2 rounded-lg border-lightGray border-opacity-50 placeholder:text-sm placeholder:px-3
                   focus:outline-lightGray lg:placeholder-transparent'
-                  placeholder='Title'/>
+                  placeholder='Title'
+                  value={title}
+                  onChange={(e)=>setTitle(e.target.value)}
+                />
             </div>
             <div>
               <label
@@ -113,7 +196,11 @@ const PostAd = (props: Props) => {
                 <input
                   type='text'
                   name='city'
-                  className='form-control block text-gray rounded-lg border-2 border-lightGray border-opacity-50 placeholder:text-sm placeholder:px-3 focus:outline-lightGray lg:placeholder-transparent' placeholder='City'/>
+                  className='form-control block text-gray rounded-lg border-2 border-lightGray border-opacity-50 placeholder:text-sm placeholder:px-3 focus:outline-lightGray lg:placeholder-transparent' 
+                  placeholder='City'
+                  value={location}
+                  onChange={(e)=>setLocation(e.target.value)}
+                  />
             </div>
             </div>
 
@@ -123,7 +210,10 @@ const PostAd = (props: Props) => {
               name='text'
               id='text'
               className='h-[170px] w-full mt-3 mb-3 rounded-xl resize-none caret-gray border-2 border-lightGray border-opacity-50 focus:outline-none placeholder:text-sm placeholder:text-lightGray placeholder:px-3 placeholder:py-3 lg:w-full lg:px-3 lg:py-2 lg:mb-0 lg:rounded-3xl lg:placeholder:text-base'
-              placeholder='description..'>
+              placeholder='description..'
+              value={description}
+              onChange={(e)=>setDescription(e.target.value)}
+            >
             </textarea>
 
       {/* CHECKBOX (email-phone) */}
@@ -147,7 +237,9 @@ const PostAd = (props: Props) => {
                   value='email'
                   name='contact'
                   checked={true}
-                  className='accent-darkGreen form-checkbox'/>
+                  className='accent-darkGreen form-checkbox'
+                  onChange={(e)=>setChecked({email:!checked.email, phone: checked.phone})}
+                  />
                 <label>Email</label>
                 </div>
                 <div
@@ -157,11 +249,13 @@ const PostAd = (props: Props) => {
                   type='checkbox'
                   value='phone'
                   name='contact'
-                  className='accent-darkGreen form-checkbox'/>
+                  className='accent-darkGreen form-checkbox'
+                  onChange={(e)=>setChecked({email:checked.email, phone: !checked.phone})}
+                  />
                 <label>Phone</label>
                 </div>
 
-                </div>
+              </div>
               </div>
       {/* WAGE */}
               <div
@@ -172,7 +266,13 @@ const PostAd = (props: Props) => {
                   // type='number'
                   type='text'
                   name='wage'
-                  className='w-[30%] text-sm text-gray rounded-lg border-2 border-lightGray border-opacity-50 focus:outline-none placeholder:text-right placeholder:font-bold placeholder:opacity-50 placeholder:mr-1 lg:placeholder:mr-2' placeholder='$'/>
+                  className='w-[30%] text-sm text-gray rounded-lg border-2 border-lightGray border-opacity-50 focus:outline-none placeholder:text-right placeholder:font-bold placeholder:opacity-50 placeholder:mr-1 lg:placeholder:mr-2' 
+                  placeholder='$'
+                  value={wage}
+                  onChange={(e)=>setWage(Number(e.target.value))}
+
+                />
+                <span className='text-lightGray'>€</span>
               </div>
             </div>
           </div>
@@ -182,7 +282,7 @@ const PostAd = (props: Props) => {
           <UniButton
             area-label='postAdButton'
             text='Post Ad'
-            onClick={handleClick}
+            // onClick={handleClick}
             className='my-7 self-center md:mb-0'
           />
       </div>
