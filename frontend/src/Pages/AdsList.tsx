@@ -2,14 +2,18 @@ import { useNavigate } from 'react-router-dom'
 import Ad from '../Components/Ad'
 import man from '../assets/images/Ads_man_working.png'
 import useAds from '../Hooks/useAds'
+import useUser from '../Hooks/useUser'
 
 type Props = {}
 
 const AdsList = (props: Props) => {
+
+  const user = useUser()
+  const ads = useAds()
+
   const navigate = useNavigate()
 
   const handleClick = () => {
-    const user = true // to be replaced with state
     if (user) {
       navigate('/post-ad')
     } else {
@@ -49,18 +53,11 @@ const AdsList = (props: Props) => {
         <div className='mt-[110px] px-0 w-full h-full flex flex-wrap justify-items-center items-start md:w-[900px] md:h-[530px] md:overflow-y-scroll '>
           {/* Ads */}
           <div className='mx-auto flex flex-wrap justify-center  md:w-[900px]'>
-            <Ad />
-            <Ad />
-            <Ad />
-            <Ad />
-            <Ad />
-            <Ad />
-            <Ad />
-            <Ad />
-            <Ad />
-            <Ad />
-            <Ad />
-            <Ad />
+          {
+            ads.list.map(ad => (
+              <Ad key={ad._id} ad = {ad} />
+            ))
+          }
           </div>
         </div>
       </div>
