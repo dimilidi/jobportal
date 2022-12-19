@@ -5,14 +5,37 @@ import ContactDetails from '../Components/ContactDetails'
 import UniButton from '../Components/UniButton'
 import AdMobile from '../Components/AdMobile'
 import thinkingGirl from '../assets/images/SingleAd_girl.png'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import useAds from '../Hooks/useAds'
+import useUser from '../Hooks/useUser'
 
 type Props = {}
 
 const SingleAd = (props: Props) => {
+  
+  const user = useUser()
+  const ads = useAds()
+
   const navigate = useNavigate()
+
   const handleClick = () => {
     navigate('/auth-required')
   }
+
+
+  if (!ads.ad ) {
+    toast.warning('Ad not found!')
+    return (
+      <div>
+        <div className="text-xl text-center text.5xl py-10 ">
+          Error...
+        </div>
+        <ToastContainer position="top-left"/>
+      </div>
+    );
+  }
+
   return (
     <div
       area-label='page-singleAd'
@@ -59,18 +82,7 @@ const SingleAd = (props: Props) => {
           <div area-label='description' className='mt-3 px-5 w-full lg:p-10 sm:py-4'>
             <h3 className='text-[20px]'>Description</h3>
             <p className='mt-2  text-gray/80 text-justify'>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum
-              dignissimos expedita delectus ipsa, tempore, fugiat quae inventore
-              dicta nihil aut, amet officia maiores eveniet? Neque nemo
-              assumenda, incidunt eaque vero error, velit in optio voluptas nam
-              impedit ab nostrum qui modi sequi, cum architecto quaerat
-              laboriosam perspiciatis quo distinctio ea voluptatum. Magnam hic
-              inventore iusto eveniet voluptates libero nemo, commodi itaque
-              enim voluptatem in. Eum in odit vel, consequuntur labore debitis
-              officiis ad quia ducimus provident tenetur voluptatum laboriosam
-              nulla dolorum fugit. Modi corrupti necessitatibus perspiciatis
-              temporibus ipsam doloremque molestiae similique explicabo ea!
-              Dignissimos ipsum atque voluptate, placeat officia ipsa.
+              {ads.ad.description}
             </p>
           </div>
         </div>
