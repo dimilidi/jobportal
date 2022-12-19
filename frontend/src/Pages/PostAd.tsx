@@ -281,8 +281,7 @@ const PostAd = () => {
           {/* POST AD - BUTTON */}
           <UniButton
             area-label='postAdButton'
-            text='Post Ad'
-            // onClick={handleClick}
+            text={ads.isLoading ? 'loading' : 'Post Ad'}
             className='my-7 self-center md:mb-0'
           />
       </div>
@@ -292,6 +291,8 @@ const PostAd = () => {
             className='w-[200] md:w-[230px] md:h-[300px] absolute bottom-[-160px] right-0 md:bottom-[-140px] lg:bottom-[-230px] md:right-[16%] md:block z-30'
             src={imagePostAd}>
         </img>
+
+      <ToastContainer position="top-left"/>
       </div>
   )
 }
