@@ -17,7 +17,7 @@ type Props = {
 function Ad({ad}: Props) {
   
   return (
-    <div className='w-full px-1 py-[0px] md:py-1 md:w-[90%] sm:px-[20px]'>
+    <div className='w-full px-1 py-[0px] md:py-1 md:w-[90%] sm:px-[0px]'>
         <div className='mx-auto h-[110px] w-[95%] flex justify-between items-center border-lightBeige border-b-0 border-t-2 text-[14px] md:h-[80px] md:border-y-2'>
 
           {/* Left */}

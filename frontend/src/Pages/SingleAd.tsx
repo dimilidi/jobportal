@@ -39,7 +39,7 @@ const SingleAd = (props: Props) => {
   return (
     <div
       area-label='page-singleAd'
-      className='pt-[120px] h-full relative flex justify-center items-center  text-Black  lg:pt-0'
+      className='h-full pt-[120px]  relative flex justify-center items-center  text-Black  lg:pt-0'
     >
       {/* Circle and line in the background */}
       <div
@@ -53,7 +53,7 @@ const SingleAd = (props: Props) => {
       {/* Circle and line in background - END */}
 
       {/* Main part of single ad */}
-      <div area-label='main' className='w-full  sm:w-[80%]  h-full flex flex-col lg:justify-center lg:w-[60%] lg:h-[94vh]  justify-around gap-5'>
+      <div area-label='main' className='w-full h-full  sm:w-[80%]  min-h-[920px] flex flex-col justify-around gap-5 lg:justify-center lg:w-[60%]'>
         {/* Browse Job button */}
         <div
           area-label='back-button-to-jobs'
@@ -101,14 +101,14 @@ const SingleAd = (props: Props) => {
       {/* Main part of single ad */}
 
       {/* image */}
-      <img
-        src={thinkingGirl}
-        alt='illustration of girl in front of laptop'
-        className='hidden lg:w-[230px] lg:h-[220px] lg:fixed lg:bottom-3 lg:left-[14%] lg:block lg:z-30'
-      />
       {/* image - END */}
       {/* If user exists, show ContactDetails - DESKTOP */}
       <ContactDetails className='hidden lg:w-[200px] lg:h-[260px] lg:flex lg:items-center lg:absolute lg:right-0 lg:top-[50%] lg:rounded-l-[65px] lg:translate-y-[-50%] xl:w-[280px] xl:h-[300px]' />
+      <img
+        src={thinkingGirl}
+        alt='illustration of girl in front of laptop'
+        className='hidden lg:w-[230px] lg:h-[220px] lg:absolute lg:bottom-[-30px] lg:left-[14%] lg:block lg:z-30'
+      />
     </div>
   )
 }
