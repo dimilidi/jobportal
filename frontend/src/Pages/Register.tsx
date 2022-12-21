@@ -6,6 +6,8 @@ import { RegisterInputs } from '../type'
 import useUser from '../Hooks/useUser'
 
 import UniButton from '../Components/UniButton'
+import { BiUnderline } from 'react-icons/bi'
+import { FaUnderline } from 'react-icons/fa'
 
 type Props = {}
 
@@ -65,42 +67,58 @@ const Register = (props: Props) => {
     <>
       <ToastContainer autoClose={3000} />
       {fetching && <div>...Loading</div>}
-      <img className='iconName' />
-      <div className='signupContent'>
-        <h1>Glad to help You</h1>
 
-        <form onSubmit={handleSubmit}>
-          <label htmlFor='name'>
-            Username
-            <input
-              type='text'
-              name='name'
-              placeholder='enter username here'
-              onChange={handleChange}
-              value={inputs.name}
-            />
-          </label>
-          <label htmlFor='email'>
-            Email
-            <input
-              type='email'
-              name='email'
-              placeholder='enter email here'
-              onChange={handleChange}
-              value={inputs.email}
-            />
-          </label>
-          <label htmlFor='password'>
-            Password
-            <input
-              type='password'
-              name='password'
-              placeholder='enter password here'
-              onChange={handleChange}
-              value={inputs.password}
-            />
-          </label>
-          <UniButton text='Sign Up' />
+      {/* Heading + Form Container */}
+      <div className='max-w-[22rem] mx-4 mt-[7rem] flex flex-col content-center relative max-[374px]:max-w-[14rem]'>
+        <img className='h-4 w-4 absolute' alt='image'/>
+        <h1 className='w-[60%] mt-12 mb-4 text-[2em] leading-9 font-semibold'>Glad to help 
+          <span className='text-lightGreen italic underline underline-offset-8'> 
+            You
+          </span> 
+          
+        </h1>
+
+        <form onSubmit={handleSubmit} className='max-w-[100%] flex flex-col'>
+          <div className='mb-2'>
+            <label htmlFor='name' className='font-extralight'>
+              Username
+              <input
+                className='h-10 px-[.7rem] border rounded-[15rem] text-sm'
+                type='text'
+                name='name'
+                placeholder='John Doe'
+                onChange={handleChange}
+                value={inputs.name}
+              />
+            </label>
+          </div>
+          <div className='mb-2'>
+            <label htmlFor='email' className='font-extralight'>
+              Email
+              <input
+                className='h-10 px-[.7rem] border rounded-[15rem] text-sm'
+                type='email'
+                name='email'
+                placeholder='John@Doe.com'
+                onChange={handleChange}
+                value={inputs.email}
+              />
+            </label>
+          </div>
+          <div className=''>
+            <label htmlFor='password' className='font-extralight'>
+              Password
+              <input
+                className='h-10 px-[.7rem] border rounded-[15rem] text-sm'
+                type='password'
+                name='password'
+                placeholder='JohnsSuperSavePassword123'
+                onChange={handleChange}
+                value={inputs.password}
+              />
+            </label>
+          </div>
+          <UniButton text='Sign Up' className='mt-4 self-center justify-center text-lg' />
           {errors &&
             errors.map((error) => (
               <p key={error} className='text-red-600'>
@@ -108,8 +126,7 @@ const Register = (props: Props) => {
               </p>
             ))}
         </form>
-        <button>Login</button>
-        <Link to='/login'>Or log in here!</Link>
+        <Link to='/login' className='mt-2 self-center underline'>Or log in here!</Link>
       </div>
     </>
   )
