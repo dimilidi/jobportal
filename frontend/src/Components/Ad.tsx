@@ -1,5 +1,5 @@
+import { Link } from 'react-router-dom'
 import profileImg from '../assets/images/Account_profilDefault.png'
-import useAds from "../Hooks/useAds"
 
 
 type Props = {
@@ -9,18 +9,23 @@ type Props = {
         category: string
         wage:number
         createdAt: Date 
+        _id: string
     }
 }
 
 
 
 function Ad({ad}: Props) {
+
   
   return (
     <div className='w-full px-1 py-[0px] md:py-1 md:w-[90%] sm:px-[0px]'>
+        <Link to={`/ad/${ad._id}`}>
+        
+        
         <div className='mx-auto h-[110px] w-[95%] flex justify-between items-center border-lightBeige border-b-0 border-t-2 text-[14px] md:h-[80px] md:border-y-2'>
 
-          {/* Left */}
+          {/* Left Section*/}
         <div className="h-full flex justify-start sm:gap-3">
              {/* Profile Image*/}
              <div className='w-[50px] '>
@@ -56,7 +61,7 @@ function Ad({ad}: Props) {
             </div>
           </div>
            
-          {/* Right */}
+          {/* Right Section */}
           <div className='w-[70px] h-full flex self-end flex-col justify-end  items-start gap-1 md:w-[180px] md:flex-row md:self-center md:items-center md:justify-between'>
             {/* Created At */}
             <div className='text-[14px] text-textBlack text-opacity-50 md:ml-[10px] md:text-[16px]'>
@@ -74,6 +79,7 @@ function Ad({ad}: Props) {
             </div>
           </div>
         </div>
+        </Link>
     </div>
   )
 }

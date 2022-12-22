@@ -105,7 +105,7 @@ const Home = (props: Props) => {
             {/* <div className='w-full border border-b-[2px] border-lightGreen  ml-[-1400px]'/> */}
 
           </h1>
-          <p className='w-[80%] hidden font-light text-gray break-words xl:max-w-[450px] xl:text-lg xl:pt-2 lg:inline-block'>
+          <p className='w-[80%] h-[80px] hidden font-light text-gray break-words xl:max-w-[450px] xl:text-lg xl:pt-2 lg:inline-block'>
             Lorem Ipsum is simply dummy text of the has been the industry's
             standard dummy text Ipsum is simply dummy.
           </p>
@@ -137,27 +137,24 @@ const Home = (props: Props) => {
               <UniButton 
                 text='Browse Ads'
                 type='button'
-                className='w-full sm:w-[80%] lg:w-[50%] xl:w-[40%] '
-                
+                className='w-full sm:w-[80%] lg:w-[50%] xl:w-[40%]'
               />
            
             {/* <button className='h-[40px] w-[250px] mt-2 rounded-full bg-lightGreen text-background md:w-[350px] lg:mt-3'>
               <NavLink to={'/adslist'}>Browse Ads</NavLink>
             </button> */}
           </div>
-      
-       
       </div>
 
       {/* elemente (kreis-linie) */}
     
         <div
           area-label='left line'
-          className='w-[53%] block absolute z-10 left-0 top-[16.5rem] border-b-[2px] border-lightGreen lg:w-[35%] md:w-[53%] md:top-[20.5rem] lg:top-[24rem] lg:border-b-[4px]'
+          className='w-[53%] absolute z-10 left-0 top-[16.1rem] border-b-[2px] border-lightGreen lg:w-[35%] sm:top-[16.3rem] sm:w-[51%] md:top-[16.5rem] lg:top-[23.3rem] lg:border-b-[4px] xl:top-[23.7rem] xl:w-[32%]'
         ></div> 
         <div
           area-label='right line'
-          className='w-[54%] block absolute  top-[19.5rem] right-0 border-b-[2px] border-lightGreen xl:w-[77%] lg:w-[69%] md:w-[54%] md:top-[25rem] lg:top-[29rem] lg:border-b-[4px]'
+          className='w-[54%] absolute  top-[19rem] right-0 border-b-[2px] border-lightGreen  lg:w-[69%] md:w-[54%] sm:top-[19.6rem] md:top-[20.2rem] lg:top-[27rem] lg:border-b-[4px] xl:top-[28.6rem] xl:w-[71%]'
         ></div>
         <div
           area-label='circle'

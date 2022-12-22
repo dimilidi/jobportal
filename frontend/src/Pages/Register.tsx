@@ -66,7 +66,7 @@ const Register = (props: Props) => {
       <ToastContainer autoClose={3000} />
       {fetching && <div>...Loading</div>}
       <img className='iconName' />
-      <div className='signupContent'>
+      <div className='signupContent h-[90vh] pt-[100px]'>
         <h1>Glad to help You</h1>
 
         <form onSubmit={handleSubmit}>

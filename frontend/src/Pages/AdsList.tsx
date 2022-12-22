@@ -22,6 +22,8 @@ const AdsList = (props: Props) => {
     }
   }
 
+ 
+
   return (
     <div className='pt-[120px] h-full w-full min-h-[920px]'>
       {/* Heading with underline  */}
@@ -56,7 +58,7 @@ const AdsList = (props: Props) => {
           <div className='mx-auto flex flex-wrap justify-center '>
           {
             ads.list.map(ad => (
-              <Ad key={ad._id} ad = {ad} />
+              <Ad key={ad._id} ad = {ad}  />
             ))
           }
           </div>

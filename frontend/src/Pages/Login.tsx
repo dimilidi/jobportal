@@ -51,7 +51,7 @@ const Login = (props: Props) => {
     <>
       {fetching && <div>...Loading</div>}
       <img className='iconName' />
-      <div className='loginContent'>
+      <div className='loginContent h-[90vh] pt-[400px]'>
         <h1>Glad to have you Back</h1>
         <form onSubmit={handleSubmit}>
           <input

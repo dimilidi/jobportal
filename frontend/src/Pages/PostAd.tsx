@@ -22,7 +22,16 @@ const PostAd = () => {
   const [contactVia, setContactVia] = useState([''])
   const [checked, setChecked] = useState({ email: true, phone: false })
   // const [image, setImage] = useState('')
-  console.log(description)
+ 
+
+
+  // Toast notification (duplication prevented via customId)
+  const notify = (message:string) => {
+    const customId = "custom-id-yes"
+    toast(message, {
+      toastId: customId
+    })
+  }
 
   // Handle ContactVia according checkbox
   useEffect(() => {
@@ -33,13 +42,15 @@ const PostAd = () => {
     } else if (checked.email && !checked.phone) {
       setContactVia(['email'])
     } else {
-      toast.warning('Please select a contact option!')
-    }
-  }, [checked])
+      notify('Please select a contact option!')
+    }}, [checked])
 
+
+  // Handle Submit  
   const handleSubmit = async (e: React.SyntheticEvent) => {
     e.preventDefault()
     ads.setIsLoading(true)
+    if(ads.error) notify(ads.error)
 
     const ad = {
       title,
@@ -49,13 +60,11 @@ const PostAd = () => {
       wage,
       contactVia,
     }
-    console.log(ad)
 
     const response = await axiosInstance
       .post('/ads/post', ad)
       .catch((e) => e.response)
 
-    console.log(response)
 
     if (response.status === 201) {
       const id = response.data._id
@@ -65,20 +74,19 @@ const PostAd = () => {
       const key = Object.keys(error)[0]
       const message = error[key]
       ads.setError(message)
-      toast.error(message)
-
-      console.log('ERROR', ads.error)
     } else if (response.status === 401) {
       ads.setError('You are not logged in.')
-      toast.warning('You are not logged in!')
     } else {
       ads.setError('Something went wrong')
-      toast.error('Something went wrong')
     }
     ads.setIsLoading(false)
   }
 
   return (
+    <>
+    {/* ?????????????????? */}
+    {/* {ads.isLoading && toast.loading('Please wait..')} */}
+
     <div
       area-label='page-postAd'
       className='h-full lg:pt-0 mt-[0px] relative flex justify-center items-center text-Black '
@@ -316,8 +324,9 @@ const PostAd = () => {
 
      
 
-      <ToastContainer position='top-left' />
+      <ToastContainer position='bottom-right' />
     </div>
+    </>
   )
 }
 
