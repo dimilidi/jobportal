@@ -1,9 +1,8 @@
-import React, { useState,  useEffect } from 'react'
-import axios from 'axios'
-import axiosInstance from '../api/axiosInstance'
+// Hooks
+import { useState,  useEffect } from 'react'
 import { useParams } from 'react-router-dom'
-
-
+// Axios
+import axiosInstance from '../api/axiosInstance'
 
 
 type Ad = {
@@ -50,12 +49,11 @@ function useAds():AdHook{
 
  
     const fetchAds = async() => {
-       
+        setIsLoading(true)
         try { 
-            setIsLoading(true)
             const res = await axiosInstance.get('/ads');
             const data = res.data;
-            console.table("data /ads" + data);
+       
             setList(data);
         } catch (error) {
             console.log(error)
@@ -65,22 +63,21 @@ function useAds():AdHook{
 
 
     const getAdById = async() => {
+        setIsLoading(true)
         try {
-            setIsLoading(true)
             const res = await axiosInstance.get(`./ads/${params.id}`)
             const data = res.data
-            // console.log(`data/ads/${params.id}`, data)
             setAd(data)
         } catch (error) {
             console.log(error)
         }
-        setIsLoading(true)
+        setIsLoading(false)
     }
 
+    // Bug ??
     useEffect(() => {
         getAdById()
     },[params.id])
-
 
 
   return ({list,ad, setIsLoading, setError, error, isLoading})

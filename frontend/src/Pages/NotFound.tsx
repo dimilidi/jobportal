@@ -8,11 +8,11 @@ const NotFound = (props: Props) => {
   const navigate = useNavigate()
 
   const handleClick = () => {
-    navigate(-1)
+    navigate(-1) 
   }
 
   return (
-    <div>
+    <div className='h-[94vh] w-full flex flex-col justify-center items-center gap-[9rem]'>
       <p>Oops, we couldn't find the page!</p>
       <UniButton
         text='Back'

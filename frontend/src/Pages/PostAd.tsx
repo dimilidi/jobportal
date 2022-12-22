@@ -1,6 +1,4 @@
 import { useEffect, useState } from 'react'
-import { BiCategory } from 'react-icons/bi'
-import { MdEmail } from 'react-icons/md'
 import { useNavigate } from 'react-router-dom'
 import axiosInstance from '../api/axiosInstance'
 import useAds from '../Hooks/useAds'
@@ -8,32 +6,27 @@ import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import imagePostAd from '../assets/images/PostAd_chef.png'
 import UniButton from '../Components/UniButton'
+import { notify } from '../utils/toastNotification'
 
 const PostAd = () => {
-  const navigate = useNavigate()
 
+  // CONSTANTS
+  const navigate = useNavigate()
   const ads = useAds()
 
+  // STATES
   const [title, setTitle] = useState('')
   const [description, setDescription] = useState('')
   const [location, setLocation] = useState('')
-  const [wage, setWage] = useState<number>()
+  const [wage, setWage] = useState<number | string>('')
   const [category, setCategory] = useState('')
-  const [contactVia, setContactVia] = useState([''])
-  const [checked, setChecked] = useState({ email: true, phone: false })
+  const [contactVia, setContactVia] = useState<[string, string] | [string] | []>()
+  const [checked, setChecked] = useState({ email: false, phone: false })
   // const [image, setImage] = useState('')
  
-
-
-  // Toast notification (duplication prevented via customId)
-  const notify = (message:string) => {
-    const customId = "custom-id-yes"
-    toast(message, {
-      toastId: customId
-    })
-  }
-
-  // Handle ContactVia according checkbox
+ console.log(wage);
+ 
+  // HANDLE CONTACT_VIA (according checkbox)
   useEffect(() => {
     if (checked.email && checked.phone) {
       setContactVia(['email', 'phone'])
@@ -42,15 +35,19 @@ const PostAd = () => {
     } else if (checked.email && !checked.phone) {
       setContactVia(['email'])
     } else {
-      notify('Please select a contact option!')
-    }}, [checked])
+      setContactVia([])
+    }
+  }, [checked])
 
 
-  // Handle Submit  
+  // HANDLE SUBMIT 
   const handleSubmit = async (e: React.SyntheticEvent) => {
     e.preventDefault()
     ads.setIsLoading(true)
-    if(ads.error) notify(ads.error)
+   
+    
+    
+    
 
     const ad = {
       title,
@@ -74,24 +71,24 @@ const PostAd = () => {
       const key = Object.keys(error)[0]
       const message = error[key]
       ads.setError(message)
+      notify(message)
     } else if (response.status === 401) {
       ads.setError('You are not logged in.')
+      notify(ads.error)
     } else {
       ads.setError('Something went wrong')
+      notify(ads.error)
     }
     ads.setIsLoading(false)
   }
 
-  return (
-    <>
-    {/* ?????????????????? */}
-    {/* {ads.isLoading && toast.loading('Please wait..')} */}
 
+  return (
     <div
       area-label='page-postAd'
       className='h-full lg:pt-0 mt-[0px] relative flex justify-center items-center text-Black '
     >
-      {/* CIRCLE and LINES */}
+      {/* CIRCLE && LINES */}
       <div
         area-label='circle'
         className='hidden md:block md:w-[332px] md:h-[332px] md:absolute md:top-[50%] md:left-[-250px] md:translate-y-[-50%] md:rounded-full md:bg-lightGreen'
@@ -106,7 +103,7 @@ const PostAd = () => {
         area-label='main'
         className='relative  h-full min-h-[920px] w-[85%] max-w-[1000px]  md:w-[70%] flex flex-col justify-center'
       >
-        {/* TITLE - Create your Ad - MOBILE with line*/}
+        {/* TITLE MOBILE (with line) */}
         <div>
           <h1
             area-label='title-mobile'
@@ -128,13 +125,12 @@ const PostAd = () => {
           area-label='form'
           className='mt-8 gap-6 md:flex-col lg:flex-row md:gap-10 lg:gap-20 z-10 '
           onSubmit={handleSubmit}
-          // className="flex flex-col justify-center"
         >
           <div
             area-label='ad'
             className='p-5 pt-10  flex flex-col item-center rounded-[21px] bg-white shadow-standard  sm:p-10 '
           >
-            {/* TITLE - Create your Ad */}
+            {/* TITLE DESKTOP */}
             <div
               area-label='text left'
               className='flex flex-col items-center md:items-center lg:items-center md:gap-6'
@@ -179,7 +175,7 @@ const PostAd = () => {
               </div>
             </div>
 
-            {/* TITLE - CITY */}
+            {/* TITLE && CITY */}
             <div
               area-label='inputs colum'
               className='w-full mt-3 flex flex-col items-center justify-center'
@@ -308,25 +304,22 @@ const PostAd = () => {
               </div>
             </div>
           </div>
-          {/* POST AD - BUTTON */}
+          {/* BUTTON - POST AD */}
           <UniButton
             area-label='postAdButton'
             text={ads.isLoading ? 'loading' : 'Post Ad'}
             className='my-7 mx-auto w-[200px] self-center  md:mb-0 lg:w-[250px]'
           />
         </form>
-         {/* IMAGE right/botton */}
+         {/* IMAGE */}
       <img
         className='w-[200]  lg:w-[260px] lg:h-[330px] hidden absolute bottom-[-55px] right-[-60px]  sm:block z-30'
         src={imagePostAd}
       ></img>
       </div>
-
-     
-
       <ToastContainer position='bottom-right' />
     </div>
-    </>
+
   )
 }
 

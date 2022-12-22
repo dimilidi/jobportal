@@ -20,11 +20,11 @@ function Ad({ad}: Props) {
   
   return (
     <div className='w-full px-1 py-[0px] md:py-1 md:w-[90%] sm:px-[0px]'>
-        <Link to={`/ad/${ad._id}`}>
-        
+
+        {/* Link to Single Ad  */}
+        <Link to={`/ad/${ad?._id}`}>
         
         <div className='mx-auto h-[110px] w-[95%] flex justify-between items-center border-lightBeige border-b-0 border-t-2 text-[14px] md:h-[80px] md:border-y-2'>
-
           {/* Left Section*/}
         <div className="h-full flex justify-start sm:gap-3">
              {/* Profile Image*/}
@@ -70,12 +70,12 @@ function Ad({ad}: Props) {
 
             {/* Wage */}
             <div className=' w-[70px] h-[60px] flex justify-center items-center     rounded-t-[20px] text-[14px]  text-textBlack text-opacity-70 bg-lightBeige md:mr-[-15px] md:h-[80px] md:w-[70px] md:rounded-r-[20px] md:rounded-tl-[0px] md:text-[16px]'>
-                <p className='text-[18px]'>
+                <div className='text-[18px]'>
                     {ad.wage}€ 
                     <p className='text-[14px] text-textBlack text-opacity-50'>
                         / hour
                     </p>
-                </p>
+                </div>
             </div>
           </div>
         </div>

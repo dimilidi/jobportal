@@ -10,9 +10,11 @@ import AdMobile from '../Components/AdMobile'
 // Libraries
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
+import { notify } from '../utils/toastNotification'
 // Styles
 import { IoMdArrowBack } from 'react-icons/io'
 import thinkingGirl from '../assets/images/SingleAd_girl.png'
+import Spinner from '../Components/Spinner'
 
 type Props = {}
 
@@ -26,19 +28,30 @@ const SingleAd = (props: Props) => {
     !user && navigate('/auth-required')
     user && toast.info('contact page is not available')
   }
-
-  if (!ads.ad) {
-    toast.warning('Ad not found!')
+  
+  // Show Spinner if isLoading
+  if (ads.isLoading) {
     return (
-      <div>
-        <div className='text-xl text-center text.5xl py-10 '>Error...</div>
-        <ToastContainer position='bottom-right' />
-      </div>
+      <Spinner />
     )
   }
+  
+  // Show Error if not found
+  // if (!ads.ad) {
+    // navigate('/*')
+    // notify('Ad not found!')
+    // return (
+    //   <div>
+    //     <div className='h-[94vh] w-full flex justify-center items-center text-gray text-center text-5xl py-10 '>Error...</div>
+    //     <ToastContainer position='bottom-right' />
+    //   </div>
+    // )
+  // }
+
 
   return (
     <>
+
     <div
       area-label='page-singleAd'
       className='h-full pt-[120px]  relative flex justify-center items-center  text-Black  lg:pt-0'
@@ -88,7 +101,7 @@ const SingleAd = (props: Props) => {
           >
             <h3 className='text-[20px]'>Description</h3>
             <p className='mt-2  text-gray/80 text-justify break-words'>
-              {ads.ad.description}
+              {ads.ad?.description}
             </p>
           </div>
         </div>
