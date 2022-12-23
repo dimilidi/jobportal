@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import { motion } from 'framer-motion'
 import profileImg from '../assets/images/Account_profilDefault.png'
 
 
@@ -19,7 +20,10 @@ function Ad({ad}: Props) {
 
   
   return (
-    <div className='w-full px-1 py-[0px] md:py-1 md:w-[90%] sm:px-[0px]'>
+    <motion.div 
+        whileHover={{ scale: 1.1 }}
+        whileTap={{scale: .9}}
+        className='w-full px-1 py-[0px] md:py-1 md:w-[90%] sm:px-[0px]'>
 
         {/* Link to Single Ad  */}
         <Link to={`/ad/${ad?._id}`}>
@@ -80,7 +84,7 @@ function Ad({ad}: Props) {
           </div>
         </div>
         </Link>
-    </div>
+    </motion.div>
   )
 }
 

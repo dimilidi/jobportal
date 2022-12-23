@@ -1,6 +1,8 @@
+// Icons
 import { MdEmail } from 'react-icons/md'
 import { BsTelephoneFill } from 'react-icons/bs'
 import { FaMapMarkerAlt } from 'react-icons/fa'
+
 
 type Props = {
   className: string

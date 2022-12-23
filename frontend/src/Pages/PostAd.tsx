@@ -7,6 +7,9 @@ import 'react-toastify/dist/ReactToastify.css'
 import imagePostAd from '../assets/images/PostAd_chef.png'
 import UniButton from '../Components/UniButton'
 import { notify } from '../utils/toastNotification'
+import { BiLoaderAlt } from 'react-icons/bi'
+
+
 
 const PostAd = () => {
 
@@ -305,9 +308,11 @@ const PostAd = () => {
             </div>
           </div>
           {/* BUTTON - POST AD */}
+          <button>
+          </button>
           <UniButton
             area-label='postAdButton'
-            text={ads.isLoading ? 'loading' : 'Post Ad'}
+            text={ads.isLoading ? <BiLoaderAlt /> : 'Post Ad'}
             className='my-7 mx-auto w-[200px] self-center  md:mb-0 lg:w-[250px]'
           />
         </form>
