@@ -4,6 +4,7 @@ import man from '../assets/images/Ads_man_working.png'
 import useAds from '../Hooks/useAds'
 import useUser from '../Hooks/useUser'
 import UniButton from '../Components/UniButton'
+
 import Spinner from '../Components/Spinner'
 
 type Props = {}
@@ -34,11 +35,11 @@ const AdsList = (props: Props) => {
         <>
           {/* Heading with underline  */}
           <div className='mt-[30px]  h-[100px] w-full'>
-            <h2 className='mx-auto w-[190px] text-4xl'>
+            <h2 className=' text-center text-[45px]  leading-tight'>
               Be part of
               <p>
                 our
-                <span className='capitalize  text-lightGreen text-4xl'>
+                <span className='capitalize  text-lightGreen text-[45px'>
                   {' '}
                   mission
                 </span>
@@ -46,9 +47,9 @@ const AdsList = (props: Props) => {
             </h2>
 
             {/* Line */}
-            <div className='w-[52%] min-w-[220px] hidden  border-b-[3px] border-lightGreen sm:block absolute sm:top-[230px] sm:right-0' />
+            <div className='w-[52%] min-w-[220px] hidden  border-b-[3px] border-lightGreen sm:block absolute sm:top-[260px] sm:right-0' />
             {/* Semicircle */}
-            <div className='w-24 h-24 hidden  right-[-3rem] top-[180px]  rounded-full bg-lightGreen lg:block absolute'></div>
+            <div className='w-24 h-24 hidden  right-[-3rem] top-[210px]  rounded-full bg-lightGreen lg:block absolute'></div>
           </div>
 
           {/* Main Container */}
