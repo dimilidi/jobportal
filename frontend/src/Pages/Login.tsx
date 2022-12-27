@@ -50,25 +50,109 @@ const Login = (props: Props) => {
   return (
     <>
       {fetching && <div>...Loading</div>}
-      <img className='iconName' />
-      <div className='loginContent'>
-        <h1>Glad to have you Back</h1>
-        <form onSubmit={handleSubmit}>
-          <input
-            type='email'
-            name='email'
-            placeholder='enter email here'
-            value={inputs.email}
-            onChange={handleChange}
-          />
-          <input
-            type='password'
-            name='password'
-            placeholder='enter password here'
-            value={inputs.password}
-            onChange={handleChange}
-          />
-          <UniButton text='Login' />
+
+      {/* GREEN CIRCLE */}
+      <div className='
+      w-[100px] h-[100px] 
+      hidden
+      bg-lightGreen 
+      rounded-full 
+      md:absolute right-[-50px] top-[18.8rem] 
+      '>
+      </div>
+        
+      {/* GREEN LINE */}
+      <div className='
+      md:w-[242.5px] h-[.1em] 
+      sm:fixed top-[21.5rem] right-0
+    bg-lightGreen'
+     >
+      </div>
+
+      {/* ************** */}
+      {/* FORM CONTAINER */}
+      <div className=' 
+      py-[14rem] 
+      flex flex-col self-center
+      md:mr-10'
+      >
+      
+        {/* SVG */}
+        <img className='
+        w-[260px]
+        self-center
+        bg-lightGreen 
+        sm:w-[313px]
+        sm:absolute top-[12rem]
+        md:w-[230px]
+        md:top-[23.4rem]
+        md:left-[10%]' 
+        alt='image'/>
+      
+        {/* HEADING */}
+        <h1 className='
+          mt-12 mb-7
+          flex flex-col
+          text-center text-[2rem] leading-9 font-semibold 
+          md:self-end
+          sm:lg-text
+          sm:text-[2.2rem]
+          md:mr-0'
+          >Glad to have you  
+          <span className='text-lightGreen italic'> 
+            &nbsp;Back
+          </span> 
+        </h1>
+
+        {/* FORM INSIDE CONTAINER */}
+        <form onSubmit={handleSubmit} className='
+        flex flex-col self-center 
+        md:self-end
+        sm:w-[313.42px]'
+        >
+          
+          <label htmlFor='email' className='self-center font-extralight'>
+            Email
+            <input
+              className='
+              h-10 px-3 mb-2
+              block 
+              border rounded-[15rem] text-sm 
+              sm:text-[1rem]'
+              type='email'
+              name='email'
+              placeholder='Enter email here'
+              value={inputs.email}
+              onChange={handleChange}
+            />
+          </label>
+        
+          <label htmlFor='password' className='self-center font-extralight'>
+            Password
+            <input
+              className='
+              h-10 px-3 mb-4
+              block 
+              text-sm
+              border rounded-[15rem]  
+              sm:text-[1rem]'
+              type='password'
+              name='password'
+              placeholder='JohnsSuperSavePassword123'
+              onChange={handleChange}
+              value={inputs.password}
+            />
+          </label>
+        
+          <Link to='/edit-userdata' 
+          className='
+          w-full 
+          flex justify-center 
+          text-sm underline 
+          sm:text-sm'>Forgot your password?</Link>
+
+          {/* LOGIN BUTTON */}
+          <UniButton text='Login' className='self-center mt-[1rem] text-lg'/>
           {errors &&
             errors.map((error) => (
               <p key={error} className='text-red-600'>
@@ -76,9 +160,6 @@ const Login = (props: Props) => {
               </p>
             ))}
         </form>
-        <Link to=''>Forgot your password?</Link>
-        <button>Login</button>
-        <Link to='/register'>Or sign up here!</Link>
       </div>
     </>
   )
