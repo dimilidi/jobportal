@@ -13,10 +13,14 @@ const AdsList = (props: Props) => {
   const user = useUser()
   const ads = useAds()
 
+  
+
   const navigate = useNavigate()
 
   const handleClick = () => {
-    if (user) {
+  console.log('USER',user);
+
+    if (user.user) {
       navigate('/post-ad')
     } else {
       navigate('/auth-required')

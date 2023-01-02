@@ -38,7 +38,7 @@ const SingleAd = (props: Props) => {
     <>
       <div
         area-label='page-singleAd'
-        className='h-full pt-[120px]  relative flex justify-center items-center  text-Black  lg:pt-0'
+        className='h-full pt-[120px] min-h-[920px]  relative flex justify-center items-center  text-Black  lg:pt-0'
       >
         {/* Circle and line in the background */}
         <div
@@ -54,7 +54,7 @@ const SingleAd = (props: Props) => {
         {/* Main part of single ad */}
         <div
           area-label='main'
-          className='w-full h-full  sm:w-[80%]  min-h-[920px] flex flex-col justify-around gap-5 lg:justify-center lg:w-[60%]'
+          className='w-full h-full  sm:w-[80%]  min-h-[920px] flex flex-col justify-between gap-5 lg:justify-center lg:w-[60%]'
         >
           {/* Browse Job button */}
           <Link to={'/adslist'}>
@@ -99,7 +99,7 @@ const SingleAd = (props: Props) => {
           {/* Ad - END */}
 
           {/* If user exists, show ContactDetails - MOBILE */}
-          {user && (
+          {user.user && (
             <ContactDetails className='px-1 sm:px-0 w-[250px] h-[300px] flex justify-center self-center rounded-t-[65px] lg:hidden text-8xl' />
           )}
 
@@ -111,20 +111,20 @@ const SingleAd = (props: Props) => {
         </div>
         {/* Main part of single ad */}
 
-        {/* If user exists, show ContactDetails - MOBILE */}
+        {/* If user exists, show ContactDetails - DESKTOP */}
         {user.user && (
           <ContactDetails className='hidden lg:w-[200px] lg:h-[260px] lg:flex lg:items-center lg:absolute lg:right-0 lg:top-[50%] lg:rounded-l-[65px] lg:translate-y-[-50%] xl:w-[280px] xl:h-[300px]' />
         )}
 
-        {/* image */}
-        <img
-          src={thinkingGirl}
-          alt='illustration of girl in front of laptop'
-          className='hidden lg:w-[230px] lg:h-[220px] lg:absolute lg:bottom-[-30px] lg:left-[14%] lg:block lg:z-30'
-        />
-        {/* image - END */}
         <ToastContainer position='bottom-right' />
       </div>
+        {/* image */}
+          <img
+            src={thinkingGirl}
+            alt='illustration of girl in front of laptop'
+            className='hidden lg:w-[230px] lg:h-[220px] lg:absolute lg:bottom-[30px] lg:left-[14%] lg:block lg:z-30'
+          />
+        {/* image - END */}
     </>
   )
 }

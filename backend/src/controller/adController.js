@@ -13,7 +13,7 @@ export async function postAd(req, res) {
 
   const newAd = new Ad({
     ...ad,
-    user: user._id,
+    user: user._id, 
   })
 
   await newAd.save()
