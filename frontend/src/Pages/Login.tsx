@@ -99,7 +99,7 @@ const Login = (props: Props) => {
       xl:h-[600px]
       '
       >
-      
+      {/* kommentar */}
         {/* SVG */}
         <img className='
         w-[250px] h-[200px]
