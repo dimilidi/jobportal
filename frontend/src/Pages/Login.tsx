@@ -4,6 +4,7 @@ import { Link, Navigate, useNavigate } from 'react-router-dom'
 import useUser from '../Hooks/useUser'
 import { LoginInputs } from '../type'
 import UniButton from '../Components/UniButton'
+import image from '../assets/images/Login_surf.png'
 
 type Props = {}
 
@@ -47,11 +48,12 @@ const Login = (props: Props) => {
     setFetching(false)
   }
   return (
-    <>
+    <div className=' h-full min-h-[920px] flex flex-col items-center justify-center lg:flex-row  '>
       {fetching && <div>...Loading</div>}
 
       {/* GREEN CIRCLE */}
-      <div className='
+      <div
+        className='
       w-[100px] h-[100px] 
       absolute right-[-50px] z-[10]
       hidden
@@ -60,11 +62,11 @@ const Login = (props: Props) => {
       xl:block 
       xl:top-[19.7rem]
       '
-      >
-      </div>
-        
+      ></div>
+
       {/* GREEN LINE */}
-      <div className='
+      <div
+        className='
       h-[.1em] 
       hidden
       bg-lightGreen
@@ -76,147 +78,185 @@ const Login = (props: Props) => {
       lg:top-[18.9rem]
       lg:w-[25.9rem]
       '
-      >
-      </div>
+      ></div>
 
       {/* ************** */}
-      {/* SVG, HEADING, FORM CONTAINER */}
-      <div className=' 
-      flex flex-col self-center
-      mx-4 mb-[9rem] mt-[15rem]
-      border rounded-xl shadow-standard pb-10
-      bg-background
-      md:mx-10
-      lg:w-[33rem]
-      lg:h-[33rem]
-      lg:mt-[10rem]
-      lg:relative right-[-8rem]
-      lg:items-start
-      lg:float-right
-      lg:pl-[3rem]
-      lg:py-10
-      xl:w-[700px]
-      xl:h-[600px]
+
+      {/* kommentar */}
+      {/* SVG */}
+      <img
+        className='
+        w-[180px] 
+        mb-[-45px]
+        z-10
+        lg:w-[400px]
+        lg:pl-10
+        '
+        src={image}
+        alt='image'
+      />
+      {/* HEADING, FORM CONTAINER */}
+      <div
+        className=' 
+      py-[20px]
+      min-h-[600px]
+      w-[90%]
+      max-w-[500px]
+      flex flex-col justify-center 
+      border-radius rounded-xl shadow-standard 
+      bg-white
+  
+      lg:translate-x-[17%]
+      xl:translate-x-[30%]
+      lg:max-w-[1000px]
+      lg:w-[50%]
+
+
+      
+      
       '
       >
-      {/* kommentar */}
-        {/* SVG */}
-        <img className='
-        w-[250px] h-[200px]
-        self-center left-0 top-[25rem]
-        bg-lightGreen
-        lg:absolute
-        lg:ml-[2rem]
-        lg:h-[29rem]
-        lg:w-[25rem]
-        lg:top-[2rem]
-        lg:left-[-30rem]
-        xl:left-[-40rem]
-        ' 
-        alt='image'/>
-
-        <div className='flex flex-col'>
-        {/* HEADING */}
-        <h1 className='
+        <div className='mx-auto w-[80%] flex flex-col items-center lg:mx-20 lg:w-[60%] lg:items-start'>
+          {/* HEADING */}
+          <h1
+            className='
           mb-1
-          flex flex-col
+          pb-10
+          
           text-center text-[2rem] leading-9 font-semibold 
+          lg:text-left
+          w-full
+          lg:w-[300px]
+          
+
+
+
           sm:mb-[1.1rem]
-          sm:lg-text
+          
           sm:text-[2.5rem]
           sm:leading-10
-          lg:text-left
           lg:text-[2.8rem]
           lg:leading-[3.3rem]
           '
-          >Glad to have you  
-          <span className='text-lightGreen italic'> 
-            Back
-          </span> 
-        </h1>
+          >
+            Glad to have you
+            <span className='text-lightGreen italic'> Back</span>
+          </h1>
 
-        {/* FORM INSIDE CONTAINER */}
-        <form onSubmit={handleSubmit} className='
-        flex flex-col self-center 
-        min-[1020px]:w-[410px]'
-        >
+          {/* FORM INSIDE CONTAINER */}
+          <form
+            onSubmit={handleSubmit}
+            className='
+        h-[270px] w-full
+        flex flex-col items-center justify-between
+        lg:w-[70%]
+        '
+          >
+            <div className='mb-5 w-full flex flex-col items-center' >
+              <label
+                htmlFor='email'
+                className='
+                text-gray
+                self-start
+         
+            font-extralight
+            sm:font-light
+            sm:text-[1.1rem]
+            lg:self-start'
+              >
+                Email
+              </label>
+                <input
+                  className='
+                  py-[11px]
+                px-5 mb-2
+                w-full
+                block 
+                box-border
+                border border-lightGray rounded-[15rem] text-sm 
+                focus:outline-lightGreen
+             
+                sm:text-[1.1rem]'
+                  type='email'
+                  name='email'
+                  value={inputs.email}
+                  onChange={handleChange}
+                />
+             
+
+              <label
+                htmlFor='password'
+                className='
+                text-gray
+                self-start
           
-          <label htmlFor='email' className='
-          self-center 
-          font-extralight
-          sm:font-light
-          sm:text-[1.1rem]
-          lg:self-start'
-          >
-            Email
-            <input
-              className='
-              h-10 px-3 mb-2
-              block 
-              border rounded-[15rem] text-sm 
-              sm:text-[1.1rem]'
-              type='email'
-              name='email'
-              placeholder='Enter email here'
-              value={inputs.email}
-              onChange={handleChange}
-            />
-          </label>
-        
-          <label htmlFor='password' className='
-          self-center 
-          font-extralight
-          sm:font-light
-          sm:text-[1.1rem]
-          lg:self-start'
-          >
-            Password
-            <input
-              className='
-              h-10 px-3 mb-4
-              block 
-              text-sm
-              border rounded-[15rem]
-              sm:text-[1.1rem]'
-              type='password'
-              name='password'
-              placeholder='JohnsSuperSavePassword123'
-              onChange={handleChange}
-              value={inputs.password}
-            />
-          </label>
-        
-          <Link to='/edit-userdata' 
-          className='
-          w-full 
-          flex
-          text-sm underline 
-          sm:text-sm
-          sm:justify-center
-          lg:justify-start'
-          >Forgot your password?
-          </Link>
+            font-extralight
+            sm:font-light
+            sm:text-[1.1rem]
+            lg:self-start'
+              >
+                Password
+              </label>
+                <input
+                  className='
+                py-[11px] px-5 mb-1
+                w-full
+                block 
+                text-sm
+                border border-lightGray rounded-[15rem]
+                focus:outline-lightGreen
 
-          {/* LOGIN BUTTON */}
-          <UniButton text='Login' 
-          className='
+                sm:text-[1.1rem]'
+                  type='password'
+                  name='password'
+                  onChange={handleChange}
+                  value={inputs.password}
+                />
+              
+
+              <Link
+                to='/edit-userdata'
+                className='
+            w-full 
+            text-lightGray
+            underline 
+            text-[13px]
+            sm:justify-center
+            lg:justify-start'
+              >
+                Forgot your password?
+              </Link>
+            </div>
+
+            {/* LOGIN BUTTON */}
+            <UniButton
+              text='Login'
+              className='
           mt-[1rem]
-          self-center  
+          py-[10px]
+          w-full
+          text-[18px]
+          sm:w-[250px]  
           sm:text-xl
           lg:self-start
           '
-          />
-          {errors &&
-            errors.map((error) => (
-              <p key={error} className='text-red-600'>
-                {error}
-              </p>
-            ))}
-        </form>
+            />
+            <p className='w-full text-center text-lightGray underline text-[13px] lg:text-left'>
+              <Link to='/register'>
+              or sign up here
+              </Link>
+            </p>
+          
+            {errors &&
+              errors.map((error) => (
+                <p key={error} className='text-red-600'>
+                  {error}
+                </p>
+              ))}
+          </form>
         </div>
-        
       </div>
-    </>
+    </div>
   )
 }
 

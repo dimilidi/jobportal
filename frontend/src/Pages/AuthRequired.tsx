@@ -5,7 +5,7 @@ type Props = {}
 
 const AuthRequired = (props: Props) => {
   return (
-    <section className='w-[90%] h-[60%] my-0 mx-auto  pr-2' >
+    <section className='pt-[100px] w-[90%] h-[60%] my-0 mx-auto  pr-2' >
 
       {/* ICON PREVIOUS PAGE */}
       <div>
@@ -17,7 +17,7 @@ const AuthRequired = (props: Props) => {
 
       {/* MAIN CONTAINER */}
       <div className='  bg-white'>
-        <h1 className='font-size-[40]'>Be part of our  <span className='italic text-lightGreen font-semibold'>Mission</span></h1>
+        <h1 className='font-size-[4rem]'>Be part of our  <span className='italic text-lightGreen font-semibold'>Mission</span></h1>
       </div>
       {/* MAIN CONTAINER END */}
 
