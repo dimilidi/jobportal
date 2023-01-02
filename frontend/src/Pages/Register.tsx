@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { ToastContainer, toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 import { RegisterInputs } from '../type'
 import useUser from '../Hooks/useUser'
@@ -20,18 +21,10 @@ const Register = (props: Props) => {
   const [inputs, setInputs] = useState(initialValue)
   const [fetching, setFetching] = useState<boolean>(false)
   const [errors, setErrors] = useState<string[] | undefined[] | undefined>([])
-  const [success, setSuccess] = useState(true)
-  console.log(success)
-
-  // if (success) {
-  //   toast.success('Successfully logged in!', {
-  //     position: toast.POSITION.TOP_CENTER,
-  //   })
-  // }
 
   useEffect(() => {
     if (user && !loading) {
-      //? where to navigate? navigate('/') // adlist
+      navigate('/adlist')
     }
   }, [user])
 
