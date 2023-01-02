@@ -7,6 +7,8 @@ import { RegisterInputs } from '../type'
 import useUser from '../Hooks/useUser'
 
 import UniButton from '../Components/UniButton'
+import { BiUnderline } from 'react-icons/bi'
+import { FaUnderline } from 'react-icons/fa'
 
 type Props = {}
 
@@ -58,52 +60,88 @@ const Register = (props: Props) => {
     <>
       <ToastContainer autoClose={3000} />
       {fetching && <div>...Loading</div>}
-      <img className='iconName' />
-      <div className='signupContent h-[90vh] pt-[100px]'>
-        <h1>Glad to help You</h1>
 
-        <form onSubmit={handleSubmit}>
-          <label htmlFor='name'>
-            Username
-            <input
-              type='text'
-              name='name'
-              placeholder='enter username here'
-              onChange={handleChange}
-              value={inputs.name}
-            />
-          </label>
-          <label htmlFor='email'>
-            Email
-            <input
-              type='email'
-              name='email'
-              placeholder='enter email here'
-              onChange={handleChange}
-              value={inputs.email}
-            />
-          </label>
-          <label htmlFor='password'>
-            Password
-            <input
-              type='password'
-              name='password'
-              placeholder='enter password here'
-              onChange={handleChange}
-              value={inputs.password}
-            />
-          </label>
-          <UniButton text='Sign Up' />
-          {errors &&
-            errors.map((error) => (
-              <p key={error} className='text-red-600'>
-                {error}
-              </p>
-            ))}
-        </form>
-        <button>Login</button>
-        <Link to='/login'>Or log in here!</Link>
-      </div>
+        {/* SVG CONTAINER*/}
+        <img className='h-4 w-4 m-[6rem] absolute right-[5rem] top-[16rem] bg-lightGreen' alt='image'/>
+
+        {/* GREEN CIRCLE */}
+        <div className='w-[100px] h-[100px] absolute right-[-50px] top-[12.7rem] bg-lightGreen rounded-full max-[767px]:hidden'></div>
+        
+        {/* GREEN LINE */}
+        <div className='h-[.1em] min-[768px]:w-[100%] bg-lightGreen absolute top-[15.5rem] right-[-9rem]'></div>
+        
+        {/* FORM CONTAINER */}
+        <div className='
+          w-fit
+          mt-[8rem] m-2 h-screen 
+          flex flex-col content-center flex-nowrap
+          min-[320px]:ml-[1.5rem]
+          min-[375px]:ml-[3rem]
+          min-[425px]:ml-[4.5rem]
+          '>
+          
+          {/* HEADING */}
+          <h1 className='w-[60%] mt-12 mb-4 text-[2em] leading-9 font-semibold'>Glad to help 
+            <span className='text-lightGreen italic'> 
+              You
+            </span> 
+          </h1>
+
+          {/* FORM */}
+          <form onSubmit={handleSubmit} className='max-w-[100%] flex flex-col'>
+            <div className='mb-2 w-10'>
+              <label htmlFor='name' className='font-extralight'>
+                Username
+                <input
+                  className='h-10 px-[.7rem] border rounded-[15rem] text-sm'
+                  type='text'
+                  name='name'
+                  placeholder='John Doe'
+                  onChange={handleChange}
+                  value={inputs.name}
+                />
+              </label>
+            </div>
+            <div className='mb-2 w-10'>
+              <label htmlFor='email' className='font-extralight'>
+                Email
+                <input
+                  className='h-10 px-[.7rem] border rounded-[15rem] text-sm'
+                  type='email'
+                  name='email'
+                  placeholder='John@Doe.com'
+                  onChange={handleChange}
+                  value={inputs.email}
+                />
+              </label>
+            </div>
+            <div className='mb-2 w-10'>
+              <label htmlFor='password' className='font-extralight'>
+                Password
+                <input
+                  className='h-10 px-[.7rem] border rounded-[15rem] text-sm'
+                  type='password'
+                  name='password'
+                  placeholder='JohnsSuperSavePassword123'
+                  onChange={handleChange}
+                  value={inputs.password}
+                />
+              </label>
+            </div>
+
+            {/* SIGN UP BUTTON */}
+            <UniButton text='Sign Up' className='w-[100%] mt-4 ml-[2rem] text-lg min-[768px]:ml-0' />
+            {errors &&
+              errors.map((error) => (
+                <p key={error} className='text-red-600'>
+                  {error}
+                </p>
+              ))}
+          </form>
+
+          {/* Link To Login Page */}
+          <Link to='/login' className='w-[100%] mt-2 ml-[4rem] underline '>Or log in here!</Link>
+        </div>
     </>
   )
 }
