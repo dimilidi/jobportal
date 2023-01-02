@@ -68,27 +68,44 @@ const Register = (props: Props) => {
       <ToastContainer autoClose={3000} />
       {fetching && <div>...Loading</div>}
 
-        {/* SVG CONTAINER*/}
-        <img className='h-4 w-4 m-[6rem] absolute right-[5rem] top-[16rem] bg-lightGreen' alt='image'/>
 
         {/* GREEN CIRCLE */}
-        <div className='w-[100px] h-[100px] absolute right-[-50px] top-[12.7rem] bg-lightGreen rounded-full max-[767px]:hidden'></div>
+        <div className='
+          w-[100px] h-[100px] 
+          absolute right-[-50px] top-[12.7rem] 
+          bg-lightGreen 
+          rounded-full 
+          max-[767px]:hidden'>
+        </div>
         
         {/* GREEN LINE */}
-        <div className='h-[.1em] min-[768px]:w-[100%] bg-lightGreen absolute top-[15.5rem] right-[-9rem]'></div>
+        <div className='
+          h-[.1em] 
+          absolute top-[15.5rem] right-[-9rem] 
+          bg-lightGreen
+          min-[768px]:w-[100%]'>
+        </div>
         
         {/* FORM CONTAINER */}
-        <div className='
-          w-fit
-          mt-[8rem] m-2 h-screen 
+        <div className=' 
+          h-screen 
+          mt-[19rem] mx-[1.5rem]
           flex flex-col content-center flex-nowrap
-          min-[320px]:ml-[1.5rem]
+          border drop-shadow-[standard]
           min-[375px]:ml-[3rem]
-          min-[425px]:ml-[4.5rem]
-          '>
+          min-[425px]:ml-[4.5rem]'>
+
+          {/* SVG CONTAINER*/}
+        
+          <img className='
+            h-[10rem] w-[14rem] 
+            absolute top-[8rem] 
+            bg-lightGreen' 
+          alt='image'/>
+        
           
           {/* HEADING */}
-          <h1 className='w-[60%] mt-12 mb-4 text-[2em] leading-9 font-semibold'>Glad to help 
+          <h1 className='mb-4 text-[2em] leading-9 font-semibold'>Glad to help 
             <span className='text-lightGreen italic'> 
               You
             </span> 
