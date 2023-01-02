@@ -74,7 +74,7 @@ const Navigation = () => {
     {
       icon: <AiOutlineLogout />,
       name: 'Logout',
-      url: '/logout',
+      url: '',
       onClick: logout,
       navCategory: 'loggedIn',
     },
@@ -109,7 +109,7 @@ const Navigation = () => {
       setNavToShow(baseNav)
       setBurgerNavToShow(notLoggedInBurgerNav)
     }
-  }, [])
+  }, [user])
 
   return (
     <section className='p-6 pb-6 mr-8'>
@@ -131,6 +131,7 @@ const Navigation = () => {
                     ? 'text-darkGreen decoration-2 decoration-darkGreen underline underline-offset-8'
                     : ''
                 }
+                onClick={page.onClick}
               >
                 <div className='pl-6 flex items-center gap-8'>
                   <span className='text-[18px]'>{page.name}</span>
@@ -223,6 +224,7 @@ const Navigation = () => {
                   className={({ isActive }) =>
                     isActive ? 'text-lightGreen' : ''
                   }
+                  onClick={page.onClick}
                 >
                   <div className='pl-6 flex items-center gap-8'>
                     <span className='text-[24px]'>{page.icon}</span>
