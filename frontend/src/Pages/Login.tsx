@@ -48,37 +48,25 @@ const Login = (props: Props) => {
     setFetching(false)
   }
   return (
-    <div className=' h-full min-h-[920px] flex flex-col items-center justify-center lg:flex-row  '>
+    <div className='pt-5 h-full min-h-[950px] flex flex-col items-center justify-center lg:flex-row  '>
       {fetching && <div>...Loading</div>}
 
       {/* GREEN CIRCLE */}
       <div
         className='
       w-[100px] h-[100px] 
-      absolute right-[-50px] z-[10]
+      absolute right-[-50px] z-10
+      top-[20.4rem]
       hidden
       bg-lightGreen 
       rounded-full 
       xl:block 
-      xl:top-[19.7rem]
       '
       ></div>
 
       {/* GREEN LINE */}
-      <div
-        className='
-      h-[.1em] 
-      hidden
-      bg-lightGreen
-      absolute right-0 z-[10]
-      sm:block
-      sm:top-[26.3rem]
-      sm:w-[20.3rem]
-      md:w-[431px]
-      lg:top-[18.9rem]
-      lg:w-[25.9rem]
-      '
-      ></div>
+      {/* <div className='w-screen absolute top-[43%]  left-[49%] right-0 z-10 border-b-[3px] border-lightGreen sm:top-[45%] lg:top-[370px] lg:left-[710px]'/> */}
+     
 
       {/* ************** */}
 
@@ -89,8 +77,10 @@ const Login = (props: Props) => {
         w-[180px] 
         mb-[-45px]
         z-10
-        lg:w-[400px]
-        lg:pl-10
+        lg:w-[450px]
+        lg:mr-[-50px]
+        
+        xl:w-[550px]
         '
         src={image}
         alt='image'
@@ -98,58 +88,68 @@ const Login = (props: Props) => {
       {/* HEADING, FORM CONTAINER */}
       <div
         className=' 
+        relative
       py-[20px]
-      min-h-[600px]
+      h-[600px]
       w-[90%]
       max-w-[500px]
       flex flex-col justify-center 
-      border-radius rounded-xl shadow-standard 
+      border-radius rounded-[30px] shadow-standard 
       bg-white
   
-      lg:translate-x-[17%]
-      xl:translate-x-[30%]
+      lg:translate-x-[22%]
+      xl:translate-x-[25%]
       lg:max-w-[1000px]
       lg:w-[50%]
+      lg:h-[650px]
 
 
       
       
       '
       >
-        <div className='mx-auto w-[80%] flex flex-col items-center lg:mx-20 lg:w-[60%] lg:items-start'>
+        <div className=' mx-auto w-[100%] flex flex-col items-center lg:mx-20  lg:items-start'>
           {/* HEADING */}
           <h1
             className='
-          mb-1
-          pb-10
           
+          w-[250px]
           text-center text-[2rem] leading-9 font-semibold 
-          lg:text-left
-          w-full
-          lg:w-[300px]
+         lg:text-left
+         xl:w-[400px]
+         xl:text-[3.5rem]
+          
           
 
 
 
-          sm:mb-[1.1rem]
+          
           
           sm:text-[2.5rem]
           sm:leading-10
+          lg:w-[300px]
           lg:text-[2.8rem]
           lg:leading-[3.3rem]
           '
           >
             Glad to have you
-            <span className='text-lightGreen italic'> Back</span>
+         
+            <span className=' text-lightGreen italic '
+            > Back
+            
+            </span>
           </h1>
+          <span className='self-end w-[50%] top-[180px]  right-0   z-10 border-t-[3px] border-lightGreen sm:top-[45%] md:top-[300px] lg:top-[370px] lg:w-[87%]  xl:w-[87%] pb-10'>
+             
+             </span>
 
           {/* FORM INSIDE CONTAINER */}
           <form
             onSubmit={handleSubmit}
             className='
-        h-[270px] w-full
+        h-[270px] w-[80%]
         flex flex-col items-center justify-between
-        lg:w-[70%]
+        lg:w-[50%]
         '
           >
             <div className='mb-5 w-full flex flex-col items-center' >
@@ -234,9 +234,9 @@ const Login = (props: Props) => {
               className='
           mt-[1rem]
           py-[10px]
-          w-full
+          
           text-[18px]
-          sm:w-[250px]  
+          w-[250px]  
           sm:text-xl
           lg:self-start
           '
