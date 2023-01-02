@@ -114,7 +114,7 @@ const Navigation = () => {
   return (
     <section className='p-6 pb-6 mr-8'>
       {/* NAVIGATION DESKTOP */}
-      <nav className='w-full hidden sm:flex sm:justify-end items-end justify-center'>
+      <nav className='w-full hidden md:flex md:justify-end items-end justify-center'>
         <ul className='flex mr-4'>
           {navToShow?.map((page) => (
             <motion.li
@@ -186,7 +186,7 @@ const Navigation = () => {
       {/* NAVIGATION DESKTOP END */}
 
       {/* BURGER MENU */}
-      <nav className='sm:hidden '>
+      <nav className='md:hidden '>
         <div
           onClick={handleNavigation}
           className='z-50  absolute top-[29px] cursor-pointer'
