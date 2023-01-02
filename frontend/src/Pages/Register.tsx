@@ -153,7 +153,7 @@ const Register = (props: Props) => {
               </label>
             </div>
 
-            {/* Sign Up Button */}
+            {/* SIGN UP BUTTON */}
             <UniButton text='Sign Up' className='w-[100%] mt-4 ml-[2rem] text-lg min-[768px]:ml-0' />
             {errors &&
               errors.map((error) => (
