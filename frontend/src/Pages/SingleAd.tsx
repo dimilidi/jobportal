@@ -1,6 +1,5 @@
 import React from 'react'
-import { IoMdArrowBack } from 'react-icons/io'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 import ContactDetails from '../Components/ContactDetails'
 import UniButton from '../Components/UniButton'
 import AdMobile from '../Components/AdMobile'
@@ -13,6 +12,9 @@ import { motion } from 'framer-motion'
 import { IoMdArrowBack } from 'react-icons/io'
 import thinkingGirl from '../assets/images/SingleAd_girl.png'
 import Spinner from '../Components/Spinner'
+
+import useUser from '../Hooks/useUser'
+import useAds from '../Hooks/useAds'
 
 type Props = {}
 
@@ -48,13 +50,13 @@ const SingleAd = (props: Props) => {
       />
       {/* Circle and line in background - END */}
 
-        {/* Main part of single ad */}
-        <div
-          area-label='main'
-          className='w-full h-full  sm:w-[80%]  min-h-[920px] flex flex-col justify-around gap-5 lg:justify-center lg:w-[60%]'
-        >
-          {/* Browse Job button */}
-          <Link to={'/adslist'}>
+      {/* Main part of single ad */}
+      <div
+        area-label='main'
+        className='w-full h-full  sm:w-[80%]  min-h-[920px] flex flex-col justify-around gap-5 lg:justify-center lg:w-[60%]'
+      >
+        {/* Browse Job button */}
+        <Link to={'/adslist'}>
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 0.7 }}
@@ -66,16 +68,16 @@ const SingleAd = (props: Props) => {
             area-label='back-button-to-jobs'
             className='hidden lg:flex lg:items-center'
           >
-              <span className='flex items-center w-[24px]'>
-                <div className='h-[14px] border-r-[2px] border-textBlack' />
-                <IoMdArrowBack className='text-textBlack text-[20px]' />
-              </span>
-              <span className='text-darkGreen font-bold text-[20px] '>
-                Browse Jobs
-              </span>
+            <span className='flex items-center w-[24px]'>
+              <div className='h-[14px] border-r-[2px] border-textBlack' />
+              <IoMdArrowBack className='text-textBlack text-[20px]' />
+            </span>
+            <span className='text-darkGreen font-bold text-[20px] '>
+              Browse Jobs
+            </span>
           </motion.div>
-            </Link>
-          {/* Browse Job button - END */}
+        </Link>
+        {/* Browse Job button - END */}
 
         {/* Ad */}
         <div
@@ -123,7 +125,7 @@ const SingleAd = (props: Props) => {
         {/* image - END */}
         <ToastContainer position='bottom-right' />
       </div>
-    </>
+    </div>
   )
 }
 
