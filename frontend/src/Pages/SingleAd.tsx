@@ -1,21 +1,41 @@
+import React from 'react'
 import { IoMdArrowBack } from 'react-icons/io'
 import { useNavigate } from 'react-router-dom'
 import ContactDetails from '../Components/ContactDetails'
 import UniButton from '../Components/UniButton'
 import AdMobile from '../Components/AdMobile'
+// Libraries
+import { ToastContainer, toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
+import { notify } from '../utils/toastNotification'
+import { motion } from 'framer-motion'
+// Styles
+import { IoMdArrowBack } from 'react-icons/io'
 import thinkingGirl from '../assets/images/SingleAd_girl.png'
+import Spinner from '../Components/Spinner'
 
 type Props = {}
 
 const SingleAd = (props: Props) => {
+  const user = useUser()
+  const ads = useAds()
+
   const navigate = useNavigate()
+
   const handleClick = () => {
-    navigate('/auth-required')
+    !user && navigate('/auth-required')
+    user && notify('Contact page is not available')
   }
+
+  // Show Spinner if isLoading
+  if (ads.isLoading) {
+    return <Spinner />
+  }
+
   return (
     <div
       area-label='page-singleAd'
-      className='pt-[60px] relative flex justify-center text-Black lg:pt-[60px] sm:pt-[80px]'
+      className='pt-[70px] relative flex justify-center text-Black'
     >
       {/* Circle and line in the background */}
       <div
@@ -28,27 +48,39 @@ const SingleAd = (props: Props) => {
       />
       {/* Circle and line in background - END */}
 
-      {/* Main part of single ad */}
-      <div area-label='main' className='w-[80%] lg:w-[50%] flex flex-col'>
-        {/* Browse Job button */}
+        {/* Main part of single ad */}
         <div
-          area-label='back-button-to-jobs'
-          className='hidden lg:flex lg:items-center'
+          area-label='main'
+          className='w-full h-full  sm:w-[80%]  min-h-[920px] flex flex-col justify-around gap-5 lg:justify-center lg:w-[60%]'
         >
-          <span className='flex items-center w-[24px]'>
-            <div className='h-[14px] border-r-[2px] border-textBlack' />
-            <IoMdArrowBack className='text-textBlack text-[20px]' />
-          </span>
-          <span className='text-darkGreen font-bold text-[20px] '>
-            Browse Jobs
-          </span>
-        </div>
-        {/* Browse Job button - END */}
+          {/* Browse Job button */}
+          <Link to={'/adslist'}>
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 0.7 }}
+            whileHover={{ opacity: 1 }}
+            whileTap={{
+              opacity: 1,
+              scale: 1.05,
+            }}
+            area-label='back-button-to-jobs'
+            className='hidden lg:flex lg:items-center'
+          >
+              <span className='flex items-center w-[24px]'>
+                <div className='h-[14px] border-r-[2px] border-textBlack' />
+                <IoMdArrowBack className='text-textBlack text-[20px]' />
+              </span>
+              <span className='text-darkGreen font-bold text-[20px] '>
+                Browse Jobs
+              </span>
+          </motion.div>
+            </Link>
+          {/* Browse Job button - END */}
 
         {/* Ad */}
         <div
           area-label='ad'
-          className='py-7 px-9 mt-8 min-w-[270px] flex flex-col item-center z-10 rounded-[21px] bg-white shadow-standard lg:min-h-[400px]'
+          className='py-5 px-9 mt-8 min-w-[270px] flex flex-col item-center z-10 rounded-[21px] bg-white shadow-standard lg:min-h-[400px] '
         >
           <AdMobile />
           <div area-label='description' className='mt-3'>
@@ -74,24 +106,24 @@ const SingleAd = (props: Props) => {
         <UniButton
           text='Contact'
           onClick={handleClick}
-          className='my-9 self-center lg:mb-0'
+          className='my-7 self-center lg:mb-0'
         />
 
         {/* If user exists, show ContactDetails - MOBILE */}
-        <ContactDetails className='w-[258px] h-[287px] flex justify-center self-center rounded-t-[65px] lg:hidden' />
-      </div>
-      {/* Main part of single ad */}
+        {user.user && (
+          <ContactDetails className='hidden lg:w-[200px] lg:h-[260px] lg:flex lg:items-center lg:absolute lg:right-0 lg:top-[50%] lg:rounded-l-[65px] lg:translate-y-[-50%] xl:w-[280px] xl:h-[300px]' />
+        )}
 
-      {/* image */}
-      <img
-        src={thinkingGirl}
-        alt='illustration of girl in front of laptop'
-        className='hidden lg:w-[230px] lg:h-[220px] lg:fixed lg:bottom-3 lg:left-[14%] lg:block lg:z-30'
-      />
-      {/* image - END */}
-      {/* If user exists, show ContactDetails - DESKTOP */}
-      <ContactDetails className='hidden lg:w-[200px] lg:h-[260px] lg:flex lg:items-center lg:absolute lg:right-0 lg:top-[50%] lg:rounded-l-[65px] lg:translate-y-[-50%]' />
-    </div>
+        {/* image */}
+        <img
+          src={thinkingGirl}
+          alt='illustration of girl in front of laptop'
+          className='hidden lg:w-[230px] lg:h-[220px] lg:absolute lg:bottom-[-30px] lg:left-[14%] lg:block lg:z-30'
+        />
+        {/* image - END */}
+        <ToastContainer position='bottom-right' />
+      </div>
+    </>
   )
 }
 
