@@ -59,7 +59,7 @@ const Navigation = () => {
             className='pr-6 hover:text-darkGreen ease-in-out duration-300'
           >
             <NavLink
-              to='/post-ad'
+               to= {user ? '/post-ad' : '/auth-required'}
               className={({ isActive }) =>
                 isActive
                   ? 'text-darkGreen decoration-2 decoration-darkGreen underline underline-offset-8'

@@ -87,6 +87,7 @@ const PostAd = () => {
 
 
   return (
+    <>
     <div
       area-label='page-postAd'
       className='h-full lg:pt-0 mt-[0px] relative flex justify-center items-center text-Black '
@@ -316,15 +317,15 @@ const PostAd = () => {
             className='my-7 mx-auto w-[200px] self-center  md:mb-0 lg:w-[250px]'
           />
         </form>
-         {/* IMAGE */}
-      <img
-        className='w-[200]  lg:w-[260px] lg:h-[330px] hidden absolute bottom-[-55px] right-[-60px]  sm:block z-30'
-        src={imagePostAd}
-      ></img>
       </div>
       <ToastContainer position='bottom-right' />
     </div>
-
+         {/* IMAGE */}
+      <img
+        className='w-[200]  lg:w-[260px] lg:h-[330px] hidden absolute bottom-[0px] right-[0px]  sm:block z-30 lg:right-[20px] xl:right-[60px]'
+        src={imagePostAd}
+      ></img>
+    </>
   )
 }
 

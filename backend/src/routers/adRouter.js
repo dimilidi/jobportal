@@ -9,6 +9,6 @@ const app = express.Router()
 
 app.get('/', controller.getAds)
 app.get('/:id', softAuth, controller.getAdById)
-app.post('/post', auth, validator.post, controller.postAd)
+app.post('/post',auth,  validator.post, controller.postAd)
 
 export default app
