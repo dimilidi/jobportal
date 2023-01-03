@@ -1,8 +1,9 @@
 
-import React, { useEffect } from 'react'
+import {useNavigate} from "react-router-dom";
 import {BiArrowToLeft} from 'react-icons/bi'
-import { useNavigate, useLocation} from "react-router-dom";
+// Components
 import UniButton from '../Components/UniButton';
+// images
 import DeliveryGuy from '../assets/images/AuthRequired_delivery_guy.png'
 
 
@@ -26,7 +27,7 @@ const AuthRequired = (props: Props) => {
    
   return (
 
-    <section className='w-[90%] h-[100vh] my-0 mx-auto  pr-2  md:pt-[0] flex justify-center flex-col items-center' >
+    <section className='w-[90%] h-full min-h-[900px] my-0 mx-auto  pr-2  md:pt-[0] flex justify-center flex-col items-center' >
 
 
       {/* ICON & BROWSE JOBS */}
@@ -56,14 +57,18 @@ const AuthRequired = (props: Props) => {
           <UniButton
                 text='Sign up'
                 onClick={navigateToRegister}
-                className='  bg-white text-lightGreen border-lightGreen'
+                style={ {
+                backgroundColor: 'white' ,
+                color:'#84A98C',
+                border: '2px solid #84A98C'
+                } }
               />
 
               {/* ELEMENTS */}
               {/* Line */}
               <div 
                 area-label='line'
-                className='w-[52%] min-w-[240px] border-b-[3px] border-lightGreen sm:block absolute top-[320px] sm:top-[330px] right-0'></div>
+                className='w-[52%] min-w-[240px] border-b-[3px] border-lightGreen sm:block absolute top-[330px] md:top-[340px] right-0'></div>
               {/* Circle */}
               <div 
                 area-label='circle'
@@ -71,20 +76,13 @@ const AuthRequired = (props: Props) => {
               {/* ELEMENTS END*/}
 
 
-          {/* IMAGES */}
+              {/* IMAGES */}
               <div >
                 <img 
                 src={DeliveryGuy} alt="postman" 
-                className='scale-x-[-1] absolute -left-12 top-[520px] max-h-96 overflow-hidden sm:max-h-full md:top-64 md:left-2 lg:left-50 xl:left-[400px]  ' />
+                className='scale-x-[-1] absolute -left-12 sm:top-[460px] sm:left-4 max-h-96 overflow-hidden md:max-h-full  md:top-[360px] md:-left-4 lg:left-32 lg:top-[300px] xl:left-56 xl:top-[260px] 2xl:left-96  ' />
               </div>
-
-              {/* IMAGES END */}
-
-            
-        <div className='  bg-white'>
-          <h1 className='font-size-[4rem]'>Be part of our  <span className='italic text-lightGreen font-semibold'>Mission</span></h1>
-        </div>
-
+              {/* IMAGES END */}        
 
       </div>
       {/* MAIN CONTAINER END */}

@@ -1,10 +1,10 @@
-import useAds from '../Hooks/useAds'
+import useAds from "../Hooks/useAds"
 import avatar from '../assets/images/Account_profilDefault.png'
-import useUser from '../Hooks/useUser'
+import useUser from "../Hooks/useUser"
 
-type Props = {}
 
-function AdMobile({}: Props) {
+function AdMobile() {
+
   const ads = useAds()
   const user = useUser()
 
@@ -57,7 +57,7 @@ function AdMobile({}: Props) {
           </div>
 
           {/* Wage */}
-          <div className='w-[50px] sm:w-[70px] h-[60px] flex justify-center items-center text-[14px] text-textBlack text-opacity-70 rounded-t-[20px] bg-lightBeige md:text-[16px]'>
+          <div className='w-[50px] h-[60px] flex justify-center items-center text-[14px] text-textBlack text-opacity-70 rounded-t-[20px] bg-lightBeige sm:w-[70px] md:text-[16px]'>
             <p className='text-center text-[13px]'>
               {ads.ad?.wage}€
               <span className='text-[12px] text-textBlack text-opacity-50 sm:text-[16px]'>

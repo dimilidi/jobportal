@@ -6,13 +6,16 @@ type Props = {
   text: string | ReactNode
   style?: {}
   type?: string
-  onClick?: () => void
+  fontSize?: string
+  width?: string
+  height?: string
   className?: string
+  onClick?: () => void
 }
 
-const UniButton = (props: Props) => {
+const UniButton = ( props: Props ) => {
   return (
-    <div className={props.className}>
+    <div className={ props.className }>
       <motion.button
         whileTap={{ scale: 0.8 }}
         transition={{ duration: 0.5 }}

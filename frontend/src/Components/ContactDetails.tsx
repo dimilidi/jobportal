@@ -1,11 +1,9 @@
+// Hooks
+import useAds from '../Hooks/useAds'
 // Icons
 import { MdEmail } from 'react-icons/md'
 import { BsTelephoneFill } from 'react-icons/bs'
 import { FaMapMarkerAlt } from 'react-icons/fa'
-// Hooks
-import useUser from '../Hooks/useUser'
-import useAds from '../Hooks/useAds'
-import AdsList from '../Pages/AdsList'
 
 type Props = {
   className: string
@@ -15,19 +13,19 @@ const ContactDetails = (props: Props) => {
   const ads = useAds()
 
   return (
-    // Div with props styling
+    // DIV WITH PROPS STYLING
     <div className={props.className}>
-      {/* Green Contact Box */}
+      {/* GREEN CONTACT BOX */}
       <div
         area-label='contact-data'
-        className='flex flex-col items-center justify-center gap-3 px-6 py-12 w-[inherit] h-[inherit] rounded-[inherit] text-white bg-lightGreen lg:items-start lg:gap-2'
+        className='px-6 py-12 w-[inherit] h-[inherit] flex flex-col items-center justify-center gap-3 rounded-[inherit] text-white bg-lightGreen lg:items-start lg:gap-2'
       >
-        {/* Name */}
+        {/* NAME */}
         <h3 className='self-center text-2xl font-bold text-center'>
           {ads.ad?.user.name}
         </h3>
 
-        {/* Email, Phone, City */}
+        {/* EMAIL, PHONE, CITY */}
         <div
           area-label='box-with-contact-details'
           className='py-2 flex flex-col gap-3 xl:px-1 md:gap-2 sm:p-0'
@@ -36,7 +34,7 @@ const ContactDetails = (props: Props) => {
             <div className=''>
               <MdEmail className='text-lg ' />
             </div>
-            <p className='ml-2  text-sm break-words md:py-1 '>
+            <p className='ml-2 text-sm break-words md:py-1 '>
               {ads.ad?.user.email}
             </p>
           </div>
@@ -59,8 +57,8 @@ const ContactDetails = (props: Props) => {
               {ads.ad?.user.city ? ads.ad?.user.city : '–'}
             </p>
           </div>
+         {/* EMAIL, PHONE, CITY - END */}
 
-          {/* Email, Phone, City - END */}
         </div>
       </div>
     </div>
