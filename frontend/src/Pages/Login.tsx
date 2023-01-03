@@ -55,7 +55,7 @@ const Login = (props: Props) => {
     setErrors([])
     const response = await login(inputs)
 
-    if (response.status === 200) navigate('/')
+    if (response.status === 200) navigate('/adslist')
     if (response.status === 401)
       setErrors(['You are not authorized to login! Please check your input'])
     if (response.status === 400) setErrors(response.errors)

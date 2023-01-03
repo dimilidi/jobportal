@@ -39,7 +39,7 @@ const SingleAd = (props: Props) => {
     <>
       <div
         area-label='page-singleAd'
-        className='h-full pt-[120px] min-h-[920px]  relative flex justify-center items-center  text-Black  lg:pt-0'
+        className='h-full min-h-[1150px] relative flex justify-center items-center  text-Black lg:min-h-[920px] lg:pt-0'
       >
         {/* Circle and line in the background */}
         <div
@@ -117,7 +117,7 @@ const SingleAd = (props: Props) => {
           <ContactDetails className='hidden lg:w-[200px] lg:h-[260px] lg:flex lg:items-center lg:absolute lg:right-0 lg:top-[50%] lg:rounded-l-[65px] lg:translate-y-[-50%] xl:w-[280px] xl:h-[300px]' />
         )}
 
-        <ToastContainer position='bottom-right' />
+        <ToastContainer position='top-right' />
       </div>
         {/* image */}
           <img

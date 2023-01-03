@@ -8,6 +8,7 @@ import imagePostAd from '../assets/images/PostAd_chef.png'
 import UniButton from '../Components/UniButton'
 import { notify } from '../utils/toastNotification'
 import { BiLoaderAlt } from 'react-icons/bi'
+import useUser from '../Hooks/useUser'
 
 
 
@@ -16,6 +17,7 @@ const PostAd = () => {
   // CONSTANTS
   const navigate = useNavigate()
   const ads = useAds()
+  const user = useUser()
 
   // STATES
   const [title, setTitle] = useState('')
@@ -26,14 +28,17 @@ const PostAd = () => {
   const [contactVia, setContactVia] = useState<[string, string] | [string] | []>()
   const [checked, setChecked] = useState({ email: false, phone: false })
   // const [image, setImage] = useState('')
+
  
- console.log(wage);
+
  
   // HANDLE CONTACT_VIA (according checkbox)
   useEffect(() => {
     if (checked.email && checked.phone) {
+      if(!user.user?.phone) notify('No phone number. Please edit your account.')
       setContactVia(['email', 'phone'])
     } else if (!checked.email && checked.phone) {
+      if(!user.user?.phone) notify('No phone number. Please edit your account.')
       setContactVia(['phone'])
     } else if (checked.email && !checked.phone) {
       setContactVia(['email'])

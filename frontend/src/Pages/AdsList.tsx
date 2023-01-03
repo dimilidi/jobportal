@@ -29,7 +29,7 @@ const AdsList = (props: Props) => {
 
   return (
     
-    <div className='pt-[120px] h-full w-full min-h-[920px]'>
+    <div className='pt-[120px] pb-[80px] h-full w-full min-h-[920px]'>
 
       {/* Loading Spinner */}
       {ads.isLoading ? (
@@ -57,7 +57,7 @@ const AdsList = (props: Props) => {
           </div>
 
           {/* Main Container */}
-          <div className='mx-auto  w-full h-full flex justify-center items-start gap-10 '>
+          <div className='mx-auto  w-full h-full  flex justify-center items-start gap-10 '>
             {/* Image */}
             <div className='w-[500px] h-[500px] hidden 2xl:flex'>
               <img className='h-full w-full' src={man} alt='' />
@@ -75,7 +75,7 @@ const AdsList = (props: Props) => {
           </div>
 
           {/* Button Ad Post */}
-          <div className='mb-[30px] mt-[25px] w-full h-[50px] flex justify-center items-center xl:mt-0'>
+          <div className='mb-[30px] p-[55px] w-full h-[50px] flex justify-center items-center xl:p-0'>
             <UniButton
               text='Post Ad'
               onClick={handleClick}
