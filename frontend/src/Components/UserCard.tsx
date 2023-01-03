@@ -98,7 +98,6 @@ function UserCard({}: Props) {
             area-label='EditProfileButton'
             text= 'Edit Profile'
             type='button'
-            className='sm:w-[45%] md:w-[55%] lg:w-[30%] xl:w-[50%]'
             />
           </div>
         </div>
