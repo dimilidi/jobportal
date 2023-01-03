@@ -38,6 +38,7 @@ const Navigation = () => {
     url?: string
     onClick?: () => void
     navCategory: string
+    deactivateActive?: boolean
   }
   const pages: Page[] = [
     { icon: <AiOutlineHome />, name: 'Home', url: '/', navCategory: 'base' },
@@ -74,9 +75,9 @@ const Navigation = () => {
     {
       icon: <AiOutlineLogout />,
       name: 'Logout',
-      url: '',
       onClick: logout,
       navCategory: 'loggedIn',
+      deactivateActive: true,
     },
   ]
 
@@ -127,7 +128,7 @@ const Navigation = () => {
               <NavLink
                 to={page.url!}
                 className={({ isActive }) =>
-                  isActive
+                  isActive && !page.deactivateActive
                     ? 'text-darkGreen decoration-2 decoration-darkGreen underline underline-offset-8'
                     : ''
                 }
