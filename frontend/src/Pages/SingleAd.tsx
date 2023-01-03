@@ -1,4 +1,4 @@
-import { useNavigate, useParams } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import ContactDetails from '../Components/ContactDetails'
 import UniButton from '../Components/UniButton'
 import AdMobile from '../Components/AdMobile'
@@ -66,14 +66,13 @@ const SingleAd = (props: Props) => {
             <p className='mt-2 text-gray/80'>{ads.ad?.description}</p>
           </div>
         </div>
+        <UniButton
+          text='Contact'
+          onClick={handleClick}
+          className='my-7  w-[250px]  self-center lg:mb-0'
+        />
       </div>
       {/* Ad - END */}
-
-      <UniButton
-        text='Contact'
-        onClick={handleClick}
-        className='my-7  w-[250px]  self-center lg:mb-0'
-      />
 
       {/* ContactDetails DESKTOP - If user exists, show ContactDetails */}
       {user.user && (
@@ -91,7 +90,7 @@ const SingleAd = (props: Props) => {
       <img
         src={thinkingGirl}
         alt='illustration of girl in front of laptop'
-        className='hidden lg:w-[180px] lg:h-[170px] lg:absolute lg:bottom-[-25px] lg:left-[12%] lg:block lg:z-30'
+        className='hidden lg:w-[230px] lg:h-[220px] lg:absolute lg:bottom-[30px] lg:left-[14%] lg:block lg:z-30'
       />
       {/* image - END */}
 
