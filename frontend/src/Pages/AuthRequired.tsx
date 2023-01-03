@@ -5,6 +5,8 @@ import {BiArrowToLeft} from 'react-icons/bi'
 import UniButton from '../Components/UniButton';
 // images
 import DeliveryGuy from '../assets/images/AuthRequired_delivery_guy.png'
+import BrowseJobs from "../Components/BrowseJobs";
+import UniButtonWhite from "../Components/UniButtonWhite";
 
 
 type Props = {}
@@ -31,16 +33,13 @@ const AuthRequired = (props: Props) => {
 
 
       {/* ICON & BROWSE JOBS */}
-      <div className='mb-2 flex w-full'
-      onClick={handleBrowseJobs}>
-        <BiArrowToLeft size={24}/>
-        <span className='text-l'>Browse Jobs</span>
+      <div className="w-full flex">
+        <BrowseJobs />
       </div>
       {/* ICON & BROWSE JOBS END */}
 
 
       {/* MAIN CONTAINER */}
-
       <div className='  bg-white p-10 pb-40 md:px-16 flex justify-center items-center flex-col rounded-xl shadow-standard md:w-[400]' >
           <h1 className=' text-4xl md:text-5xl'>Be part of <br /> our  <span className='italic text-lightGreen font-semibold'>Mission</span></h1>
 
@@ -54,14 +53,9 @@ const AuthRequired = (props: Props) => {
                 className='my-5 '
               />
 
-          <UniButton
+          <UniButtonWhite
                 text='Sign up'
                 onClick={navigateToRegister}
-                style={ {
-                backgroundColor: 'white' ,
-                color:'#84A98C',
-                border: '2px solid #84A98C'
-                } }
               />
 
               {/* ELEMENTS */}
@@ -69,6 +63,7 @@ const AuthRequired = (props: Props) => {
               <div 
                 area-label='line'
                 className='w-[52%] min-w-[240px] border-b-[3px] border-lightGreen sm:block absolute top-[330px] md:top-[340px] right-0'></div>
+                
               {/* Circle */}
               <div 
                 area-label='circle'
