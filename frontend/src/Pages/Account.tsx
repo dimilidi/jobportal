@@ -4,6 +4,7 @@ import imageAccount from '../assets/images/Account_profilDefault.png'
 import { MdMail , MdCall, MdLocationOn} from "react-icons/md"
 import Ad from '../Components/Ad'
 import useAds from '../Hooks/useAds'
+import UniButtonWhite from '../Components/UniButtonWhite'
 
 type Props = {}
 
@@ -14,29 +15,22 @@ const Account = (props: Props) => {
     <>
       {/* Grid Container For Whole Page */}
       <div
-        className='w-[70%] h-[90vh]
+        className='w-[70%] h-full min-h-[900px]
           mx-auto flex flex-col
           items-center justify-center gap-8
           md:flex-col lg:flex-row'
-      //   className=' 
-      // md:pt-[100px]
-      // w-[100%] md:h-[90vh]
-      // grid
-      // bg-background
-      // sm:grid-cols-1 md:grid-cols-2
-      // '
       >
-      
+
       {/* User Card Container */}
       <div
-          className='mt-[150%]
+          className='mt-[30%]
             min-w-[375px]
             max-w-[450px]
             flex flex-col justify-center relative  
             shadow-standard 
             rounded-bl-[65px] rounded-br-[65px]
             bg-white
-            sm:justify-center lg:mt-[0%] lg:justify-self-center
+            sm:justify-center lg:mt-[10%] lg:justify-self-center
             '
         >
           {/* Avatar BG Halfcircle */}
@@ -119,7 +113,7 @@ const Account = (props: Props) => {
             area-label='EditProfileButton'
             text= 'Edit Profile'
             type='button'
-            className='z-10 sm:w-[80%] lg:w-[50%] xl:w-[40%]'
+            className='sm:w-[45%] md:w-[55%] lg:w-[30%] xl:w-[50%]'
             />
           </div>
         </div>
@@ -139,8 +133,8 @@ const Account = (props: Props) => {
                 border-b-[3px] border-lightGreen
                 absolute hidden
                 md:top-[230px]
-                lg:block lg:top-[230px] lg:right-0
-                xl:block xl:top-[250px] ' />
+                lg:block lg:top-[250px] lg:right-0
+                xl:block xl:top-[290px] ' />
             {/* Semicircle */}
              <div
               className='w-24 h-24
@@ -149,7 +143,7 @@ const Account = (props: Props) => {
                 rounded-full bg-lightGreen
                 md:hidden
                 lg:block lg:top-[180px]
-                xl:top-[200px]'>
+                xl:top-[240px]'>
              </div>
 
           {/* <p className='min-w-[850px]:absolute mb-4 text-center font-semibold text-lg md: md:mt-0 lg:hidden'>
@@ -159,32 +153,32 @@ const Account = (props: Props) => {
         {/* Post-Ad-Button + Browse-Jobs-Button */}
           <div
             className='w-[100%]
-              flex flex-row justify-center gap-6
+              flex flex-row justify-center gap-10
               sm:justify-center lg:justify-start'>
-          <button
+
+          <UniButtonWhite
+            text='Post Ad'
             type='button'
-            className='w-[35%] z-10
-            py-[12px] fontSize-[16px] border-lightGreen
-            bg-white border-[2.5px] rounded-full
-            hover:bg-darkGreen hover:text-white ease-in-out duration-300
-            sm:w-[80%] lg:w-[50%] xl:w-[30%]'
-            onClick={() => navigate('/post-ad')}>Post Ad
-          </button>
+            className='z-10 sm:w-[80%] lg:w-[50%] xl:w-[35%]'
+            onClick={() => navigate('/post-ad')}
+          />
 
           <UniButton
             text='Browse Ads'
             type='button'
-            className='z-10 sm:w-[80%] lg:w-[50%] xl:w-[30%]'
+            className='z-10 sm:w-[80%] lg:w-[50%] xl:w-[35%]'
             onClick={() => navigate('/adslist')}
           />
           </div>
 
           {/* Ads Container */}
           <div
-            className='mt-10 p-10
-            flex flex-wrap justify-center
+            className='
+            w-[750px]
+            mt-10 p-10 mb-10
+            flex flex-col justify-center
             rounded-[21px]
-            lg:bg-white lg:shadow-standard lg:overflow-y-scroll
+            lg:bg-white lg:shadow-standard
             sm:px-0
             md:shadow-none md:bg-background'>
 
