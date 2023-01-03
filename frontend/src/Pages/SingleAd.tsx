@@ -36,14 +36,14 @@ const SingleAd = (props: Props) => {
   return (
     <div
       area-label='page-singleAd'
-      className='pt-[10%] h-full  flex flex-col items-center text-textBlack md:min-h-[800px]'
+      className='pt-[10%] h-full flex flex-col items-center text-textBlack md:min-h-[800px]'
     >
       <div area-label='wrapper' className='flex justify-center'>
         {/* Main part of single ad */}
 
         <div
           area-label='main'
-          className='w-full sm:w-[80%] flex flex-col justify-between gap-5 lg:justify-center lg:w-[60%]'
+          className='w-full sm:w-[80%] flex flex-col justify-center lg:justify-center lg:w-[60%]'
         >
           <BackButton />
 
@@ -97,7 +97,7 @@ const SingleAd = (props: Props) => {
       <img
         src={thinkingGirl}
         alt='illustration of girl in front of laptop'
-        className='hidden lg:w-[230px] lg:h-[220px] lg:absolute lg:bottom-[10px] lg:left-[14%] lg:block lg:z-30'
+        className='hidden lg:w-[200px] lg:h-[190px] lg:absolute lg:bottom-[10px] lg:left-[14%] lg:block lg:z-30'
       />
       {/* image - END */}
 

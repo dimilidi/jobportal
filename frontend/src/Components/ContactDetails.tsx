@@ -11,7 +11,6 @@ type Props = {
 
 const ContactDetails = (props: Props) => {
   const ads = useAds()
-  console.log(ads.ad?.contactVia)
 
   return (
     // DIV WITH PROPS STYLING
@@ -31,6 +30,7 @@ const ContactDetails = (props: Props) => {
           area-label='box-with-contact-details'
           className='py-2 flex flex-col gap-3 xl:px-1 md:gap-2 sm:p-0'
         >
+          {/* if email is set as a contact data, show email */}
           {ads.ad?.contactVia.includes('email') && (
             <div className='mx-auto w-[100%] flex items-center'>
               <div className='p-1'>
@@ -42,6 +42,7 @@ const ContactDetails = (props: Props) => {
             </div>
           )}
 
+          {/* if phone is set as a contact data, show phone number */}
           {ads.ad?.contactVia.includes('phone') && (
             <div className='mx-auto w-[100%] flex items-center'>
               <div className='p-1'>
@@ -53,6 +54,7 @@ const ContactDetails = (props: Props) => {
             </div>
           )}
 
+          {/* if creator of ad has registered city name, show city */}
           {ads.ad?.user.city && ads.ad?.user.city !== '' && (
             <div className='mx-auto w-[100%] flex items-center'>
               <div className='p-1'>
