@@ -69,14 +69,12 @@ const Account = (props: Props) => {
           <UniButtonWhite
             text='Post Ad'
             type='button'
-            className='z-10 lg:w-[50%] xl:w-[35%]'
             onClick={() => navigate('/post-ad')}
           />
 
           <UniButton
             text='Browse Ads'
             type='button'
-            className='z-10 lg:w-[50%] xl:w-[35%]'
             onClick={() => navigate('/adslist')}
           />
           </div>
