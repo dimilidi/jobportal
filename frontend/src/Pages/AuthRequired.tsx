@@ -35,7 +35,10 @@ const AuthRequired = (props: Props) => {
 
 
       {/* MAIN CONTAINER */}
-      <div className='  bg-white p-10 pb-40 md:px-16 flex justify-center items-center flex-col rounded-xl shadow-standard md:w-[400]' >
+      <div className='  bg-white p-10 pb-40
+      flex justify-center items-center flex-col 
+      rounded-xl shadow-standard 
+      md:w-[400] md:px-16 ' >
           <h1 className=' text-4xl md:text-5xl'>Be part of <br /> our  <span className='italic text-lightGreen font-semibold'>Mission</span></h1>
 
           <div className=' w-[80%] text-center mt-8'>
