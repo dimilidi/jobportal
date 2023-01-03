@@ -6,15 +6,16 @@ import { Link, useNavigate } from 'react-router-dom'
 import ContactDetails from '../Components/ContactDetails'
 import UniButton from '../Components/UniButton'
 import AdMobile from '../Components/AdMobile'
+import Spinner from '../Components/Spinner'
 // Libraries
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import { notify } from '../utils/toastNotification'
 import { motion } from 'framer-motion'
-// Styles
+// Icons
 import { IoMdArrowBack } from 'react-icons/io'
+// Images
 import thinkingGirl from '../assets/images/SingleAd_girl.png'
-import Spinner from '../Components/Spinner'
 
 type Props = {}
 

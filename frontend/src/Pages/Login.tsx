@@ -1,10 +1,19 @@
+// Hooks
 import React, { useState, useEffect } from 'react'
-import { MdSettingsInputSvideo } from 'react-icons/md'
 import { Link, Navigate, useNavigate } from 'react-router-dom'
 import useUser from '../Hooks/useUser'
+// Types
 import { LoginInputs } from '../type'
+// Component
 import UniButton from '../Components/UniButton'
+import Spinner from '../Components/Spinner'
+// Images
 import image from '../assets/images/Login_surf.png'
+// Toaster
+import { ToastContainer, toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
+import { notify } from '../utils/toastNotification'
+import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai'
 
 type Props = {}
 
@@ -15,15 +24,22 @@ const Login = (props: Props) => {
     email: '',
     password: '',
   }
+
   const [inputs, setInputs] = useState(initialInputs)
   const [fetching, setFetching] = useState(false)
   const [errors, setErrors] = useState<string[] | undefined[] | undefined>([])
+  const [inputType, setInputType] = useState('password')
 
   useEffect(() => {
     if (user && !loading) {
       navigate('/adslist')
     }
   }, [user])
+
+  // Error toast notification
+  useEffect(() => {
+    errors?.map((error) => notify(error))
+  }, [errors])
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputs((prev) => ({
@@ -47,215 +63,112 @@ const Login = (props: Props) => {
     setInputs(initialInputs)
     setFetching(false)
   }
+
+  const handlePassword = (e: React.SyntheticEvent) => {
+    if (inputType === 'password') {
+      setInputType('text')
+    } else {
+      setInputType('password')
+    }
+  }
+
   return (
-    <div className='pt-5 h-full min-h-[950px] flex flex-col items-center justify-center lg:flex-row  '>
-      {fetching && <div>...Loading</div>}
+    <div className='pt-5 h-full min-h-[950px] flex flex-col items-center justify-center lg:flex-row '>
+      {/* GREEN SEMICIRCLE */}
+      <div className='w-[100px] h-[100px]  hidden absolute right-[-50px] top-[20.4rem] z-10 bg-lightGreen rounded-full xl:block' />
 
-      {/* GREEN CIRCLE */}
-      <div
-        className='
-      w-[100px] h-[100px] 
-      absolute right-[-50px] z-10
-      top-[20.4rem]
-      hidden
-      bg-lightGreen 
-      rounded-full 
-      xl:block 
-      '
-      ></div>
-
-      {/* GREEN LINE */}
-      {/* <div className='w-screen absolute top-[43%]  left-[49%] right-0 z-10 border-b-[3px] border-lightGreen sm:top-[45%] lg:top-[370px] lg:left-[710px]'/> */}
-     
-
-      {/* ************** */}
-
-      {/* kommentar */}
-      {/* SVG */}
+      {/* IMAGE */}
       <img
-        className='
-        w-[180px] 
-        mb-[-45px]
-        z-10
-        lg:w-[450px]
-        lg:mr-[-50px]
-        
-        xl:w-[550px]
-        '
+        className='mb-[-45px] w-[180px] z-10 lg:w-[450px] lg:mr-[-50px] xl:w-[550px]'
         src={image}
-        alt='image'
+        alt='illustration of a girl surfing in internet'
       />
-      {/* HEADING, FORM CONTAINER */}
-      <div
-        className=' 
-        relative
-      py-[20px]
-      h-[600px]
-      w-[90%]
-      max-w-[500px]
-      flex flex-col justify-center 
-      border-radius rounded-[30px] shadow-standard 
-      bg-white
-  
-      lg:translate-x-[22%]
-      xl:translate-x-[25%]
-      lg:max-w-[1000px]
-      lg:w-[50%]
-      lg:h-[650px]
 
-
-      
-      
-      '
-      >
+      {/*HEADING && FORM */}
+      <div className='  py-[20px] h-[600px] w-[90%] max-w-[500px] flex flex-col justify-center  relative border-radius rounded-[30px] shadow-standard  bg-white lg:max-w-[1000px] lg:w-[50%] lg:h-[650px] lg:translate-x-[22%] xl:translate-x-[25%]'>
         <div className=' mx-auto w-[100%] flex flex-col items-center lg:mx-20  lg:items-start'>
           {/* HEADING */}
-          <h1
-            className='
-          
-          w-[250px]
-          text-center text-[2rem] leading-9 font-semibold 
-         lg:text-left
-         xl:w-[400px]
-         xl:text-[3.5rem]
-          
-          
-
-
-
-          
-          
-          sm:text-[2.5rem]
-          sm:leading-10
-          lg:w-[300px]
-          lg:text-[2.8rem]
-          lg:leading-[3.3rem]
-          '
-          >
+          <h1 className='w-[250px] text-center text-[2.2rem] leading-none  font-semibold sm:text-[2.5rem] lg:w-[300px] lg:text-[2.8rem] lg:text-left xl:w-[400px] xl:text-[3.5rem]'>
             Glad to have you
-         
-            <span className=' text-lightGreen italic '
-            > Back
-            
-            </span>
+            <span className=' text-lightGreen italic'> Back</span>
           </h1>
-          <span className='self-end w-[50%] top-[180px]  right-0   z-10 border-t-[3px] border-lightGreen sm:top-[45%] md:top-[300px] lg:top-[370px] lg:w-[87%]  xl:w-[87%] pb-10'>
-             
-             </span>
 
-          {/* FORM INSIDE CONTAINER */}
+          {/* LINE */}
+          <span className='pb-10 w-[50%] top-[180px]  right-0  self-end z-10 border-t-[3px] border-lightGreen sm:top-[45%] md:top-[300px] lg:w-[87%] lg:top-[370px] xl:w-[87%]' />
+
+          {/* FORM */}
           <form
             onSubmit={handleSubmit}
-            className='
-        h-[270px] w-[80%]
-        flex flex-col items-center justify-between
-        lg:w-[50%]
-        '
+            className='h-[270px] w-[80%] flex flex-col items-center justify-between lg:w-[50%]'
           >
-            <div className='mb-5 w-full flex flex-col items-center' >
+            {/* INPUTS CONTAINER */}
+            <div className='mb-5 w-full relative  flex flex-col items-center'>
               <label
                 htmlFor='email'
-                className='
-                text-gray
-                self-start
-         
-            font-extralight
-            sm:font-light
-            sm:text-[1.1rem]
-            lg:self-start'
+                className='self-start text-gray font-extralight sm:font-light sm:text-[1.1rem] lg:self-start'
               >
                 Email
               </label>
-                <input
-                  className='
-                  py-[11px]
-                px-5 mb-2
-                w-full
-                block 
-                box-border
-                border border-lightGray rounded-[15rem] text-sm 
-                focus:outline-lightGreen
-             
-                sm:text-[1.1rem]'
-                  type='email'
-                  name='email'
-                  value={inputs.email}
-                  onChange={handleChange}
-                />
-             
+              <input
+                className='py-[11px] px-5 mb-2 w-full box-border border border-lightGray rounded-[15rem] text-sm  focus:outline-lightGreen sm:text-[1.1rem]'
+                type='email'
+                name='email'
+                value={inputs.email}
+                onChange={handleChange}
+              />
 
               <label
                 htmlFor='password'
-                className='
-                text-gray
-                self-start
-          
-            font-extralight
-            sm:font-light
-            sm:text-[1.1rem]
-            lg:self-start'
+                className='self-start text-gray font-extralight sm:font-light sm:text-[1.1rem] lg:self-start'
               >
                 Password
               </label>
-                <input
-                  className='
-                py-[11px] px-5 mb-1
-                w-full
-                block 
-                text-sm
-                border border-lightGray rounded-[15rem]
-                focus:outline-lightGreen
-
-                sm:text-[1.1rem]'
-                  type='password'
-                  name='password'
-                  onChange={handleChange}
-                  value={inputs.password}
+              <input
+                className='py-[11px] px-5 mb-1 w-full  text-sm border border-lightGray rounded-[15rem] focus:outline-lightGreen sm:text-[1.1rem]'
+                type={inputType}
+                name='password'
+                onChange={handleChange}
+                value={inputs.password}
+              />
+              {inputType === 'text' ? (
+                <AiOutlineEye
+                  onClick={(e) => handlePassword(e)}
+                  className='w-[20px] absolute bottom-[45px] right-5 text-gray text-opacity-50'
                 />
-              
+              ) : (
+                <AiOutlineEyeInvisible
+                  onClick={(e) => handlePassword(e)}
+                  className='w-[20px] absolute bottom-[45px] right-5 text-gray text-opacity-50'
+                />
+              )}
 
-              <Link
-                to='/edit-userdata'
-                className='
-            w-full 
-            text-lightGray
-            underline 
-            text-[13px]
-            sm:justify-center
-            lg:justify-start'
-              >
-                Forgot your password?
-              </Link>
+              <p className='mt-1 w-full text-lightGray underline text-[14px]sm:justify-center lg:justify-start'>
+                <Link to='/edit-userdata'>Forgot your password?</Link>
+              </p>
             </div>
 
             {/* LOGIN BUTTON */}
             <UniButton
-              text='Login'
-              className='
-          mt-[1rem]
-          py-[10px]
-          
-          text-[18px]
-          w-[250px]  
-          sm:text-xl
-          lg:self-start
-          '
+              text={fetching ? <Spinner /> : 'Loading'}
+              className='mt-[1rem] w-[250px] text-lg sm:text-lg lg:self-end'
+              style={{ padding: '10px' }}
             />
-            <p className='w-full text-center text-lightGray underline text-[13px] lg:text-left'>
-              <Link to='/register'>
-              or sign up here
-              </Link>
+
+            <p className='mt-2 w-full text-center text-lightGray underline text-[14px] lg:text-right'>
+              <Link to='/register'>or sign up here</Link>
             </p>
-          
+
+            {/* ERRORS */}
             {errors &&
               errors.map((error) => (
-                <p key={error} className='text-red-600'>
+                <p key={error} className='mt-1 text-red-600  self-start'>
                   {error}
                 </p>
               ))}
           </form>
         </div>
       </div>
+      <ToastContainer position='top-right' />
     </div>
   )
 }

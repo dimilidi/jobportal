@@ -47,10 +47,6 @@ const PostAd = () => {
   const handleSubmit = async (e: React.SyntheticEvent) => {
     e.preventDefault()
     ads.setIsLoading(true)
-   
-    
-    
-    
 
     const ad = {
       title,
@@ -318,7 +314,7 @@ const PostAd = () => {
           />
         </form>
       </div>
-      <ToastContainer position='bottom-right' />
+      <ToastContainer position='top-right' />
     </div>
          {/* IMAGE */}
       <img
