@@ -1,25 +1,25 @@
+// Hooks
 import { useNavigate } from 'react-router-dom'
-import Ad from '../Components/Ad'
-import man from '../assets/images/Ads_man_working.png'
 import useAds from '../Hooks/useAds'
 import useUser from '../Hooks/useUser'
+// Components
+import Ad from '../Components/Ad'
 import UniButton from '../Components/UniButton'
-
 import Spinner from '../Components/Spinner'
+// Images
+import man from '../assets/images/Ads_man_working.png'
 
-type Props = {}
 
-const AdsList = (props: Props) => {
+
+const AdsList = () => {
+
+  // CONSTANTS
   const user = useUser()
   const ads = useAds()
-
-  
-
   const navigate = useNavigate()
 
+ // HANDLE POST AD BUTTON
   const handleClick = () => {
-  console.log('USER',user);
-
     if (user.user) {
       navigate('/post-ad')
     } else {
