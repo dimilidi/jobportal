@@ -132,9 +132,12 @@ const Account = (props: Props) => {
               className='w-[35%] min-w-[220px]
                 border-b-[3px] border-lightGreen
                 absolute hidden
+                sm:w-[25%]
+                md:w-[15%]
+                xl:w-[35%]
                 md:top-[230px]
                 lg:block lg:top-[250px] lg:right-0
-                xl:block xl:top-[290px] ' />
+                xl:block xl:top-[290px]' />
             {/* Semicircle */}
              <div
               className='w-24 h-24
@@ -153,13 +156,13 @@ const Account = (props: Props) => {
         {/* Post-Ad-Button + Browse-Jobs-Button */}
           <div
             className='w-[100%]
-              flex flex-row justify-center gap-10
+              flex flex-row justify-center gap-6
               sm:justify-center lg:justify-start'>
 
           <UniButtonWhite
             text='Post Ad'
             type='button'
-            className='z-10 sm:w-[80%] lg:w-[50%] xl:w-[35%]'
+            className='z-10 lg:w-[50%] xl:w-[35%]'
             onClick={() => navigate('/post-ad')}
           />
 
@@ -179,7 +182,7 @@ const Account = (props: Props) => {
             flex flex-col justify-center
             rounded-[21px]
             lg:bg-white lg:shadow-standard
-            sm:px-0
+            sm:pl-0
             md:shadow-none md:bg-background'>
 
           {/* Your Ads */}
