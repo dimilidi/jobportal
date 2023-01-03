@@ -5,7 +5,6 @@ import { MdMail , MdCall, MdLocationOn} from "react-icons/md"
 import Ad from '../Components/Ad'
 import useAds from '../Hooks/useAds'
 
-
 type Props = {}
 
 const Account = (props: Props) => {
