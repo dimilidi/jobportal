@@ -1,139 +1,192 @@
 // Hooks
-import { useState } from 'react'
-import { useNavigate, NavLink } from 'react-router-dom'
+import { useState, useEffect } from 'react'
+import { NavLink } from 'react-router-dom'
 import useUser from '../Hooks/useUser'
 // Icons
-import { AiOutlineClose, AiOutlineMenu, AiOutlineHome, AiOutlineLogin, AiOutlineLogout} from 'react-icons/ai'
-import {  MdOutlineAddTask } from 'react-icons/md'
-import {  RiSuitcaseLine } from 'react-icons/ri'
-import {  CgProfile } from 'react-icons/cg'
-import {  HiOutlineUserAdd } from 'react-icons/hi'
+import {
+  AiOutlineClose,
+  AiOutlineMenu,
+  AiOutlineHome,
+  AiOutlineLogin,
+  AiOutlineLogout,
+} from 'react-icons/ai'
+import { MdOutlineAddTask } from 'react-icons/md'
+import { RiSuitcaseLine } from 'react-icons/ri'
+import { CgProfile } from 'react-icons/cg'
+import { HiOutlineUserAdd } from 'react-icons/hi'
 
 // Animation
 import { motion } from 'framer-motion'
 
-
-
 const Navigation = () => {
-
-  // CONSTANTS    
-  const navigate = useNavigate()
-  const userHook = useUser()
-  const user = userHook.user
-  
+  // CONSTANTS
+  const { user, logout } = useUser()
 
   // STATES
   const [navigation, setNavigation] = useState(false)
+  const [navToShow, setNavToShow] = useState<Page[] | undefined>([])
+  const [burgerNavToShow, setBurgerNavToShow] = useState<Page[] | undefined>([])
 
   // ANIMATION
   const animateFrom = { opacity: 0, y: -40 }
   const animateTo = { opacity: 1, y: 0 }
 
   //PAGES
-  const pages = [
-    { icon: <AiOutlineHome />, name: 'Home', url: '/' },
-    { icon: <RiSuitcaseLine />, name: 'Ads', url: '/adslist' },
-    { icon: <MdOutlineAddTask />, name: 'Post Ad', url: '/post-ad' },
-    { icon: <CgProfile />, name: 'Account', url: '/account' },
-    { icon: <HiOutlineUserAdd />, name: 'Sign up', url: '/register' },
-    { icon: user ? <AiOutlineLogout /> : <AiOutlineLogin />, name: user ? 'Logout' : 'Login', url: user ? '/auth-required' : '/login' }
+  type Page = {
+    icon: React.ReactNode
+    name: string
+    url?: string
+    onClick?: () => void
+    navCategory: string
+  }
+  const pages: Page[] = [
+    { icon: <AiOutlineHome />, name: 'Home', url: '/', navCategory: 'base' },
+    {
+      icon: <RiSuitcaseLine />,
+      name: 'Ads',
+      url: '/adslist',
+      navCategory: 'base',
+    },
+    {
+      icon: <MdOutlineAddTask />,
+      name: 'Post Ad',
+      url: '/post-ad',
+      navCategory: 'base',
+    },
+    {
+      icon: <CgProfile />,
+      name: 'Account',
+      url: '/account',
+      navCategory: 'loggedIn',
+    },
+    {
+      icon: <AiOutlineLogin />,
+      name: 'Login',
+      url: '/login',
+      navCategory: 'notLoggedIn',
+    },
+    {
+      icon: <HiOutlineUserAdd />,
+      name: 'Sign up',
+      url: '/register',
+      navCategory: 'notLoggedIn',
+    },
+    {
+      icon: <AiOutlineLogout />,
+      name: 'Logout',
+      url: '',
+      onClick: logout,
+      navCategory: 'loggedIn',
+    },
   ]
 
-  // HANDLE BURGER MENU
-
+  // HANDLE BURGER MENU - Open onClick on Burger Menu, close if an element is clicked in navigation
   function handleNavigation() {
     setNavigation(!navigation)
   }
 
+  // Set navToShow according to the login status of the user
+  useEffect(() => {
+    // Desktop Menu
+    const baseNav = pages.filter((page) => page.navCategory === 'base')
+    const loggedInNav = pages.filter(
+      (page) => page.navCategory === 'loggedIn' || page.navCategory === 'base'
+    )
+
+    // Burger Menu
+    const loggedInBurgerNav = pages.filter(
+      (page) => page.navCategory === 'base' || page.navCategory === 'loggedIn'
+    )
+    const notLoggedInBurgerNav = pages.filter(
+      (page) =>
+        page.navCategory === 'base' || page.navCategory === 'notLoggedIn'
+    )
+
+    if (user) {
+      setNavToShow(loggedInNav)
+      setBurgerNavToShow(loggedInBurgerNav)
+    } else {
+      setNavToShow(baseNav)
+      setBurgerNavToShow(notLoggedInBurgerNav)
+    }
+  }, [user])
 
   return (
     <section className='p-6 pb-6 mr-8'>
-
       {/* NAVIGATION DESKTOP */}
-      <nav className='w-full hidden sm:flex sm:justify-end items-end justify-center'>
+      <nav className='w-full hidden md:flex md:justify-end items-end justify-center'>
         <ul className='flex mr-4'>
-          <motion.li
-            initial={animateFrom}
-            animate={animateTo}
-            transition={{ delay: 0.05 }}
-            className='pr-6 hover:text-darkGreen ease-in-out duration-300'
-          >
-            <NavLink
-              to='/post-ad'
-              className={({ isActive }) =>
-                isActive
-                  ? 'text-darkGreen decoration-2 decoration-darkGreen underline underline-offset-8'
-                  : ''
-              }
+          {navToShow?.map((page) => (
+            <motion.li
+              initial={animateFrom}
+              animate={animateTo}
+              transition={{ delay: 0.05 }}
+              className='pr-6 hover:text-darkGreen ease-in-out duration-300'
+              key={page.name}
             >
-              Post Ad
-            </NavLink>
-          </motion.li>
+              <NavLink
+                to={page.url!}
+                className={({ isActive }) =>
+                  isActive
+                    ? 'text-darkGreen decoration-2 decoration-darkGreen underline underline-offset-8'
+                    : ''
+                }
+                onClick={page.onClick}
+              >
+                <div className='pl-6 flex items-center gap-8'>
+                  <span className='text-[18px]'>{page.name}</span>
+                </div>
+              </NavLink>
+            </motion.li>
+          ))}
 
-          <motion.li
-            initial={animateFrom}
-            animate={animateTo}
-            transition={{ delay: 0.1 }}
-            className='pr-10 hover:text-darkGreen ease-in-out duration-300'
-          >
-            <NavLink
-              to='/adslist'
-              className={({ isActive }) =>
-                isActive
-                  ? 'text-darkGreen  decoration-2 decoration-lightGreen underline underline-offset-8'
-                  : ''
-              }
-            >
-              Ads
-            </NavLink>
-          </motion.li>
-        </ul>
+          {/* if user is NOT logged in, show login | sign up */}
+          {!user && (
+            <div className='flex'>
+              <motion.li
+                initial={animateFrom}
+                animate={animateTo}
+                transition={{ delay: 0.05 }}
+                className='pr-2 hover:text-darkGreen ease-in-out duration-300'
+              >
+                <NavLink
+                  to='/login'
+                  className={({ isActive }) =>
+                    isActive
+                      ? 'text-darkGreen  decoration-2 decoration-lightGreen underline underline-offset-8'
+                      : ''
+                  }
+                >
+                  Login
+                </NavLink>
+              </motion.li>{' '}
+              <motion.li
+                initial={animateFrom}
+                animate={animateTo}
+                transition={{ delay: 0.05 }}
+                className='pr-5 font-bold hover:text-darkGreen ease-in-out duration-300'
+              >
+                <span className='px-4 font-light'>|</span>
 
-        <ul className='flex'>
-          <motion.li
-            initial={animateFrom}
-            animate={animateTo}
-            transition={{ delay: 0.2 }}
-            className='pr-3 hover:text-darkGreen ease-in-out duration-300'
-          >
-            <NavLink
-              to={ user ? '/auth-required' : '/login'}
-              className={({ isActive }) =>
-                isActive
-                  ? 'text-darkGreen  decoration-2 decoration-lightGreen underline underline-offset-8'
-                  : ''
-              }
-            >
-              { user ? 'Logout' : 'Login' }
-            </NavLink>
-          </motion.li>
-
-         { !user  &&
-          <motion.li
-            initial={animateFrom}
-            animate={animateTo}
-            transition={{ delay: 0.3 }}
-            className='pr-5 font-bold hover:text-darkGreen ease-in-out duration-300'
-          >
-              <span className='px-4 font-light'>|</span>
-
-            <NavLink
-              to='/register'
-              className={({ isActive }) =>
-                isActive
-                  ? 'text-darkGreen  decoration-2 decoration-lightGreen underline underline-offset-8'
-                  : ''
-              }
-            >
-               Sign up
-            </NavLink>
-          </motion.li>}
+                <NavLink
+                  to='/register'
+                  className={({ isActive }) =>
+                    isActive
+                      ? 'text-darkGreen  decoration-2 decoration-lightGreen underline underline-offset-8'
+                      : ''
+                  }
+                >
+                  Sign up
+                </NavLink>
+              </motion.li>
+            </div>
+          )}
         </ul>
       </nav>
       {/* NAVIGATION DESKTOP END */}
 
       {/* BURGER MENU */}
-      <nav className='sm:hidden '>
+      <nav className='md:hidden '>
         <div
           onClick={handleNavigation}
           className='z-50  absolute top-[29px] cursor-pointer'
@@ -154,34 +207,36 @@ const Navigation = () => {
         >
           {/* LIST OF PAGES */}
           <ul
-            className={navigation ? 'mt-8 p-0  transition duration-1000 ' : 'hidden'}
+            className={
+              navigation ? 'mt-8 p-0  transition duration-1000 ' : 'hidden'
+            }
           >
-            {pages.map((page) => (
-                    <li
+            {burgerNavToShow?.map((page) => (
+              <li
                 key={page.name}
-                className={'py-6 px-4 w-full border box-border border-darkBeige font-medium text-gray text-left'}
+                className={
+                  'py-6 px-4 w-full border box-border border-darkBeige font-medium text-gray text-left'
+                }
                 onClick={handleNavigation}
               >
                 <NavLink
-                  to={page.url}
+                  to={page.url!}
                   className={({ isActive }) =>
                     isActive ? 'text-lightGreen' : ''
                   }
+                  onClick={page.onClick}
                 >
-                    <div className='pl-6 flex items-center gap-8'>
-                        <span className='text-[24px]'>{page.icon}</span> 
-                        <span className='text-[18px]'>{page.name}</span>
-                    </div>
+                  <div className='pl-6 flex items-center gap-8'>
+                    <span className='text-[24px]'>{page.icon}</span>
+                    <span className='text-[18px]'>{page.name}</span>
+                  </div>
                 </NavLink>
               </li>
-
-              
             ))}
           </ul>
         </div>
       </nav>
       {/* BURGER MENU  END*/}
-
     </section>
   )
 }

@@ -8,6 +8,7 @@ import imagePostAd from '../assets/images/PostAd_chef.png'
 import UniButton from '../Components/UniButton'
 import { notify } from '../utils/toastNotification'
 import { BiLoaderAlt } from 'react-icons/bi'
+import useUser from '../Hooks/useUser'
 
 
 
@@ -16,6 +17,7 @@ const PostAd = () => {
   // CONSTANTS
   const navigate = useNavigate()
   const ads = useAds()
+  const user = useUser()
 
   // STATES
   const [title, setTitle] = useState('')
@@ -26,14 +28,17 @@ const PostAd = () => {
   const [contactVia, setContactVia] = useState<[string, string] | [string] | []>()
   const [checked, setChecked] = useState({ email: false, phone: false })
   // const [image, setImage] = useState('')
+
  
- console.log(wage);
+
  
   // HANDLE CONTACT_VIA (according checkbox)
   useEffect(() => {
     if (checked.email && checked.phone) {
+      if(!user.user?.phone) notify('No phone number. Please edit your account.')
       setContactVia(['email', 'phone'])
     } else if (!checked.email && checked.phone) {
+      if(!user.user?.phone) notify('No phone number. Please edit your account.')
       setContactVia(['phone'])
     } else if (checked.email && !checked.phone) {
       setContactVia(['email'])
@@ -47,10 +52,6 @@ const PostAd = () => {
   const handleSubmit = async (e: React.SyntheticEvent) => {
     e.preventDefault()
     ads.setIsLoading(true)
-   
-    
-    
-    
 
     const ad = {
       title,
@@ -87,6 +88,7 @@ const PostAd = () => {
 
 
   return (
+    <>
     <div
       area-label='page-postAd'
       className='h-full lg:pt-0 mt-[0px] relative flex justify-center items-center text-Black '
@@ -131,7 +133,7 @@ const PostAd = () => {
         >
           <div
             area-label='ad'
-            className='p-5 pt-10  flex flex-col item-center rounded-[21px] bg-white shadow-standard  sm:p-10 '
+            className='p-5 pt-10  flex flex-col items-center rounded-[21px] bg-white shadow-standard  sm:p-10 '
           >
             {/* TITLE DESKTOP */}
             <div
@@ -316,15 +318,15 @@ const PostAd = () => {
             className='my-7 mx-auto w-[200px] self-center  md:mb-0 lg:w-[250px]'
           />
         </form>
+      </div>
+      <ToastContainer position='top-right' />
+    </div>
          {/* IMAGE */}
       <img
-        className='w-[200]  lg:w-[260px] lg:h-[330px] hidden absolute bottom-[-55px] right-[-60px]  sm:block z-30'
+        className='w-[200]  lg:w-[260px] lg:h-[330px] hidden absolute bottom-[0px] right-[0px]  sm:block z-30 lg:right-[20px] xl:right-[60px]'
         src={imagePostAd}
       ></img>
-      </div>
-      <ToastContainer position='bottom-right' />
-    </div>
-
+    </>
   )
 }
 

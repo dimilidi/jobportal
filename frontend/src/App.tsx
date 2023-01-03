@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 
 import { UserProvider } from './Hooks/useUser'
 
@@ -19,7 +19,7 @@ function App() {
   return (
     <UserProvider>
       <div className='App'>
-        <Layout className=' bg-background min-h-screen'>
+        <Layout className=' bg-background min-h-screen relative'>
           <Routes>
             <Route path='/login' element={<Login />} />
             <Route path='/register' element={<Register />} />

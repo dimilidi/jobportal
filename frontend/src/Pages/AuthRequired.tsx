@@ -25,7 +25,9 @@ const AuthRequired = (props: Props) => {
 
    
   return (
+
     <section className='w-[90%] h-[100vh] my-0 mx-auto  pr-2  md:pt-[0] flex justify-center flex-col items-center' >
+
 
       {/* ICON & BROWSE JOBS */}
       <div className='mb-2 flex w-full'
@@ -36,8 +38,8 @@ const AuthRequired = (props: Props) => {
       {/* ICON & BROWSE JOBS END */}
 
 
-
       {/* MAIN CONTAINER */}
+
       <div className='  bg-white p-10 pb-40 md:px-16 flex justify-center items-center flex-col rounded-xl shadow-standard md:w-[400]' >
         <h1 className=' text-4xl md:text-5xl'>Be part of <br /> our  <span className='italic text-lightGreen font-semibold'>Mission</span></h1>
 
@@ -78,11 +80,10 @@ const AuthRequired = (props: Props) => {
             {/* IMAGES END */}
 
           
-
+      <div className='  bg-white'>
+        <h1 className='font-size-[4rem]'>Be part of our  <span className='italic text-lightGreen font-semibold'>Mission</span></h1>
       </div>
       {/* MAIN CONTAINER END */}
-
-
 
     </section>
   )
