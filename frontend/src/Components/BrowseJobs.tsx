@@ -5,7 +5,7 @@ import { IoMdArrowBack } from 'react-icons/io'
 
 type Props = {}
 
-const JobsButton = (props: Props) => {
+const BrowseJobs = (props: Props) => {
   return (
     <Link to={'/adslist'}>
       <motion.div
@@ -31,4 +31,4 @@ const JobsButton = (props: Props) => {
   )
 }
 
-export default JobsButton
+export default BrowseJobs
