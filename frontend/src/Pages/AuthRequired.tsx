@@ -75,7 +75,12 @@ const AuthRequired = (props: Props) => {
               <div >
                 <img 
                 src={DeliveryGuy} alt="postman" 
-                className='scale-x-[-1] absolute -left-12 sm:top-[460px] sm:left-4 max-h-96 overflow-hidden md:max-h-full  md:top-[360px] md:-left-4 lg:left-32 lg:top-[300px] xl:left-56 xl:top-[260px] 2xl:left-96  ' />
+                className='scale-x-[-1] absolute -left-12 
+                sm:top-[460px] sm:left-4 max-h-96 overflow-hidden 
+                md:max-h-full  md:top-[360px] md:-left-4 
+                lg:left-32 lg:top-[300px] 
+                xl:left-56 xl:top-[260px] 
+                2xl:left-96  ' />
               </div>
               {/* IMAGES END */}        
 
