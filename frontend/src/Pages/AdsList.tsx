@@ -9,16 +9,13 @@ import Spinner from '../Components/Spinner'
 // Images
 import man from '../assets/images/Ads_man_working.png'
 
-
-
 const AdsList = () => {
-
   // CONSTANTS
   const user = useUser()
   const ads = useAds()
   const navigate = useNavigate()
 
- // HANDLE POST AD BUTTON
+  // HANDLE POST AD BUTTON
   const handleClick = () => {
     if (user.user) {
       navigate('/post-ad')
@@ -28,13 +25,10 @@ const AdsList = () => {
   }
 
   return (
-    
     <div className='pt-[120px] pb-[80px] h-full w-full min-h-[920px]'>
-
-      {/* Loading Spinner */}
+      {/* LOADING SPINNER */}
       {ads.isLoading ? (
-       <Spinner />
-       
+        <Spinner />
       ) : (
         <>
           {/* Heading with underline  */}

@@ -28,10 +28,10 @@ const ContactDetails = (props: Props) => {
         {/* EMAIL, PHONE, CITY */}
         <div
           area-label='box-with-contact-details'
-          className='p-3 px-2 flex flex-col gap-3 sm:p-0  md:gap-2 xl:px-3'
+          className='py-2 flex flex-col gap-3 xl:px-1 md:gap-2 sm:p-0'
         >
           <div className='mx-auto w-[90%] flex items-center'>
-            <div className='p-1'>
+            <div className=''>
               <MdEmail className='text-lg ' />
             </div>
             <p className='ml-2 text-sm break-words md:py-1 '>
@@ -57,8 +57,8 @@ const ContactDetails = (props: Props) => {
               {ads.ad?.user.city ? ads.ad?.user.city : '–'}
             </p>
           </div>
+         {/* EMAIL, PHONE, CITY - END */}
 
-          {/* EMAIL, PHONE, CITY - END */}
         </div>
       </div>
     </div>
