@@ -43,7 +43,7 @@ const SingleAd = (props: Props) => {
 
         <div
           area-label='main'
-          className='w-full sm:w-[80%] flex flex-col justify-center lg:justify-center lg:w-[60%]'
+          className='w-full sm:w-[60%] flex flex-col justify-center lg:justify-center lg:w-[60%]'
         >
           <BackButton />
 
