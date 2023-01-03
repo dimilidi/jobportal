@@ -51,7 +51,7 @@ const Navigation = () => {
     {
       icon: <MdOutlineAddTask />,
       name: 'Post Ad',
-      url: '/post-ad',
+      url: user ? '/post-ad' : '/auth-required',
       navCategory: 'base',
     },
     {
