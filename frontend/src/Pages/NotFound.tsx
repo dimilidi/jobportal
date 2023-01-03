@@ -8,12 +8,13 @@ const NotFound = (props: Props) => {
   const navigate = useNavigate()
 
   const handleClick = () => {
-    navigate(-1) 
+    navigate(-1)
   }
 
   return (
-    <div className='h-[94vh] w-full flex flex-col justify-center items-center gap-[9rem]'>
-      <p>Oops, we couldn't find the page!</p>
+    <div className='pt-[100px] h-[570px] flex flex-col justify-center items-center gap-2'>
+      <h2 className='text-[6rem]'>404</h2>
+      <p>Page not found</p>
       <UniButton
         text='Back'
         onClick={handleClick}

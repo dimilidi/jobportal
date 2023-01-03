@@ -30,10 +30,10 @@ const ContactDetails = (props: Props) => {
         {/* Email, Phone, City */}
         <div
           area-label='box-with-contact-details'
-          className='p-3 px-2 flex flex-col gap-3 xl:px-3 md:gap-2 sm:p-0'
+          className='py-2 flex flex-col gap-3 xl:px-1 md:gap-2 sm:p-0'
         >
           <div className='mx-auto w-[90%] flex items-center'>
-            <div className='p-1'>
+            <div className=''>
               <MdEmail className='text-lg ' />
             </div>
             <p className='ml-2  text-sm break-words md:py-1 '>
@@ -41,28 +41,25 @@ const ContactDetails = (props: Props) => {
             </p>
           </div>
 
-          
-            <div className='mx-auto w-[90%] flex items-center'>
-              <div className='p-1'>
-                <BsTelephoneFill className='text-lg' />
-              </div>
-              <p className='ml-2 text-sm break-all md:py-1'>
-                {' '}
-                {ads.ad?.user.phone ? ads.ad?.user.phone : '–'}
-              </p>
+          <div className='mx-auto w-[90%] flex items-center'>
+            <div className='p-1'>
+              <BsTelephoneFill className='text-lg' />
             </div>
-       
+            <p className='ml-2 text-sm break-all md:py-1'>
+              {' '}
+              {ads.ad?.user.phone ? ads.ad?.user.phone : '–'}
+            </p>
+          </div>
 
-        
-            <div className='mx-auto w-[90%] flex items-center'>
-              <div className='p-1'>
-                <FaMapMarkerAlt className='text-lg' />
-              </div>
-              <p className='ml-2 text-sm break-all md:py-1'>
-                {ads.ad?.user.city ? ads.ad?.user.city : '–'}
-              </p>
+          <div className='mx-auto w-[90%] flex items-center'>
+            <div className='p-1'>
+              <FaMapMarkerAlt className='text-lg' />
             </div>
-        
+            <p className='ml-2 text-sm break-all md:py-1'>
+              {ads.ad?.user.city ? ads.ad?.user.city : '–'}
+            </p>
+          </div>
+
           {/* Email, Phone, City - END */}
         </div>
       </div>

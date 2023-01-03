@@ -1,12 +1,10 @@
-import useAds from "../Hooks/useAds"
+import useAds from '../Hooks/useAds'
 import avatar from '../assets/images/Account_profilDefault.png'
-import useUser from "../Hooks/useUser"
-
+import useUser from '../Hooks/useUser'
 
 type Props = {}
 
 function AdMobile({}: Props) {
-
   const ads = useAds()
   const user = useUser()
 
@@ -19,7 +17,10 @@ function AdMobile({}: Props) {
           <div className='w-[50px] sm:w-[60px] flex'>
             <div className='w-[50px] h-[75px] rounded-b-[40px] flex justify-center items-end bg-lightBeige'>
               <div className='mb-1 w-[40px]  h-[40px] self-end rounded-full bg-white'>
-                <img src={user.user?.avatar ? user.user.avatar : avatar} alt='' />
+                <img
+                  src={user.user?.avatar ? user.user.avatar : avatar}
+                  alt=''
+                />
               </div>
             </div>
           </div>
@@ -58,10 +59,10 @@ function AdMobile({}: Props) {
           {/* Wage */}
           <div className='w-[50px] sm:w-[70px] h-[60px] flex justify-center items-center text-[14px] text-textBlack text-opacity-70 rounded-t-[20px] bg-lightBeige md:text-[16px]'>
             <p className='text-center text-[13px]'>
-              {ads.ad?.wage}€ 
+              {ads.ad?.wage}€
               <span className='text-[12px] text-textBlack text-opacity-50 sm:text-[16px]'>
-                {' '}<br/>
-                 / hour
+                {' '}
+                <br />/ hour
               </span>
             </p>
           </div>
