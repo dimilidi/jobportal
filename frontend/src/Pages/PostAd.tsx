@@ -133,7 +133,7 @@ const PostAd = () => {
         >
           <div
             area-label='ad'
-            className='p-5 pt-10  flex flex-col item-center rounded-[21px] bg-white shadow-standard  sm:p-10 '
+            className='p-5 pt-10  flex flex-col items-center rounded-[21px] bg-white shadow-standard  sm:p-10 '
           >
             {/* TITLE DESKTOP */}
             <div
