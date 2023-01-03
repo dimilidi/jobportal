@@ -13,10 +13,6 @@ type Props = {}
 const AuthRequired = (props: Props) => {
   const navigate = useNavigate();
 
-  function handleBrowseJobs() {
-   navigate('/adsList')
-  }
-
   function navigateToLogin() {
     navigate('/login')
   }
@@ -61,12 +57,17 @@ const AuthRequired = (props: Props) => {
               {/* Line */}
               <div 
                 area-label='line'
-                className='w-[52%] min-w-[240px] border-b-[3px] border-lightGreen sm:block absolute top-[330px] md:top-[340px] right-0'></div>
+                className='w-[52%] min-w-[240px] border-b-[3px] 
+                border-lightGreen sm:block 
+                absolute top-[330px] md:top-[340px] right-0'></div>
                 
               {/* Circle */}
               <div 
                 area-label='circle'
-                className='w-24 h-24 hidden right-[-3rem] top-[280px]  rounded-full bg-lightGreen lg:block absolute'></div>
+                className='w-24 h-24 hidden right-
+                [-3rem] top-[280px]  
+                rounded-full bg-lightGreen 
+                lg:block absolute'></div>
               {/* ELEMENTS END*/}
 
 
