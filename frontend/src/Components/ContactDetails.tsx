@@ -30,35 +30,43 @@ const ContactDetails = (props: Props) => {
           area-label='box-with-contact-details'
           className='py-2 flex flex-col gap-3 xl:px-1 md:gap-2 sm:p-0'
         >
-          <div className='mx-auto w-[90%] flex items-center'>
-            <div className=''>
-              <MdEmail className='text-lg ' />
+          {/* if email is set as a contact data, show email */}
+          {ads.ad?.contactVia.includes('email') && (
+            <div className='mx-auto w-[100%] flex items-center'>
+              <div className='p-1'>
+                <MdEmail className='text-lg ' />
+              </div>
+              <p className='ml-2 text-sm break-all md:py-1'>
+                {ads.ad?.user.email}
+              </p>
             </div>
-            <p className='ml-2 text-sm break-words md:py-1 '>
-              {ads.ad?.user.email}
-            </p>
-          </div>
+          )}
 
-          <div className='mx-auto w-[90%] flex items-center'>
-            <div className='p-1'>
-              <BsTelephoneFill className='text-lg' />
+          {/* if phone is set as a contact data, show phone number */}
+          {ads.ad?.contactVia.includes('phone') && (
+            <div className='mx-auto w-[100%] flex items-center'>
+              <div className='p-1'>
+                <BsTelephoneFill className='text-lg' />
+              </div>
+              <p className='ml-2 text-sm break-all md:py-1'>
+                {ads.ad?.user.phone}
+              </p>
             </div>
-            <p className='ml-2 text-sm break-all md:py-1'>
-              {' '}
-              {ads.ad?.user.phone ? ads.ad?.user.phone : '–'}
-            </p>
-          </div>
+          )}
 
-          <div className='mx-auto w-[90%] flex items-center'>
-            <div className='p-1'>
-              <FaMapMarkerAlt className='text-lg' />
+          {/* if creator of ad has registered city name, show city */}
+          {ads.ad?.user.city && ads.ad?.user.city !== '' && (
+            <div className='mx-auto w-[100%] flex items-center'>
+              <div className='p-1'>
+                <FaMapMarkerAlt className='text-lg' />
+              </div>
+              <p className='ml-2 text-sm break-all md:py-1'>
+                {ads.ad?.user.city}
+              </p>
             </div>
-            <p className='ml-2 text-sm break-all md:py-1'>
-              {ads.ad?.user.city ? ads.ad?.user.city : '–'}
-            </p>
-          </div>
-         {/* EMAIL, PHONE, CITY - END */}
+          )}
 
+          {/* EMAIL, PHONE, CITY - END */}
         </div>
       </div>
     </div>
