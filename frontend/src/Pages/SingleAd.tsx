@@ -12,7 +12,7 @@ import thinkingGirl from '../assets/images/SingleAd_girl.png'
 
 import useUser from '../Hooks/useUser'
 import useAds from '../Hooks/useAds'
-import BackButton from '../Components/BrowseJobs'
+import BrowseJobs from '../Components/BrowseJobs'
 
 type Props = {}
 
@@ -45,7 +45,7 @@ const SingleAd = (props: Props) => {
           area-label='main'
           className='w-full sm:w-[60%] flex flex-col justify-center lg:justify-center lg:w-[60%]'
         >
-          <BackButton />
+          <BrowseJobs />
 
           {/* Ad */}
           <div
