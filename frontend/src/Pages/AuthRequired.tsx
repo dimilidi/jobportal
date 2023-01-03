@@ -1,12 +1,11 @@
 
 import {useNavigate} from "react-router-dom";
-import {BiArrowToLeft} from 'react-icons/bi'
 // Components
 import UniButton from '../Components/UniButton';
+import UniButtonWhite from "../Components/UniButtonWhite";
+import BrowseJobs from "../Components/BrowseJobs";
 // images
 import DeliveryGuy from '../assets/images/AuthRequired_delivery_guy.png'
-import BrowseJobs from "../Components/BrowseJobs";
-import UniButtonWhite from "../Components/UniButtonWhite";
 
 
 type Props = {}
