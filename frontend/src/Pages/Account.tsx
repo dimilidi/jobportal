@@ -27,7 +27,7 @@ const Account = () => {
       {/* ADS && BUTTONS CONTAINER */}
       <div className='max-w-[650px] h-full flex flex-col justify-center items-center md:h-[540px] lg:w-[62%] lg:max-w-[800px] lg:gap-10'>
         {/* BUTTONS */}
-        <div className='ml-20 w-full flex flex-col justify-center items-center gap-6 sm:justify-center sm:flex-row lg:justify-start'>
+        <div className=' w-full flex flex-col justify-center items-center gap-6 sm:justify-center sm:flex-row lg:ml-20 lg:justify-start'>
           <UniButtonWhite
             text='Post Ad'
             type='button'
