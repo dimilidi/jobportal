@@ -14,6 +14,7 @@ import PostAd from './Pages/PostAd'
 import Register from './Pages/Register'
 import SingleAd from './Pages/SingleAd'
 import AdMobile from './Components/AdMobile'
+import EditAccount from './Pages/EditAccount'
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
             <Route path='/post-ad' element={<PostAd />} />
             <Route path='/account' element={<Account />} />
             <Route path='/auth-required' element={<AuthRequired />} />
+            <Route path='/edit-account' element={<EditAccount />} />
             <Route path='*' element={<NotFound />} />
           </Routes>
         </Layout>
