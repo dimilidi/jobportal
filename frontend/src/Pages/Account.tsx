@@ -44,6 +44,7 @@ const Account = (props: Props) => {
                 md:top-[230px]
                 lg:block lg:top-[250px] lg:right-0
                 xl:block xl:top-[200px]' />
+
             {/* Semicircle */}
              <div
               className='w-24 h-24
@@ -62,7 +63,7 @@ const Account = (props: Props) => {
         {/* Post-Ad-Button + Browse-Jobs-Button */}
           <div
             className='w-[100%]
-              lg:mt-[20%]
+              lg:mt-[0%]
               flex flex-row justify-center gap-6
               sm:justify-center lg:justify-start'>
 

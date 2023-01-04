@@ -21,6 +21,8 @@ import { motion } from 'framer-motion'
 const Navigation = () => {
   // CONSTANTS
   const { user, logout } = useUser()
+  console.log(user);
+  
 
   // STATES
   const [navigation, setNavigation] = useState(false)
@@ -51,7 +53,7 @@ const Navigation = () => {
     {
       icon: <MdOutlineAddTask />,
       name: 'Post Ad',
-      url: '/post-ad',
+      url: user ? '/post-ad' : '/auth-required',
       navCategory: 'base',
     },
     {
