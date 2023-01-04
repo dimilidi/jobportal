@@ -34,14 +34,15 @@ function Ad({ ad }: Props) {
               </div>
             </div>
 
-            <div className='w-[180px] flex  flex-col  justify-center items-center md:w-[400px] md:flex-row sm:w-[200px]'>
+            <div className='w-[180px] flex  flex-col  justify-around items-center  md:w-[400px] md:flex-row sm:w-[200px] '>
               <div className='w-[150px] flex sm:w-[200px]'>
                 {/* Title, Sector */}
                 <div className='text-textBlack sm:w-[250px]'>
                   <p className='text-[18px] text-textBlack'>{ad.title}</p>
-                  <p className='text-[16px] text-textBlack text-opacity-50'>
+                  {/* VERSION 2 - ADD SECTOR ?*/}
+                  {/* <p className='text-[16px] text-textBlack text-opacity-50'>
                     Sector
-                  </p>
+                  </p> */}
                 </div>
               </div>
 

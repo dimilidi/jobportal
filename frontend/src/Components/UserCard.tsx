@@ -4,18 +4,21 @@ import { MdMail , MdCall, MdLocationOn } from "react-icons/md"
 import useUser from "../Hooks/useUser"
 
 
-type Props = {}
+type Props = {
+  style?:{}
+}
 
-function UserCard({}: Props) {
+function UserCard(props: Props) {
 
   const user = useUser()
 
   return (
     <div
       // User Card
-          className='mt-[30%]
-            min-w-[375px]
-            max-w-[450px]
+     style={props.style}
+          className='mt-[0%] w-[100%] max-w-[450px]
+
+            
             flex flex-col justify-center relative  
             shadow-standard 
             rounded-bl-[65px] rounded-br-[65px]
