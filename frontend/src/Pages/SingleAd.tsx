@@ -104,6 +104,7 @@ const SingleAd = (props: Props) => {
       <ToastContainer position='bottom-right' />
 
       {/* fixed or absolute elements - Circle, Line, ContactDetails in Desktop, Image, Toaster - END */}
+      {/* test test  */}
     </div>
   )
 }
