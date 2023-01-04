@@ -1,10 +1,15 @@
 import UniButton from "./UniButton"
 import imageAccount from '../assets/images/Account_profilDefault.png'
-import { MdMail , MdCall, MdLocationOn} from "react-icons/md"
+import { MdMail , MdCall, MdLocationOn } from "react-icons/md"
+import useUser from "../Hooks/useUser"
+
 
 type Props = {}
 
 function UserCard({}: Props) {
+
+  const user = useUser()
+
   return (
     <div
       // User Card
@@ -57,7 +62,7 @@ function UserCard({}: Props) {
               font-[700] text-[2.5rem]
               '
             >
-              Viktoria Schulz
+              {user.user?.name}
             </h1>
             <h2
               className='
@@ -65,7 +70,8 @@ function UserCard({}: Props) {
               flex justify-center 
               text-[1.8rem] font-light'
             >
-              Web-Developer
+              Profession: ...
+              {/* {user.user?.sector} */}
             </h2>
           </div>
 
@@ -73,7 +79,7 @@ function UserCard({}: Props) {
           <div className='pl-9 pr-9'>
             <h3 className='mb-1 text-[16px] font-[600]'>Description</h3>
             <p className='text-[15px] text-[gray]'>
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit.Ob caecati harum omnis sapiente eum illo ratione sunt dignissimos dolorem animi delectus sit voluptatem aperiam maxime provident natus, totam consequuntur pariatur suscipit.
+              {user.user?.description}
             </p>
           </div>
 
@@ -85,9 +91,9 @@ function UserCard({}: Props) {
           text-[17px] font-[500] 
           min-[374px]:mx-[1em]'
           >
-            <div className='flex flex-row gap-4 items-center text-gray leading-relaxed'> <MdMail/> email@email.com</div>
-            <div className='flex flex-row gap-4 items-center text-gray leading-relaxed'> <MdCall/> 0761/384059234</div>
-            <div className='flex flex-row gap-4 items-center text-gray leading-relaxed'> <MdLocationOn/> 79111 Freiburg</div>
+            <div className='flex flex-row gap-4 items-center text-gray leading-relaxed'> <MdMail/> {user.user?.email}</div>
+            <div className='flex flex-row gap-4 items-center text-gray leading-relaxed'> <MdCall/> {user.user?.phone}</div>
+            <div className='flex flex-row gap-4 items-center text-gray leading-relaxed'> <MdLocationOn/> {user.user?.city}</div>
           </div>
 
           {/* Edit Profile Button Wrapper */}
