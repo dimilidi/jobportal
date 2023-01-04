@@ -42,7 +42,7 @@ const Account = (props: Props) => {
                 xl:w-[35%]
                 md:top-[230px]
                 lg:block lg:top-[250px] lg:right-0
-                xl:block xl:top-[240px]' />
+                xl:block xl:top-[250px]' />
             {/* Semicircle */}
              <div
               className='w-24 h-24
@@ -51,7 +51,7 @@ const Account = (props: Props) => {
                 rounded-full bg-lightGreen
                 md:hidden
                 lg:block lg:top-[180px]
-                xl:top-[190px]'>
+                xl:top-[200px]'>
              </div>
 
           {/* <p className='min-w-[850px]:absolute mb-4 text-center font-semibold text-lg md: md:mt-0 lg:hidden'>
@@ -61,7 +61,7 @@ const Account = (props: Props) => {
         {/* Post-Ad-Button + Browse-Jobs-Button */}
           <div
             className='w-[100%]
-              lg:mt-[20%]
+              lg:mt-[0%]
               flex flex-row justify-center gap-6
               sm:justify-center lg:justify-start'>
 

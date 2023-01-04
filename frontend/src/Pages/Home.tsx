@@ -50,7 +50,6 @@ const Home = () => {
           <UniButton
             text='Browse Ads'
             type='button'
-            className=' w-[90%] sm:w-[80%] lg:w-[50%] xl:w-[40%]'
             onClick={() => navigate('/adslist')}
           />
         </div>
