@@ -7,9 +7,7 @@ import { RegisterInputs } from '../type'
 import useUser from '../Hooks/useUser'
 
 import UniButton from '../Components/UniButton'
-import { BiUnderline } from 'react-icons/bi'
-import { FaUnderline } from 'react-icons/fa'
-
+import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai'
 import RegisterCouple from '../assets/images/Register_couple.png'
 
 type Props = {}
@@ -25,6 +23,7 @@ const Register = (props: Props) => {
   const [inputs, setInputs] = useState(initialValue)
   const [fetching, setFetching] = useState<boolean>(false)
   const [errors, setErrors] = useState<string[] | undefined[] | undefined>([])
+  const [inputType, setInputType] = useState('password')
 
   useEffect(() => {
     if (user && !loading) {
@@ -58,8 +57,18 @@ const Register = (props: Props) => {
     setFetching(false)
   }
 
+  const handlePassword = (e: React.SyntheticEvent) => {
+    if (inputType === 'password') {
+      setInputType('text')
+    } else {
+      setInputType('password')
+    }
+  }
+
+
   return (
-    <>
+    <div className='pt-5 h-full min-h-[950px] flex flex-col items-center justify-center lg:flex-row'>
+      
       <ToastContainer autoClose={3000} />
       {fetching && <div>...Loading</div>}
 
@@ -85,7 +94,8 @@ const Register = (props: Props) => {
         
         {/* GREEN LINE */}
         <div className='
-          h-[.1em] 
+          border-t-[2px]
+          border-lightGreen
           absolute top-[15.5rem] right-[-9rem] z-[10]
           bg-lightGreen
 
@@ -103,10 +113,10 @@ const Register = (props: Props) => {
           w-auto
           mt-[19rem] mb-[10rem] mx-[1.5rem] p-[1rem] pt-[8rem] pb-10
           flex flex-col items-center
-          bg-background shadow-standard rounded-[3rem]
+          bg-white shadow-standard rounded-[3rem]
          
           md:text-[1.2rem]
-          lg:mt-[9rem]
+          lg:mt-[15rem]
           lg:absolute left-[-3rem]
           lg:pl-[5rem] lg:p-[5rem] lg:py-[3rem]
           lg:items-start
@@ -114,7 +124,7 @@ const Register = (props: Props) => {
           xl:w-[35rem]
           xl:py-[4rem] xl:pr-[4rem] xl:pl-[6rem]
 
-          2xl:w-[40rem]
+          2xl:w-[50%]
           2xl:py-[2rem]
           '>
 
@@ -127,15 +137,13 @@ const Register = (props: Props) => {
               max-[375px]:right-[-1rem]
               min-[375px]:right-[1rem]
               min-[425px]:right-[2rem]
-              lg:w-[25rem]
+              lg:w-[35rem]
               lg:top-[4rem] lg:right-[-33rem]
               
-              xl:top-[1rem]
               xl:right-[-42rem]
-              xl:w-[32rem]
+              xl:w-[35rem]
 
               2xl:right-[-47rem]
-             
             ' 
           />
         
@@ -145,15 +153,13 @@ const Register = (props: Props) => {
             text-[2.5em] leading-[2.8rem] font-semibold
             lg:mb-[1.5rem]
             xl:self-center
-            lg:w-full
+            lg:w-[300px]
             xl:leading-[3.2rem]
             2xl:text-[3.8rem]
             2xl:leading-[4rem]
-            '
-            >Glad to help 
-            <span className='text-lightGreen italic'> 
-              You
-            </span> 
+            '>
+              Glad to help
+              <span className='text-lightGreen italic'> You</span> 
           </h1>
 
           {/* FORM */}
@@ -174,16 +180,11 @@ const Register = (props: Props) => {
                 '
             >
               Username
-              <br />
               <input
                 className='
-                  h-10 mb-[.5rem] px-[.7rem] 
-                  border rounded-[15rem] 
-                  max-[375px]:w-[250px]
-                  md:h-12'
+                py-[11px] px-5 mb-2 w-full box-border border border-lightGray rounded-[15rem] text-sm  focus:outline-lightGreen sm:text-[1.1rem]'
                 type='text'
                 name='name'
-                placeholder='John Doe'
                 onChange={handleChange}
                 value={inputs.name}
               />
@@ -198,16 +199,11 @@ const Register = (props: Props) => {
                 '
             >
               Email
-              <br />
               <input
                 className='
-                  h-10 mb-[.5rem] px-[.7rem] 
-                  border rounded-[15rem] 
-                  max-[375px]:w-[250px]
-                  md:h-12'
+                py-[11px] px-5 mb-2 w-full box-border border border-lightGray rounded-[15rem] text-sm  focus:outline-lightGreen sm:text-[1.1rem]'
                 type='email'
                 name='email'
-                placeholder='John@Doe.com'
                 onChange={handleChange}
                 value={inputs.email}
               />
@@ -222,20 +218,26 @@ const Register = (props: Props) => {
                 '
             >
               Password
-              <br />
               <input
                 className='
-                  h-10 mb-[1rem] px-[.7rem] 
-                  border rounded-[15rem] 
-                  max-[375px]:w-[250px]
-                  md:h-12
+                py-[11px] px-5 mb-2 w-full box-border border border-lightGray rounded-[15rem] text-sm  focus:outline-lightGreen sm:text-[1.1rem]
                   '
-                type='password'
+                type={inputType}
                 name='password'
-                placeholder='...'
                 onChange={handleChange}
                 value={inputs.password}
               />
+                      {inputType === 'text' ? (
+                <AiOutlineEye
+                  onClick={(e) => handlePassword(e)}
+                  className='w-[20px] absolute bottom-[45px] right-5 text-gray text-opacity-50'
+                />
+              ) : (
+                <AiOutlineEyeInvisible
+                  onClick={(e) => handlePassword(e)}
+                  className='w-[20px] absolute bottom-[45px] right-5 text-gray text-opacity-50'
+                />
+              )}
             </label>
         
 
@@ -259,9 +261,9 @@ const Register = (props: Props) => {
           </form>
 
           {/* Link To Login Page */}
-          <Link to='/login' className='flex flex-col mt-2 self-center underline'>Or log in here!</Link>
+          <Link to='/login' className='flex flex-col mt-2 self-center text-lightGray underline'>Or log in here!</Link>
         </div>
-    </>
+    </div>
   )
 }
 
