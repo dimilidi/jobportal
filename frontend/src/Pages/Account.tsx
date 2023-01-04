@@ -12,7 +12,7 @@ const Account = (props: Props) => {
   const ads = useAds()
   return (
     <>
-      {/* Grid Container For Whole Page */}
+      {/* Container For Whole Page */}
       <div
         className='w-[70%] h-full min-h-[900px]
           mx-auto flex flex-col
@@ -39,10 +39,11 @@ const Account = (props: Props) => {
                 absolute hidden
                 sm:w-[25%]
                 md:w-[15%]
+                lg:w-[18%]
                 xl:w-[35%]
                 md:top-[230px]
                 lg:block lg:top-[250px] lg:right-0
-                xl:block xl:top-[240px]' />
+                xl:block xl:top-[200px]' />
             {/* Semicircle */}
              <div
               className='w-24 h-24
@@ -51,7 +52,7 @@ const Account = (props: Props) => {
                 rounded-full bg-lightGreen
                 md:hidden
                 lg:block lg:top-[180px]
-                xl:top-[190px]'>
+                xl:top-[150px]'>
              </div>
 
           {/* <p className='min-w-[850px]:absolute mb-4 text-center font-semibold text-lg md: md:mt-0 lg:hidden'>
@@ -81,8 +82,10 @@ const Account = (props: Props) => {
           {/* Ads Container */}
           <div
             className='
-            w-[750px]
-            mt-10 p-10 mb-10
+            max-w-[750px]
+            lg:h-[610px]
+            min-w-[375px]
+            my-10 p-10
             flex flex-col justify-center
             rounded-[21px]
             lg:bg-white lg:shadow-standard
@@ -95,7 +98,9 @@ const Account = (props: Props) => {
             text-gray text-center'>Your Ads</h3>
 
           {/* Ads */}
-          <div className='mx-auto flex flex-wrap justify-center '>
+          <div
+            className='mx-auto
+            flex flex-wrap justify-center'>
             {ads.list.map((ad) => (
               <Ad key={ad._id} ad={ad} />
             ))}
