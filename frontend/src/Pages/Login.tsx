@@ -150,7 +150,7 @@ const Login = (props: Props) => {
             {/* LOGIN BUTTON */}
             <UniButton
               text={fetching ? <Spinner /> : 'Login'}
-              className='mt-[1rem] w-[250px] text-lg sm:text-lg lg:self-end'
+              className='mt-[1rem] w-[250px] text-lg sm:text-lg lg:self-end flex justify-center'
               style={{ padding: '10px' }}
             />
 
