@@ -14,11 +14,9 @@ function UserCard(props: Props) {
 
   return (
     <div
-      // User Card
+      // USER CARD
      style={props.style}
           className='mt-[0%] w-[100%] max-w-[450px]
-
-            
             flex flex-col justify-center relative  
             shadow-standard 
             rounded-bl-[65px] rounded-br-[65px]
@@ -26,7 +24,7 @@ function UserCard(props: Props) {
             sm:justify-center lg:mt-[10%] lg:justify-self-center
             '
         >
-          {/* Avatar BG Halfcircle */}
+          {/* AVATAR BG SEMICIRCLE */}
           <div
             className='
             flex justify-center'
@@ -41,7 +39,7 @@ function UserCard(props: Props) {
           </div>
           {/* .................... */}
 
-          {/* Avatar Circle Container */}
+          {/* AVATAR CIRCLE CONTAINER */}
           <div
             className='
             w-[100%] h-[6em] 

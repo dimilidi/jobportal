@@ -8,6 +8,7 @@ type Ad = {
   _id: string
   title: string
   category: string
+  sector: string
   description: string
   location: string
   wage: number

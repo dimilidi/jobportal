@@ -31,7 +31,7 @@ function AdMobile() {
               <div className='self-start  text-textBlack'>
                 <p className='text-[18px] text-textBlack'>{ads.ad?.title}</p>
                 <p className='text-[16px] text-textBlack text-opacity-50'>
-                  Sector
+                  {ads.ad?.sector}
                 </p>
               </div>
             </div>
