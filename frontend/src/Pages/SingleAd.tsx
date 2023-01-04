@@ -23,8 +23,7 @@ const SingleAd = (props: Props) => {
   const navigate = useNavigate()
 
   const handleClick = () => {
-    !user && navigate('/auth-required')
-    user && notify('Contact page is not available')
+    if (user.isLoggedIn === false ) navigate('/auth-required')
   }
 
   // Show Spinner if isLoading
@@ -81,7 +80,7 @@ const SingleAd = (props: Props) => {
             <UniButton
               text='Contact'
               onClick={handleClick}
-              className='my-7 self-center lg:mb-0'
+              className='my-7 self-center mb-32 lg:mb-0'
             />
           }
           

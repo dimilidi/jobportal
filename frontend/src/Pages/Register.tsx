@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import { ToastContainer, toast } from 'react-toastify'
-import 'react-toastify/dist/ReactToastify.css'
-
-import { RegisterInputs } from '../type'
 import useUser from '../Hooks/useUser'
-
+//Types
+import { RegisterInputs } from '../type'
+// Component
+import Spinner from '../Components/Spinner'
 import UniButton from '../Components/UniButton'
+// Toaster
+import 'react-toastify/dist/ReactToastify.css'
+import { ToastContainer, toast } from 'react-toastify'
 import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai'
+// Images
 import RegisterCouple from '../assets/images/Register_couple.png'
 
 type Props = {}
@@ -65,205 +68,122 @@ const Register = (props: Props) => {
     }
   }
 
-
   return (
-    <div className='pt-5 h-full min-h-[950px] flex flex-col items-center justify-center lg:flex-row'>
-      
-      <ToastContainer autoClose={3000} />
-      {fetching && <div>...Loading</div>}
+    <div className='pt-[100px] h-full min-h-[950px] flex flex-col items-center justify-center lg:flex-row'>
+    {/* GREEN SEMICIRCLE */}
+    <div className='w-[100px] h-[100px] hidden absolute right-[-50px] top-[20.4rem] z-10 bg-lightGreen rounded-full xl:block' />
 
+      {/* IMAGE2 */}
+      <img
+      className='mb-[-80px] ml-[50px] w-[165px] z-10 xl:hidden lg:hidden'
+      src={RegisterCouple}
+      alt='illustration'
+      />
 
-        {/* GREEN CIRCLE */}
-        <div className='
-          w-[100px] h-[100px] 
-          absolute right-[-50px] top-[12.7rem] 
-          bg-lightGreen 
-          rounded-full 
+    {/*HEADING && FORM */}
+    <div className='py-[20px] h-[650px] w-[90%] max-w-[500px] flex flex-col justify-center relative border-radius rounded-[30px] shadow-standard bg-white lg:max-w-[1200px] lg:w-[50%] lg:h-[650px] lg:translate-x-[22%] xl:translate-x-[-20%] 2xl:translate-x-[-30%]'>
+      <div className='mx-auto w-[100%] flex flex-col items-center 2xl:items-end'>
 
-          max-[1024px]:hidden
-          lg:top-[15.2rem]
+        {/* HEADING */}
+        <h1 className='w-[250px] text-center text-[2.2rem] pt-[30px] leading-none font-semibold sm:text-[2.5rem] lg:w-[300px] lg:pt-0 lg:text-[2.8rem] lg:text-center 2xl:text-left 2xl:w-[540px] xl:text-[3.5rem]'>
+          Glad to <br /> help
+          <span className=' text-lightGreen italic'> You</span>
+        </h1>
 
-          xl:w-[200px] xl:h-[200px]
-          xl:right-[-100px]
-          xl:top-[14rem]
+        {/* LINE */}
+        <span className='pb-10 w-[46%] top-[180px] right-0 self-end z-10 border-t-[3px] border-lightGreen sm:top-[45%] md:top-[300px] lg:w-[59%] lg:top-[370px] xl:w-[59%] 2xl:w-[33%]'/>
 
-          2xl:w-[200px] 2xl:h-[200px]
-          2xl:top-[13.6rem] 2xl:right-[-100px]
-          '>
-        </div>
-        
-        {/* GREEN LINE */}
-        <div className='
-          border-t-[2px]
-          border-lightGreen
-          absolute top-[15.5rem] right-[-9rem] z-[10]
-          bg-lightGreen
-
-          min-[768px]:w-[100%]
-          max-[1024px]:hidden
-          lg:top-[17.9rem] lg:right-[-4rem]
-          xl:top-[19.5rem] xl:right-[-5rem]
-          
-          2xl:top-[19rem]
-          '>
-        </div>
-        
-        {/* FORM CONTAINER */}
-        <div className=' 
-          w-auto
-          mt-[19rem] mb-[10rem] mx-[1.5rem] p-[1rem] pt-[8rem] pb-10
-          flex flex-col items-center
-          bg-white shadow-standard rounded-[3rem]
-         
-          md:text-[1.2rem]
-          lg:mt-[15rem]
-          lg:absolute left-[-3rem]
-          lg:pl-[5rem] lg:p-[5rem] lg:py-[3rem]
-          lg:items-start
-
-          xl:w-[35rem]
-          xl:py-[4rem] xl:pr-[4rem] xl:pl-[6rem]
-
-          2xl:w-[50%]
-          2xl:py-[2rem]
-          '>
-
-          {/* IMG CONTAINER*/}
-          <img
-            src={RegisterCouple} 
-            alt='image' 
-            className='
-              absolute top-[9.3rem] right-[2rem] z-[20]
-              max-[375px]:right-[-1rem]
-              min-[375px]:right-[1rem]
-              min-[425px]:right-[2rem]
-              lg:w-[35rem]
-              lg:top-[4rem] lg:right-[-33rem]
-              
-              xl:right-[-42rem]
-              xl:w-[35rem]
-
-              2xl:right-[-47rem]
-            ' 
-          />
-        
-          {/* HEADING */}
-          <h1 className='
-            mb-4 flex flex-col
-            text-[2.5em] leading-[2.8rem] font-semibold
-            lg:mb-[1.5rem]
-            xl:self-center
-            lg:w-[300px]
-            xl:leading-[3.2rem]
-            2xl:text-[3.8rem]
-            2xl:leading-[4rem]
-            '>
-              Glad to help
-              <span className='text-lightGreen italic'> You</span> 
-          </h1>
-
-          {/* FORM */}
-          <form onSubmit={handleSubmit} 
-            className='
-              w-full
-              flex flex-col
-              2xl:w-full
-              '
-            >
-            
-            <label 
-              htmlFor='name' 
-              className='
-                flex flex-col self-center 
-                font-extralight
-                xl:w-full
-                '
+        {/* FORM */}
+        <form
+          onSubmit={handleSubmit}
+          className='w-[80%] flex flex-col items-center justify-between lg:w-[70%] xl:w-[45%] 2xl:w-[45%] xl:pr-[0px] 2xl:pr-[100px]'
+        >
+          {/* INPUTS CONTAINER */}
+          <div className='mb-5 w-full relative flex flex-col items-center'>
+            <label
+              htmlFor='username'
+              className='self-start text-gray font-extralight sm:font-light sm:text-[1.1rem] lg:self-start'
             >
               Username
-              <input
-                className='
-                py-[11px] px-5 mb-2 w-full box-border border border-lightGray rounded-[15rem] text-sm  focus:outline-lightGreen sm:text-[1.1rem]'
-                type='text'
-                name='name'
-                onChange={handleChange}
-                value={inputs.name}
-              />
             </label>
-          
-            <label 
-              htmlFor='email' 
-                className='
-                flex flex-col self-center 
-                font-extralight 
-                xl:w-full
-                '
+            <input
+              className='py-[11px] px-5 mb-2 w-full box-border border border-lightGray rounded-[15rem] text-sm  focus:outline-lightGreen sm:text-[1.1rem]'
+              type='text'
+              name='name'
+              value={inputs.name}
+              onChange={handleChange}
+            />
+
+            <label
+              htmlFor='email'
+              className='self-start text-gray font-extralight sm:font-light sm:text-[1.1rem] lg:self-start'
             >
               Email
-              <input
-                className='
-                py-[11px] px-5 mb-2 w-full box-border border border-lightGray rounded-[15rem] text-sm  focus:outline-lightGreen sm:text-[1.1rem]'
-                type='email'
-                name='email'
-                onChange={handleChange}
-                value={inputs.email}
-              />
             </label>
-          
-            <label htmlFor='password' 
-              className='
-                flex flex-col 
-                self-center 
-                font-extralight 
-                xl:w-full
-                '
+            <input
+              className='py-[11px] px-5 mb-2 w-full box-border border border-lightGray rounded-[15rem] text-sm  focus:outline-lightGreen sm:text-[1.1rem]'
+              type='email'
+              name='email'
+              value={inputs.email}
+              onChange={handleChange}
+            />
+
+            <label
+              htmlFor='password'
+              className='self-start text-gray font-extralight sm:font-light sm:text-[1.1rem] lg:self-start'
             >
               Password
-              <input
-                className='
-                py-[11px] px-5 mb-2 w-full box-border border border-lightGray rounded-[15rem] text-sm  focus:outline-lightGreen sm:text-[1.1rem]
-                  '
-                type={inputType}
-                name='password'
-                onChange={handleChange}
-                value={inputs.password}
-              />
-                      {inputType === 'text' ? (
-                <AiOutlineEye
-                  onClick={(e) => handlePassword(e)}
-                  className='w-[20px] absolute bottom-[45px] right-5 text-gray text-opacity-50'
-                />
-              ) : (
-                <AiOutlineEyeInvisible
-                  onClick={(e) => handlePassword(e)}
-                  className='w-[20px] absolute bottom-[45px] right-5 text-gray text-opacity-50'
-                />
-              )}
             </label>
-        
-
-            {/* SIGN UP BUTTON */}
-            <UniButton 
-            text='Sign Up' 
-            className='
-              w-[20rem] mt-2 py-2 px-[5rem] text-lg
-              flex self-center
-              text-[1.2rem]
-              lg:w-[25rem]
-              2xl:w-[28rem]
-              '
+            <input
+              className='py-[11px] px-5 mb-1 w-full  text-sm border border-lightGray rounded-[15rem] focus:outline-lightGreen sm:text-[1.1rem]'
+              type={inputType}
+              name='password'
+              onChange={handleChange}
+              value={inputs.password}
             />
-            {errors &&
-              errors.map((error) => (
-                <p key={error} className='text-red-600'>
-                  {error}
-                </p>
-              ))}
-          </form>
+            {inputType === 'text' ? (
+              <AiOutlineEye
+                onClick={(e) => handlePassword(e)}
+                className='w-[20px] absolute bottom-[20px] right-5 text-gray text-opacity-50'
+              />
+            ) : (
+              <AiOutlineEyeInvisible
+                onClick={(e) => handlePassword(e)}
+                className='w-[20px] absolute bottom-[20px] right-5 text-gray text-opacity-50'
+              />
+            )}
+          </div>
 
-          {/* Link To Login Page */}
-          <Link to='/login' className='flex flex-col mt-2 self-center text-lightGray underline'>Or log in here!</Link>
-        </div>
+          {/* Sign Up BUTTON */}
+          <UniButton
+            text={fetching ? <Spinner /> : 'Sign Up'}
+            className='mt-[1rem] lg:w-[250px] text-lg sm:text-lg'
+            style={{ padding: '10px' }}
+          />
+
+          <p className='mt-2 w-full text-center text-lightGray underline text-[14px] lg:text-center 2xl:text-right'>
+            <Link to='/login'>or log in here</Link>
+          </p>
+
+          {/* ERRORS */}
+          {errors &&
+            errors.map((error) => (
+              <p key={error} className='mt-1 text-red-600 self-start'>
+                {error}
+              </p>
+            ))}
+        </form>
+      </div>
     </div>
+      {/* IMAGE 1 */}
+      <img
+      className='mb-[-45px] w-[180px] z-10 lg:w-[450px] lg:ml-[200px] xl:ml-[0px] xl:w-[550px] 2xl:w-[500] hidden sm:hidden md:hidden lg:block'
+      src={RegisterCouple}
+      alt='illustration'
+      />
+
+    <ToastContainer position='top-right' />
+  </div>
   )
 }
 

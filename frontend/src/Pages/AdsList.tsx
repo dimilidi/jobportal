@@ -53,12 +53,16 @@ const AdsList = () => {
           {/* Main Container */}
           <div className='mx-auto  w-full h-full  flex justify-center items-start gap-10 '>
             {/* Image */}
-            <div className='w-[500px] h-[500px] hidden 2xl:flex'>
-              <img className='h-full w-full' src={man} alt='' />
+            <div className='lg:w-[500px] lg:h-[400px] hidden 
+             xl:h-[500px] lg:ml-2 lg:flex'>
+              <img className='h-full w-full' src={man} alt='person working on computer' />
             </div>
 
             {/* Ads Container */}
+
             <div className='mt-[30px] w-full h-full flex flex-wrap justify-items-center items-start sm:px-5 sm:w-[600px] sm:h-[552px]  md:w-[900px] md:h-[435px] sm:overflow-y-scroll '>
+
+         
               {/* Ads */}
               <div className='mx-auto flex flex-wrap justify-center '>
                 {ads.list.map((ad) => (
@@ -69,11 +73,12 @@ const AdsList = () => {
           </div>
 
           {/* Button Ad Post */}
-          <div className='mb-[30px] p-[55px] w-full h-[50px] flex justify-center items-center xl:p-0'>
+          <div className='mb-[30px] p-[55px] w-full h-[50px] 
+          flex justify-center items-center xl:p-0 2xl:w-[90%] 2xl:justify-end '>
             <UniButton
               text='Post Ad'
               onClick={handleClick}
-              className='my-5  w-[250px]  self-center lg:mb-0'
+              className='my-5  w-[250px] flex justify-center  lg:mb-0 2xl:justify-end'
             />
           </div>
         </>
