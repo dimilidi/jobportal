@@ -22,10 +22,17 @@ const SingleAd = (props: Props) => {
 
   const navigate = useNavigate()
 
+  // const handleClick = () => {
+  //   !user && navigate('/auth-required')
+  //   user && notify('Contact page is not available')
+  // }
+
   const handleClick = () => {
-    !user && navigate('/auth-required')
+    if (user.isLoggedIn === false ) navigate('/auth-required')
     user && notify('Contact page is not available')
   }
+
+
 
   // Show Spinner if isLoading
   if (ads.isLoading) {

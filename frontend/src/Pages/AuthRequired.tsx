@@ -89,7 +89,6 @@ const AuthRequired = (props: Props) => {
 
       </div>
       {/* MAIN CONTAINER END */}
-      {/* test test  */}
 
     </section>
   )
