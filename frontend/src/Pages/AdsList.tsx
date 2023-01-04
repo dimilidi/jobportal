@@ -32,10 +32,10 @@ const AdsList = () => {
       ) : (
         <>
           {/* Heading with underline  */}
-          <div className='mt-[30px]  h-[100px] w-full'>
-            <h2 className=' text-center text-[45px]  leading-tight'>
+          <div className='mx-auto mt-[30px]  h-[100px] w-[250px]'>
+            <h2 className='text-left text-[45px]  leading-tight'>
               Be part of
-              <p>
+              <p >
                 our
                 <span className='capitalize  text-lightGreen text-[45px'>
                   {' '}
@@ -73,12 +73,12 @@ const AdsList = () => {
           </div>
 
           {/* Button Ad Post */}
-          <div className='mb-[30px] p-[55px] w-full h-[50px] 
-          flex justify-center items-center xl:p-0 2xl:w-[90%] 2xl:justify-end '>
+          <div className='mb-[30px]  w-full h-[50px] 
+          flex justify-center items-center lg:w-[50%] xl:p-0 mx-auto'>
             <UniButton
               text='Post Ad'
               onClick={handleClick}
-              className='my-5  w-[250px] flex justify-center  lg:mb-0 2xl:justify-end'
+              className='my-5  w-[250px] flex justify-center lg:w-[600px] lg:mb-0 2xl:justify-center'
             />
           </div>
         </>
