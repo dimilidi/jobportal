@@ -16,7 +16,7 @@ const BrowseJobs = (props: Props) => {
           scale: 1.05,
         }}
         area-label='back-button-to-jobs'
-        className='hidden lg:flex lg:items-center'
+        className='flex lg:items-center'
       >
         <span className='flex items-center w-[24px]'>
           <div className='h-[14px] border-r-[2px] border-textBlack' />
