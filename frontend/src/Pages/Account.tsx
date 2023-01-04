@@ -1,7 +1,5 @@
 import { useNavigate } from 'react-router-dom'
 import UniButton from '../Components/UniButton'
-import imageAccount from '../assets/images/Account_profilDefault.png'
-import { MdMail , MdCall, MdLocationOn} from "react-icons/md"
 import Ad from '../Components/Ad'
 import useAds from '../Hooks/useAds'
 import UniButtonWhite from '../Components/UniButtonWhite'
@@ -44,7 +42,7 @@ const Account = (props: Props) => {
                 xl:w-[35%]
                 md:top-[230px]
                 lg:block lg:top-[250px] lg:right-0
-                xl:block xl:top-[290px]' />
+                xl:block xl:top-[240px]' />
             {/* Semicircle */}
              <div
               className='w-24 h-24
@@ -53,7 +51,7 @@ const Account = (props: Props) => {
                 rounded-full bg-lightGreen
                 md:hidden
                 lg:block lg:top-[180px]
-                xl:top-[240px]'>
+                xl:top-[190px]'>
              </div>
 
           {/* <p className='min-w-[850px]:absolute mb-4 text-center font-semibold text-lg md: md:mt-0 lg:hidden'>
@@ -63,20 +61,19 @@ const Account = (props: Props) => {
         {/* Post-Ad-Button + Browse-Jobs-Button */}
           <div
             className='w-[100%]
+              lg:mt-[20%]
               flex flex-row justify-center gap-6
               sm:justify-center lg:justify-start'>
 
           <UniButtonWhite
             text='Post Ad'
             type='button'
-            className='z-10 lg:w-[50%] xl:w-[35%]'
             onClick={() => navigate('/post-ad')}
           />
 
           <UniButton
             text='Browse Ads'
             type='button'
-            className='z-10 lg:w-[50%] xl:w-[35%]'
             onClick={() => navigate('/adslist')}
           />
           </div>
@@ -89,7 +86,6 @@ const Account = (props: Props) => {
             flex flex-col justify-center
             rounded-[21px]
             lg:bg-white lg:shadow-standard
-            sm:pl-0
             md:shadow-none md:bg-background'>
 
           {/* Your Ads */}

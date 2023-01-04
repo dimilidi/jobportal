@@ -67,8 +67,8 @@ const AuthRequired = (props: Props) => {
               {/* Circle */}
               <div 
                 area-label='circle'
-                className='w-24 h-24 hidden right-
-                [-3rem] top-[280px]  
+                className='w-24 h-24 hidden 
+                right-[-3rem] top-[290px]  
                 rounded-full bg-lightGreen 
                 lg:block absolute'></div>
               {/* ELEMENTS END*/}

@@ -23,7 +23,7 @@ const BrowseJobs = (props: Props) => {
           <IoMdArrowBack className='text-textBlack text-[20px]' />
         </span>
         <span className='text-darkGreen font-bold text-[20px] '>
-          Browse Jobs
+          Browse Ads
         </span>
       </motion.div>
     </Link>

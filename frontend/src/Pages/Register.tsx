@@ -86,7 +86,7 @@ const Register = (props: Props) => {
         {/* GREEN LINE */}
         <div className='
           h-[.1em] 
-          absolute top-[15.5rem] right-[-9rem] 
+          absolute top-[15.5rem] right-[-9rem] z-[10]
           bg-lightGreen
 
           min-[768px]:w-[100%]
@@ -103,7 +103,7 @@ const Register = (props: Props) => {
           w-auto
           mt-[19rem] mb-[10rem] mx-[1.5rem] p-[1rem] pt-[8rem] pb-10
           flex flex-col items-center
-          border rounded-xl shadow-standard 
+          bg-background shadow-standard rounded-[3rem]
          
           md:text-[1.2rem]
           lg:mt-[9rem]
@@ -123,7 +123,7 @@ const Register = (props: Props) => {
             src={RegisterCouple} 
             alt='image' 
             className='
-              absolute top-[9.3rem] right-[2rem]
+              absolute top-[9.3rem] right-[2rem] z-[20]
               max-[375px]:right-[-1rem]
               min-[375px]:right-[1rem]
               min-[425px]:right-[2rem]
@@ -243,11 +243,11 @@ const Register = (props: Props) => {
             <UniButton 
             text='Sign Up' 
             className='
-              w-full mt-4 text-lg
-              flex justify-center
+              w-[20rem] mt-2 py-2 px-[5rem] text-lg
+              flex self-center
               text-[1.2rem]
-              md:h-12
-              
+              lg:w-[25rem]
+              2xl:w-[28rem]
               '
             />
             {errors &&

@@ -38,7 +38,7 @@ const SingleAd = (props: Props) => {
       area-label='page-singleAd'
       className='pt-[10%] h-full flex flex-col items-center text-textBlack md:min-h-[800px]'
     >
-      <div area-label='wrapper' className='flex justify-center'>
+      <div area-label='wrapper' className='flex justify-center h-full min-h-[900px]'>
         {/* Main part of single ad */}
 
         <div
@@ -50,7 +50,7 @@ const SingleAd = (props: Props) => {
           {/* Ad */}
           <div
             area-label='ad'
-            className='py-5 px-9 mt-8 mx-8 min-w-[270px] flex flex-col item-center z-10 rounded-[21px] bg-white shadow-standard sm:mx-0 lg:min-h-[400px] '
+            className='py-5 px-9 mt-8 mx-8 min-w-[270px] flex flex-col item-center z-10 rounded-[21px] bg-white shadow-standard sm:mx-0 lg:min-h-[400px]'
           >
             <AdMobile />
             <div area-label='description' className='mt-3'>
