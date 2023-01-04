@@ -190,7 +190,7 @@ const Register = (props: Props) => {
           {/* ERRORS */}
           {errors &&
             errors.map((error) => (
-              <p key={error} className='mt-1 text-red-600 self-start'>
+              <p key={error} className='absolute mt-[30rem] text-red-600 self-start'>
                 {error}
               </p>
             ))}
