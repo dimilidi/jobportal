@@ -97,7 +97,7 @@ const SingleAd = (props: Props) => {
       <img
         src={thinkingGirl}
         alt='illustration of girl in front of laptop'
-        className='hidden lg:w-[200px] lg:h-[190px] lg:absolute lg:bottom-[10px] lg:left-[14%] lg:block lg:z-30'
+        className='hidden xl:w-[200px] xl:h-[190px] xl:absolute xl:bottom-[10px] xl:left-[14%] xl:block lg:z-30'
       />
       {/* image - END */}
 
