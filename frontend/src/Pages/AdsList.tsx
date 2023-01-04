@@ -59,9 +59,10 @@ const AdsList = () => {
             </div>
 
             {/* Ads Container */}
-            <div className='mt-[30px] w-full h-full flex flex-wrap justify-items-center items-start 
-            sm:px-5 sm:w-[600px] sm:h-[552px] sm:overflow-y-scroll
-            md:w-[900px] md:h-[440px]  '>
+
+            <div className='mt-[30px] w-full h-full flex flex-wrap justify-items-center items-start sm:px-5 sm:w-[600px] sm:h-[552px]  md:w-[900px] md:h-[435px] sm:overflow-y-scroll '>
+
+         
               {/* Ads */}
               <div className='mx-auto flex flex-wrap justify-center '>
                 {ads.list.map((ad) => (
