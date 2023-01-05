@@ -6,7 +6,7 @@ import { BsTelephoneFill } from 'react-icons/bs'
 import { FaMapMarkerAlt } from 'react-icons/fa'
 
 type Props = {
-  className: string
+  className?: string
 }
 
 const ContactDetails = (props: Props) => {
@@ -18,14 +18,14 @@ const ContactDetails = (props: Props) => {
       {/* GREEN CONTACT BOX */}
       <div
         area-label='contact-data'
-        className='px-6 py-6
+        className='px-[30px] py-[30px] 
         flex flex-col items-center justify-center gap-3 rounded-[inherit] 
-        text-gray bg-lightBeige lg:bg-lightGreen
-        w-[90%]
+        text-gray bg-lightBeige xl:bg-lightGreen xl:text-white
+        w-[100%]
         lg:items-start'
       >
         {/* NAME */}
-        <h3 className='self-center text-2xl font-bold text-center w-full'>
+        <h3 className='self-center text-xl font-bold text-center w-full'>
           {ads.ad?.user.name}
         </h3>
 

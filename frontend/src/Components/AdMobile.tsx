@@ -1,12 +1,16 @@
 import useAds from "../Hooks/useAds"
 import avatar from '../assets/images/Account_profilDefault.png'
 import useUser from "../Hooks/useUser"
+import Spinner from "./Spinner"
+
 
 
 function AdMobile() {
 
   const ads = useAds()
   const user = useUser()
+  
+  if(ads.isLoading) return <Spinner />
 
   return (
     <div className='px-2 py-[0px] w-full  sm:px-3 '>
@@ -25,24 +29,24 @@ function AdMobile() {
             </div>
           </div>
 
-          <div className='px-2 w-[160px] flex flex-col justify-center items-start sm:w-[250px]'>
-            <div className='w-[150px] flex'>
+          <div className='px-2 pt-1 w-[100%] flex flex-col justify-center items-start sm:w-[70%]'>
+            <div className='w-[100%] flex'>
               {/* Title, Sector */}
               <div className='self-start  text-textBlack'>
-                <p className='text-[18px] text-textBlack'>{ads.ad?.title}</p>
-                <p className='text-[16px] text-textBlack text-opacity-50'>
+                <p className='sm:text-[18px] text-textBlack'>{ads.ad?.title}</p>
+                <p className='sm:text-[16px] text-textBlack text-opacity-50'>
                   {ads.ad?.sector}
                 </p>
               </div>
             </div>
 
-            <div className='w-[150px] flex  gap-1 sm:w-[200px]'>
+            <div className='w-[150px] p-2 flex  gap-1 sm:w-[200px]'>
               {/* Location */}
-              <div className='p-1  w-[100px] flex justify-center items-center  border-2  text-[10px] text-textBlack text-opacity-50 text-center border-lightBeige rounded-full md:w-[120px] sm:text-[12px]'>
+              <div className='px-2 py-1  w-[100px] flex justify-center items-center  border-2  text-[12px] text-textBlack text-opacity-50 text-center border-lightBeige rounded-full md:w-[120px] sm:text-[14px]'>
                 <p>{ads.ad?.location}</p>
               </div>
               {/* Category */}
-              <div className='p-1  w-[100px] flex justify-center items-center text-[10px] text-textBlack text-opacity-50 rounded-full bg-lightBeige sm:w-[120px] sm:text-[12px]'>
+              <div className='px-2 py-1  w-[100px] flex justify-center items-center text-[12px] text-textBlack text-opacity-50 rounded-full bg-lightBeige sm:w-[120px] sm:text-[14px]'>
                 <p>{ads.ad?.category}</p>
               </div>
             </div>
