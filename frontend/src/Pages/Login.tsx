@@ -14,6 +14,8 @@ import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import { notify } from '../utils/toastNotification'
 import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai'
+// framer-motion
+import {motion} from 'framer-motion'
 
 type Props = {}
 
@@ -73,7 +75,11 @@ const Login = (props: Props) => {
   }
 
   return (
-    <div className='pt-5 h-full min-h-[950px] flex flex-col items-center justify-center lg:flex-row '>
+    <motion.div
+      initial={{ width: '100%'}}
+      animate={ {width: '100%'}}
+      exit={{x:window.innerWidth}} 
+      className='pt-5 h-full min-h-[950px] flex flex-col items-center justify-center lg:flex-row '>
       {/* GREEN SEMICIRCLE */}
       <div className='w-[100px] h-[100px]  hidden absolute right-[-50px] top-[20.4rem] z-10 bg-lightGreen rounded-full xl:block' />
 
@@ -169,7 +175,7 @@ const Login = (props: Props) => {
         </div>
       </div>
       <ToastContainer position='top-right' />
-    </div>
+    </motion.div>
   )
 }
 

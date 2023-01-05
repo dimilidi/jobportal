@@ -12,6 +12,8 @@ import { ToastContainer, toast } from 'react-toastify'
 import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai'
 // Images
 import RegisterCouple from '../assets/images/Register_couple.png'
+// framer-motion
+import {motion} from 'framer-motion'
 
 type Props = {}
 
@@ -69,7 +71,11 @@ const Register = (props: Props) => {
   }
 
   return (
-    <div className='pt-5 h-full min-h-[950px] flex flex-col items-center justify-center lg:flex-row'>
+    <motion.div
+      initial={{ width: '100%'}}
+      animate={ {width: '100%'}}
+      exit={{x:window.innerWidth}}  
+      className='pt-5 h-full min-h-[950px] flex flex-col items-center justify-center lg:flex-row'>
 
     {/* Line */}
     <div className='w-[47%] absolute
@@ -205,7 +211,7 @@ const Register = (props: Props) => {
       />
 
     <ToastContainer position='top-right' />
-  </div>
+  </motion.div>
   )
 }
 
