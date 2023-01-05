@@ -4,18 +4,19 @@ import { MdMail , MdCall, MdLocationOn } from "react-icons/md"
 import useUser from "../Hooks/useUser"
 
 
-type Props = {}
+type Props = {
+  style?:{}
+}
 
-function UserCard({}: Props) {
+function UserCard(props: Props) {
 
   const user = useUser()
 
   return (
     <div
-      // User Card
-          className='mt-[30%]
-            min-w-[375px]
-            max-w-[450px]
+      // USER CARD
+     style={props.style}
+          className='mt-[0%] w-[100%] max-w-[450px]
             flex flex-col justify-center relative  
             shadow-standard 
             rounded-bl-[65px] rounded-br-[65px]
@@ -23,7 +24,7 @@ function UserCard({}: Props) {
             sm:justify-center lg:mt-[10%] lg:justify-self-center
             '
         >
-          {/* Avatar BG Halfcircle */}
+          {/* AVATAR BG SEMICIRCLE */}
           <div
             className='
             flex justify-center'
@@ -38,7 +39,7 @@ function UserCard({}: Props) {
           </div>
           {/* .................... */}
 
-          {/* Avatar Circle Container */}
+          {/* AVATAR CIRCLE CONTAINER */}
           <div
             className='
             w-[100%] h-[6em] 
