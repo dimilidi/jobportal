@@ -93,15 +93,15 @@ const SingleAd = () => {
           </div>
 
           {/* DO NOT show button if ad belongs to the user  */}
-          {user.user?.name === ads.ad?.user.name ? (
+          {/* {user.user?.name === ads.ad?.user.name ? (
             ''
-          ) : (
+          ) : ( */}
             <UniButton
               text='Contact'
               onClick={handleClick}
               className='my-7 self-center mb-2 lg:mb-0'
             />
-          )}
+          {/* )} */}
         </div> 
         {/* Ad - END */}
       {/* </div> */}
@@ -138,7 +138,7 @@ const SingleAd = () => {
       <img
         src={thinkingGirl}
         alt='illustration of girl in front of laptop'
-        className='hidden xl:w-[200px] xl:h-[190px] xl:absolute xl:bottom-[10px] xl:left-[14%] xl:block lg:z-30'
+        className='hidden xl:w-[250px] xl:absolute xl:bottom-[30px] xl:left-[14%] xl:block lg:z-30'
       />
       {/* image - END */}
 
