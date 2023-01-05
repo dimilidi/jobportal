@@ -6,19 +6,38 @@ import UniButton from '../Components/UniButton'
 import Ad from '../Components/Ad'
 import UniButtonWhite from '../Components/UniButtonWhite'
 import UserCard from '../Components/UserCard'
+import { useEffect, useState } from 'react'
+import useUser from '../Hooks/useUser'
+import { Ad as AdType } from '../type'
 // framer-motion
-import {motion} from 'framer-motion'
-
+import { motion } from 'framer-motion'
 
 const Account = () => {
   const navigate = useNavigate()
   const ads = useAds()
+  const user = useUser().user
+  const [userAds, setUserAds] = useState<AdType[] | []>([])
+
+  useEffect(() => {
+    if (!user) {
+      navigate('/auth-required')
+    }
+  }, [user])
+
+  useEffect(() => {
+    if (user) {
+      const _userAds = ads.list.filter((ad) => ad.user._id === user?._id)
+      setUserAds(_userAds)
+    }
+  }, [user])
+
   return (
     <motion.div
-    initial={{ width: '100%'}}
-    animate={ {width: '100%'}}
-    exit={{x:window.innerWidth}} 
-    className='mx-auto pt-[120px] pb-10 w-full h-full min-h-[1200px] flex flex-col items-center justify-center gap-10 lg:pt-0 lg:min-h-[970px] lg:flex-row lg:gap-0'>
+      initial={{ width: '100%' }}
+      animate={{ width: '100%' }}
+      exit={{ x: window.innerWidth }}
+      className='mx-auto pt-[120px] pb-10 w-full h-full min-h-[1200px] flex flex-col items-center justify-center gap-10 lg:pt-0 lg:min-h-[970px] lg:flex-row lg:gap-0'
+    >
       {/* SEMICIRCLE */}
       <div className='w-24 h-24 hidden absolute right-[-3rem] top-[210px] rounded-full bg-lightGreen md:hidden lg:block lg:top-[170px]' />
 
@@ -56,9 +75,11 @@ const Account = () => {
         {/* Version 2: ads ?  user.ads : 'You don't have ads yet' */}
         <div className='mt-[30px] w-full h-full flex flex-wrap justify-center items-start rounded-[21px] sm:px-5 sm:mt-3 sm:mb-20 sm:w-[600px] sm:h-[552px] sm:overflow-y-scroll md:w-[100%] md:h-[440px] lg:px-0 lg:mb-0 lg:h-[500px]'>
           <div className='w-full flex flex-wrap justify-center items-center'>
-            {ads.list.map((ad) => (
-              <Ad key={ad._id} ad={ad} />
-            ))}
+            {userAds.length === 0 ? (
+              <div>You have currently no ads yet</div>
+            ) : (
+              userAds.map((ad) => <Ad key={ad._id} ad={ad} />)
+            )}
           </div>
         </div>
       </div>
