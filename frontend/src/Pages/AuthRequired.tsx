@@ -4,6 +4,8 @@ import { useNavigate } from 'react-router-dom'
 import UniButton from '../Components/UniButton'
 import UniButtonWhite from '../Components/UniButtonWhite'
 import BrowseJobs from '../Components/BrowseJobs'
+// framer-motion
+import {motion} from 'framer-motion'
 // Images
 import DeliveryGuy from '../assets/images/AuthRequired_delivery_guy.png'
 
@@ -19,7 +21,11 @@ const AuthRequired = () => {
   }
 
   return (
-    <section className='pb-20 mx-auto  pr-2 w-[90%] h-full min-h-[910px] flex justify-center flex-col items-center sm:w-[60%] lg:w-[50%] md:pt-[0]'>
+    <motion.section
+    initial={{ width: '100%'}}
+    animate={ {width: '100%'}}
+    exit={{x:window.innerWidth}} 
+    className='pb-20 mx-auto  pr-2 w-[90%] h-full min-h-[910px] flex justify-center flex-col items-center sm:w-[60%] lg:w-[50%] md:pt-[0]'>
       {/* ICON & BROWSE JOBS */}
       <div className='w-full flex p-5'>
         <BrowseJobs />
@@ -81,7 +87,7 @@ const AuthRequired = () => {
         {/* IMAGES END */}
       </div>
       {/* MAIN CONTAINER END */}
-    </section>
+    </motion.section>
   )
 }
 

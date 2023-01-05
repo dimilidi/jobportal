@@ -14,6 +14,7 @@ import 'react-toastify/dist/ReactToastify.css'
 import imagePostAd from '../assets/images/PostAd_chef.png'
 // Others
 import axiosInstance from '../api/axiosInstance'
+import { motion } from 'framer-motion'
 
 const PostAd = () => {
   // CONSTANTS
@@ -33,13 +34,6 @@ const PostAd = () => {
   >()
   const [checked, setChecked] = useState({ email: false, phone: false })
   // const [image, setImage] = useState('')
-
-  // Send to auth-required, when user is not logged in
-  useEffect(() => {
-    if (!user.user) {
-      navigate('/auth-required')
-    }
-  }, [user.user])
 
   // HANDLE CONTACT_VIA (according checkbox)
   useEffect(() => {
@@ -96,13 +90,17 @@ const PostAd = () => {
     ads.setIsLoading(false)
   }
 
-  // POST AD BUTTON NAVIGATE TO /auth-req when user not logged in 
-  const handleNavigateClick = () => {
-    if (user.isLoggedIn === false ) navigate('/auth-required')
+  // POST AD BTN NAVIGATE TO /auth-req when user not logged in
+  const handleNavigateifUserNotLoggedIn = () => {
+    if (user.isLoggedIn === false) navigate('/auth-required')
   }
 
   return (
-    <>
+    <motion.div
+      initial={{ width: '100%' }}
+      animate={{ width: '100%' }}
+      exit={{ x: window.innerWidth }}
+    >
       <div
         area-label='page-postAd'
         className='h-full lg:pt-0 mt-[0px] relative flex justify-center items-center text-Black '
@@ -341,22 +339,23 @@ const PostAd = () => {
                 </div>
               </div>
             </div>
-          </div>
-          {/* BUTTON - POST AD */}
-          <UniButton
-            onClick={handleNavigateClick}
-            area-label='postAdButton'
-            text={ads.isLoading ? <Spinner /> : 'Post Ad'}
-            className='my-7 mx-auto w-[200px] self-center  md:mb-0 lg:w-[250px]'
-          />
-        </form>
+            {/* BUTTON - POST AD */}
+            <UniButton
+              onClick={handleNavigateifUserNotLoggedIn}
+              area-label='postAdButton'
+              text={ads.isLoading ? <Spinner /> : 'Post Ad'}
+              className='my-7 mx-auto w-[200px] self-center  md:mb-0 lg:w-[250px]'
+            />
+          </form>
+        </div>
+        <ToastContainer position='top-right' />
       </div>
       {/* IMAGE */}
       <img
         className='w-[200]  lg:w-[260px] lg:h-[330px] hidden absolute bottom-[0px] right-[0px]  sm:block z-30 lg:right-[20px] xl:right-[60px]'
         src={imagePostAd}
       ></img>
-    </>
+    </motion.div>
   )
 }
 

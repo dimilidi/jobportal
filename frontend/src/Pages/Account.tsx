@@ -9,6 +9,8 @@ import UserCard from '../Components/UserCard'
 import { useEffect, useState } from 'react'
 import useUser from '../Hooks/useUser'
 import { Ad as AdType } from '../type'
+// framer-motion
+import { motion } from 'framer-motion'
 
 const Account = () => {
   const navigate = useNavigate()
@@ -30,7 +32,12 @@ const Account = () => {
   }, [user])
 
   return (
-    <div className='mx-auto pt-[120px] pb-10 w-full h-full min-h-[1200px] flex flex-col items-center justify-center gap-10 lg:pt-0 lg:min-h-[970px] lg:flex-row lg:gap-0'>
+    <motion.div
+      initial={{ width: '100%' }}
+      animate={{ width: '100%' }}
+      exit={{ x: window.innerWidth }}
+      className='mx-auto pt-[120px] pb-10 w-full h-full min-h-[1200px] flex flex-col items-center justify-center gap-10 lg:pt-0 lg:min-h-[970px] lg:flex-row lg:gap-0'
+    >
       {/* SEMICIRCLE */}
       <div className='w-24 h-24 hidden absolute right-[-3rem] top-[210px] rounded-full bg-lightGreen md:hidden lg:block lg:top-[170px]' />
 
@@ -76,7 +83,7 @@ const Account = () => {
           </div>
         </div>
       </div>
-    </div>
+    </motion.div>
   )
 }
 

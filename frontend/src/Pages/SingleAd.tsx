@@ -9,6 +9,8 @@ import 'react-toastify/dist/ReactToastify.css'
 import { notify } from '../utils/toastNotification'
 // Images
 import thinkingGirl from '../assets/images/SingleAd_girl.png'
+// framer-motion
+import {motion} from 'framer-motion'
 
 import useUser from '../Hooks/useUser'
 import useAds from '../Hooks/useAds'
@@ -33,7 +35,10 @@ const SingleAd = (props: Props) => {
   console.log(ads)
 
   return (
-    <div
+    <motion.div
+      initial={{ width: '100%'}}
+      animate={ {width: '100%'}}
+      exit={{x:window.innerWidth}} 
       area-label='page-singleAd'
       className=' h-full flex flex-col items-start text-textBlack '
     >
@@ -125,7 +130,7 @@ const SingleAd = (props: Props) => {
 
       {/* fixed or absolute elements - Circle, Line, ContactDetails in Desktop, Image, Toaster - END */}
       {/* test */}
-    </div>
+    </motion.div>
   )
 }
 
