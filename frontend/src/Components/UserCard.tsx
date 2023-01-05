@@ -22,7 +22,7 @@ function UserCard(props: Props) {
     <div
       // USER CARD
       style={props.style}
-      className='mt-[0%] w-[100%] max-w-[450px]
+      className='mt-[0%] w-[100%] max-w-[450px] min-h-[550px]
             flex flex-col justify-center relative  
             shadow-standard 
             rounded-bl-[65px] rounded-br-[65px]
@@ -71,24 +71,25 @@ function UserCard(props: Props) {
         >
           {user?.name}
         </h1>
-        {user?.name && (
+        {user?.sector && (
           <h2
             className='
               mb-6 
               flex justify-center 
               text-[1.8rem] font-light'
           >
-            Profession: ...
-            {/* {user.user?.sector} */}
+            {user.sector}
           </h2>
         )}
       </div>
 
       {/* Description Heading and Description */}
-      <div className='pl-9 pr-9'>
-        <h3 className='mb-1 text-[16px] font-[600]'>Description</h3>
-        <p className='text-[15px] text-[gray]'>{user?.description}</p>
-      </div>
+      {user?.description && (
+        <div className='pl-9 pr-9'>
+          <h3 className='mb-1 text-[16px] font-[600]'>Description</h3>
+          <p className='text-[15px] text-[gray]'>{user?.description}</p>
+        </div>
+      )}
 
       {/* Contact Data */}
       <div
@@ -102,14 +103,18 @@ function UserCard(props: Props) {
           {' '}
           <MdMail /> {user?.email}
         </div>
-        <div className='flex flex-row gap-4 items-center text-gray leading-relaxed'>
-          {' '}
-          <MdCall /> {user?.phone}
-        </div>
-        <div className='flex flex-row gap-4 items-center text-gray leading-relaxed'>
-          {' '}
-          <MdLocationOn /> {user?.city}
-        </div>
+        {user?.phone && (
+          <div className='flex flex-row gap-4 items-center text-gray leading-relaxed'>
+            {' '}
+            <MdCall /> {user?.phone}
+          </div>
+        )}
+        {user?.city && (
+          <div className='flex flex-row gap-4 items-center text-gray leading-relaxed'>
+            {' '}
+            <MdLocationOn /> {user?.city}
+          </div>
+        )}
       </div>
 
       {/* Edit Profile Button Wrapper */}

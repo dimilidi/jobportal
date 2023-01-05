@@ -9,6 +9,25 @@ export type User = {
   phone: string
 }
 
+export type Ad = {
+  _id: string
+  title: string
+  category: string
+  sector: string
+  description: string
+  location: string
+  wage: number
+  contactVia: string
+  createdAt: Date
+  user: {
+    _id: string
+    name: string
+    email: string
+    phone: string
+    city: string
+  }
+}
+
 export type RegisterInputs = {
   name: string
   email: string
