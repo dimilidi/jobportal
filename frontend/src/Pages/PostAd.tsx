@@ -86,7 +86,7 @@ const PostAd = () => {
     ads.setIsLoading(false)
   }
 
-  // POST AD BUTTON NAVIGATE TO /auth-req when user not logged in 
+  // POST AD BTN NAVIGATE TO /auth-req when user not logged in 
   const handleNavigateifUserNotLoggedIn = () => {
     if (user.isLoggedIn === false ) navigate('/auth-required')
   }
