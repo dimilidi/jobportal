@@ -87,7 +87,7 @@ const PostAd = () => {
   }
 
   // POST AD BUTTON NAVIGATE TO /auth-req when user not logged in 
-  const handleNavigateClick = () => {
+  const handleNavigateifUserNotLoggedIn = () => {
     if (user.isLoggedIn === false ) navigate('/auth-required')
   }
 
@@ -316,7 +316,7 @@ const PostAd = () => {
           </div>
           {/* BUTTON - POST AD */}
           <UniButton
-            onClick={handleNavigateClick}
+            onClick={handleNavigateifUserNotLoggedIn}
             area-label='postAdButton'
             text={ads.isLoading ? <BiLoaderAlt /> : 'Post Ad'}
             className='my-7 mx-auto w-[200px] self-center  md:mb-0 lg:w-[250px]'
