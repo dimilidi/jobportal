@@ -1,14 +1,19 @@
+// Hooks
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import axiosInstance from '../api/axiosInstance'
 import useAds from '../Hooks/useAds'
-import { ToastContainer, toast } from 'react-toastify'
+import useUser from '../Hooks/useUser'
+// Components
+import UniButton from '../Components/UniButton'
+import Spinner from '../Components/Spinner'
+// Notification
+import { ToastContainer } from 'react-toastify'
+import { notify } from '../utils/toastNotification'
+// Style
 import 'react-toastify/dist/ReactToastify.css'
 import imagePostAd from '../assets/images/PostAd_chef.png'
-import UniButton from '../Components/UniButton'
-import { notify } from '../utils/toastNotification'
-import { BiLoaderAlt } from 'react-icons/bi'
-import useUser from '../Hooks/useUser'
+// Others
+import axiosInstance from '../api/axiosInstance'
 
 
 
@@ -25,11 +30,10 @@ const PostAd = () => {
   const [location, setLocation] = useState('')
   const [wage, setWage] = useState<number | string>('')
   const [category, setCategory] = useState('')
+  const [sector, setSector] = useState('')
   const [contactVia, setContactVia] = useState<[string, string] | [string] | []>()
   const [checked, setChecked] = useState({ email: false, phone: false })
   // const [image, setImage] = useState('')
-
- 
 
  
   // HANDLE CONTACT_VIA (according checkbox)
@@ -56,6 +60,7 @@ const PostAd = () => {
     const ad = {
       title,
       category,
+      sector,
       description,
       location,
       wage,
@@ -185,7 +190,7 @@ const PostAd = () => {
               </div>
             </div>
 
-            {/* TITLE && CITY */}
+            {/* TITLE && CITY && SECTOR */}
             <div
               area-label='inputs colum'
               className='w-full mt-3 flex flex-col items-center justify-center'
@@ -227,6 +232,24 @@ const PostAd = () => {
                   placeholder='City'
                   value={location}
                   onChange={(e) => setLocation(e.target.value)}
+                />
+                </div>
+
+                <div className='w-full flex flex-col  lg:w-[35%]'>
+                <label
+                  area-label='city'
+                  htmlFor='city'
+                  className='form-label hidden mb-0 text-gray font-semibold lg:inline-block'
+                >
+                  Sector
+                </label>
+                <input
+                  type='text'
+                  name='city'
+                  className='py-1 px-5 form-control box-border  text-gray rounded-lg border-2 border-lightGray border-opacity-50 placeholder:text-sm  focus:outline-lightGray'
+                  placeholder='Sector'
+                  value={sector}
+                  onChange={(e) => setSector(e.target.value)}
                 />
                 </div>
 
@@ -318,7 +341,7 @@ const PostAd = () => {
           <UniButton
             onClick={handleNavigateifUserNotLoggedIn}
             area-label='postAdButton'
-            text={ads.isLoading ? <BiLoaderAlt /> : 'Post Ad'}
+            text={ads.isLoading ? <Spinner /> : 'Post Ad'}
             className='my-7 mx-auto w-[200px] self-center  md:mb-0 lg:w-[250px]'
           />
         </form>

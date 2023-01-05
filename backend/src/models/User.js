@@ -10,7 +10,7 @@ const userSchema = mongoose.Schema({
   avatar: String,
   city: String,
   description: String,
-  phone: String,
+  phone: String
 })
 
 userSchema.statics.findByEmail = function (email) {
