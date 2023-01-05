@@ -31,7 +31,6 @@ const SmoothPages = () => {
             <Route path='*' element={<NotFound />} />
         </Routes>
     </AnimatePresence>
-    // test test 
   )
 }
 
