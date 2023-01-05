@@ -35,6 +35,11 @@ const PostAd = () => {
   const [checked, setChecked] = useState({ email: false, phone: false })
   // const [image, setImage] = useState('')
 
+  // If user is not logged in, navigate to auth-required
+  useEffect(() => {
+    if (!user) navigate('/auth-required')
+  }, [])
+
   // HANDLE CONTACT_VIA (according checkbox)
   useEffect(() => {
     if (checked.email && checked.phone) {
