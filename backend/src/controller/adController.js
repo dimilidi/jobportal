@@ -13,7 +13,7 @@ export async function postAd(req, res) {
 
   const newAd = new Ad({
     ...ad,
-    user: user._id, 
+    user: user._id,
   })
 
   await newAd.save()
@@ -25,7 +25,7 @@ export async function postAd(req, res) {
 export async function getAdById(req, res) {
   const user = req.user
   const adId = req.params.id
-  let ad =  Ad.findById(adId)
+  let ad = Ad.findById(adId)
 
   // if user is NOT logged in, populate only name of ad-creator
   let itemToPopulate = 'name'
