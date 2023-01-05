@@ -96,6 +96,11 @@ const PostAd = () => {
     ads.setIsLoading(false)
   }
 
+  // POST AD BUTTON NAVIGATE TO /auth-req when user not logged in 
+  const handleNavigateClick = () => {
+    if (user.isLoggedIn === false ) navigate('/auth-required')
+  }
+
   return (
     <>
       <div
@@ -336,16 +341,15 @@ const PostAd = () => {
                 </div>
               </div>
             </div>
-            {/* BUTTON - POST AD */}
-            <button></button>
-            <UniButton
-              area-label='postAdButton'
-              text={ads.isLoading ? <Spinner /> : 'Post Ad'}
-              className='my-7 mx-auto w-[200px] self-center  md:mb-0 lg:w-[250px]'
-            />
-          </form>
-        </div>
-        <ToastContainer position='top-right' />
+          </div>
+          {/* BUTTON - POST AD */}
+          <UniButton
+            onClick={handleNavigateClick}
+            area-label='postAdButton'
+            text={ads.isLoading ? <Spinner /> : 'Post Ad'}
+            className='my-7 mx-auto w-[200px] self-center  md:mb-0 lg:w-[250px]'
+          />
+        </form>
       </div>
       {/* IMAGE */}
       <img
