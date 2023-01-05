@@ -76,9 +76,9 @@ const Register = (props: Props) => {
       z-10 min-w-[220px]
       right-0 top-[405px]
       border-b-[3px] border-lightGreen
-      sm:top-[385px] sm:right-0 sm:block
+      // sm:top-[385px] sm:right-0 sm:block
       lg:min-w-[68.5%] lg:top-[335px]
-      xl:w-[65%] xl:top-[340px]
+      // xl:w-[65%] xl:top-[340px]
       2xl:min-w-[60%] 2xl:top-[345px]' />
 
     {/* GREEN SEMICIRCLE */}
@@ -186,14 +186,14 @@ const Register = (props: Props) => {
           <p className='mt-2 w-full text-center text-lightGray underline text-[14px] lg:text-center 2xl:text-right'>
             <Link to='/login'>or log in here</Link>
           </p>
-
           {/* ERRORS */}
           {errors &&
             errors.map((error) => (
-              <p key={error} className='absolute mt-[30rem] text-red-600 self-start'>
+              <p key={error} className='mt-1 text-red-600 self-start'>
                 {error}
               </p>
             ))}
+
         </form>
       </div>
     </div>
