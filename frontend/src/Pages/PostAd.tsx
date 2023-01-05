@@ -14,6 +14,7 @@ import 'react-toastify/dist/ReactToastify.css'
 import imagePostAd from '../assets/images/PostAd_chef.png'
 // Others
 import axiosInstance from '../api/axiosInstance'
+import {motion} from 'framer-motion'
 
 
 
@@ -98,7 +99,10 @@ const PostAd = () => {
 
 
   return (
-    <>
+    <motion.div
+    initial={{ width: '100%'}}
+    animate={ {width: '100%'}}
+    exit={{x:window.innerWidth}} >
     <div
       area-label='page-postAd'
       className='h-full lg:pt-0 mt-[0px] relative flex justify-center items-center text-Black '
@@ -353,7 +357,7 @@ const PostAd = () => {
         className='w-[200]  lg:w-[260px] lg:h-[330px] hidden absolute bottom-[0px] right-[0px]  sm:block z-30 lg:right-[20px] xl:right-[60px]'
         src={imagePostAd}
       ></img>
-    </>
+    </motion.div>
   )
 }
 
