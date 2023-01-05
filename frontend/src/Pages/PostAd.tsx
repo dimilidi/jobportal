@@ -14,6 +14,7 @@ import 'react-toastify/dist/ReactToastify.css'
 import imagePostAd from '../assets/images/PostAd_chef.png'
 // Others
 import axiosInstance from '../api/axiosInstance'
+import {motion} from 'framer-motion'
 
 
 
@@ -91,9 +92,17 @@ const PostAd = () => {
     ads.setIsLoading(false)
   }
 
+  // POST AD BTN NAVIGATE TO /auth-req when user not logged in 
+  const handleNavigateifUserNotLoggedIn = () => {
+    if (user.isLoggedIn === false ) navigate('/auth-required')
+  }
+
 
   return (
-    <>
+    <motion.div
+    initial={{ width: '100%'}}
+    animate={ {width: '100%'}}
+    exit={{x:window.innerWidth}} >
     <div
       area-label='page-postAd'
       className='h-full lg:pt-0 mt-[0px] relative flex justify-center items-center text-Black '
@@ -333,9 +342,8 @@ const PostAd = () => {
             </div>
           </div>
           {/* BUTTON - POST AD */}
-          <button>
-          </button>
           <UniButton
+            onClick={handleNavigateifUserNotLoggedIn}
             area-label='postAdButton'
             text={ads.isLoading ? <Spinner /> : 'Post Ad'}
             className='my-7 mx-auto w-[200px] self-center  md:mb-0 lg:w-[250px]'
@@ -349,7 +357,7 @@ const PostAd = () => {
         className='w-[200]  lg:w-[260px] lg:h-[330px] hidden absolute bottom-[0px] right-[0px]  sm:block z-30 lg:right-[20px] xl:right-[60px]'
         src={imagePostAd}
       ></img>
-    </>
+    </motion.div>
   )
 }
 

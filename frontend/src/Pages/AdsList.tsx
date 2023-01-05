@@ -6,6 +6,8 @@ import useUser from '../Hooks/useUser'
 import Ad from '../Components/Ad'
 import UniButton from '../Components/UniButton'
 import Spinner from '../Components/Spinner'
+// framer-motion
+import {motion} from 'framer-motion'
 // Images
 import man from '../assets/images/Ads_man_working.png'
 
@@ -25,7 +27,11 @@ const AdsList = () => {
   }
 
   return (
-    <div className='pt-[120px] pb-[80px] h-full w-full min-h-[920px]'>
+    <motion.div
+    initial={{ width: '100%'}}
+    animate={ {width: '100%'}}
+    exit={{x:window.innerWidth}} 
+    className='pt-[120px] pb-[80px] h-full w-full min-h-[920px]'>
       {/* LOADING SPINNER */}
       {ads.isLoading ? (
         <Spinner />
@@ -83,7 +89,7 @@ const AdsList = () => {
           </div>
         </>
       )}
-    </div>
+    </motion.div>
   )
 }
 
