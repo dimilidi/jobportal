@@ -14,6 +14,8 @@ import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import { notify } from '../utils/toastNotification'
 import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai'
+// framer-motion
+import {motion} from 'framer-motion'
 
 type Props = {}
 
@@ -41,6 +43,7 @@ const Login = (props: Props) => {
     errors?.map((error) => notify(error))
   }, [errors])
 
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputs((prev) => ({
       ...prev,
@@ -60,7 +63,7 @@ const Login = (props: Props) => {
       setErrors(['You are not authorized to login! Please check your input'])
     if (response.status === 400) setErrors(response.errors)
     if (response.status === 500) setErrors(['Something went wrong!'])
-    setInputs(initialInputs)
+    // setInputs(initialInputs)
     setFetching(false)
   }
 
@@ -73,7 +76,11 @@ const Login = (props: Props) => {
   }
 
   return (
-    <div className='pt-5 h-full min-h-[950px] flex flex-col items-center justify-center lg:flex-row '>
+    <motion.div
+      initial={{ width: '100%'}}
+      animate={ {width: '100%'}}
+      exit={{x:window.innerWidth}} 
+      className='pt-5 h-full min-h-[950px] flex flex-col items-center justify-center lg:flex-row '>
       {/* GREEN SEMICIRCLE */}
       <div className='w-[100px] h-[100px]  hidden absolute right-[-50px] top-[20.4rem] z-10 bg-lightGreen rounded-full xl:block' />
 
@@ -150,7 +157,7 @@ const Login = (props: Props) => {
             {/* LOGIN BUTTON */}
             <UniButton
               text={fetching ? <Spinner /> : 'Login'}
-              className='mt-[1rem] w-[250px] text-lg sm:text-lg lg:self-end'
+              className='mt-[1rem] w-[250px] text-lg sm:text-lg lg:self-end flex justify-center'
               style={{ padding: '10px' }}
             />
 
@@ -169,7 +176,7 @@ const Login = (props: Props) => {
         </div>
       </div>
       <ToastContainer position='top-right' />
-    </div>
+    </motion.div>
   )
 }
 

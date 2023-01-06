@@ -1,95 +1,136 @@
+// Hooks
 import { useNavigate } from 'react-router-dom'
+import useUser from '../Hooks/useUser'
+import useAds from '../Hooks/useAds'
+// Components
 import ContactDetails from '../Components/ContactDetails'
 import UniButton from '../Components/UniButton'
 import AdMobile from '../Components/AdMobile'
 import Spinner from '../Components/Spinner'
+import BrowseJobs from '../Components/BrowseJobs'
 // Libraries
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import { notify } from '../utils/toastNotification'
 // Images
 import thinkingGirl from '../assets/images/SingleAd_girl.png'
+// Framer-motion
+import { motion } from 'framer-motion'
+import { IoMdHeadset } from 'react-icons/io'
 
-import useUser from '../Hooks/useUser'
-import useAds from '../Hooks/useAds'
-import BrowseJobs from '../Components/BrowseJobs'
+const SingleAd = () => {
 
-type Props = {}
-
-const SingleAd = (props: Props) => {
+  // CONSTANTS
   const user = useUser()
   const ads = useAds()
-
   const navigate = useNavigate()
 
+ // HANDLE CLICK
   const handleClick = () => {
-    !user && navigate('/auth-required')
-    user && notify('Contact page is not available')
+    if (user.isLoggedIn === false) navigate('/auth-required')
+    // navigate('/contact')
   }
 
-  // Show Spinner if isLoading
-  if (ads.isLoading) {
-    return <Spinner />
-  }
-  console.log(ads)
+
 
   return (
-    <div
+    <motion.div
+      initial={{ width: '100%' }}
+      animate={{ width: '100%' }}
+      exit={{ x: window.innerWidth }}
       area-label='page-singleAd'
-      className='pt-[10%] h-full flex flex-col items-center text-textBlack md:min-h-[800px]'
+      className='pt-[120px]  pb-20 w-[95%] h-full  min-h-[900px] flex flex-col items-center justify-center text-textBlack md:pt-[140px] xl:pt-[120px] '
     >
-      <div area-label='wrapper' className='flex justify-center h-full min-h-[900px]'>
-        {/* Main part of single ad */}
+      {/* <div
+        area-label='wrapper'
+        className='w-full h-full flex justify-center items-center flex-col  '
+      > */}
+        {/* MAIN PART OF SINGLE AD */}
 
         <div
           area-label='main'
-          className='w-full sm:w-[60%] flex flex-col justify-center lg:justify-center lg:w-[60%]'
+          className='w-[95%] sm:max-w-[900px]  h-full flex flex-col justify-start sm:w-[80%] md:w-[70%]  lg:w-[50%] xl:w-[800px] md:min-h-[650px]  xl:min-h-full 
+        '
         >
-          <BrowseJobs />
+          
+
+          <BrowseJobs style={{paddingLeft:'10px', paddingBottom:'20px', alignSelf:'start'}}/>
+     
+       
 
           {/* Ad */}
           <div
             area-label='ad'
-            className='py-5 px-9 mt-8 mx-8 min-w-[270px] flex flex-col item-center z-10 rounded-[21px] bg-white shadow-standard sm:mx-0 lg:min-h-[400px]'
-          >
+            className='py-10 px-2 sm:px-5   sm:mx-0 sm:p-5 mt-0 mx-2 w-full min-h-[400px] sm:h-[400px] 
+            sm:w-[600px] xl:w-[800px] xl:h-[450px]
+            flex flex-col  justify-start item-center self-center z-10 rounded-[21px] bg-white shadow-standard 
+           
+            '
+          >  
+          
+           
             <AdMobile />
-            <div area-label='description' className='mt-3'>
+          
+          {!ads.isLoading && 
+            <div area-label='description' className='mt-3 px-3 sm:max-h-[230px] sm:overflow-y-scroll'>
               <h3 className='text-[20px]'>Description</h3>
-              <p className='mt-2 text-gray/80'>{ads.ad?.description}</p>
+              <p className='text-[14px] text-justify mt-2 text-gray/80'>{ads.ad?.description}</p>
             </div>
+          }
+          </div> 
+         
+
+          {/* ContactDetails MOBILE - If user exists, show ContactDetails */}
+          <div className='flex justify-center '>
+            {user.user && (
+              <ContactDetails
+                className=' w-[100%] max-w-[340px] pt-10 
+              sm:w-[80%]
+              lg:w-[800px]
+              flex justify-center self-center rounded-xl xl:hidden'
+              />
+            )}
           </div>
-          <UniButton
-            text='Contact'
-            onClick={handleClick}
-            className='my-7 self-center lg:mb-0'
-          />
-        </div>
+
+          {/* DO NOT show button if ad belongs to the user  */}
+          {/* {user.user?.name === ads.ad?.user.name ? (
+            ''
+          ) : ( */}
+            <UniButton
+              text='Contact'
+              onClick={handleClick}
+              className='my-7 self-center mb-2 lg:mb-0'
+            />
+          {/* )} */}
+        </div> 
         {/* Ad - END */}
-
-        {/* Main part of single ad - END */}
-      </div>
-
-      {/* ContactDetails MOBILE - If user exists, show ContactDetails */}
-      {user.user && (
-        <ContactDetails className='w-[258px] h-[287px] flex justify-center self-center rounded-t-[65px] lg:hidden' />
-      )}
+      {/* </div> */}
+   
+      {/* Main part of single ad - END */}
 
       {/* fixed or absolute elements - Circle, Line, ContactDetails in Desktop, Image, Toaster */}
 
       {/* Circle and line in the background */}
       <div
         area-label='circle'
-        className='hidden lg:block lg:w-[332px] lg:h-[332px] lg:fixed lg:top-[50%] lg:left-[-250px] lg:translate-y-[-50%]  lg:rounded-full lg:bg-lightGreen'
+        className='hidden 
+        w-[332px] h-[332px] absolute lg:top-[470px] lg:left-[-230px] lg:translate-y-[-50%]  lg:rounded-full  lg:bg-lightGreen
+        xl:block'
       />
+
       <div
         area-label='line'
-        className='hidden lg:block lg:fixed lg:top-[50%] lg:translate-y-[-50%] lg:left-0 lg:border-b-2 lg:border-lightGreen w-screen'
+        className='hidden xl:block lg:absolute lg:top-[475px] lg:translate-y-[-50%] lg:left-0 lg:border-b-2 lg:border-lightGreen w-screen'
       />
       {/* Circle and line in the background - END */}
 
       {/* ContactDetails DESKTOP - If user exists, show ContactDetails */}
       {user.user && (
-        <ContactDetails className='hidden lg:w-[200px] lg:h-[300px] lg:flex lg:items-center lg:fixed lg:right-0 lg:top-[50%] lg:rounded-l-[65px] lg:translate-y-[-50%] xl:w-[230px]' />
+        <ContactDetails
+          className='hidden xl:block
+        w-[250px] m-8 absolute lg:items-center  -right-14 top-[435px] rounded-l-[65px] translate-y-[-50%] 
+        xl:min-w-[230px] xl:pl-5'
+        />
       )}
       {/* ContactDetails - END */}
 
@@ -97,14 +138,15 @@ const SingleAd = (props: Props) => {
       <img
         src={thinkingGirl}
         alt='illustration of girl in front of laptop'
-        className='hidden lg:w-[200px] lg:h-[190px] lg:absolute lg:bottom-[10px] lg:left-[14%] lg:block lg:z-30'
+        className='hidden xl:w-[220px] xl:absolute xl:bottom-[30px] xl:left-[14%] xl:block lg:z-30'
       />
       {/* image - END */}
 
       <ToastContainer position='bottom-right' />
 
       {/* fixed or absolute elements - Circle, Line, ContactDetails in Desktop, Image, Toaster - END */}
-    </div>
+      {/* test */}
+    </motion.div>
   )
 }
 

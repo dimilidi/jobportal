@@ -5,18 +5,55 @@ import UniButton from '../Components/UniButton'
 // Images & Icons
 import { GoSearch } from 'react-icons/go'
 import imageHome from '../assets/images/Home_group.png'
+// framer-motion
+import { motion } from 'framer-motion'
+import React, { useEffect } from 'react'
 
 const Home = () => {
   const navigate = useNavigate()
 
+  const futureText = React.useRef<HTMLSpanElement | null>(null)
+
+  useEffect(() => {
+    let prevLine: null | HTMLElement = null
+    const createLine = () => {
+      if (prevLine) prevLine.remove()
+      if (!futureText.current) return
+      const rect = futureText.current.getBoundingClientRect()
+      const line = document.createElement('div')
+      line.style.position = 'absolute'
+      line.style.top = rect.bottom - 10 + 'px'
+      line.style.left = '0px'
+      line.style.width = rect.right - 20 + 'px'
+      line.style.borderBottom = '2px solid #84A98C'
+      futureText.current.parentElement!.insertBefore(line, futureText.current)
+      prevLine = line
+    }
+    createLine()
+    window.addEventListener('resize', createLine)
+    return () => {
+      window.removeEventListener('resize', createLine)
+    }
+  }, [])
+
   return (
-    <div className='mx-auto lg:w-[90%] w-full h-full min-h-[918px] flex justify-center items-center lg:justify-end'>
+    <motion.div
+      initial={{ width: '100%' }}
+      animate={{ width: '100%' }}
+      exit={{ x: window.innerWidth }}
+      className='mx-auto lg:w-[90%] w-full h-full min-h-[918px] flex justify-center items-center lg:justify-end'
+    >
       <div className=' py-8  h-full   w-[100%]  sm:w-[50%] flex flex-col items-center justify-around gap-10 lg:ml-[85px] lg:gap-0  md:w-full lg:flex-row  md:flex-wrap md:justify-center  lg:justify-start  md:items-center  mx-auto'>
         {/* TEXT */}
         <div className='w-full flex flex-col items-center justify-center gap-6 md:w-[70%] lg:w-[50%]   '>
           <h1 className='text-[45px] leading-none font-medium text-textBlack sm:text-[53px] lg-text-7 xl:text-[80px] md:text-6xl '>
             Build your <br></br>
-            <span className='italic font-medium text-darkGreen'>Future. </span>
+            <span
+              ref={futureText}
+              className='italic font-medium text-darkGreen'
+            >
+              Future.{' '}
+            </span>
             Build <br />
             Your
             <span className='italic font-medium text-lightGreen'> Dream.</span>
@@ -56,10 +93,7 @@ const Home = () => {
       </div>
 
       {/* ELEMENTS (circle, lines) */}
-      <div
-        area-label='left line'
-        className='w-[53%] absolute z-10 left-0 top-[16.1rem] border-b-[2px] border-lightGreen lg:w-[35%] sm:top-[16.3rem] sm:w-[51%] md:top-[16.5rem] lg:top-[23.3rem] lg:border-b-[4px] xl:top-[23.7rem] xl:w-[32%]'
-      ></div>
+
       <div
         area-label='right line'
         className='w-[54%] absolute  top-[19rem] right-0 border-b-[2px] border-lightGreen  lg:w-[69%] md:w-[54%] sm:top-[19.6rem] md:top-[20.2rem] lg:top-[27rem] lg:border-b-[4px] xl:top-[28.6rem] xl:w-[71%]'
@@ -68,7 +102,7 @@ const Home = () => {
         area-label='circle'
         className='hidden xl:block w-[332px] h-[332px] absolute top-[460px] right-[-250px] translate-y-[-50%] rounded-full md:bg-lightGreen'
       ></div>
-    </div>
+    </motion.div>
   )
 }
 

@@ -17,6 +17,7 @@ export default async function auth(req, res, next) {
 
 export async function softAuth(req, res, next) {
   const token = req.cookies['auth-token']
+  if (!token) return next()
   const user = await User.findByAuthToken(token)
   req.user = user
 

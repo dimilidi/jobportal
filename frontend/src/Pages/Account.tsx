@@ -1,70 +1,58 @@
+// Hooks
 import { useNavigate } from 'react-router-dom'
+import useAds from '../Hooks/useAds'
+// Components
 import UniButton from '../Components/UniButton'
 import Ad from '../Components/Ad'
-import useAds from '../Hooks/useAds'
 import UniButtonWhite from '../Components/UniButtonWhite'
 import UserCard from '../Components/UserCard'
+import { useEffect, useState } from 'react'
+import useUser from '../Hooks/useUser'
+import { Ad as AdType } from '../type'
+// framer-motion
+import { motion } from 'framer-motion'
 
-type Props = {}
-
-const Account = (props: Props) => {
+const Account = () => {
   const navigate = useNavigate()
   const ads = useAds()
+  const user = useUser().user
+  const [userAds, setUserAds] = useState<AdType[] | []>([])
+
+  useEffect(() => {
+    if (!user) {
+      navigate('/auth-required')
+    }
+  }, [user])
+
+  useEffect(() => {
+    if (user) {
+      const _userAds = ads.list.filter((ad) => ad.user._id === user?._id)
+      setUserAds(_userAds)
+    }
+  }, [user])
+
   return (
-    <>
-      {/* Grid Container For Whole Page */}
-      <div
-        className='w-[70%] h-full min-h-[900px]
-          mx-auto flex flex-col
-          items-center justify-center gap-8
-          md:flex-col lg:flex-row'
-      >
+    <motion.div
+      initial={{ width: '100%' }}
+      animate={{ width: '100%' }}
+      exit={{ x: window.innerWidth }}
+      className='mx-auto pt-[120px] pb-10 w-full h-full min-h-[1200px] flex flex-col items-center justify-center gap-10 lg:pt-0 lg:min-h-[970px] lg:flex-row lg:gap-0'
+    >
+      {/* SEMICIRCLE */}
+      <div className='w-24 h-24 hidden absolute right-[-3rem] top-[210px] rounded-full bg-lightGreen md:hidden lg:block lg:top-[170px]' />
 
-        {/* User Card */}
+      {/* LINE */}
+      <div className='border-b-[3px] border-lightGreen absolute hidden lg:w-[20% xl:w-[30%] lg:block lg:top-[220px] lg:right-0' />
+
+      {/* USER CARD */}
+      <div className='h-full w-[95%] flex justify-center lg:w-[32%]'>
         <UserCard />
+      </div>
 
-        {/* ############################################# */}
-
-        {/* You Have No Ads Yet  */}
-        {/* Post-Ad-Button + Browse-Jobs-Button Container */}
-        <div
-          className='m-6
-            flex flex-col justify-center
-            lg:min-w-[470px]'>
-        {/* Line - Circle*/}
-            {/* Line */}
-             <div
-              className='w-[35%] min-w-[220px]
-                border-b-[3px] border-lightGreen
-                absolute hidden
-                sm:w-[25%]
-                md:w-[15%]
-                xl:w-[35%]
-                md:top-[230px]
-                lg:block lg:top-[250px] lg:right-0
-                xl:block xl:top-[250px]' />
-            {/* Semicircle */}
-             <div
-              className='w-24 h-24
-                hidden absolute
-                right-[-3rem] top-[210px]
-                rounded-full bg-lightGreen
-                md:hidden
-                lg:block lg:top-[180px]
-                xl:top-[200px]'>
-             </div>
-
-          {/* <p className='min-w-[850px]:absolute mb-4 text-center font-semibold text-lg md: md:mt-0 lg:hidden'>
-            You have no Ads yet
-          </p> */}
-
-        {/* Post-Ad-Button + Browse-Jobs-Button */}
-          <div
-            className='w-[100%]
-              lg:mt-[0%]
-              flex flex-row justify-center gap-6
-              sm:justify-center lg:justify-start'>
-
+      {/* ADS && BUTTONS CONTAINER */}
+      <div className='max-w-[650px] h-full flex flex-col justify-center items-center md:h-[540px] lg:w-[62%] lg:max-w-[800px] lg:gap-10'>
+        {/* BUTTONS */}
+        <div className=' w-full flex flex-col justify-center items-center gap-6 sm:justify-center sm:flex-row lg:ml-20 lg:justify-start'>
           <UniButtonWhite
             text='Post Ad'
             type='button'
@@ -75,36 +63,28 @@ const Account = (props: Props) => {
             text='Browse Ads'
             type='button'
             onClick={() => navigate('/adslist')}
+            style={{ z: 10 }}
           />
-          </div>
+        </div>
 
-          {/* Ads Container */}
-          <div
-            className='
-            w-[750px]
-            mt-10 p-10 mb-10
-            flex flex-col justify-center
-            rounded-[21px]
-            lg:bg-white lg:shadow-standard
-            md:shadow-none md:bg-background'>
+        <h3 className='mt-10 text-lg font-semibold text-gray text-center'>
+          Your Ads
+        </h3>
 
-          {/* Your Ads */}
-          <h3
-            className='mb-8 
-            text-lg font-semibold
-            text-gray text-center'>Your Ads</h3>
-
-          {/* Ads */}
-          <div className='mx-auto flex flex-wrap justify-center '>
-            {ads.list.map((ad) => (
-              <Ad key={ad._id} ad={ad} />
-            ))}
+        {/* ADS */}
+        {/* Version 2: ads ?  user.ads : 'You don't have ads yet' */}
+        <div className='mt-[30px] w-full h-full flex flex-wrap justify-center items-start rounded-[21px] sm:px-5 sm:mt-3 sm:mb-20 sm:w-[600px] sm:h-[552px] sm:overflow-y-scroll md:w-[100%] md:h-[440px] lg:px-0 lg:mb-0 lg:h-[500px]'>
+          <div className='w-full flex flex-wrap justify-center items-center'>
+            {userAds.length === 0 ? (
+              <div>You have currently no ads yet</div>
+            ) : (
+              userAds.map((ad) => <Ad key={ad._id} ad={ad} />)
+            )}
           </div>
-          </div>
-          </div>
+        </div>
       </div>
-    </>
-      )
-    }
-    
-    export default Account
+    </motion.div>
+  )
+}
+
+export default Account

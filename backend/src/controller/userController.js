@@ -18,7 +18,7 @@ export async function register(req, res) {
   const cookieOptions = {
     httpOnly: true,
     secure: true,
-    sameSite: 'lax',
+    sameSite: 'none',
   }
 
   res.cookie('auth-token', token, cookieOptions).status(201).send(user)
@@ -44,7 +44,7 @@ export async function login(req, res) {
   const cookieOptions = {
     httpOnly: true,
     secure: true,
-    sameSite: 'lax',
+    sameSite: 'none',
   }
 
   res.cookie('auth-token', token, cookieOptions).status(200).send(user)

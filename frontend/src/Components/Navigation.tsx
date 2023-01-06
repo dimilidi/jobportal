@@ -21,6 +21,8 @@ import { motion } from 'framer-motion'
 const Navigation = () => {
   // CONSTANTS
   const { user, logout } = useUser()
+  console.log(user);
+  
 
   // STATES
   const [navigation, setNavigation] = useState(false)

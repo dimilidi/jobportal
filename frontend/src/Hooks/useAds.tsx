@@ -3,23 +3,8 @@ import { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 // Axios
 import axiosInstance from '../api/axiosInstance'
-
-type Ad = {
-  _id: string
-  title: string
-  category: string
-  description: string
-  location: string
-  wage: number
-  contactVia: string
-  createdAt: Date
-  user: {
-    name: string
-    email: string
-    phone: string
-    city: string
-  }
-}
+// type
+import { Ad } from '../type'
 
 type AdHook = {
   list: Ad[]
@@ -69,7 +54,9 @@ function useAds(): AdHook {
 
   // Bug ??
   useEffect(() => {
-    getAdById()
+    if (params.id) {
+      getAdById()
+    }
   }, [params.id])
 
   return { list, ad, setIsLoading, setError, error, isLoading }
