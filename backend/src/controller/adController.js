@@ -30,7 +30,6 @@ export async function getAdById(req, res) {
   // if user is NOT logged in, populate only name of ad-creator
   let itemToPopulate = 'name'
   ad = await Ad.findById(adId).populate('user', 'name')
-  
 
   // if user is logged in, contact data selected in contactvia
   if (user) {
