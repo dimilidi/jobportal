@@ -2,10 +2,16 @@ import Ad from '../models/Ad.js'
 
 /** @type {import("express").RequestHandler} */
 export async function getAds(req, res) {
-  let { userId } = req.query
+  let { userId, search } = req.query
   let query = Ad.find()
 
   if (userId) query = query.where('user').equals(userId)
+
+  // filter ads by search, if it is included in description/location/sector,
+  // ? how to set discription OR location OR sector ?
+  if (search) {
+    query = query.where('description').includes(search)
+  }
 
   const ads = await query.populate('user', 'name')
   res.status(200).json(ads)
