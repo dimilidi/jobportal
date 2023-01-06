@@ -10,6 +10,7 @@ import NotFound from '../Pages/NotFound'
 import PostAd from '../Pages/PostAd'
 import Register from '../Pages/Register'
 import SingleAd from '../Pages/SingleAd'
+import EditAccount from '../Pages/EditAccount'
 // franer-motion
 import {AnimatePresence} from 'framer-motion'
 
@@ -27,6 +28,7 @@ const SmoothPages = () => {
             <Route path='/ad/:id' element={<SingleAd />} />
             <Route path='/post-ad' element={<PostAd />} />
             <Route path='/account' element={<Account />} />
+            <Route path='/edit-account' element={<EditAccount />} />
             <Route path='/auth-required' element={<AuthRequired />} />
             <Route path='*' element={<NotFound />} />
         </Routes>
