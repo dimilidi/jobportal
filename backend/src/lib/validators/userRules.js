@@ -4,12 +4,8 @@ import validate from '../../middleware/validate.js'
 
 export const register = [
   body('name')
-    .isString()
-    .optional()
-    .withMessage("Name must consist only of characters"),
-  body('password')
-    .isStrongPassword()
-    .withMessage("Password must include at least one special character, one uppercase letter and a number"),
+    .isString().not().isNumeric().withMessage("Name must consist only of characters")
+    .notEmpty().withMessage('Name is required'),
   body('email')
     .isEmail()
     .withMessage('email not valid')
@@ -18,6 +14,9 @@ export const register = [
       if(user) throw new Error('This email already exists')
       return true
     }),
+  body('password')
+    .isStrongPassword()
+    .withMessage("Password must include at least one special character, one uppercase letter and a number"),
   validate
 ]
 

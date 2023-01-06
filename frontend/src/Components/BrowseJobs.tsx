@@ -2,7 +2,9 @@ import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { IoMdArrowBack } from 'react-icons/io'
 
-type Props = {}
+type Props = {
+  style: {}
+}
 
 const BrowseJobs = (props: Props) => {
   return (
@@ -17,12 +19,13 @@ const BrowseJobs = (props: Props) => {
         }}
         area-label='back-button-to-jobs'
         className='flex lg:items-center'
+        style = {props.style }
       >
         <span className='flex items-center w-[24px]'>
           <div className='h-[14px] border-r-[2px] border-textBlack' />
-          <IoMdArrowBack className='text-textBlack text-[20px]' />
+          <IoMdArrowBack className='text-textBlack text-[16px] xl:text-[20px]' />
         </span>
-        <span className='text-darkGreen font-bold text-[20px] '>
+        <span className='text-darkGreen font-bold text-[16px] xl:text-[20px] '>
           Browse Ads
         </span>
       </motion.div>

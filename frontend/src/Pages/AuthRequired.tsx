@@ -25,7 +25,10 @@ const AuthRequired = () => {
     initial={{ width: '100%'}}
     animate={ {width: '100%'}}
     exit={{x:window.innerWidth}} 
-    className='pb-20 mx-auto  pr-2 w-[90%] h-full min-h-[910px] flex justify-center flex-col items-center sm:w-[60%] lg:w-[50%] md:pt-[0]'>
+   >
+      <div  className='pb-20 mx-auto  pr-2 w-[90%] h-full min-h-[910px] flex justify-center flex-col items-center sm:w-[60%] lg:w-[50%] md:pt-[0]'>
+
+      
       {/* ICON & BROWSE JOBS */}
       <div className='w-full flex p-5'>
         <BrowseJobs />
@@ -87,6 +90,7 @@ const AuthRequired = () => {
         {/* IMAGES END */}
       </div>
       {/* MAIN CONTAINER END */}
+      </div>
     </motion.section>
   )
 }

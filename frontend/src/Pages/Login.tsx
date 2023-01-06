@@ -43,6 +43,7 @@ const Login = (props: Props) => {
     errors?.map((error) => notify(error))
   }, [errors])
 
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputs((prev) => ({
       ...prev,
@@ -62,7 +63,7 @@ const Login = (props: Props) => {
       setErrors(['You are not authorized to login! Please check your input'])
     if (response.status === 400) setErrors(response.errors)
     if (response.status === 500) setErrors(['Something went wrong!'])
-    setInputs(initialInputs)
+    // setInputs(initialInputs)
     setFetching(false)
   }
 
