@@ -8,6 +8,7 @@ export async function getAds(req, res) {
   if (userId) query = query.where('user').equals(userId)
 
   // filter ads by search, if it is included in description/location/sector,
+  // ? how to set discription OR location OR sector
   if (search) {
     query = query.where('description').includes(search)
   }
