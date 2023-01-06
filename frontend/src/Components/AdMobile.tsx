@@ -1,11 +1,11 @@
-import useAds from "../Hooks/useAds"
+import useAds from '../Hooks/useAds'
 import avatar from '../assets/images/Account_profilDefault.png'
-import useUser from "../Hooks/useUser"
-
+import useUser from '../Hooks/useUser'
+import { useParams } from 'react-router-dom'
 
 function AdMobile() {
-
-  const ads = useAds()
+  const params = useParams()
+  const ads = useAds(`/ads/${params.id}`)
   const user = useUser()
 
   return (
