@@ -36,6 +36,8 @@ const Home = () => {
   //   }
   // }, [])
 
+  // search muss ein Komponent werden
+
   return (
     <motion.div
       initial={{ width: '100%' }}

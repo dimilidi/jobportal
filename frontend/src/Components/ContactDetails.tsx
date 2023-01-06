@@ -4,13 +4,15 @@ import useAds from '../Hooks/useAds'
 import { MdEmail } from 'react-icons/md'
 import { BsTelephoneFill } from 'react-icons/bs'
 import { FaMapMarkerAlt } from 'react-icons/fa'
+import { useParams } from 'react-router-dom'
 
 type Props = {
   className?: string
 }
 
 const ContactDetails = (props: Props) => {
-  const ads = useAds()
+  const params = useParams()
+  const ads = useAds(`ads/${params.id}`)
 
   return (
     // DIV WITH PROPS STYLING
