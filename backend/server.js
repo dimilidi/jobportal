@@ -21,7 +21,7 @@ const app = express()
 
 app.use(
   cors({
-    origin: 'https://gleaming-salmiakki-a6f717.netlify.app',
+    origin: 'https://jobsy-jobportal.netlify.app/',
     credentials: true,
   })
 )
