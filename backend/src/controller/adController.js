@@ -6,6 +6,7 @@ export async function getAds(req, res) {
   res.status(200).json(ads)
 }
 
+
 /** @type {import("express").RequestHandler} */
 export async function postAd(req, res) {
   const user = req.user
