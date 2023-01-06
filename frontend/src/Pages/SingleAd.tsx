@@ -39,7 +39,7 @@ const SingleAd = () => {
       animate={{ width: '100%' }}
       exit={{ x: window.innerWidth }}
       area-label='page-singleAd'
-      className='pt-[120px]  pb-10 w-[95%] h-full  min-h-[900px] flex flex-col items-center justify-center text-textBlack '
+      className='pt-[120px]  pb-20 w-[95%] h-full  min-h-[900px] flex flex-col items-center justify-center text-textBlack md:pt-[140px] xl:pt-[120px] '
     >
       {/* <div
         area-label='wrapper'
@@ -61,10 +61,10 @@ const SingleAd = () => {
           {/* Ad */}
           <div
             area-label='ad'
-            className='py-5  mt-0 mx-2 w-full min-h-[400px] sm:h-[400px] 
-            sm:w-[600px] xl:w-[800px]
+            className='py-10 px-2 sm:px-5   sm:mx-0 sm:p-5 mt-0 mx-2 w-full min-h-[400px] sm:h-[400px] 
+            sm:w-[600px] xl:w-[800px] xl:h-[450px]
             flex flex-col  justify-start item-center self-center z-10 rounded-[21px] bg-white shadow-standard 
-            sm:mx-0 sm:p-5
+           
             '
           >  
           
@@ -138,7 +138,7 @@ const SingleAd = () => {
       <img
         src={thinkingGirl}
         alt='illustration of girl in front of laptop'
-        className='hidden xl:w-[250px] xl:absolute xl:bottom-[30px] xl:left-[14%] xl:block lg:z-30'
+        className='hidden xl:w-[220px] xl:absolute xl:bottom-[30px] xl:left-[14%] xl:block lg:z-30'
       />
       {/* image - END */}
 

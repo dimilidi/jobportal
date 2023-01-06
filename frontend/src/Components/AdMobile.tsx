@@ -54,7 +54,7 @@ function AdMobile() {
         </div>
 
         {/* Right */}
-        <div className='w-[50px] sx:w-[60px] sm:w-[100px] h-full flex flex-wrap justify-end  items-end  '>
+        <div className='w-[100px] sx:w-[60px] sm:w-[100px] h-full flex flex-wrap justify-end  items-end  '>
           {/* Created At */}
           <div className='text-[14px] text-textBlack text-opacity-50 md:text-[16px]'>
             {ads.ad && <p>{new Date(ads.ad.createdAt).toLocaleDateString()}</p>}

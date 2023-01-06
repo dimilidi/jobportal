@@ -23,9 +23,9 @@ const BrowseJobs = (props: Props) => {
       >
         <span className='flex items-center w-[24px]'>
           <div className='h-[14px] border-r-[2px] border-textBlack' />
-          <IoMdArrowBack className='text-textBlack text-[16px] md:text-[20px]' />
+          <IoMdArrowBack className='text-textBlack text-[16px] xl:text-[20px]' />
         </span>
-        <span className='text-darkGreen font-bold text-[16px] md:text-[20px] '>
+        <span className='text-darkGreen font-bold text-[16px] xl:text-[20px] '>
           Browse Ads
         </span>
       </motion.div>
