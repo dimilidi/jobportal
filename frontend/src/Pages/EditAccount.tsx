@@ -74,11 +74,11 @@ const EditAccount = (props: Props) => {
   // }
 
   return (
+    // CONTAINER WHOLE PAGE CONTENT
     <div className='
-      h-full min-h-[950px] 
+      h-full
       mt-[4rem] pt-[2rem]
-      flex flex-col items-center
-      md:h-full'
+      flex flex-col items-center'
     >
 
       {/* GREEN SEMICIRCLE */}
@@ -98,7 +98,11 @@ const EditAccount = (props: Props) => {
           z-10
           md:absolute
           md:top-[4rem]
-          md:right-[7rem]
+          md:right-[10rem]
+          lg:top-[6rem]
+          lg:right-[17rem]
+          xl:right-[29rem]
+          2xl:right-[60rem]
           '
         src={image}
         alt='profile picture'
@@ -106,28 +110,25 @@ const EditAccount = (props: Props) => {
 
       {/* HEADING && FORM */}
       <div className='
-        w-full max-w-[500px] h-full
+        w-full max-w-[500px]
         pt-[1rem]    
-        flex flex-col justify-center 
+        flex flex-col items-center justify-center 
         relative 
-        border-radius rounded-[30px] shadow-standard  
-        bg-white 
-        md:mt-[4rem]
-        md:mb-[10rem]
-        md:pb-[22rem]
-        // lg:translate-x-[22%] 
-        // xl:translate-x-[25%]'
+        md:mt-[1rem]
+        md:pb-[2rem]
+        '
       >
-        <div className=' mx-auto w-[100%] flex flex-col items-center lg:mx-20  lg:items-start'>
-
           {/* HEADING */}
           <h1 className='
-            w-full mb-[1rem]
+            w-[80%] mb-[1rem]
             text-center text-[2.2rem] font-semibold 
             sm:text-[2.5rem]
-            md:mb-[4rem] 
-            md:ml-[5rem]
-            md:text-start 
+            md:w-[80%] 
+            md:mb-[3rem] 
+            md:pr-[10rem]
+            md:text-left
+            md:leading-[3rem]
+            lg:w-[80%]
             '>
             Edit
             <span className=' text-lightGreen italic'> Profile</span>
@@ -149,23 +150,36 @@ const EditAccount = (props: Props) => {
           <form
             // onSubmit={handleSubmit}
             className='
-              w-[80%] h-[270px]
+              w-[80%] h-fit
               flex flex-col items-center justify-between 
-              lg:w-[50%]'
+              '
           >
             {/* INPUTS CONTAINER */}
             <div className='
-              mb-5 w-full 
-              relative flex flex-col items-center'>
+              w-full mb-6
+              relative 
+              flex flex-col items-center'
+            >
 
               <label
                 htmlFor='username'
-                className='self-start text-gray font-extralight sm:font-light sm:text-[1.1rem] lg:self-start'
+                className='
+                  self-start 
+                  text-gray font-extralight 
+                  sm:font-light 
+                  sm:text-[1.1rem] 
+                  lg:self-start'
               >
                 Username
               </label>
               <input
-                className='py-[11px] px-5 mb-2 w-full box-border border border-lightGray rounded-[15rem] text-sm  focus:outline-lightGreen sm:text-[1.1rem]'
+                className='
+                  w-full mb-2 py-[5px] px-3
+                  box-border border border-lightGray rounded-[15rem] 
+                  text-sm
+                  min-[425px]:py-[10px]   
+                  sm:text-[1.1rem]
+                  focus:outline-lightGreen'
                 type='text'
                 name='username'
                 // value={{user.user?.name}}
@@ -174,12 +188,23 @@ const EditAccount = (props: Props) => {
 
               <label
                 htmlFor='email'
-                className='self-start text-gray font-extralight sm:font-light sm:text-[1.1rem] lg:self-start'
+                className='
+                  self-start 
+                  text-gray font-extralight
+                  sm:font-light 
+                  sm:text-[1.1rem]
+                  lg:self-start'
               >
                 Email
               </label>
               <input
-                className='py-[11px] px-5 mb-2 w-full box-border border border-lightGray rounded-[15rem] text-sm  focus:outline-lightGreen sm:text-[1.1rem]'
+                className='
+                  w-full    
+                  py-[5px] px-3 mb-2 
+                  text-sm
+                  min-[425px]:py-[10px] 
+                  box-border border border-lightGray rounded-[15rem] focus:outline-lightGreen 
+                  sm:text-[1.1rem]'
                 type='email'
                 name='email'
                 // value={inputs.email}
@@ -200,8 +225,11 @@ const EditAccount = (props: Props) => {
               <input
                 className='
                   w-full mb-2
-                  py-[11px] px-5
-                  box-border border border-lightGray rounded-[15rem] text-sm  focus:outline-lightGreen sm:text-[1.1rem]'
+                  py-[5px] px-3
+                  box-border border border-lightGray rounded-[15rem] focus:outline-lightGreen 
+                  sm:text-[1.1rem]
+                  text-sm
+                  min-[425px]:py-[10px]'
                 type='text'
                 name='phone'
                 // value={{user.user?.name}}
@@ -222,8 +250,10 @@ const EditAccount = (props: Props) => {
               <input
                 className='
                   w-full mb-2
-                  py-[11px] px-5
-                  box-border border border-lightGray rounded-[15rem] text-sm  focus:outline-lightGreen sm:text-[1.1rem]'
+                  py-[5px] px-3
+                  box-border border border-lightGray rounded-[15rem] focus:outline-lightGreen sm:text-[1.1rem]
+                  text-sm
+                  min-[425px]:py-[10px]'
                 type='text'
                 name='city'
                 // value={{user.user?.name}}
@@ -246,9 +276,10 @@ const EditAccount = (props: Props) => {
                 rows='7'
                 className='
                   w-full mb-2
-                  py-[11px] px-5
+                  py-[11px] px-3
                   box-border border border-lightGray rounded-[1rem] 
-                  text-sm 
+                  text-sm
+                  min-[425px]:py-[10px] 
                   focus:outline-lightGreen 
                   sm:text-[1.1rem]'
                 
@@ -259,11 +290,12 @@ const EditAccount = (props: Props) => {
 
             </div>
 
-            {/* LOGIN BUTTON */}
+            {/* SAVE CHANGES BUTTON */}
             <UniButton
               text={fetching ? <Spinner /> : 'Save Changes'}
               className='
                 w-full
+                pt-[.5rem]
                 flex flex-wrap justify-center
                 text-lg'
               style={{ padding: '10px' }}
@@ -281,7 +313,6 @@ const EditAccount = (props: Props) => {
                 </p>
               ))}
           </form>
-        </div>
       </div>
       <ToastContainer position='top-right' />
     </div>

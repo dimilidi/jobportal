@@ -19,22 +19,20 @@ import EditAccount from './Pages/EditAccount'
 function App() {
   return (
     <UserProvider>
-      <div className='App'>
-        <Layout className=' bg-background min-h-screen relative'>
-          <Routes>
-            <Route path='/login' element={<Login />} />
-            <Route path='/register' element={<Register />} />
-            <Route path='/' element={<Home />} />
-            <Route path='/adslist' element={<AdsList />} />
-            <Route path='/ad/:id' element={<SingleAd />} />
-            <Route path='/post-ad' element={<PostAd />} />
-            <Route path='/account' element={<Account />} />
-            <Route path='/auth-required' element={<AuthRequired />} />
-            <Route path='/edit-account' element={<EditAccount />} />
-            <Route path='*' element={<NotFound />} />
-          </Routes>
-        </Layout>
-      </div>
+      <Layout className='bg-background h-full'>
+        <Routes>
+          <Route path='/login' element={<Login />} />
+          <Route path='/register' element={<Register />} />
+          <Route path='/' element={<Home />} />
+          <Route path='/adslist' element={<AdsList />} />
+          <Route path='/ad/:id' element={<SingleAd />} />
+          <Route path='/post-ad' element={<PostAd />} />
+          <Route path='/account' element={<Account />} />
+          <Route path='/auth-required' element={<AuthRequired />} />
+          <Route path='/edit-account' element={<EditAccount />} />
+          <Route path='*' element={<NotFound />} />
+        </Routes>
+      </Layout>
     </UserProvider>
   )
 }
