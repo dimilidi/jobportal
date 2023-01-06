@@ -6,16 +6,12 @@ import { RegisterInputs } from '../type'
 // Component
 import Spinner from '../Components/Spinner'
 import UniButton from '../Components/UniButton'
-// Toaster
-import 'react-toastify/dist/ReactToastify.css'
-import { ToastContainer, toast } from 'react-toastify'
 // Icons
 import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai'
 // Images
 import RegisterCouple from '../assets/images/Register_couple.png'
 // framer-motion
 import {motion} from 'framer-motion'
-import { notify } from '../utils/toastNotification'
 
 
 
@@ -47,11 +43,6 @@ const Register = () => {
     }))
   }
 
-    // Error toast notification
-    useEffect(() => {
-      errors?.map((error) => notify(error))
-    }, [errors])
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
 
@@ -59,10 +50,6 @@ const Register = () => {
     setErrors([])
     const response = await register(inputs)
     if (response.status === 201) {
-      toast.success('Successfully logged in!', {
-        position: toast.POSITION.TOP_CENTER,
-        className: '',
-      })
       navigate('/account')
     }
     if (response.status === 400) setErrors(response.errors)
@@ -219,7 +206,6 @@ const Register = () => {
       alt='illustration'
       />
 
-    <ToastContainer position='top-left' />
   </motion.div>
   )
 }

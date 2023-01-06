@@ -9,10 +9,7 @@ import UniButton from '../Components/UniButton'
 import Spinner from '../Components/Spinner'
 // Images
 import image from '../assets/images/Login_surf.png'
-// Toaster
-import { ToastContainer, toast } from 'react-toastify'
-import 'react-toastify/dist/ReactToastify.css'
-import { notify } from '../utils/toastNotification'
+// Icons
 import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai'
 // framer-motion
 import {motion} from 'framer-motion'
@@ -37,11 +34,6 @@ const Login = (props: Props) => {
       navigate('/adslist')
     }
   }, [user])
-
-  // Error toast notification
-  useEffect(() => {
-    errors?.map((error) => notify(error))
-  }, [errors])
 
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -175,7 +167,6 @@ const Login = (props: Props) => {
           </form>
         </div>
       </div>
-      <ToastContainer position='top-right' />
     </motion.div>
   )
 }
