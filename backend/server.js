@@ -12,7 +12,6 @@ dotenv.config({ path: `.env.${process.env.NODE_ENV}` })
 
 console.log('\x1b[36m%s\x1b[0m',`CLICK --> ${process.env.FRONTEND}` )
 
-
 mongoose.set('strictQuery', false)
 mongoose
   .connect(process.env.DB_CONN)
