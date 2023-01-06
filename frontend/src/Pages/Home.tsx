@@ -8,6 +8,7 @@ import imageHome from '../assets/images/Home_group.png'
 // framer-motion
 import { motion } from 'framer-motion'
 import React, { useEffect } from 'react'
+import Search from '../Components/Search'
 
 const Home = () => {
   const navigate = useNavigate()
@@ -35,8 +36,6 @@ const Home = () => {
   //     window.removeEventListener('resize', createLine)
   //   }
   // }, [])
-
-  // search muss ein Komponent werden
 
   return (
     <motion.div
@@ -72,26 +71,14 @@ const Home = () => {
           src={imageHome}
         ></img>
 
-        {/* SEARCH */}
-        <div className='mt-6 flex flex-col items-center justify-center gap-3 sm:w-[450px] lg:pt-[0px] lg:self-start  lg:w-[50%] '>
-          <div className='w-full flex items-center justify-center '>
-            <label className='relative  w-[90%] sm:w-[80%] xl:w-[60%] '>
-              <GoSearch className='w-[20px] absolute top-4 left-5 text-gray text-opacity-50' />
-              <input
-                type='text'
-                className='w-full py-[12px] px-12 box-border placeholder:text-center rounded-full bg-darkBeige shadow-inner placeholder:text-gray placeholder:text-opacity-50 focus:outline-lightGray  '
-                placeholder='Search'
-              />
-            </label>
-          </div>
+        <Search />
 
-          {/* BUTTON Browse Ads */}
-          <UniButton
-            text='Browse Ads'
-            type='button'
-            onClick={() => navigate('/adslist')}
-          />
-        </div>
+        {/* BUTTON Browse Ads */}
+        <UniButton
+          text='Browse Ads'
+          type='button'
+          onClick={() => navigate('/adslist')}
+        />
       </div>
 
       {/* ELEMENTS (circle, lines) */}
