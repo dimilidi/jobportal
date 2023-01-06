@@ -77,8 +77,11 @@ const EditAccount = (props: Props) => {
     // CONTAINER WHOLE PAGE CONTENT
     <div className='
       h-full
-      mt-[4rem] pt-[2rem]
-      flex flex-col items-center'
+      mt-[2rem] pt-[4rem]
+      flex flex-col items-center
+      bg-background
+      md:pt-[6rem]
+      xl:pt-[4rem]'
     >
 
       {/* GREEN SEMICIRCLE */}
@@ -97,10 +100,10 @@ const EditAccount = (props: Props) => {
           w-[180px] 
           z-10
           md:absolute
-          md:top-[4rem]
+          md:top-[6rem]
           md:right-[10rem]
-          lg:top-[6rem]
-          lg:right-[17rem]
+          lg:right-[17.1rem]
+          xl:top-[4rem]
           xl:right-[29rem]
           2xl:right-[60rem]
           '
@@ -151,6 +154,7 @@ const EditAccount = (props: Props) => {
             // onSubmit={handleSubmit}
             className='
               w-[80%] h-fit
+              mb-[6rem]
               flex flex-col items-center justify-between 
               '
           >
