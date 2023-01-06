@@ -277,7 +277,7 @@ const EditAccount = (props: Props) => {
               </label>
               <textarea
                 name='description'
-                rows='7'
+                rows={7}
                 className='
                   w-full mb-2
                   py-[11px] px-3

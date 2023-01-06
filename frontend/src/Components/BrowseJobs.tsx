@@ -3,7 +3,7 @@ import { motion } from 'framer-motion'
 import { IoMdArrowBack } from 'react-icons/io'
 
 type Props = {
-  style: {}
+  style?: {}
 }
 
 const BrowseJobs = (props: Props) => {
