@@ -14,27 +14,27 @@ const Home = () => {
 
   const futureText = React.useRef<HTMLSpanElement | null>(null)
 
-  useEffect(() => {
-    let prevLine: null | HTMLElement = null
-    const createLine = () => {
-      if (prevLine) prevLine.remove()
-      if (!futureText.current) return
-      const rect = futureText.current.getBoundingClientRect()
-      const line = document.createElement('div')
-      line.style.position = 'absolute'
-      line.style.top = rect.bottom - 10 + 'px'
-      line.style.left = '0px'
-      line.style.width = rect.right - 20 + 'px'
-      line.style.borderBottom = '2px solid #84A98C'
-      futureText.current.parentElement!.insertBefore(line, futureText.current)
-      prevLine = line
-    }
-    createLine()
-    window.addEventListener('resize', createLine)
-    return () => {
-      window.removeEventListener('resize', createLine)
-    }
-  }, [])
+  // useEffect(() => {
+  //   let prevLine: null | HTMLElement = null
+  //   const createLine = () => {
+  //     if (prevLine) prevLine.remove()
+  //     if (!futureText.current) return
+  //     const rect = futureText.current.getBoundingClientRect()
+  //     const line = document.createElement('div')
+  //     line.style.position = 'absolute'
+  //     line.style.top = rect.bottom - 10 + 'px'
+  //     line.style.left = '0px'
+  //     line.style.width = rect.right - 20 + 'px'
+  //     line.style.borderBottom = '2px solid #84A98C'
+  //     futureText.current.parentElement!.insertBefore(line, futureText.current)
+  //     prevLine = line
+  //   }
+  //   createLine()
+  //   window.addEventListener('resize', createLine)
+  //   return () => {
+  //     window.removeEventListener('resize', createLine)
+  //   }
+  // }, [])
 
   // search muss ein Komponent werden
 

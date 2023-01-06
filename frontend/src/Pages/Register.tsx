@@ -6,18 +6,17 @@ import { RegisterInputs } from '../type'
 // Component
 import Spinner from '../Components/Spinner'
 import UniButton from '../Components/UniButton'
-// Toaster
-import 'react-toastify/dist/ReactToastify.css'
-import { ToastContainer, toast } from 'react-toastify'
+// Icons
 import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai'
 // Images
 import RegisterCouple from '../assets/images/Register_couple.png'
 // framer-motion
 import {motion} from 'framer-motion'
 
-type Props = {}
 
-const Register = (props: Props) => {
+
+const Register = () => {
+
   const navigate = useNavigate()
   const { user, loading, register } = useUser()
   const initialValue: RegisterInputs = {
@@ -29,6 +28,7 @@ const Register = (props: Props) => {
   const [fetching, setFetching] = useState<boolean>(false)
   const [errors, setErrors] = useState<string[] | undefined[] | undefined>([])
   const [inputType, setInputType] = useState('password')
+
 
   useEffect(() => {
     if (user && !loading) {
@@ -50,15 +50,11 @@ const Register = (props: Props) => {
     setErrors([])
     const response = await register(inputs)
     if (response.status === 201) {
-      toast.success('Successfully logged in!', {
-        position: toast.POSITION.TOP_CENTER,
-        className: '',
-      })
       navigate('/account')
     }
     if (response.status === 400) setErrors(response.errors)
     if (response.status === 500) setErrors(['Something went wrong!'])
-    setInputs(initialValue)
+ 
     setFetching(false)
   }
 
@@ -210,7 +206,6 @@ const Register = (props: Props) => {
       alt='illustration'
       />
 
-    <ToastContainer position='top-right' />
   </motion.div>
   )
 }
