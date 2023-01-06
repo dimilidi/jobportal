@@ -21,7 +21,7 @@ const app = express()
 
 app.use(
   cors({
-    origin: 'http://localhost:3000',
+    origin: 'https://gleaming-salmiakki-a6f717.netlify.app',
     credentials: true,
   })
 )
