@@ -19,10 +19,11 @@ import { motion } from 'framer-motion'
 const PostAd = () => {
   // CONSTANTS
   const navigate = useNavigate()
-  const ads = useAds()
   const user = useUser()
 
   // STATES
+  const [isLoading, setIsLoading] = useState(false)
+  const [error, setError] = useState('')
   const [title, setTitle] = useState('')
   const [description, setDescription] = useState('')
   const [location, setLocation] = useState('')
@@ -60,7 +61,7 @@ const PostAd = () => {
   // HANDLE SUBMIT
   const handleSubmit = async (e: React.SyntheticEvent) => {
     e.preventDefault()
-    ads.setIsLoading(true)
+    setIsLoading(true)
 
     const ad = {
       title,
@@ -83,16 +84,16 @@ const PostAd = () => {
       const error = response.data.message[0]
       const key = Object.keys(error)[0]
       const message = error[key]
-      ads.setError(message)
+      setError(message)
       notify(message)
     } else if (response.status === 401) {
-      ads.setError('You are not logged in.')
-      notify(ads.error)
+      setError('You are not logged in.')
+      notify(error)
     } else {
-      ads.setError('Something went wrong')
-      notify(ads.error)
+      setError('Something went wrong')
+      notify(error)
     }
-    ads.setIsLoading(false)
+    setIsLoading(false)
   }
 
   // POST AD BTN NAVIGATE TO /auth-req when user not logged in
@@ -348,7 +349,7 @@ const PostAd = () => {
             <UniButton
               onClick={handleNavigateifUserNotLoggedIn}
               area-label='postAdButton'
-              text={ads.isLoading ? <Spinner /> : 'Post Ad'}
+              text={isLoading ? <Spinner /> : 'Post Ad'}
               className='my-7 mx-auto w-[200px] self-center  md:mb-0 lg:w-[250px]'
             />
           </form>
