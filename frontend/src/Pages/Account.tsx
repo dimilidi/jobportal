@@ -16,7 +16,6 @@ const Account = () => {
   const navigate = useNavigate()
   const user = useUser().user
   const ads = useAds(`/ads/?userId=${user?._id}`)
-  console.log(user?._id)
 
   useEffect(() => {
     if (!user) {
