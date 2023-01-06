@@ -84,7 +84,7 @@ const SingleAd = () => {
           <div className='flex justify-center '>
             {user.user && (
               <ContactDetails
-                className=' w-[80%] max-w-[340px] pt-10 
+                className=' w-[100%] max-w-[340px] pt-10 
               sm:w-[80%]
               lg:w-[800px]
               flex justify-center self-center rounded-xl xl:hidden'

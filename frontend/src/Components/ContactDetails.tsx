@@ -32,7 +32,7 @@ const ContactDetails = (props: Props) => {
         {/* EMAIL, PHONE, CITY */}
         <div
           area-label='box-with-contact-details'
-          className='w-[80%] py-2 xl:ml-3 flex flex-col self-center gap-3 xl:px-1 md:gap-2 sm:p-0 xl:self-start xl:w-full'
+          className='w-[90%] py-2 xl:ml-3 flex flex-col self-center gap-3 xl:px-1 md:gap-2 sm:p-0 xl:self-start xl:w-full'
         >
           {/* if email is set as a contact data, show email */}
           {ads.ad?.contactVia.includes('email') && (

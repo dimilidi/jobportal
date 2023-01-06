@@ -9,15 +9,18 @@ import UniButton from '../Components/UniButton'
 // Toaster
 import 'react-toastify/dist/ReactToastify.css'
 import { ToastContainer, toast } from 'react-toastify'
+// Icons
 import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai'
 // Images
 import RegisterCouple from '../assets/images/Register_couple.png'
 // framer-motion
 import {motion} from 'framer-motion'
+import { notify } from '../utils/toastNotification'
 
-type Props = {}
 
-const Register = (props: Props) => {
+
+const Register = () => {
+
   const navigate = useNavigate()
   const { user, loading, register } = useUser()
   const initialValue: RegisterInputs = {
@@ -29,6 +32,7 @@ const Register = (props: Props) => {
   const [fetching, setFetching] = useState<boolean>(false)
   const [errors, setErrors] = useState<string[] | undefined[] | undefined>([])
   const [inputType, setInputType] = useState('password')
+
 
   useEffect(() => {
     if (user && !loading) {
@@ -42,6 +46,11 @@ const Register = (props: Props) => {
       [e.target.name]: e.target.value,
     }))
   }
+
+    // Error toast notification
+    useEffect(() => {
+      errors?.map((error) => notify(error))
+    }, [errors])
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -58,7 +67,7 @@ const Register = (props: Props) => {
     }
     if (response.status === 400) setErrors(response.errors)
     if (response.status === 500) setErrors(['Something went wrong!'])
-    setInputs(initialValue)
+ 
     setFetching(false)
   }
 
@@ -210,7 +219,7 @@ const Register = (props: Props) => {
       alt='illustration'
       />
 
-    <ToastContainer position='top-right' />
+    <ToastContainer position='top-left' />
   </motion.div>
   )
 }
