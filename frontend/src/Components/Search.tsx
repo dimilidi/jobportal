@@ -8,7 +8,6 @@ const Search = (props: Props) => {
   const [searchWord, setSearchWord] = useState('')
   const ads = useAds(`/ads/?search=${searchWord}`)
   return (
-    <div className='mt-6 flex flex-col items-center justify-center gap-3 sm:w-[450px] lg:pt-[0px] lg:self-start  lg:w-[50%] '>
       <div className='w-full flex items-center justify-center '>
         <label className='relative  w-[90%] sm:w-[80%] xl:w-[60%] '>
           <GoSearch className='w-[20px] absolute top-4 left-5 text-gray text-opacity-50' />
@@ -19,7 +18,6 @@ const Search = (props: Props) => {
           />
         </label>
       </div>
-    </div>
   )
 }
 

@@ -71,14 +71,16 @@ const Home = () => {
           src={imageHome}
         ></img>
 
-        <Search />
-
+      <div className='mt-6 flex flex-col items-center justify-center gap-3 sm:w-[450px] lg:pt-[0px] lg:self-start  lg:w-[50%] '>
+        {/* SEARCH */}
+         <Search />
         {/* BUTTON Browse Ads */}
-        <UniButton
-          text='Browse Ads'
-          type='button'
-          onClick={() => navigate('/adslist')}
-        />
+          <UniButton
+            text='Browse Ads'
+            type='button'
+            onClick={() => navigate('/adslist')}
+          />
+        </div>
       </div>
 
       {/* ELEMENTS (circle, lines) */}
