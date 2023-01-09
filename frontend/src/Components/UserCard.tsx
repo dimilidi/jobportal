@@ -2,6 +2,7 @@ import UniButton from './UniButton'
 import imageAccount from '../assets/images/Account_profilDefault.png'
 import { MdMail, MdCall, MdLocationOn } from 'react-icons/md'
 import useUser from '../Hooks/useUser'
+import { useNavigate } from 'react-router-dom'
 
 type Props = {
   style?: {}
@@ -17,7 +18,7 @@ function UserCard(props: Props) {
   // phone: string;
 
   const user = useUser().user
-
+  const navigate = useNavigate()
   return (
     <div
       // USER CARD
@@ -123,6 +124,7 @@ function UserCard(props: Props) {
           area-label='EditProfileButton'
           text='Edit Profile'
           type='button'
+          onClick={() => navigate('/edit-account')}
         />
       </div>
     </div>
