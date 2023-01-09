@@ -14,11 +14,11 @@ import { motion } from 'framer-motion'
 
 const Account = () => {
   const navigate = useNavigate()
-  const user = useUser().user
+  const { user, loading } = useUser()
   const ads = useAds(`/ads/?userId=${user?._id}`)
 
   useEffect(() => {
-    if (!user) {
+    if (!user && !loading) {
       navigate('/auth-required')
     }
   }, [user])
