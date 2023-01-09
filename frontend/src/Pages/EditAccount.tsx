@@ -304,6 +304,11 @@ const EditAccount = (props: Props) => {
                 text-lg'
               style={{ padding: '10px' }}
             />
+            
+            {/* DELETE-ACCOUNT */}
+            <p className='mt-2 w-full text-center text-lightGray underline text-[14px] lg:text-center'>
+              <Link to='/delete-account'>Delete account</Link>
+            </p>
 
             {/* ERRORS */}
             {errors &&
