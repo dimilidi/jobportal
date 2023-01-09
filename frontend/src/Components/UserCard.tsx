@@ -23,22 +23,19 @@ function UserCard(props: Props) {
     <div
       // USER CARD
       style={props.style}
-      className='mt-[0%] w-[100%] max-w-[450px] min-h-[550px]
+      className='mt-0 w-[100%] max-w-[450px] min-h-[540px]
             flex flex-col justify-center relative  
             shadow-standard 
             rounded-bl-[65px] rounded-br-[65px]
             bg-white
-            sm:justify-center lg:mt-[10%] lg:justify-self-center
+            sm:justify-center lg:justify-self-center
             '
     >
       {/* AVATAR BG SEMICIRCLE */}
       <div
-        className='
-            flex justify-center'
-      >
+        className='flex justify-center'>
         <div
-          className='
-            w-[100%] h-[13em] 
+          className='w-[100%] h-[13em] 
             flex justify-center absolute top-0 
             rounded-b-[200px]
             bg-darkBeige'
@@ -50,12 +47,11 @@ function UserCard(props: Props) {
       <div
         className='
             w-[100%] h-[6em] 
-            flex justify-center
-          '
+            flex justify-center'
       >
         <img
-          className='
-            w-[12em] h-[12em] mt-[2rem] 
+          className='w-[11em] h-[11em] mt-[2.8rem] 
+            lg:w-[12rem] lg:h-[12rem] lg:mt-[1rem]
             absolute z-10 
             rounded-full'
           src={imageAccount}
@@ -66,9 +62,8 @@ function UserCard(props: Props) {
       <div className='mt-[9em]'>
         <h1
           className='
-              flex justify-center 
-              font-[700] text-[2.5rem]
-              '
+            flex justify-center 
+            font-[700] text-[2.5rem]'
         >
           {user?.name}
         </h1>
