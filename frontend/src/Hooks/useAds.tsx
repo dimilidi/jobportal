@@ -1,65 +1,50 @@
 // Hooks
-import { useState, useEffect } from 'react'
-import { useParams } from 'react-router-dom'
+import { useState, useEffect, useCallback } from 'react'
 // Axios
 import axiosInstance from '../api/axiosInstance'
 // type
 import { Ad } from '../type'
 
 type AdHook = {
-  list: Ad[]
-  ad: Ad | null
+  adList: Ad[] | []
+  ad: Ad | undefined | null
   isLoading: boolean
   error: string
-  setIsLoading: (isLoading: boolean) => void
-  setError: (error: string) => void
 }
 
-function useAds(): AdHook {
-  const params = useParams()
-
-  const [list, setList] = useState<Ad[]>([])
-  const [ad, setAd] = useState<Ad | null>(null)
+function useAds(url: string): AdHook {
+  const [adList, setAdList] = useState<Ad[] | []>([])
+  const [ad, setAd] = useState<Ad | undefined | null>(null)
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState('')
 
-  useEffect(() => {
-    fetchAds()
-  }, [])
-
-  const fetchAds = async () => {
+  const fetchAds = async (url: string) => {
+    setError('')
     setIsLoading(true)
     try {
-      const res = await axiosInstance.get('/ads')
+      const res = await axiosInstance.get(url)
       const data = res.data
 
-      setList(data)
+      //?
+      // if returning value is object, set it to Ad, if Array, set it to AdList
+      if (typeof data === 'object' && !Array.isArray(data) && data !== null) {
+        setAd(data)
+      } else {
+        setAdList(data)
+      }
     } catch (error) {
-      console.log(error)
+      setError('Something went wrong!')
     }
     setIsLoading(false)
   }
 
-  const getAdById = async () => {
-    setIsLoading(true)
-    try {
-      const res = await axiosInstance.get(`./ads/${params.id}`)
-      const data = res.data
-      setAd(data)
-    } catch (error) {
-      console.log(error)
-    }
-    setIsLoading(false)
-  }
-
-  // Bug ??
   useEffect(() => {
-    if (params.id) {
-      getAdById()
+    if (url) {
+      fetchAds(url)
     }
-  }, [params.id])
+  }, [url])
 
-  return { list, ad, setIsLoading, setError, error, isLoading }
+  return { adList, ad, error, isLoading }
 }
 
 export default useAds
