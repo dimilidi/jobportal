@@ -9,7 +9,6 @@ export const post = [
     .isString().withMessage('Title should be a text.')
     .notEmpty().withMessage('Title is required.'),
   body('sector')
-    .isString().withMessage('Sector should be a text.')
     .notEmpty().withMessage('Sector is required.'),
   body('location')
     .isString().withMessage('City should be a text.')
