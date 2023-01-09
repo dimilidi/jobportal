@@ -1,13 +1,13 @@
-import useAds from "../Hooks/useAds"
+import useAds from '../Hooks/useAds'
 import avatar from '../assets/images/Account_profilDefault.png'
+import { useParams } from 'react-router-dom'
 import useUser from "../Hooks/useUser"
 import Spinner from "./Spinner"
 
 
-
 function AdMobile() {
-
-  const ads = useAds()
+  const params = useParams()
+  const ads = useAds(`/ads/${params.id}`)
   const user = useUser()
   
   if(ads.isLoading) return <Spinner />

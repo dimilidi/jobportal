@@ -8,33 +8,34 @@ import imageHome from '../assets/images/Home_group.png'
 // framer-motion
 import { motion } from 'framer-motion'
 import React, { useEffect } from 'react'
+import Search from '../Components/Search'
 
 const Home = () => {
   const navigate = useNavigate()
 
   const futureText = React.useRef<HTMLSpanElement | null>(null)
 
-  useEffect(() => {
-    let prevLine: null | HTMLElement = null
-    const createLine = () => {
-      if (prevLine) prevLine.remove()
-      if (!futureText.current) return
-      const rect = futureText.current.getBoundingClientRect()
-      const line = document.createElement('div')
-      line.style.position = 'absolute'
-      line.style.top = rect.bottom - 10 + 'px'
-      line.style.left = '0px'
-      line.style.width = rect.right - 20 + 'px'
-      line.style.borderBottom = '2px solid #84A98C'
-      futureText.current.parentElement!.insertBefore(line, futureText.current)
-      prevLine = line
-    }
-    createLine()
-    window.addEventListener('resize', createLine)
-    return () => {
-      window.removeEventListener('resize', createLine)
-    }
-  }, [])
+  // useEffect(() => {
+  //   let prevLine: null | HTMLElement = null
+  //   const createLine = () => {
+  //     if (prevLine) prevLine.remove()
+  //     if (!futureText.current) return
+  //     const rect = futureText.current.getBoundingClientRect()
+  //     const line = document.createElement('div')
+  //     line.style.position = 'absolute'
+  //     line.style.top = rect.bottom - 10 + 'px'
+  //     line.style.left = '0px'
+  //     line.style.width = rect.right - 20 + 'px'
+  //     line.style.borderBottom = '2px solid #84A98C'
+  //     futureText.current.parentElement!.insertBefore(line, futureText.current)
+  //     prevLine = line
+  //   }
+  //   createLine()
+  //   window.addEventListener('resize', createLine)
+  //   return () => {
+  //     window.removeEventListener('resize', createLine)
+  //   }
+  // }, [])
 
   return (
     <motion.div
@@ -70,20 +71,10 @@ const Home = () => {
           src={imageHome}
         ></img>
 
+      <div className='mt-6 flex flex-col items-center justify-center gap-3 sm:w-[450px] lg:pt-[0px] lg:self-start  lg:w-[50%] '>
         {/* SEARCH */}
-        <div className='mt-6 flex flex-col items-center justify-center gap-3 sm:w-[450px] lg:pt-[0px] lg:self-start  lg:w-[50%] '>
-          <div className='w-full flex items-center justify-center '>
-            <label className='relative  w-[90%] sm:w-[80%] xl:w-[60%] '>
-              <GoSearch className='w-[20px] absolute top-4 left-5 text-gray text-opacity-50' />
-              <input
-                type='text'
-                className='w-full py-[12px] px-12 box-border placeholder:text-center rounded-full bg-darkBeige shadow-inner placeholder:text-gray placeholder:text-opacity-50 focus:outline-lightGray  '
-                placeholder='Search'
-              />
-            </label>
-          </div>
-
-          {/* BUTTON Browse Ads */}
+         <Search />
+        {/* BUTTON Browse Ads */}
           <UniButton
             text='Browse Ads'
             type='button'

@@ -23,23 +23,26 @@ function Ad({ ad }: Props) {
     >
       {/* LINK TO SINGLE AD  */}
       <Link to={`/ad/${ad?._id}`}>
-        <div className='  mx-auto h-[110px] w-[100%] flex justify-between items-center border-lightBeige border-b-0 border-t-2 text-[14px] md:h-[100px] md:border-y-2'>
+        <div className='mx-auto h-[110px] w-[100%] flex justify-between items-center border-lightBeige border-b-0 border-t-2 text-[14px] md:h-[100px] md:border-y-2'>
           {/* LEFT SECTION */}
           <div className='h-full flex justify-start sm:gap-3'>
             {/* PROFILE IMAGE */}
-            <div className='w-[50px] '>
-              <div className='mb-[20px] w-[50px] h-[75px] flex self-start justify-center items-end rounded-b-[40px]  bg-lightBeige md:w-[40px] md:h-[50px]'>
-                <div className='mb-1 w-[40px]  h-[40px]  self-end rounded-full bg-white md:w-[30px] md:h-[30px]'>
+            <div className='w-[60px] xl:w-[80px]'>
+              <div className='mb-[20px] w-[60px] h-[75px]
+                flex self-start justify-center items-end
+                rounded-b-[40px] bg-lightBeige
+                md:w-[60px] md:h-[75px]'>
+                <div className='mb-4 w-[50px] h-[40px] self-end rounded-full md:w-[50px] md:h-[40px]'>
                   <img src={profileImg} alt='' />
                 </div>
               </div>
             </div>
 
-            <div className=' w-[180px] flex  flex-col sm:flex-row justify-center items-center gap-4 sm:w-[320px] md:flex-row '>
+            <div className='w-[180px] flex flex-col sm:flex-row justify-center items-center sm:w-[320px] md:flex-row'>
               <div className='w-[150px] flex sm:w-[200px] xl:w-[300px]'>
                 {/* TITLE, SECTOR */}
                 <div className='text-textBlack sm:w-[250px] '>
-                  <p className='text-[14px] sm:text-[18px]  text-textBlack'>{ad.title}</p>
+                  <p className='text-[14px] sm:text-[18px] text-textBlack'>{ad.title}</p>
                   {/* SECTOR */}
                   <p className='text-[16px] text-textBlack text-opacity-50'>
                     {ad.sector}
@@ -47,9 +50,9 @@ function Ad({ ad }: Props) {
                 </div>
               </div>
 
-              <div className='w-[150px] flex sm:flex-col  justify-end gap-1 md:w-[80px] sm:gap-2'>
+              <div className='w-[150px] flex sm:flex-col justify-end gap-1 md:w-[80px] sm:gap-2'>
                 {/* LOCATION */}
-                <div className='p-1 w-[100px] flex justify-center items-center  border-2 border-lightBeige rounded-full text-[12px] text-textBlack text-opacity-50 sm:w-[100px] sm:text-[14px]  md:text-[16px]'>
+                <div className='p-1 w-[100px] flex justify-center items-center border-2 border-lightBeige rounded-full text-[12px] text-textBlack text-opacity-50 sm:w-[100px] sm:text-[14px] md:text-[16px]'>
                   <p>{ad.location}</p>
                 </div>
                 {/* CATEGORY */}
