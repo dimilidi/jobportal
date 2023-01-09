@@ -1,5 +1,5 @@
 // Hooks
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect } from 'react'
 // Axios
 import axiosInstance from '../api/axiosInstance'
 // type

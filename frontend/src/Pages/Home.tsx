@@ -1,4 +1,5 @@
 // Hooks
+import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 // Components
 import UniButton from '../Components/UniButton'
@@ -7,12 +8,10 @@ import { GoSearch } from 'react-icons/go'
 import imageHome from '../assets/images/Home_group.png'
 // framer-motion
 import { motion } from 'framer-motion'
-import React, { useEffect } from 'react'
 import Search from '../Components/Search'
 
 const Home = () => {
   const navigate = useNavigate()
-
   const futureText = React.useRef<HTMLSpanElement | null>(null)
 
   // useEffect(() => {
@@ -71,16 +70,16 @@ const Home = () => {
           src={imageHome}
         ></img>
 
-      <div className='mt-6 flex flex-col items-center justify-center gap-3 sm:w-[450px] lg:pt-[0px] lg:self-start  lg:w-[50%] '>
-        {/* SEARCH */}
-         <Search />
-        {/* BUTTON Browse Ads */}
+        <form className='mt-6 flex flex-col items-center justify-center gap-3 sm:w-[450px] lg:pt-[0px] lg:self-start  lg:w-[50%] '>
+          {/* SEARCH */}
+          <Search />
+          {/* BUTTON Browse Ads */}
           <UniButton
             text='Browse Ads'
             type='button'
             onClick={() => navigate('/adslist')}
           />
-        </div>
+        </form>
       </div>
 
       {/* ELEMENTS (circle, lines) */}

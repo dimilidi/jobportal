@@ -7,16 +7,21 @@ export async function getAds(req, res) {
 
   if (userId) query = query.where('user').equals(userId)
 
-  // filter ads by search, if it is included in description/location/sector,
-  // ? how to set discription OR location OR sector ?
+  // filter ads by search, if it is included in title/description/location/sector,
   if (search) {
-    query = query.where('description').includes(search)
+    query = query.find({
+      $or: [
+        { title: { $in: search } },
+        { description: { $in: search } },
+        { location: { $in: search } },
+        { sector: { $in: search } },
+      ],
+    })
   }
 
   const ads = await query.populate('user', 'name')
   res.status(200).json(ads)
 }
-
 
 /** @type {import("express").RequestHandler} */
 export async function postAd(req, res) {

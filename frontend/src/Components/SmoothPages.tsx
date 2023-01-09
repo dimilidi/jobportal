@@ -1,4 +1,4 @@
-import React from "react"
+import React from 'react'
 import { Routes, Route, useLocation } from 'react-router-dom'
 // Pages
 import Account from '../Pages/Account'
@@ -13,27 +13,27 @@ import SingleAd from '../Pages/SingleAd'
 import EditAccount from '../Pages/EditAccount'
 import DeleteAccount from '../Pages/DeleteAccount'
 // franer-motion
-import {AnimatePresence} from 'framer-motion'
-
+import { AnimatePresence } from 'framer-motion'
 
 const SmoothPages = () => {
   const location = useLocation()
 
   return (
     <AnimatePresence>
-        <Routes location={location} key={location.pathname}>
-            <Route path='/login' element={<Login />} />
-            <Route path='/register' element={<Register />} />
-            <Route path='/' element={<Home />} />
-            <Route path='/adslist' element={<AdsList />} />
-            <Route path='/ad/:id' element={<SingleAd />} />
-            <Route path='/post-ad' element={<PostAd />} />
-            <Route path='/account' element={<Account />} />
-            <Route path='/edit-account' element={<EditAccount />} />
-            <Route path='/delete-account' element={<DeleteAccount />} />
-            <Route path='/auth-required' element={<AuthRequired />} />
-            <Route path='*' element={<NotFound />} />
-        </Routes>
+      <Routes location={location} key={location.pathname}>
+        <Route path='/login' element={<Login />} />
+        <Route path='/register' element={<Register />} />
+
+        <Route path='/' element={<Home />} />
+        <Route path='/adslist' element={<AdsList />} />
+        <Route path='/ad/:id' element={<SingleAd />} />
+        <Route path='/post-ad' element={<PostAd />} />
+        <Route path='/account' element={<Account />} />
+        <Route path='/edit-account' element={<EditAccount />} />
+        <Route path='/delete-account' element={<DeleteAccount />} />
+        <Route path='/auth-required' element={<AuthRequired />} />
+        <Route path='*' element={<NotFound />} />
+      </Routes>
     </AnimatePresence>
   )
 }

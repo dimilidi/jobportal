@@ -10,11 +10,13 @@ import Spinner from '../Components/Spinner'
 import { motion } from 'framer-motion'
 // Images
 import man from '../assets/images/Ads_man_working.png'
+import useSearch from '../Hooks/useSearch'
 
 const AdsList = () => {
   // CONSTANTS
+  const { searchWord, setSearchWord } = useSearch()
   const user = useUser()
-  const ads = useAds(`/ads`)
+  const ads = useAds(`/ads/?search=${searchWord}`)
   const navigate = useNavigate()
 
   // HANDLE POST AD BUTTON
