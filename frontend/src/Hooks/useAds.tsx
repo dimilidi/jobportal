@@ -13,6 +13,7 @@ type AdHook = {
 }
 
 function useAds(url: string): AdHook {
+  console.log(url)
   const [adList, setAdList] = useState<Ad[] | []>([])
   const [ad, setAd] = useState<Ad | undefined | null>(null)
   const [isLoading, setIsLoading] = useState(false)

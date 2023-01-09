@@ -1,15 +1,16 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { GoSearch } from 'react-icons/go'
 import useAds from '../Hooks/useAds'
 import useSearch from '../Hooks/useSearch'
 
-type Props = {}
+type Props = {
+  searchInput: string
+  setSearchInput: React.Dispatch<React.SetStateAction<string>>
+}
 
 const Search = (props: Props) => {
-  const { searchWord, setSearchWord } = useSearch()
-
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchWord(e.target.value)
+    props.setSearchInput(e.target.value)
   }
 
   return (
@@ -20,7 +21,7 @@ const Search = (props: Props) => {
           type='text'
           className='w-full py-[12px] px-12 box-border placeholder:text-center rounded-full bg-darkBeige shadow-inner placeholder:text-gray placeholder:text-opacity-50 focus:outline-lightGray  '
           placeholder='Search'
-          value={searchWord}
+          value={props.searchInput}
           onChange={(e) => handleChange(e)}
         />
       </label>
