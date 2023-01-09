@@ -51,7 +51,7 @@ export async function login(req, res) {
 }
 
 /** @type {import("express").RequestHandler} */
-export async function updateUser(req, res) {
+export async function editAccount(req, res) {
   const user = req.user
 
   for (const key in req.body) {
@@ -70,5 +70,14 @@ export const logout = async (req, res) => {
   user.tokens.pull(token)
   await user.save()
 
-  res.clearCookie('token').status(204).json()
+  res.clearCookie('auth-token').status(204).json()
+}
+
+/** @type {import("express").RequestHandler} */
+export const deleteAccount = async (req, res) => {
+  const user = req.user
+
+  await User.deleteOne({ _id: user._id })
+
+  res.clearCookie('auth-token').status(204).json()
 }
