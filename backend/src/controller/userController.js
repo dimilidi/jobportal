@@ -70,5 +70,15 @@ export const logout = async (req, res) => {
   user.tokens.pull(token)
   await user.save()
 
-  res.clearCookie('token').status(204).json()
+  res.clearCookie('auth-token').status(204).json()
+}
+
+/** @type {import("express").RequestHandler} */
+export const deleteAccount = async (req, res) => {
+  console.log('angekommen')
+  const user = req.user
+
+  await User.deleteOne.where('_id').equals(user._id)
+
+  res.clearCookie('auth-token').status(204).json()
 }

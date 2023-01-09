@@ -6,11 +6,9 @@ import mongoose from 'mongoose'
 import cookieParser from 'cookie-parser'
 import userRouter from './src/routers/userRouter.js'
 import adRouter from './src/routers/adRouter.js'
-import path, { dirname } from 'path'
-import { fileURLToPath } from 'url'
 dotenv.config({ path: `.env.${process.env.NODE_ENV}` })
 
-console.log('\x1b[36m%s\x1b[0m',`CLICK --> ${process.env.FRONTEND}` )
+console.log('\x1b[36m%s\x1b[0m', `CLICK --> ${process.env.FRONTEND}`)
 
 mongoose.set('strictQuery', false)
 mongoose
@@ -20,7 +18,6 @@ mongoose
 
 const app = express()
 
-
 app.use(
   cors({
     origin: process.env.FRONTEND,
@@ -29,8 +26,6 @@ app.use(
 )
 
 // Middleware
-const __dirname = dirname(fileURLToPath(import.meta.url))
-app.use('/assets', express.static(path.join(__dirname, 'public/assets')))
 app.use(express.json())
 app.use(cookieParser())
 
