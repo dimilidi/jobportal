@@ -48,7 +48,7 @@ const DeleteAccount = () => {
             </span>
           </h1>
 
-          <div className=' w-[80%] text-center mt-8'>
+          <div className=' w-[80%] text-center mt-8  text-gray'>
             <p>Are you sure you want to delete your account?</p>
           </div>
 
