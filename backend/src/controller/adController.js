@@ -60,14 +60,12 @@ export const updateAd = async (req, res) => {
   const adId = req.params.id
   const ad = await Ad.findById(adId)
 
-  if(user && ad.user.valueOf() === user._id.valueOf()) {
+  if(user && ad.user === user._id) {
     for(const key in req.body){
       ad[key] = req.body[key]
     }
     await ad.save()
     res.status(200).json(ad)
   }
-  else {
-    res.status(401).json({message: 'You can update only your posts'})
-  }
+ 
 }

@@ -43,6 +43,8 @@ function useAds(url: string): AdHook {
     }
   }, [url])
 
+
+
   return { adList, ad, error, isLoading }
 }
 

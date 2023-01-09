@@ -1,6 +1,11 @@
-import { Link } from 'react-router-dom'
+import { Link, Navigate, useNavigate, useParams } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import profileImg from '../assets/images/Account_profilDefault.png'
+import { BsThreeDots } from 'react-icons/bs'
+import useUser from '../Hooks/useUser'
+import useAds from '../Hooks/useAds'
+import Dropdown from './Dropdown'
+import { useState } from 'react'
 
 type Props = {
   ad: {
@@ -11,10 +16,30 @@ type Props = {
     wage: number
     createdAt: Date
     _id: string
+    user: {
+      _id:string
+    }
   }
 }
 
 function Ad({ ad }: Props) {
+  const params = useParams()
+  const navigate = useNavigate()
+  const user = useUser()
+  const ads = useAds(`/ads/${params.id}`)
+  const [open, setOpen] = useState(false)
+
+  const handleDotClick = () => {
+    setOpen(true)
+    // navigate(`/ad/edit-ad/${params.id}`)
+
+  }
+  console.log(open);
+  
+ 
+
+
+
   return (
     <motion.div
       whileHover={{ scale: 1.1 }}
@@ -22,12 +47,12 @@ function Ad({ ad }: Props) {
       className='px-1 mx-auto w-full sm:px-[0px] md:py-1 max-w-[520px] xl:max-w-[680px]'
     >
       {/* LINK TO SINGLE AD  */}
-      <Link to={`/ad/${ad?._id}`}>
+      {/* <Link to={`/ad/${ad?._id}`}> */}
         <div className='mx-auto h-[110px] w-[100%] flex justify-between items-center border-lightBeige border-b-0 border-t-2 text-[14px] md:h-[100px] md:border-y-2'>
           {/* LEFT SECTION */}
           <div className='h-full flex justify-start sm:gap-3'>
             {/* PROFILE IMAGE */}
-            <div className='w-[60px] xl:w-[80px]'>
+            <div className='w-[60px] flex flex-col xl:w-[80px]'>
               <div className='mb-[20px] w-[60px] h-[75px]
                 flex self-start justify-center items-end
                 rounded-b-[40px] bg-lightBeige
@@ -36,6 +61,10 @@ function Ad({ ad }: Props) {
                   <img src={profileImg} alt='' />
                 </div>
               </div>
+              {/* DOTS */}
+             {user.user?._id === ad.user?._id && <BsThreeDots onClick={handleDotClick} style={{width:'100%',alignSelf:'flex-start'}} />}
+             {open && 
+             <Dropdown />}
             </div>
 
             <div className='w-[180px] flex flex-col sm:flex-row justify-center items-center sm:w-[320px] md:flex-row'>
@@ -65,13 +94,14 @@ function Ad({ ad }: Props) {
 
           {/* RIGHT SECTION */}
           <div className='w-[70px] h-full flex self-end flex-col justify-end  items-start gap-1 md:w-[180px] md:flex-row md:self-center md:items-center md:justify-between'>
+            
             {/* CREATED AT */}
             <div className='text-[14px] text-textBlack text-opacity-50 md:ml-[10px] md:text-[16px]'>
               <p>{new Date(ad.createdAt).toLocaleDateString()}</p>
             </div>
 
             {/* WAGE */}
-            <div className=' w-[70px] h-[60px] flex justify-center items-center rounded-t-[20px] text-[14px]  text-textBlack text-opacity-70 bg-lightBeige md:mr-[-15px] md:h-[100px] md:w-[70px] md:rounded-r-[20px] md:rounded-tl-[0px] md:text-[16px]'>
+            <div className=' w-[70px] h-[60px] flex justify-center items-center rounded-t-[20px] text-[14px]  text-textBlack text-opacity-70 bg-lightBeige md:mr-[-15px] md:h-[100px] md:w-[70px] md:rounded-r-[20px] md:rounded-tl-[0px] md:text-[16px]'>              
               <div className='text-[18px]'>
                 {ad.wage}€
                 <p className='text-[14px] text-textBlack text-opacity-50'>
@@ -79,9 +109,10 @@ function Ad({ ad }: Props) {
                 </p>
               </div>
             </div>
+
           </div>
         </div>
-      </Link>
+      {/* </Link> */}
     </motion.div>
   )
 }

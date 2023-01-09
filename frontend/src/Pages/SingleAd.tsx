@@ -17,6 +17,9 @@ import thinkingGirl from '../assets/images/SingleAd_girl.png'
 // Framer-motion
 import { motion } from 'framer-motion'
 import { IoMdHeadset } from 'react-icons/io'
+import { AiFillEdit } from 'react-icons/ai'
+import UniButtonWhite from '../Components/UniButtonWhite'
+import { RiDeleteBinLine } from 'react-icons/ri'
 
 const SingleAd = () => {
   // CONSTANTS
@@ -28,6 +31,7 @@ const SingleAd = () => {
   // HANDLE CLICK
   const handleClick = () => {
     if (user.isLoggedIn === false) navigate('/auth-required')
+    if(user.user?._id === ads.ad?.user._id) navigate(`/ad/edit-ad/${params.id}`)
   }
 
   // If no ad was fetched, return div with message
@@ -90,11 +94,34 @@ const SingleAd = () => {
             )}
           </div>
 
+          {/* IF AD IS NOT CREATED BY USER, BUTTON "MESSAGE" */}
+          {user.user?._id !== ads.ad?.user._id &&
           <UniButton
-            text='Contact'
+            text= 'Message'
             onClick={handleClick}
             className='my-7 self-center mb-2 lg:mb-0'
           />
+          }
+
+        {/* IF AD IS CREATED BY USER, BUTTON "EDIT" && "DELETE" */}
+        {user.user?._id === ads.ad?.user._id && 
+        <div className='px-3 flex justify-center gap-2'>
+
+         <UniButtonWhite
+         text={<AiFillEdit style={{width:'40px', fontSize:'20px'}} />}
+         onClick={handleClick}
+         className='my-7 self-center mb-2 lg:mb-0'
+         style={{width:'80px', height:'40px'}}
+       />
+         <UniButton
+         text={<RiDeleteBinLine style={{width:'40px', fontSize:'20px'}} />}
+         onClick={handleClick}
+         className='my-7 self-center mb-2 lg:mb-0'
+         style={{width:'80px', height:'40px'}}
+       />
+       </div>
+
+        }
         </div>
         {/* Ad - END */}
 

@@ -24,3 +24,27 @@ export const post = [
     .notEmpty().withMessage('Contact option is required.'),
   validate
 ]
+
+
+export const updateAd = [
+  body('category')
+    .notEmpty().withMessage('Category is required.'),
+  body('title')
+    .isString().withMessage('Title should be a text.')
+    .notEmpty().withMessage('Title is required.'),
+  body('location')
+    .isString().withMessage('City should be a text.')
+    .not().isNumeric().withMessage('City should be a text.')
+    .notEmpty().withMessage('Location is required.'),
+  body('description')
+    .isString().withMessage('Description should be a text.')
+    .notEmpty().withMessage('Description is required.'),
+  body('wage')
+    .notEmpty().withMessage('Wage input is required.'),
+  body('sector')
+    .not().isNumeric().withMessage('Sector should be a text.')
+    .notEmpty().withMessage('Sector is required.'),
+  body('contactVia')
+    .notEmpty().withMessage('Contact option is required.'),
+  validate
+]
