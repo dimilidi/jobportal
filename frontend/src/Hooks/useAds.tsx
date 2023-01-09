@@ -25,7 +25,6 @@ function useAds(url: string): AdHook {
       const res = await axiosInstance.get(url)
       const data = res.data
 
-      //?
       // if returning value is object, set it to Ad, if Array, set it to AdList
       if (typeof data === 'object' && !Array.isArray(data) && data !== null) {
         setAd(data)

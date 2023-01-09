@@ -77,9 +77,8 @@ const EditAccount = (props: Props) => {
     // CONTAINER WHOLE PAGE CONTENT
     <div className='
       h-full
-      mt-[2rem] pt-[4rem]
+      pt-[100px]
       flex flex-col items-center
-      bg-background
       md:pt-[6rem]
       xl:pt-[4rem]'
     >
@@ -94,48 +93,54 @@ const EditAccount = (props: Props) => {
         xl:block' 
       />
 
-      {/* IMAGE */}
-      <img
-        className=' 
-          w-[180px] 
-          z-10
-          md:absolute
-          md:top-[6rem]
-          md:right-[10rem]
-          lg:right-[17.1rem]
-          xl:top-[4rem]
-          xl:right-[29rem]
-          2xl:right-[60rem]
-          '
-        src={image}
-        alt='profile picture'
-      />
+      {/* HEADING & IMAGE */}
+      <div 
+      className='flex justify-start items-center'>
+        <h1 className='
 
-      {/* HEADING && FORM */}
+          w-[80%] mb-[1rem]
+          text-left text-[2.5rem] font-semibold 
+          sm:text-[2.5rem]
+          md:w-[80%] 
+        
+          md:pr-[17rem]
+          md:text-left
+          md:leading-[3rem]
+          lg:w-[80%]
+          '>
+          <span
+            className='text-lightGreen italic
+          '>Edit</span> <br></br>
+            Profile
+        </h1>
+
+        {/* IMAGE */}
+        <img
+          className=' 
+            w-[130px] 
+            z-10
+            md:absolute
+            md:top-[6rem]
+            md:right-[10rem]
+            lg:right-[17.1rem]
+            xl:top-[4rem]
+            xl:right-[29rem]
+            2xl:right-[60rem]
+            '
+          src={image}
+          alt='profile picture'
+        />
+      </div>
+
+      {/* FORM */}
       <div className='
         w-full max-w-[500px]
         pt-[1rem]    
         flex flex-col items-center justify-center 
-        relative 
+        relative rounded-[30px] shadow-standard bg-white
         md:mt-[1rem]
-        md:pb-[2rem]
         '
       >
-          {/* HEADING */}
-          <h1 className='
-            w-[80%] mb-[1rem]
-            text-center text-[2.2rem] font-semibold 
-            sm:text-[2.5rem]
-            md:w-[80%] 
-            md:mb-[3rem] 
-            md:pr-[10rem]
-            md:text-left
-            md:leading-[3rem]
-            lg:w-[80%]
-            '>
-            Edit
-            <span className=' text-lightGreen italic'> Profile</span>
-          </h1>
 
           {/* LINE */}
           <span className='
@@ -168,9 +173,9 @@ const EditAccount = (props: Props) => {
               <label
                 htmlFor='username'
                 className='
+                  hidden md:inline-block
                   self-start 
-                  text-gray font-extralight 
-                  sm:font-light 
+                  text-gray font-semibold 
                   sm:text-[1.1rem] 
                   lg:self-start'
               >
@@ -184,6 +189,7 @@ const EditAccount = (props: Props) => {
                   min-[425px]:py-[10px]   
                   sm:text-[1.1rem]
                   focus:outline-lightGreen'
+                placeholder='Username'
                 type='text'
                 name='username'
                 // value={{user.user?.name}}
@@ -193,9 +199,9 @@ const EditAccount = (props: Props) => {
               <label
                 htmlFor='email'
                 className='
+                  hidden md:inline-block
                   self-start 
-                  text-gray font-extralight
-                  sm:font-light 
+                  text-gray font-semibold 
                   sm:text-[1.1rem]
                   lg:self-start'
               >
@@ -209,6 +215,7 @@ const EditAccount = (props: Props) => {
                   min-[425px]:py-[10px] 
                   box-border border border-lightGray rounded-[15rem] focus:outline-lightGreen 
                   sm:text-[1.1rem]'
+                placeholder='Email'
                 type='email'
                 name='email'
                 // value={inputs.email}
@@ -218,9 +225,9 @@ const EditAccount = (props: Props) => {
               <label
                 htmlFor='phone'
                 className='
+                  hidden md:inline-block
                   self-start 
-                  font-extralight text-gray  
-                  sm:font-light 
+                  font-semibold text-gray  
                   sm:text-[1.1rem] 
                   lg:self-start'
               >
@@ -234,6 +241,7 @@ const EditAccount = (props: Props) => {
                   sm:text-[1.1rem]
                   text-sm
                   min-[425px]:py-[10px]'
+                placeholder='Phone'
                 type='text'
                 name='phone'
                 // value={{user.user?.name}}
@@ -243,9 +251,9 @@ const EditAccount = (props: Props) => {
               <label
                 htmlFor='city'
                 className='
+                  hidden md:inline-block
                   self-start 
-                  font-extralight text-gray  
-                  sm:font-light 
+                  font-semibold text-gray  
                   sm:text-[1.1rem] 
                   lg:self-start'
               >
@@ -258,6 +266,7 @@ const EditAccount = (props: Props) => {
                   box-border border border-lightGray rounded-[15rem] focus:outline-lightGreen sm:text-[1.1rem]
                   text-sm
                   min-[425px]:py-[10px]'
+                placeholder='City'
                 type='text'
                 name='city'
                 // value={{user.user?.name}}
@@ -268,8 +277,7 @@ const EditAccount = (props: Props) => {
                 htmlFor='description'
                 className='
                   self-start 
-                  font-extralight text-gray  
-                  sm:font-light 
+                  font-semibold  text-gray  
                   sm:text-[1.1rem] 
                   lg:self-start'
               >
@@ -304,6 +312,11 @@ const EditAccount = (props: Props) => {
                 text-lg'
               style={{ padding: '10px' }}
             />
+            
+            {/* DELETE-ACCOUNT */}
+            <p className='mt-2 w-full text-center text-lightGray underline text-[14px] lg:text-center'>
+              <Link to='/delete-account'>Delete account</Link>
+            </p>
 
             {/* ERRORS */}
             {errors &&
