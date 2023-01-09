@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState, useEffect } from 'react'
-import { AxiosResponse } from 'axios'
+import axios, { AxiosResponse } from 'axios'
 import axiosInstance from '../api/axiosInstance'
 import { User, RegisterInputs, LoginInputs, EditInputs } from '../type'
 import { getErrorArray } from '../utils/getErrorArray'
@@ -16,7 +16,8 @@ type UserHook = {
   register: (params: RegisterInputs) => Promise<PromiseResult>
   login: (params: LoginInputs) => Promise<PromiseResult>
   logout: () => void
-  //   editAccount: (params: EditInputs) => void;
+  editAccount: (params: EditInputs) => void
+  deleteAccount: () => void
 }
 
 const UserContext = createContext<UserHook>({
@@ -34,7 +35,8 @@ const UserContext = createContext<UserHook>({
     }
   },
   logout: () => null,
-  //   editAccount: () => null,
+  editAccount: () => null,
+  deleteAccount: () => null,
 })
 
 export const UserProvider = (props: { children: React.ReactElement }) => {
@@ -124,6 +126,39 @@ export const UserProvider = (props: { children: React.ReactElement }) => {
     },
     logout: async () => {
       await axiosInstance.get('/user/logout')
+      setUser(null)
+    },
+    editAccount: async (inputs: EditInputs) => {
+      try {
+        const response: AxiosResponse<any, any> = await axiosInstance.put(
+          '/user/edit-account',
+          inputs
+        )
+        setUser(response.data)
+        return {
+          status: response.status,
+        }
+      } catch (err: any) {
+        console.log(err)
+        if (err.response && err.response.status === 401) {
+          return {
+            status: 401,
+          }
+        } else if (err.response && err.response.status === 400) {
+          const errors = getErrorArray(err.response.data.message)
+          return {
+            status: 400,
+            errors: errors,
+          }
+        } else {
+          return {
+            status: 500,
+          }
+        }
+      }
+    },
+    deleteAccount: async () => {
+      await axiosInstance.delete('/user/delete-account')
       setUser(null)
     },
   }
