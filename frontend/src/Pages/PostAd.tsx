@@ -86,6 +86,8 @@ const PostAd = () => {
       const message = error[key]
       setError(message)
       notify(message)
+      console.log(message);
+      
     } else if (response.status === 401) {
       setError('You are not logged in.')
       notify(error)
