@@ -8,6 +8,7 @@ import BrowseJobs from '../Components/BrowseJobs'
 import { motion } from 'framer-motion'
 import useUser from '../Hooks/useUser'
 // Images
+import DeleteAccountImage from '../assets/images/DeleteAccount.png'
 
 const DeleteAccount = () => {
   const navigate = useNavigate()
@@ -24,8 +25,8 @@ const DeleteAccount = () => {
     >
       <div
         className='pb-20 mx-auto pr-2 w-[90%] h-full min-h-[910px]
-    flex justify-center flex-col items-center
-    sm:w-[60%] lg:w-[50%] md:pt-[0]'
+          flex justify-center flex-col items-center
+          sm:w-[60%] lg:w-[50%] md:pt-[0]'
       >
         {/* ICON & BROWSE JOBS */}
         <div className='w-full flex lg:ml-[50%] p-5'>
@@ -36,9 +37,9 @@ const DeleteAccount = () => {
         {/* MAIN CONTAINER */}
         <div
           className='bg-white p-10 pb-40
-        flex justify-center items-center flex-col
-        rounded-xl shadow-standard 
-        md:w-[400] md:px-16 '
+            flex justify-center items-center flex-col
+            rounded-xl shadow-standard 
+            md:w-[400] md:px-16 '
         >
           <h1 className=' text-4xl md:text-5xl'>
             Delete <br />
@@ -62,15 +63,19 @@ const DeleteAccount = () => {
           />
 
           {/* ELEMENTS */}
-          {/* Line */}
+          {/* LINE */}
           <div
             area-label='line'
-            className='w-[52%] min-w-[240px] border-b-[3px] 
-              border-lightGreen sm:block 
-              absolute top-[318px] md:top-[327px] right-0'
+            className='w-[67%] min-w-[240px]
+              border-b-[3px] 
+              border-lightGreen
+              absolute top-[310px]
+              sm:block sm:top-[320px] sm:w-[62%]
+              md:top-[327px] right-0
+              lg:w-[59.5%] xl:w-[55%]'
           ></div>
 
-          {/* Circle */}
+          {/* CIRCLE */}
           <div
             area-label='circle'
             className='w-24 h-24 hidden 
@@ -81,18 +86,19 @@ const DeleteAccount = () => {
           {/* ELEMENTS END*/}
 
           {/* IMAGES */}
-          {/* <div>
+          <div>
         <img
-          // src={}
-          alt='postman'
-          className='scale-x-[-1] absolute
-              sm:top-[460px] sm:left-4 max-h-96 overflow-hidden 
-              md:max-h-full  md:top-[360px] md:-left-4 
-              lg:left-32 lg:top-[300px] 
-              xl:left-56 xl:top-[260px] 
-              2xl:left-96  '
+          src={DeleteAccountImage}
+          alt='box'
+          className='w-[180px] top-[38rem] scale-x-[-1] absolute 
+            left-[20%]
+            sm:left-[3%]
+            md:left-[6%] md:w-[230px] md:top-[35rem] md:scale-x-[-1] md:-rotate-[20deg]
+            lg:left-[16%]
+            xl:left-[31%]
+            2xl:left-[32%]'
         />
-      </div> */}
+      </div>
           {/* IMAGES END */}
         </div>
         {/* MAIN CONTAINER END */}
