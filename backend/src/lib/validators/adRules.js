@@ -3,8 +3,6 @@ import validate from '../../middleware/validate.js'
 import  httpErrors from 'http-errors'
 
 export const post = [
-  body('sector')
-    .notEmpty().withMessage('Sector is required.'),
   body('category')
     .notEmpty().withMessage('Category is required.'),
   body('title')
@@ -19,6 +17,9 @@ export const post = [
     .notEmpty().withMessage('Description is required.'),
   body('wage')
     .notEmpty().withMessage('Wage input is required.'),
+  body('sector')
+    .not().isNumeric().withMessage('Sector should be a text.')
+    .notEmpty().withMessage('Sector is required.'),
   body('contactVia')
     .notEmpty().withMessage('Contact option is required.'),
   validate
