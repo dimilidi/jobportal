@@ -20,6 +20,7 @@ export async function getAds(req, res) {
   }
 
   const ads = await query.populate('user', 'name')
+  console.log(ads)
   res.status(200).json(ads)
 }
 

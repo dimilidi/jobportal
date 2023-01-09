@@ -16,8 +16,10 @@ const AdsList = () => {
   // CONSTANTS
   const { searchWord, setSearchWord } = useSearch()
   const user = useUser()
-  const ads = useAds(`/ads/?search=${searchWord}`)
+  const ads = useAds(`/ads?search=${searchWord}`)
   const navigate = useNavigate()
+
+  console.log(ads)
 
   // HANDLE POST AD BUTTON
   const handleClick = () => {

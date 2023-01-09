@@ -7,7 +7,6 @@ type Props = {}
 
 const Search = (props: Props) => {
   const { searchWord, setSearchWord } = useSearch()
-  const ads = useAds(`/ads/?search=${searchWord}`)
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchWord(e.target.value)
