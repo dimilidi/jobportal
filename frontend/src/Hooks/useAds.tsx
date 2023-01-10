@@ -13,7 +13,6 @@ type AdHook = {
 }
 
 function useAds(url: string): AdHook {
-  console.log(url)
   const [adList, setAdList] = useState<Ad[] | []>([])
   const [ad, setAd] = useState<Ad | undefined | null>(null)
   const [isLoading, setIsLoading] = useState(false)
@@ -43,8 +42,6 @@ function useAds(url: string): AdHook {
       fetchAds(url)
     }
   }, [url])
-
-
 
   return { adList, ad, error, isLoading }
 }

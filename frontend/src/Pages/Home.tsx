@@ -17,7 +17,8 @@ const Home = () => {
   const [searchInput, setSearchInput] = useState('')
   const futureText = React.useRef<HTMLSpanElement | null>(null)
 
-  const handleClick = () => {
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault()
     setSearchWord(searchInput)
     navigate('/adslist')
   }
@@ -78,11 +79,14 @@ const Home = () => {
           src={imageHome}
         ></img>
 
-        <form className='mt-6 flex flex-col items-center justify-center gap-3 sm:w-[450px] lg:pt-[0px] lg:self-start  lg:w-[50%] '>
+        <form
+          className='mt-6 flex flex-col items-center justify-center gap-3 sm:w-[450px] lg:pt-[0px] lg:self-start  lg:w-[50%] '
+          onSubmit={handleSubmit}
+        >
           {/* SEARCH */}
           <Search searchInput={searchInput} setSearchInput={setSearchInput} />
           {/* BUTTON Browse Ads */}
-          <UniButton text='Browse Ads' type='button' onClick={handleClick} />
+          <UniButton text='Browse Ads' type='button' />
         </form>
       </div>
 
