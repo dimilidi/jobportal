@@ -1,4 +1,5 @@
 import httpErrors from 'http-errors'
+import Ad from '../models/Ad.js'
 import User from '../models/User.js'
 
 /** @type {import("express").RequestHandler} */
@@ -77,6 +78,7 @@ export const logout = async (req, res) => {
 export const deleteAccount = async (req, res) => {
   const user = req.user
 
+  await Ad.deleteMany().where('user').equals(user._id)
   await User.deleteOne({ _id: user._id })
 
   res.clearCookie('auth-token').status(204).json()
