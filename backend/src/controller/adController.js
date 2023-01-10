@@ -60,7 +60,7 @@ export const updateAd = async (req, res) => {
   const adId = req.params.id
   const ad = await Ad.findById(adId)
 
-  if(user && ad.user === user._id) {
+  if(( ad.user).valueOf() === (user._id).valueOf()){
     for(const key in req.body){
       ad[key] = req.body[key]
     }

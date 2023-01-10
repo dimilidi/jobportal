@@ -77,7 +77,7 @@ useEffect(() => {
   // HANDLE SUBMIT
   const handleSubmit = async (e: React.SyntheticEvent) => {
     e.preventDefault()
-    setIsLoading(true)
+     setIsLoading(true)
 
     const ad = {
       title,
@@ -372,7 +372,7 @@ useEffect(() => {
             </div>
             {/* BUTTON - POST AD */}
             <UniButton
-              onClick={handleNavigateifUserNotLoggedIn}
+            //   onClick={handleNavigateifUserNotLoggedIn}
               area-label='postAdButton'
               text={isLoading ? <Spinner /> : 'Post Ad'}
               className='my-7 mx-auto w-[200px] self-center  md:mb-0 lg:w-[250px]'
