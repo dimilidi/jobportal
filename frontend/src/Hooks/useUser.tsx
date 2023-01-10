@@ -16,7 +16,7 @@ type UserHook = {
   register: (params: RegisterInputs) => Promise<PromiseResult>
   login: (params: LoginInputs) => Promise<PromiseResult>
   logout: () => void
-  editAccount: (params: EditInputs) => void
+  editAccount: (params: EditInputs) => Promise<PromiseResult>
   deleteAccount: () => void
 }
 
@@ -35,7 +35,11 @@ const UserContext = createContext<UserHook>({
     }
   },
   logout: () => null,
-  editAccount: () => null,
+  editAccount: async () => {
+    return {
+      status: 500,
+    }
+  },
   deleteAccount: () => null,
 })
 
@@ -50,20 +54,22 @@ export const UserProvider = (props: { children: React.ReactElement }) => {
 
   // Check if user is logged in, if yes, setUser. If not, return null.
   useEffect(() => {
-    const getUser = (async () => {
-      try {
-        const response: AxiosResponse<any, any> = await axiosInstance.get(
-          '/user'
-        )
-        setUser(response.data)
-        setIsLoggedIn(true)
-      } catch (err) {
-        setUser(null)
-      } finally {
-        setLoading(false)
-      }
-    })()
-  }, [])
+    if (!isLoggedIn && !loading) {
+      const getUser = (async () => {
+        try {
+          const response: AxiosResponse<any, any> = await axiosInstance.get(
+            '/user'
+          )
+          setUser(response.data)
+          setIsLoggedIn(true)
+        } catch (err) {
+          setUser(null)
+        } finally {
+          setLoading(false)
+        }
+      })()
+    }
+  }, [isLoggedIn, loading])
 
   const userContext = {
     user: user,
