@@ -18,23 +18,7 @@ type Props = {}
 const EditAccount = (props: Props) => {
   const navigate = useNavigate()
   const user = useUser()
-<<<<<<< HEAD
-  const newUser  = useUser() // hier muss ich mit _id verbinden ? 
-=======
-  const user = useUser()
->>>>>>> paulina-err
-  // const initialInputs: EditInputs = {
-  //   name: '',
-  //   phone: '',
-  //   city: '',
-  //   description: '',
-  //   email:'',
-  //   _id: '',
-  //   sector: '',
-  //   avatar: ''
-  // }
 
-  // const [inputs, setInputs] = useState(initialInputs)
   const [fetching, setFetching] = useState(false)
   const [errors, setErrors] = useState<string[] | undefined[] | undefined>([])
 
