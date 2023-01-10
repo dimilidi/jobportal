@@ -19,9 +19,7 @@ type Props = {}
 
 const EditAccount = (props: Props) => {
   const navigate = useNavigate()
-  const newUser  = useUser() // hier mit user id verbinden ? 
-
-
+  const newUser  = useUser() // hier muss ich mit _id verbinden ? 
   // const initialInputs: EditInputs = {
   //   name: '',
   //   phone: '',
@@ -74,7 +72,6 @@ const EditAccount = (props: Props) => {
   }
 
 
-  
   return (
     // CONTAINER WHOLE PAGE CONTENT
     <div 
