@@ -16,7 +16,7 @@ type UserHook = {
   register: (params: RegisterInputs) => Promise<PromiseResult>
   login: (params: LoginInputs) => Promise<PromiseResult>
   logout: () => void
-  editAccount: (params: EditInputs) => void
+  editAccount: (params: EditInputs) => Promise<PromiseResult>
   deleteAccount: () => void
 }
 
@@ -35,7 +35,11 @@ const UserContext = createContext<UserHook>({
     }
   },
   logout: () => null,
-  editAccount: () => null,
+  editAccount: async () => {
+    return {
+      status: 500,
+    }
+  },
   deleteAccount: () => null,
 })
 
