@@ -26,30 +26,34 @@ function Ad({ ad }: Props) {
   const params = useParams()
   const navigate = useNavigate()
   const user = useUser()
-  const ads = useAds(`/ads/${params.id}`)
+  const ads = useAds(`/ads/${ad._id}`)
   const [open, setOpen] = useState(false)
 
-  const handleDotClick = () => {
-    setOpen((prev) => !prev)
-    navigate(`/ad/edit-ad/${ad._id}`)
+  
+
+  const handleDotClick = (id:string) => ()=> {
+    console.log(open);
+   
+    setOpen(!open)
   }
 
+
   return (
-    <motion.div
-      whileHover={{ scale: 1.1 }}
-      whileTap={{ scale: 0.9 }}
+    <div
+      // whileHover={{ scale: 1.1 }}
+      // whileTap={{ scale: 0.9 }}
       className='w-full sm:px-[0px] md:py-1 max-w-[520px] xl:max-w-[680px]'
     >
       <div className='mx-auto h-[110px] w-[100%] flex justify-between items-center border-lightBeige border-b-0 border-t-2 text-[14px] md:h-[100px] md:border-y-2'>
         {/* LEFT SECTION */}
         <div className='h-full flex justify-start sm:gap-3'>
           {/* PROFILE IMAGE */}
-          <div className='w-[60px] flex flex-col items-start justify-start xl:w-[80px]'>
+          <div className=' w-[60px] flex flex-col items-start justify-start xl:w-[80px]'>
             <div
-              className='mb-[20px] w-[60px] h-[75px]
+              className='mb-[20px] pt-5 w-[60px] 
                 flex self-start justify-center items-end
-                rounded-b-[40px] bg-lightBeige
-                md:w-[60px] md:h-[75px]'
+                rounded-b-[40px] bg-lightBeige md:mb-[10px]
+                md:w-[60px] '
             >
               <div className='mb-2 w-[50px] h-[40px] self-end rounded-full md:w-[50px] md:h-[40px]'>
                 <img src={profileImg} alt='' />
@@ -57,20 +61,23 @@ function Ad({ ad }: Props) {
             </div>
             {/* IF AD CREATED BY USER SHOW DOTS FOR DROPDOWN*/}
             {user.user?._id === ad.user?._id && (
-              <div className='w-full flex justify-start '>
+              <div className='w-full h_[40px] flex justify-start cursor-pointer '>
                 <BsThreeDots
-                  onClick={handleDotClick}
+                id={ad._id}
+               
+                  onClick={handleDotClick(ad._id)}
                   style={{ height: '20px', width: '70%', alignSelf: 'center' }}
                 />
               </div>
             )}
-            {open && <Dropdown />}
+          {open && <Dropdown ad={ad} />}
           </div>
+
 
           {/* LINK TO SINGLE AD  */}
           <div
             onClick={() => navigate(`/ad/${ad?._id}`)}
-            className='w-[180px] flex flex-col sm:flex-row justify-center items-center sm:w-[320px] md:flex-row'
+            className='w-[180px] flex flex-col sm:flex-row justify-center items-center cursor-pointer sm:w-[320px] md:flex-row'
           >
             <div className='w-[150px] flex sm:w-[200px] xl:w-[300px]'>
               {/* TITLE, SECTOR */}
@@ -116,7 +123,7 @@ function Ad({ ad }: Props) {
           </div>
         </div>
       </div>
-    </motion.div>
+    </div>
   )
 }
 

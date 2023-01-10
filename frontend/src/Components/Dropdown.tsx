@@ -1,20 +1,41 @@
-import React from 'react'
+
 import { useNavigate, useParams } from 'react-router-dom'
 
-type Props = {}
 
-function Dropdown({}: Props) {
+type Props = {
+  ad: {
+    title: string
+    location: string
+    category: string
+    sector: string
+    wage: number
+    createdAt: Date
+    _id: string
+    user: {
+      _id: string
+    }
+  }
+}
+
+
+function Dropdown({ad}:Props) {
+
     const navigate = useNavigate()
     const params = useParams()
-    const handleClick = () => {
-        navigate(`/ad/edit-ad/${params.id}`)
+
+    const handleEdit = () => {
+        navigate(`/ad/edit-ad/${ad._id}`)
+    }
+
+    const handleDelete = () => {
+        
     }
 
 
   return (
-    <div className='p-2 z-10 bg-white'>
-         <p onClick={handleClick}>Edit</p>
-         <p>Delete</p>
+    <div className='p-2 w-full z-10 cursor-pointer bg-white '>
+         <p  onClick={handleEdit}>Edit</p>
+         <p onClick={handleDelete}>Delete</p>
     </div>
   )
 }
