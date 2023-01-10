@@ -285,6 +285,15 @@ const EditAccount = (props: Props) => {
             ></textarea>
           </div>
 
+          {/* ERRORS */}
+          {errors &&
+              errors.map((error) => (
+                <p key={error} 
+                className='mt-1 text-red-600  self-start w-[100%] text-center'>
+                  {error}
+                </p>
+              ))}
+
           {/* SAVE CHANGES BUTTON */}
           <UniButton
             text={fetching ? <Spinner /> : 'Save Changes'}
@@ -301,19 +310,6 @@ const EditAccount = (props: Props) => {
             <Link to='/delete-account'>Delete account</Link>
           </p>
 
-          {/* ERRORS */}
-          {errors &&
-            errors.map((error) => (
-              <p
-                key={error}
-                className='
-                  mt-1 
-                  self-start 
-                  text-red-600'
-              >
-                {error}
-              </p>
-            ))}
         </form>
       </div>
       <ToastContainer position='top-right' />
