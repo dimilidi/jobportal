@@ -153,7 +153,7 @@ const EditAccount = (props: Props) => {
           <div
             aria-label='inputs-ctn'
             className='
-              w-full mb-6
+              w-full
               relative 
               flex flex-col items-center'
           >
@@ -265,7 +265,10 @@ const EditAccount = (props: Props) => {
           {errors &&
               errors.map((error) => (
                 <p key={error} 
-                className='mt-1 text-red-600  self-start w-[100%] text-center'>
+                className='mt-1 
+                text-red-600  
+                w-[100%] 
+                text-center'>
                   {error}
                 </p>
               ))}
@@ -274,6 +277,7 @@ const EditAccount = (props: Props) => {
           <UniButton
             text={fetching ? <Spinner /> : 'Save Changes'}
             className='
+                mt-6
                 w-full
                 pt-[.5rem]
                 flex flex-wrap justify-center
