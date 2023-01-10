@@ -6,6 +6,7 @@ import useUser from '../Hooks/useUser'
 import useAds from '../Hooks/useAds'
 import Dropdown from './Dropdown'
 import { useState } from 'react'
+import DotMenu from './DotMenu'
 
 type Props = {
   ad: {
@@ -20,6 +21,7 @@ type Props = {
       _id: string
     }
   }
+ 
 }
 
 function Ad({ ad }: Props) {
@@ -28,14 +30,6 @@ function Ad({ ad }: Props) {
   const user = useUser()
   const ads = useAds(`/ads/${ad._id}`)
   const [open, setOpen] = useState(false)
-
-  
-
-  const handleDotClick = (id:string) => ()=> {
-    console.log(open);
-   
-    setOpen(!open)
-  }
 
 
   return (
@@ -61,14 +55,7 @@ function Ad({ ad }: Props) {
             </div>
             {/* IF AD CREATED BY USER SHOW DOTS FOR DROPDOWN*/}
             {user.user?._id === ad.user?._id && (
-              <div className='w-full h_[40px] flex justify-start cursor-pointer '>
-                <BsThreeDots
-                id={ad._id}
-               
-                  onClick={handleDotClick(ad._id)}
-                  style={{ height: '20px', width: '70%', alignSelf: 'center' }}
-                />
-              </div>
+              <DotMenu open = {open} setOpen = {setOpen} />
             )}
           {open && <Dropdown ad={ad} />}
           </div>

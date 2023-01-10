@@ -12,7 +12,8 @@ import Register from '../Pages/Register'
 import SingleAd from '../Pages/SingleAd'
 import EditAccount from '../Pages/EditAccount'
 import DeleteAccount from '../Pages/DeleteAccount'
-import EditAd from '../Pages/EditAd'
+import EditAd from "../Pages/EditAd"
+import Message from "../Pages/Message"
 // framer-motion
 import { AnimatePresence } from 'framer-motion'
 
@@ -21,20 +22,21 @@ const SmoothPages = () => {
 
   return (
     <AnimatePresence>
-      <Routes location={location} key={location.pathname}>
-        <Route path='/login' element={<Login />} />
-        <Route path='/register' element={<Register />} />
-        <Route path='/' element={<Home />} />
-        <Route path='/adslist' element={<AdsList />} />
-        <Route path='/ad/:id' element={<SingleAd />} />
-        <Route path='/ad/edit-ad/:id' element={<EditAd />} />
-        <Route path='/post-ad' element={<PostAd />} />
-        <Route path='/account' element={<Account />} />
-        <Route path='/edit-account' element={<EditAccount />} />
-        <Route path='/delete-account' element={<DeleteAccount />} />
-        <Route path='/auth-required' element={<AuthRequired />} />
-        <Route path='*' element={<NotFound />} />
-      </Routes>
+        <Routes location={location} key={location.pathname}>
+            <Route path='/login' element={<Login />} />
+            <Route path='/register' element={<Register />} />
+            <Route path='/' element={<Home />} />
+            <Route path='/adslist' element={<AdsList />} />
+            <Route path='/ad/:id' element={<SingleAd />} />
+            <Route path='/ad/edit-ad/:id' element={<EditAd />} />
+            <Route path='/post-ad' element={<PostAd />} />
+            <Route path='/account' element={<Account />} />
+            <Route path='/edit-account' element={<EditAccount />} />
+            <Route path='/delete-account' element={<DeleteAccount />} />
+            <Route path='/auth-required' element={<AuthRequired />} />
+            <Route path='/message' element={<Message />} />
+            <Route path='*' element={<NotFound />} />
+        </Routes>
     </AnimatePresence>
   )
 }

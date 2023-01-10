@@ -82,28 +82,7 @@ const SingleAd = () => {
             )}
           </div>
 
-          {/* ContactDetails MOBILE - If user exists, show ContactDetails */}
-          <div className='flex justify-center '>
-            {user.user && (
-              <ContactDetails
-                className=' w-[100%] max-w-[340px] pt-10 
-              sm:w-[80%]
-              lg:w-[800px]
-              flex justify-center self-center rounded-xl xl:hidden'
-              />
-            )}
-          </div>
-
-          {/* IF AD IS NOT CREATED BY USER, BUTTON "MESSAGE" */}
-          {user.user?._id !== ads.ad?.user._id &&
-          <UniButton
-            text= 'Message'
-            onClick={handleClick}
-            className='my-7 self-center mb-2 lg:mb-0'
-          />
-          }
-
-        {/* IF AD IS CREATED BY USER, BUTTON "EDIT" && "DELETE" */}
+           {/* IF AD IS CREATED BY USER, BUTTON "EDIT" && "DELETE" */}
         {user.user?._id === ads.ad?.user._id && 
         <div className='px-3 flex justify-center gap-2'>
 
@@ -122,6 +101,28 @@ const SingleAd = () => {
        </div>
 
         }
+
+          {/* ContactDetails MOBILE - If user exists, show ContactDetails */}
+          <div className='flex justify-center '>
+            {user.user && (
+              <ContactDetails
+                className=' w-[100%] max-w-[340px] pt-10 
+              sm:w-[80%]
+              lg:w-[800px]
+              flex justify-center self-center rounded-xl xl:hidden'
+              />
+            )}
+          </div>
+
+          {/* IF AD IS NOT CREATED BY USER, BUTTON "MESSAGE" */}
+          {user.user?._id !== ads.ad?.user._id &&
+          <UniButton
+            text= 'Message'
+            onClick={() => navigate('/message')}
+            className='my-7 self-center mb-2 lg:mb-0'
+          />
+          }
+
         </div>
         {/* Ad - END */}
 
