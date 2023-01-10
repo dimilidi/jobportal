@@ -118,7 +118,7 @@ const SingleAd = () => {
           {user.user?._id !== ads.ad?.user._id &&
           <UniButton
             text= 'Message'
-            onClick={handleClick}
+            onClick={() => navigate('/message')}
             className='my-7 self-center mb-2 lg:mb-0'
           />
           }
