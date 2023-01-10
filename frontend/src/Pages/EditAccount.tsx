@@ -28,15 +28,6 @@ const EditAccount = (props: Props) => {
   const [phone, setPhone] = useState(user.user?.phone)
   const [description, setDescription] = useState(user.user?.description)
 
-  // useEffect(() => {
-  //   if (newUser.user) {
-  //     setName(newUser.user?.name)
-  //     setCity(newUser.user?.city)
-  //     setPhone(newUser.user?.phone)
-  //     setDescription(newUser.user?.description)
-  //   }
-  // }, [newUser.user])
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setFetching(true)
