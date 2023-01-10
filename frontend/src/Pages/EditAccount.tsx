@@ -19,7 +19,7 @@ type Props = {}
 
 const EditAccount = (props: Props) => {
   const navigate = useNavigate()
-  const newUser  = useUser()
+  const newUser  = useUser() // hier muss ich mit _id verbinden ? 
   // const initialInputs: EditInputs = {
   //   name: '',
   //   phone: '',
@@ -71,10 +71,6 @@ const EditAccount = (props: Props) => {
     setFetching(false)
   }
 
-  // Error toast notification
-  useEffect(() => {
-    errors?.map((error) => notify(error))
-  }, [errors])
 
   return (
     // CONTAINER WHOLE PAGE CONTENT
