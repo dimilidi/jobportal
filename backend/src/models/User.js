@@ -35,7 +35,7 @@ userSchema.methods.generateAuthToken = function () {
   })
 
   const token = jwt
-    .sign({ _id: user._id }, process.env.TOKEN_KEY, { expiresIn: '2h' })
+    .sign({ _id: user._id }, process.env.TOKEN_KEY, { expiresIn: '2d' })
     .toString()
 
   user.tokens.push(token)
@@ -54,6 +54,10 @@ userSchema.methods.toJSON = function () {
     name: user.name,
     email: user.email,
     _id: user._id,
+    avatar: user.avatar,
+    city: user.city,
+    description: user.description,
+    phone: user.phone,
   }
   return result
 }

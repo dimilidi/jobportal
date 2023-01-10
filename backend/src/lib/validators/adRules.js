@@ -1,12 +1,28 @@
 import { body } from 'express-validator'
 import validate from '../../middleware/validate.js'
+import  httpErrors from 'http-errors'
 
 export const post = [
-  body('title').isString().notEmpty(),
-  body('category').isString().notEmpty(),
-  body('description').isString().notEmpty(),
-  body('location').isString().not().isNumeric().notEmpty(),
-  body('wage').isNumeric(),
-  body('contactVia').isString().notEmpty(),
-  validate,
+  body('category')
+    .notEmpty().withMessage('Category is required.'),
+  body('title')
+    .isString().withMessage('Title should be a text.')
+    .notEmpty().withMessage('Title is required.'),
+  body('location')
+    .isString().withMessage('City should be a text.')
+    .not().isNumeric().withMessage('City should be a text.')
+    .notEmpty().withMessage('Location is required.'),
+  body('description')
+    .isString().withMessage('Description should be a text.')
+    .notEmpty().withMessage('Description is required.'),
+  body('wage')
+    .notEmpty().withMessage('Wage input is required.'),
+  body('sector')
+    .not().isNumeric().withMessage('Sector should be a text.')
+    .notEmpty().withMessage('Sector is required.'),
+  body('contactVia')
+    .notEmpty().withMessage('Contact option is required.'),
+  validate
 ]
+
+

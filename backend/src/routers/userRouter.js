@@ -9,7 +9,8 @@ const app = express.Router()
 app.get('/', auth, controller.getUser)
 app.post('/register', validator.register, controller.register)
 app.post('/login', validator.login, controller.login)
-app.post('/logout',auth,  controller.logout)
-app.put('/edit-account', auth, validator.updateUser, controller.updateUser)
+app.get('/logout', auth, controller.logout)
+app.put('/edit-account', auth, validator.updateUser, controller.editAccount)
+app.delete('/delete-account', auth, controller.deleteAccount)
 
 export default app

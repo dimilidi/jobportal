@@ -6,7 +6,9 @@ import mongoose from 'mongoose'
 import cookieParser from 'cookie-parser'
 import userRouter from './src/routers/userRouter.js'
 import adRouter from './src/routers/adRouter.js'
-dotenv.config()
+dotenv.config({ path: `.env.${process.env.NODE_ENV}` })
+
+console.log('\x1b[36m%s\x1b[0m', `CLICK --> ${process.env.FRONTEND}`)
 
 mongoose.set('strictQuery', false)
 mongoose
@@ -18,7 +20,7 @@ const app = express()
 
 app.use(
   cors({
-    origin: 'http://localhost:3000',
+    origin: process.env.FRONTEND,
     credentials: true,
   })
 )
