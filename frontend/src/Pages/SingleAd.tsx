@@ -82,6 +82,26 @@ const SingleAd = () => {
             )}
           </div>
 
+           {/* IF AD IS CREATED BY USER, BUTTON "EDIT" && "DELETE" */}
+        {user.user?._id === ads.ad?.user._id && 
+        <div className='px-3 flex justify-center gap-2'>
+
+         <UniButtonWhite
+         text={<AiFillEdit style={{width:'40px', fontSize:'20px'}} />}
+         onClick={handleClick}
+         className='my-7 self-center mb-2 lg:mb-0'
+         style={{width:'80px', height:'40px'}}
+       />
+         <UniButton
+         text={<RiDeleteBinLine style={{width:'40px', fontSize:'20px'}} />}
+         onClick={handleClick}
+         className='my-7 self-center mb-2 lg:mb-0'
+         style={{width:'80px', height:'40px'}}
+       />
+       </div>
+
+        }
+
           {/* ContactDetails MOBILE - If user exists, show ContactDetails */}
           <div className='flex justify-center '>
             {user.user && (
@@ -103,25 +123,6 @@ const SingleAd = () => {
           />
           }
 
-        {/* IF AD IS CREATED BY USER, BUTTON "EDIT" && "DELETE" */}
-        {user.user?._id === ads.ad?.user._id && 
-        <div className='px-3 flex justify-center gap-2'>
-
-         <UniButtonWhite
-         text={<AiFillEdit style={{width:'40px', fontSize:'20px'}} />}
-         onClick={handleClick}
-         className='my-7 self-center mb-2 lg:mb-0'
-         style={{width:'80px', height:'40px'}}
-       />
-         <UniButton
-         text={<RiDeleteBinLine style={{width:'40px', fontSize:'20px'}} />}
-         onClick={handleClick}
-         className='my-7 self-center mb-2 lg:mb-0'
-         style={{width:'80px', height:'40px'}}
-       />
-       </div>
-
-        }
         </div>
         {/* Ad - END */}
 
