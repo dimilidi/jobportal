@@ -1,5 +1,5 @@
 // Hooks
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect } from 'react'
 // Axios
 import axiosInstance from '../api/axiosInstance'
 // type
@@ -42,8 +42,6 @@ function useAds(url: string): AdHook {
       fetchAds(url)
     }
   }, [url])
-
-
 
   return { adList, ad, error, isLoading }
 }

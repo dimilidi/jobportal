@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState, useEffect } from 'react'
-import axios, { AxiosResponse } from 'axios'
+import { AxiosResponse } from 'axios'
 import axiosInstance from '../api/axiosInstance'
 import { User, RegisterInputs, LoginInputs, EditInputs } from '../type'
 import { getErrorArray } from '../utils/getErrorArray'

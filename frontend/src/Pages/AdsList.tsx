@@ -10,11 +10,13 @@ import Spinner from '../Components/Spinner'
 import { motion } from 'framer-motion'
 // Images
 import man from '../assets/images/Ads_man_working.png'
+import useSearch from '../Hooks/useSearch'
 
 const AdsList = () => {
   // CONSTANTS
+  const { searchWord, setSearchWord } = useSearch()
   const user = useUser()
-  const ads = useAds(`/ads`)
+  const ads = useAds(`/ads?search=${searchWord}`)
   const navigate = useNavigate()
 
   // HANDLE POST AD BUTTON
@@ -72,15 +74,20 @@ const AdsList = () => {
             </div>
 
             {/* Ads Container */}
-
-            <div className='mt-[30px] w-full h-full flex flex-wrap justify-items-center items-start sm:px-5 sm:w-[600px] sm:h-[552px]  md:w-[900px] md:h-[435px] sm:overflow-y-scroll '>
-              {/* Ads */}
-              <div className='mx-auto flex flex-wrap justify-center '>
-                {ads.adList?.map((ad) => (
-                  <Ad key={ad._id} ad={ad} />
-                ))}
+            {ads.adList.length === 0 ? (
+              <div className='mt-[30px] h-[150px] text-center sm:px-5 sm:w-[600px] md:w-[900px]'>
+                No ads found
               </div>
-            </div>
+            ) : (
+              <div className='mt-[30px] w-full h-full flex flex-wrap justify-items-center items-start sm:px-5 sm:w-[600px] sm:h-[552px]  md:w-[900px] md:h-[435px] sm:overflow-y-scroll '>
+                {/* Ads */}
+                <div className='mx-auto flex flex-wrap justify-center '>
+                  {ads.adList?.map((ad) => (
+                    <Ad key={ad._id} ad={ad} />
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
 
           {/* Button Ad Post */}
