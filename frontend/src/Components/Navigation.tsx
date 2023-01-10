@@ -115,10 +115,10 @@ const Navigation = () => {
   }, [user])
 
   return (
-    <section className='p-6 pb-6 mr-8'>
+    <section className='mr-8 md:mr-0'>
       {/* NAVIGATION DESKTOP */}
       <nav className='w-full hidden md:flex md:justify-end items-end justify-center'>
-        <ul className='flex mr-4'>
+        <ul className='flex'>
           {navToShow?.map((page) => (
             <motion.li
               initial={animateFrom}
@@ -189,10 +189,10 @@ const Navigation = () => {
       {/* NAVIGATION DESKTOP END */}
 
       {/* BURGER MENU */}
-      <nav className='md:hidden '>
+      <nav className='md:hidden'>
         <div
           onClick={handleNavigation}
-          className='z-50  absolute top-[29px] cursor-pointer'
+          className='z-50 absolute top-[23px] cursor-pointer'
         >
           {navigation ? (
             <AiOutlineClose size={25} />
@@ -204,7 +204,7 @@ const Navigation = () => {
         <div
           className={
             navigation
-              ? 'touch-none z-40 mt-[80px] w-screen h-screen  absolute top-0 left-0  text-center  bg-background transition duration-700'
+              ? 'touch-none z-40 mt-[55px] w-screen h-screen  absolute top-0 left-0  text-center  bg-background transition duration-700'
               : 'translate-y-[-120%]'
           }
         >

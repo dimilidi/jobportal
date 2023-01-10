@@ -58,3 +58,20 @@ export async function getAdById(req, res) {
 
   res.status(200).json(ad)
 }
+
+
+/** @type {import("express").RequestHandler} */
+export const updateAd = async (req, res) => {
+  const user = req.user
+  const adId = req.params.id
+  const ad = await Ad.findById(adId)
+
+  if(( ad.user).valueOf() === (user._id).valueOf()){
+    for(const key in req.body){
+      ad[key] = req.body[key]
+    }
+    await ad.save()
+    res.status(200).json(ad)
+  }
+ 
+}

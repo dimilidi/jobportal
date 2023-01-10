@@ -1,6 +1,6 @@
 // Hooks
 import { useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import useAds from '../Hooks/useAds'
 import useUser from '../Hooks/useUser'
 // Components
@@ -16,10 +16,14 @@ import imagePostAd from '../assets/images/PostAd_chef.png'
 import axiosInstance from '../api/axiosInstance'
 import { motion } from 'framer-motion'
 
-const PostAd = () => {
+
+const EditAd = () => {
   // CONSTANTS
+  const params = useParams()
   const navigate = useNavigate()
   const user = useUser()
+  const ads = useAds(`/ads/${params.id}`)
+  
 
   // STATES
   const [isLoading, setIsLoading] = useState(false)
@@ -31,15 +35,26 @@ const PostAd = () => {
   const [category, setCategory] = useState('')
   const [sector, setSector] = useState('')
   const [contactVia, setContactVia] = useState<
-    [string, string] | [string] | []
-  >()
-  const [checked, setChecked] = useState({ email: false, phone: false })
+    [string, string] | [string] | [] | string | undefined
+  >([])
+  const [checked, setChecked] = useState({email:false, phone: false})
   // const [image, setImage] = useState('')
 
-  // If user is not logged in, navigate to auth-required
-  useEffect(() => {
-    if (!user) navigate('/auth-required')
-  }, [])
+
+// SET STATES OF AD THAT IS GOING TO BE UPDATED
+useEffect(() => {
+    if(ads.ad) {
+        setTitle(ads.ad?.title)
+        setLocation(ads.ad?.location)
+        setSector(ads.ad?.sector)
+        setDescription(ads.ad?.description)
+        setWage(ads.ad?.wage)
+        setCategory(ads.ad?.category)
+        setChecked({ email: ads.ad?.contactVia.includes('email'), phone: ads.ad?.contactVia.includes('phone') })
+    }
+  },[ads.ad])
+  
+
 
   // HANDLE CONTACT_VIA (according checkbox)
   useEffect(() => {
@@ -58,10 +73,11 @@ const PostAd = () => {
     }
   }, [checked])
 
+
   // HANDLE SUBMIT
   const handleSubmit = async (e: React.SyntheticEvent) => {
     e.preventDefault()
-    setIsLoading(true)
+     setIsLoading(true)
 
     const ad = {
       title,
@@ -74,10 +90,10 @@ const PostAd = () => {
     }
 
     const response = await axiosInstance
-      .post('/ads/post', ad)
+      .put(`/ads/${params.id}`, ad)
       .catch((e) => e.response)
 
-    if (response.status === 201) {
+    if (response.status === 200) {
       const id = response.data._id
       navigate('/ad/' + id)
     } else if (response.status === 400) {
@@ -86,10 +102,9 @@ const PostAd = () => {
       const message = error[key]
       setError(message)
       notify(message)
-      console.log(message);
-      
+      console.log(message)
     } else if (response.status === 401) {
-      setError('You are not logged in.')
+      setError('You can edit only your ads.')
       notify(error)
     } else {
       setError('Something went wrong')
@@ -98,10 +113,13 @@ const PostAd = () => {
     setIsLoading(false)
   }
 
+
   // POST AD BTN NAVIGATE TO /auth-req when user not logged in
   const handleNavigateifUserNotLoggedIn = () => {
     if (user.isLoggedIn === false) navigate('/auth-required')
   }
+
+
 
   return (
     <motion.div
@@ -135,7 +153,7 @@ const PostAd = () => {
               className='text-4xl font-medium text-textBlack md:hidden lg:hidden'
             >
               <span className='italic font-medium text-lightGreen md:hidden lg:hidden'>
-                Create{' '}
+                Edit{' '}
               </span>
               your Ad
             </h1>
@@ -165,7 +183,7 @@ const PostAd = () => {
                   className='hidden p-3 text-4xl font-medium text-textBlack md:block'
                 >
                   <span className='italic font-medium text-lightGreen'>
-                    Create{' '}
+                    Edit{' '}
                   </span>
                   your Ad
                 </h1>
@@ -180,7 +198,9 @@ const PostAd = () => {
                     <input
                       type='radio'
                       value='offering'
+                      checked={category=='offering'}
                       name='case'
+                      id='case'
                       className='accent-darkGreen'
                       onChange={(e) => setCategory(e.target.value)}
                     />
@@ -191,6 +211,8 @@ const PostAd = () => {
                     <input
                       type='radio'
                       value='searching'
+                      checked={category=='searching'}
+                      id='case'
                       name='case'
                       className='accent-darkGreen'
                       onChange={(e) => setCategory(e.target.value)}
@@ -220,7 +242,7 @@ const PostAd = () => {
                       type='text'
                       name='title'
                       className=' form-control py-1 px-5 w-full block text-gray border-2 rounded-lg border-lightGray border-opacity-50 placeholder:text-sm 
-                focus:outline-lightGray '
+              focus:outline-lightGray '
                       placeholder='Title'
                       value={title}
                       onChange={(e) => setTitle(e.target.value)}
@@ -286,6 +308,7 @@ const PostAd = () => {
                   >
                     <p className='text-lightGray'>How to reach you:</p>
 
+            
                     <div
                       area-label='email-phone'
                       className='flex flex-row justify-start gap-3'
@@ -349,7 +372,7 @@ const PostAd = () => {
             </div>
             {/* BUTTON - POST AD */}
             <UniButton
-              onClick={handleNavigateifUserNotLoggedIn}
+            //   onClick={handleNavigateifUserNotLoggedIn}
               area-label='postAdButton'
               text={isLoading ? <Spinner /> : 'Post Ad'}
               className='my-7 mx-auto w-[200px] self-center  md:mb-0 lg:w-[250px]'
@@ -367,4 +390,4 @@ const PostAd = () => {
   )
 }
 
-export default PostAd
+export default EditAd
