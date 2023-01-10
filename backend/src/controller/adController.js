@@ -9,18 +9,19 @@ export async function getAds(req, res) {
 
   // filter ads by search, if it is included in title/description/location/sector,
   if (search) {
-    query = query.find({
-      $or: [
-        { title: { $in: search } },
-        { description: { $in: search } },
-        { location: { $in: search } },
-        { sector: { $in: search } },
-      ],
-    })
+    const searchWords = search.split(' ')
+
+    const searchWordsArray = []
+    for (const word of searchWords) {
+      searchWordsArray.push({ title: { $in: word } })
+      searchWordsArray.push({ description: { $in: word } })
+      searchWordsArray.push({ location: { $in: word } })
+      searchWordsArray.push({ sector: { $in: word } })
+    }
+    query = query.find({ $or: searchWordsArray })
   }
 
   const ads = await query.populate('user', 'name')
-  console.log(ads)
   res.status(200).json(ads)
 }
 
@@ -59,19 +60,17 @@ export async function getAdById(req, res) {
   res.status(200).json(ad)
 }
 
-
 /** @type {import("express").RequestHandler} */
 export const updateAd = async (req, res) => {
   const user = req.user
   const adId = req.params.id
   const ad = await Ad.findById(adId)
 
-  if(( ad.user).valueOf() === (user._id).valueOf()){
-    for(const key in req.body){
+  if (ad.user.valueOf() === user._id.valueOf()) {
+    for (const key in req.body) {
       ad[key] = req.body[key]
     }
     await ad.save()
     res.status(200).json(ad)
   }
- 
 }

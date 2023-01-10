@@ -2,7 +2,7 @@ import mongoose from 'mongoose'
 
 const Schema = mongoose.Schema(
   {
-    title: { type: String, required: [true]},
+    title: { type: String, required: [true] },
     category: { type: String, enum: ['offering', 'searching'] },
     description: { type: String, required: true },
     location: { type: String, required: true },
@@ -10,7 +10,7 @@ const Schema = mongoose.Schema(
     sector: { type: String, required: true },
     contactVia: {
       type: [String],
-      required: true
+      required: true,
     },
     createdAt: Date,
     user: { type: mongoose.Types.ObjectId, ref: 'User' },
