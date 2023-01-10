@@ -374,7 +374,7 @@ useEffect(() => {
             <UniButton
             //   onClick={handleNavigateifUserNotLoggedIn}
               area-label='postAdButton'
-              text={isLoading ? <Spinner /> : 'Post Ad'}
+              text={isLoading ? <Spinner /> : 'Save Changes'}
               className='my-7 mx-auto w-[200px] self-center  md:mb-0 lg:w-[250px]'
             />
           </form>
