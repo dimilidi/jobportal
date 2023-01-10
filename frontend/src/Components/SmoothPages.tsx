@@ -12,7 +12,8 @@ import Register from '../Pages/Register'
 import SingleAd from '../Pages/SingleAd'
 import EditAccount from '../Pages/EditAccount'
 import DeleteAccount from '../Pages/DeleteAccount'
-// franer-motion
+import EditAd from "../Pages/EditAd"
+// framer-motion
 import {AnimatePresence} from 'framer-motion'
 
 
@@ -27,6 +28,7 @@ const SmoothPages = () => {
             <Route path='/' element={<Home />} />
             <Route path='/adslist' element={<AdsList />} />
             <Route path='/ad/:id' element={<SingleAd />} />
+            <Route path='/ad/edit-ad/:id' element={<EditAd />} />
             <Route path='/post-ad' element={<PostAd />} />
             <Route path='/account' element={<Account />} />
             <Route path='/edit-account' element={<EditAccount />} />
