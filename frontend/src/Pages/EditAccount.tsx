@@ -12,14 +12,17 @@ import image from '../assets/images/Account_profilDefault.png'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import { notify } from '../utils/toastNotification'
-import axiosInstance from '../api/axiosInstance'
-
 
 type Props = {}
 
 const EditAccount = (props: Props) => {
   const navigate = useNavigate()
+  const user = useUser()
+<<<<<<< HEAD
   const newUser  = useUser() // hier muss ich mit _id verbinden ? 
+=======
+  const user = useUser()
+>>>>>>> paulina-err
   // const initialInputs: EditInputs = {
   //   name: '',
   //   phone: '',
@@ -32,40 +35,35 @@ const EditAccount = (props: Props) => {
   // }
 
   // const [inputs, setInputs] = useState(initialInputs)
-  const [isLoading, setIsLoading] = useState(false)
   const [fetching, setFetching] = useState(false)
   const [errors, setErrors] = useState<string[] | undefined[] | undefined>([])
 
-
   //STATES EDITABLE BY THE USER
-  const [name, setName] = useState('')
-  const [city, setCity] = useState('')
-  const [phone, setPhone] = useState('')
-  const [description, setDescription] = useState('')
+  const [name, setName] = useState(user.user?.name)
+  const [city, setCity] = useState(user.user?.city)
+  const [phone, setPhone] = useState(user.user?.phone)
+  const [description, setDescription] = useState(user.user?.description)
 
-
-  useEffect( () => {
-    if(newUser.user) {
-      setName(newUser.user?.name)
-      setCity(newUser.user?.city)
-      setPhone(newUser.user?.phone)
-      setDescription(newUser.user?.description)
-    }
-  },[newUser.user])
-
+  // useEffect(() => {
+  //   if (newUser.user) {
+  //     setName(newUser.user?.name)
+  //     setCity(newUser.user?.city)
+  //     setPhone(newUser.user?.phone)
+  //     setDescription(newUser.user?.description)
+  //   }
+  // }, [newUser.user])
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    setIsLoading(true)
+    setFetching(true)
+    setErrors([])
+    const newUser = { name, phone, city, description }
+    const response = await user.editAccount(newUser)
 
-    const newUser = {name, phone, city, description}
-    const response = await axiosInstance
-    .put('/account', newUser)
-    .catch( (e) => e.response)
+    console.log('response', response)
 
     if (response.status === 200) navigate('/account')
-    if (response.status === 401)
-      setErrors(['Unathorized.'])
+    if (response.status === 401) setErrors(['Unathorized.'])
     if (response.status === 400) setErrors(response.errors)
     if (response.status === 500) setErrors(['Something went wrong!'])
     setFetching(false)
@@ -74,7 +72,7 @@ const EditAccount = (props: Props) => {
 
   return (
     // CONTAINER WHOLE PAGE CONTENT
-    <div 
+    <div
       area-label='main-container'
       className='
       h-full
@@ -83,9 +81,8 @@ const EditAccount = (props: Props) => {
       md:pt-[6rem]
       xl:pt-[4rem]'
     >
-
       {/* GREEN SEMICIRCLE */}
-      <div 
+      <div
         area-label='green-semicircle'
         className='
         hidden 
@@ -93,14 +90,13 @@ const EditAccount = (props: Props) => {
         absolute right-[-50px] top-[20.4rem] z-10 
         rounded-full 
         bg-lightGreen 
-        xl:block' 
+        xl:block'
       />
 
       {/* HEADING & IMAGE */}
-      <div 
-      aria-label='headline'
-      className='flex justify-start items-center'>
-        <h1 className='
+      <div aria-label='headline' className='flex justify-start items-center'>
+        <h1
+          className='
           w-[80%] mb-[1rem]
           text-left text-[2.5rem] font-semibold 
           sm:text-[2.5rem]
@@ -110,11 +106,16 @@ const EditAccount = (props: Props) => {
           md:text-left
           md:leading-[3rem]
           lg:w-[80%]
-          '>
+          '
+        >
           <span
             className='text-lightGreen italic
-          '>Edit</span> <br></br>
-            Profile
+          '
+          >
+            Edit
+          </span>{' '}
+          <br></br>
+          Profile
         </h1>
 
         {/* IMAGE */}
@@ -137,9 +138,9 @@ const EditAccount = (props: Props) => {
       </div>
 
       {/* FORM */}
-      <div 
-      aria-label='main-form-ctn'
-      className='
+      <div
+        aria-label='main-form-ctn'
+        className='
         w-full max-w-[500px]
         pt-[1rem]    
         mb-36
@@ -148,9 +149,8 @@ const EditAccount = (props: Props) => {
         md:mt-[1rem]
         '
       >
-
-          {/* LINE */}
-          <span 
+        {/* LINE */}
+        <span
           aria-label='line'
           className='
             hidden
@@ -161,123 +161,119 @@ const EditAccount = (props: Props) => {
             md:top-[300px] 
             lg:w-[87%] 
             lg:top-[370px] 
-            xl:w-[87%]' />
+            xl:w-[87%]'
+        />
 
-          {/* FORM */}
-          <form
-            aria-label='form'
-            onSubmit={handleSubmit}
-            className='
+        {/* FORM */}
+        <form
+          aria-label='form'
+          onSubmit={handleSubmit}
+          className='
               w-[80%] h-fit
               mb-[6rem]
               flex flex-col items-center justify-between 
               '
-          >
-            {/* INPUTS CONTAINER */}
-            <div 
-              aria-label='inputs-ctn'
-              className='
+        >
+          {/* INPUTS CONTAINER */}
+          <div
+            aria-label='inputs-ctn'
+            className='
               w-full mb-6
               relative 
               flex flex-col items-center'
-            >
-              {/* USERNAME */}
-              <label
-                aria-label='username'
-                htmlFor='username'
-                className='
+          >
+            {/* USERNAME */}
+            <label
+              aria-label='username'
+              htmlFor='username'
+              className='
                   hidden md:inline-block
                   self-start 
                   text-gray font-semibold 
                   sm:text-[1.1rem] 
                   lg:self-start'
-              >
-              </label>
-              <input
-                className='
+            ></label>
+            <input
+              className='
                   w-full mb-2 py-[5px] px-3
                   box-border border border-lightGray rounded-[15rem] 
                   text-sm
                   min-[425px]:py-[10px]   
                   sm:text-[1.1rem]
                   focus:outline-lightGreen'
-                  placeholder='Username'
-                  type='text'
-                  name='username'
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-              />
+              placeholder='Username'
+              type='text'
+              name='username'
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+            />
 
-
-              {/* PHONE */}
-              <label
-                area-label='phone'
-                htmlFor='phone'
-                className='
+            {/* PHONE */}
+            <label
+              area-label='phone'
+              htmlFor='phone'
+              className='
                   hidden md:inline-block
                   self-start 
                   font-semibold text-gray  
                   sm:text-[1.1rem] 
                   lg:self-start'
-              >
-              </label>
-              <input
-                className='
+            ></label>
+            <input
+              className='
                   w-full mb-2
                   py-[5px] px-3
                   box-border border border-lightGray rounded-[15rem] focus:outline-lightGreen 
                   sm:text-[1.1rem]
                   text-sm
                   min-[425px]:py-[10px]'
-                placeholder='Phone'
-                type='text'
-                name='phone'
-                value={phone}
-                onChange={(e) => setPhone(e.target.value)}
-              />
+              placeholder='Phone'
+              type='text'
+              name='phone'
+              value={phone}
+              onChange={(e) => setPhone(e.target.value)}
+            />
 
-              {/* CITY */}
-              <label
-                area-label='city'
-                htmlFor='city'
-                className='
+            {/* CITY */}
+            <label
+              area-label='city'
+              htmlFor='city'
+              className='
                   hidden md:inline-block
                   self-start 
                   font-semibold text-gray  
                   sm:text-[1.1rem] 
                   lg:self-start'
-              >
-              </label>
-              <input
-                className='
+            ></label>
+            <input
+              className='
                   w-full mb-2
                   py-[5px] px-3
                   box-border border border-lightGray rounded-[15rem] focus:outline-lightGreen sm:text-[1.1rem]
                   text-sm
                   min-[425px]:py-[10px]'
-                placeholder='City'
-                type='text'
-                name='city'
-                value={city}
-                onChange={(e) => setCity(e.target.value)}
-              />
+              placeholder='City'
+              type='text'
+              name='city'
+              value={city}
+              onChange={(e) => setCity(e.target.value)}
+            />
 
-              {/* DESCRIPTION */}
-              <label
-                htmlFor='description'
-                className='
+            {/* DESCRIPTION */}
+            <label
+              htmlFor='description'
+              className='
                   self-start 
                   font-semibold  text-gray  
                   sm:text-[1.1rem] 
                   lg:self-start'
-              >
-              </label>
-              <textarea
-                area-label='description'
-                name='description'
-                rows={7}
-                placeholder='Description'
-                className='
+            ></label>
+            <textarea
+              area-label='description'
+              name='description'
+              rows={7}
+              placeholder='Description'
+              className='
                   w-full mb-2
                   py-[11px] px-3
                   box-border border border-lightGray rounded-[1rem] 
@@ -285,41 +281,37 @@ const EditAccount = (props: Props) => {
                   min-[425px]:py-[10px] 
                   focus:outline-lightGreen 
                   sm:text-[1.1rem]'
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+            ></textarea>
+          </div>
 
-                value={description}
-                onChange={(e) => setDescription(e.target.value)}
-              ></textarea>
+          {/* ERRORS */}
+          {errors &&
+              errors.map((error) => (
+                <p key={error} 
+                className='mt-1 text-red-600  self-start w-[100%] text-center'>
+                  {error}
+                </p>
+              ))}
 
-            </div>
-
-            {/* SAVE CHANGES BUTTON */}
-            <UniButton
-              text={fetching ? <Spinner /> : 'Save Changes'}
-              className='
+          {/* SAVE CHANGES BUTTON */}
+          <UniButton
+            text={fetching ? <Spinner /> : 'Save Changes'}
+            className='
                 w-full
                 pt-[.5rem]
                 flex flex-wrap justify-center
                 text-lg'
-              style={{ padding: '10px' }}
-            />
-            
-            {/* DELETE-ACCOUNT */}
-            <p className='mt-2 w-full text-center text-lightGray underline text-[14px] lg:text-center'>
-              <Link to='/delete-account'>Delete account</Link>
-            </p>
+            style={{ padding: '10px' }}
+          />
 
-            {/* ERRORS */}
-            {errors &&
-              errors.map((error) => (
-                <p key={error} className='
-                  mt-1 
-                  self-start 
-                  text-red-600'
-                >
-                  {error}
-                </p>
-              ))}
-          </form>
+          {/* DELETE-ACCOUNT */}
+          <p className='mt-2 w-full text-center text-lightGray underline text-[14px] lg:text-center'>
+            <Link to='/delete-account'>Delete account</Link>
+          </p>
+
+        </form>
       </div>
       <ToastContainer position='top-right' />
     </div>

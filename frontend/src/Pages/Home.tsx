@@ -1,4 +1,5 @@
 // Hooks
+import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 // Components
 import UniButton from '../Components/UniButton'
@@ -7,13 +8,20 @@ import { GoSearch } from 'react-icons/go'
 import imageHome from '../assets/images/Home_group.png'
 // framer-motion
 import { motion } from 'framer-motion'
-import React, { useEffect } from 'react'
 import Search from '../Components/Search'
+import useSearch from '../Hooks/useSearch'
 
 const Home = () => {
   const navigate = useNavigate()
-
+  const { setSearchWord } = useSearch()
+  const [searchInput, setSearchInput] = useState('')
   const futureText = React.useRef<HTMLSpanElement | null>(null)
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault()
+    setSearchWord(searchInput)
+    navigate('/adslist')
+  }
 
   // useEffect(() => {
   //   let prevLine: null | HTMLElement = null
@@ -71,16 +79,15 @@ const Home = () => {
           src={imageHome}
         ></img>
 
-      <div className='mt-6 flex flex-col items-center justify-center gap-3 sm:w-[450px] lg:pt-[0px] lg:self-start  lg:w-[50%] '>
-        {/* SEARCH */}
-         <Search />
-        {/* BUTTON Browse Ads */}
-          <UniButton
-            text='Browse Ads'
-            type='button'
-            onClick={() => navigate('/adslist')}
-          />
-        </div>
+        <form
+          className='mt-6 flex flex-col items-center justify-center gap-3 sm:w-[450px] lg:pt-[0px] lg:self-start  lg:w-[50%] '
+          onSubmit={handleSubmit}
+        >
+          {/* SEARCH */}
+          <Search searchInput={searchInput} setSearchInput={setSearchInput} />
+          {/* BUTTON Browse Ads */}
+          <UniButton text='Browse Ads' type='button' />
+        </form>
       </div>
 
       {/* ELEMENTS (circle, lines) */}
