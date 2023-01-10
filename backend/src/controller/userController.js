@@ -1,3 +1,4 @@
+import cloudinary from 'cloudinary'
 import httpErrors from 'http-errors'
 import Ad from '../models/Ad.js'
 import User from '../models/User.js'
@@ -54,10 +55,32 @@ export async function login(req, res) {
 /** @type {import("express").RequestHandler} */
 export async function editAccount(req, res) {
   const user = req.user
+  const { password, newPassword, avatar, ...others } = req.body
 
-  for (const key in req.body) {
-    user[key] = req.body[key]
+  // Change password
+  if (password && newPassword) {
+    const correctPassword = await user.checkPassword(password)
+    if (correctPassword) {
+      user.password = newPassword
+    }
   }
+  // cloudinary configuration
+  cloudinary.config({
+    cloud_name: process.env.CLOUD_NAME,
+    api_key: process.env.CLOUD_KEY,
+    api_secret: process.env.CLOUD_SECRET,
+  })
+  // Change avatar
+  if (avatar) {
+    const upload = await cloudinary.v2.uploader.upload(avatar)
+    user.avatar = upload.secure_url
+  }
+
+  // Change other items
+  for (const key in others) {
+    user[key] = others[key]
+  }
+
   await user.save()
 
   res.status(200).send(user)
