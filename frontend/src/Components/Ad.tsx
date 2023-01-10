@@ -38,7 +38,7 @@ function Ad({ ad }: Props) {
     <motion.div
       whileHover={{ scale: 1.1 }}
       whileTap={{ scale: 0.9 }}
-      className='px-1 mx-auto w-full sm:px-[0px] md:py-1 max-w-[520px] xl:max-w-[680px]'
+      className='w-full sm:px-[0px] md:py-1 max-w-[520px] xl:max-w-[680px]'
     >
       <div className='mx-auto h-[110px] w-[100%] flex justify-between items-center border-lightBeige border-b-0 border-t-2 text-[14px] md:h-[100px] md:border-y-2'>
         {/* LEFT SECTION */}
