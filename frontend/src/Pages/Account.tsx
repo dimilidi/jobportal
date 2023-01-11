@@ -44,10 +44,12 @@ const Account = () => {
       {/* ADS && BUTTONS CONTAINER */}
       <div className='max-w-[650px] h-full flex flex-col justify-center items-center md:h-[540px] lg:w-[62%] lg:max-w-[800px] lg:gap-10'>
         {/* BUTTONS */}
-        <div className='w-full
+        <div
+          className='w-full
               flex flex-col justify-center items-center gap-6
               sm:justify-center sm:flex-row
-              lg:ml-20 lg:justify-start'>
+              lg:ml-20 lg:justify-start'
+        >
           <UniButtonWhite
             text='Post Ad'
             type='button'
@@ -75,7 +77,9 @@ const Account = () => {
                 className='font-bold relative text-xl
                   top-[40px] lg:top-[80px] xl:top-[100px] md:text-4xl
                   text-center text-darkBeige'
-              >You have currently <br></br> no ads yet</div>
+              >
+                You have currently <br></br> no ads yet
+              </div>
             ) : (
               ads.adList?.map((ad) => <Ad key={ad._id} ad={ad} />)
             )}

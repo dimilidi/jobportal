@@ -2,9 +2,7 @@ import Ad from '../models/Ad.js'
 
 /** @type {import("express").RequestHandler} */
 export async function getAds(req, res) {
-  let { page, limit, userId, search } = req.query
-  const startIndex = Number(page) - 1 * Number(limit)
-  const endIndex = Number(page) * Number(limit)
+  let { userId, search } = req.query
 
   let query = Ad.find()
 
@@ -16,11 +14,10 @@ export async function getAds(req, res) {
 
     const searchWordsArray = []
     for (const word of searchWords) {
-      // const regex = new RegExp(word, 'i')
       searchWordsArray.push({ title: { $in: word } })
+      searchWordsArray.push({ profession: { $in: word } })
       searchWordsArray.push({ description: { $in: word } })
       searchWordsArray.push({ location: { $in: word } })
-      searchWordsArray.push({ sector: { $in: word } })
     }
     query = query
       .find({ $or: searchWordsArray })
@@ -28,11 +25,6 @@ export async function getAds(req, res) {
   }
 
   let ads = await query.populate('user', 'name')
-  console.log(ads)
-  if (page && limit) {
-    ads = ads.slice(startIndex, endIndex)
-    console.log(ads)
-  }
   res.status(200).json(ads)
 }
 

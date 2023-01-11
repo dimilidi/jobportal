@@ -16,14 +16,12 @@ import imagePostAd from '../assets/images/PostAd_chef.png'
 import axiosInstance from '../api/axiosInstance'
 import { motion } from 'framer-motion'
 
-
 const EditAd = () => {
   // CONSTANTS
   const params = useParams()
   const navigate = useNavigate()
   const user = useUser()
   const ads = useAds(`/ads/${params.id}`)
-  
 
   // STATES
   const [isLoading, setIsLoading] = useState(false)
@@ -37,24 +35,24 @@ const EditAd = () => {
   const [contactVia, setContactVia] = useState<
     [string, string] | [string] | [] | string | undefined
   >([])
-  const [checked, setChecked] = useState({email:false, phone: false})
+  const [checked, setChecked] = useState({ email: false, phone: false })
   // const [image, setImage] = useState('')
 
-
-// SET STATES OF AD THAT IS GOING TO BE UPDATED
-useEffect(() => {
-    if(ads.ad) {
-        setTitle(ads.ad?.title)
-        setLocation(ads.ad?.location)
-        setSector(ads.ad?.sector)
-        setDescription(ads.ad?.description)
-        setWage(ads.ad?.wage)
-        setCategory(ads.ad?.category)
-        setChecked({ email: ads.ad?.contactVia.includes('email'), phone: ads.ad?.contactVia.includes('phone') })
+  // SET STATES OF AD THAT IS GOING TO BE UPDATED
+  useEffect(() => {
+    if (ads.ad) {
+      setTitle(ads.ad?.title)
+      setLocation(ads.ad?.location)
+      setSector(ads.ad?.sector)
+      setDescription(ads.ad?.description)
+      setWage(ads.ad?.wage)
+      setCategory(ads.ad?.category)
+      setChecked({
+        email: ads.ad?.contactVia.includes('email'),
+        phone: ads.ad?.contactVia.includes('phone'),
+      })
     }
-  },[ads.ad])
-  
-
+  }, [ads.ad])
 
   // HANDLE CONTACT_VIA (according checkbox)
   useEffect(() => {
@@ -73,11 +71,10 @@ useEffect(() => {
     }
   }, [checked])
 
-
   // HANDLE SUBMIT
   const handleSubmit = async (e: React.SyntheticEvent) => {
     e.preventDefault()
-     setIsLoading(true)
+    setIsLoading(true)
 
     const ad = {
       title,
@@ -113,13 +110,10 @@ useEffect(() => {
     setIsLoading(false)
   }
 
-
   // POST AD BTN NAVIGATE TO /auth-req when user not logged in
   const handleNavigateifUserNotLoggedIn = () => {
     if (user.isLoggedIn === false) navigate('/auth-required')
   }
-
-
 
   return (
     <motion.div
@@ -198,7 +192,7 @@ useEffect(() => {
                     <input
                       type='radio'
                       value='offering'
-                      checked={category=='offering'}
+                      checked={category == 'offering'}
                       name='case'
                       id='case'
                       className='accent-darkGreen'
@@ -211,7 +205,7 @@ useEffect(() => {
                     <input
                       type='radio'
                       value='searching'
-                      checked={category=='searching'}
+                      checked={category == 'searching'}
                       id='case'
                       name='case'
                       className='accent-darkGreen'
@@ -308,7 +302,6 @@ useEffect(() => {
                   >
                     <p className='text-lightGray'>How to reach you:</p>
 
-            
                     <div
                       area-label='email-phone'
                       className='flex flex-row justify-start gap-3'
@@ -372,7 +365,7 @@ useEffect(() => {
             </div>
             {/* BUTTON - POST AD */}
             <UniButton
-            //   onClick={handleNavigateifUserNotLoggedIn}
+              //   onClick={handleNavigateifUserNotLoggedIn}
               area-label='postAdButton'
               text={isLoading ? <Spinner /> : 'Save Changes'}
               className='my-7 mx-auto w-[200px] self-center  md:mb-0 lg:w-[250px]'
