@@ -1,103 +1,87 @@
 // Hooks
 import React, { useState, useEffect } from 'react'
-import { Link, Navigate, useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import useUser from '../Hooks/useUser'
 // Types
-import { LoginInputs } from '../type'
 // Component
 import UniButton from '../Components/UniButton'
 import Spinner from '../Components/Spinner'
 // Images
 import image from '../assets/images/Account_profilDefault.png'
 // Toaster
-import { ToastContainer, toast } from 'react-toastify'
+import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import { notify } from '../utils/toastNotification'
-import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai'
-
 
 type Props = {}
 
 const EditAccount = (props: Props) => {
-  // const navigate = useNavigate()
-  // const { user, loading, login } = useUser()
-  // const initialInputs: EditAccountInputs = {
-  //   email: '',
-  //   password: '',
-  // }
+  const navigate = useNavigate()
+  const user = useUser()
 
-  // const [inputs, setInputs] = useState(initialInputs)
   const [fetching, setFetching] = useState(false)
   const [errors, setErrors] = useState<string[] | undefined[] | undefined>([])
-  // const [inputType, setInputType] = useState('password')
 
-  // useEffect(() => {
-  //   if (user && !loading) {
-  //     navigate('/adslist')
-  //   }
-  // }, [user])
+  //STATES EDITABLE BY THE USER
+  const [name, setName] = useState(user.user?.name)
+  const [profession, setProffesion] = useState(user.user?.profession)
+  const [city, setCity] = useState(user.user?.city)
+  const [phone, setPhone] = useState(user.user?.phone)
+  const [description, setDescription] = useState(user.user?.description)
+  
 
-  // // Error toast notification
-  // useEffect(() => {
-  //   errors?.map((error) => notify(error))
-  // }, [errors])
+  // IF USER NOT LOGGED IN GO TO HOME
+    useEffect(() => {
+      if (!user.isLoggedIn ) {
+        navigate('/')
+      }
+    }, [user])
 
-  // const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-  //   setInputs((prev) => ({
-  //     ...prev,
-  //     [e.target.name]: e.target.value,
-  //   }))
-  // }
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    setFetching(true)
+    setErrors([])
+    const newUser = { name, phone, city, profession, description }
+    const response = await user.editAccount(newUser)
 
-  // const handleSubmit = async (e: React.FormEvent) => {
-  //   e.preventDefault()
+    console.log('response', response)
 
-  //   setFetching(true)
-  //   setErrors([])
-  //   const response = await login(inputs)
+    if (response.status === 200) navigate('/account')
+    if (response.status === 401) setErrors(['Unathorized. Please log in'])
+    if (response.status === 400) setErrors(response.errors)
+    if (response.status === 500) setErrors(['Something went wrong!'])
+    setFetching(false)
+  }
 
-  //   if (response.status === 200) navigate('/adslist')
-  //   if (response.status === 401)
-  //     setErrors(['You are not authorized to login! Please check your input'])
-  //   if (response.status === 400) setErrors(response.errors)
-  //   if (response.status === 500) setErrors(['Something went wrong!'])
-  //   setInputs(initialInputs)
-  //   setFetching(false)
-  // }
-
-  // const handlePassword = (e: React.SyntheticEvent) => {
-  //   if (inputType === 'password') {
-  //     setInputType('text')
-  //   } else {
-  //     setInputType('password')
-  //   }
-  // }
+   
 
   return (
     // CONTAINER WHOLE PAGE CONTENT
-    <div className='
+    <div
+      area-label='main-container'
+      className='
       h-full
       pt-[100px]
       flex flex-col items-center
       md:pt-[6rem]
       xl:pt-[4rem]'
     >
-
       {/* GREEN SEMICIRCLE */}
-      <div className='
+      <div
+        area-label='green-semicircle'
+        className='
         hidden 
         w-[100px] h-[100px]  
         absolute right-[-50px] top-[20.4rem] z-10 
         rounded-full 
         bg-lightGreen 
-        xl:block' 
+        xl:block'
       />
 
       {/* HEADING & IMAGE */}
-      <div 
-      className='flex justify-start items-center'>
-        <h1 className='
-
+      <div aria-label='headline' className='flex justify-start items-center'>
+        <h1
+          className='
           w-[80%] mb-[1rem]
           text-left text-[2.5rem] font-semibold 
           sm:text-[2.5rem]
@@ -107,15 +91,21 @@ const EditAccount = (props: Props) => {
           md:text-left
           md:leading-[3rem]
           lg:w-[80%]
-          '>
+          '
+        >
           <span
             className='text-lightGreen italic
-          '>Edit</span> <br></br>
-            Profile
+          '
+          >
+            Edit
+          </span>{' '}
+          <br></br>
+          Profile
         </h1>
 
         {/* IMAGE */}
         <img
+          aria-label='image'
           className=' 
             w-[130px] 
             z-10
@@ -133,17 +123,21 @@ const EditAccount = (props: Props) => {
       </div>
 
       {/* FORM */}
-      <div className='
+      <div
+        aria-label='main-form-ctn'
+        className='
         w-full max-w-[500px]
         pt-[1rem]    
+        mb-36
         flex flex-col items-center justify-center 
         relative rounded-[30px] shadow-standard bg-white
         md:mt-[1rem]
         '
       >
-
-          {/* LINE */}
-          <span className='
+        {/* LINE */}
+        <span
+          aria-label='line'
+          className='
             hidden
             w-[50%] pb-10  
             top-[180px] right-0 z-10 self-end
@@ -152,141 +146,146 @@ const EditAccount = (props: Props) => {
             md:top-[300px] 
             lg:w-[87%] 
             lg:top-[370px] 
-            xl:w-[87%]' />
+            xl:w-[87%]'
+        />
 
-          {/* FORM */}
-          <form
-            // onSubmit={handleSubmit}
-            className='
+        {/* FORM */}
+        <form
+          aria-label='form'
+          onSubmit={handleSubmit}
+          className='
               w-[80%] h-fit
               mb-[6rem]
               flex flex-col items-center justify-between 
               '
-          >
-            {/* INPUTS CONTAINER */}
-            <div className='
-              w-full mb-6
+        >
+          {/* INPUTS CONTAINER */}
+          <div
+            aria-label='inputs-ctn'
+            className='
+              w-full
               relative 
               flex flex-col items-center'
-            >
-
-              <label
-                htmlFor='username'
-                className='
+          >
+            {/* USERNAME */}
+            <label
+              aria-label='username'
+              htmlFor='username'
+              className='
                   hidden md:inline-block
                   self-start 
                   text-gray font-semibold 
                   sm:text-[1.1rem] 
                   lg:self-start'
-              >
-                Username
-              </label>
-              <input
-                className='
+            ></label>
+            <input
+              className='
                   w-full mb-2 py-[5px] px-3
                   box-border border border-lightGray rounded-[15rem] 
                   text-sm
                   min-[425px]:py-[10px]   
                   sm:text-[1.1rem]
                   focus:outline-lightGreen'
-                placeholder='Username'
-                type='text'
-                name='username'
-                // value={{user.user?.name}}
-                // onChange={handleChange}
-              />
+              placeholder='Username'
+              type='text'
+              name='username'
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+            />
 
-              <label
-                htmlFor='email'
-                className='
+             {/* PROFESSION */}
+             <label
+              aria-label='profession'
+              htmlFor='profession'
+              className='
                   hidden md:inline-block
                   self-start 
                   text-gray font-semibold 
-                  sm:text-[1.1rem]
+                  sm:text-[1.1rem] 
                   lg:self-start'
-              >
-                Email
-              </label>
-              <input
-                className='
-                  w-full    
-                  py-[5px] px-3 mb-2 
+            ></label>
+            <input
+              className='
+                  w-full mb-2 py-[5px] px-3
+                  box-border border border-lightGray rounded-[15rem] 
                   text-sm
-                  min-[425px]:py-[10px] 
-                  box-border border border-lightGray rounded-[15rem] focus:outline-lightGreen 
-                  sm:text-[1.1rem]'
-                placeholder='Email'
-                type='email'
-                name='email'
-                // value={inputs.email}
-                // onChange={handleChange}
-              />
+                  min-[425px]:py-[10px]   
+                  sm:text-[1.1rem]
+                  focus:outline-lightGreen'
+              placeholder='Profession'
+              type='text'
+              name='Profession'
+              value={profession}
+              onChange={(e) => setProffesion(e.target.value)}
+              // test 
+            />
 
-              <label
-                htmlFor='phone'
-                className='
+            {/* PHONE */}
+            <label
+              area-label='phone'
+              htmlFor='phone'
+              className='
                   hidden md:inline-block
                   self-start 
                   font-semibold text-gray  
                   sm:text-[1.1rem] 
                   lg:self-start'
-              >
-                Phone
-              </label>
-              <input
-                className='
+            ></label>
+            <input
+              className='
                   w-full mb-2
                   py-[5px] px-3
                   box-border border border-lightGray rounded-[15rem] focus:outline-lightGreen 
                   sm:text-[1.1rem]
                   text-sm
                   min-[425px]:py-[10px]'
-                placeholder='Phone'
-                type='text'
-                name='phone'
-                // value={{user.user?.name}}
-                // onChange={handleChange}
-              />
+              placeholder='Phone'
+              type='text'
+              name='phone'
+              value={phone}
+              onChange={(e) => setPhone(e.target.value)}
+            />
 
-              <label
-                htmlFor='city'
-                className='
+            {/* CITY */}
+            <label
+              area-label='city'
+              htmlFor='city'
+              className='
                   hidden md:inline-block
                   self-start 
                   font-semibold text-gray  
                   sm:text-[1.1rem] 
                   lg:self-start'
-              >
-                City
-              </label>
-              <input
-                className='
+            ></label>
+            <input
+              className='
                   w-full mb-2
                   py-[5px] px-3
                   box-border border border-lightGray rounded-[15rem] focus:outline-lightGreen sm:text-[1.1rem]
                   text-sm
                   min-[425px]:py-[10px]'
-                placeholder='City'
-                type='text'
-                name='city'
-                // value={{user.user?.name}}
-                // onChange={handleChange}
-              />
+              placeholder='City'
+              type='text'
+              name='city'
+              value={city}
+              onChange={(e) => setCity(e.target.value)}
+            />
 
-              <label
-                htmlFor='description'
-                className='
+            {/* DESCRIPTION */}
+            <label
+              htmlFor='description'
+              className='
                   self-start 
                   font-semibold  text-gray  
                   sm:text-[1.1rem] 
                   lg:self-start'
-              >
-                Description
-              </label>
-              <textarea
-                name='description'
-                rows={7}
-                className='
+            ></label>
+            <textarea
+              area-label='description'
+              name='description'
+              rows={7}
+              placeholder='Description'
+              className='
                   w-full mb-2
                   py-[11px] px-3
                   box-border border border-lightGray rounded-[1rem] 
@@ -294,42 +293,41 @@ const EditAccount = (props: Props) => {
                   min-[425px]:py-[10px] 
                   focus:outline-lightGreen 
                   sm:text-[1.1rem]'
-                
-                
-                // value={{user.user?.name}}
-                // onChange={handleChange}
-              ></textarea>
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+            ></textarea>
+          </div>
 
-            </div>
+          {/* ERRORS */}
+          {errors &&
+              errors.map((error) => (
+                <p key={error} 
+                className='mt-1 
+                text-red-600  
+                w-[100%] 
+                text-center'>
+                  {error}
+                </p>
+              ))}
 
-            {/* SAVE CHANGES BUTTON */}
-            <UniButton
-              text={fetching ? <Spinner /> : 'Save Changes'}
-              className='
+          {/* SAVE CHANGES BUTTON */}
+          <UniButton
+            text={fetching ? <Spinner /> : 'Save Changes'}
+            className='
+                mt-6
                 w-full
                 pt-[.5rem]
                 flex flex-wrap justify-center
                 text-lg'
-              style={{ padding: '10px' }}
-            />
-            
-            {/* DELETE-ACCOUNT */}
-            <p className='mt-2 w-full text-center text-lightGray underline text-[14px] lg:text-center'>
-              <Link to='/delete-account'>Delete account</Link>
-            </p>
+            style={{ padding: '10px' }}
+          />
 
-            {/* ERRORS */}
-            {errors &&
-              errors.map((error) => (
-                <p key={error} className='
-                  mt-1 
-                  self-start 
-                  text-red-600'
-                >
-                  {error}
-                </p>
-              ))}
-          </form>
+          {/* DELETE-ACCOUNT */}
+          <p className='mt-2 w-full text-center text-lightGray underline text-[14px] lg:text-center'>
+            <Link to='/delete-account'>Delete account</Link>
+          </p>
+
+        </form>
       </div>
       <ToastContainer position='top-right' />
     </div>

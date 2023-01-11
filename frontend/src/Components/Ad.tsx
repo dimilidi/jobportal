@@ -32,7 +32,6 @@ function Ad({ ad }: Props) {
   const close = () => setModalOpen(false)
   const open = () => setModalOpen(true)
 
-
   return (
     <div
       // whileHover={{ scale: 1.1 }}
@@ -56,11 +55,12 @@ function Ad({ ad }: Props) {
             </div>
             {/* IF AD CREATED BY USER SHOW DOTS FOR DROPDOWN*/}
             {user.user?._id === ad.user?._id && (
+
               <DotMenu isOpen = {isOpen} setIsOpen = {setIsOpen} />
             )}
           {isOpen && <Dropdown ad={ad} modalOpen={modalOpen} close={close} open={open} setIsOpen={setIsOpen} isOpen={isOpen}/>}
-          </div>
 
+          </div>
 
           {/* LINK TO SINGLE AD  */}
           <div

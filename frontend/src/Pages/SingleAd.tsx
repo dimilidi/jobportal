@@ -57,6 +57,7 @@ const SingleAd = () => {
   const confirmDelete = () => {
     deleteAd()
     navigate(`/account`)
+
   }
 
   // If no ad was fetched, return div with message
@@ -109,6 +110,7 @@ const SingleAd = () => {
 
           {/* IF AD IS CREATED BY USER, BUTTON "EDIT" && "DELETE" */}
           {user.user?._id === ad?.user._id && (
+
             <div className='px-3 flex justify-center gap-2'>
               <UniButtonWhite
                 text={
@@ -154,6 +156,7 @@ const SingleAd = () => {
           </div>
 
           {/* IF AD IS NOT CREATED BY USER, BUTTON "MESSAGE" */}
+
           {user.user?._id !== ad?.user._id && (
             <UniButton
               text='Message'

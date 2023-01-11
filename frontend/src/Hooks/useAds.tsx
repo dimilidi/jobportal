@@ -1,6 +1,7 @@
 // Hooks
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
+
 // Axios
 import axiosInstance from '../api/axiosInstance'
 // type
@@ -54,6 +55,7 @@ function useAds(url: string): AdHook {
   }, [url])
 
 
+
   // DELETE AD
   const deleteAd = async () => {
     setIsLoading(true)
@@ -99,6 +101,7 @@ function useAds(url: string): AdHook {
   }
 
   return { adList, ad, deleteAd, updateAd,  error, isLoading }
+
 }
 
 export default useAds

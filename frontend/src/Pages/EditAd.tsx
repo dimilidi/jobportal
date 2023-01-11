@@ -16,14 +16,12 @@ import imagePostAd from '../assets/images/PostAd_chef.png'
 import { motion } from 'framer-motion'
 
 
-
 const EditAd = () => {
   // CONSTANTS
   const params = useParams()
   const navigate = useNavigate()
   const user = useUser()
   const ads = useAds(`/ads/${params.id}`)
-  
 
   // STATES
   const [isLoading, setIsLoading] = useState(false)
@@ -37,24 +35,24 @@ const EditAd = () => {
   const [contactVia, setContactVia] = useState<
     [string, string] | [string] | [] | string | undefined
   >([])
-  const [checked, setChecked] = useState({email:false, phone: false})
+  const [checked, setChecked] = useState({ email: false, phone: false })
   // const [image, setImage] = useState('')
 
-
-// SET STATES OF AD THAT IS GOING TO BE UPDATED
-useEffect(() => {
-    if(ads.ad) {
-        setTitle(ads.ad?.title)
-        setLocation(ads.ad?.location)
-        setSector(ads.ad?.sector)
-        setDescription(ads.ad?.description)
-        setWage(ads.ad?.wage)
-        setCategory(ads.ad?.category)
-        setChecked({ email: ads.ad?.contactVia.includes('email'), phone: ads.ad?.contactVia.includes('phone') })
+  // SET STATES OF AD THAT IS GOING TO BE UPDATED
+  useEffect(() => {
+    if (ads.ad) {
+      setTitle(ads.ad?.title)
+      setLocation(ads.ad?.location)
+      setSector(ads.ad?.sector)
+      setDescription(ads.ad?.description)
+      setWage(ads.ad?.wage)
+      setCategory(ads.ad?.category)
+      setChecked({
+        email: ads.ad?.contactVia.includes('email'),
+        phone: ads.ad?.contactVia.includes('phone'),
+      })
     }
-  },[ads.ad])
-  
-
+  }, [ads.ad])
 
   // HANDLE CONTACT_VIA (according checkbox)
   useEffect(() => {
@@ -74,10 +72,11 @@ useEffect(() => {
   }, [checked])
 
 
+
   // HANDLE EDIT
   const handleEdit = async (e: React.SyntheticEvent) => {
     e.preventDefault()
-     setIsLoading(true)
+    setIsLoading(true)
 
     const ad = {
       title,
@@ -172,7 +171,7 @@ useEffect(() => {
                     <input
                       type='radio'
                       value='offering'
-                      checked={category=='offering'}
+                      checked={category == 'offering'}
                       name='case'
                       id='case'
                       className='accent-darkGreen'
@@ -185,7 +184,7 @@ useEffect(() => {
                     <input
                       type='radio'
                       value='searching'
-                      checked={category=='searching'}
+                      checked={category == 'searching'}
                       id='case'
                       name='case'
                       className='accent-darkGreen'
@@ -281,7 +280,7 @@ useEffect(() => {
                     className=' w-[300px] flex  flex-wrap justify-start  gap-1 sm:gap-3 lg:flex-row lg:justify-center lg:items-center'
                   >
                     <p className='text-lightGray'>How to reach you:</p>
-            
+
                     <div
                       area-label='email-phone'
                       className='flex flex-row justify-start gap-3'
@@ -346,7 +345,7 @@ useEffect(() => {
             {/* BUTTON - POST AD */}
             <UniButton
               area-label='postAdButton'
-              text={isLoading ? <Spinner /> : 'Post Ad'}
+              text={isLoading ? <Spinner /> : 'Save Changes'}
               className='my-7 mx-auto w-[200px] self-center  md:mb-0 lg:w-[250px]'
             />
           </form>

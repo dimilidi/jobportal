@@ -1,11 +1,14 @@
 // Hooks
+import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import useAds from '../Hooks/useAds'
 import useUser from '../Hooks/useUser'
+import useSearch from '../Hooks/useSearch'
 // Components
 import Ad from '../Components/Ad'
 import UniButton from '../Components/UniButton'
 import Spinner from '../Components/Spinner'
+import Search from '../Components/Search'
 // framer-motion
 import { motion } from 'framer-motion'
 // Images
@@ -13,9 +16,16 @@ import man from '../assets/images/Ads_man_working.png'
 
 const AdsList = () => {
   // CONSTANTS
+  const { searchWord, setSearchWord } = useSearch()
+  const [searchInput, setSearchInput] = useState('')
   const user = useUser()
-  const ads = useAds(`/ads`)
+  const ads = useAds(`/ads?search=${searchWord}`)
   const navigate = useNavigate()
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault()
+    setSearchWord(searchInput)
+  }
 
   // HANDLE POST AD BUTTON
   const handleClick = () => {
@@ -40,7 +50,7 @@ const AdsList = () => {
         <>
           {/* Heading with underline  */}
           <div className='mx-auto mt-[30px]  h-[100px] w-[250px]'>
-            <h2 className='text-left text-[45px]  leading-tight'>
+            <h2 className='text-left text-[45px] font-semibold leading-tight'>
               Be part of
               <p>
                 our
@@ -71,29 +81,61 @@ const AdsList = () => {
               />
             </div>
 
+
+          {/* SEARCH UND ADS */}
+            <div
+              className='flex flex-col justify-center items-center
+              lg:justify-end lg:items-end'>
+            {/* Search */}
+            <form
+              onSubmit={handleSubmit}
+              aria-label='search'
+              className='h-auto mt-[30px] mb-[10px]
+              md:w-[600px] md:mb-[0px] 
+              xl:w-[500px] xl:pr-2 xl:mt-[50px]
+                '>
+              <Search
+                searchInput={searchInput}
+                setSearchInput={setSearchInput}/>
+            </form>
             {/* Ads Container */}
-
-            <div className='mt-[30px] w-full h-full flex flex-wrap justify-items-center items-start sm:px-5 sm:w-[600px] sm:h-[552px]  md:w-[900px] md:h-[435px] sm:overflow-y-scroll '>
-              {/* Ads */}
-              <div className='mx-auto flex flex-wrap justify-center '>
-                {ads.adList?.map((ad) => (
-                  <Ad key={ad._id} ad={ad} />
-                ))}
+            {ads.adList.length === 0 ? (
+              <div
+                className='mt-[30px] h-[150px] text-center sm:px-5 sm:w-[600px] md:w-[900px] font-bold relative text-3xl
+              top-[40px] lg:top-[150px] xl:top-[200px] md:text-4xl
+              text-darkBeige'
+              >
+                No ads found
               </div>
-            </div>
-          </div>
+            ) : (
+              <div className='mt-[10px] w-full h-full flex flex-wrap justify-items-center items-start sm:px-5 sm:w-[600px] sm:h-[552px]  md:w-[900px] md:h-[435px] sm:overflow-y-scroll '>
+            
 
+                {/* Ads */}
+                <div className='mx-auto flex flex-wrap justify-center '>
+                  {ads.adList?.map((ad) => (
+                    <Ad key={ad._id} ad={ad} />
+                  ))}
+                </div>
+              </div>
+            )}
           {/* Button Ad Post */}
           <div
-            className='mb-[30px]  w-full h-[50px] 
-          flex justify-center items-center lg:w-[50%] xl:p-0 mx-auto'
+            className='mb-[30px] w-full h-[50px] 
+          flex justify-center items-center xl:p-0 mx-auto'
           >
             <UniButton
               text='Post Ad'
               onClick={handleClick}
-              className='my-5  w-[250px] flex justify-center lg:w-[600px] lg:mb-0 2xl:justify-center'
+              className='mt-5 lg:pr-[240px] w-[250px]
+                flex justify-center
+                lg:w-[695px] lg:mb-0
+                2xl:justify-start'
             />
           </div>
+        </div>
+      </div>
+
         </>
       )}
     </motion.div>
