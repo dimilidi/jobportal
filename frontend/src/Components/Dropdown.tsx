@@ -48,7 +48,7 @@ function Dropdown(props: Props) {
 
   // CONFIRM DELETE
   const confirmDelete = () => {
-    deleteAd()
+    deleteAd(ad._id)
     close()
     setIsOpen(!isOpen)
     window.location.reload()

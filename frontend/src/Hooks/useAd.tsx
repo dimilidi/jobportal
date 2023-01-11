@@ -11,9 +11,10 @@ type AdHook = {
   ad: Ad | undefined | null
   isLoading: boolean
   error: string
-  deleteAd: () => void
+  deleteAd: (adId: string) => void
   updateAd: (newAd: {}) => {}
 }
+
 function useAd(): AdHook {
   const navigate = useNavigate()
   const params = useParams()
@@ -35,17 +36,11 @@ function useAd(): AdHook {
   }
 
   // DELETE AD
-  const deleteAd = async () => {
+  const deleteAd = async (adId: string) => {
     setIsLoading(true)
     try {
-      await axiosInstance.delete(`/ads/${ad?._id}`)
+      await axiosInstance.delete(`/ads/${adId}`)
       setAd(null)
-      // setAdList(adList.filter((item) => item._id !== ad?._id))
-      // fetchAds(url)
-      // console.log('listAFTER ->', adList)
-      console.log('AD', ad)
-
-      // console.log('adLIST length', adList.length)
     } catch (error) {
       notify('Something went wrong')
     }

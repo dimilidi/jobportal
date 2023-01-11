@@ -5,7 +5,6 @@ import useUser from '../Hooks/useUser'
 import Spinner from './Spinner'
 
 function AdMobile() {
-  const params = useParams()
   const ad = useAd()
   const user = useUser()
 

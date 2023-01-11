@@ -16,7 +16,7 @@ function useAdList(queries: string): AdHook {
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState('')
 
-  const fetchAds = async (queries: string) => {
+  const fetchAds = async () => {
     setError('')
     setIsLoading(true)
     try {
@@ -30,8 +30,8 @@ function useAdList(queries: string): AdHook {
   }
 
   useEffect(() => {
-    fetchAds(queries)
-  }, [queries])
+    fetchAds()
+  }, [queries, adList.length])
 
   return { adList, error, isLoading }
 }
