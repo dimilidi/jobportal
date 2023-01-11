@@ -12,24 +12,14 @@ import image from '../assets/images/Account_profilDefault.png'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import { notify } from '../utils/toastNotification'
+import { CgLogOut } from 'react-icons/cg'
 
 type Props = {}
 
 const EditAccount = (props: Props) => {
   const navigate = useNavigate()
   const user = useUser()
-  // const initialInputs: EditInputs = {
-  //   name: '',
-  //   phone: '',
-  //   city: '',
-  //   description: '',
-  //   email:'',
-  //   _id: '',
-  //   sector: '',
-  //   avatar: ''
-  // }
 
-  // const [inputs, setInputs] = useState(initialInputs)
   const [fetching, setFetching] = useState(false)
   const [errors, setErrors] = useState<string[] | undefined[] | undefined>([])
 
@@ -39,14 +29,12 @@ const EditAccount = (props: Props) => {
   const [phone, setPhone] = useState(user.user?.phone)
   const [description, setDescription] = useState(user.user?.description)
 
-  // useEffect(() => {
-  //   if (newUser.user) {
-  //     setName(newUser.user?.name)
-  //     setCity(newUser.user?.city)
-  //     setPhone(newUser.user?.phone)
-  //     setDescription(newUser.user?.description)
-  //   }
-  // }, [newUser.user])
+  // IF USER NOT LOGGED IN GO TO /home
+    useEffect(() => {
+      if (!user.isLoggedIn ) {
+        navigate('/')
+      }
+    }, [user])
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -64,10 +52,7 @@ const EditAccount = (props: Props) => {
     setFetching(false)
   }
 
-  // Error toast notification
-  useEffect(() => {
-    errors?.map((error) => notify(error))
-  }, [errors])
+   
 
   return (
     // CONTAINER WHOLE PAGE CONTENT
@@ -177,7 +162,7 @@ const EditAccount = (props: Props) => {
           <div
             aria-label='inputs-ctn'
             className='
-              w-full mb-6
+              w-full
               relative 
               flex flex-col items-center'
           >
@@ -285,10 +270,23 @@ const EditAccount = (props: Props) => {
             ></textarea>
           </div>
 
+          {/* ERRORS */}
+          {errors &&
+              errors.map((error) => (
+                <p key={error} 
+                className='mt-1 
+                text-red-600  
+                w-[100%] 
+                text-center'>
+                  {error}
+                </p>
+              ))}
+
           {/* SAVE CHANGES BUTTON */}
           <UniButton
             text={fetching ? <Spinner /> : 'Save Changes'}
             className='
+                mt-6
                 w-full
                 pt-[.5rem]
                 flex flex-wrap justify-center
@@ -301,19 +299,6 @@ const EditAccount = (props: Props) => {
             <Link to='/delete-account'>Delete account</Link>
           </p>
 
-          {/* ERRORS */}
-          {errors &&
-            errors.map((error) => (
-              <p
-                key={error}
-                className='
-                  mt-1 
-                  self-start 
-                  text-red-600'
-              >
-                {error}
-              </p>
-            ))}
         </form>
       </div>
       <ToastContainer position='top-right' />
