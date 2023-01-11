@@ -11,25 +11,18 @@ type AdHook = {
   error: string
 }
 
-function useAds(url: string): AdHook {
+function useAdList(queries: string): AdHook {
   const [adList, setAdList] = useState<Ad[] | []>([])
-  const [ad, setAd] = useState<Ad | undefined | null>(null)
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState('')
 
-  const fetchAds = async (url: string) => {
+  const fetchAds = async (queries: string) => {
     setError('')
     setIsLoading(true)
     try {
-      const res = await axiosInstance.get(url)
+      const res = await axiosInstance.get(`ads?${queries}`)
       const data = res.data
-
-      // if returning value is object, set it to Ad, if Array, set it to AdList
-      if (typeof data === 'object' && !Array.isArray(data) && data !== null) {
-        setAd(data)
-      } else {
-        setAdList(data)
-      }
+      setAdList(data)
     } catch (error) {
       setError('Something went wrong!')
     }
@@ -37,12 +30,10 @@ function useAds(url: string): AdHook {
   }
 
   useEffect(() => {
-    if (url) {
-      fetchAds(url)
-    }
-  }, [url])
+    fetchAds(queries)
+  }, [queries])
 
   return { adList, error, isLoading }
 }
 
-export default useAds
+export default useAdList

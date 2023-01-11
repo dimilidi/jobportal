@@ -1,7 +1,7 @@
 // Hooks
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import useAds from '../Hooks/useAd'
+import useAdList from '../Hooks/useAdList'
 import useUser from '../Hooks/useUser'
 import useSearch from '../Hooks/useSearch'
 // Components
@@ -19,7 +19,7 @@ const AdsList = () => {
   const { searchWord, setSearchWord } = useSearch()
   const [searchInput, setSearchInput] = useState('')
   const user = useUser()
-  const ads = useAds(`/ads?search=${searchWord}`)
+  const ads = useAdList(`search=${searchWord}`)
   const navigate = useNavigate()
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -81,61 +81,60 @@ const AdsList = () => {
               />
             </div>
 
-
-          {/* SEARCH UND ADS */}
+            {/* SEARCH UND ADS */}
             <div
               className='flex flex-col justify-center items-center
-              lg:justify-end lg:items-end'>
-            {/* Search */}
-            <form
-              onSubmit={handleSubmit}
-              aria-label='search'
-              className='h-auto mt-[30px] mb-[10px]
+              lg:justify-end lg:items-end'
+            >
+              {/* Search */}
+              <form
+                onSubmit={handleSubmit}
+                aria-label='search'
+                className='h-auto mt-[30px] mb-[10px]
               md:w-[600px] md:mb-[0px] 
               xl:w-[500px] xl:pr-2 xl:mt-[50px]
-                '>
-              <Search
-                searchInput={searchInput}
-                setSearchInput={setSearchInput}/>
-            </form>
-            {/* Ads Container */}
-            {ads.adList.length === 0 ? (
-              <div
-                className='mt-[30px] h-[150px] text-center sm:px-5 sm:w-[600px] md:w-[900px] font-bold relative text-3xl
+                '
+              >
+                <Search
+                  searchInput={searchInput}
+                  setSearchInput={setSearchInput}
+                />
+              </form>
+              {/* Ads Container */}
+              {ads.adList.length === 0 ? (
+                <div
+                  className='mt-[30px] h-[150px] text-center sm:px-5 sm:w-[600px] md:w-[900px] font-bold relative text-3xl
               top-[40px] lg:top-[150px] xl:top-[200px] md:text-4xl
               text-darkBeige'
-              >
-                No ads found
-              </div>
-            ) : (
-              <div className='mt-[10px] w-full h-full flex flex-wrap justify-items-center items-start sm:px-5 sm:w-[600px] sm:h-[552px]  md:w-[900px] md:h-[435px] sm:overflow-y-scroll '>
-            
-
-                {/* Ads */}
-                <div className='mx-auto flex flex-wrap justify-center '>
-                  {ads.adList?.map((ad) => (
-                    <Ad key={ad._id} ad={ad} />
-                  ))}
+                >
+                  No ads found
                 </div>
-              </div>
-            )}
-          {/* Button Ad Post */}
-          <div
-            className='mb-[30px] w-full h-[50px] 
+              ) : (
+                <div className='mt-[10px] w-full h-full flex flex-wrap justify-items-center items-start sm:px-5 sm:w-[600px] sm:h-[552px]  md:w-[900px] md:h-[435px] sm:overflow-y-scroll '>
+                  {/* Ads */}
+                  <div className='mx-auto flex flex-wrap justify-center '>
+                    {ads.adList?.map((ad) => (
+                      <Ad key={ad._id} ad={ad} />
+                    ))}
+                  </div>
+                </div>
+              )}
+              {/* Button Ad Post */}
+              <div
+                className='mb-[30px] w-full h-[50px] 
           flex justify-center items-center xl:p-0 mx-auto'
-          >
-            <UniButton
-              text='Post Ad'
-              onClick={handleClick}
-              className='mt-5 lg:pr-[240px] w-[250px]
+              >
+                <UniButton
+                  text='Post Ad'
+                  onClick={handleClick}
+                  className='mt-5 lg:pr-[240px] w-[250px]
                 flex justify-center
                 lg:w-[695px] lg:mb-0
                 2xl:justify-start'
-            />
+                />
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
-
         </>
       )}
     </motion.div>

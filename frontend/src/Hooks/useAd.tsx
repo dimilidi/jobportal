@@ -14,7 +14,7 @@ type AdHook = {
   deleteAd: () => void
   updateAd: (newAd: {}) => {}
 }
-function useAds(): AdHook {
+function useAd(): AdHook {
   const navigate = useNavigate()
   const params = useParams()
   const [ad, setAd] = useState<Ad | undefined | null>(null)
@@ -86,4 +86,4 @@ function useAds(): AdHook {
   return { ad, deleteAd, updateAd, error, isLoading }
 }
 
-export default useAds
+export default useAd
