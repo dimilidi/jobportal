@@ -1,7 +1,7 @@
 // Hooks
 import { useNavigate, useParams } from 'react-router-dom'
 import useUser from '../Hooks/useUser'
-import useAds from '../Hooks/useAds'
+import useAds from '../Hooks/useAd'
 // Components
 import ContactDetails from '../Components/ContactDetails'
 import UniButton from '../Components/UniButton'

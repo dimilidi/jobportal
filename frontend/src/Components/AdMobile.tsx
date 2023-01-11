@@ -1,4 +1,4 @@
-import useAds from '../Hooks/useAds'
+import useAds from '../Hooks/useAd'
 import avatar from '../assets/images/Account_profilDefault.png'
 import { useParams } from 'react-router-dom'
 import useUser from '../Hooks/useUser'

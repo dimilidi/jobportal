@@ -7,7 +7,6 @@ import { Ad } from '../type'
 
 type AdHook = {
   adList: Ad[] | []
-  ad: Ad | undefined | null
   isLoading: boolean
   error: string
 }
@@ -43,7 +42,7 @@ function useAds(url: string): AdHook {
     }
   }, [url])
 
-  return { adList, ad, error, isLoading }
+  return { adList, error, isLoading }
 }
 
 export default useAds

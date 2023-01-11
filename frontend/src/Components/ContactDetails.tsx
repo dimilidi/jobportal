@@ -1,5 +1,5 @@
 // Hooks
-import useAds from '../Hooks/useAds'
+import useAds from '../Hooks/useAd'
 // Icons
 import { MdEmail } from 'react-icons/md'
 import { BsTelephoneFill } from 'react-icons/bs'
