@@ -22,6 +22,11 @@ const AdsList = () => {
   const ads = useAds(`/ads?search=${searchWord}`)
   const navigate = useNavigate()
 
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault()
+    setSearchWord(searchInput)
+  }
+
   // HANDLE POST AD BUTTON
   const handleClick = () => {
     if (user.user) {
@@ -76,17 +81,23 @@ const AdsList = () => {
               />
             </div>
 
-            <div
-              className='flex flex-col justify-end items-end'>
 
-            {/* Search */}
+          {/* SEARCH UND ADS */}
             <div
+              className='flex flex-col justify-center items-center
+              lg:justify-end lg:items-end'>
+            {/* Search */}
+            <form
+              onSubmit={handleSubmit}
               aria-label='search'
-              className='w-[500px] pr-2 h-auto flex justify-end items-end mt-[50px]'>
+              className='h-auto mt-[30px] mb-[10px]
+              md:w-[600px] md:mb-[0px] 
+              xl:w-[500px] xl:pr-2 xl:mt-[50px]
+                '>
               <Search
                 searchInput={searchInput}
                 setSearchInput={setSearchInput}/>
-            </div>
+            </form>
             {/* Ads Container */}
             {ads.adList.length === 0 ? (
               <div className='mt-[30px] h-[150px] text-center sm:px-5 sm:w-[600px] md:w-[900px] font-bold relative text-3xl
@@ -106,20 +117,23 @@ const AdsList = () => {
                 </div>
               </div>
             )}
-          </div>
-          </div>
-
           {/* Button Ad Post */}
           <div
-            className='mb-[30px]  w-full h-[50px] 
-          flex justify-center items-center lg:w-[50%] xl:p-0 mx-auto'
+            className='mb-[30px] w-full h-[50px] 
+          flex justify-center items-center xl:p-0 mx-auto'
           >
             <UniButton
               text='Post Ad'
               onClick={handleClick}
-              className='my-5  w-[250px] flex justify-center lg:w-[600px] lg:mb-0 2xl:justify-center'
+              className='mt-5 lg:pr-[240px] w-[250px]
+                flex justify-center
+                lg:w-[695px] lg:mb-0
+                2xl:justify-start'
             />
           </div>
+        </div>
+      </div>
+
         </>
       )}
     </motion.div>
