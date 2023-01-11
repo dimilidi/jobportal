@@ -19,7 +19,7 @@ const BrowseJobs = (props: Props) => {
         }}
         area-label='back-button-to-jobs'
         className='flex lg:items-center'
-        style = {props.style }
+        style = { props.style }
       >
         <span className='flex items-center w-[24px]'>
           <div className='h-[14px] border-r-[2px] border-textBlack' />
