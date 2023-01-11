@@ -41,13 +41,13 @@ const EditAccount = (props: Props) => {
     e.preventDefault()
     setFetching(true)
     setErrors([])
-    const newUser = { name, phone, city, description }
+    const newUser = { name, phone, city, profession, description }
     const response = await user.editAccount(newUser)
 
     console.log('response', response)
 
     if (response.status === 200) navigate('/account')
-    if (response.status === 401) setErrors(['Unathorized.'])
+    if (response.status === 401) setErrors(['Unathorized. Please log in'])
     if (response.status === 400) setErrors(response.errors)
     if (response.status === 500) setErrors(['Something went wrong!'])
     setFetching(false)
