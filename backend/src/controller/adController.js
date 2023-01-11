@@ -14,10 +14,10 @@ export async function getAds(req, res) {
 
     const searchWordsArray = []
     for (const word of searchWords) {
-      searchWordsArray.push({ title: { $in: word } })
-      searchWordsArray.push({ profession: { $in: word } })
-      searchWordsArray.push({ description: { $in: word } })
-      searchWordsArray.push({ location: { $in: word } })
+      searchWordsArray.push({ title: { $in: [word] } })
+      searchWordsArray.push({ profession: { $in: [word] } })
+      searchWordsArray.push({ description: { $in: [word] } })
+      searchWordsArray.push({ location: { $in: [word] } })
     }
     query = query
       .find({ $or: searchWordsArray })
