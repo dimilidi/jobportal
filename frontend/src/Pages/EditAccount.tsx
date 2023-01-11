@@ -12,7 +12,6 @@ import image from '../assets/images/Account_profilDefault.png'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import { notify } from '../utils/toastNotification'
-import { CgLogOut } from 'react-icons/cg'
 
 type Props = {}
 
