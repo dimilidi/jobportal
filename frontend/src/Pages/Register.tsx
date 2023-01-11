@@ -28,7 +28,7 @@ const Register = () => {
 
   useEffect(() => {
     if (user && !loading) {
-      navigate('/edit-account')
+      navigate('/account')
     }
   }, [user])
 
