@@ -31,6 +31,9 @@ const Account = () => {
       navigate('/auth-required')
     }
   }, [user])
+  
+   
+ 
 
   
 

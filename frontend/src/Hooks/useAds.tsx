@@ -62,15 +62,16 @@ function useAds(url: string): AdHook {
       setAd (null)
       setAdList(adList.filter((item) => item._id !== ad?._id))
       // fetchAds(url)
-      console.log('listAFTER ->',adList);
-      console.log('AD',ad);
-  
-      console.log('adLIST length',adList.length);
+       console.log('listAFTER ->',adList);
+  console.log('AD',ad);
+
+  console.log('adLIST length',adList.length);
     } catch (error) {
       notify('Something went wrong');
     }
     setIsLoading(false)
   }
+ 
 
 
   // UPDATE AD
