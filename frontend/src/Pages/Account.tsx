@@ -25,25 +25,14 @@ const Account = ({open, close, modalOpen}:Props) => {
   const { user, loading } = useUser()
   const { adList, isLoading, deleteAd }= useAds(`/ads/?userId=${user?._id}`)
 
-  // const [modalOpen, setModalOpen] = useState(false)
-  // const close = () => setModalOpen(false)
-  // const open = () => setModalOpen(true)
-
-
-
-
+ 
   useEffect(() => {
     if (!user && !loading) {
       navigate('/auth-required')
     }
   }, [user])
 
-   // CONFIRM DELETE
-   const confirmDelete = () => {
-    deleteAd()
-    window.location.reload()//??????????
-  }
-
+  
 
   return (
     <motion.div
@@ -58,15 +47,6 @@ const Account = ({open, close, modalOpen}:Props) => {
       {/* LINE */}
       <div className='border-b-[3px] border-lightGreen absolute hidden lg:w-[20%] xl:w-[30%] md:block lg:top-[220px] lg:right-0' />
 
-      {modalOpen && (
-            <Modal handleClose={close}>
-              <h3>Do you really want to delete your ad?</h3>
-              <div className='flex flex-col sm:flex-row gap-5'>
-                <UniButton style={{width:'120px', height:'45px'}} text='Confirm' onClick={confirmDelete} />
-                <UniButtonWhite style={{width:'120px', height:'45px'}} text='Quit' onClick={close} />
-              </div>
-            </Modal>
-          )}
      
       {/* USER CARD */}
       <div className='h-full w-[95%] relative flex justify-center lg:w-[32%]'>

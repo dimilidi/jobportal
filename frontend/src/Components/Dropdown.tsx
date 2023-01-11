@@ -53,7 +53,7 @@ function Dropdown({ad, modalOpen, close, open, setIsOpen, isOpen }:Props) {
     deleteAd()
     close()
     setIsOpen(!isOpen)
-    window.location.reload()//??????????
+    // window.location.reload()//??????????
   }
 
    // QUIT DELETE
