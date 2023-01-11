@@ -38,7 +38,7 @@ function Ad({ ad }: Props) {
       // whileTap={{ scale: 0.9 }}
       className='w-full sm:px-[0px] md:py-1 max-w-[520px] xl:max-w-[680px]'
     >
-      <div className='mx-auto h-[110px] w-[100%] flex justify-between items-center border-lightBeige border-b-0 border-t-2 text-[14px] md:h-[100px] md:border-y-2'>
+      <div className='mx-auto h-[110px] w-[100%] flex justify-between items-center border-lightBeige border-t-2 text-[14px] md:h-[100px] md:border-y-2'>
         {/* LEFT SECTION */}
         <div className='h-full flex justify-start sm:gap-3'>
           {/* PROFILE IMAGE */}
@@ -49,7 +49,7 @@ function Ad({ ad }: Props) {
                 rounded-b-[40px] bg-lightBeige md:mb-[10px]
                 md:w-[60px] '
             >
-              <div className='mb-2 w-[50px] h-[40px] self-end rounded-full md:w-[50px] md:h-[40px]'>
+              <div className='mb-4 w-[50px] h-[40px] self-end rounded-full md:w-[50px] md:h-[40px]'>
                 <img src={profileImg} alt='' />
               </div>
             </div>
