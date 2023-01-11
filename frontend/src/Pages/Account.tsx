@@ -23,7 +23,7 @@ type Props = {
 const Account = ({open, close, modalOpen}:Props) => {
   const navigate = useNavigate()
   const { user, loading } = useUser()
-  const { adList, isLoading, deleteAd }= useAds(`/ads/?userId=${user?._id}`)
+  const { adList, isLoading }= useAds(`/ads/?userId=${user?._id}`)
 
  
   useEffect(() => {

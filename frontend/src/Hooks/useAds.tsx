@@ -25,7 +25,7 @@ function useAds(url: string): AdHook {
   const [error, setError] = useState('')
 
   console.log('listBEVORE ->',adList);
-  // console.log('AD',ad);
+
   
   // FETCH ADS
   const fetchAds = async (url: string) => {
@@ -63,14 +63,13 @@ function useAds(url: string): AdHook {
       setAdList(adList.filter((item) => item._id !== ad?._id))
       // fetchAds(url)
       console.log('listAFTER ->',adList);
-  console.log('AD',ad);
+      console.log('AD',ad);
   
       console.log('adLIST length',adList.length);
     } catch (error) {
       notify('Something went wrong');
     }
     setIsLoading(false)
-
   }
 
 
