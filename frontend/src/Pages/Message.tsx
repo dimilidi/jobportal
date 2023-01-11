@@ -1,18 +1,16 @@
 // Hooks
-import { useNavigate, useParams } from 'react-router-dom'
 import useUser from '../Hooks/useUser'
 // Components
-import UniButton from '../Components/UniButton'
 import AdMobile from '../Components/AdMobile'
+import MessageHistory from '../Components/MessageHistory'
 // Libraries
 import 'react-toastify/dist/ReactToastify.css'
 // Framer-motion
 import { motion } from 'framer-motion'
 import UserMessage from '../Components/UserMessage'
+import InputMessage from '../Components/InputMessage'
 
  const Message = () => {
-  const user = useUser().user
-  const navigate = useNavigate()
   return (
     <motion.div
         initial={{ width: '100%' }}
@@ -35,7 +33,7 @@ import UserMessage from '../Components/UserMessage'
         {/* BOX*/}
         <div
             area-label='box'
-            className='w-full px-2 sm:px-5 sm:mx-0 mx-2 min-h-[500px] sm:h-[400px] sm:w-[400px] xl:w-[800px] xl:h-[600px]
+            className='[95%] min-h-[500px] sm:h-[400px] sm:w-[400px] xl:h-[600px]
             flex flex-col justify-between item-center
             self-center z-10 rounded-[21px] bg-white shadow-standard'
           >
@@ -48,21 +46,22 @@ import UserMessage from '../Components/UserMessage'
             <UserMessage/>
           </div>
 
-          {/* BUTTON - SEND */}
-          <div
-          className='flex justify-center items-center mb-10'>
-          <UniButton
-               area-label='SendMessageButton'
-               text='Send'
-               type='button'
-              //  onClick={}
-               />
-          </div>
-          {/* BUTTON - SEND - END*/}
+        {/* MESSAGE HISTORY */}
+        <div
+          aria-aria-label='history'
+          className='h-full w-full
+          relative flex justify-center'>
+          <MessageHistory />
+        </div>
 
+        {/* INPUT MESSAGE */}
+        <div>
+          <InputMessage />
+        </div>
 
-          </div>
-          {/* BOX - END*/}
+        </div>
+
+        {/* BOX - END*/}
 
         {/* CIRCLE & LINE */}
         <div
@@ -77,10 +76,8 @@ import UserMessage from '../Components/UserMessage'
             className='hidden md:block lg:absolute lg:top-[475px] lg:translate-y-[-50%] lg:left-0 lg:border-b-2 lg:border-lightGreen w-screen z-0'
           />
           {/* CIRCLE & LINE - END */}
-
-
         </div>
-        {/* CIRCLE & LINE - END */}
+
     </motion.div>
   )
 }

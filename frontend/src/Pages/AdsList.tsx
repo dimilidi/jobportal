@@ -137,7 +137,7 @@ const AdsList = () => {
             <UniButton
               text='Post Ad'
               onClick={handleClick}
-              className='mt-[50px] w-[250px]
+              className='mt-[60px] md:mt-[30px] w-[250px]
                 flex justify-center lg:w-[600px]
                 lg:mb-0 2xl:justify-center'
             />
