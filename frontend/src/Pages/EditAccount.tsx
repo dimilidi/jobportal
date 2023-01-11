@@ -29,7 +29,7 @@ const EditAccount = (props: Props) => {
   const [phone, setPhone] = useState(user.user?.phone)
   const [description, setDescription] = useState(user.user?.description)
 
-  // IF USER NOT LOGGED IN GO TO /home
+  // IF USER NOT LOGGED IN GO TO HOME
     useEffect(() => {
       if (!user.isLoggedIn ) {
         navigate('/')
