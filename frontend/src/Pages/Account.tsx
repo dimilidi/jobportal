@@ -17,17 +17,17 @@ import { motion } from 'framer-motion'
 type Props = {
   modalOpen: boolean
   close: ()=>void
-  open: ()=>void
+  open?: ()=>void
 }
 
-const Account = () => {
+const Account = ({open, close, modalOpen}:Props) => {
   const navigate = useNavigate()
   const { user, loading } = useUser()
   const { adList, isLoading, deleteAd }= useAds(`/ads/?userId=${user?._id}`)
 
-  const [modalOpen, setModalOpen] = useState(false)
-  const close = () => setModalOpen(false)
-  const open = () => setModalOpen(true)
+  // const [modalOpen, setModalOpen] = useState(false)
+  // const close = () => setModalOpen(false)
+  // const open = () => setModalOpen(true)
 
 
 
@@ -41,7 +41,7 @@ const Account = () => {
    // CONFIRM DELETE
    const confirmDelete = () => {
     deleteAd()
-    navigate(`/account`)
+    window.location.reload()//??????????
   }
 
 
@@ -105,7 +105,7 @@ const Account = () => {
             {adList?.length === 0 ? (
               <div>You have currently no ads yet</div>
             ) : (
-              adList?.map((ad) => <Ad key={ad._id} ad={ad} />)
+              adList?.map((ad) => <Ad key={ad._id} ad={ad}  />)
             )}
           </div>
         </div>

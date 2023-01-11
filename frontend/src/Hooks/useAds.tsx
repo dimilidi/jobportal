@@ -19,17 +19,14 @@ type AdHook = {
 function useAds(url: string): AdHook {
   const navigate = useNavigate()
 
-
   const [adList, setAdList] = useState<Ad[] | []>([])
   const [ad, setAd] = useState<Ad | undefined | null>(null)
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState('')
 
-
   console.log('LIST ->',adList);
   console.log(ad);
   
-
   // FETCH ADS
   const fetchAds = async (url: string) => {
     setError('')
@@ -54,8 +51,7 @@ function useAds(url: string): AdHook {
     if (url) {
       fetchAds(url)
     }
-
-  }, [url])
+  }, [url, adList.length])
 
 
   // DELETE AD
@@ -65,7 +61,7 @@ function useAds(url: string): AdHook {
       await axiosInstance.delete(`/ads/${ad?._id}`)
       setAd (null)
       setAdList(adList.filter((item) => item._id !== ad?._id))
-      fetchAds(url)
+      // fetchAds(url)
       console.log('adLIST',adList.length);
     } catch (error) {
       notify('Something went wrong');

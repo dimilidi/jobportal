@@ -58,7 +58,7 @@ function Ad({ ad }: Props) {
             {user.user?._id === ad.user?._id && (
               <DotMenu isOpen = {isOpen} setIsOpen = {setIsOpen} />
             )}
-          {isOpen && <Dropdown ad={ad} modalOpen={modalOpen} close={close} open={open}/>}
+          {isOpen && <Dropdown ad={ad} modalOpen={modalOpen} close={close} open={open} setIsOpen={setIsOpen} isOpen={isOpen}/>}
           </div>
 
 
