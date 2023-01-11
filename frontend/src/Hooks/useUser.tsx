@@ -54,7 +54,7 @@ export const UserProvider = (props: { children: React.ReactElement }) => {
 
   // Check if user is logged in, if yes, setUser. If not, return null.
   useEffect(() => {
-    if (!isLoggedIn && !loading) {
+    if (!isLoggedIn && loading) {
       const getUser = (async () => {
         try {
           const response: AxiosResponse<any, any> = await axiosInstance.get(
@@ -64,12 +64,11 @@ export const UserProvider = (props: { children: React.ReactElement }) => {
           setIsLoggedIn(true)
         } catch (err) {
           setUser(null)
-        } finally {
-          setLoading(false)
         }
+        setLoading(false)
       })()
     }
-  }, [isLoggedIn, loading])
+  }, [isLoggedIn, loading, user])
 
   const userContext = {
     user: user,
