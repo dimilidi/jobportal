@@ -67,5 +67,19 @@ export const updateAd = async (req, res) => {
     await ad.save()
     res.status(200).json(ad)
   }
- 
+}
+
+/** @type {import("express").RequestHandler} */
+export const deleteAd = async(req, res) => {
+  const adId = req.params.id
+  const ad = await Ad.findById(adId)
+
+  const deletedAd = await Ad.deleteOne(ad)
+
+  if(deletedAd){
+    res.status(200).json(deletedAd)
+  }else {
+    res.status(404).json("Ad: " + ad + " doesn't exist.")
+  }
+
 }

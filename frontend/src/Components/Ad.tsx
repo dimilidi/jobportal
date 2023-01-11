@@ -1,7 +1,5 @@
-import { Link, Navigate, useNavigate, useParams } from 'react-router-dom'
-import { motion } from 'framer-motion'
+import {  useNavigate, useParams } from 'react-router-dom'
 import profileImg from '../assets/images/Account_profilDefault.png'
-import { BsThreeDots } from 'react-icons/bs'
 import useUser from '../Hooks/useUser'
 import useAds from '../Hooks/useAds'
 import Dropdown from './Dropdown'
@@ -21,7 +19,6 @@ type Props = {
       _id: string
     }
   }
- 
 }
 
 function Ad({ ad }: Props) {
@@ -29,7 +26,11 @@ function Ad({ ad }: Props) {
   const navigate = useNavigate()
   const user = useUser()
   const ads = useAds(`/ads/${ad._id}`)
-  const [open, setOpen] = useState(false)
+
+  const [isOpen, setIsOpen] = useState(false)
+  const [modalOpen, setModalOpen] = useState(false)
+  const close = () => setModalOpen(false)
+  const open = () => setModalOpen(true)
 
 
   return (
@@ -55,9 +56,9 @@ function Ad({ ad }: Props) {
             </div>
             {/* IF AD CREATED BY USER SHOW DOTS FOR DROPDOWN*/}
             {user.user?._id === ad.user?._id && (
-              <DotMenu open = {open} setOpen = {setOpen} />
+              <DotMenu isOpen = {isOpen} setIsOpen = {setIsOpen} />
             )}
-          {open && <Dropdown ad={ad} />}
+          {isOpen && <Dropdown ad={ad} modalOpen={modalOpen} close={close} open={open}/>}
           </div>
 
 

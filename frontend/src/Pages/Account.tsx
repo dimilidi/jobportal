@@ -23,6 +23,7 @@ const Account = () => {
     }
   }, [user])
 
+
   return (
     <motion.div
       initial={{ width: '100%' }}
