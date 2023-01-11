@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState } from "react"
 import { Routes, Route, useLocation } from 'react-router-dom'
 // Pages
 import Account from '../Pages/Account'
@@ -17,8 +17,10 @@ import EditAd from "../Pages/EditAd"
 import {AnimatePresence} from 'framer-motion'
 
 
+
 const SmoothPages = () => {
   const location = useLocation()
+
 
   return (
     <AnimatePresence>

@@ -9,19 +9,40 @@ import UserCard from '../Components/UserCard'
 import { useEffect, useState } from 'react'
 import useUser from '../Hooks/useUser'
 import { Ad as AdType } from '../type'
+import Modal from '../Components/Modal'
 // framer-motion
 import { motion } from 'framer-motion'
+
+
+type Props = {
+  modalOpen: boolean
+  close: ()=>void
+  open: ()=>void
+}
 
 const Account = () => {
   const navigate = useNavigate()
   const { user, loading } = useUser()
-  const ads = useAds(`/ads/?userId=${user?._id}`)
+  const { adList, isLoading, deleteAd }= useAds(`/ads/?userId=${user?._id}`)
+
+  const [modalOpen, setModalOpen] = useState(false)
+  const close = () => setModalOpen(false)
+  const open = () => setModalOpen(true)
+
+
+
 
   useEffect(() => {
     if (!user && !loading) {
       navigate('/auth-required')
     }
   }, [user])
+
+   // CONFIRM DELETE
+   const confirmDelete = () => {
+    deleteAd()
+    navigate(`/account`)
+  }
 
 
   return (
@@ -37,6 +58,16 @@ const Account = () => {
       {/* LINE */}
       <div className='border-b-[3px] border-lightGreen absolute hidden lg:w-[20%] xl:w-[30%] md:block lg:top-[220px] lg:right-0' />
 
+      {modalOpen && (
+            <Modal handleClose={close}>
+              <h3>Do you really want to delete your ad?</h3>
+              <div className='flex flex-col sm:flex-row gap-5'>
+                <UniButton style={{width:'120px', height:'45px'}} text='Confirm' onClick={confirmDelete} />
+                <UniButtonWhite style={{width:'120px', height:'45px'}} text='Quit' onClick={close} />
+              </div>
+            </Modal>
+          )}
+     
       {/* USER CARD */}
       <div className='h-full w-[95%] relative flex justify-center lg:w-[32%]'>
         <UserCard />
@@ -71,10 +102,10 @@ const Account = () => {
         {/* Version 2: ads ?  user.ads : 'You don't have ads yet' */}
         <div className='mt-[30px] mb-[30px] w-full h-full flex flex-wrap justify-center items-start rounded-[21px] sm:px-5 sm:mt-3 sm:mb-20 sm:w-[600px] sm:h-[552px] sm:overflow-y-scroll md:w-[100%] md:h-[440px] lg:px-0 lg:mb-0 lg:h-[500px]'>
           <div className='w-full flex flex-wrap justify-center items-center'>
-            {ads.adList?.length === 0 ? (
+            {adList?.length === 0 ? (
               <div>You have currently no ads yet</div>
             ) : (
-              ads.adList?.map((ad) => <Ad key={ad._id} ad={ad} />)
+              adList?.map((ad) => <Ad key={ad._id} ad={ad} />)
             )}
           </div>
         </div>
