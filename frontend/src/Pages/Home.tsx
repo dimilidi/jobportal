@@ -10,6 +10,8 @@ import { motion } from 'framer-motion'
 import Search from '../Components/Search'
 import useSearch from '../Hooks/useSearch'
 import useDecorationLine from '../Hooks/useDecorationLine'
+import useUser from '../Hooks/useUser'
+
 
 const Home = () => {
   const navigate = useNavigate()
