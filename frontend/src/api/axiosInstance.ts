@@ -1,7 +1,11 @@
 import axios, { AxiosInstance } from 'axios'
 
-// const BASE_URL = 'https://jobsy-jobportal.onrender.com'
-const BASE_URL = 'http://localhost:3001'
+let BASE_URL
+if (import.meta.env.PROD) {
+  BASE_URL = 'https://jobsy-jobportal.onrender.com'
+} else {
+  BASE_URL = 'http://localhost:3001'
+}
 
 const axiosInstance: AxiosInstance = axios.create({
   baseURL: BASE_URL,

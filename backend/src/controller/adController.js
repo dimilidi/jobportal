@@ -13,12 +13,15 @@ export async function getAds(req, res) {
 
     const searchWordsArray = []
     for (const word of searchWords) {
+      // const regex = new RegExp(word, 'i')
       searchWordsArray.push({ title: { $in: word } })
       searchWordsArray.push({ description: { $in: word } })
       searchWordsArray.push({ location: { $in: word } })
       searchWordsArray.push({ sector: { $in: word } })
     }
-    query = query.find({ $or: searchWordsArray })
+    query = query
+      .find({ $or: searchWordsArray })
+      .collation({ locale: 'en_US', strength: 1 })
   }
 
   const ads = await query.populate('user', 'name')

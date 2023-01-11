@@ -42,7 +42,7 @@ const AdsList = () => {
         <>
           {/* Heading with underline  */}
           <div className='mx-auto mt-[30px]  h-[100px] w-[250px]'>
-            <h2 className='text-left text-[45px]  leading-tight'>
+            <h2 className='text-left text-[45px] font-semibold leading-tight'>
               Be part of
               <p>
                 our
@@ -75,7 +75,9 @@ const AdsList = () => {
 
             {/* Ads Container */}
             {ads.adList.length === 0 ? (
-              <div className='mt-[30px] h-[150px] text-center sm:px-5 sm:w-[600px] md:w-[900px]'>
+              <div className='mt-[30px] h-[150px] text-center sm:px-5 sm:w-[600px] md:w-[900px] font-bold relative text-3xl
+              top-[40px] lg:top-[150px] xl:top-[200px] md:text-4xl
+              text-darkBeige'>
                 No ads found
               </div>
             ) : (
