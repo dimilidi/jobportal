@@ -21,7 +21,6 @@ type Props = {
       _id: string
     }
   }
- 
 }
 
 function Ad({ ad }: Props) {
@@ -30,7 +29,6 @@ function Ad({ ad }: Props) {
   const user = useUser()
   const ads = useAds(`/ads/${ad._id}`)
   const [open, setOpen] = useState(false)
-
 
   return (
     <div
@@ -55,11 +53,10 @@ function Ad({ ad }: Props) {
             </div>
             {/* IF AD CREATED BY USER SHOW DOTS FOR DROPDOWN*/}
             {user.user?._id === ad.user?._id && (
-              <DotMenu open = {open} setOpen = {setOpen} />
+              <DotMenu open={open} setOpen={setOpen} />
             )}
-          {open && <Dropdown ad={ad} />}
+            {open && <Dropdown ad={ad} />}
           </div>
-
 
           {/* LINK TO SINGLE AD  */}
           <div

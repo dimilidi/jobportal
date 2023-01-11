@@ -31,7 +31,8 @@ const SingleAd = () => {
   // HANDLE CLICK
   const handleClick = () => {
     if (user.isLoggedIn === false) navigate('/auth-required')
-    if(user.user?._id === ads.ad?.user._id) navigate(`/ad/edit-ad/${params.id}`)
+    if (user.user?._id === ads.ad?.user._id)
+      navigate(`/ad/edit-ad/${params.id}`)
   }
 
   // If no ad was fetched, return div with message
@@ -82,25 +83,29 @@ const SingleAd = () => {
             )}
           </div>
 
-           {/* IF AD IS CREATED BY USER, BUTTON "EDIT" && "DELETE" */}
-        {user.user?._id === ads.ad?.user._id && 
-        <div className='px-3 flex justify-center gap-2'>
-
-         <UniButtonWhite
-         text={<AiFillEdit style={{width:'40px', fontSize:'20px'}} />}
-         onClick={handleClick}
-         className='my-7 self-center mb-2 lg:mb-0'
-         style={{width:'80px', height:'40px'}}
-       />
-         <UniButton
-         text={<RiDeleteBinLine style={{width:'40px', fontSize:'20px'}} />}
-         onClick={handleClick}
-         className='my-7 self-center mb-2 lg:mb-0'
-         style={{width:'80px', height:'40px'}}
-       />
-       </div>
-
-        }
+          {/* IF AD IS CREATED BY USER, BUTTON "EDIT" && "DELETE" */}
+          {user.user?._id === ads.ad?.user._id && (
+            <div className='px-3 flex justify-center gap-2'>
+              <UniButtonWhite
+                text={
+                  <AiFillEdit style={{ width: '40px', fontSize: '20px' }} />
+                }
+                onClick={handleClick}
+                className='my-7 self-center mb-2 lg:mb-0'
+                style={{ width: '80px', height: '40px' }}
+              />
+              <UniButton
+                text={
+                  <RiDeleteBinLine
+                    style={{ width: '40px', fontSize: '20px' }}
+                  />
+                }
+                onClick={handleClick}
+                className='my-7 self-center mb-2 lg:mb-0'
+                style={{ width: '80px', height: '40px' }}
+              />
+            </div>
+          )}
 
           {/* ContactDetails MOBILE - If user exists, show ContactDetails */}
           <div className='flex justify-center '>
@@ -115,14 +120,13 @@ const SingleAd = () => {
           </div>
 
           {/* IF AD IS NOT CREATED BY USER, BUTTON "MESSAGE" */}
-          {user.user?._id !== ads.ad?.user._id &&
-          <UniButton
-            text= 'Message'
-            onClick={() => navigate('/message')}
-            className='my-7 self-center mb-2 lg:mb-0'
-          />
-          }
-
+          {user.user?._id !== ads.ad?.user._id && (
+            <UniButton
+              text='Message'
+              onClick={() => navigate('/message')}
+              className='my-7 self-center mb-2 lg:mb-0'
+            />
+          )}
         </div>
         {/* Ad - END */}
 

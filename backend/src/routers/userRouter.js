@@ -10,7 +10,7 @@ app.get('/', auth, controller.getUser)
 app.post('/register', validator.register, controller.register)
 app.post('/login', validator.login, controller.login)
 app.get('/logout', auth, controller.logout)
-app.put('/edit-account', auth, validator.updateUser, controller.editAccount)
+app.put('/edit-account', auth, validator.editAccount, controller.editAccount)
 app.delete('/delete-account', auth, controller.deleteAccount)
 
 export default app
