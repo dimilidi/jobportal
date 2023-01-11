@@ -21,15 +21,12 @@ import { RiDeleteBinLine } from 'react-icons/ri'
 import { useState } from 'react'
 import Modal from '../Components/Modal'
 
-
 const SingleAd = () => {
- 
   // CONSTANTS
   const params = useParams()
   const navigate = useNavigate()
   const user = useUser()
-  const ad = useAd()
-  const { ad, isLoading, deleteAd } = useAds(`/ads/${params.id}`)
+  const { ad, isLoading, deleteAd } = useAd()
 
   const [modalOpen, setModalOpen] = useState(false)
   const close = () => setModalOpen(false)
@@ -49,7 +46,6 @@ const SingleAd = () => {
   // HANDLE DELETE
   const handleDelete = () => {
     if (user.isLoggedIn === false) navigate('/auth-required')
-    if (user.user?._id === ad.ad?.user._id) navigate(`/ad/edit-ad/${params.id}`)
     if (user.user?._id === ad?.user._id) {
       modalOpen ? close() : open()
     }
@@ -59,11 +55,9 @@ const SingleAd = () => {
   const confirmDelete = () => {
     deleteAd()
     navigate(`/account`)
-
   }
 
   // If no ad was fetched, return div with message
-  if (!ad.ad) {
   if (!ad) {
     return <div>No Ad could be found</div>
   } else {
@@ -98,7 +92,6 @@ const SingleAd = () => {
           >
             <AdMobile />
 
-            {!ad.isLoading && (
             {!isLoading && (
               <div
                 area-label='description'
@@ -106,7 +99,6 @@ const SingleAd = () => {
               >
                 <h3 className='text-[20px]'>Description</h3>
                 <p className='text-[14px] text-justify mt-2 text-gray/80'>
-                  {ad.ad?.description}
                   {ad?.description}
                 </p>
               </div>
@@ -114,9 +106,7 @@ const SingleAd = () => {
           </div>
 
           {/* IF AD IS CREATED BY USER, BUTTON "EDIT" && "DELETE" */}
-          {user.user?._id === ad.ad?.user._id && (
           {user.user?._id === ad?.user._id && (
-
             <div className='px-3 flex justify-center gap-2'>
               <UniButtonWhite
                 text={
@@ -143,8 +133,16 @@ const SingleAd = () => {
             <Modal handleClose={close}>
               <h3>Do you really want to delete your ad?</h3>
               <div className='flex flex-col sm:flex-row gap-5'>
-                <UniButton style={{width:'120px', height:'45px'}} text='Confirm' onClick={confirmDelete} />
-                <UniButtonWhite style={{width:'120px', height:'45px'}} text='Quit' onClick={close} />
+                <UniButton
+                  style={{ width: '120px', height: '45px' }}
+                  text='Confirm'
+                  onClick={confirmDelete}
+                />
+                <UniButtonWhite
+                  style={{ width: '120px', height: '45px' }}
+                  text='Quit'
+                  onClick={close}
+                />
               </div>
             </Modal>
           )}
@@ -162,7 +160,6 @@ const SingleAd = () => {
           </div>
 
           {/* IF AD IS NOT CREATED BY USER, BUTTON "MESSAGE" */}
-          {user.user?._id !== ad.ad?.user._id && (
 
           {user.user?._id !== ad?.user._id && (
             <UniButton
