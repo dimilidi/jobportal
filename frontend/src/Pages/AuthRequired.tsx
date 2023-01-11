@@ -26,7 +26,7 @@ const AuthRequired = () => {
     animate={ {width: '100%'}}
     exit={{x:window.innerWidth}} 
    >
-      <div  className='pb-20 mx-auto  pr-2 w-[90%] h-full min-h-[910px] flex justify-center flex-col items-center sm:w-[60%] lg:w-[50%] md:pt-[0]'>
+      <div className='pb-20 mx-auto pr-2 w-[90%] h-full min-h-[910px] flex justify-center flex-col items-center sm:w-[60%] lg:w-[50%] md:pt-[0]'>
 
       
       {/* ICON & BROWSE JOBS */}
@@ -42,7 +42,7 @@ const AuthRequired = () => {
       rounded-xl shadow-standard 
       md:w-[400] md:px-16 '
       >
-        <h1 className=' text-4xl md:text-5xl'>
+        <h1 className=' text-4xl md:text-5xl font-semibold'>
           Be part of <br /> our{' '}
           <span className='italic text-lightGreen font-semibold'>Mission</span>
         </h1>
