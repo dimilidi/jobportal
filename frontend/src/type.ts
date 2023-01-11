@@ -1,7 +1,7 @@
 export type User = {
   _id: string | undefined
   name: string | undefined
-  sector?: string | undefined
+  profession?: string | undefined
   email: string | undefined
   avatar?: string | undefined
   city: string | undefined

@@ -32,8 +32,7 @@ function UserCard(props: Props) {
             '
     >
       {/* AVATAR BG SEMICIRCLE */}
-      <div
-        className='flex justify-center'>
+      <div className='flex justify-center'>
         <div
           className='w-[100%] h-[13em] 
             flex justify-center absolute top-0 
@@ -67,14 +66,14 @@ function UserCard(props: Props) {
         >
           {user?.name}
         </h1>
-        {user?.sector && (
+        {user?.profession && (
           <h2
             className='
               mb-6 
               flex justify-center 
               text-[1.8rem] font-light'
           >
-            {user.sector}
+            {user.profession}
           </h2>
         )}
       </div>

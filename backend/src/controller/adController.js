@@ -2,7 +2,10 @@ import Ad from '../models/Ad.js'
 
 /** @type {import("express").RequestHandler} */
 export async function getAds(req, res) {
-  let { userId, search } = req.query
+  let { page, limit, userId, search } = req.query
+  const startIndex = Number(page) - 1 * Number(limit)
+  const endIndex = Number(page) * Number(limit)
+
   let query = Ad.find()
 
   if (userId) query = query.where('user').equals(userId)
@@ -24,7 +27,12 @@ export async function getAds(req, res) {
       .collation({ locale: 'en_US', strength: 1 })
   }
 
-  const ads = await query.populate('user', 'name')
+  let ads = await query.populate('user', 'name')
+  console.log(ads)
+  if (page && limit) {
+    ads = ads.slice(startIndex, endIndex)
+    console.log(ads)
+  }
   res.status(200).json(ads)
 }
 
