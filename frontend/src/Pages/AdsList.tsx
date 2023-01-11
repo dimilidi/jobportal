@@ -92,7 +92,7 @@ const AdsList = () => {
               onSubmit={handleSubmit}
               aria-label='search'
               className='h-auto mt-[30px] mb-[10px]
-              md:w-[600px] xl:mb-[25px]
+              md:w-[600px]
               lg:w-[350px] lg:pr-[30px]
               xl:w-[500px] xl:pr-2 xl:mt-[50px]
                 '>
