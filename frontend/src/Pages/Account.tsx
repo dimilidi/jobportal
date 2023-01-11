@@ -20,7 +20,7 @@ type Props = {
   open?: ()=>void
 }
 
-const Account = ({open, close, modalOpen}:Props) => {
+const Account = () => {
   const navigate = useNavigate()
   const { user, loading } = useUser()
   const { adList, isLoading }= useAds(`/ads/?userId=${user?._id}`)
