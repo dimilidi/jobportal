@@ -24,9 +24,11 @@ const EditAccount = (props: Props) => {
 
   //STATES EDITABLE BY THE USER
   const [name, setName] = useState(user.user?.name)
+  const [profession, setProffesion] = useState(user.user?.profession)
   const [city, setCity] = useState(user.user?.city)
   const [phone, setPhone] = useState(user.user?.phone)
   const [description, setDescription] = useState(user.user?.description)
+  
 
   // IF USER NOT LOGGED IN GO TO HOME
     useEffect(() => {
@@ -189,6 +191,32 @@ const EditAccount = (props: Props) => {
               name='username'
               value={name}
               onChange={(e) => setName(e.target.value)}
+            />
+
+             {/* PROFESSION */}
+             <label
+              aria-label='profession'
+              htmlFor='profession'
+              className='
+                  hidden md:inline-block
+                  self-start 
+                  text-gray font-semibold 
+                  sm:text-[1.1rem] 
+                  lg:self-start'
+            ></label>
+            <input
+              className='
+                  w-full mb-2 py-[5px] px-3
+                  box-border border border-lightGray rounded-[15rem] 
+                  text-sm
+                  min-[425px]:py-[10px]   
+                  sm:text-[1.1rem]
+                  focus:outline-lightGreen'
+              placeholder='Profession'
+              type='text'
+              name='Profession'
+              value={profession}
+              onChange={(e) => setProffesion(e.target.value)}
             />
 
             {/* PHONE */}
