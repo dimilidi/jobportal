@@ -1,7 +1,7 @@
 // Hooks
 import { useNavigate, useParams } from 'react-router-dom'
 import useUser from '../Hooks/useUser'
-import useAds from '../Hooks/useAd'
+import useAd from '../Hooks/useAd'
 // Components
 import ContactDetails from '../Components/ContactDetails'
 import UniButton from '../Components/UniButton'
@@ -26,17 +26,16 @@ const SingleAd = () => {
   const params = useParams()
   const navigate = useNavigate()
   const user = useUser()
-  const ads = useAds(`/ads/${params.id}`)
+  const ad = useAd()
 
   // HANDLE CLICK
   const handleClick = () => {
     if (user.isLoggedIn === false) navigate('/auth-required')
-    if (user.user?._id === ads.ad?.user._id)
-      navigate(`/ad/edit-ad/${params.id}`)
+    if (user.user?._id === ad.ad?.user._id) navigate(`/ad/edit-ad/${params.id}`)
   }
 
   // If no ad was fetched, return div with message
-  if (!ads.ad) {
+  if (!ad.ad) {
     return <div>No Ad could be found</div>
   } else {
     return (
@@ -70,21 +69,21 @@ const SingleAd = () => {
           >
             <AdMobile />
 
-            {!ads.isLoading && (
+            {!ad.isLoading && (
               <div
                 area-label='description'
                 className='mt-3 px-3 sm:max-h-[230px] sm:overflow-y-scroll'
               >
                 <h3 className='text-[20px]'>Description</h3>
                 <p className='text-[14px] text-justify mt-2 text-gray/80'>
-                  {ads.ad?.description}
+                  {ad.ad?.description}
                 </p>
               </div>
             )}
           </div>
 
           {/* IF AD IS CREATED BY USER, BUTTON "EDIT" && "DELETE" */}
-          {user.user?._id === ads.ad?.user._id && (
+          {user.user?._id === ad.ad?.user._id && (
             <div className='px-3 flex justify-center gap-2'>
               <UniButtonWhite
                 text={
@@ -120,7 +119,7 @@ const SingleAd = () => {
           </div>
 
           {/* IF AD IS NOT CREATED BY USER, BUTTON "MESSAGE" */}
-          {user.user?._id !== ads.ad?.user._id && (
+          {user.user?._id !== ad.ad?.user._id && (
             <UniButton
               text='Message'
               onClick={() => navigate('/message')}

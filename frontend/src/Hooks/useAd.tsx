@@ -12,30 +12,30 @@ type AdHook = {
   error: string
 }
 
-function useAds(url: string): AdHook {
+function useAds(): AdHook {
   const params = useParams()
   const [ad, setAd] = useState<Ad | undefined | null>(null)
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState('')
 
-  const fetchAds = (async = () => {
+  const fetchAds = async () => {
     setError('')
     setIsLoading(true)
     try {
-      const res = await axiosInstance.get(url)
+      const res = await axiosInstance.get(`/ads/${params.id}`)
       const data = res.data
       setAd(data)
     } catch (error) {
       setError('Something went wrong!')
     }
     setIsLoading(false)
-  })
+  }
 
   useEffect(() => {
-    if (url) {
-      fetchAds(url)
+    if (params.id) {
+      fetchAds()
     }
-  }, [url])
+  }, [params.id])
 
   return { ad, error, isLoading }
 }
