@@ -1,4 +1,3 @@
-import React, { useState } from "react"
 import { Routes, Route, useLocation } from 'react-router-dom'
 // Pages
 import Account from '../Pages/Account'
@@ -17,10 +16,8 @@ import EditAd from "../Pages/EditAd"
 import {AnimatePresence} from 'framer-motion'
 
 
-
 const SmoothPages = () => {
   const location = useLocation()
-
 
   return (
     <AnimatePresence>
@@ -31,6 +28,7 @@ const SmoothPages = () => {
             <Route path='/adslist' element={<AdsList />} />
             <Route path='/ad/:id' element={<SingleAd />} />
             <Route path='/ad/edit-ad/:id' element={<EditAd />} />
+            {/* <Route path='/ad/delete-ad/:id' element={<DeleteAd />} /> */}
             <Route path='/post-ad' element={<PostAd />} />
             <Route path='/account' element={<Account />} />
             <Route path='/edit-account' element={<EditAccount />} />

@@ -6,12 +6,10 @@ import useAds from '../Hooks/useAds'
 import ContactDetails from '../Components/ContactDetails'
 import UniButton from '../Components/UniButton'
 import AdMobile from '../Components/AdMobile'
-import Spinner from '../Components/Spinner'
 import BrowseJobs from '../Components/BrowseJobs'
 // Libraries
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
-import { notify } from '../utils/toastNotification'
 // Images
 import thinkingGirl from '../assets/images/SingleAd_girl.png'
 // Framer-motion
@@ -20,23 +18,50 @@ import { IoMdHeadset } from 'react-icons/io'
 import { AiFillEdit } from 'react-icons/ai'
 import UniButtonWhite from '../Components/UniButtonWhite'
 import { RiDeleteBinLine } from 'react-icons/ri'
+import { useState } from 'react'
+import Modal from '../Components/Modal'
+
 
 const SingleAd = () => {
+ 
   // CONSTANTS
   const params = useParams()
   const navigate = useNavigate()
   const user = useUser()
-  const ads = useAds(`/ads/${params.id}`)
+  const { ad, isLoading, deleteAd } = useAds(`/ads/${params.id}`)
 
-  // HANDLE CLICK
-  const handleClick = () => {
+  const [modalOpen, setModalOpen] = useState(false)
+  const close = () => setModalOpen(false)
+  const open = () => setModalOpen(true)
+
+  // HANDLE MESSAGE
+  const handleMessage = () => {
+    //   if (user.isLoggedIn === false) navigate('/auth-required')
+  }
+
+  // HANDLE EDIT
+  const handleEdit = () => {
     if (user.isLoggedIn === false) navigate('/auth-required')
-    if (user.user?._id === ads.ad?.user._id)
-      navigate(`/ad/edit-ad/${params.id}`)
+    if (user.user?._id === ad?.user._id) navigate(`/ad/edit-ad/${params.id}`)
+  }
+
+  // HANDLE DELETE
+  const handleDelete = () => {
+    if (user.isLoggedIn === false) navigate('/auth-required')
+    if (user.user?._id === ad?.user._id) {
+      modalOpen ? close() : open()
+    }
+  }
+
+  // CONFIRM DELETE
+  const confirmDelete = () => {
+    deleteAd()
+    navigate(`/account`)
+
   }
 
   // If no ad was fetched, return div with message
-  if (!ads.ad) {
+  if (!ad) {
     return <div>No Ad could be found</div>
   } else {
     return (
@@ -70,27 +95,28 @@ const SingleAd = () => {
           >
             <AdMobile />
 
-            {!ads.isLoading && (
+            {!isLoading && (
               <div
                 area-label='description'
                 className='mt-3 px-3 sm:max-h-[230px] sm:overflow-y-scroll'
               >
                 <h3 className='text-[20px]'>Description</h3>
                 <p className='text-[14px] text-justify mt-2 text-gray/80'>
-                  {ads.ad?.description}
+                  {ad?.description}
                 </p>
               </div>
             )}
           </div>
 
           {/* IF AD IS CREATED BY USER, BUTTON "EDIT" && "DELETE" */}
-          {user.user?._id === ads.ad?.user._id && (
+          {user.user?._id === ad?.user._id && (
+
             <div className='px-3 flex justify-center gap-2'>
               <UniButtonWhite
                 text={
                   <AiFillEdit style={{ width: '40px', fontSize: '20px' }} />
                 }
-                onClick={handleClick}
+                onClick={handleEdit}
                 className='my-7 self-center mb-2 lg:mb-0'
                 style={{ width: '80px', height: '40px' }}
               />
@@ -100,11 +126,21 @@ const SingleAd = () => {
                     style={{ width: '40px', fontSize: '20px' }}
                   />
                 }
-                onClick={handleClick}
+                onClick={handleDelete}
                 className='my-7 self-center mb-2 lg:mb-0'
                 style={{ width: '80px', height: '40px' }}
               />
             </div>
+          )}
+
+          {modalOpen && (
+            <Modal handleClose={close}>
+              <h3>Do you really want to delete your ad?</h3>
+              <div className='flex flex-col sm:flex-row gap-5'>
+                <UniButton style={{width:'120px', height:'45px'}} text='Confirm' onClick={confirmDelete} />
+                <UniButtonWhite style={{width:'120px', height:'45px'}} text='Quit' onClick={close} />
+              </div>
+            </Modal>
           )}
 
           {/* ContactDetails MOBILE - If user exists, show ContactDetails */}
@@ -120,10 +156,11 @@ const SingleAd = () => {
           </div>
 
           {/* IF AD IS NOT CREATED BY USER, BUTTON "MESSAGE" */}
-          {user.user?._id !== ads.ad?.user._id && (
+
+          {user.user?._id !== ad?.user._id && (
             <UniButton
               text='Message'
-              onClick={() => navigate('/message')}
+              onClick={handleMessage}
               className='my-7 self-center mb-2 lg:mb-0'
             />
           )}
@@ -158,13 +195,13 @@ const SingleAd = () => {
         )}
         {/* ContactDetails - END */}
 
-        {/* image */}
+        {/* IMAGE */}
         <img
           src={thinkingGirl}
           alt='illustration of girl in front of laptop'
           className='hidden xl:w-[220px] xl:absolute xl:bottom-[30px] xl:left-[14%] xl:block lg:z-30'
         />
-        {/* image - END */}
+        {/* IMAGE - END */}
 
         <ToastContainer position='bottom-right' />
 
