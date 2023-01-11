@@ -6,12 +6,10 @@ import useAds from '../Hooks/useAds'
 import ContactDetails from '../Components/ContactDetails'
 import UniButton from '../Components/UniButton'
 import AdMobile from '../Components/AdMobile'
-import Spinner from '../Components/Spinner'
 import BrowseJobs from '../Components/BrowseJobs'
 // Libraries
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
-import { notify } from '../utils/toastNotification'
 // Images
 import thinkingGirl from '../assets/images/SingleAd_girl.png'
 // Framer-motion
@@ -20,21 +18,12 @@ import { IoMdHeadset } from 'react-icons/io'
 import { AiFillEdit } from 'react-icons/ai'
 import UniButtonWhite from '../Components/UniButtonWhite'
 import { RiDeleteBinLine } from 'react-icons/ri'
-import axiosInstance from '../api/axiosInstance'
 import { useState } from 'react'
 import Modal from '../Components/Modal'
 
 
-// type Props = {
-//   modalOpen: boolean
-//   close: () => void
-//   open: () => void
-
-// }
-
 const SingleAd = () => {
  
-
   // CONSTANTS
   const params = useParams()
   const navigate = useNavigate()

@@ -14,16 +14,10 @@ import Modal from '../Components/Modal'
 import { motion } from 'framer-motion'
 
 
-type Props = {
-  modalOpen: boolean
-  close: ()=>void
-  open?: ()=>void
-}
-
 const Account = () => {
   const navigate = useNavigate()
   const { user, loading } = useUser()
-  const { adList, isLoading }= useAds(`/ads/?userId=${user?._id}`)
+  const { adList }= useAds(`/ads/?userId=${user?._id}`)
 
  
   useEffect(() => {
@@ -31,10 +25,6 @@ const Account = () => {
       navigate('/auth-required')
     }
   }, [user])
-  
-   
- 
-
   
 
   return (

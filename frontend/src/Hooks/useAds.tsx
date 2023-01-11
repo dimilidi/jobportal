@@ -73,7 +73,6 @@ function useAds(url: string): AdHook {
   }
  
 
-
   // UPDATE AD
   const updateAd = async (newAd:{}) => {
     const response = await axiosInstance
@@ -98,7 +97,6 @@ function useAds(url: string): AdHook {
       notify(error)
     }
   }
-
 
   return { adList, ad, deleteAd, updateAd,  error, isLoading }
 }
