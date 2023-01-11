@@ -78,7 +78,7 @@ const Account = () => {
         <div className='mt-[30px] mb-[30px] w-full h-full flex flex-wrap justify-center items-start rounded-[21px] sm:px-5 sm:mt-3 sm:mb-20 sm:w-[600px] sm:h-[552px] sm:overflow-y-scroll md:w-[100%] md:h-[440px] lg:px-0 lg:mb-0 lg:h-[500px]'>
           <div className='w-full flex flex-wrap justify-center items-center'>
 
-            {ads.adList?.length === 0 ? (
+            {adList?.length === 0 ? (
               <div
                 className='font-bold relative text-xl
                   top-[40px] lg:top-[80px] xl:top-[100px] md:text-4xl
