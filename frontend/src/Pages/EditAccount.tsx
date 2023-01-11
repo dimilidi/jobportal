@@ -12,6 +12,7 @@ import image from '../assets/images/Account_profilDefault.png'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import { notify } from '../utils/toastNotification'
+import { CgLogOut } from 'react-icons/cg'
 
 type Props = {}
 
@@ -27,6 +28,13 @@ const EditAccount = (props: Props) => {
   const [city, setCity] = useState(user.user?.city)
   const [phone, setPhone] = useState(user.user?.phone)
   const [description, setDescription] = useState(user.user?.description)
+
+  // IF USER NOT LOGGED IN GO TO /home
+    useEffect(() => {
+      if (!user.isLoggedIn ) {
+        navigate('/')
+      }
+    }, [user])
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -44,6 +52,7 @@ const EditAccount = (props: Props) => {
     setFetching(false)
   }
 
+   
 
   return (
     // CONTAINER WHOLE PAGE CONTENT

@@ -10,6 +10,7 @@ import imageHome from '../assets/images/Home_group.png'
 import { motion } from 'framer-motion'
 import Search from '../Components/Search'
 import useSearch from '../Hooks/useSearch'
+import useUser from '../Hooks/useUser'
 
 const Home = () => {
   const navigate = useNavigate()
