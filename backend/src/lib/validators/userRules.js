@@ -21,7 +21,7 @@ export const register = [
   body('password')
     .isStrongPassword()
     .withMessage(
-      'Password must include at least one special character, one uppercase letter and a number'
+      'Password must include at least one special character, one uppercase and lowercase letter and a number'
     ),
   validate,
 ]
@@ -43,6 +43,7 @@ export const editAccount = [
     .isNumeric()
     .optional()
     .withMessage('Name must consist only of characters'),
+  body('profession').isString().optional(),
   body('avatar').isString().optional().withMessage('Invalid format'),
   body('city').isString().optional(),
   body('description')
