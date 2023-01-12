@@ -1,5 +1,4 @@
 // Hooks
-import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import useAdList from '../Hooks/useAdList'
 import useUser from '../Hooks/useUser'
@@ -8,28 +7,22 @@ import useSearch from '../Hooks/useSearch'
 import Ad from '../Components/Ad'
 import UniButton from '../Components/UniButton'
 import Spinner from '../Components/Spinner'
-import Search from '../Components/Search'
 // framer-motion
 import { motion } from 'framer-motion'
 // Images
 import man from '../assets/images/Ads_man_working.png'
 import useDecorationLine from '../Hooks/useDecorationLine'
+import SearchContainer from '../Components/SearchContainer'
 
 const AdsList = () => {
   // CONSTANTS
-  const { searchWord, setSearchWord } = useSearch()
-  const [searchInput, setSearchInput] = useState<string>(searchWord)
+  const { searchWord, searchCategory } = useSearch()
   const user = useUser()
-  const ads = useAdList(`search=${searchWord}`)
+  const ads = useAdList(`search=${searchWord}&category=${searchCategory}`)
   const navigate = useNavigate()
 
   // DECORATION LINE
   const missionText = useDecorationLine({ orientation: 'right' })
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    setSearchWord(searchInput)
-  }
 
   // HANDLE POST AD BUTTON
   const handleClick = () => {
@@ -98,7 +91,8 @@ const AdsList = () => {
               lg:justify-end lg:items-end'
             >
               {/* Search */}
-              <form
+              <SearchContainer page='AdsList' />
+              {/* <form
                 onSubmit={handleSubmit}
                 aria-label='search'
                 className='h-auto mt-[30px] mb-[10px]
@@ -111,7 +105,7 @@ const AdsList = () => {
                   searchInput={searchInput}
                   setSearchInput={setSearchInput}
                 />
-              </form>
+              </form> */}
               {/* Ads Container */}
               {ads.adList.length === 0 ? (
                 <div
