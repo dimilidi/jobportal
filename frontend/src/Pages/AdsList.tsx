@@ -41,11 +41,7 @@ const AdsList = () => {
       exit={{ x: window.innerWidth }}
       className='pt-[70px] pb-[80px] h-full w-full min-h-[920px]'
     >
-      {/* LOADING SPINNER */}
-      {ads.isLoading ? (
-        <Spinner />
-      ) : (
-        <>
+      
           {/* Heading with underline  */}
           <div className='mx-auto mt-[30px] h-[100px] w-[250px] lg:w-[270px] flex justify-end'>
             <h2 className='text-left text-[45px] font-semibold leading-tight'>
@@ -69,6 +65,13 @@ const AdsList = () => {
             {/* Semicircle */}
             <div className='w-24 h-24 hidden  right-[-3rem] top-[160px]  rounded-full bg-lightGreen lg:block absolute'></div>
           </div>
+
+          
+          {/* LOADING SPINNER */}
+          {ads.isLoading ? (
+            <Spinner />
+          ) : (
+            <>
 
           {/* Main Container */}
           <div className='mx-auto  w-full h-full  flex justify-center items-start gap-10 '>
