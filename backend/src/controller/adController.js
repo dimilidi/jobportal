@@ -2,11 +2,17 @@ import Ad from '../models/Ad.js'
 
 /** @type {import("express").RequestHandler} */
 export async function getAds(req, res) {
-  let { userId, search } = req.query
+  let { userId, search, category } = req.query
 
   let query = Ad.find()
 
   if (userId) query = query.where('user').equals(userId)
+
+  if (category) {
+    if (category !== 'all') {
+      query = query.where('category').equals(category)
+    }
+  }
 
   // filter ads by search, if it is included in title/description/location/sector,
   if (search) {
