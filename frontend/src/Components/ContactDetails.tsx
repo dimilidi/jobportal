@@ -13,6 +13,8 @@ type Props = {
 const ContactDetails = (props: Props) => {
   const params = useParams()
   const ad = useAd()
+  console.log('AD',ad);
+  
 
   return (
     // DIV WITH PROPS STYLING
