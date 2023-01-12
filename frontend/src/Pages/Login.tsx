@@ -79,19 +79,28 @@ const Login = (props: Props) => {
       className='pt-5 h-full min-h-[950px] flex flex-col items-center justify-center lg:flex-row '>
         
       {/* GREEN SEMICIRCLE */}
-      <div className='w-[100px] h-[100px] hidden absolute right-[-50px] top-[20.4rem] z-10 bg-lightGreen rounded-full xl:block' />
+      <div className='w-[100px] h-[100px] hidden absolute right-[-50px] top-[21rem] z-10 bg-lightGreen rounded-full xl:block' />
 
       {/* IMAGE */}
       <img
-        className='mb-[-45px] w-[180px] z-10 lg:w-[450px] lg:mr-[-50px] xl:w-[550px]'
+        className='mb-[-45px] w-[180px] z-10 lg:w-[450px] lg:mr-[-50px] xl:w-[550px]
+        xl:ml-44'
         src={image}
         alt='illustration of a girl surfing in internet'
       />
 
       {/*HEADING && FORM */}
-      <div className='  py-[20px] h-[600px] w-[90%] max-w-[500px] flex flex-col justify-center   border-radius rounded-[30px] shadow-standard  bg-white lg:max-w-[1000px] lg:w-[50%] lg:h-[650px] lg:translate-x-[22%] xl:translate-x-[25%]'>
+      <div className='  py-[20px] h-[600px] w-[90%] max-w-[500px]  flex flex-col justify-center   border-radius  shadow-standard  bg-white rounded-[30px]
+      lg:max-w-[1000px] lg:w-[50%] lg:h-[650px] lg:ml-[15rem] lg:rounded-l-[30px] lg:rounded-r-none
+      2xl:ml-[10rem]'>
+
         <div className=' mx-auto w-[100%] flex flex-col items-center lg:mx-20  lg:items-start'>
-          <h1 className='w-[250px] text-center text-[2.2rem] leading-none  font-semibold sm:text-[2.5rem] lg:w-[300px] lg:text-[2.8rem] lg:text-left xl:w-[400px] xl:text-[3.5rem]'>
+
+          <h1 className='w-[250px] text-center text-[2.2rem] leading-none  font-semibold pb-12
+          sm:text-[2.5rem] 
+          lg:w-[300px] lg:text-[2.8rem] 
+          lg:text-left xl:w-[400px] 
+          xl:text-[3.5rem]'>
             Glad to have you
             <span 
             ref={backText}
@@ -103,7 +112,8 @@ const Login = (props: Props) => {
           {/* FORM */}
           <form
             onSubmit={handleSubmit}
-            className='h-[270px] w-[80%] flex flex-col items-center justify-between lg:w-[50%]'
+            className='h-[270px] w-[80%] flex flex-col items-center justify-between 
+            lg:w-[70%] xl:w-[60%]'
           >
             {/* INPUTS CONTAINER */}
             <div className='mb-5 w-full relative  flex flex-col items-center'>
@@ -114,7 +124,7 @@ const Login = (props: Props) => {
                 Email
               </label>
               <input
-                className='py-[11px] px-5 mb-2 w-full box-border border border-lightGray rounded-[15rem] text-sm  focus:outline-lightGreen sm:text-[1.1rem]'
+                className=' py-[11px] px-5 mb-2 w-full box-border border border-lightGray rounded-[15rem] text-sm  focus:outline-lightGreen sm:text-[1.1rem]'
                 type='email'
                 name='email'
                 value={inputs.email}

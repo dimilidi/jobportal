@@ -40,6 +40,7 @@ const AdsList = () => {
     }
   }
 
+
   return (
     <motion.div
       initial={{ width: '100%' }}
@@ -53,17 +54,15 @@ const AdsList = () => {
       ) : (
         <>
           {/* Heading with underline  */}
-          <div className='mx-auto mt-[30px]  h-[100px] w-[250px] lg:w-[270px] flex justify-end'>
+          <div className='mx-auto mt-[30px] h-[100px] w-[250px] lg:w-[270px] flex justify-end'>
             <h2 className='text-left text-[45px] font-semibold leading-tight'>
               Be part of
               <p>
                 our
-
                 <span 
                   className='capitalize  text-lightGreen text-[45px]'
                   ref={missionText}
                   >
-
                   {' '}
                   mission
                 </span>
