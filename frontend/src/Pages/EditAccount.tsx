@@ -33,40 +33,34 @@ const EditAccount = (props: Props) => {
   const [city, setCity] = useState(user.user?.city)
   const [phone, setPhone] = useState(user.user?.phone)
   const [description, setDescription] = useState(user.user?.description)
-  const [avatar, setAvatar] = useState<any>([])
+  const [avatar, setAvatar] = useState<any>(user.user?.avatar)
   console.log('AVATAR',avatar);
   
 
   // IF USER NOT LOGGED IN GO TO HOME
-    useEffect(() => {
-      if (!user.isLoggedIn ) {
-        navigate('/')
-      }
-    }, [user])
-
-
-    const handleChangeFile = (e: React.SyntheticEvent) => {
-      const target = e.target as HTMLInputElement
-      const files = target.files
-      console.log(files);
-      
-          files &&  setFileToBase(files[0])
-          files && console.log(files[0])
-        
-    } 
-
-  
-
-    const setFileToBase = (file:File) =>{
-      const reader = new FileReader();
-      reader.readAsDataURL(file);
-      reader.onloadend = () =>{
-          setAvatar(reader.result);
-      }
+  useEffect(() => {
+    if (!user.isLoggedIn ) {
+      navigate('/')
     }
+  }, [user])
+
+
+  const handleChangeFile = (e: React.SyntheticEvent) => {
+    const target = e.target as HTMLInputElement
+    const files = target.files
+    files &&  setFileToBase(files[0])
+    files && console.log(files[0]) 
+  } 
+
+  const setFileToBase = (file:File) =>{
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onloadend = () =>{
+        setAvatar(reader.result);
+    }
+  }
 
    
-  
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -74,8 +68,6 @@ const EditAccount = (props: Props) => {
     setErrors([])
     const newUser = { name, phone, city, profession, description, avatar }
     const response = await user.editAccount(newUser)
-
-    console.log('response', response)
 
     if (response.status === 200) navigate('/account')
     if (response.status === 401) setErrors(['Unathorized. Please log in'])
@@ -139,22 +131,23 @@ const EditAccount = (props: Props) => {
       </div>
 
         {/* IMAGE */}
+      <div className='w-full flex flex-col'>
 
           <img
             aria-label='image'
             className=' lg:hidden
               w-[90px] top-[40px] right-5
-              z-20 relative
+              z-20 block
               md:w-[130px]
               md:absolute
               md:top-[7.5rem]
               md:right-[10rem]
               '
-            src={image}
+            src={avatar ? avatar : image}
             alt='profile picture'
           />
 
-        <div  className=' 
+        {/* <div  className=' 
             w-[130px] 
             z-10
             md:absolute
@@ -164,10 +157,10 @@ const EditAccount = (props: Props) => {
             xl:top-[4rem]
             xl:right-[29rem]
             2xl:right-[60rem]
-            '>
-        <img
-          aria-label='image'
-          // className=' 
+            '> */}
+        {/* <img
+          aria-label='image' */}
+          {/* // className=' 
           //   w-[130px] 
           //   z-10
           //   md:absolute
@@ -179,10 +172,10 @@ const EditAccount = (props: Props) => {
           //   2xl:right-[60rem]
           //   '
           src={avatar ? avatar : image} 
-          alt='profile picture'
-        />
+          alt='profile picture' */}
+        {/* /> */}
 
-        <span>
+        <div className='w-full'>
           <input 
             // style = {{display:'none'}}  
             type="file" 
@@ -190,10 +183,9 @@ const EditAccount = (props: Props) => {
             id="file_upload" 
             onChange={handleChangeFile} />
           <AiFillEdit />
-          <p>Change</p>
-        </span>
+       </div>
 
-        </div>
+      </div>
         
       </div>
 
@@ -357,7 +349,7 @@ const EditAccount = (props: Props) => {
             className=' hidden lg:flex
               w-[210px] h-[160px]
               '
-            src={image}
+            src={avatar ? avatar : image}
             alt='profile picture'
           />
           </div>
