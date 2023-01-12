@@ -13,7 +13,7 @@ export default function useDecorationLine(props: Props) {
     orientation,
     color = '#84A98C',
     thickness = 2,
-    thicknessDesktop,
+    thicknessDesktop = 3,
   } = props
 
   React.useEffect(() => {
@@ -27,7 +27,7 @@ export default function useDecorationLine(props: Props) {
       const line = document.createElement('div')
       line.style.position = 'absolute'
       line.style.top = rect.bottom - 5 + 'px'
-      if (wWidth > 1000 && thicknessDesktop) {
+      if (wWidth > 1024 && thicknessDesktop) {
         line.style.borderBottom = thicknessDesktop + 'px solid ' + color
       } else {
         line.style.borderBottom = thickness + 'px solid ' + color
@@ -52,7 +52,7 @@ export default function useDecorationLine(props: Props) {
       window.removeEventListener('resize', createLine)
       if (prevLine) prevLine.remove()
     }
-  }, [orientation, color, thickness])
+  }, [orientation, color, thickness, thicknessDesktop])
 
   return ref
 }

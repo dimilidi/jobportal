@@ -1,5 +1,7 @@
 // Hooks
 import { useNavigate } from 'react-router-dom'
+import useDecorationLine from '../Hooks/useDecorationLine'
+
 // Components
 import UniButton from '../Components/UniButton'
 import UniButtonWhite from '../Components/UniButtonWhite'
@@ -11,6 +13,8 @@ import DeliveryGuy from '../assets/images/AuthRequired_delivery_guy.png'
 
 const AuthRequired = () => {
   const navigate = useNavigate()
+  const missionText = useDecorationLine({ orientation: 'right'})
+
 
   function navigateToLogin() {
     navigate('/login')
@@ -44,7 +48,9 @@ const AuthRequired = () => {
       >
         <h1 className=' text-4xl md:text-5xl font-semibold'>
           Be part of <br /> our{' '}
-          <span className='italic text-lightGreen font-semibold'>Mission</span>
+          <span 
+          ref={missionText}
+          className='italic text-lightGreen font-semibold'>Mission</span>
         </h1>
 
         <div className=' w-[80%] text-center mt-8'>
@@ -56,14 +62,6 @@ const AuthRequired = () => {
         <UniButtonWhite text='Sign up' onClick={navigateToRegister} />
 
         {/* ELEMENTS */}
-        {/* Line */}
-        <div
-          area-label='line'
-          className='w-[52%] min-w-[240px] border-b-[3px] 
-                border-lightGreen sm:block 
-                absolute top-[318px] md:top-[327px] right-0'
-        ></div>
-
         {/* Circle */}
         <div
           area-label='circle'
