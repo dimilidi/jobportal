@@ -53,8 +53,10 @@ const SingleAd = () => {
 
   // CONFIRM DELETE
   const confirmDelete = () => {
-    deleteAd()
-    navigate(`/account`)
+    if(ad){
+      deleteAd(ad?._id)
+      navigate(`/account`)
+    }
   }
 
   // If no ad was fetched, return div with message
@@ -149,7 +151,7 @@ const SingleAd = () => {
 
           {/* ContactDetails MOBILE - If user exists, show ContactDetails */}
           <div className='flex justify-center '>
-            {user.user && (
+            { user.user && (
               <ContactDetails
                 className=' w-[100%] max-w-[340px] pt-10 
               sm:w-[80%]
@@ -161,7 +163,7 @@ const SingleAd = () => {
 
           {/* IF AD IS NOT CREATED BY USER, BUTTON "MESSAGE" */}
 
-          {user.user?._id !== ad?.user._id && (
+          { user.user?._id !== ad?.user._id && (
             <UniButton
               text='Message'
               onClick={handleMessage}

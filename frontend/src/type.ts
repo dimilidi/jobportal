@@ -25,6 +25,7 @@ export type Ad = {
     email?: string
     phone?: string
     city?: string
+    avatar?:string
   }
 }
 
