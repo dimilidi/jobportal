@@ -42,7 +42,7 @@ function Ad({ ad }: Props) {
         {/* LEFT SECTION */}
         <div className='h-full flex justify-start sm:gap-3'>
           {/* PROFILE IMAGE */}
-          <div className=' -[60px] flex flex-col items-start justify-start xl:w-[80px]'>
+          <div className='w-[60px] flex flex-col items-start justify-start xl:w-[80px]'>
             <div
               className='pt-5 w-[60px] 
                 flex self-start justify-center items-end
