@@ -13,8 +13,8 @@ import { notify } from '../utils/toastNotification'
 import 'react-toastify/dist/ReactToastify.css'
 import imagePostAd from '../assets/images/PostAd_chef.png'
 // Others
-import axiosInstance from '../api/axiosInstance'
 import { motion } from 'framer-motion'
+
 
 const EditAd = () => {
   // CONSTANTS
@@ -71,8 +71,10 @@ const EditAd = () => {
     }
   }, [checked])
 
-  // HANDLE SUBMIT
-  const handleSubmit = async (e: React.SyntheticEvent) => {
+
+
+  // HANDLE EDIT
+  const handleEdit = async (e: React.SyntheticEvent) => {
     e.preventDefault()
     setIsLoading(true)
 
@@ -83,37 +85,14 @@ const EditAd = () => {
       description,
       location,
       wage,
-      contactVia,
+      contactVia
     }
 
-    const response = await axiosInstance
-      .put(`/ads/${params.id}`, ad)
-      .catch((e) => e.response)
+    ads.updateAd(ad)
 
-    if (response.status === 200) {
-      const id = response.data._id
-      navigate('/ad/' + id)
-    } else if (response.status === 400) {
-      const error = response.data.message[0]
-      const key = Object.keys(error)[0]
-      const message = error[key]
-      setError(message)
-      notify(message)
-      console.log(message)
-    } else if (response.status === 401) {
-      setError('You can edit only your ads.')
-      notify(error)
-    } else {
-      setError('Something went wrong')
-      notify(error)
-    }
     setIsLoading(false)
   }
 
-  // POST AD BTN NAVIGATE TO /auth-req when user not logged in
-  const handleNavigateifUserNotLoggedIn = () => {
-    if (user.isLoggedIn === false) navigate('/auth-required')
-  }
 
   return (
     <motion.div
@@ -161,7 +140,7 @@ const EditAd = () => {
           <form
             area-label='form'
             className='mt-8 gap-6 md:flex-col lg:flex-row md:gap-10 lg:gap-20 z-10 '
-            onSubmit={handleSubmit}
+            onSubmit={handleEdit}
           >
             <div
               area-label='ad'
@@ -365,7 +344,6 @@ const EditAd = () => {
             </div>
             {/* BUTTON - POST AD */}
             <UniButton
-              //   onClick={handleNavigateifUserNotLoggedIn}
               area-label='postAdButton'
               text={isLoading ? <Spinner /> : 'Save Changes'}
               className='my-7 mx-auto w-[200px] self-center  md:mb-0 lg:w-[250px]'
