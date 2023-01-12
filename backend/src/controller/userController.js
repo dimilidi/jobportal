@@ -72,15 +72,17 @@ export async function editAccount(req, res) {
   })
   // Change avatar
   if (avatar) {
-    const upload = await cloudinary.v2.uploader
-      // eslint-disable-next-line no-undef
-      .upload(avatar, {folder: avatars, width: 150, crop: 'scale'})
+    const upload = await cloudinary.v2.uploader.upload(avatar, { width: 150, crop: 'scale'})
+    // .upload(avatar)
+    // eslint-disable-next-line no-undef
+      
+     
 
-    user.avatar = {
-      public_id: upload.public_id,
-      secure_url: upload.secure_url
-    }
-    // user.avatar = upload.secure_url
+    // user.avatar = {
+    //   public_id: upload.public_id,
+    //   secure_url: upload.secure_url
+    // }
+    user.avatar = upload.secure_url
   }
 
   // Change other items
