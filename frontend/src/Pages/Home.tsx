@@ -10,13 +10,13 @@ import { motion } from 'framer-motion'
 import Search from '../Components/Search'
 import useSearch from '../Hooks/useSearch'
 import useDecorationLine from '../Hooks/useDecorationLine'
-import useUser from '../Hooks/useUser'
 
 
 const Home = () => {
   const navigate = useNavigate()
   const { setSearchWord } = useSearch()
   const [searchInput, setSearchInput] = useState('')
+  // DECORATION LINE
   const futureText = useDecorationLine({ orientation: 'left' })
   const dreamText = useDecorationLine({ orientation: 'right' })
 
@@ -72,12 +72,13 @@ const Home = () => {
         >
           {/* SEARCH */}
           <Search searchInput={searchInput} setSearchInput={setSearchInput} />
+          
           {/* BUTTON Browse Ads */}
           <UniButton text='Browse Ads' type='button' />
         </form>
       </div>
 
-      {/* ELEMENTS (circle, lines) */}
+      {/* ELEMENTS (circle) */}
 
       <div
         area-label='circle'

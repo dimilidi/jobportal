@@ -13,7 +13,7 @@ function DotMenu({ setIsOpen, isOpen }: Props) {
 
 
   return (
-    <div className='mx-auto w-full h-[40px] flex justify-center cursor-pointer md:justify-start  md:w-[80%]'>
+    <div className='w-full h-[40px] flex justify-center cursor-pointer md:justify-start md:w-[150%] xl:w-[100%]'>
     <BsThreeDots
       onClick={handleToggle}
       style={{ height: '20px', width: '70%', alignSelf: 'center' }

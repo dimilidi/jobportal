@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react'
 import { Link, Navigate, useNavigate } from 'react-router-dom'
 import useUser from '../Hooks/useUser'
+import useDecorationLine from '../Hooks/useDecorationLine'
 // Types
 import { LoginInputs } from '../type'
 // Component
@@ -23,6 +24,9 @@ const Login = (props: Props) => {
     email: '',
     password: '',
   }
+
+  //DECORATION LINE
+  const backText = useDecorationLine({orientation : 'right'})
 
   const [inputs, setInputs] = useState(initialInputs)
   const [fetching, setFetching] = useState(false)
@@ -73,8 +77,9 @@ const Login = (props: Props) => {
       animate={ {width: '100%'}}
       exit={{x:window.innerWidth}} 
       className='pt-5 h-full min-h-[950px] flex flex-col items-center justify-center lg:flex-row '>
+        
       {/* GREEN SEMICIRCLE */}
-      <div className='w-[100px] h-[100px]  hidden absolute right-[-50px] top-[20.4rem] z-10 bg-lightGreen rounded-full xl:block' />
+      <div className='w-[100px] h-[100px] hidden absolute right-[-50px] top-[20.4rem] z-10 bg-lightGreen rounded-full xl:block' />
 
       {/* IMAGE */}
       <img
@@ -84,16 +89,16 @@ const Login = (props: Props) => {
       />
 
       {/*HEADING && FORM */}
-      <div className='  py-[20px] h-[600px] w-[90%] max-w-[500px] flex flex-col justify-center  relative border-radius rounded-[30px] shadow-standard  bg-white lg:max-w-[1000px] lg:w-[50%] lg:h-[650px] lg:translate-x-[22%] xl:translate-x-[25%]'>
+      <div className='  py-[20px] h-[600px] w-[90%] max-w-[500px] flex flex-col justify-center   border-radius rounded-[30px] shadow-standard  bg-white lg:max-w-[1000px] lg:w-[50%] lg:h-[650px] lg:translate-x-[22%] xl:translate-x-[25%]'>
         <div className=' mx-auto w-[100%] flex flex-col items-center lg:mx-20  lg:items-start'>
-          {/* HEADING */}
           <h1 className='w-[250px] text-center text-[2.2rem] leading-none  font-semibold sm:text-[2.5rem] lg:w-[300px] lg:text-[2.8rem] lg:text-left xl:w-[400px] xl:text-[3.5rem]'>
             Glad to have you
-            <span className=' text-lightGreen italic'> Back</span>
+            <span 
+            ref={backText}
+            className=' text-lightGreen italic'> Back</span>
           </h1>
+          {/* HEADING */}
 
-          {/* LINE */}
-          <span className='pb-10 w-[50%] top-[180px]  right-0  self-end z-10 border-t-[3px] border-lightGreen sm:top-[45%] md:top-[300px] lg:w-[87%] lg:top-[370px] xl:w-[87%]' />
 
           {/* FORM */}
           <form

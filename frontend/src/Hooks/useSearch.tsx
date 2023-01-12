@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useState } from 'react'
 
 type SearchCtx = {
-  searchWord: string | readonly string[] | number | undefined
+  searchWord: string
   setSearchWord: React.Dispatch<React.SetStateAction<string>>
   startSearch: boolean
   setStartSearch: React.Dispatch<React.SetStateAction<boolean>>

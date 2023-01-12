@@ -26,18 +26,18 @@ function Ad({ ad }: Props) {
       // whileTap={{ scale: 0.9 }}
       className='w-full sm:px-[0px] md:py-1 max-w-[520px] xl:max-w-[680px]'
     >
-      <div className='mx-auto h-[110px] w-[100%] flex justify-between items-center border-lightBeige border-b-0 border-t-2 text-[14px] md:h-[100px] md:border-y-2'>
+      <div className='mx-auto h-[110px] w-[100%] flex justify-between items-center border-lightBeige border-t-2 text-[14px] md:h-[100px] md:border-y-2'>
         {/* LEFT SECTION */}
         <div className='h-full flex justify-start sm:gap-3'>
           {/* PROFILE IMAGE */}
-          <div className=' w-[60px] flex flex-col items-start justify-start xl:w-[80px]'>
+          <div className='w-[60px] flex flex-col items-start justify-start xl:w-[80px]'>
             <div
-              className='mb-[20px] pt-5 w-[60px] 
+              className='pt-5 w-[60px] 
                 flex self-start justify-center items-end
-                rounded-b-[40px] bg-lightBeige md:mb-[10px]
-                md:w-[60px] '
+                rounded-b-[40px] bg-lightBeige
+                md:w-[60px]'
             >
-              <div className='mb-2 w-[50px] h-[40px] self-end rounded-full md:w-[50px] md:h-[40px]'>
+              <div className='mb-4 md:mb-6 w-[50px] h-[40px] self-end rounded-full md:w-[50px] md:h-[30px]'>
                 <img src={profileImg} alt='' />
               </div>
             </div>
@@ -97,9 +97,9 @@ function Ad({ ad }: Props) {
 
           {/* WAGE */}
           <div className=' w-[70px] h-[60px] flex justify-center items-center rounded-t-[20px] text-[14px]  text-textBlack text-opacity-70 bg-lightBeige md:mr-[-15px] md:h-[100px] md:w-[70px] md:rounded-r-[20px] md:rounded-tl-[0px] md:text-[16px]'>
-            <div className='text-[18px]'>
+            <div className='text-[18px] font-medium'>
               {ad.wage}€
-              <p className='text-[14px] text-textBlack text-opacity-50'>
+              <p className='text-[14px] font-medium text-textBlack text-opacity-50'>
                 / hour
               </p>
             </div>
