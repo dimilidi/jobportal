@@ -5,6 +5,8 @@ import Dropdown from './Dropdown'
 import { useState } from 'react'
 import DotMenu from './DotMenu'
 import { Ad as AdType } from '../type'
+import useAdList from '../Hooks/useAdList'
+import useAd from '../Hooks/useAd'
 
 type Props = {
   ad: AdType
@@ -14,11 +16,17 @@ function Ad({ ad }: Props) {
   const params = useParams()
   const navigate = useNavigate()
   const user = useUser()
+  // const ads = useAdList()
+  // console.log('SINGLE',ad.user.avatar);
+  
 
   const [isOpen, setIsOpen] = useState(false)
   const [modalOpen, setModalOpen] = useState(false)
   const close = () => setModalOpen(false)
   const open = () => setModalOpen(true)
+
+  console.log('AdUser',ad);
+  
 
   return (
     <div
@@ -37,8 +45,12 @@ function Ad({ ad }: Props) {
                 rounded-b-[40px] bg-lightBeige
                 md:w-[60px]'
             >
-              <div className='mb-4 md:mb-6 w-[50px] h-[40px] self-end rounded-full md:w-[50px] md:h-[30px]'>
-                <img src={profileImg} alt='' />
+              <div className=' self-end md:mb-6  md:w-[50px] md:h-[30px]'>
+                <img 
+                  className='mb-1 w-[50px] h-[50px] rounded-full'
+                  src={ ad.user.avatar ? ad.user.avatar :  profileImg } 
+                  alt='' 
+                />
               </div>
             </div>
             {/* IF AD CREATED BY USER SHOW DOTS FOR DROPDOWN*/}

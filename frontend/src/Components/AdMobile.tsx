@@ -11,16 +11,17 @@ function AdMobile() {
   if (ad.isLoading) return <Spinner />
 
   return (
-    <div className='px-2 py-[0px] w-full  sm:px-3 '>
+    <div className='w-full  sm:px-3 '>
       <div className='h-[110px] w-full flex justify-around items-center  text-[14px] border-y-2 border-lightBeige'>
         {/* Left */}
         <div className='w-full h-full flex self-start justify-start '>
           {/* Profile Image*/}
-          <div className='w-[50px] sm:w-[60px] flex'>
-            <div className='w-[50px] h-[75px] rounded-b-[40px] flex justify-center items-end bg-lightBeige'>
-              <div className='mb-1 w-[40px]  h-[40px] self-end rounded-full bg-white'>
+          <div className='w-[70px] sm:w-[90px] flex'>
+            <div className='w-[60px] h-[85px] rounded-b-[40px] flex justify-center items-end bg-lightBeige sm:w-[80px]'>
+              <div className='mb-1  self-end  '>
                 <img
-                  src={user.user?.avatar ? user.user.avatar : avatar}
+                  className='w-[60px]  h-[60px] rounded-full object-fit sm:w-[70px]  sm:h-[70px] '
+                  src={ad.ad?.user.avatar ? ad.ad.user.avatar : avatar}
                   alt=''
                 />
               </div>

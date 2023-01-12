@@ -8,18 +8,6 @@ import UniButtonWhite from './UniButtonWhite'
 import DeleteAd from '../assets/images/DeleteAd.png'
 
 type Props = {
-  // ad: {
-  //   title: string
-  //   location: string
-  //   category: string
-  //   sector: string
-  //   wage: number
-  //   createdAt: Date
-  //   _id: string
-  //   user: {
-  //     _id: string
-  //   }
-  // }
   ad: Ad
   modalOpen: boolean
   close: () => void

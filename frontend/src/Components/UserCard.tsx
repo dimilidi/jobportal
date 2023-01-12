@@ -11,17 +11,8 @@ type Props = {
 
 
 function UserCard(props: Props) {
-  // _id: string;
-  // name: string;
-  // email: string;
-  // avatar: string;
-  // city: string;
-  // description: string;
-  // phone: string;
-
   const user = useUser().user
   const navigate = useNavigate()
-console.log(user?.avatar);
 
   return (
     <div
@@ -55,7 +46,7 @@ console.log(user?.avatar);
         <img
           className='w-[11em] h-[11em] mt-[2.8rem] 
             lg:w-[12rem] lg:h-[12rem] lg:mt-[1rem]
-            absolute z-10 
+            absolute z-10 object-cover
             rounded-full'
           src={user?.avatar}
         />
