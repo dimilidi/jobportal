@@ -13,6 +13,7 @@ import Search from '../Components/Search'
 import { motion } from 'framer-motion'
 // Images
 import man from '../assets/images/Ads_man_working.png'
+import useDecorationLine from '../Hooks/useDecorationLine'
 
 const AdsList = () => {
   // CONSTANTS
@@ -21,6 +22,9 @@ const AdsList = () => {
   const user = useUser()
   const ads = useAds(`/ads?search=${searchWord}`)
   const navigate = useNavigate()
+
+  // DECORATION LINE
+  const missionText = useDecorationLine({ orientation: 'right'})
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
@@ -54,7 +58,12 @@ const AdsList = () => {
               Be part of
               <p>
                 our
-                <span className='capitalize  text-lightGreen text-[45px]'>
+
+                <span 
+                  className='capitalize  text-lightGreen text-[45px]'
+                  ref={missionText}
+                  >
+
                   {' '}
                   mission
                 </span>
@@ -62,7 +71,9 @@ const AdsList = () => {
             </h2>
 
             {/* Line */}
-            <div className='w-[52%] min-w-[220px] hidden  border-b-[3px] border-lightGreen sm:block absolute sm:top-[210px] sm:right-0' />
+
+            {/* <div className='w-[52%] min-w-[220px] hidden  border-b-[3px] border-lightGreen sm:block absolute sm:top-[260px] sm:right-0' /> */}
+
             {/* Semicircle */}
             <div className='w-24 h-24 hidden  right-[-3rem] top-[160px]  rounded-full bg-lightGreen lg:block absolute'></div>
           </div>

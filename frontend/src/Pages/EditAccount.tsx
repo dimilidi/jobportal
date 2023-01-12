@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import useUser from '../Hooks/useUser'
+import useDecorationLine from '../Hooks/useDecorationLine'
 // Types
 // Component
 import UniButton from '../Components/UniButton'
@@ -18,6 +19,9 @@ type Props = {}
 const EditAccount = (props: Props) => {
   const navigate = useNavigate()
   const user = useUser()
+
+  //DECORATION LINE
+  const editText = useDecorationLine( {orientation: 'left'})
 
   const [fetching, setFetching] = useState(false)
   const [errors, setErrors] = useState<string[] | undefined[] | undefined>([])
@@ -94,6 +98,7 @@ const EditAccount = (props: Props) => {
           '
         >
           <span
+            ref={editText}
             className='text-lightGreen italic
           '
           >

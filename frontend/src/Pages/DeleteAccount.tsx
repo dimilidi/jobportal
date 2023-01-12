@@ -1,5 +1,6 @@
 // Hooks
 import { Navigate, useNavigate } from 'react-router-dom'
+import useDecorationLine from '../Hooks/useDecorationLine'
 // Components
 import UniButton from '../Components/UniButton'
 import UniButtonWhite from '../Components/UniButtonWhite'
@@ -11,6 +12,7 @@ import useUser from '../Hooks/useUser'
 import DeleteAccountImage from '../assets/images/DeleteAccount.png'
 
 const DeleteAccount = () => {
+  const accountText = useDecorationLine({orientation: 'right'})
   const navigate = useNavigate()
   const deleteAccount = useUser().deleteAccount
   const handleDelete = () => {
@@ -43,7 +45,9 @@ const DeleteAccount = () => {
         >
           <h1 className=' text-4xl md:text-5xl'>
             Delete <br />
-            <span className='italic text-lightGreen font-semibold'>
+            <span 
+            ref={accountText}
+            className='italic text-lightGreen font-semibold'>
               Account
             </span>
           </h1>
@@ -63,17 +67,6 @@ const DeleteAccount = () => {
           />
 
           {/* ELEMENTS */}
-          {/* LINE */}
-          <div
-            area-label='line'
-            className='w-[67%] min-w-[240px]
-              border-b-[3px] 
-              border-lightGreen
-              absolute top-[310px]
-              sm:block sm:top-[320px] sm:w-[62%]
-              md:top-[327px] right-0
-              lg:w-[59.5%] xl:w-[55%]'
-          ></div>
 
           {/* CIRCLE */}
           <div
