@@ -13,6 +13,7 @@ import image from '../assets/images/Account_profilDefault.png'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import { notify } from '../utils/toastNotification'
+import { AiFillEdit } from 'react-icons/ai'
 
 type Props = {}
 
@@ -32,6 +33,8 @@ const EditAccount = (props: Props) => {
   const [city, setCity] = useState(user.user?.city)
   const [phone, setPhone] = useState(user.user?.phone)
   const [description, setDescription] = useState(user.user?.description)
+  const [avatar, setAvatar] = useState<any>([])
+  console.log('AVATAR',avatar);
   
 
   // IF USER NOT LOGGED IN GO TO HOME
@@ -41,11 +44,35 @@ const EditAccount = (props: Props) => {
       }
     }, [user])
 
+
+    const handleChangeFile = (e: React.SyntheticEvent) => {
+      const target = e.target as HTMLInputElement
+      const files = target.files
+      console.log(files);
+      
+          files &&  setFileToBase(files[0])
+          files && console.log(files[0])
+        
+    } 
+
+  
+
+    const setFileToBase = (file:File) =>{
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onloadend = () =>{
+          setAvatar(reader.result);
+      }
+    }
+
+   
+  
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setFetching(true)
     setErrors([])
-    const newUser = { name, phone, city, profession, description }
+    const newUser = { name, phone, city, profession, description, avatar }
     const response = await user.editAccount(newUser)
 
     console.log('response', response)
@@ -109,9 +136,7 @@ const EditAccount = (props: Props) => {
         </h1>
 
         {/* IMAGE */}
-        <img
-          aria-label='image'
-          className=' 
+        <div  className=' 
             w-[130px] 
             z-10
             md:absolute
@@ -121,10 +146,37 @@ const EditAccount = (props: Props) => {
             xl:top-[4rem]
             xl:right-[29rem]
             2xl:right-[60rem]
-            '
-          src={image}
+            '>
+        <img
+          aria-label='image'
+          // className=' 
+          //   w-[130px] 
+          //   z-10
+          //   md:absolute
+          //   md:top-[6rem]
+          //   md:right-[10rem]
+          //   lg:right-[17.1rem]
+          //   xl:top-[4rem]
+          //   xl:right-[29rem]
+          //   2xl:right-[60rem]
+          //   '
+          src={avatar ? avatar : image} 
           alt='profile picture'
         />
+
+        <span>
+          <input 
+            // style = {{display:'none'}}  
+            type="file" 
+            name="avatar" 
+            id="file_upload" 
+            onChange={handleChangeFile} />
+          <AiFillEdit />
+          <p>Change</p>
+        </span>
+
+        </div>
+        
       </div>
 
       {/* FORM */}

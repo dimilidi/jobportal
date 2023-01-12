@@ -8,6 +8,8 @@ type Props = {
   style?: {}
 }
 
+
+
 function UserCard(props: Props) {
   // _id: string;
   // name: string;
@@ -19,6 +21,8 @@ function UserCard(props: Props) {
 
   const user = useUser().user
   const navigate = useNavigate()
+console.log(user?.avatar);
+
   return (
     <div
       // USER CARD
@@ -53,7 +57,7 @@ function UserCard(props: Props) {
             lg:w-[12rem] lg:h-[12rem] lg:mt-[1rem]
             absolute z-10 
             rounded-full'
-          src={imageAccount}
+          src={user?.avatar}
         />
       </div>
 
