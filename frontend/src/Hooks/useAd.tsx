@@ -40,6 +40,7 @@ function useAd(): AdHook {
     setIsLoading(true)
     try {
       await axiosInstance.delete(`/ads/${adId}`)
+
       setAd(null)
     } catch (error) {
       notify('Something went wrong')
