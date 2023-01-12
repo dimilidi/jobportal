@@ -8,8 +8,8 @@ function UserMessage() {
       {/* PROFILE IMAGE */}
       <div
         className='
-          flex flex-row items-start justify-around
-          sm:gap-5
+          flex flex-row items-start justify-around md:justify-center
+          sm:gap-5 
           w-full'
       >
         <div
@@ -32,8 +32,8 @@ function UserMessage() {
           <h1
             className=' flex justify-center
           font-medium xl:font-semibold
-          min-w-[200px] 
-          text-[1.5rem] md:text-[1.7rem]'
+          min-w-[150px] 
+          text-[1.3rem] md:text-[1.7rem]'
           >
             {user?.name}
           </h1>
@@ -49,16 +49,6 @@ function UserMessage() {
             </h2>
           )}
         </div>
-
-        {/* LINE */}
-        <div
-          aria-label='Line bottom'
-          className='border-b-[2px]
-        border-darkBeige absolute
-        w-full top-[90%] sm:top-[24%]
-        md:top-[30%] lg:top-[28%] xl:top-[23%] 2xl:top-[24%]
-        '
-        ></div>
       </div>
     </>
   )

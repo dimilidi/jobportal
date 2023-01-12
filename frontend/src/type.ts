@@ -21,10 +21,11 @@ export type Ad = {
   createdAt: Date
   user: {
     _id: string
-    name: string
-    email: string
-    phone: string
-    city: string
+    name?: string
+    email?: string
+    phone?: string
+    city?: string
+    avatar?:string
   }
 }
 

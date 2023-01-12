@@ -7,24 +7,14 @@ import UniButton from '../Components/UniButton'
 import imageHome from '../assets/images/Home_group.png'
 // framer-motion
 import { motion } from 'framer-motion'
-import Search from '../Components/Search'
-import useSearch from '../Hooks/useSearch'
-import useDecorationLine from '../Hooks/useDecorationLine'
-import useUser from '../Hooks/useUser'
 
+import useDecorationLine from '../Hooks/useDecorationLine'
+import SearchContainer from '../Components/SearchContainer'
 
 const Home = () => {
-  const navigate = useNavigate()
-  const { setSearchWord } = useSearch()
-  const [searchInput, setSearchInput] = useState('')
+  // DECORATION LINE
   const futureText = useDecorationLine({ orientation: 'left' })
   const dreamText = useDecorationLine({ orientation: 'right' })
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    setSearchWord(searchInput)
-    navigate('/adslist')
-  }
 
   return (
     <motion.div
@@ -66,18 +56,10 @@ const Home = () => {
           src={imageHome}
         ></img>
 
-        <form
-          className='mt-6 flex flex-col items-center justify-center gap-3 sm:w-[450px] lg:pt-[0px] lg:self-start  lg:w-[50%] '
-          onSubmit={handleSubmit}
-        >
-          {/* SEARCH */}
-          <Search searchInput={searchInput} setSearchInput={setSearchInput} />
-          {/* BUTTON Browse Ads */}
-          <UniButton text='Browse Ads' type='button' />
-        </form>
+        <SearchContainer page='Home' />
       </div>
 
-      {/* ELEMENTS (circle, lines) */}
+      {/* ELEMENTS (circle) */}
 
       <div
         area-label='circle'

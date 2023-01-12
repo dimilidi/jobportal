@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import useUser from '../Hooks/useUser'
+import useDecorationLine from '../Hooks/useDecorationLine'
+
 //Types
 import { RegisterInputs } from '../type'
 // Component
@@ -14,6 +16,8 @@ import RegisterCouple from '../assets/images/Register_couple.png'
 import { motion } from 'framer-motion'
 
 const Register = () => {
+  // DECORATION LINE
+  const youText = useDecorationLine({orientation: 'right'})
   const navigate = useNavigate()
   const { user, loading, register } = useUser()
   const initialValue: RegisterInputs = {
@@ -67,10 +71,10 @@ const Register = () => {
       initial={{ width: '100%' }}
       animate={{ width: '100%' }}
       exit={{ x: window.innerWidth }}
-      className='pt-5 h-full min-h-[950px] flex flex-col items-center justify-center lg:flex-row'
+      className='pt-5 h-full min-h-[950px] flex flex-col items-center justify-center lg:flex-row lg:relative'
     >
       {/* Line */}
-      <div
+      {/* <div
         className='w-[47%] absolute
       z-10 min-w-[220px]
       right-0 top-[405px]
@@ -79,30 +83,30 @@ const Register = () => {
       lg:min-w-[68.5%] lg:top-[335px]
       // xl:w-[65%] xl:top-[340px]
       2xl:min-w-[60%] 2xl:top-[345px]'
-      />
+      /> */}
 
       {/* GREEN SEMICIRCLE */}
-      <div className='w-[100px] h-[100px] hidden absolute right-[-50px] top-[18rem] z-10 bg-lightGreen rounded-full xl:block' />
+      <div className='w-[100px] h-[100px] hidden absolute right-[-50px] top-[19rem] z-10 bg-lightGreen rounded-full xl:block' />
 
       {/* IMAGE2 */}
       <img
-        className='mb-[-80px] ml-[50px] w-[165px] z-10 xl:hidden lg:hidden'
+        area-label='image2'
+        className='mb-[-80px] ml-[50px] w-[165px] z-10 
+        xl:hidden lg:hidden'
         src={RegisterCouple}
         alt='illustration'
       />
 
       {/*HEADING && FORM */}
-      <div
-        className='py-[20px] h-[650px] w-[90%] max-w-[500px]
-          flex flex-col justify-center
-          relative border-radius rounded-[30px] shadow-standard bg-white
-          lg:max-w-[1200px] lg:w-[60%] lg:h-[650px] lg:translate-x-[-5%] 
-          xl:w-[70%] xl:translate-x-[-20%] 2xl:translate-x-[-20%]'
-      >
+      <div className='bg-white shadow-standard rounded-[30px] 
+      lg:rounded-r-[30px]  lg:rounded-l-[0] p-10 pt-20 
+      lg:mr-[10rem] lg:aboslute lg:left-0 lg:w-[620px]
+      2xl:w-[800px] 2xl:pl-20'>
         <div
           className='mx-auto w-[100%]
+          2xl:w-[80%]
             flex flex-col items-center
-            lg:items-end 2xl:items-end'
+            '
         >
           {/* HEADING */}
           <h1
@@ -113,16 +117,15 @@ const Register = () => {
           2xl:w-[540px] '
           >
             Glad to <br /> help
-            <span className=' text-lightGreen italic'> You</span>
+            <span 
+            ref={youText}
+            className=' text-lightGreen italic'> You</span>
           </h1>
-
-          {/* LINE */}
-          {/* <span className='pb-10 w-[46%] top-[180px] right-0 self-end z-10 border-t-[3px] border-lightGreen sm:top-[45%] md:top-[300px] lg:w-[59%] lg:top-[370px] xl:w-[30%] 2xl:w-[32%]'/> */}
 
           {/* FORM */}
           <form
             onSubmit={handleSubmit}
-            className='w-[80%] flex flex-col items-center justify-between lg:w-[60%] xl:w-[45%] 2xl:w-[45%] lg:pr-[80px] 2xl:pr-[100px]'
+            className='w-[80%] flex flex-col items-center justify-between l'
           >
             {/* INPUTS CONTAINER */}
             <div className='mb-5 w-full relative flex flex-col items-center'>
@@ -202,7 +205,11 @@ const Register = () => {
       </div>
       {/* IMAGE 1 */}
       <img
-        className='mb-[-45px] w-[180px] z-10 lg:w-[450px] lg:ml-[100px] xl:ml-[-30px] xl:w-[500px] 2xl:w-[500] hidden sm:hidden md:hidden lg:block'
+        area-label='image1'
+        className='mb-[-45px] w-[180px] z-10 
+        lg:w-[450px] lg:ml-[50px] 
+        xl:ml-[200px] xl:w-[500px] 2xl:w-[500] 
+        hidden sm:hidden md:hidden lg:block'
         src={RegisterCouple}
         alt='illustration'
       />

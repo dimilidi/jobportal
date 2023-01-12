@@ -38,19 +38,25 @@ export const editAccount = [
     .optional(),
   body('newPassword').isStrongPassword().optional(),
   body('name')
+    .notEmpty().withMessage('Name is required')
+    .isString().withMessage('Name must consist only of characters')
+    .not().isNumeric().withMessage('Name must consist only of characters'),
+  body('profession')
     .isString()
-    .not()
-    .isNumeric()
-    .optional()
-    .withMessage('Name must consist only of characters'),
-  body('profession').isString().optional(),
+    .not().isNumeric().withMessage('Profession must consist only of characters')
+    .optional(),
   body('avatar').isString().optional().withMessage('Invalid format'),
-  body('city').isString().optional(),
+  body('phone')
+    .isNumeric().withMessage('Phone must consist only of numbers')
+    .optional(),
+  body('city')
+    .isString()
+    .optional()
+    .not().isNumeric().withMessage('City must consist only of characters'),
   body('description')
     .isString()
     .isLength({ min: 10 })
     .optional()
     .withMessage('Description should have at least 10 characters'),
-  body('phone').isString().optional(),
   validate,
 ]

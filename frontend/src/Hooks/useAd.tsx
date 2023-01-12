@@ -1,7 +1,6 @@
 // Hooks
-import { useState, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
-
+import { useState, useEffect, useCallback } from 'react'
+import { useParams, useNavigate } from 'react-router-dom'
 // Axios
 import axiosInstance from '../api/axiosInstance'
 // type
@@ -9,74 +8,48 @@ import { Ad } from '../type'
 import { notify } from '../utils/toastNotification'
 
 type AdHook = {
-  adList: Ad[] | []
   ad: Ad | undefined | null
   isLoading: boolean
   error: string
-  deleteAd: () => void
-  updateAd: (newAd:{}) => {}
+  deleteAd: (adId: string) => void
+  updateAd: (newAd: {}) => {}
 }
 
-function useAds(url: string): AdHook {
+function useAd(): AdHook {
   const navigate = useNavigate()
-
-  const [adList, setAdList] = useState<Ad[] | []>([])
+  const params = useParams()
   const [ad, setAd] = useState<Ad | undefined | null>(null)
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState('')
 
-  console.log('listBEVORE ->',adList);
-
-  
-  // FETCH ADS
-  const fetchAds = async (url: string) => {
+  const fetchAds = useCallback(async () => {
     setError('')
     setIsLoading(true)
     try {
-      const res = await axiosInstance.get(url)
+      const res = await axiosInstance.get(`/ads/${params.id}`)
       const data = res.data
-
-      // if returning value is object, set it to Ad, if Array, set it to AdList
-      if (typeof data === 'object' && !Array.isArray(data) && data !== null) {
-        setAd(data)
-      } else {
-        setAdList(data)
-      }
+      setAd(data)
     } catch (error) {
       setError('Something went wrong!')
     }
     setIsLoading(false)
-  }
-
-  useEffect(() => {
-    if (url) {
-      fetchAds(url)
-    }
-  }, [url])
-
-
+  }, [ad])
 
   // DELETE AD
-  const deleteAd = async () => {
+  const deleteAd = async (adId: string) => {
     setIsLoading(true)
     try {
-      await axiosInstance.delete(`/ads/${ad?._id}`)
-      setAd (null)
-      setAdList(adList.filter((item) => item._id !== ad?._id))
-      // fetchAds(url)
-       console.log('listAFTER ->',adList);
-  console.log('AD',ad);
+      await axiosInstance.delete(`/ads/${adId}`)
 
-  console.log('adLIST length',adList.length);
+      setAd(null)
     } catch (error) {
-      notify('Something went wrong');
+      notify('Something went wrong')
     }
     setIsLoading(false)
   }
- 
 
   // UPDATE AD
-  const updateAd = async (newAd:{}) => {
+  const updateAd = async (newAd: {}) => {
     const response = await axiosInstance
       .put(`/ads/${ad?._id}`, newAd)
       .catch((e) => e.response)
@@ -100,8 +73,13 @@ function useAds(url: string): AdHook {
     }
   }
 
-  return { adList, ad, deleteAd, updateAd,  error, isLoading }
+  useEffect(() => {
+    if (params.id) {
+      fetchAds()
+    }
+  }, [params.id])
 
+  return { ad, deleteAd, updateAd, error, isLoading }
 }
 
-export default useAds
+export default useAd

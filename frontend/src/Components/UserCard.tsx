@@ -11,17 +11,8 @@ type Props = {
 
 
 function UserCard(props: Props) {
-  // _id: string;
-  // name: string;
-  // email: string;
-  // avatar: string;
-  // city: string;
-  // description: string;
-  // phone: string;
-
   const user = useUser().user
   const navigate = useNavigate()
-console.log(user?.avatar);
 
   return (
     <div
@@ -55,9 +46,9 @@ console.log(user?.avatar);
         <img
           className='w-[11em] h-[11em] mt-[2.8rem] 
             lg:w-[12rem] lg:h-[12rem] lg:mt-[1rem]
-            absolute z-10 
+            absolute z-10 object-cover
             rounded-full'
-          src={user?.avatar}
+          src={user?.avatar ? user?.avatar : imageAccount}
         />
       </div>
 
@@ -72,11 +63,7 @@ console.log(user?.avatar);
         </h1>
         {user?.profession && (
           <h2
-            className='
-              mb-6 
-              flex justify-center 
-              text-[1.8rem] font-light'
-          >
+            className='mb-6 flex justify-center text-[1.8rem] font-light'>
             {user.profession}
           </h2>
         )}
@@ -91,13 +78,7 @@ console.log(user?.avatar);
       )}
 
       {/* Contact Data */}
-      <div
-        className='
-          pl-5 pr-5
-          my-6 
-          text-[17px] font-[500] 
-          min-[374px]:mx-[1em]'
-      >
+      <div className=' px-8 my-6 text-[17px] font-[500] min-[374px]:mx-[1em]'>
         <div className='flex flex-row gap-4 items-center text-gray leading-relaxed'>
           {' '}
           <MdMail /> {user?.email}

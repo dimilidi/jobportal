@@ -36,7 +36,11 @@ function Modal({ handleClose, children }: Props) {
     <Backdrop onClick={handleClose}>
         <motion.div
             onClick={(e) => e.stopPropagation()}
-            className='mx-auto px-[2rem] max-w-[600px] w-[70%] h-[300px] flex flex-col items-center justify-center gap-10 rounded-xl border-lightGreen border-[5px] text-lg text-center text-textBlack bg-lightBeige sm:text-xl'
+            className='mx-auto px-[2rem]
+                max-w-[600px] w-[70%] h-[350px]
+                flex flex-col items-center justify-center gap-10
+                rounded-3xl border-[5px] text-lg text-center text-textBlack
+                bg-white shadow-5xl sm:text-xl'
             variants={ dropIn }
             initial='hidden'
             animate='visible'

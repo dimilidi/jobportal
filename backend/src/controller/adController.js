@@ -2,11 +2,17 @@ import Ad from '../models/Ad.js'
 
 /** @type {import("express").RequestHandler} */
 export async function getAds(req, res) {
-  let { userId, search } = req.query
+  let { userId, search, category } = req.query
 
   let query = Ad.find()
 
   if (userId) query = query.where('user').equals(userId)
+
+  if (category) {
+    if (category !== 'all') {
+      query = query.where('category').equals(category)
+    }
+  }
 
   // filter ads by search, if it is included in title/description/location/sector,
   if (search) {
@@ -24,7 +30,7 @@ export async function getAds(req, res) {
       .collation({ locale: 'en_US', strength: 1 })
   }
 
-  let ads = await query.populate('user', 'name')
+  let ads = await query.populate('user', 'name, avatar')
   res.status(200).json(ads)
 }
 
@@ -35,7 +41,7 @@ export async function postAd(req, res) {
 
   const newAd = new Ad({
     ...ad,
-    user: user._id,
+    user: user._id
   })
 
   await newAd.save()
@@ -49,7 +55,7 @@ export async function getAdById(req, res) {
   const adId = req.params.id
 
   // if user is NOT logged in, populate only name of ad-creator
-  let ad = await Ad.findById(adId).populate('user', 'name')
+  let ad = await Ad.findById(adId).populate('user', 'name, avatar')
 
   // if user is logged in, contact data selected in contactvia
   let itemToPopulate = 'name'
@@ -57,7 +63,7 @@ export async function getAdById(req, res) {
     for (const item of ad.contactVia) {
       itemToPopulate += ` ${item}`
     }
-    ad = await Ad.findById(adId).populate('user', itemToPopulate)
+    ad = await Ad.findById(adId).populate('user', `${itemToPopulate}, avatar`)
   }
 
   res.status(200).json(ad)
@@ -79,16 +85,15 @@ export const updateAd = async (req, res) => {
 }
 
 /** @type {import("express").RequestHandler} */
-export const deleteAd = async(req, res) => {
+export const deleteAd = async (req, res) => {
   const adId = req.params.id
   const ad = await Ad.findById(adId)
 
   const deletedAd = await Ad.deleteOne(ad)
 
-  if(deletedAd){
+  if (deletedAd) {
     res.status(200).json(deletedAd)
-  }else {
-    res.status(404).json("Ad: " + ad + " doesn't exist.")
+  } else {
+    res.status(404).json('Ad: ' + ad + " doesn't exist.")
   }
-
 }
