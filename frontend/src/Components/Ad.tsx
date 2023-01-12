@@ -5,8 +5,6 @@ import Dropdown from './Dropdown'
 import { useState } from 'react'
 import DotMenu from './DotMenu'
 import { Ad as AdType } from '../type'
-import useAdList from '../Hooks/useAdList'
-import useAd from '../Hooks/useAd'
 
 type Props = {
   ad: AdType
@@ -16,31 +14,21 @@ function Ad({ ad }: Props) {
   const params = useParams()
   const navigate = useNavigate()
   const user = useUser()
-  // const ads = useAdList()
-  // console.log('SINGLE',ad.user.avatar);
-  
 
   const [isOpen, setIsOpen] = useState(false)
   const [modalOpen, setModalOpen] = useState(false)
   const close = () => setModalOpen(false)
   const open = () => setModalOpen(true)
 
-  console.log('AdUser',ad);
-  
 
   return (
-    <div
-      // whileHover={{ scale: 1.1 }}
-      // whileTap={{ scale: 0.9 }}
-      className='w-full sm:px-[0px] md:py-1 max-w-[520px] xl:max-w-[680px]'
-    >
+    <div className='w-full sm:px-[0px] md:py-1 max-w-[550px] xl:max-w-[680px]'>
       <div className='mx-auto h-[110px] w-[100%] flex justify-between items-center border-lightBeige border-t-2 text-[14px] md:h-[100px] md:border-y-2'>
         {/* LEFT SECTION */}
         <div className='h-full flex justify-start sm:gap-3'>
           {/* PROFILE IMAGE */}
           <div className='w-[60px] flex flex-col items-start justify-start xl:w-[80px]'>
-            <div
-              className='pt-5 w-[60px] 
+            <div className='pt-5 w-[60px] 
                 flex self-start justify-center items-end
                 rounded-b-[40px] bg-lightBeige
                 md:w-[60px]'

@@ -129,15 +129,9 @@ const AdsList = () => {
                 >
                   {/* Ads */}
                   <div className='mx-auto flex flex-wrap justify-center '>
-                    {ads.adList?.map((ad) => 
-                      <>
-                       <Ad key={ad._id} ad={ad} />
-                      {console.log('AAA',ad)}
-                      </>
-                     
-                      
-                    )
-                    }
+                    {ads.adList?.map((ad) => (
+                      <Ad key={ad._id} ad={ad} />
+                    ))}
                   </div>
                 </div>
               )}

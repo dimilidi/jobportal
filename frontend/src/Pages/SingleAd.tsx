@@ -27,8 +27,6 @@ const SingleAd = () => {
   const navigate = useNavigate()
   const user = useUser()
   const { ad, isLoading, deleteAd } = useAd()
-  console.log('Ad',ad?.user);
-  
 
   const [modalOpen, setModalOpen] = useState(false)
   const close = () => setModalOpen(false)

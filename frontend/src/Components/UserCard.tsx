@@ -48,7 +48,7 @@ function UserCard(props: Props) {
             lg:w-[12rem] lg:h-[12rem] lg:mt-[1rem]
             absolute z-10 object-cover
             rounded-full'
-          src={user?.avatar}
+          src={user?.avatar ? user?.avatar : imageAccount}
         />
       </div>
 
@@ -63,11 +63,7 @@ function UserCard(props: Props) {
         </h1>
         {user?.profession && (
           <h2
-            className='
-              mb-6 
-              flex justify-center 
-              text-[1.8rem] font-light'
-          >
+            className='mb-6 flex justify-center text-[1.8rem] font-light'>
             {user.profession}
           </h2>
         )}
@@ -82,13 +78,7 @@ function UserCard(props: Props) {
       )}
 
       {/* Contact Data */}
-      <div
-        className='
-          pl-5 pr-5
-          my-6 
-          text-[17px] font-[500] 
-          min-[374px]:mx-[1em]'
-      >
+      <div className=' px-8 my-6 text-[17px] font-[500] min-[374px]:mx-[1em]'>
         <div className='flex flex-row gap-4 items-center text-gray leading-relaxed'>
           {' '}
           <MdMail /> {user?.email}
