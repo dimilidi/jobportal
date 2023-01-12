@@ -1,5 +1,5 @@
 // Hooks
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 // Axios
 import axiosInstance from '../api/axiosInstance'
@@ -22,7 +22,7 @@ function useAd(): AdHook {
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState('')
 
-  const fetchAds = async () => {
+  const fetchAds = useCallback(async () => {
     setError('')
     setIsLoading(true)
     try {
@@ -33,13 +33,14 @@ function useAd(): AdHook {
       setError('Something went wrong!')
     }
     setIsLoading(false)
-  }
+  }, [ad])
 
   // DELETE AD
   const deleteAd = async (adId: string) => {
     setIsLoading(true)
     try {
       await axiosInstance.delete(`/ads/${adId}`)
+
       setAd(null)
     } catch (error) {
       notify('Something went wrong')

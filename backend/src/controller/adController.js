@@ -2,11 +2,17 @@ import Ad from '../models/Ad.js'
 
 /** @type {import("express").RequestHandler} */
 export async function getAds(req, res) {
-  let { userId, search } = req.query
+  let { userId, search, category } = req.query
 
   let query = Ad.find()
 
   if (userId) query = query.where('user').equals(userId)
+
+  if (category) {
+    if (category !== 'all') {
+      query = query.where('category').equals(category)
+    }
+  }
 
   // filter ads by search, if it is included in title/description/location/sector,
   if (search) {
@@ -79,16 +85,15 @@ export const updateAd = async (req, res) => {
 }
 
 /** @type {import("express").RequestHandler} */
-export const deleteAd = async(req, res) => {
+export const deleteAd = async (req, res) => {
   const adId = req.params.id
   const ad = await Ad.findById(adId)
 
   const deletedAd = await Ad.deleteOne(ad)
 
-  if(deletedAd){
+  if (deletedAd) {
     res.status(200).json(deletedAd)
-  }else {
-    res.status(404).json("Ad: " + ad + " doesn't exist.")
+  } else {
+    res.status(404).json('Ad: ' + ad + " doesn't exist.")
   }
-
 }

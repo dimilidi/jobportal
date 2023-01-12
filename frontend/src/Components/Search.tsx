@@ -1,7 +1,5 @@
 import React, { useState } from 'react'
 import { GoSearch } from 'react-icons/go'
-import useAds from '../Hooks/useAd'
-import useSearch from '../Hooks/useSearch'
 
 type Props = {
   searchInput: string

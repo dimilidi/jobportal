@@ -1,5 +1,5 @@
 // Hooks
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 // Axios
 import axiosInstance from '../api/axiosInstance'
 // type
@@ -16,7 +16,7 @@ function useAdList(queries: string): AdHook {
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState('')
 
-  const fetchAds = async () => {
+  const fetchAdList = async () => {
     setError('')
     setIsLoading(true)
     try {
@@ -30,7 +30,7 @@ function useAdList(queries: string): AdHook {
   }
 
   useEffect(() => {
-    fetchAds()
+    fetchAdList()
   }, [queries, adList.length])
 
   return { adList, error, isLoading }

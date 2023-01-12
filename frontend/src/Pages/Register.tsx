@@ -71,7 +71,7 @@ const Register = () => {
       initial={{ width: '100%' }}
       animate={{ width: '100%' }}
       exit={{ x: window.innerWidth }}
-      className='pt-5 h-full min-h-[950px] flex flex-col items-center justify-center lg:flex-row'
+      className='pt-5 h-full min-h-[950px] flex flex-col items-center justify-center lg:flex-row lg:relative'
     >
       {/* Line */}
       {/* <div
@@ -90,15 +90,21 @@ const Register = () => {
 
       {/* IMAGE2 */}
       <img
-        className='mb-[-80px] ml-[50px] w-[165px] z-10 xl:hidden lg:hidden'
+        area-label='image2'
+        className='mb-[-80px] ml-[50px] w-[165px] z-10 
+        xl:hidden lg:hidden'
         src={RegisterCouple}
         alt='illustration'
       />
 
       {/*HEADING && FORM */}
-      <div className='bg-white shadow-standard rounded-[30px] p-10 pt-20'>
+      <div className='bg-white shadow-standard rounded-[30px] 
+      lg:rounded-r-[30px]  lg:rounded-l-[0] p-10 pt-20 
+      lg:mr-[10rem] lg:aboslute lg:left-0 lg:w-[620px]
+      2xl:w-[800px] 2xl:pl-20'>
         <div
           className='mx-auto w-[100%]
+          2xl:w-[80%]
             flex flex-col items-center
             '
         >
@@ -199,7 +205,11 @@ const Register = () => {
       </div>
       {/* IMAGE 1 */}
       <img
-        className='mb-[-45px] w-[180px] z-10 lg:w-[450px] lg:ml-[100px] xl:ml-[200px] xl:w-[500px] 2xl:w-[500] hidden sm:hidden md:hidden lg:block'
+        area-label='image1'
+        className='mb-[-45px] w-[180px] z-10 
+        lg:w-[450px] lg:ml-[50px] 
+        xl:ml-[200px] xl:w-[500px] 2xl:w-[500] 
+        hidden sm:hidden md:hidden lg:block'
         src={RegisterCouple}
         alt='illustration'
       />

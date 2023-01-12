@@ -12,7 +12,9 @@ import useUser from '../Hooks/useUser'
 import DeleteAccountImage from '../assets/images/DeleteAccount.png'
 
 const DeleteAccount = () => {
+  //DECORATION LINE
   const accountText = useDecorationLine({orientation: 'right'})
+  
   const navigate = useNavigate()
   const deleteAccount = useUser().deleteAccount
   const handleDelete = () => {
