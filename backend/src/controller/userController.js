@@ -72,7 +72,7 @@ export async function editAccount(req, res) {
   })
   // Change avatar
   if (avatar) {
-    const upload = await cloudinary.v2.uploader.upload(avatar)
+    const upload = await cloudinary.v2.uploader.upload(avatar, { width: 150, crop: 'scale'})
     user.avatar = upload.secure_url
   }
 
