@@ -1,31 +1,19 @@
-import {  useNavigate, useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import profileImg from '../assets/images/Account_profilDefault.png'
 import useUser from '../Hooks/useUser'
-import useAds from '../Hooks/useAds'
 import Dropdown from './Dropdown'
 import { useState } from 'react'
 import DotMenu from './DotMenu'
+import { Ad as AdType } from '../type'
 
 type Props = {
-  ad: {
-    title: string
-    location: string
-    category: string
-    sector: string
-    wage: number
-    createdAt: Date
-    _id: string
-    user: {
-      _id: string
-    }
-  }
+  ad: AdType
 }
 
 function Ad({ ad }: Props) {
   const params = useParams()
   const navigate = useNavigate()
   const user = useUser()
-  const ads = useAds(`/ads/${ad._id}`)
 
   const [isOpen, setIsOpen] = useState(false)
   const [modalOpen, setModalOpen] = useState(false)
@@ -55,11 +43,18 @@ function Ad({ ad }: Props) {
             </div>
             {/* IF AD CREATED BY USER SHOW DOTS FOR DROPDOWN*/}
             {user.user?._id === ad.user?._id && (
-
-              <DotMenu isOpen = {isOpen} setIsOpen = {setIsOpen} />
+              <DotMenu isOpen={isOpen} setIsOpen={setIsOpen} />
             )}
-          {isOpen && <Dropdown ad={ad} modalOpen={modalOpen} close={close} open={open} setIsOpen={setIsOpen} isOpen={isOpen}/>}
-
+            {isOpen && (
+              <Dropdown
+                ad={ad}
+                modalOpen={modalOpen}
+                close={close}
+                open={open}
+                setIsOpen={setIsOpen}
+                isOpen={isOpen}
+              />
+            )}
           </div>
 
           {/* LINK TO SINGLE AD  */}

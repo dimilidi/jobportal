@@ -1,64 +1,62 @@
 import { useNavigate, useParams } from 'react-router-dom'
-import useAds from '../Hooks/useAds'
+import useAd from '../Hooks/useAd'
 import useUser from '../Hooks/useUser'
+import { Ad } from '../type'
 import Modal from './Modal'
 import UniButton from './UniButton'
 import UniButtonWhite from './UniButtonWhite'
 import DeleteAd from '../assets/images/DeleteAd.png'
 
-
 type Props = {
-  ad: {
-    title: string
-    location: string
-    category: string
-    sector: string
-    wage: number
-    createdAt: Date
-    _id: string
-    user: {
-      _id: string
-    }
-  }
+  // ad: {
+  //   title: string
+  //   location: string
+  //   category: string
+  //   sector: string
+  //   wage: number
+  //   createdAt: Date
+  //   _id: string
+  //   user: {
+  //     _id: string
+  //   }
+  // }
+  ad: Ad
   modalOpen: boolean
-  close: ()=>void
-  open: ()=>void
-  setIsOpen: (isOpen:boolean)=>void
+  close: () => void
+  open: () => void
+  setIsOpen: (isOpen: boolean) => void
   isOpen: boolean
 }
 
+function Dropdown(props: Props) {
+  const { ad, modalOpen, close, open, setIsOpen, isOpen } = props
+  const navigate = useNavigate()
+  const user = useUser()
+  const { deleteAd } = useAd()
 
-function Dropdown(props:Props) {
-    const {ad, modalOpen, close, open, setIsOpen, isOpen } = props
-    const navigate = useNavigate()
-    const params = useParams()
-    const user = useUser()
-    const {deleteAd} = useAds(`/ads/${ad._id}`)
+  // HANDLE EDIT
+  const handleEdit = () => {
+    navigate(`/ad/edit-ad/${ad._id}`)
+  }
 
-
-    // HANDLE EDIT
-    const handleEdit = () => {
-        navigate(`/ad/edit-ad/${ad._id}`)
+  // HANDLE DELETE
+  const handleDelete = () => {
+    if (user.isLoggedIn === false) navigate('/auth-required')
+    if (user.user?._id === ad?.user._id) {
+      modalOpen ? close() : open()
     }
+  }
 
-    // HANDLE DELETE
-    const handleDelete = () => {
-      if (user.isLoggedIn === false) navigate('/auth-required')
-      if (user.user?._id === ad?.user._id) {
-        modalOpen ? close() : open()
-      }
-    }
-
-   // CONFIRM DELETE
-   const confirmDelete = () => {
-    deleteAd()
+  // CONFIRM DELETE
+  const confirmDelete = () => {
+    deleteAd(ad._id)
     close()
     setIsOpen(!isOpen)
     window.location.reload()
   }
 
-   // QUIT DELETE
-   const quitDelete = () => {
+  // QUIT DELETE
+  const quitDelete = () => {
     close()
     setIsOpen(!open)
   }
