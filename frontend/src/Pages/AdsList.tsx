@@ -1,7 +1,7 @@
 // Hooks
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import useAds from '../Hooks/useAds'
+import useAdList from '../Hooks/useAdList'
 import useUser from '../Hooks/useUser'
 import useSearch from '../Hooks/useSearch'
 // Components
@@ -20,7 +20,7 @@ const AdsList = () => {
   const { searchWord, setSearchWord } = useSearch()
   const [searchInput, setSearchInput] = useState('')
   const user = useUser()
-  const ads = useAds(`/ads?search=${searchWord}`)
+  const ads = useAdList(`search=${searchWord}`)
   const navigate = useNavigate()
 
   // DECORATION LINE
@@ -93,8 +93,7 @@ const AdsList = () => {
               />
             </div>
 
-
-          {/* SEARCH UND ADS */}
+            {/* SEARCH UND ADS */}
             <div
               className='flex flex-col justify-center items-center
               lg:justify-end lg:items-end'>
@@ -106,15 +105,17 @@ const AdsList = () => {
               md:w-[600px]
               lg:w-[350px] lg:pr-[30px]
               xl:w-[500px] xl:pr-2 xl:mt-[50px]
-                '>
-              <Search
-                searchInput={searchInput}
-                setSearchInput={setSearchInput}/>
-            </form>
-            {/* Ads Container */}
-            {ads.adList.length === 0 ? (
-              <div
-                className='mt-[30px] h-[150px] text-center sm:px-5 sm:w-[600px] md:w-[900px] font-bold relative text-3xl
+                '
+              >
+                <Search
+                  searchInput={searchInput}
+                  setSearchInput={setSearchInput}
+                />
+              </form>
+              {/* Ads Container */}
+              {ads.adList.length === 0 ? (
+                <div
+                  className='mt-[30px] h-[150px] text-center sm:px-5 sm:w-[600px] md:w-[900px] font-bold relative text-3xl
               top-[40px] lg:top-[150px] xl:top-[200px] md:text-4xl
               text-darkBeige'
               >
