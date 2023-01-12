@@ -1,201 +1,92 @@
+# Jobsy - A job portal website
 
-# job-portal
-[Design](https://www.figma.com/file/cmWtNE21nByCtTRUkoR2uS/Wireframing-DT?node-id=112%3A2815&t=Btghinp6xPQ5cdVZ-0)
+ <br/>
 
+> Outline a brief description of your project. <br/>
+> Checkout our project: [GitHub Repo](https://github.com/dimilidi/jobportal)<br/>
+> Visit our website: [Jobsy Website](https://jobsy-jobportal.netlify.app)<br/>
 
+## 1. General Information
 
-## Api Endpoints
+- Provide general information about your project here.
+- What problem does it (intend to) solve?
+- What is the purpose of your project?
+- Why did you undertake it?
+<!-- You don't have to answer all the questions - just the ones relevant to your project. -->
 
-<!-- Route für Listenansicht. Alle User haben Zugriff. -->
-### 1. GET /ads
+## 2. Technologies Used
 
-Query-Params
+- Node.js - v18.12.1
+- Vite - version 2.0
+- Tech 3 - version 3.0
 
-- search=DCI (Search-Field)
-- location=Berlin
-- page=1
+## 3. Features
 
-Response-Body
+List the ready features here:
 
-```javascript
-[
-    {
-        _id: "123",
-        title: "My Title",
-        description: "something",
-        location: "My location",
-        category: "Provider",
-        wage: 12,
-        user: {
-            name: "User Name"
-        },
-        createdAt: 2022-11-11T19:46:39.731+00:00,
-        updatedAt: 2022-11-11T19:46:39.731+00:00
-    }
-]
+- Awesome feature 1
+- Awesome feature 2
+- Awesome feature 3
+
+## 4. Screenshots
+
+![Example screenshot](./img/screenshot.png)
+
+<!-- If you have screenshots you'd like to share, include them here. -->
+
+## 5. Setup
+
+To run this project, install it locally using npm:
+
+```
+$ git clone git@github.com:dimilidi/jobportal.git
+$ cd backend
+$ npm install
+$ npm run dev
+$ cd ../frontend
+$ npm install
+$ npm run dev
 ```
 
+## 6. Usage
 
-<!-- Get Anzeige by Id. -->
-### 2. GET /ads/:id
+How does one go about using it?
+Provide various use cases and code examples here.
 
-<!-- Ohne auth. Jeder User hat Zugriff. -->
-Response-Body
+`write-your-code-here`
 
-```javascript
-    {
-        _id: "123",
-        title: "My Title",
-        description: "something",
-        location: "My location",
-        category:"Provider",
-        wage: 12,
-        user: {
-            name: "User Name"
-        },
-        createdAt: 2022-11-11T19:46:39.731+00:00,
-        updatedAt: 2022-11-11T19:46:39.731+00:00
-    }
-```
+## Project Status
 
-<!-- Mit auth. Nur Angemeldete haben Zugriff. -->
-Response-Body
+Project is: _in progress_ / _complete_ / _no longer being worked on_. If you are no longer working on it, provide reasons why.
 
-```javascript
-    {
-        _id: "123",
-        title: "My Title",
-        description: "something",
-        location: "My location",
-        category:"Provider",
-        contactVia: ["phone"],
-        wage: 12,
-        user: {
-            name: "User Name",
-            telephone: "0049534643636"
-        },
-        createdAt: 2022-11-11T19:46:39.731+00:00,
-        updatedAt: 2022-11-11T19:46:39.731+00:00
-    }
-```
+## 7. Room for Improvement
 
+Include areas you believe need improvement / could be improved. Also add TODOs for future development.
 
-<!-- Ab hier nur mit Authorisation -->
+Room for improvement:
 
-### 3. POST /ads/post
+- Improvement to be done 1
+- Improvement to be done 2
 
-Post-Body
+To do:
 
-```javascript
-    {
-        title: "My Title",
-        description: "something",
-        location: "My location",
-        category: "Provider",
-        wage: 12, 
-        contactVia: ["email"]
-        user: "Udel17555klmjer54gj7"
-    }
-```
+- Feature to be added 1
+- Feature to be added 2
 
-Response-Body
+## 8. Acknowledgements
 
-```javascript
-    {
-        _id: "123",
-        title: "My Title",
-        description: "something",
-        location: "My location",
-        category: "Provider",
-        wage: 12,
-        contactVia: ["email"],
-        user: "Udel17555klmjer54gj7",
-        createdAt: 2022-11-11T19:46:39.731+00:00,
-        updatedAt: 2022-11-11T19:46:39.731+00:00
-    }
-```
+Give credit here.
 
+- This project was inspired by...
+- This project was based on [this tutorial](https://www.example.com).
+- Many thanks to...
 
-### 4. POST /user/login
+## 9. Contact
 
-Post-Body
+Created by [@flynerdpl](https://www.flynerd.pl/) - feel free to contact me!
 
-```javascript
-    {
-     email: "my@mail.de",
-     password: "123456"
-    }
-```
+<!-- Optional -->
+<!-- ## License -->
+<!-- This project is open source and available under the [... License](). -->
 
-Response-Body
-
-```javascript
-    {
-     _id: "123",
-     name: "User Name",
-     email: "my@mail.de",
-     avatar: "url-to-avatar",
-     sector: "Web Development",
-     city: "Berlin",
-     description: "something",
-     telephone: "00496666666666"
-    }
-```
-
-### 5. POST /user/register
-
-Post-Body
-
-```javascript
-    {
-     email: "my@mail.de",
-     password: "123456",
-     name: "User Name"
-    }
-```
-
-Response-Body
-
-```javascript
-    {
-     _id:"123",
-     name: "User Name",
-     email: "my@mail.de"
-    }
-```
-
-
-### 6. GET /user
-
-Response-Body
-
-```javascript
-    {
-     _id:"123",
-     name: "User Name",
-     email: "my@mail.de",
-     avatar: "url-to-avatar",
-     sector: "Web Development",
-     city: "My address",
-     telephone: "004966666666666",
-     description: "something"
-    }
-```
-
-### 7. PUT /user/edit-account
-
-Put-Body
-
-```javascript
-    {
-     password: "123456"
-    }
-```
-
-Response-Body
-
-```javascript
-    {
-     user //ohne Passwort
-    }
-```
+<!-- You don't have to include all sections - just the one's relevant to your project -->
