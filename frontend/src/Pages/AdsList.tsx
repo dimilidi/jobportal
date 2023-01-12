@@ -18,13 +18,13 @@ import useDecorationLine from '../Hooks/useDecorationLine'
 const AdsList = () => {
   // CONSTANTS
   const { searchWord, setSearchWord } = useSearch()
-  const [searchInput, setSearchInput] = useState('')
+  const [searchInput, setSearchInput] = useState<string>(searchWord)
   const user = useUser()
   const ads = useAdList(`search=${searchWord}`)
   const navigate = useNavigate()
 
   // DECORATION LINE
-  const missionText = useDecorationLine({ orientation: 'right'})
+  const missionText = useDecorationLine({ orientation: 'right' })
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
@@ -58,12 +58,10 @@ const AdsList = () => {
               Be part of
               <p>
                 our
-
-                <span 
+                <span
                   className='capitalize  text-lightGreen text-[45px]'
                   ref={missionText}
-                  >
-
+                >
                   {' '}
                   mission
                 </span>
@@ -96,12 +94,13 @@ const AdsList = () => {
             {/* SEARCH UND ADS */}
             <div
               className='flex flex-col justify-center items-center
-              lg:justify-end lg:items-end'>
-            {/* Search */}
-            <form
-              onSubmit={handleSubmit}
-              aria-label='search'
-              className='h-auto mt-[30px] mb-[10px]
+              lg:justify-end lg:items-end'
+            >
+              {/* Search */}
+              <form
+                onSubmit={handleSubmit}
+                aria-label='search'
+                className='h-auto mt-[30px] mb-[10px]
               md:w-[600px]
               lg:w-[350px] lg:pr-[30px]
               xl:w-[500px] xl:pr-2 xl:mt-[50px]
@@ -118,28 +117,28 @@ const AdsList = () => {
                   className='mt-[30px] h-[150px] text-center sm:px-5 sm:w-[600px] md:w-[900px] font-bold relative text-3xl
               top-[40px] lg:top-[150px] xl:top-[200px] md:text-4xl
               text-darkBeige'
-              >
-                No ads found
-              </div>
-            ) : (
-              <div className='mt-[10px] w-full h-full
+                >
+                  No ads found
+                </div>
+              ) : (
+                <div
+                  className='mt-[10px] w-full h-full
                 flex flex-wrap justify-items-center items-start
                 sm:px-5 lg:px-0 sm:w-[600px] sm:h-[552px]
                 md:w-[900px] md:h-[435px] sm:overflow-y-scroll
                 lg:w-[700px] 
-                xl:w-[900px]'>
-            
-                {/* Ads */}
-                <div className='mx-auto flex flex-wrap justify-center '>
-                  {ads.adList?.map((ad) => (
-                    <Ad key={ad._id} ad={ad} />
-                  ))}
+                xl:w-[900px]'
+                >
+                  {/* Ads */}
+                  <div className='mx-auto flex flex-wrap justify-center '>
+                    {ads.adList?.map((ad) => (
+                      <Ad key={ad._id} ad={ad} />
+                    ))}
+                  </div>
                 </div>
-              </div>
-            )}
-        </div>
-      </div>
-
+              )}
+            </div>
+          </div>
 
           {/* Button Ad Post */}
           <div
@@ -154,7 +153,6 @@ const AdsList = () => {
                 lg:mb-0 2xl:justify-center'
             />
           </div>
-
         </>
       )}
     </motion.div>
