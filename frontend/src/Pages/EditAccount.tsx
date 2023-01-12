@@ -8,10 +8,11 @@ import useDecorationLine from '../Hooks/useDecorationLine'
 import UniButton from '../Components/UniButton'
 import Spinner from '../Components/Spinner'
 // Images
-import image from '../assets/images/Account_profilDefault.png'
+import image from '../assets/images/Account_profil.png'
 // Toaster
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
+import BrowseJobs from '../Components/BrowseJobs'
 import { notify } from '../utils/toastNotification'
 import { AiFillEdit } from 'react-icons/ai'
 
@@ -23,7 +24,6 @@ const EditAccount = (props: Props) => {
 
   //DECORATION LINE
   const editText = useDecorationLine( {orientation: 'left'})
-
   const [fetching, setFetching] = useState(false)
   const [errors, setErrors] = useState<string[] | undefined[] | undefined>([])
 
@@ -84,18 +84,15 @@ const EditAccount = (props: Props) => {
     setFetching(false)
   }
 
-   
-
   return (
     // CONTAINER WHOLE PAGE CONTENT
     <div
       area-label='main-container'
       className='
-      h-full
-      pt-[100px]
+      md:h-[900px]
+      pt-[70px] md:pt-[150px] xl:pt-[290]
       flex flex-col items-center
-      md:pt-[6rem]
-      xl:pt-[4rem]'
+      '
     >
       {/* GREEN SEMICIRCLE */}
       <div
@@ -110,32 +107,53 @@ const EditAccount = (props: Props) => {
       />
 
       {/* HEADING & IMAGE */}
-      <div aria-label='headline' className='flex justify-start items-center'>
+      <div
+        aria-label='headline'
+        className='w-[85%] mb-2
+          flex justify-between items-end
+          md:mb-5 md:w-[65%] lg:w-[70%] xl:w-[48%]'>
+        
+      {/* TITLE & BROWSER-B */}
+      <div className='w-[100%]
+      flex flex-row justify-between items-end'>
         <h1
           className='
-          w-[80%] mb-[1rem]
-          text-left text-[2.5rem] font-semibold 
-          sm:text-[2.5rem]
-          md:w-[80%] 
-        
-          md:pr-[17rem]
-          md:text-left
-          md:leading-[3rem]
-          lg:w-[80%]
+          w-[30%]
+          text-left text-[2rem] font-semibold 
+          sm:text-[2.5rem] leading-none
+          md:w-[80%] md:text-[3rem]
+          lg:w-[50%]
           '
         >
           <span
             ref={editText}
-            className='text-lightGreen italic
-          '
-          >
+            className='text-lightGreen italic'>
             Edit
           </span>{' '}
-          <br></br>
           Profile
         </h1>
 
+        <div className='hidden lg:flex'>
+        <BrowseJobs />
+        </div>
+      </div>
+
         {/* IMAGE */}
+
+          <img
+            aria-label='image'
+            className=' lg:hidden
+              w-[90px] top-[40px] right-5
+              z-20 relative
+              md:w-[130px]
+              md:absolute
+              md:top-[7.5rem]
+              md:right-[10rem]
+              '
+            src={image}
+            alt='profile picture'
+          />
+
         <div  className=' 
             w-[130px] 
             z-10
@@ -183,16 +201,14 @@ const EditAccount = (props: Props) => {
       <div
         aria-label='main-form-ctn'
         className='
-        w-full max-w-[500px]
-        pt-[1rem]    
-        mb-36
+        w-[90%] md:w-[70%] xl:w-[48%]
+        pt-[3rem]
         flex flex-col items-center justify-center 
         relative rounded-[30px] shadow-standard bg-white
-        md:mt-[1rem]
         '
       >
         {/* LINE */}
-        <span
+        {/* <span
           aria-label='line'
           className='
             hidden
@@ -204,7 +220,7 @@ const EditAccount = (props: Props) => {
             lg:w-[87%] 
             lg:top-[370px] 
             xl:w-[87%]'
-        />
+        /> */}
 
         {/* FORM */}
         <form
@@ -212,15 +228,17 @@ const EditAccount = (props: Props) => {
           onSubmit={handleSubmit}
           className='
               w-[80%] h-fit
-              mb-[6rem]
-              flex flex-col items-center justify-between 
+              flex flex-col items-start xl:items-stretch justify-between 
               '
         >
+
+          {/* IMAGE LG - In form */}
+          <div className='flex flex-row items-center gap-8 '>
           {/* INPUTS CONTAINER */}
           <div
             aria-label='inputs-ctn'
-            className='
-              w-full
+            className='w-full
+              lg:w-full
               relative 
               flex flex-col items-center'
           >
@@ -230,7 +248,7 @@ const EditAccount = (props: Props) => {
               htmlFor='username'
               className='
                   hidden md:inline-block
-                  self-start 
+                  self-start
                   text-gray font-semibold 
                   sm:text-[1.1rem] 
                   lg:self-start'
@@ -239,7 +257,7 @@ const EditAccount = (props: Props) => {
               className='
                   w-full mb-2 py-[5px] px-3
                   box-border border border-lightGray rounded-[15rem] 
-                  text-sm
+                  text-sm font-bold border-opacity-[50%]
                   min-[425px]:py-[10px]   
                   sm:text-[1.1rem]
                   focus:outline-lightGreen'
@@ -264,8 +282,9 @@ const EditAccount = (props: Props) => {
             <input
               className='
                   w-full mb-2 py-[5px] px-3
-                  box-border border border-lightGray rounded-[15rem] 
-                  text-sm
+                  box-border border border-lightGray
+                  border-opacity-[50%] rounded-[15rem] 
+                  text-sm font-medium text-gray
                   min-[425px]:py-[10px]   
                   sm:text-[1.1rem]
                   focus:outline-lightGreen'
@@ -292,9 +311,10 @@ const EditAccount = (props: Props) => {
               className='
                   w-full mb-2
                   py-[5px] px-3
-                  box-border border border-lightGray rounded-[15rem] focus:outline-lightGreen 
-                  sm:text-[1.1rem]
-                  text-sm
+                  box-border border border-lightGray
+                  rounded-[15rem] focus:outline-lightGreen 
+                  sm:text-[1.1rem] border-opacity-[50%]
+                  text-sm font-medium text-gray
                   min-[425px]:py-[10px]'
               placeholder='Phone'
               type='text'
@@ -318,8 +338,10 @@ const EditAccount = (props: Props) => {
               className='
                   w-full mb-2
                   py-[5px] px-3
-                  box-border border border-lightGray rounded-[15rem] focus:outline-lightGreen sm:text-[1.1rem]
-                  text-sm
+                  box-border border border-lightGray
+                  rounded-[15rem] focus:outline-lightGreen
+                  sm:text-[1.1rem] border-opacity-[50%]
+                  text-sm font-medium text-gray
                   min-[425px]:py-[10px]'
               placeholder='City'
               type='text'
@@ -328,14 +350,26 @@ const EditAccount = (props: Props) => {
               onChange={(e) => setCity(e.target.value)}
             />
 
+          </div>
+          {/* IMAGE LG*/}
+          <img
+            aria-label='image'
+            className=' hidden lg:flex
+              w-[210px] h-[160px]
+              '
+            src={image}
+            alt='profile picture'
+          />
+          </div>
+
             {/* DESCRIPTION */}
             <label
               htmlFor='description'
               className='
-                  self-start 
-                  font-semibold  text-gray  
-                  sm:text-[1.1rem] 
-                  lg:self-start'
+                self-start 
+                font-semibold  text-gray  
+                sm:text-[1.1rem] 
+                lg:self-start'
             ></label>
             <textarea
               area-label='description'
@@ -343,17 +377,16 @@ const EditAccount = (props: Props) => {
               rows={7}
               placeholder='Description'
               className='
-                  w-full mb-2
-                  py-[11px] px-3
-                  box-border border border-lightGray rounded-[1rem] 
-                  text-sm
-                  min-[425px]:py-[10px] 
-                  focus:outline-lightGreen 
-                  sm:text-[1.1rem]'
+                w-full mb-2
+                py-[11px] px-3
+                box-border border border-lightGray rounded-[1rem] 
+                text-sm font-medium text-gray
+                min-[425px]:py-[10px] 
+                focus:outline-lightGreen 
+                sm:text-[1.1rem] border-opacity-[50%]'
               value={description}
               onChange={(e) => setDescription(e.target.value)}
             ></textarea>
-          </div>
 
           {/* ERRORS */}
           {errors &&
@@ -371,16 +404,15 @@ const EditAccount = (props: Props) => {
           <UniButton
             text={fetching ? <Spinner /> : 'Save Changes'}
             className='
-                mt-6
+                mt-2
                 w-full
-                pt-[.5rem]
                 flex flex-wrap justify-center
                 text-lg'
             style={{ padding: '10px' }}
           />
 
           {/* DELETE-ACCOUNT */}
-          <p className='mt-2 w-full text-center text-lightGray underline text-[14px] lg:text-center'>
+          <p className='my-4 w-full text-center text-lightGray underline text-[14px] lg:text-center'>
             <Link to='/delete-account'>Delete account</Link>
           </p>
 

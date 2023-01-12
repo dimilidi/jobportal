@@ -1,5 +1,5 @@
 // Hooks
-import { Navigate, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import useDecorationLine from '../Hooks/useDecorationLine'
 // Components
 import UniButton from '../Components/UniButton'
@@ -28,12 +28,13 @@ const DeleteAccount = () => {
       exit={{ x: window.innerWidth }}
     >
       <div
-        className='pb-20 mx-auto pr-2 w-[90%] h-full min-h-[910px]
+        className='pb-20 mx-auto w-[90%] h-[800px] md:min-h-0[910px]
           flex justify-center flex-col items-center
-          sm:w-[60%] lg:w-[50%] md:pt-[0]'
+          pt-[70px] md:pt-[150px] xl:pt-[290]
+          sm:w-[60%] md:w-[50%] lg:w-[40%] xl:w-[30%] 2xl:w-[20%]'
       >
         {/* ICON & BROWSE JOBS */}
-        <div className='w-full flex lg:ml-[50%] p-5'>
+        <div className='w-full flex items-start py-5'>
           <BrowseJobs />
         </div>
         {/* ICON & BROWSE JOBS END */}
@@ -43,9 +44,9 @@ const DeleteAccount = () => {
           className='bg-white p-10 pb-40
             flex justify-center items-center flex-col
             rounded-xl shadow-standard 
-            md:w-[400] md:px-16 '
+            md:px-16'
         >
-          <h1 className=' text-4xl md:text-5xl'>
+          <h1 className='text-4xl md:text-5xl font-semibold'>
             Delete <br />
             <span 
             ref={accountText}
@@ -54,7 +55,7 @@ const DeleteAccount = () => {
             </span>
           </h1>
 
-          <div className=' w-[80%] text-center mt-8  text-gray'>
+          <div className='w-[80%] text-center mt-8  text-gray'>
             <p>Are you sure you want to delete your account?</p>
           </div>
 
@@ -85,13 +86,13 @@ const DeleteAccount = () => {
         <img
           src={DeleteAccountImage}
           alt='box'
-          className='w-[180px] top-[38rem] scale-x-[-1] absolute 
+          className='w-[180px] top-[34rem] scale-x-[-1] absolute 
             left-[20%]
             sm:left-[3%]
-            md:left-[6%] md:w-[230px] md:top-[35rem] md:scale-x-[-1] md:-rotate-[20deg]
+            md:left-[6%] md:w-[230px] md:top-[30rem] md:scale-x-[-1] md:-rotate-[20deg]
             lg:left-[16%]
-            xl:left-[31%]
-            2xl:left-[32%]'
+            xl:left-[27%] 
+            2xl:left-[34%] 2xl:top-[36rem]'
         />
       </div>
           {/* IMAGES END */}
