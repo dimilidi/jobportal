@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import useUser from '../Hooks/useUser'
-// Types
+
 // Component
 import UniButton from '../Components/UniButton'
 import Spinner from '../Components/Spinner'
@@ -13,6 +13,8 @@ import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import { notify } from '../utils/toastNotification'
 import { AiFillEdit } from 'react-icons/ai'
+import UniButtonWhite from '../Components/UniButtonWhite'
+import { motion } from 'framer-motion'
 
 type Props = {}
 
@@ -29,7 +31,7 @@ const EditAccount = (props: Props) => {
   const [city, setCity] = useState(user.user?.city)
   const [phone, setPhone] = useState(user.user?.phone)
   const [description, setDescription] = useState(user.user?.description)
-  const [avatar, setAvatar] = useState<any>([])
+  const [avatar, setAvatar] = useState<any>(user.user?.avatar)
   console.log('AVATAR',avatar);
   
 
@@ -161,13 +163,25 @@ const EditAccount = (props: Props) => {
 
         <span>
           <input 
-            // style = {{display:'none'}}  
+            style = {{display:'none'}}  
             type="file" 
             name="avatar" 
             id="file_upload" 
             onChange={handleChangeFile} />
-          <AiFillEdit />
-          <p>Change</p>
+            <motion.label
+              whileTap={{ scale: 0.8 }}
+              transition={{ duration: 0.5 }}
+              className='h-[30px] w-[50px] flex items-center justify-center  text-lightGreen text-[22px] cursor-pointer rounded-[10px]  border-2 border-lightGreen hover:border-darkGreen hover:text-darkGreen   ease-in-out duration-300 shadow-lg '
+            >
+              <AiFillEdit />
+            </motion.label>
+            {/* <label htmlFor="file_upload"  
+                style={{ width: '80px', height: '40px' }}>
+            <AiFillEdit style={{ width: '40px', fontSize: '20px' }}/>
+           
+            </label> */}
+          
+        
         </span>
 
         </div>
