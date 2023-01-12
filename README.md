@@ -12,7 +12,7 @@
 2. [Technologies Used](#2-technologies-used)
 3. [Features](#3-features)
 4. [Screenshots](#4-screenshots)
-5. [General Info](#1-general-information) <li>[Setup](#5-setup)
+5. [Setup](#5-setup)
 6. [Usage](#6-usage)
 7. [Project Status](#7-project-status)
 8. [Room for Improvement](#8-room-for-improvement)
