@@ -161,7 +161,7 @@ const EditAccount = (props: Props) => {
 
         <span>
           <input 
-            style = {{display:'none'}}  
+            // style = {{display:'none'}}  
             type="file" 
             name="avatar" 
             id="file_upload" 

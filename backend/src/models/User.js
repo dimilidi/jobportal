@@ -8,16 +8,7 @@ const userSchema = mongoose.Schema({
   password: { type: String, required: true },
   tokens: [String],
   profession: String,
-  avatar: String
-  // {
-  //   public_id: {
-  //     type: String
-  //   },
-  //   secure_url: {
-  //     type:String
-  //   }
-  // }
-  ,
+  avatar: String,
   city: String,
   description: String,
   phone: String,
