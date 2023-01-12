@@ -17,6 +17,7 @@ const Account = () => {
   const { user, loading } = useUser()
   const ads = useAds(`/ads/?userId=${user?._id}`)
 
+
   useEffect(() => {
     if (!user && !loading) {
       navigate('/auth-required')
@@ -35,7 +36,6 @@ const Account = () => {
 
       {/* LINE */}
       <div className='border-b-[3px] border-lightGreen absolute hidden lg:w-[20%] xl:w-[30%] md:block lg:top-[220px] lg:right-0' />
-
       {/* USER CARD */}
       <div className='h-full w-[95%] relative flex justify-center lg:w-[32%]'>
         <UserCard />
