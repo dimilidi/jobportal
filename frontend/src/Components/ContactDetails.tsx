@@ -15,6 +15,9 @@ const ContactDetails = (props: Props) => {
   const ad = useAd()
   console.log('AD',ad);
   
+  const mailMe = () => {
+    window.location.href = `mailto:${ad.ad?.user.email}`;
+  }
 
   return (
     // DIV WITH PROPS STYLING
@@ -29,7 +32,7 @@ const ContactDetails = (props: Props) => {
         xl:items-start xl:px-0 '
       >
         {/* NAME */}
-        <h3 className='p-1 self-center text-lg font-bold text-center w-full'>
+        <h3 className='p-1 self-center text-lg font-bold text-center w-[90%]'>
           {ad.ad?.user.name}
         </h3>
 
@@ -40,13 +43,15 @@ const ContactDetails = (props: Props) => {
         >
           {/* if email is set as a contact data, show email */}
           {ad.ad?.contactVia.includes('email') && (
-            <div className='p-2 mx-auto w-full flex items-center'>
-              <div className=''>
-                <MdEmail className='text-lg ' />
+            <div
+              onClick={mailMe}
+              className='mx-auto w-full flex items-center cursor-pointer'>
+              <div className='p-1'>
+                <MdEmail className='text-lg' />
               </div>
-              <p className=' ml-2 w-full text-sm break-all'>
+              <a className=' ml-2 w-full text-sm break-all'>
                 {ad.ad?.user.email}
-              </p>
+              </a>
             </div>
           )}
 
