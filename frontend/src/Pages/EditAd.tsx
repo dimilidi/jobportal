@@ -14,6 +14,7 @@ import 'react-toastify/dist/ReactToastify.css'
 import imagePostAd from '../assets/images/PostAd_chef.png'
 // Others
 import { motion } from 'framer-motion'
+import BrowseJobs from '../Components/BrowseJobs'
 
 
 const EditAd = () => {
@@ -119,6 +120,12 @@ const EditAd = () => {
           area-label='main'
           className='relative  h-full min-h-[920px] w-[85%] max-w-[1000px]  md:w-[70%] flex flex-col justify-center'
         >
+
+        {/* BACK TO ACCOUNT */}
+        <div className='hidden md:block'>
+        <BrowseJobs/>
+        </div>
+
           {/* TITLE MOBILE (with line) */}
           <div>
             <h1
@@ -343,11 +350,20 @@ const EditAd = () => {
               </div>
             </div>
             {/* BUTTON - POST AD */}
+            <div className='w-full my-7 flex flex-col lg:flex-row justify-center items-center gap-5'>
             <UniButton
+              style={{ backgroundColor: '#52796F', borderColor: '#52796F'}}
               area-label='postAdButton'
               text={isLoading ? <Spinner /> : 'Save Changes'}
-              className='my-7 mx-auto w-[200px] self-center  md:mb-0 lg:w-[250px]'
+              className='self-center md:mb-0'
             />
+            {/* BUTTON - BACK TO ACCOUNT */}
+            <UniButton
+              area-label='backToAccountButton'
+              text='Back to Account'
+              className='self-center md:mb-0'
+            />
+            </div>
           </form>
         </div>
         <ToastContainer position='top-right' />

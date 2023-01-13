@@ -20,25 +20,25 @@ function Ad({ ad }: Props) {
   const close = () => setModalOpen(false)
   const open = () => setModalOpen(true)
 
+
   return (
-    <div
-      // whileHover={{ scale: 1.1 }}
-      // whileTap={{ scale: 0.9 }}
-      className='w-full sm:px-[0px] md:py-1 max-w-[520px] xl:max-w-[680px]'
-    >
+    <div className='w-full sm:px-[0px] md:py-1 max-w-[550px] xl:max-w-[680px]'>
       <div className='mx-auto h-[110px] w-[100%] flex justify-between items-center border-lightBeige border-t-2 text-[14px] md:h-[100px] md:border-y-2'>
         {/* LEFT SECTION */}
         <div className='h-full flex justify-start sm:gap-3'>
           {/* PROFILE IMAGE */}
           <div className='w-[60px] flex flex-col items-start justify-start xl:w-[80px]'>
-            <div
-              className='pt-5 w-[60px] 
+            <div className='pt-5 w-[60px] 
                 flex self-start justify-center items-end
                 rounded-b-[40px] bg-lightBeige
                 md:w-[60px]'
             >
-              <div className='mb-4 md:mb-6 w-[50px] h-[40px] self-end rounded-full md:w-[50px] md:h-[30px]'>
-                <img src={profileImg} alt='' />
+              <div className=' self-end md:mb-6  md:w-[50px] md:h-[30px]'>
+                <img 
+                  className='mb-1 w-[50px] h-[50px] rounded-full'
+                  src={ ad.user.avatar ? ad.user.avatar :  profileImg } 
+                  alt='' 
+                />
               </div>
             </div>
             {/* IF AD CREATED BY USER SHOW DOTS FOR DROPDOWN*/}

@@ -53,7 +53,7 @@ const AuthRequired = () => {
           className='italic text-lightGreen font-semibold'>Mission</span>
         </h1>
 
-        <div className=' w-[80%] text-center mt-8'>
+        <div className=' w-[80%] text-center mt-8 opacity-50'>
           <p>Please login to see more information</p>
         </div>
 

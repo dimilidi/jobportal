@@ -161,9 +161,9 @@ const PostAd = () => {
               >
                 <h1
                   area-label='title-md'
-                  className='hidden p-3 text-4xl font-medium text-textBlack md:block'
+                  className='hidden p-3 text-4xl font-bold text-textBlack md:block'
                 >
-                  <span className='italic font-medium text-lightGreen'>
+                  <span className='italic font-bold text-lightGreen'>
                     Create{' '}
                   </span>
                   your Ad

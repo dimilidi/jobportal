@@ -30,7 +30,7 @@ export async function getAds(req, res) {
       .collation({ locale: 'en_US', strength: 1 })
   }
 
-  let ads = await query.populate('user', 'name')
+  let ads = await query.populate('user', 'name, avatar')
   res.status(200).json(ads)
 }
 
@@ -41,7 +41,7 @@ export async function postAd(req, res) {
 
   const newAd = new Ad({
     ...ad,
-    user: user._id,
+    user: user._id
   })
 
   await newAd.save()
@@ -55,15 +55,16 @@ export async function getAdById(req, res) {
   const adId = req.params.id
 
   // if user is NOT logged in, populate only name of ad-creator
-  let ad = await Ad.findById(adId).populate('user', 'name')
+  let ad = await Ad.findById(adId).populate('user', 'name, avatar')
 
   // if user is logged in, contact data selected in contactvia
-  let itemToPopulate = 'name'
+  let itemToPopulate = 'name, avatar'
   if (user) {
     for (const item of ad.contactVia) {
       itemToPopulate += ` ${item}`
     }
-    ad = await Ad.findById(adId).populate('user', itemToPopulate)
+    ad = await Ad.findById(adId).populate('user', itemToPopulate )
+     
   }
 
   res.status(200).json(ad)

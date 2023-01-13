@@ -6,7 +6,22 @@
 > Checkout our project: [GitHub Repo](https://github.com/dimilidi/jobportal)<br/>
 > Visit our website: [Jobsy Website](https://jobsy-jobportal.netlify.app)<br/>
 
-## 1. General Information
+## Table of Contents
+
+1. [General Info](#1-general-information)
+2. [Technologies Used](#2-technologies-used)
+3. [Features](#3-features)
+4. [Screenshots](#4-screenshots)
+5. [Setup](#5-setup)
+6. [Usage](#6-usage)
+7. [Project Status](#7-project-status)
+8. [Room for Improvement](#8-room-for-improvement)
+9. [Acknowledgements](#9-acknowledgements)
+10. [Contact](#10-contact)
+
+<!-- * [License](#license) -->
+
+## 1 General Information
 
 - Provide general information about your project here.
 - What problem does it (intend to) solve?
@@ -16,9 +31,31 @@
 
 ## 2. Technologies Used
 
-- Node.js - v18.12.1
-- Vite - version 2.0
-- Tech 3 - version 3.0
+1. General
+
+- Node.js (v18.12.1)
+
+2. Frontend
+
+- React (^18.2.0)
+- TypeScript (4.9.3)
+- Vite (4.0.0)
+- Tailwind (3.2.4)
+- Axios (1.2.1)
+- Framer Motion (8.0.1)
+
+3. Backend
+
+- Express (^4.18.2)
+- Mongoose (^6.8.0)
+- Eslint (^8.29.0)
+- bcrypt (^5.1.0)
+- jswebtoken (^8.5.1)
+- Cloudinary (^1.33.0)
+
+4. Data base
+
+- MongoDB
 
 ## 3. Features
 
@@ -65,28 +102,23 @@ Include areas you believe need improvement / could be improved. Also add TODOs f
 
 Room for improvement:
 
-- Improvement to be done 1
-- Improvement to be done 2
+- [ ] Add new feature for user to network each other
+- [ ] Add new feature for user to manage ads created by other users in his/her account. eg. save and categorize ads (favorits, contacting)
 
 To do:
 
-- Feature to be added 1
-- Feature to be added 2
+- Add 'partner' in user model to manage connected contacts
+- Add related routes with partner in backend like `/user/partners`, `/user/add-partners` or `/user/delete-partners`
 
 ## 8. Acknowledgements
 
-Give credit here.
-
-- This project was inspired by...
-- This project was based on [this tutorial](https://www.example.com).
-- Many thanks to...
+- This project was inspired by LinkedIn?
+- Many thanks to teacher name??
 
 ## 9. Contact
 
 Created by [@flynerdpl](https://www.flynerd.pl/) - feel free to contact me!
 
 <!-- Optional -->
-<!-- ## License -->
-<!-- This project is open source and available under the [... License](). -->
 
 <!-- You don't have to include all sections - just the one's relevant to your project -->
