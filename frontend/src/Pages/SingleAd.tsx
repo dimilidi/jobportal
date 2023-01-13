@@ -200,7 +200,7 @@ const SingleAd = () => {
           <ContactDetails
             className='hidden xl:block
         w-[250px] m-8 absolute lg:items-center  -right-14 top-[435px] rounded-l-[65px] translate-y-[-50%] 
-        xl:min-w-[230px] xl:pl-5'
+        xl:min-w-[230px]'
           />
         )}
         {/* ContactDetails - END */}
