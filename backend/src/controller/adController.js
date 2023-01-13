@@ -58,7 +58,7 @@ export async function getAdById(req, res) {
   let ad = await Ad.findById(adId).populate('user', 'name, avatar')
 
   // if user is logged in, contact data selected in contactvia
-  let itemToPopulate = 'name, avatar'
+  let itemToPopulate = 'name avatar'
   if (user) {
     for (const item of ad.contactVia) {
       itemToPopulate += ` ${item}`
