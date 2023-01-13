@@ -1,15 +1,13 @@
 import Ad from '../models/Ad.js'
 
+
 /** @type {import("express").RequestHandler} */
 export async function getAds(req, res) {
-  const page_size = 2
-
+  const page_size = 4
 
   let { userId, search, category, page=0  } = req.query
 
-  let query = Ad.find({}, null, {
-    skip: parseInt(page) * page_size, 
-    limit: page_size})
+  let query = Ad.find()
 
   if (userId) query = query.where('user').equals(userId)
 
@@ -19,9 +17,6 @@ export async function getAds(req, res) {
     }
   }
 
-  if (page) query = query.where('page').equals(page)
-    
-  
 
   // filter ads by search, if it is included in title/description/location/sector,
   if (search) {
@@ -38,10 +33,21 @@ export async function getAds(req, res) {
       .find({ $or: searchWordsArray })
       .collation({ locale: 'en_US', strength: 1 })
   }
-
+  
+  // Pagination
+  if(page) {
+    query = query
+      .find()
+      .skip(parseInt(page) * page_size)
+      .limit(page_size)
+  }
+  
   let ads = await query.populate('user', 'name, avatar')
   res.status(200).json(ads)
 }
+
+
+
 
 /** @type {import("express").RequestHandler} */
 export async function postAd(req, res) {
