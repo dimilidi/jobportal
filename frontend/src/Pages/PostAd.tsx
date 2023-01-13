@@ -175,26 +175,28 @@ const PostAd = () => {
                   area-label='index-radio'
                   className='px-1 w-full flex justify-end items-center gap-5'
                 >
-                  <div className='flex gap-2'>
+                  <div className='flex gap-2 '>
                     <input
                       type='radio'
+                      id='offering'
                       value='offering'
                       name='case'
-                      className='accent-darkGreen'
+                      className='accent-darkGreen cursor-pointer'
                       onChange={(e) => setCategory(e.target.value)}
                     />
-                    <label className='form-label'>offering</label>
+                    <label htmlFor='offering' className='form-label cursor-pointer'>offering</label>
                   </div>
 
                   <div className='flex gap-2'>
                     <input
                       type='radio'
+                      id='searching'
                       value='searching'
                       name='case'
-                      className='accent-darkGreen'
+                      className='accent-darkGreen cursor-pointer'
                       onChange={(e) => setCategory(e.target.value)}
                     />
-                    <label className='form-label'>searching</label>
+                    <label htmlFor='searching' className='form-label cursor-pointer'>searching</label>
                   </div>
                 </div>
               </div>
@@ -292,10 +294,11 @@ const PostAd = () => {
                       <div area-label='email' className='flex flex-row gap-2'>
                         <input
                           type='checkbox'
+                          id='email'
                           value='email'
                           name='contact'
                           checked={checked.email}
-                          className='accent-darkGreen form-checkbox'
+                          className='accent-darkGreen form-checkbox cursor-pointer'
                           onChange={(e) =>
                             setChecked({
                               email: !checked.email,
@@ -303,15 +306,16 @@ const PostAd = () => {
                             })
                           }
                         />
-                        <label>Email</label>
+                        <label htmlFor='email' className='cursor-pointer'>Email</label>
                       </div>
                       <div area-label='phone' className='flex flex-row gap-2'>
                         <input
                           type='checkbox'
+                          id='phone'
                           value='phone'
                           name='contact'
                           checked={checked.phone}
-                          className='accent-darkGreen form-checkbox'
+                          className='accent-darkGreen form-checkbox cursor-pointer'
                           onChange={(e) =>
                             setChecked({
                               email: checked.email,
@@ -319,7 +323,7 @@ const PostAd = () => {
                             })
                           }
                         />
-                        <label>Phone</label>
+                        <label htmlFor='phone' className='cursor-pointer'>Phone</label>
                       </div>
                     </div>
                   </div>
