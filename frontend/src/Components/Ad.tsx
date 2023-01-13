@@ -22,7 +22,8 @@ function Ad({ ad }: Props) {
 
 
   return (
-    <div className='w-full sm:px-[0px] md:py-1 max-w-[550px] xl:max-w-[680px]'>
+    
+    <div  className='w-full cursor-pointer sm:px-[0px] md:py-1 max-w-[550px] xl:max-w-[680px]'>
       <div className='mx-auto h-[110px] w-[100%] flex justify-between items-center border-lightBeige border-t-2 text-[14px] md:h-[100px] md:border-y-2'>
         {/* LEFT SECTION */}
         <div className='h-full flex justify-start sm:gap-3'>
@@ -58,9 +59,8 @@ function Ad({ ad }: Props) {
           </div>
 
           {/* LINK TO SINGLE AD  */}
-          <div
-            onClick={() => navigate(`/ad/${ad?._id}`)}
-            className='w-[180px] flex flex-col sm:flex-row justify-center items-center cursor-pointer sm:w-[320px] md:flex-row'
+          <div onClick={() => navigate(`/ad/${ad?._id}`)}
+            className='w-[180px] flex flex-col sm:flex-row justify-center items-center  sm:w-[320px] md:flex-row'
           >
             <div className='w-[150px] flex sm:w-[200px] xl:w-[300px]'>
               {/* TITLE, SECTOR */}
@@ -89,7 +89,7 @@ function Ad({ ad }: Props) {
         </div>
 
         {/* RIGHT SECTION */}
-        <div className='w-[70px] h-full flex self-end flex-col justify-end  items-start gap-1 md:w-[180px] md:flex-row md:self-center md:items-center md:justify-between'>
+        <div onClick={() => navigate(`/ad/${ad?._id}`)} className='w-[70px] h-full flex self-end flex-col justify-end  items-start gap-1 md:w-[180px] md:flex-row md:self-center md:items-center md:justify-between'>
           {/* CREATED AT */}
           <div className='text-[14px] text-textBlack text-opacity-50 md:ml-[10px] md:text-[16px]'>
             <p>{new Date(ad.createdAt).toLocaleDateString()}</p>
