@@ -77,8 +77,8 @@ function Ad({ ad }: Props) {
 
             <div className='w-[150px] flex sm:flex-col justify-end gap-1 md:w-[80px] sm:gap-2'>
               {/* LOCATION */}
-              <div className='p-1 w-[100px] flex justify-center items-center border-2 border-lightBeige rounded-full text-[12px] text-textBlack text-opacity-50 sm:w-[100px] sm:text-[14px] md:text-[16px]'>
-                <p>{ad.location}</p>
+              <div className='p-1 w-[100px] flex justify-center items-center border-2 border-lightBeige rounded-full text-[12px] text-textBlack text-opacity-50  sm:w-[100px] sm:text-[14px] md:text-[16px]'>
+                <p className='px-1 truncate '>{ad.location}</p>
               </div>
               {/* CATEGORY */}
               <div className='p-1 w-[100px] flex justify-center items-center rounded-full text-[12px]  text-textBlack text-opacity-50  bg-lightBeige sm:w-[100px] sm:text-[14px]  md:text-[16px]'>
