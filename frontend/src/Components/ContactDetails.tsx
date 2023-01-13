@@ -49,22 +49,22 @@ const ContactDetails = (props: Props) => {
               <div className='p-1'>
                 <MdEmail className='text-lg' />
               </div>
-              <a className=' ml-2 w-full text-sm break-all'>
+              <p className=' ml-2 w-full text-sm break-all'>
                 {ad.ad?.user.email}
-              </a>
+              </p>
             </div>
           )}
 
           {/* if phone is set as a contact data, show phone number */}
           {ad.ad?.contactVia.includes('phone') && (
-            <div className='mx-auto w-[100%] flex items-center'>
+            <a  href={`tel:${ad.ad?.user.phone}`}  className='mx-auto w-[100%] flex items-center'>
               <div className='p-1'>
                 <BsTelephoneFill className='text-lg' />
               </div>
-              <p className='ml-2 text-sm break-all md:py-1'>
+              <p  className='ml-2 text-sm break-all md:py-1'>
                 {ad.ad?.user.phone}
               </p>
-            </div>
+            </a>
           )}
 
           {/* if creator of ad has registered city name, show city */}
