@@ -20,6 +20,15 @@ const Schema = mongoose.Schema(
   }
 )
 
+// index text fields
+Schema.index({
+  title: 'text',
+  description: 'text',
+  location: 'text',
+  sector: 'text',
+})
 const Ad = mongoose.model('Ad', Schema)
+// run create index
+Ad.createIndexes()
 
 export default Ad
