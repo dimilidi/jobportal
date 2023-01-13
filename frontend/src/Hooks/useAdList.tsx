@@ -9,12 +9,16 @@ type AdHook = {
   adList: Ad[] | []
   isLoading: boolean
   error: string
+  page: number
+  setPage: ( page:number ) => void
 }
 
 function useAdList(queries: string): AdHook {
   const [adList, setAdList] = useState<Ad[] | []>([])
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState('')
+  const [page, setPage] = useState(1)
+
 
   const fetchAdList = async () => {
     setError('')
@@ -31,9 +35,9 @@ function useAdList(queries: string): AdHook {
 
   useEffect(() => {
     fetchAdList()
-  }, [queries, adList.length])
+  }, [queries, adList.length, page])
 
-  return { adList, error, isLoading }
+  return { adList, error, isLoading, page, setPage }
 }
 
 export default useAdList

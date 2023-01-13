@@ -2,9 +2,14 @@ import Ad from '../models/Ad.js'
 
 /** @type {import("express").RequestHandler} */
 export async function getAds(req, res) {
-  let { userId, search, category } = req.query
+  const page_size = 2
 
-  let query = Ad.find()
+
+  let { userId, search, category, page=0  } = req.query
+
+  let query = Ad.find({}, null, {
+    skip: parseInt(page) * page_size, 
+    limit: page_size})
 
   if (userId) query = query.where('user').equals(userId)
 
@@ -13,6 +18,10 @@ export async function getAds(req, res) {
       query = query.where('category').equals(category)
     }
   }
+
+  if (page) query = query.where('page').equals(page)
+    
+  
 
   // filter ads by search, if it is included in title/description/location/sector,
   if (search) {
