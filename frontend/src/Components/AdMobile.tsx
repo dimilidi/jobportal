@@ -20,7 +20,7 @@ function AdMobile() {
             <div className='w-[45px] md:w-[67px] h-[55px] md:h-[85px] rounded-b-[40px] flex justify-center items-end bg-lightBeige sm:w-[80px]'>
               <div className='mb-1 self-end'>
                 <img
-                  className='w-[40px] md:w-[60px] h-[40px] md:h-[60px] rounded-full object-fit sm:w-[70px]  sm:h-[70px] '
+                  className='w-[40px] md:w-[60px] h-[40px] md:h-[60px] rounded-full object-fit sm:w-[70px]  sm:h-[70px] object-cover'
                   src={ad.ad?.user.avatar ? ad.ad.user.avatar : avatar}
                   alt=''
                 />
