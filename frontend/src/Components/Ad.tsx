@@ -26,7 +26,7 @@ function Ad({ ad }: Props) {
     <div  className='w-full cursor-pointer sm:px-[0px] md:py-1 max-w-[550px] xl:max-w-[680px]'>
       <div className='mx-auto h-[110px] w-[100%] flex justify-between items-center border-lightBeige border-t-2 text-[14px] md:h-[100px] md:border-y-2'>
         {/* LEFT SECTION */}
-        <div className='h-full flex justify-start sm:gap-3'>
+        <div className='h-full  flex justify-start sm:gap-3'>
           {/* PROFILE IMAGE */}
           <div className='w-[60px] flex flex-col items-start justify-start xl:w-[80px]'>
             <div className='pt-5 w-[60px] 
@@ -34,7 +34,7 @@ function Ad({ ad }: Props) {
                 rounded-b-[40px] bg-lightBeige
                 md:w-[60px]'
             >
-              <div className=' self-end md:mb-6  md:w-[50px] md:h-[30px]'>
+              <div className='self-end md:mb-6  md:w-[50px] md:h-[30px]'>
                 <img 
                   className='mb-1 w-[50px] h-[50px] rounded-full object-cover'
                   src={ ad.user.avatar ? ad.user.avatar :  profileImg } 
@@ -60,14 +60,15 @@ function Ad({ ad }: Props) {
 
           {/* LINK TO SINGLE AD  */}
           <div onClick={() => navigate(`/ad/${ad?._id}`)}
-            className='w-[180px] flex flex-col sm:flex-row justify-center items-center  sm:w-[320px] md:flex-row'
+            className='w-[200px] flex flex-col sm:flex-row justify-center items-center  sm:w-[320px] md:flex-row md:justify-start'
           >
-            <div className='w-[150px] flex sm:w-[200px] xl:w-[300px]'>
+            <div className='w-[180px] flex sm:w-[190px] xl:w-[300px]'>
               {/* TITLE, SECTOR */}
-              <div className='text-textBlack sm:w-[250px] '>
-                <p className='text-[14px] sm:text-[18px] text-textBlack'>
+              <div className='w-[150px] relative text-textBlack sm:full'>
+                <p className='truncate  text-[14px] sm:text-[18px] text-textBlack'>
                   {ad.title}
                 </p>
+                <p className='z-40  absolute top-0 p-2 opacity-0 transition hover:visible  hover:ease-in-out hover:opacity-100  bg-background text-darkGray  text-[14px] shadow-standard rounded-md sm:text-[18px]'>{ad.title}</p>
                 {/* SECTOR */}
                 <p className='text-[16px] text-textBlack text-opacity-50'>
                   {ad.sector}
@@ -75,13 +76,15 @@ function Ad({ ad }: Props) {
               </div>
             </div>
 
-            <div className='w-[150px] flex sm:flex-col justify-end gap-1 md:w-[80px] sm:gap-2'>
+            <div className='w-[180px] flex sm:flex-col justify-end gap-1 md:w-[80px] sm:gap-2'>
               {/* LOCATION */}
-              <div className='p-1 w-[100px] flex justify-center items-center border-2 border-lightBeige rounded-full text-[12px] text-textBlack text-opacity-50  sm:w-[100px] sm:text-[14px] md:text-[16px]'>
-                <p className='px-1 truncate '>{ad.location}</p>
+              <div className='p-1 w-[90px] relative flex justify-center items-center border-2 border-lightBeige rounded-full text-[12px]  text-textBlack text-opacity-50  sm:w-[100px] sm:text-[14px] md:text-[16px]'>
+                <p className='truncate'>{ad.location}</p>
+                <p className='z-40  absolute top-0 p-1 opacity-0 transition hover:visible  hover:ease-in-out hover:opacity-100  bg-background text-darkGray shadow-standard rounded-md'>{ad.location}</p>
+              
               </div>
               {/* CATEGORY */}
-              <div className='p-1 w-[100px] flex justify-center items-center rounded-full text-[12px]  text-textBlack text-opacity-50  bg-lightBeige sm:w-[100px] sm:text-[14px]  md:text-[16px]'>
+              <div className='p-1 w-[90px] flex justify-center items-center rounded-full text-[12px]  text-textBlack text-opacity-50  bg-lightBeige sm:w-[100px] sm:text-[14px]  md:text-[16px]'>
                 <p>{ad.category}</p>
               </div>
             </div>

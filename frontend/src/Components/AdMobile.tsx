@@ -42,7 +42,7 @@ function AdMobile() {
             <div className='w-[150px] p-2 md:p-0 md:py-2 flex  gap-1 sm:w-[200px]'>
               {/* Location */}
               <div className='px-2 py-1 w-[100px] flex justify-center items-center  border-2  text-[12px] text-textBlack text-opacity-50 text-center border-lightBeige rounded-full md:w-[120px] sm:text-[14px]'>
-                <p>{ad.ad?.location}</p>
+                <p className='truncate hover:text-clip'>{ad.ad?.location}</p>
               </div>
               {/* Category */}
               <div className='px-2 py-1  w-[100px] flex justify-center items-center text-[12px] text-textBlack text-opacity-50 rounded-full bg-lightBeige sm:w-[120px] sm:text-[14px]'>

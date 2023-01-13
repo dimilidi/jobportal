@@ -138,7 +138,7 @@ const AdsList = () => {
                 xl:w-[900px]'
                 >
                   {/* Ads */}
-                  <div className='mx-auto flex flex-wrap justify-center '>
+                  <div className='mx-auto p-1 flex flex-wrap justify-center '>
                     {ads.adList?.map((ad) => (
                       <Ad key={ad._id} ad={ad} />
                     ))}
