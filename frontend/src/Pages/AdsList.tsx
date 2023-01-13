@@ -13,13 +13,23 @@ import { motion } from 'framer-motion'
 import man from '../assets/images/Ads_man_working.png'
 import useDecorationLine from '../Hooks/useDecorationLine'
 import SearchContainer from '../Components/SearchContainer'
+import { useState } from 'react'
 
 const AdsList = () => {
+
   // CONSTANTS
+  const [page, setPage] = useState(0)
+
   const { searchWord, searchCategory } = useSearch()
   const user = useUser()
-  const ads = useAdList(`search=${searchWord}&category=${searchCategory}`)
+  const ads = useAdList(`search=${searchWord}&category=${searchCategory}&page=${page}`)
+
+
   const navigate = useNavigate()
+
+  console.log(page);
+  console.log(ads);
+  
 
   // DECORATION LINE
   const missionText = useDecorationLine({ orientation: 'right' })
@@ -128,7 +138,7 @@ const AdsList = () => {
                 xl:w-[900px]'
                 >
                   {/* Ads */}
-                  <div className='mx-auto flex flex-wrap justify-center '>
+                  <div className='mx-auto p-1 flex flex-wrap justify-center '>
                     {ads.adList?.map((ad) => (
                       <Ad key={ad._id} ad={ad} />
                     ))}
@@ -137,6 +147,16 @@ const AdsList = () => {
               )}
             </div>
           </div>
+
+          <button 
+            disabled={page === 0}
+            onClick={()=> setPage(page - 1)}
+          >
+            Previous Page
+          </button>
+          <button onClick={()=> setPage(page + 1)}>
+            Next Page
+          </button>
 
           {/* Button Ad Post */}
           <div

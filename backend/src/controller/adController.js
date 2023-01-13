@@ -2,7 +2,9 @@ import Ad from '../models/Ad.js'
 
 /** @type {import("express").RequestHandler} */
 export async function getAds(req, res) {
-  let { userId, search, category } = req.query
+  const page_size = 4
+
+  let { userId, search, category, page = 0 } = req.query
 
   let query = Ad.find()
 
@@ -24,6 +26,14 @@ export async function getAds(req, res) {
   } else {
     // sort ads by update date (descending order)
     query = query.sort({ updatedAt: -1 })
+  }
+
+  // Pagination
+  if (page) {
+    query = query
+      .find()
+      .skip(parseInt(page) * page_size)
+      .limit(page_size)
   }
 
   let ads = await query.populate('user', 'name, avatar').clone()
@@ -54,7 +64,7 @@ export async function getAdById(req, res) {
   let ad = await Ad.findById(adId).populate('user', 'name, avatar')
 
   // if user is logged in, contact data selected in contactvia
-  let itemToPopulate = 'name, avatar'
+  let itemToPopulate = 'name avatar'
   if (user) {
     for (const item of ad.contactVia) {
       itemToPopulate += ` ${item}`
