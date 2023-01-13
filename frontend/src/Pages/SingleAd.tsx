@@ -12,6 +12,8 @@ import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 // Images
 import thinkingGirl from '../assets/images/SingleAd_girl.png'
+import DeleteAd from '../assets/images/DeleteAd.png'
+
 // Framer-motion
 import { motion } from 'framer-motion'
 import { IoMdHeadset } from 'react-icons/io'
@@ -133,19 +135,21 @@ const SingleAd = () => {
 
           {modalOpen && (
             <Modal handleClose={close}>
-              <h3>Do you really want to delete your ad?</h3>
-              <div className='flex flex-col sm:flex-row gap-5'>
-                <UniButton
-                  style={{ width: '120px', height: '45px' }}
-                  text='Confirm'
-                  onClick={confirmDelete}
-                />
-                <UniButtonWhite
-                  style={{ width: '120px', height: '45px' }}
-                  text='Quit'
-                  onClick={close}
-                />
-              </div>
+            <div
+              className='flex flex-col md:flex-row items-center md:items-start'>
+              <img
+                className='relative bottom-8 left-10 md:left-8 md:bottom-0'
+                src={DeleteAd}/>
+              <div
+                aria-label='text und buttons'
+                className='flex flex-col justify-around items-center gap-4 relative md:right-7 bottom-[20px] md:bottom-[0]'>
+              <h3 className='font-bold md:text-xl lg:text-3xl text-gray'>Do you really want<br></br>to delete your ad?</h3>
+                <div className='flex flex-col gap-3'>
+                  <UniButton style={{width:'160px', height:'45px', backgroundColor: '#52796F', border: '#52796F'}} text='Confirm' onClick={confirmDelete} />
+                  <UniButton style={{width:'160px', height:'45px'}} text='Quit' onClick={close} /> 
+                </div>
+            </div>
+            </div>
             </Modal>
           )}
 
