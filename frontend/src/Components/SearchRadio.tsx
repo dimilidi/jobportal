@@ -11,10 +11,12 @@ const SearchRadio = (props: Props) => {
   }
 
   return (
-    <div className='flex gap-2'>
+    <div className='flex gap-3 w-[100%] mx-auto items-start pl-3 mb-1 mt-1 ml-6
+    md:pl-8 
+    lg:pl-5 '>
       <div>
         <input
-          className='mr-1'
+          className='mr-1 accent-darkGreen '
           type='radio'
           id='all'
           name='category'
@@ -22,11 +24,11 @@ const SearchRadio = (props: Props) => {
           checked={props.selectedCategory == 'all'}
           onChange={handleChange}
         />
-        <label htmlFor='all'>All</label>
+        <label  htmlFor='all'>All</label>
       </div>
-      <div>
+      <div >
         <input
-          className='mr-1'
+          className='mr-1 accent-darkGreen'
           type='radio'
           id='offering'
           name='category'
@@ -38,7 +40,7 @@ const SearchRadio = (props: Props) => {
       </div>
       <div>
         <input
-          className='mr-1'
+          className='mr-1  accent-darkGreen'
           type='radio'
           id='searching'
           name='category'

@@ -89,10 +89,10 @@ const AdsList = () => {
             </div>
 
             {/* SEARCH UND ADS */}
-            <div
-              className='flex flex-col justify-center items-center
-              lg:justify-end lg:items-end'
-            >
+            <div >
+              {/* className='flex flex-col justify-center items-center
+              lg:justify-end lg:items-end' */}
+           
               {/* Search */}
               <SearchContainer page='AdsList' />
               {/* <form

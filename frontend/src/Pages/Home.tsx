@@ -21,7 +21,7 @@ const Home = () => {
       initial={{ width: '100%' }}
       animate={{ width: '100%' }}
       exit={{ x: window.innerWidth }}
-      className='mx-auto lg:w-[90%] w-full h-full min-h-[918px] flex justify-center items-center lg:justify-end'
+      className='mx-auto md:w-[90%] w-full h-full min-h-[918px] flex justify-center items-center lg:justify-end'
     >
       <div className=' py-8  h-full   w-[100%]  sm:w-[50%] flex flex-col items-center justify-around gap-10 lg:ml-[85px] lg:gap-0  md:w-full lg:flex-row  md:flex-wrap md:justify-center  lg:justify-start  md:items-center  mx-auto'>
         {/* TEXT */}
@@ -51,12 +51,14 @@ const Home = () => {
         </div>
 
         {/* IMAGE */}
+
         <img
           className='w-[80%] max-w-[250px] z-30 xl:max-w-[500px]  lg:max-w-[370px] lg:mb-[-100px] lg:ml-0xl:ml-[0px]'
           src={imageHome}
         ></img>
 
         <SearchContainer page='Home' />
+
       </div>
 
       {/* ELEMENTS (circle) */}

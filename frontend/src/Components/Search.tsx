@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { GoSearch } from 'react-icons/go'
 
+
 type Props = {
   searchInput: string
   setSearchInput: React.Dispatch<React.SetStateAction<string>>
@@ -12,18 +13,25 @@ const Search = (props: Props) => {
   }
 
   return (
-    <div className='w-full flex items-center justify-center '>
-      <label className='relative  w-[90%] sm:w-[80%] xl:w-[60%] '>
+    <div 
+    aria-label='search-home'
+    className='w-[90%] flex items-center justify-center
+    sm:w-[400px]
+    lg:w-[450px] 
+    xl: ml-4 '>
+      <label className='relative  w-full '>
         <GoSearch className='w-[20px] absolute top-4 left-5 text-gray text-opacity-50' />
         <input
           type='text'
-          className='w-full py-[12px] px-12 box-border placeholder:text-center rounded-full bg-darkBeige shadow-inner placeholder:text-gray placeholder:text-opacity-50 focus:outline-lightGray  '
+          className='w-full items-start py-[12px] px-16
+          box-border placeholder:text-center rounded-full bg-darkBeige shadow-inner placeholder:text-gray placeholder:text-opacity-50 focus:outline-lightGray  '
           placeholder='Search'
           value={props.searchInput}
           onChange={(e) => handleChange(e)}
         />
       </label>
     </div>
+    
   )
 }
 
