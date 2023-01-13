@@ -35,7 +35,7 @@ function Ad({ ad }: Props) {
             >
               <div className=' self-end md:mb-6  md:w-[50px] md:h-[30px]'>
                 <img 
-                  className='mb-1 w-[50px] h-[50px] rounded-full'
+                  className='mb-1 w-[50px] h-[50px] rounded-full object-cover'
                   src={ ad.user.avatar ? ad.user.avatar :  profileImg } 
                   alt='' 
                 />

@@ -11,16 +11,16 @@ function AdMobile() {
   if (ad.isLoading) return <Spinner />
 
   return (
-    <div className='w-full  sm:px-3 '>
+    <div className='w-[100%] sm:px-3 '>
       <div className='h-[110px] w-full flex justify-around items-center  text-[14px] border-y-2 border-lightBeige'>
         {/* Left */}
         <div className='w-full h-full flex self-start justify-start '>
-          {/* Profile Image*/}
-          <div className='w-[70px] sm:w-[90px] flex'>
-            <div className='w-[60px] h-[85px] rounded-b-[40px] flex justify-center items-end bg-lightBeige sm:w-[80px]'>
-              <div className='mb-1  self-end  '>
+      {/* Profile Image*/}
+      <div className='w-[70px] sm:w-[90px] absolute md:block'>
+            <div className='w-[45px] md:w-[67px] h-[55px] md:h-[85px] rounded-b-[40px] flex justify-center items-end bg-lightBeige sm:w-[80px]'>
+              <div className='mb-1 self-end'>
                 <img
-                  className='w-[60px]  h-[60px] rounded-full object-fit sm:w-[70px]  sm:h-[70px] '
+                  className='w-[40px] md:w-[60px] h-[40px] md:h-[60px] rounded-full object-fit sm:w-[70px]  sm:h-[70px] object-cover'
                   src={ad.ad?.user.avatar ? ad.ad.user.avatar : avatar}
                   alt=''
                 />
@@ -28,10 +28,10 @@ function AdMobile() {
             </div>
           </div>
 
-          <div className='px-2 pt-1 w-[100%] flex flex-col justify-center items-start sm:w-[70%]'>
+          <div className='py:2 md:pl-[80px] pt-1 w-[70%] md:w-[100%] flex flex-col justify-center items-start sm:w-[70%]'>
             <div className='w-[100%] flex'>
               {/* Title, Sector */}
-              <div className='self-start  text-textBlack'>
+              <div className='self-start text-textBlack ml-[50px] md:ml-0'>
                 <p className='sm:text-[18px] text-textBlack'>{ad.ad?.title}</p>
                 <p className='sm:text-[16px] text-textBlack text-opacity-50'>
                   {ad.ad?.sector}
@@ -39,9 +39,9 @@ function AdMobile() {
               </div>
             </div>
 
-            <div className='w-[150px] p-2 flex  gap-1 sm:w-[200px]'>
+            <div className='w-[150px] p-2 md:p-0 md:py-2 flex  gap-1 sm:w-[200px]'>
               {/* Location */}
-              <div className='px-2 py-1  w-[100px] flex justify-center items-center  border-2  text-[12px] text-textBlack text-opacity-50 text-center border-lightBeige rounded-full md:w-[120px] sm:text-[14px]'>
+              <div className='px-2 py-1 w-[100px] flex justify-center items-center  border-2  text-[12px] text-textBlack text-opacity-50 text-center border-lightBeige rounded-full md:w-[120px] sm:text-[14px]'>
                 <p>{ad.ad?.location}</p>
               </div>
               {/* Category */}
