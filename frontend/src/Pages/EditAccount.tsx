@@ -15,7 +15,8 @@ import BrowseJobs from '../Components/BrowseJobs'
 import { AiFillEdit } from 'react-icons/ai'
 import { motion } from 'framer-motion'
 import { HiOutlineCamera } from 'react-icons/hi'
-
+import { MdAddAPhoto, MdOutlineAddAPhoto } from 'react-icons/md'
+import { RiDeleteBinLine } from 'react-icons/ri'
 
 type Props = {}
 
@@ -35,7 +36,10 @@ const EditAccount = (props: Props) => {
   const [phone, setPhone] = useState(user.user?.phone)
   const [description, setDescription] = useState(user.user?.description)
   const [avatar, setAvatar] = useState<any>(user.user?.avatar)
+  const [open, setOpen] = useState(false)
 
+  const defaultAvatar =
+    'https://res.cloudinary.com/dmdjfvwkd/image/upload/v1673676247/Account_profilDefault_eqka4e.png'
 
   // IF USER NOT LOGGED IN GO TO HOME
   useEffect(() => {
@@ -44,11 +48,20 @@ const EditAccount = (props: Props) => {
     }
   }, [user])
 
+  const editAvatar = () => {
+    setOpen(!open)
+  }
+
+  const deleteAvatar = () => {
+    setAvatar(defaultAvatar)
+    setOpen(!open)
+  }
+
   const handleChangeFile = (e: React.SyntheticEvent) => {
     const target = e.target as HTMLInputElement
     const files = target.files
     files && setFileToBase(files[0])
-   
+
     files && console.log(files[0])
   }
 
@@ -58,6 +71,7 @@ const EditAccount = (props: Props) => {
     reader.onloadend = () => {
       setAvatar(reader.result)
     }
+    setOpen(!open)
   }
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -83,6 +97,7 @@ const EditAccount = (props: Props) => {
       pt-[80px] md:p-[150px] xl:pt-[290]
       flex flex-col items-center
       '
+      onClick={() => open && setOpen(false)}
     >
       {/* GREEN SEMICIRCLE */}
       <div
@@ -122,7 +137,6 @@ const EditAccount = (props: Props) => {
             </span>{' '}
             Profile
           </h1>
-
 
           <div className='hidden lg:flex'>
             <BrowseJobs />
@@ -170,39 +184,60 @@ const EditAccount = (props: Props) => {
               aria-label='inputs-ctn'
               className='w-full 
               lg:w-full
-              relative 
+               
               flex flex-col items-end md:flex-row-reverse md:justify-between md:items-center'
             >
               {/* IMAGE */}
-              <div className='mb-5  flex flex-col '>
+              <div className='h-[150px] relative mb-5  flex flex-col '>
                 <img
                   aria-label='image'
-                  className='h-[8em] w-[8em] object-cover rounded-full  shadow-standard 
+                  className=' h-[8em] w-[8em] object-cover rounded-full  shadow-standard 
                 top-[40px] right-5
                 z-20 block sm:h-[11em] sm:w-[11em]
                 '
                   src={avatar ? avatar : image}
                   alt='profile picture'
                 />
-
                 {/*  Edit Avatar */}
                 <div className='h-[30px] w-[30px] mt-[-20px] mr-5 flex items-center justify-center self-end z-20 text-lightGreen text-[16px] rounded-full bg-white  border-2 border-lightGreen hover:border-darkGreen hover:text-darkGreen   ease-in-out duration-300 shadow-lg md:mt-[-30px] '>
-                  <input
-                    style={{ display: 'none' }}
-                    type='file'
-                    name='avatar'
-                    id='file_upload'
-                    onChange={handleChangeFile}
-                  />
-                  <motion.label
-                    htmlFor='file_upload'
+                  <motion.button
+                    type='button'
                     whileTap={{ scale: 0.8 }}
                     transition={{ duration: 0.5 }}
-                    className='cursor-pointer '
+                    onClick={editAvatar}
                   >
                     <HiOutlineCamera />
-                  </motion.label>
+                  </motion.button>
                 </div>
+                {open && (
+                  <div
+                    className='w-[80%] mt-[-40px] p-3 mx-auto  z-30 bg-background shadow-standard rounded-md flex justify-center gap-5'
+                    onClick={(e) => e.stopPropagation()}
+                  >
+                    <input
+                      style={{ display: 'none' }}
+                      type='file'
+                      name='avatar'
+                      id='file_upload'
+                      onChange={handleChangeFile}
+                    />
+                    <motion.label
+                      htmlFor='file_upload'
+                      whileTap={{ scale: 0.8 }}
+                      transition={{ duration: 0.5 }}
+                      className='cursor-pointer text-[24px] text-darkGreen hover:text-lightGreen'
+                    >
+                      <MdOutlineAddAPhoto />
+                    </motion.label>
+                    <button
+                      type='button'
+                      className='cursor-pointer text-[24px] text-darkGreen hover:text-lightGreen'
+                      onClick={deleteAvatar}
+                    >
+                      <RiDeleteBinLine />
+                    </button>
+                  </div>
+                )}
               </div>
 
               <div className='md:w-[350px]'>
