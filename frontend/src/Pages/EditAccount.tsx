@@ -188,7 +188,7 @@ const EditAccount = (props: Props) => {
               flex flex-col items-end md:flex-row-reverse md:justify-between md:items-center'
             >
               {/* IMAGE */}
-              <div className='h-[150px] relative mb-5  flex flex-col '>
+              <div className='h-[150px] relative mb-5  flex flex-col sm:h-[11em]'>
                 <img
                   aria-label='image'
                   className=' h-[8em] w-[8em] object-cover rounded-full  shadow-standard 
@@ -211,7 +211,7 @@ const EditAccount = (props: Props) => {
                 </div>
                 {open && (
                   <div
-                    className='w-[80%] mt-[-40px] p-3 mx-auto  z-30 bg-background shadow-standard rounded-md flex justify-center gap-5'
+                    className='w-[80%] mt-[-40px]  p-[8px] mx-auto  z-30 bg-background shadow-standard rounded-md flex justify-center gap-5 '
                     onClick={(e) => e.stopPropagation()}
                   >
                     <input
