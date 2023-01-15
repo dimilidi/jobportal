@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { GoSearch } from 'react-icons/go'
-
+import { IoMdClose } from 'react-icons/io'
 
 type Props = {
   searchInput: string
@@ -12,6 +12,10 @@ const Search = (props: Props) => {
     props.setSearchInput(e.target.value)
   }
 
+  const handleClick = (e: React.FormEvent) => {
+    props.setSearchInput('')
+  }
+
   return (
     <div 
     aria-label='search-home'
@@ -19,6 +23,7 @@ const Search = (props: Props) => {
      sm:w-full
     lg:w-full
      '>
+
       <label className='relative  w-full '>
         <GoSearch className='w-[20px] absolute top-4 left-5 text-gray text-opacity-50' />
         <input
@@ -30,8 +35,10 @@ const Search = (props: Props) => {
           onChange={(e) => handleChange(e)}
         />
       </label>
+      <div>
+        <IoMdClose onClick={handleClick} />
+      </div>
     </div>
-    
   )
 }
 

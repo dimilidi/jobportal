@@ -9,6 +9,7 @@ import { AxiosResponse } from 'axios'
 import axiosInstance from '../api/axiosInstance'
 import { User, RegisterInputs, LoginInputs, EditInputs } from '../type'
 import { getErrorArray } from '../utils/getErrorArray'
+import useSearch from './useSearch'
 
 type PromiseResult = {
   status: number
@@ -53,7 +54,7 @@ export const UserProvider = (props: { children: React.ReactElement }) => {
   const [user, setUser] = useState<User | null>(null)
   const [loading, setLoading] = useState(true)
   const [isLoggedIn, setIsLoggedIn] = useState(false)
-
+  const { setSearchWord, setSearchCategory } = useSearch()
   console.log('user', user)
   console.log('loading', loading)
   console.log('isLoggedIn', isLoggedIn)
@@ -138,6 +139,8 @@ export const UserProvider = (props: { children: React.ReactElement }) => {
     logout: async () => {
       await axiosInstance.get('/user/logout')
       setUser(null)
+      setSearchWord('')
+      setSearchCategory('all')
     },
     editAccount: async (inputs: EditInputs) => {
       try {

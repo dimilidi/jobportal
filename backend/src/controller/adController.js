@@ -2,7 +2,9 @@ import Ad from '../models/Ad.js'
 
 /** @type {import("express").RequestHandler} */
 export async function getAds(req, res) {
-  let { userId, search, category } = req.query
+  const page_size = 4
+
+  let { userId, search, category, page = 0 } = req.query
 
   let query = Ad.find()
 
@@ -16,21 +18,25 @@ export async function getAds(req, res) {
 
   // filter ads by search, if it is included in title/description/location/sector,
   if (search) {
-    const searchWords = search.split(' ')
-
-    const searchWordsArray = []
-    for (const word of searchWords) {
-      searchWordsArray.push({ title: { $in: [word] } })
-      searchWordsArray.push({ profession: { $in: [word] } })
-      searchWordsArray.push({ description: { $in: [word] } })
-      searchWordsArray.push({ location: { $in: [word] } })
-    }
     query = query
-      .find({ $or: searchWordsArray })
-      .collation({ locale: 'en_US', strength: 1 })
+      // search for the input words and give score by the number of matching words
+      .find({ $text: { $search: search } }, { score: { $meta: 'textScore' } })
+    // sort search
+    query = query.sort({ score: { $meta: 'textScore' } })
+  } else {
+    // sort ads by update date (descending order)
+    query = query.sort({ updatedAt: -1 })
   }
 
-  let ads = await query.populate('user', 'name, avatar')
+  // Pagination
+  if (page) {
+    query = query
+      .find()
+      .skip(parseInt(page) * page_size)
+      .limit(page_size)
+  }
+
+  let ads = await query.populate('user', 'name, avatar').clone()
   res.status(200).json(ads)
 }
 
@@ -41,7 +47,7 @@ export async function postAd(req, res) {
 
   const newAd = new Ad({
     ...ad,
-    user: user._id
+    user: user._id,
   })
 
   await newAd.save()
@@ -58,13 +64,12 @@ export async function getAdById(req, res) {
   let ad = await Ad.findById(adId).populate('user', 'name, avatar')
 
   // if user is logged in, contact data selected in contactvia
-  let itemToPopulate = 'name, avatar'
+  let itemToPopulate = 'name avatar'
   if (user) {
     for (const item of ad.contactVia) {
       itemToPopulate += ` ${item}`
     }
-    ad = await Ad.findById(adId).populate('user', itemToPopulate )
-     
+    ad = await Ad.findById(adId).populate('user', itemToPopulate)
   }
 
   res.status(200).json(ad)

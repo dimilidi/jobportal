@@ -90,8 +90,8 @@ const SingleAd = () => {
           {/* Ad */}
           <div
             area-label='ad'
-            className='py-10 px-2 sm:px-5   sm:mx-0 sm:p-5 mt-0 mx-2 w-full min-h-[400px] sm:h-[400px] 
-            sm:w-[600px] xl:w-[800px] xl:h-[450px]
+            className='py-10 px-2 sm:px-5 sm:mx-0 sm:p-5 mt-0 mx-2 w-[90%] min-h-[400px] sm:h-[400px] 
+            sm:w-[600px] xl:w-[100%] xl:h-[450px]
             flex flex-col  justify-start item-center self-center z-10 rounded-[21px] bg-white shadow-standard'
           >
             <AdMobile />
@@ -157,7 +157,7 @@ const SingleAd = () => {
           <div className='flex justify-center '>
             { user.user && (
               <ContactDetails
-                className=' w-[100%] max-w-[340px] pt-10 
+                className=' w-[90%] max-w-[340px] pt-10 
               sm:w-[80%]
               lg:w-[800px]
               flex justify-center self-center rounded-xl xl:hidden'
@@ -200,7 +200,7 @@ const SingleAd = () => {
           <ContactDetails
             className='hidden xl:block
         w-[250px] m-8 absolute lg:items-center  -right-14 top-[435px] rounded-l-[65px] translate-y-[-50%] 
-        xl:min-w-[230px] xl:pl-5'
+        xl:min-w-[230px]'
           />
         )}
         {/* ContactDetails - END */}
