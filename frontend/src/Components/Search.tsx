@@ -27,7 +27,7 @@ const Search = (props: Props) => {
       <label className='relative  w-full '>
         <GoSearch className='w-[20px] absolute top-5 left-4 text-gray text-opacity-50' />
         <IoMdClose
-        className='absolute top-3 right-2 text-gray text-opacity-30 ' size={26}
+        className='absolute top-3 right-2 text-gray text-opacity-30' size={26}
         onClick={handleClick} />
         <input
           type='text'
