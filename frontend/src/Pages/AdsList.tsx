@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import useAdList from '../Hooks/useAdList'
 import useUser from '../Hooks/useUser'
 import useSearch from '../Hooks/useSearch'
+import { useState } from 'react'
 // Components
 import Ad from '../Components/Ad'
 import UniButton from '../Components/UniButton'
@@ -13,7 +14,8 @@ import { motion } from 'framer-motion'
 import man from '../assets/images/Ads_man_working.png'
 import useDecorationLine from '../Hooks/useDecorationLine'
 import SearchContainer from '../Components/SearchContainer'
-import { useState } from 'react'
+// Icons
+import {GrPrevious, GrNext} from 'react-icons/gr'
 
 const AdsList = () => {
 
@@ -132,7 +134,7 @@ const AdsList = () => {
                 <div
                   className='mt-[10px] w-full h-full
                 flex flex-wrap justify-items-center items-start
-                sm:px-5 lg:px-0 sm:w-[600px] sm:h-[552px]
+                sm:px-5 lg:px-0 sm:w-[600px] sm:h-[460px]
                 md:w-[900px] md:h-[435px] sm:overflow-y-scroll
                 lg:w-[700px] 
                 xl:w-[900px]'
@@ -147,16 +149,37 @@ const AdsList = () => {
               )}
             </div>
           </div>
+          
+
+          {/* NEXT & PREV PAGE  */}
+          <div area-label='pages-counter'
+          className='mt-2 mb-8 relative xl:right-[17%] 
+          sm:mb'
+          >
 
           <button 
+            className=' bg-darkBeige p-2 rounded-full border-darkBeige border-2
+             hover:bg-background
+             absolute left-[37%]'
             disabled={page === 0}
             onClick={()=> setPage(page - 1)}
           >
-            Previous Page
+            <GrPrevious />
           </button>
-          <button onClick={()=> setPage(page + 1)}>
-            Next Page
+
+          <span className='p-1 hidden md:inline-block right-11'>Page</span>
+
+          <button 
+          className=' bg-darkBeige p-2 rounded-full border-darkBeige border-2
+          hover:bg-background
+          absolute right-[37%] '
+          onClick={()=> setPage(page + 1)}>
+            <GrNext />
           </button>
+          </div>
+          {/* NEXT & PREV PAGE END */}
+
+
 
           {/* Button Ad Post */}
           <div
