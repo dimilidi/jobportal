@@ -1,4 +1,7 @@
 import React from 'react'
+import UniButton from './UniButton'
+import {BsFillArrowRightCircleFill} from 'react-icons/bs'
+
 
 type Props = {
   selectedCategory: string
@@ -11,20 +14,26 @@ const SearchRadio = (props: Props) => {
   }
 
   return (
-    <div className='flex gap-3 w-[100%] mx-auto items-start pl-3 mb-1 mt-1 ml-6
-    md:pl-8 
-    lg:pl-5 '>
+    <div 
+    area-label='search-radio'
+    className='p-4 flex justify-center items-center gap-3  rounded-full border-darkBeige border-2 
+    py-2 mt-2
+    md:pl-4 md:p 
+    lg:w-[100%] lg:max-w-full lg:items-baseline lg:py-1
+    '>
       <div>
         <input
           className='mr-1 accent-darkGreen '
           type='radio'
           id='all'
           name='category'
-          value='all'
+          value='all' 
           checked={props.selectedCategory == 'all'}
-          onChange={handleChange}
         />
-        <label  htmlFor='all'>All</label>
+        <label 
+        className=' text-gray' 
+        htmlFor='all'>all
+        </label>
       </div>
       <div >
         <input
@@ -36,11 +45,13 @@ const SearchRadio = (props: Props) => {
           checked={props.selectedCategory == 'offering'}
           onChange={handleChange}
         />
-        <label htmlFor='offering'>Offering</label>
+        <label 
+          className=' text-gray' 
+          htmlFor='offering'>offering</label>
       </div>
       <div>
         <input
-          className='mr-1  accent-darkGreen'
+          className='mr-1 accent-darkGreen'
           type='radio'
           id='searching'
           name='category'
@@ -48,8 +59,22 @@ const SearchRadio = (props: Props) => {
           checked={props.selectedCategory == 'searching'}
           onChange={handleChange}
         />
-        <label htmlFor='searching'>Searching</label>
+        <label 
+          className=' text-gray' 
+          htmlFor='searching'>searching</label>
       </div>
+
+      {/* BUTTONS INSIDE OF SEARCHING/OFFERING */}
+          <UniButton 
+          className='hidden md:block '
+          text='Browse Ads' type='button' 
+          style={{width:'140px', height:'40px'}}
+          />
+        {/* ARROW IN MOBILE */}
+          <BsFillArrowRightCircleFill
+          size={28}
+          className=' md:hidden  ml-2  text-lightGreen cursor-pointer '
+          />
     </div>
   )
 }

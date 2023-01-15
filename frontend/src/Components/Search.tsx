@@ -17,13 +17,13 @@ const Search = (props: Props) => {
   }
 
   return (
-    <div
-      aria-label='search-home'
-      className='w-[90%] flex items-center justify-center
-    sm:w-[400px]
-    lg:w-[450px] 
-    xl: ml-4 '
-    >
+    <div 
+    aria-label='search-home'
+    className='flex items-center justify-center w-[20rem]
+     sm:w-full
+    lg:w-full
+     '>
+
       <label className='relative  w-full '>
         <GoSearch className='w-[20px] absolute top-4 left-5 text-gray text-opacity-50' />
         <input
