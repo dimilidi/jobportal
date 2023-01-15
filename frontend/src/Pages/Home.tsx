@@ -45,15 +45,15 @@ const Home = () => {
             </span>
           </h1>
           <p className='w-[80%] h-[80px] hidden font-light text-gray break-words xl:max-w-[450px] xl:text-lg xl:pt-2 lg:inline-block'>
-            Lorem Ipsum is simply dummy text of the has been the industry's
-            standard dummy text Ipsum is simply dummy.
+          Freedom is finding the right job. Don't wait to be found - apply now! Find suitable job today!
           </p>
         </div>
 
         {/* IMAGE */}
 
         <img
-          className='w-[80%] max-w-[250px] z-30 xl:max-w-[500px]  lg:max-w-[370px] lg:mb-[-100px] lg:ml-0xl:ml-[0px]'
+          className='w-[80%] max-w-[250px] z-30 xl:max-w-[500px]  
+          lg:max-w-[370px] lg:mb-[-100px] lg:ml-2 xl:ml-6'
           src={imageHome}
         ></img>
 
