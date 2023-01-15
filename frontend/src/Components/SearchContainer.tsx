@@ -32,20 +32,29 @@ const SearchContainer = (props: Props) => {
     // SEARCH HOME
     <form
       aria-label='search-home-form'
-      className='mt-6 flex items-center justify-center gap-3 
-      sm:w-[90%] w-full
-      lg:pt-[0px] lg:self-start  lg:w-[50%]'
-      style={{ flexDirection: props.page == 'Home' ? 'column' : 'row' }}
+      className='sm:w-[27rem] mt-6 flex items-center justify-center flex-col
+      lg:pt-[0px] lg:self-start  lg:w-[55%]'
+      // style={{ flexDirection: props.page == 'Home' ? 'column' : 'row' }}
       onSubmit={handleSubmit}
     >
-      <div>
+      <div
+      className='w-full  flex justify-center flex-col items-center
+      lg:w-[80%]'
+      >
         <Search searchInput={searchInput} setSearchInput={setSearchInput} />
         <SearchRadio
           selectedCategory={selectedCategory}
           setSelectedCategory={setSelectedCategory}
         />
       </div>
-        <UniButton text='Browse Ads' type='button'  /> 
+
+      {/* BUTTON OUTSIDE OF SEARCHING/OFFERING */}
+        {/* <UniButton 
+        style={{width:'160px', height:'50px'}}
+        className='mt-2 hidden sm:block'
+        text='Browse Ads' 
+        type='button'  
+        />  */}
     </form>
     :
 
@@ -53,7 +62,7 @@ const SearchContainer = (props: Props) => {
     <form 
       onClick={handleSubmit} 
       aria-label='search-ads-form'
-      className='flex mt-6 w-full justify-center items-center
+      className='flex mt-6 w-full justify-center items-center flex-row
     '>
        <div>
         <Search searchInput={searchInput} setSearchInput={setSearchInput} />
@@ -63,11 +72,11 @@ const SearchContainer = (props: Props) => {
         />
       </div>
 
-      <BsFillArrowRightCircleFill 
-        onClick={handleSubmit} 
+      {/* <BsFillArrowRightCircleFill
+        className='text-lightGreen mb-8 cursor-pointer mr-3 sm:ml-4'
         size={46} 
-        className='text-lightGreen mb-8 cursor-pointer mr-3 sm:ml-4
-         ' /> 
+        onClick={handleSubmit}  
+         />  */}
 
     </form>
   )
