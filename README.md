@@ -2,34 +2,51 @@
 
  <br/>
 
-> Outline a brief description of your project. <br/>
+**Jobsy.** is a MERN Stack based web application.
+**Goal:** The application is free and available to all. Created to help find an employee and an employer. 
+ <br/>
+ <br/>
+
 > Checkout our project: [GitHub Repo](https://github.com/dimilidi/jobportal)<br/>
-> Visit our website: [Jobsy Website](https://jobsy-jobportal.netlify.app)<br/>
+> Visit our website: [Jobsy Website](https://jobsy-jobportal.netlify.app)<br/> <br/>
+
 
 ## Table of Contents
 
 1. [General Info](#1-general-information)
-2. [Technologies Used](#2-technologies-used)
-3. [Features](#3-features)
+2. [Project Status](#7-project-status)
+3. [Technologies Used](#2-technologies-used)
+<!-- 3. [Features](#3-features) -->
 4. [Screenshots](#4-screenshots)
 5. [Setup](#5-setup)
 6. [Usage](#6-usage)
-7. [Project Status](#7-project-status)
-8. [Room for Improvement](#8-room-for-improvement)
-9. [Acknowledgements](#9-acknowledgements)
-10. [Contact](#10-contact)
+7. [Room for Improvement](#8-room-for-improvement)
+8. [Acknowledgements](#9-acknowledgements)
+9. [Contact](#10-contact)
 
 <!-- * [License](#license) -->
 
 ## 1 General Information
 
-- Provide general information about your project here.
-- What problem does it (intend to) solve?
-- What is the purpose of your project?
-- Why did you undertake it?
-<!-- You don't have to answer all the questions - just the ones relevant to your project. -->
 
-## 2. Technologies Used
+## Not logged in user: 
+* can view ads without logging in
+ <br/>
+
+## Logged in user:
+* views the ads and sees the contact to the person who published the ad
+* has the ability to send a message to the person who published the ad
+* publishes own advertisements (searching or offering)
+* has a user profile where has the possibility of giving a contact (email and/or phone), profession, short description about himself
+* can edit his profile (about section, add a profile photo)
+* can see his ads and edit/deleting them
+* can delete profile with all his ads
+
+## 2. Project Status
+
+Project is: _in progress_ 
+
+## 3. Technologies Used
 
 1. General
 
@@ -56,20 +73,33 @@
 4. Data base
 
 - MongoDB
-
+<!-- 
 ## 3. Features
 
 List the ready features here:
 
 - Awesome feature 1
 - Awesome feature 2
-- Awesome feature 3
+- Awesome feature 3 -->
 
 ## 4. Screenshots
 
-![Example screenshot](./img/screenshot.png)
+**Mobile First** <br>
+<img src='./frontend/src/assets/screenshots/home_mobile.png ' width='150' height='300' />
+<img src='./frontend/src/assets/screenshots/ads.list_mobile.png ' width='150' height='300' />
+<img src='./frontend/src/assets/screenshots/account_mobile.png ' width='150' height='300' />
+<img src='./frontend/src/assets/screenshots/Account_mobile2.png ' width='150' height='300' />
+<img src='./frontend/src/assets/screenshots/editAccount_mobile.png' width='150' height='300' />
+<img src='./frontend/src/assets/screenshots/CreateAd_mobile.png' width='150' height='300' />
+<img src='./frontend/src/assets/screenshots/deleteAccount_mobile.png' width='150' height='300' />
 
-<!-- If you have screenshots you'd like to share, include them here. -->
+**Desktop** <br>
+<img src='./frontend/src/assets/screenshots/home_desktop.png ' width='300' height='250' />
+<img src='./frontend/src/assets/screenshots/Account_desktop.png ' width='300' height='250' />
+
+
+
+
 
 ## 5. Setup
 
@@ -92,15 +122,10 @@ Provide various use cases and code examples here.
 
 `write-your-code-here`
 
-## Project Status
-
-Project is: _in progress_ / _complete_ / _no longer being worked on_. If you are no longer working on it, provide reasons why.
 
 ## 7. Room for Improvement
 
-Include areas you believe need improvement / could be improved. Also add TODOs for future development.
-
-Room for improvement:
+ Improvements for future development:
 
 - [ ] Add new feature for user to network each other
 - [ ] Add new feature for user to manage ads created by other users in his/her account. eg. save and categorize ads (favorits, contacting)
@@ -112,13 +137,15 @@ To do:
 
 ## 8. Acknowledgements
 
-- This project was inspired by LinkedIn?
-- Many thanks to teacher name??
+- This is the final project of one year MERN Stack Course by Digital Career Institute.
+- This project was inspired by LinkedIn, makes communication as easy as possible with direct messeges.
+- Many thanks to Christoph Muck, Jan Laskowski, Manuel Jung and whole DCI Team. 
 
-## 9. Contact
+## 9. Our Team: 
 
-Created by [@flynerdpl](https://www.flynerd.pl/) - feel free to contact me!
+1. **Miki Gerlach** (Backend, Frontend) [LinkedIn](https://www.linkedin.com/in/mikigerlach/)
+2. **Lidiya Dimitrova** (Backend, Frontend) [LinkedIn](https://www.linkedin.com/in/dimitrovalidiya/)
+5. **Timon Hosch** (Backend, Frontend) [LinkedIn](https://www.linkedin.com/in/timon-hosch-3a1463236/)
+3. **Paulina Hryszko** (Design, Frontend) [LinkedIn](https://www.linkedin.com/in/paulina-hryszko/)
+4. **Oriana Quintero** (Design, Frontend) [LinkedIn](https://www.linkedin.com/in/oriana-quintero/)
 
-<!-- Optional -->
-
-<!-- You don't have to include all sections - just the one's relevant to your project -->
