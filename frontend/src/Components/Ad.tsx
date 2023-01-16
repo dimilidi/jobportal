@@ -18,11 +18,6 @@ function Ad({ ad, index }: Props) {
   const params = useParams()
   const navigate = useNavigate()
   const user = useUser()
-  const {searchWord, searchCategory} = useSearch()
-  const {adList, lastAdRef, page} = useAdList(``)
-console.log('LAST',lastAdRef);
-console.log('Ref',index === adList.length-1 );
-
 
   const [isOpen, setIsOpen] = useState(false)
   const [modalOpen, setModalOpen] = useState(false)
@@ -32,7 +27,7 @@ console.log('Ref',index === adList.length-1 );
 
   return (
     
-    <div ref={index === adList.length-1 ? lastAdRef : null}  className='w-full cursor-pointer sm:px-[0px] md:py-1 max-w-[550px] xl:max-w-[680px]'>
+    <div  className='w-full cursor-pointer sm:px-[0px] md:py-1 max-w-[550px] xl:max-w-[680px]'>
       <div className='mx-auto h-[110px] w-[100%] flex justify-between items-center border-lightBeige border-t-2 text-[14px] md:h-[100px] md:border-y-2'>
         {/* LEFT SECTION */}
         <div className='h-full  flex justify-start sm:gap-3'>
