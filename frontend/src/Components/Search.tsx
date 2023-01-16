@@ -24,7 +24,7 @@ const Search = (props: Props) => {
     lg:w-full
      '>
 
-      <label className='relative  w-full '>
+      <label className='relative  w-full  '>
         <GoSearch className='w-[20px] absolute top-5 left-4 text-gray text-opacity-50' />
         <IoMdClose
         className='absolute top-3 right-2 text-gray text-opacity-30' size={26}

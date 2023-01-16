@@ -64,11 +64,11 @@ function Ad({ ad, index }: Props) {
 
           {/* LINK TO SINGLE AD  */}
           <div onClick={() => navigate(`/ad/${ad?._id}`)}
-            className='w-[200px] flex flex-col sm:flex-row justify-center items-center  sm:w-[320px] md:flex-row md:justify-start'
+            className='w-[200px] flex flex-col sm:flex-row justify-center items-center  sm:w-[350px] md:flex-row md:justify-start'
           >
             <div className='w-[180px] flex sm:w-[190px] xl:w-[300px]'>
               {/* TITLE, SECTOR */}
-              <div className='w-[150px] relative text-textBlack sm:full'>
+              <div className='w-[185px] relative text-textBlack sm:full'>
                 <p className='truncate  text-[14px] sm:text-[18px] text-textBlack'>
                   {ad.title}
                 </p>
@@ -96,14 +96,17 @@ function Ad({ ad, index }: Props) {
         </div>
 
         {/* RIGHT SECTION */}
-        <div onClick={() => navigate(`/ad/${ad?._id}`)} className='w-[70px] h-full flex self-end flex-col justify-end  items-start gap-1 md:w-[180px] md:flex-row md:self-center md:items-center md:justify-between'>
+        <div onClick={() => navigate(`/ad/${ad?._id}`)} className='w-[70px] h-full flex self-end flex-col justify-end  items-start gap-1 md:w-[180px] md:flex-row md:self-center md:items-center md:justify-between '>
           {/* CREATED AT */}
-          <div className='text-[14px] text-textBlack text-opacity-50 md:ml-[10px] md:text-[16px]'>
+          <div className='text-[14px] text-textBlack text-opacity-50 md:ml-[40px] md:text-[16px]'>
             <p>{new Date(ad.createdAt).toLocaleDateString()}</p>
           </div>
 
           {/* WAGE */}
-          <div className=' w-[70px] h-[60px] flex justify-center items-center rounded-t-[20px] text-[14px]  text-textBlack text-opacity-70 bg-lightBeige md:mr-[-15px] md:h-[100px] md:w-[70px] md:rounded-r-[20px] md:rounded-tl-[0px] md:text-[16px]'>
+          <div 
+          className=' 
+          w-[70px] h-[60px] flex justify-center items-center rounded-t-[20px] text-[14px]  text-textBlack text-opacity-70 bg-lightBeige 
+          md:mr-[-15px] md:h-[100px] md:w-[70px] md:rounded-r-[20px] md:rounded-tl-[0px] md:text-[16px]'>
             <div className='text-[18px] font-medium'>
               {ad.wage}€
               <p className='text-[14px] font-medium text-textBlack text-opacity-50'>

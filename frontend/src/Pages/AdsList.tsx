@@ -158,6 +158,7 @@ const AdsList = () => {
                   
                     <button
                       className='w-[32px] h-[32px] flex justify-center items-center bg-darkBeige p-2 rounded-full border-darkBeige border-2
+
           hover:bg-background
           '
                       disabled={page === pageCount - 1}

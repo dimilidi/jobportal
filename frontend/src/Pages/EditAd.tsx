@@ -15,6 +15,7 @@ import imagePostAd from '../assets/images/PostAd_chef.png'
 // Others
 import { motion } from 'framer-motion'
 import BrowseJobs from '../Components/BrowseJobs'
+import useDecorationLine from '../Hooks/useDecorationLine'
 
 
 const EditAd = () => {
@@ -23,6 +24,9 @@ const EditAd = () => {
   const navigate = useNavigate()
   const user = useUser()
   const ads = useAds(`/ads/${params.id}`)
+
+    // DECORATION LINE
+  const editText = useDecorationLine({orientation: 'left'})
 
   // STATES
   const [isLoading, setIsLoading] = useState(false)
@@ -126,22 +130,6 @@ const EditAd = () => {
         <BrowseJobs/>
         </div>
 
-          {/* TITLE MOBILE (with line) */}
-          <div>
-            <h1
-              area-label='title-mobile'
-              className='text-4xl font-medium text-textBlack md:hidden lg:hidden'
-            >
-              <span className='italic font-medium text-lightGreen md:hidden lg:hidden'>
-                Edit{' '}
-              </span>
-              your Ad
-            </h1>
-            <div
-              area-label='line'
-              className='w-[140px] absolute top-[%] left-0 border-b-[3px] border-lightGreen md:hidden lg:hidden'
-            />
-          </div>
 
           {/* AD FORM */}
           <form
@@ -153,6 +141,26 @@ const EditAd = () => {
               area-label='ad'
               className='p-5 pt-10  flex flex-col items-center rounded-[21px] bg-white shadow-standard  sm:p-10 '
             >
+            {/* TITLE MOBILE (with line) */}
+              <div>
+                <h1
+                  area-label='title-mobile'
+                  className='text-4xl mb-3 font-medium text-textBlack md:hidden lg:hidden'
+                >
+                  <span
+                  ref={editText} 
+                  className='italic font-medium text-lightGreen md:hidden lg:hidden'>
+                    Edit{' '}
+                  </span>
+                  your Ad
+                </h1>
+                
+                {/* <div
+                  area-label='line'
+                  className='w-[140px] absolute top-[%] left-0 border-b-[3px] border-lightGreen md:hidden lg:hidden'
+                /> */}
+              </div>
+
               {/* TITLE DESKTOP */}
               <div
                 area-label='text left'

@@ -38,8 +38,8 @@ const SearchContainer = (props: Props) => {
     <form
       aria-label='search-home-form'
       className='sm:w-[27rem] mt-6 flex items-center justify-center flex-col
-      lg:pt-[0px] lg:self-start  lg:w-[55%]'
-      // style={{ flexDirection: props.page == 'Home' ? 'column' : 'row' }}
+      lg:pt-[0px] lg:items-start lg:w-[55%]
+      2xl:w-[42%] 2xl:items-end'
       onSubmit={handleSubmit}
     >
       <div
@@ -52,17 +52,10 @@ const SearchContainer = (props: Props) => {
           setSelectedCategory={setSelectedCategory}
         />
       </div>
-      
-      {/* BUTTON OUTSIDE OF SEARCHING/OFFERING */}
-        {/* <UniButton 
-        style={{width:'160px', height:'50px'}}
-        className='mt-2 hidden sm:block'
-        text='Browse Ads' 
-        type='button'  
-        />  */}
-
     </form>
+
   ) : (
+    
     // SEARCH ADS LIST
     <form
       onClick={handleSubmit}
@@ -76,12 +69,6 @@ const SearchContainer = (props: Props) => {
           setSelectedCategory={setSelectedCategory}
         />
       </div>
-      
-      {/* <BsFillArrowRightCircleFill
-        className='text-lightGreen mb-8 cursor-pointer mr-3 sm:ml-4'
-        size={46} 
-        onClick={handleSubmit}  
-         />  */}
     </form>
   )
 }
