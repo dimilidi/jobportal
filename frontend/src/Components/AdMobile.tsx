@@ -33,7 +33,7 @@ function AdMobile() {
           <div className='py:2 md:pl-[80px] pt-1 w-[70%] md:w-[100%] flex flex-col justify-center items-start sm:w-[70%]'>
             <div className='w-[100%] flex'>
               {/* Title, Sector */}
-              <div className='self-start text-textBlack ml-[50px] sm:ml-[90px] md:ml-[50px] '>
+              <div className='self-start text-textBlack ml-[50px] sm:ml-[90px] md:ml-0 '>
                 <p className='w-full sm:text-[18px] text-textBlack'>{ad.ad?.title}</p>
                 <p className='sm:text-[16px] text-textBlack text-opacity-50'>
                   {ad.ad?.sector}
