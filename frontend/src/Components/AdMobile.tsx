@@ -12,13 +12,15 @@ function AdMobile() {
 
   return (
     <div className='w-[100%] sm:px-3 '>
-      <div className='h-[110px] w-full flex justify-around items-center  text-[14px] border-y-2 border-lightBeige'>
+      <div className='sm:h-[130px]  w-full flex justify-around items-center  text-[14px] border-y-2 border-lightBeige'>
         {/* Left */}
         <div className='w-full h-full flex self-start justify-start '>
       {/* Profile Image*/}
       <div className='w-[70px] sm:w-[90px] absolute md:block'>
-            <div className='w-[45px] md:w-[67px] h-[55px] md:h-[85px] rounded-b-[40px] flex justify-center items-end bg-lightBeige sm:w-[80px]'>
-              <div className='mb-1 self-end'>
+            <div className='w-[45px] rounded-b-[40px] flex justify-center items-end bg-lightBeige
+            md:w-[67px] h-[55px] md:h-[85px]  
+            sm:w-[80px] sm:h-[80px]'>
+              <div className='mb-1  self-end'>
                 <img
                   className='w-[40px] md:w-[60px] h-[40px] md:h-[60px] rounded-full object-fit sm:w-[70px]  sm:h-[70px] object-cover'
                   src={ad.ad?.user.avatar ? ad.ad.user.avatar : avatar}
@@ -31,8 +33,8 @@ function AdMobile() {
           <div className='py:2 md:pl-[80px] pt-1 w-[70%] md:w-[100%] flex flex-col justify-center items-start sm:w-[70%]'>
             <div className='w-[100%] flex'>
               {/* Title, Sector */}
-              <div className='self-start text-textBlack ml-[50px] md:ml-0'>
-                <p className='sm:text-[18px] text-textBlack'>{ad.ad?.title}</p>
+              <div className='self-start text-textBlack ml-[50px] sm:ml-[90px] md:ml-[50px] '>
+                <p className='w-full sm:text-[18px] text-textBlack'>{ad.ad?.title}</p>
                 <p className='sm:text-[16px] text-textBlack text-opacity-50'>
                   {ad.ad?.sector}
                 </p>
@@ -60,10 +62,13 @@ function AdMobile() {
           </div>
 
           {/* Wage */}
-          <div className='w-[50px] h-[60px] flex justify-center items-center text-[14px] text-textBlack text-opacity-70 rounded-t-[20px] bg-lightBeige sm:w-[70px] md:text-[16px]'>
+          <div className='w-[60px] h-[60px] mt-14 flex justify-center items-center text-[14px] text-textBlack text-opacity-70 rounded-t-[20px] bg-lightBeige sm:w-[80px] 
+          sm:mt-10
+          md:text-[16px] md:w-[70px]
+          '>
             <p className='text-center text-[13px]'>
               {ad.ad?.wage}€
-              <span className='text-[12px] text-textBlack text-opacity-50 sm:text-[16px]'>
+              <span className='text-[12px] text-textBlack text-opacity-50 sm:text-[16px] '>
                 {' '}
                 <br />/ hour
               </span>
