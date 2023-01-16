@@ -16,7 +16,6 @@ import DeleteAd from '../assets/images/DeleteAd.png'
 
 // Framer-motion
 import { motion } from 'framer-motion'
-import { IoMdHeadset } from 'react-icons/io'
 import { AiFillEdit } from 'react-icons/ai'
 import UniButtonWhite from '../Components/UniButtonWhite'
 import { RiDeleteBinLine } from 'react-icons/ri'
