@@ -1,5 +1,6 @@
 // Hooks
-import { useState, useEffect, useCallback } from 'react'
+import axios from 'axios'
+import { useState, useEffect, useCallback, useRef } from 'react'
 // Axios
 import axiosInstance from '../api/axiosInstance'
 // type
@@ -9,15 +10,15 @@ type AdHook = {
   adList: Ad[] | []
   isLoading: boolean
   error: string
-  page: number
-  setPage: ( page:number ) => void
+  pageCount: number
 }
 
 function useAdList(queries: string): AdHook {
   const [adList, setAdList] = useState<Ad[] | []>([])
-  const [isLoading, setIsLoading] = useState(false)
+  const [isLoading, setIsLoading] = useState(true)
   const [error, setError] = useState('')
-  const [page, setPage] = useState(1)
+  const [pageCount, setPageCount] = useState(0)
+
 
 
   const fetchAdList = async () => {
@@ -26,18 +27,33 @@ function useAdList(queries: string): AdHook {
     try {
       const res = await axiosInstance.get(`ads?${queries}`)
       const data = res.data
-      setAdList(data)
+      setAdList(data.ads)
+      setPageCount(Math.ceil(data.pagination.pageCount))
+      console.log(data.pagination);
+      
     } catch (error) {
       setError('Something went wrong!')
     }
+
     setIsLoading(false)
   }
 
+
   useEffect(() => {
     fetchAdList()
-  }, [queries, adList.length, page])
+  }, [queries, adList.length])
 
-  return { adList, error, isLoading, page, setPage }
+
+
+
+
+
+
+  
+ 
+
+  return { adList, error, isLoading, pageCount}
+
 }
 
 export default useAdList

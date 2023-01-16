@@ -20,6 +20,11 @@ const SearchContainer = (props: Props) => {
   const [selectedCategory, setSelectedCategory] =
     useState<string>(searchCategory)
 
+
+    console.log('search',searchInput);
+    console.log('Word',searchWord);
+
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
     setSearchWord(searchInput)

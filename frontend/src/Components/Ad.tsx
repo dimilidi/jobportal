@@ -5,12 +5,16 @@ import Dropdown from './Dropdown'
 import { useState } from 'react'
 import DotMenu from './DotMenu'
 import { Ad as AdType } from '../type'
+import useSearch from '../Hooks/useSearch'
+import useAdList from '../Hooks/useAdList'
 
 type Props = {
   ad: AdType
+  index:any
+  
 }
 
-function Ad({ ad }: Props) {
+function Ad({ ad, index }: Props) {
   const params = useParams()
   const navigate = useNavigate()
   const user = useUser()

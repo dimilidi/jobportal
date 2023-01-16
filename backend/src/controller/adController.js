@@ -2,11 +2,14 @@ import Ad from '../models/Ad.js'
 
 /** @type {import("express").RequestHandler} */
 export async function getAds(req, res) {
-  const page_size = 4
+  const page_size = 3
+  const count = await Ad.estimatedDocumentCount({})
+  const pageCount = count / page_size
+
 
   let { userId, search, category, page = 0 } = req.query
 
-  let query = Ad.find()
+  let query = Ad.find({})
 
   if (userId) query = query.where('user').equals(userId)
 
@@ -28,16 +31,19 @@ export async function getAds(req, res) {
     query = query.sort({ updatedAt: -1 })
   }
 
-  // Pagination
+  // // Pagination
   if (page) {
     query = query
-      .find()
+      .find({})
       .skip(parseInt(page) * page_size)
       .limit(page_size)
   }
-
+    
+    
   let ads = await query.populate('user', 'name, avatar').clone()
-  res.status(200).json(ads)
+  console.log(ads)
+
+  res.status(200).json({pagination:{count, pageCount},ads})
 }
 
 /** @type {import("express").RequestHandler} */
