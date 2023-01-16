@@ -15,22 +15,23 @@ import man from '../assets/images/Ads_man_working.png'
 import useDecorationLine from '../Hooks/useDecorationLine'
 import SearchContainer from '../Components/SearchContainer'
 // Icons
-import { GrPrevious, GrNext } from 'react-icons/gr'
+import {GrPrevious, GrNext} from 'react-icons/gr'
 
 const AdsList = () => {
+
   // CONSTANTS
   const [page, setPage] = useState(0)
 
   const { searchWord, searchCategory } = useSearch()
   const user = useUser()
-  const ads = useAdList(
-    `search=${searchWord}&category=${searchCategory}&page=${page}`
-  )
+  const ads = useAdList(`search=${searchWord}&category=${searchCategory}&page=${page}`)
+
 
   const navigate = useNavigate()
 
-  console.log(page)
-  console.log(ads)
+  console.log(page);
+  console.log(ads);
+  
 
   // DECORATION LINE
   const missionText = useDecorationLine({ orientation: 'right' })
@@ -44,6 +45,7 @@ const AdsList = () => {
     }
   }
 
+
   return (
     <motion.div
       initial={{ width: '100%' }}
@@ -51,35 +53,38 @@ const AdsList = () => {
       exit={{ x: window.innerWidth }}
       className='pt-[70px] pb-[80px] h-full w-full min-h-[920px]'
     >
-      {/* Heading with underline  */}
-      <div className='mx-auto mt-[30px] h-[100px] w-[250px] lg:w-[270px] flex justify-end'>
-        <h2 className='text-left text-[45px] font-semibold leading-tight'>
-          Be part of
-          <p>
-            our
-            <span
-              className='capitalize  text-lightGreen text-[45px]'
-              ref={missionText}
-            >
-              {' '}
-              mission
-            </span>
-          </p>
-        </h2>
+      
+          {/* Heading with underline  */}
+          <div className='mx-auto mt-[30px] h-[100px] w-[250px] lg:w-[270px] flex justify-end'>
+            <h2 className='text-left text-[45px] font-semibold leading-tight'>
+              Be part of
+              <p>
+                our
+                <span 
+                  className='capitalize  text-lightGreen text-[45px]'
+                  ref={missionText}
+                  >
+                  {' '}
+                  mission
+                </span>
+              </p>
+            </h2>
 
-        {/* Line */}
+            {/* Line */}
 
-        {/* <div className='w-[52%] min-w-[220px] hidden  border-b-[3px] border-lightGreen sm:block absolute sm:top-[260px] sm:right-0' /> */}
+            {/* <div className='w-[52%] min-w-[220px] hidden  border-b-[3px] border-lightGreen sm:block absolute sm:top-[260px] sm:right-0' /> */}
 
-        {/* Semicircle */}
-        <div className='w-24 h-24 hidden  right-[-3rem] top-[160px]  rounded-full bg-lightGreen lg:block absolute'></div>
-      </div>
+            {/* Semicircle */}
+            <div className='w-24 h-24 hidden  right-[-3rem] top-[160px]  rounded-full bg-lightGreen lg:block absolute'></div>
+          </div>
 
-      {/* LOADING SPINNER */}
-      {ads.isLoading ? (
-        <Spinner />
-      ) : (
-        <>
+          
+          {/* LOADING SPINNER */}
+          {ads.isLoading ? (
+            <Spinner />
+          ) : (
+            <>
+
           {/* Main Container */}
           <div className='mx-auto  w-full h-full  flex justify-center items-start gap-10 '>
             {/* Image */}
@@ -96,10 +101,10 @@ const AdsList = () => {
             </div>
 
             {/* SEARCH UND ADS */}
-            <div>
+            <div className='h-full py-5' >
               {/* className='flex flex-col justify-center items-center
               lg:justify-end lg:items-end' */}
-
+           
               {/* Search */}
               <SearchContainer page='AdsList' />
               {/* <form
@@ -130,7 +135,7 @@ const AdsList = () => {
                   className='mt-[10px] w-full h-full
                 flex flex-wrap justify-items-center items-start
                 sm:px-5 lg:px-0 sm:w-[600px] sm:h-[460px]
-                md:w-[900px] md:h-[435px] sm:overflow-y-scroll
+                md:w-[900px] md:h-[435px] 
                 lg:w-[700px] 
                 xl:w-[900px]'
                 >
@@ -140,50 +145,56 @@ const AdsList = () => {
                       <Ad key={ad._id} ad={ad} />
                     ))}
                   </div>
-                </div>
-              )}
-            </div>
-          </div>
 
-          {/* NEXT & PREV PAGE  */}
-          <div
-            area-label='pages-counter'
-            className='mt-2 mb-8 relative xl:right-[17%] 
+                  {/* NEXT & PREV PAGE  */}
+          <div area-label='pages-counter'
+          className='w-[90%] h-[70px] p-2 mt-2 mb-20 mr-10 flex justify-end xl:right-[17%] 
           sm:mb'
           >
-            <button
-              className=' bg-darkBeige p-2 rounded-full border-darkBeige border-2
+
+          <button 
+            className='w-[40px] h-[40px] flex justify-center items-center bg-darkBeige p-2 rounded-full border-darkBeige border-2
              hover:bg-background
-             absolute left-[37%]'
-              disabled={page === 0}
-              onClick={() => setPage(page - 1)}
-            >
-              <GrPrevious />
-            </button>
+            '
+            disabled={page === 0}
+            onClick={()=> setPage(page - 1)}
+          >
+            <GrPrevious />
+          </button>
 
-            <span className='p-1 text-lg text-black right-11'>{page}</span>
-            {console.log(page)}
+          <span className='p-1 '>{page+1}</span>
 
-            <button
-              className=' bg-darkBeige p-2 rounded-full border-darkBeige border-2
+          <button 
+          className='w-[40px] h-[40px] flex justify-center items-center bg-darkBeige p-2 rounded-full border-darkBeige border-2
           hover:bg-background
-          absolute right-[37%] '
-              onClick={() => setPage(page + 1)}
-            >
-              <GrNext />
-            </button>
+          '
+          // disabled={page === 0}
+          onClick={()=> setPage(page + 1)}>
+            <GrNext />
+          </button>
           </div>
           {/* NEXT & PREV PAGE END */}
 
+                </div>
+              )}
+            </div>
+            
+          </div>
+          
+
+          
+
+
+
           {/* Button Ad Post */}
           <div
-            className='mb-[30px]  w-full h-[50px] 
+            className='mb-[30px] mt-[0px]   w-full h-[50px] 
           flex justify-center items-center lg:w-[50%] xl:p-0 mx-auto'
           >
             <UniButton
               text='Post Ad'
               onClick={handleClick}
-              className='mt-[60px] md:mt-[30px] w-[250px]
+              className='md:mt-[30px] w-[250px]
                 flex justify-center lg:w-[600px]
                 lg:mb-0 2xl:justify-center'
             />
