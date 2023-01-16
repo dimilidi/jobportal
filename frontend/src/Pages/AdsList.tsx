@@ -167,7 +167,7 @@ const AdsList = () => {
             <GrPrevious />
           </button>
 
-          <span className='p-1 hidden md:inline-block right-11'>Page</span>
+          <span className='p-1 hidden md:inline-block '>Page</span>
 
           <button 
           className=' bg-darkBeige p-2 rounded-full border-darkBeige border-2
