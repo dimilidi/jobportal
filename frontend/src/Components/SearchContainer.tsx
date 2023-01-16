@@ -47,11 +47,10 @@ const SearchContainer = (props: Props) => {
           setSelectedCategory={setSelectedCategory}
         />
       </div>
-      
-
-
     </form>
+
   ) : (
+    
     // SEARCH ADS LIST
     <form
       onClick={handleSubmit}
