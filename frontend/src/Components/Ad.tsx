@@ -94,7 +94,7 @@ function Ad({ ad }: Props) {
         {/* RIGHT SECTION */}
         <div onClick={() => navigate(`/ad/${ad?._id}`)} className='w-[70px] h-full flex self-end flex-col justify-end  items-start gap-1 md:w-[180px] md:flex-row md:self-center md:items-center md:justify-between '>
           {/* CREATED AT */}
-          <div className='text-[14px] text-textBlack text-opacity-50 md:ml-[30px] md:text-[16px]'>
+          <div className='text-[14px] text-textBlack text-opacity-50 md:ml-[40px] md:text-[16px]'>
             <p>{new Date(ad.createdAt).toLocaleDateString()}</p>
           </div>
 
