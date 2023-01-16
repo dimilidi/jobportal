@@ -1,8 +1,8 @@
-# Jobsy - A job portal website
+# Jobsy. - job portal website
 
  <br/>
 
-**Jobsy.** is a MERN Stack based web application.
+**Jobsy.** is a MERN Stack based web application. <br>
 **Goal:** The application is free and available to all. Created to help find an employee and an employer. 
  <br/>
  <br/>
@@ -16,7 +16,6 @@
 1. [General Info](#1-general-information)
 2. [Project Status](#7-project-status)
 3. [Technologies Used](#2-technologies-used)
-<!-- 3. [Features](#3-features) -->
 4. [Screenshots](#4-screenshots)
 5. [Setup](#5-setup)
 6. [Usage](#6-usage)
@@ -26,7 +25,7 @@
 
 <!-- * [License](#license) -->
 
-## 1 General Information
+## 1. General Information
 
 
 ## Not logged in user: 
@@ -48,11 +47,11 @@ Project is: _in progress_
 
 ## 3. Technologies Used
 
-1. General
+**General:**
 
 - Node.js (v18.12.1)
 
-2. Frontend
+**Frontend:**
 
 - React (^18.2.0)
 - TypeScript (4.9.3)
@@ -61,7 +60,10 @@ Project is: _in progress_
 - Axios (1.2.1)
 - Framer Motion (8.0.1)
 
-3. Backend
+**Design:**
+- Figma  [-> see design](https://www.figma.com/file/cmWtNE21nByCtTRUkoR2uS/Wireframing-DT?node-id=112%3A2815&t=uVB5Ez63DIcXSe0U-0)
+
+**Backend**
 
 - Express (^4.18.2)
 - Mongoose (^6.8.0)
@@ -70,7 +72,7 @@ Project is: _in progress_
 - jswebtoken (^8.5.1)
 - Cloudinary (^1.33.0)
 
-4. Data base
+**4. Data base**
 
 - MongoDB
 <!-- 
