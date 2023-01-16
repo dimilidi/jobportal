@@ -28,7 +28,7 @@ export async function getAds(req, res) {
     query = query.sort({ updatedAt: -1 })
   }
 
-  // Pagination
+  // // Pagination
   if (page) {
     query = query
       .find()

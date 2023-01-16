@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import useAdList from '../Hooks/useAdList'
 import useUser from '../Hooks/useUser'
 import useSearch from '../Hooks/useSearch'
-import { useState } from 'react'
+import { useCallback, useRef, useState } from 'react'
 // Components
 import Ad from '../Components/Ad'
 import UniButton from '../Components/UniButton'
@@ -20,17 +20,19 @@ import {GrPrevious, GrNext} from 'react-icons/gr'
 const AdsList = () => {
 
   // CONSTANTS
-  const [page, setPage] = useState(0)
-
+  // const [page, setPage] = useState(0)
+  
   const { searchWord, searchCategory } = useSearch()
   const user = useUser()
-  const ads = useAdList(`search=${searchWord}&category=${searchCategory}&page=${page}`)
-
+  const ads = useAdList(`search=${searchWord}&category=${searchCategory}`)
+  const { isLoading} = useAdList(`search=${searchWord}&category=${searchCategory}`)
+  console.log('L',ads.adList.length);
+  
 
   const navigate = useNavigate()
 
-  console.log(page);
-  console.log(ads);
+  // console.log(page);
+  console.log(ads.adList);
   
 
   // DECORATION LINE
@@ -124,7 +126,7 @@ const AdsList = () => {
               {/* Ads Container */}
               {ads.adList.length === 0 ? (
                 <div
-                  className='mt-[30px] h-[150px] text-center sm:px-5 sm:w-[600px] md:w-[900px] font-bold relative text-3xl
+                  className='mt-[30px] h-[150px] text-center sm:px-5 sm:w-[600px] md:w-[900px] font-bold relative text-3xl 
               top-[40px] lg:top-[150px] xl:top-[200px] md:text-4xl
               text-darkBeige'
                 >
@@ -133,53 +135,60 @@ const AdsList = () => {
               ) : (
                 <div
                   className='mt-[10px] w-full h-full
-                flex flex-wrap justify-items-center items-start
-                sm:px-5 lg:px-0 sm:w-[600px] sm:h-[460px]
+                flex flex-col justify-items-center items-start 
+                sm:px-5 lg:px-0 sm:w-[600px] sm:h-[460px] sm:overflow-y-scroll 
                 md:w-[900px] md:h-[435px] 
                 lg:w-[700px] 
                 xl:w-[900px]'
                 >
                   {/* Ads */}
-                  <div className='mx-auto p-1 flex flex-wrap justify-center '>
-                    {ads.adList?.map((ad) => (
-                      <Ad key={ad._id} ad={ad} />
+                  <div className='mx-auto  md:h-[600px] p-1 flex flex-wrap justify-center'>
+                    {ads.adList?.map((ad, index) => (
+                      <Ad index={index} key={ad._id} ad={ad} />
                     ))}
-                  </div>
 
-                  {/* NEXT & PREV PAGE  */}
+
+                              {/* NEXT & PREV PAGE  */}
           <div area-label='pages-counter'
-          className='w-[90%] h-[70px] p-2 mt-2 mb-20 mr-10 flex justify-end xl:right-[17%] 
+          className='hidden mx-auto w-[60%] h-fit py-2 mt-2  md:flex justify-end self-end  lg:w-[70%] 
           sm:mb'
           >
 
           <button 
-            className='w-[40px] h-[40px] flex justify-center items-center bg-darkBeige p-2 rounded-full border-darkBeige border-2
+            className='w-[32px] h-[32px] flex justify-center items-center bg-darkBeige p-2 rounded-full border-darkBeige border-2
              hover:bg-background
             '
-            disabled={page === 0}
-            onClick={()=> setPage(page - 1)}
+            // disabled={page === 0}
+            // onClick={()=> setPage(page - 1)}
           >
             <GrPrevious />
           </button>
 
-          <span className='p-1 '>{page+1}</span>
+          {/* <span className='px-3 text-[16px]'>{page+1}</span> */}
 
           <button 
-          className='w-[40px] h-[40px] flex justify-center items-center bg-darkBeige p-2 rounded-full border-darkBeige border-2
+          className='w-[32px] h-[32px] flex justify-center items-center bg-darkBeige p-2 rounded-full border-darkBeige border-2
           hover:bg-background
           '
           // disabled={page === 0}
-          onClick={()=> setPage(page + 1)}>
+          // onClick={()=> setPage(page + 1)}
+          >
             <GrNext />
           </button>
           </div>
           {/* NEXT & PREV PAGE END */}
+
+
+                  </div>
+
+        
 
                 </div>
               )}
             </div>
             
           </div>
+          <div>{isLoading && '...Loading'}</div>
           
 
           
@@ -188,15 +197,13 @@ const AdsList = () => {
 
           {/* Button Ad Post */}
           <div
-            className='mb-[30px] mt-[0px]   w-full h-[50px] 
-          flex justify-center items-center lg:w-[50%] xl:p-0 mx-auto'
+            className=''
           >
             <UniButton
               text='Post Ad'
               onClick={handleClick}
-              className='md:mt-[30px] w-[250px]
-                flex justify-center lg:w-[600px]
-                lg:mb-0 2xl:justify-center'
+              className='mt-[50px] h-[50px] 
+              flex justify-center items-center lg:w-[50%] xl:p-0 mx-auto  md:mt-[30px] mb-[30px]  w-[250px] lg:mb-0 2xl:justify-center'
             />
           </div>
         </>

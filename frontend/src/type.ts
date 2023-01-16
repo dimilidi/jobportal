@@ -27,6 +27,8 @@ export type Ad = {
     city?: string
     avatar?:string
   }
+  ref?:HTMLDivElement
+  index?:any
 }
 
 export type RegisterInputs = {

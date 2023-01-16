@@ -9,7 +9,7 @@ type Props = {
 
 const Search = (props: Props) => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    props.setSearchInput(e.target.value)
+    props.setSearchInput(e.target.value)    
   }
 
   const handleClick = (e: React.FormEvent) => {
