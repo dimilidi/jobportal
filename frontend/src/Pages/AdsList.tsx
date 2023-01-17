@@ -132,39 +132,28 @@ const AdsList = () => {
                   {ads.adList?.map((ad) => (
                     <Ad  key={ad._id} ad={ad} />
                   ))}
-
-
+                    
                   {/* BUTTON AD-POST & NEXT-PREV PAGE*/}
                   <div className='flex flex-col-reverse lg:flex-row justify-around items-center
                     w-[80%] md:w-[50%] md:ml-[60px] lg:ml-0 lg:w-[90%] xl:w-[80%] mt-4 gap-4 self-end'>
-                    {/* Button Ad Post */}
-                    <div className=''>
+                    {/* BUTTON AD POST */}
+                    <div>
                       <UniButton
                         text='Post Ad'
                         onClick={handleClick}
                         className='
-                         flex justify-center items-center lg:w-[100%] xl:w-[85%] mx-auto w-[250px] self-end'
+                        flex justify-center items-center lg:w-[100%] xl:w-[85%] mx-auto w-[250px] self-end'
                       />
                     </div>
-                    
-                  <PaginationButtons page ={page} setPage = {setPage} pageCount={pageCount} />
-
+                    {/* NEXT & PREV PAGE  */}
+                    <PaginationButtons page ={page} setPage = {setPage} pageCount={pageCount} />
+                  </div>
                 </div>
                 )}
               </div>
             )}
           </div>
-        </div>
-
-        {/* BUTTON AD POST */}
-        <div className='mb-2'>
-          <UniButton
-            text='Post Ad'
-            onClick={handleClick}
-            className='
-              flex justify-center items-center lg:w-[50%] mx-auto   w-[250px] '
-          />
-        </div>
+          </div>
       </>
     </motion.div>
   )
