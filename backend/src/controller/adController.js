@@ -9,7 +9,12 @@ export async function getAds(req, res) {
   let countDoc =  Ad.countDocuments({})
   let query = Ad.find({})
 
-  if (userId) query = query.where('user').equals(userId)
+  if (userId) {
+    query = query.where('user').equals(userId).clone()
+    // count docs created by user
+    countDoc =  countDoc.where('user').equals(userId)
+  } 
+
 
   if (category) {
     if (category !== 'all') {
@@ -54,7 +59,6 @@ export async function getAds(req, res) {
 
 
 // POST AD
-
 /** @type {import("express").RequestHandler} */
 export async function postAd(req, res) {
   const user = req.user
