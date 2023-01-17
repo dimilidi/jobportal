@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom'
 import useAdList from '../Hooks/useAdList'
 import useUser from '../Hooks/useUser'
 import useSearch from '../Hooks/useSearch'
-import { useCallback, useRef, useState } from 'react'
 // Components
 import Ad from '../Components/Ad'
 import UniButton from '../Components/UniButton'
@@ -15,7 +14,6 @@ import man from '../assets/images/Ads_man_working.png'
 import useDecorationLine from '../Hooks/useDecorationLine'
 import SearchContainer from '../Components/SearchContainer'
 // Icons
-import { GrPrevious, GrNext } from 'react-icons/gr'
 import PaginationButtons from '../Components/PaginationButtons'
 
 

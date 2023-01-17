@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import UniButton from './UniButton'
 import {BsFillArrowRightCircleFill} from 'react-icons/bs'
 import useSearch from '../Hooks/useSearch'

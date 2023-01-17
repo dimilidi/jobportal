@@ -1,9 +1,6 @@
 // Icons
 import { GrPrevious, GrNext } from 'react-icons/gr'
-// Hooks
-import useAdList from '../Hooks/useAdList'
-import useSearch from '../Hooks/useSearch'
-import useUser from '../Hooks/useUser'
+
 
 type Props = {
     page: number
@@ -12,14 +9,6 @@ type Props = {
 }
 
 function PaginationButtons({page, setPage, pageCount}: Props) {
-//   const { searchWord, searchCategory } = useSearch()
-//   const user = useUser()
-//   const { pageCount, page, setPage } = useAdList(
-//     `search=${searchWord}&category=${searchCategory}`
-//   )
-//   const ads = useAdList(
-//     `search=${searchWord}&category=${searchCategory}&page=${page}`
-//   )
 
   return (
     <div

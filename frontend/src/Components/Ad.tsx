@@ -9,8 +9,6 @@ import { Ad as AdType } from '../type'
 
 type Props = {
   ad: AdType
-  // index:any
-  
 }
 
 function Ad({ ad }: Props) {

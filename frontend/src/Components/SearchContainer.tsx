@@ -14,7 +14,7 @@ const SearchContainer = (props: Props) => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    if (!path.includes('/adlist')) {
+    if (!path.includes('/adslist')) {
       navigate('/adslist')
     }
   }
