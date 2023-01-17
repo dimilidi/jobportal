@@ -129,8 +129,8 @@ const AdsList = () => {
               ) : (
                 <div className='mx-auto  md:h-[600px] p-1 flex flex-wrap justify-center'>
                   {/* ADS */}
-                  {ads.adList?.map((ad, index) => (
-                    <Ad index={index} key={ad._id} ad={ad} />
+                  {ads.adList?.map((ad) => (
+                    <Ad  key={ad._id} ad={ad} />
                   ))}
 
                   {/* NEXT & PREV PAGE  */}

@@ -73,7 +73,7 @@ const Account = () => {
           <div className='w-full flex flex-wrap justify-center items-center'>
             {adList?.length === 0 ? (
               <div
-                className='font-bold relative text-xl
+                className='font-bold relative text-xl overflow-y-scroll
                   top-[40px] lg:top-[80px] xl:top-[100px] md:text-4xl
                   text-center text-darkBeige'
               >
