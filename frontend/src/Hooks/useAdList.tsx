@@ -1,6 +1,5 @@
 // Hooks
-import axios from 'axios'
-import { useState, useEffect, useCallback, useRef } from 'react'
+import { useState, useEffect} from 'react'
 // Axios
 import axiosInstance from '../api/axiosInstance'
 // type
@@ -20,7 +19,6 @@ function useAdList(queries: string): AdHook {
   const [pageCount, setPageCount] = useState(0)
 
 
-
   const fetchAdList = async () => {
     setError('')
     setIsLoading(true)
@@ -34,7 +32,6 @@ function useAdList(queries: string): AdHook {
     } catch (error) {
       setError('Something went wrong!')
     }
-
     setIsLoading(false)
   }
 
@@ -42,15 +39,6 @@ function useAdList(queries: string): AdHook {
   useEffect(() => {
     fetchAdList()
   }, [queries, adList.length])
-
-
-
-
-
-
-
-  
- 
 
   return { adList, error, isLoading, pageCount}
 

@@ -17,18 +17,19 @@ const SearchContainer = (props: Props) => {
   const { searchWord, setSearchWord, searchCategory, setSearchCategory } =
     useSearch()
   const [searchInput, setSearchInput] = useState<string>(searchWord)
-  const [selectedCategory, setSelectedCategory] =
-    useState<string>(searchCategory)
+  // const [selectedCategory, setSelectedCategory] =
+  //   useState<string>(searchCategory)
 
 
-    console.log('search',searchInput);
+    // console.log('search',searchInput);
     console.log('Word',searchWord);
+    // console.log('Word',selectedCategory);
 
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    setSearchWord(searchInput)
-    setSearchCategory(selectedCategory)
+    // setSearchWord(searchInput)
+    // setSearchCategory(selectedCategory)
     if (!path.includes('/adlist')) {
       navigate('/adslist')
     }
@@ -42,16 +43,18 @@ const SearchContainer = (props: Props) => {
       2xl:w-[42%] 2xl:items-end'
       onSubmit={handleSubmit}
     >
-      <div
+      {/* <div
       className='w-full  flex justify-center flex-col items-center
       lg:w-[80%]'
-      >
-        <Search searchInput={searchInput} setSearchInput={setSearchInput} />
-        <SearchRadio
-          selectedCategory={selectedCategory}
-          setSelectedCategory={setSelectedCategory}
+      > */}
+        <Search 
+        // searchInput={searchInput} setSearchInput={setSearchInput} 
         />
-      </div>
+        <SearchRadio
+          // selectedCategory={selectedCategory}
+          // setSelectedCategory={setSelectedCategory}
+        />
+      {/* </div> */}
     </form>
 
   ) : (
@@ -63,10 +66,12 @@ const SearchContainer = (props: Props) => {
       className='flex mt-6 w-full justify-center items-center flex-row
     '>
        <div>
-        <Search searchInput={searchInput} setSearchInput={setSearchInput} />
+        <Search 
+        // searchInput={searchInput} setSearchInput={setSearchInput}
+         />
         <SearchRadio
-          selectedCategory={selectedCategory}
-          setSelectedCategory={setSelectedCategory}
+          // selectedCategory={selectedCategory}
+          // setSelectedCategory={setSelectedCategory}
         />
       </div>
     </form>

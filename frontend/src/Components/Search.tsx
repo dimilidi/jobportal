@@ -1,19 +1,23 @@
 import React from 'react'
 import { GoSearch } from 'react-icons/go'
 import { IoMdClose } from 'react-icons/io'
+import useSearch from '../Hooks/useSearch'
 
 type Props = {
-  searchInput: string
-  setSearchInput: React.Dispatch<React.SetStateAction<string>>
+  // searchInput: string
+  // setSearchInput: React.Dispatch<React.SetStateAction<string>>
 }
 
 const Search = (props: Props) => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    props.setSearchInput(e.target.value)    
+    setSearchWord(e.target.value)    
   }
 
+  const { searchWord, setSearchWord, searchCategory, setSearchCategory } =
+  useSearch()
+
   const handleClick = (e: React.FormEvent) => {
-    props.setSearchInput('')
+    setSearchWord('')
   }
 
   return (
@@ -25,16 +29,17 @@ const Search = (props: Props) => {
      '>
 
       <label className='relative  w-full  '>
-        <GoSearch className='w-[20px] absolute top-5 left-4 text-gray text-opacity-50' />
+        <GoSearch className='w-[20px] absolute top-4 left-4 text-gray text-opacity-50' />
         <IoMdClose
-        className='absolute top-3 right-2 text-gray text-opacity-30' size={26}
-        onClick={handleClick} />
+        className='absolute top-3 right-4 text-gray text-opacity-30 cursor-pointer hover:text-gray' size={24}
+        onClick={handleClick} 
+        />
         <input
           type='text'
           className='w-full items-start py-[12px] px-16
           box-border placeholder:text-center rounded-full bg-darkBeige shadow-inner placeholder:text-gray placeholder:text-opacity-50 focus:outline-lightGray  '
           placeholder='Search'
-          value={props.searchInput}
+          value={searchWord}
           onChange={(e) => handleChange(e)}
         />
       </label>

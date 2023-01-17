@@ -1,17 +1,30 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import UniButton from './UniButton'
 import {BsFillArrowRightCircleFill} from 'react-icons/bs'
+import useSearch from '../Hooks/useSearch'
 
 
 type Props = {
-  selectedCategory: string
-  setSelectedCategory: React.Dispatch<React.SetStateAction<string>>
+  // selectedCategory: string
+  // setSelectedCategory: React.Dispatch<React.SetStateAction<string>>
 }
 
 const SearchRadio = (props: Props) => {
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    props.setSelectedCategory(e.target.value)
+
+  const { searchWord, setSearchWord, searchCategory, setSearchCategory } =
+  useSearch()
+
+
+  // console.log(props.selectedCategory);
+  
+
+ 
+   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchCategory(e.target.value)
+
   }
+
+ 
 
   return (
     <div 
@@ -28,7 +41,8 @@ const SearchRadio = (props: Props) => {
           id='all'
           name='category'
           value='all' 
-          checked={props.selectedCategory == 'all'}
+          onChange={handleChange}
+          checked={searchCategory == 'all'}
         />
         <label 
         className=' text-gray' 
@@ -42,7 +56,7 @@ const SearchRadio = (props: Props) => {
           id='offering'
           name='category'
           value='offering'
-          checked={props.selectedCategory == 'offering'}
+          checked={searchCategory == 'offering'}
           onChange={handleChange}
         />
         <label 
@@ -56,7 +70,7 @@ const SearchRadio = (props: Props) => {
           id='searching'
           name='category'
           value='searching'
-          checked={props.selectedCategory == 'searching'}
+          checked={searchCategory== 'searching'}
           onChange={handleChange}
         />
         <label 

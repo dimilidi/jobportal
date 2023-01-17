@@ -178,12 +178,12 @@ const AdsList = () => {
         </div>
 
         {/* Button Ad Post */}
-        <div className=''>
+        <div className='mb-2'>
           <UniButton
             text='Post Ad'
             onClick={handleClick}
-            className='mt-[50px] h-[50px] 
-              flex justify-center items-center lg:w-[50%] xl:p-0 mx-auto  md:mt-[30px] mb-[30px]  w-[250px] lg:mb-0 2xl:justify-center'
+            className='
+              flex justify-center items-center lg:w-[50%] mx-auto   w-[250px] '
           />
         </div>
       </>
