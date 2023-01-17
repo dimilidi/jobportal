@@ -74,27 +74,29 @@ const AdsList = () => {
         </h2>
 
         {/* Semicircle */}
-        <div className='w-24 h-24 hidden  right-[-3rem] top-[160px]  rounded-full bg-lightGreen lg:block absolute'></div>
+        <div className='w-[50px] h-24 hidden right-0 top-[160px]  rounded-tl-full rounded-bl-full bg-lightGreen lg:block absolute'></div>
       </div>
 
       <>
         {/* Main Container */}
-        <div className='mx-auto  w-full h-full  flex justify-center items-start gap-10 '>
+        <div className='w-full md:w-[100%] h-full 2xl:ml-[150px] flex justify-center items-start'>
           {/* Image */}
           <div
-            className=' hidden
-              lg:w-[500px] lg:mt-[100px]
-              xl:h-[500px] lg:flex'
+            className=' '
           >
             <img
-              className='h-full w-full'
+              className='hidden
+              lg:w-[600px]
+              xl:w-[790px] xl:h-[500px] xl:mt-[60px] lg:mt-[140px]
+              2xl:w-[640px] 2xl:h-[550px]
+              lg:flex h-full w-full'
               src={man}
               alt='person working on computer'
             />
           </div>
 
           {/* SEARCH UND ADS */}
-          <div className='h-full py-5'>
+          <div className='h-full w-[100%] xl:w-[80%] 2xl:w-[65%] py-3'>
             {/* Search */}
             <SearchContainer page='AdsList' />
         
@@ -113,8 +115,8 @@ const AdsList = () => {
                 className='mt-[25px] w-full h-full
                 flex flex-col justify-items-center items-start 
                 sm:px-5 lg:px-0 sm:w-[600px] sm:h-[460px] 
-                md:w-[900px] md:h-[435px] 
-                lg:w-[700px] 
+                md:w-[700px] md:h-[435px] 
+                lg:w-[95%] 
                 xl:w-[900px]'
               >
                 {/* LOADING SPINNER */}
@@ -124,7 +126,7 @@ const AdsList = () => {
                   </div>
                 
               ) : (
-                <div className='mx-auto  md:h-[600px] p-1 flex flex-wrap justify-center'>
+                <div className='md:h-[600px] p-1 flex flex-wrap justify-center items-center md:relative'>
                   {/* ADS */}
                   {ads.adList?.map((ad, index) => (
                     <Ad index={index} key={ad._id} ad={ad} />
@@ -132,7 +134,8 @@ const AdsList = () => {
 
 
                   {/* BUTTON AD-POST & NEXT-PREV PAGE*/}
-                  <div className='flex flex-col-reverse lg:flex-row justify-around items-center w-[80%] self-end mt-4 gap-4'>
+                  <div className='flex flex-col-reverse lg:flex-row justify-around items-center
+                    w-[80%] md:w-[50%] md:ml-[60px] lg:ml-0 lg:w-[90%] xl:w-[80%] mt-4 gap-4 self-end'>
                     {/* Button Ad Post */}
                     <div className=''>
                       <UniButton
@@ -146,7 +149,7 @@ const AdsList = () => {
                   {/* NEXT & PREV PAGE  */}
                   <div
                     area-label='pages-counter'
-                    className=' mx-auto w-[60%] h-fit py-2 flex items-center justify-center lg:justify-end self-end lg:w-[70%] sm:mb'
+                    className=' mx-auto w-[60%] lg:w-[50%] xl:w-[60%] h-fit py-2 flex items-center justify-center lg:justify-end self-end'
                   >
                     <button
                       className='w-[32px] h-[32px] flex justify-center items-center bg-darkBeige p-2 rounded-full border-darkBeige border-2

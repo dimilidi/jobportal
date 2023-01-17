@@ -9,7 +9,7 @@ type Props = {
   page: string
 }
 
-const SearchContainer = (props: Props) => {
+const SearchContainerRow = (props: Props) => {
   const path = useLocation().pathname
   const navigate = useNavigate()
 
@@ -30,7 +30,7 @@ const SearchContainer = (props: Props) => {
       onSubmit={handleSubmit}
     >
       <div
-      className='w-full flex justify-center flex-col items-center mx-auto
+      className='w-full  flex justify-center flex-col items-center mx-auto
       xl:w-[30rem] '
       >
         <Search />
@@ -44,11 +44,9 @@ const SearchContainer = (props: Props) => {
     <form
       onClick={handleSubmit}
       aria-label='search-ads-form'
-      className='w-full mt-2 md:mt-8
-        flex justify-center items-center flex-row
-        md:w-[100%] lg:w-[99%] xl:w-[97%] 2xl:w-[70%] 
+      className='flex mt-6 w-full justify-center items-center flex-row
     '>
-       <div className='lg:mt-[40px] lg:ml-[30px] flex flex-col lg:flex-row gap-3 2xl:gap-5'>
+       <div className='w-[75%] flex flex-row gap-5'>
         <Search />
         <SearchRadioAdsList />
       </div>
@@ -56,4 +54,4 @@ const SearchContainer = (props: Props) => {
   )
 }
 
-export default SearchContainer
+export default SearchContainerRow
