@@ -6,11 +6,10 @@ import UniButton from '../Components/UniButton'
 import Ad from '../Components/Ad'
 import UniButtonWhite from '../Components/UniButtonWhite'
 import UserCard from '../Components/UserCard'
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import useUser from '../Hooks/useUser'
 // framer-motion
 import { motion } from 'framer-motion'
-import useSearch from '../Hooks/useSearch'
 import PaginationButtons from '../Components/PaginationButtons'
 
 const Account = () => {
