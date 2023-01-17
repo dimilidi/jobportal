@@ -3,13 +3,13 @@ import { useNavigate } from 'react-router-dom'
 import useDecorationLine from '../Hooks/useDecorationLine'
 // Components
 import UniButton from '../Components/UniButton'
-import UniButtonWhite from '../Components/UniButtonWhite'
 import BrowseJobs from '../Components/BrowseJobs'
 // framer-motion
 import { motion } from 'framer-motion'
 import useUser from '../Hooks/useUser'
 // Images
 import DeleteAccountImage from '../assets/images/DeleteAccount.png'
+import UniButtonDark from '../Components/UniButtonDark'
 
 const DeleteAccount = () => {
   //DECORATION LINE
@@ -64,7 +64,7 @@ const DeleteAccount = () => {
             className='my-5'
             onClick={() => handleDelete()}
           />
-          <UniButtonWhite
+          <UniButtonDark
             text='Back to Account'
             onClick={() => navigate('/account')}
           />
