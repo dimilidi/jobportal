@@ -80,9 +80,7 @@ const AdsList = () => {
         <div className='mx-auto  w-full h-full  flex justify-center items-start gap-10 '>
           {/* IMAGE */}
           <div
-            className=' hidden
-              lg:w-[500px] lg:mt-[100px]
-              xl:h-[500px] lg:flex'
+            className=' hidden xl:w-[500px] xl:flex'
           >
             <img
               className='h-full w-full'
