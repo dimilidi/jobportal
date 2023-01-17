@@ -10,6 +10,8 @@ type AdHook = {
   isLoading: boolean
   error: string
   pageCount: number
+  page: number
+  setPage: (page:number) => void
 }
 
 function useAdList(queries: string): AdHook {
@@ -17,6 +19,8 @@ function useAdList(queries: string): AdHook {
   const [isLoading, setIsLoading] = useState(true)
   const [error, setError] = useState('')
   const [pageCount, setPageCount] = useState(0)
+  const [page, setPage] = useState(0)
+
 
 
   const fetchAdList = async () => {
@@ -27,7 +31,6 @@ function useAdList(queries: string): AdHook {
       const data = res.data
       setAdList(data.ads)
       setPageCount(Math.ceil(data.pagination.pageCount))
-      console.log(data.pagination);
       
     } catch (error) {
       setError('Something went wrong!')
@@ -40,7 +43,7 @@ function useAdList(queries: string): AdHook {
     fetchAdList()
   }, [queries, adList.length])
 
-  return { adList, error, isLoading, pageCount}
+  return { adList, error, isLoading, pageCount, page, setPage}
 
 }
 

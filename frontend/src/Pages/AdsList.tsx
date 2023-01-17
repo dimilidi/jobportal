@@ -16,17 +16,18 @@ import useDecorationLine from '../Hooks/useDecorationLine'
 import SearchContainer from '../Components/SearchContainer'
 // Icons
 import { GrPrevious, GrNext } from 'react-icons/gr'
+import PaginationButtons from '../Components/PaginationButtons'
+
 
 const AdsList = () => {
   // CONSTANTS
-  const [page, setPage] = useState(0)
-
   const { searchWord, searchCategory } = useSearch()
   const user = useUser()
-  const ads = useAdList(
-    `search=${searchWord}&category=${searchCategory}&page=${page}`
+
+  const { pageCount, page, setPage } = useAdList(
+    `search=${searchWord}&category=${searchCategory}`
   )
-  const { pageCount } = useAdList(
+  const ads = useAdList(
     `search=${searchWord}&category=${searchCategory}&page=${page}`
   )
   
@@ -46,9 +47,6 @@ const AdsList = () => {
     }
   }
 
-  // const handleSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
-  //   setPage(Number(e.target.value))
-  // }
 
   return (
     <motion.div
@@ -57,7 +55,7 @@ const AdsList = () => {
       exit={{ x: window.innerWidth }}
       className='pt-[70px] pb-[80px] h-full w-full min-h-[920px]'
     >
-      {/* Heading with underline  */}
+      {/* HEADING WITH UNDERLINE  */}
       <div className='mx-auto mt-[30px] h-[100px] w-[250px] lg:w-[270px] flex justify-end'>
         <h2 className='text-left text-[45px] font-semibold leading-tight'>
           Be part of
@@ -73,14 +71,14 @@ const AdsList = () => {
           </p>
         </h2>
 
-        {/* Semicircle */}
+        {/* SEMICIRCLE */}
         <div className='w-24 h-24 hidden  right-[-3rem] top-[160px]  rounded-full bg-lightGreen lg:block absolute'></div>
       </div>
 
       <>
-        {/* Main Container */}
+        {/* MAIN CONTAINER */}
         <div className='mx-auto  w-full h-full  flex justify-center items-start gap-10 '>
-          {/* Image */}
+          {/* IMAGE */}
           <div
             className=' hidden
               lg:w-[500px] lg:mt-[100px]
@@ -98,11 +96,11 @@ const AdsList = () => {
             {/* className='flex flex-col justify-center items-center
               lg:justify-end lg:items-end' */}
 
-            {/* Search */}
+            {/* SEARCH */}
             <SearchContainer page='AdsList' />
         
               
-            {/* Ads Container */}
+            {/* ADS CONTAINER */}
             {ads.adList.length === 0 ? (
               <div
                 className='mt-[30px] h-[150px] text-center sm:px-5 sm:w-[600px] md:w-[900px] font-bold relative text-3xl 
@@ -129,45 +127,12 @@ const AdsList = () => {
               ) : (
                 <div className='mx-auto  md:h-[600px] p-1 flex flex-wrap justify-center'>
                   {/* ADS */}
-                  {ads.adList?.map((ad, index) => (
-                    <Ad index={index} key={ad._id} ad={ad} />
+                  {ads.adList?.map((ad) => (
+                    <Ad  key={ad._id} ad={ad} />
                   ))}
 
                   {/* NEXT & PREV PAGE  */}
-                  <div
-                    area-label='pages-counter'
-                    className=' mx-auto w-[60%] h-fit py-2 mt-2  flex items-center justify-center lg:justify-end self-end  lg:w-[70%] 
-          sm:mb'
-                  >
-                    <button
-                      className='w-[32px] h-[32px] flex justify-center items-center bg-darkBeige p-2 rounded-full border-darkBeige border-2
-             hover:bg-background
-            '
-                      disabled={page === 0}
-                      onClick={() => setPage(page === 0 ? page : page - 1)}
-                    >
-                      <GrPrevious />
-                    </button>
-
-                    <span 
-                      className='px-3 text-[16px]'>
-                        {`${page + 1} / ${pageCount}`}
-                    </span>
-                  
-                    <button
-                      className='w-[32px] h-[32px] flex justify-center items-center bg-darkBeige p-2 rounded-full border-darkBeige border-2
-
-          hover:bg-background
-          '
-                      disabled={page === pageCount - 1}
-                      onClick={() =>
-                        setPage(page === pageCount ? page : page + 1)
-                      }
-                    >
-                      <GrNext />
-                    </button>
-                  </div>
-                  {/* NEXT & PREV PAGE END */}
+                  <PaginationButtons page ={page} setPage = {setPage} pageCount={pageCount} />
                 </div>
                 )}
               </div>
@@ -175,7 +140,7 @@ const AdsList = () => {
           </div>
         </div>
 
-        {/* Button Ad Post */}
+        {/* BUTTON AD POST */}
         <div className='mb-2'>
           <UniButton
             text='Post Ad'
