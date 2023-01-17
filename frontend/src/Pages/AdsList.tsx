@@ -71,30 +71,34 @@ const AdsList = () => {
           </p>
         </h2>
 
+
         {/* SEMICIRCLE */}
-        <div className='w-24 h-24 hidden  right-[-3rem] top-[160px]  rounded-full bg-lightGreen lg:block absolute'></div>
+        <div className='w-[50px] h-24 hidden right-0 top-[160px]  rounded-tl-full rounded-bl-full bg-lightGreen lg:block absolute'></div>
       </div>
 
       <>
-        {/* MAIN CONTAINER */}
-        <div className='mx-auto  w-full h-full  flex justify-center items-start gap-10 '>
-          {/* IMAGE */}
+        {/* MAIN CONTAINER*/}
+        <div className='w-full md:w-[100%] h-full 2xl:ml-[150px] flex justify-center items-start'>
+          {/* Image */}
           <div
-            className=' hidden xl:w-[500px] xl:flex'
+            className=' '
           >
             <img
-              className='h-full w-full'
+              className='hidden
+              lg:w-[600px]
+              xl:w-[790px] xl:h-[500px] xl:mt-[60px] lg:mt-[140px]
+              2xl:w-[640px] 2xl:h-[550px]
+              lg:flex h-full w-full'
               src={man}
               alt='person working on computer'
             />
           </div>
 
           {/* SEARCH UND ADS */}
-          <div className='h-full py-5'>
-            {/* className='flex flex-col justify-center items-center
-              lg:justify-end lg:items-end' */}
 
-            {/* SEARCH */}
+          <div className='h-full w-[100%] xl:w-[80%] 2xl:w-[65%] py-3'>
+            {/* Search */}
+            
             <SearchContainer page='AdsList' />
         
               
@@ -109,11 +113,11 @@ const AdsList = () => {
               </div>
             ) : (
               <div
-                className='mt-[10px] w-full h-full
+                className='mt-[25px] w-full h-full
                 flex flex-col justify-items-center items-start 
                 sm:px-5 lg:px-0 sm:w-[600px] sm:h-[460px] 
-                md:w-[900px] md:h-[435px] 
-                lg:w-[700px] 
+                md:w-[700px] md:h-[435px] 
+                lg:w-[95%] 
                 xl:w-[900px]'
               >
                 {/* LOADING SPINNER */}
@@ -123,14 +127,28 @@ const AdsList = () => {
                   </div>
                 
               ) : (
-                <div className='mx-auto  md:h-[600px] p-1 flex flex-wrap justify-center'>
+                <div className='md:h-[600px] p-1 flex flex-wrap justify-center items-center md:relative'>
                   {/* ADS */}
                   {ads.adList?.map((ad) => (
                     <Ad  key={ad._id} ad={ad} />
                   ))}
 
-                  {/* NEXT & PREV PAGE  */}
+
+                  {/* BUTTON AD-POST & NEXT-PREV PAGE*/}
+                  <div className='flex flex-col-reverse lg:flex-row justify-around items-center
+                    w-[80%] md:w-[50%] md:ml-[60px] lg:ml-0 lg:w-[90%] xl:w-[80%] mt-4 gap-4 self-end'>
+                    {/* Button Ad Post */}
+                    <div className=''>
+                      <UniButton
+                        text='Post Ad'
+                        onClick={handleClick}
+                        className='
+                         flex justify-center items-center lg:w-[100%] xl:w-[85%] mx-auto w-[250px] self-end'
+                      />
+                    </div>
+                    
                   <PaginationButtons page ={page} setPage = {setPage} pageCount={pageCount} />
+
                 </div>
                 )}
               </div>

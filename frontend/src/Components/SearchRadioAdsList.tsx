@@ -4,7 +4,7 @@ import {BsFillArrowRightCircleFill} from 'react-icons/bs'
 import useSearch from '../Hooks/useSearch'
 
 
-  const SearchRadio = () => {
+  const SearchRadioAdsList = () => {
     const { searchCategory, setSearchCategory } =
     useSearch()
 
@@ -16,17 +16,17 @@ import useSearch from '../Hooks/useSearch'
   return (
     <div 
     area-label='search-radio'
-    className='p-2 flex flex-row justify-between items-center rounded-full border-darkBeige border-2 md:gap-10 lg:gap-5
-    py-2 mt-2
-    md:pl-4 md:p 
-    lg:w-[100%] lg:max-w-full lg:items-baseline lg:py-1
+    className='p-2 flex flex-row justify-between items-center rounded-full border-darkBeige border-2
+    py-2
+    md:pl-4 
+    lg:w-[100%] lg:max-w-full lg:items-center lg:py-1
     '>
       <div
         className='flex justify-center items-center gap-2'
         aria-label='radio'>
       <div>
         <input
-          className='mr-1 accent-darkGreen '
+          className='mr-2 accent-darkGreen '
           type='radio'
           id='all'
           name='category'
@@ -41,7 +41,7 @@ import useSearch from '../Hooks/useSearch'
       </div>
       <div >
         <input
-          className='mr-1 accent-darkGreen'
+          className='mr-2 accent-darkGreen'
           type='radio'
           id='offering'
           name='category'
@@ -69,22 +69,17 @@ import useSearch from '../Hooks/useSearch'
       </div>
       </div>
 
-      <div 
+      <div
         aria-label='button'>
-      {/* BUTTONS INSIDE OF SEARCHING/OFFERING */}
-          <UniButton 
-          className='hidden md:block '
-          text='Browse Ads' type='button' 
-          style={{width:'140px', height:'40px'}}
-          />
-        {/* ARROW IN MOBILE */}
+
+        {/* ARROW */}
           <BsFillArrowRightCircleFill
           size={28}
-          className=' md:hidden  ml-2  text-lightGreen cursor-pointer '
+          className=' text-lightGreen cursor-pointer '
           />
       </div>
     </div>
   )
 }
 
-export default SearchRadio
+export default SearchRadioAdsList

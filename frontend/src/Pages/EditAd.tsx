@@ -16,6 +16,7 @@ import imagePostAd from '../assets/images/PostAd_chef.png'
 import { motion } from 'framer-motion'
 import BrowseJobs from '../Components/BrowseJobs'
 import useDecorationLine from '../Hooks/useDecorationLine'
+import UniButtonDark from '../Components/UniButtonDark'
 
 
 const EditAd = () => {
@@ -230,7 +231,7 @@ const EditAd = () => {
                       type='text'
                       name='title'
                       className=' form-control py-1 px-5 w-full block text-gray border-2 rounded-lg border-lightGray border-opacity-50 placeholder:text-sm 
-              focus:outline-lightGray '
+                    focus:outline-lightGray '
                       placeholder='Title'
                       value={title}
                       onChange={(e) => setTitle(e.target.value)}
@@ -359,8 +360,7 @@ const EditAd = () => {
             </div>
             {/* BUTTON - POST AD */}
             <div className='w-full my-7 flex flex-col lg:flex-row justify-center items-center gap-5'>
-            <UniButton
-              style={{ backgroundColor: '#52796F', borderColor: '#52796F'}}
+            <UniButtonDark
               area-label='postAdButton'
               text={isLoading ? <Spinner /> : 'Save Changes'}
               className='self-center md:mb-0'
