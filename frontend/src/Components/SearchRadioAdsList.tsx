@@ -71,12 +71,12 @@ import useSearch from '../Hooks/useSearch'
 
       <div
         aria-label='button'>
-
-        {/* ARROW */}
-          <BsFillArrowRightCircleFill
-          size={28}
-          className=' text-lightGreen cursor-pointer '
-          />
+        {/* BUTTONS INSIDE OF SEARCHING/OFFERING */}
+            <BsFillArrowRightCircleFill 
+            size={28}
+            className=' text-lightGreen cursor-pointer '
+            type='button'
+            />
       </div>
     </div>
   )

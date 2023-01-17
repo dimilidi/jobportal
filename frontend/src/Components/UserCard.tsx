@@ -8,8 +8,6 @@ type Props = {
   style?: {}
 }
 
-
-
 function UserCard(props: Props) {
   const user = useUser().user
   const navigate = useNavigate()
@@ -18,7 +16,7 @@ function UserCard(props: Props) {
     <div
       // USER CARD
       style={props.style}
-      className='mt-0 w-[100%] max-w-[450px] min-h-[540px]
+      className='mt-0 w-[95%] max-w-[450px] min-h-[540px]
             flex flex-col justify-center relative  
             shadow-standard 
             rounded-bl-[65px] rounded-br-[65px]
@@ -57,7 +55,7 @@ function UserCard(props: Props) {
         <h1
           className='
             flex justify-center 
-            font-[700] text-[2.5rem]'
+            font-[700] text-[2rem] md:text-[2.5]'
         >
           {user?.name}
         </h1>
