@@ -95,9 +95,6 @@ const AdsList = () => {
 
           {/* SEARCH UND ADS */}
           <div className='h-full py-5'>
-            {/* className='flex flex-col justify-center items-center
-              lg:justify-end lg:items-end' */}
-
             {/* Search */}
             <SearchContainer page='AdsList' />
         
@@ -113,7 +110,7 @@ const AdsList = () => {
               </div>
             ) : (
               <div
-                className='mt-[10px] w-full h-full
+                className='mt-[25px] w-full h-full
                 flex flex-col justify-items-center items-start 
                 sm:px-5 lg:px-0 sm:w-[600px] sm:h-[460px] 
                 md:w-[900px] md:h-[435px] 
@@ -133,16 +130,27 @@ const AdsList = () => {
                     <Ad index={index} key={ad._id} ad={ad} />
                   ))}
 
+
+                  {/* BUTTON AD-POST & NEXT-PREV PAGE*/}
+                  <div className='flex flex-col-reverse lg:flex-row justify-around items-center w-[80%] self-end mt-4 gap-4'>
+                    {/* Button Ad Post */}
+                    <div className=''>
+                      <UniButton
+                        text='Post Ad'
+                        onClick={handleClick}
+                        className='
+                         flex justify-center items-center lg:w-[100%] xl:w-[85%] mx-auto w-[250px] self-end'
+                      />
+                    </div>
+
                   {/* NEXT & PREV PAGE  */}
                   <div
                     area-label='pages-counter'
-                    className=' mx-auto w-[60%] h-fit py-2 mt-2  flex items-center justify-center lg:justify-end self-end  lg:w-[70%] 
-          sm:mb'
+                    className=' mx-auto w-[60%] h-fit py-2 flex items-center justify-center lg:justify-end self-end lg:w-[70%] sm:mb'
                   >
                     <button
                       className='w-[32px] h-[32px] flex justify-center items-center bg-darkBeige p-2 rounded-full border-darkBeige border-2
-             hover:bg-background
-            '
+                       hover:bg-background'
                       disabled={page === 0}
                       onClick={() => setPage(page === 0 ? page : page - 1)}
                     >
@@ -150,15 +158,13 @@ const AdsList = () => {
                     </button>
 
                     <span 
-                      className='px-3 text-[16px]'>
+                      className='px-3 text-[16px] text-gray opacity-40'>
                         {`${page + 1} / ${pageCount}`}
                     </span>
                   
                     <button
                       className='w-[32px] h-[32px] flex justify-center items-center bg-darkBeige p-2 rounded-full border-darkBeige border-2
-
-          hover:bg-background
-          '
+                       hover:bg-background'
                       disabled={page === pageCount - 1}
                       onClick={() =>
                         setPage(page === pageCount ? page : page + 1)
@@ -167,22 +173,13 @@ const AdsList = () => {
                       <GrNext />
                     </button>
                   </div>
+                  </div>
                   {/* NEXT & PREV PAGE END */}
                 </div>
                 )}
               </div>
             )}
           </div>
-        </div>
-
-        {/* Button Ad Post */}
-        <div className='mb-2'>
-          <UniButton
-            text='Post Ad'
-            onClick={handleClick}
-            className='
-              flex justify-center items-center lg:w-[50%] mx-auto   w-[250px] '
-          />
         </div>
       </>
     </motion.div>
