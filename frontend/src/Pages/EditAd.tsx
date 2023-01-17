@@ -1,6 +1,6 @@
 // Hooks
 import { useEffect, useState } from 'react'
-import { useNavigate, useParams } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 import useAd from '../Hooks/useAd'
 import useUser from '../Hooks/useUser'
 // Components
@@ -98,6 +98,7 @@ const EditAd = () => {
 
     setIsLoading(false)
   }
+
 
 
   return (
@@ -361,16 +362,20 @@ const EditAd = () => {
             {/* BUTTON - POST AD */}
             <div className='w-full my-7 flex flex-col lg:flex-row justify-center items-center gap-5'>
             <UniButtonDark
+            type='submit'
               area-label='postAdButton'
               text={isLoading ? <Spinner /> : 'Save Changes'}
               className='self-center md:mb-0'
             />
             {/* BUTTON - BACK TO ACCOUNT */}
+            <Link to='/account'>
             <UniButton
+              type='button'
               area-label='backToAccountButton'
               text='Back to Account'
               className='self-center md:mb-0'
             />
+            </Link>
             </div>
           </form>
         </div>
