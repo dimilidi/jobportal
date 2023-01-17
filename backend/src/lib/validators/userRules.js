@@ -11,8 +11,10 @@ export const register = [
     .notEmpty()
     .withMessage('Name is required'),
   body('email')
+    .notEmpty()
+    .withMessage('Email is required')
     .isEmail()
-    .withMessage('email not valid')
+    .withMessage('Email not valid')
     .custom(async (value) => {
       const user = await User.findByEmail(value)
       if (user) throw new Error('This email already exists')
@@ -21,7 +23,7 @@ export const register = [
   body('password')
     .isStrongPassword()
     .withMessage(
-      'Password must include at least one special character, one uppercase and lowercase letter and a number'
+      'Password must include at least one special character, one uppercase and lowercase letter and a number.'
     ),
   validate,
 ]

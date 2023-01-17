@@ -194,12 +194,15 @@ const Register = () => {
               <Link to='/login'>or log in here</Link>
             </p>
             {/* ERRORS */}
-            {errors &&
-              errors.map((error) => (
-                <p key={error} className='mt-1 text-red-600 self-start'>
-                  {error}
-                </p>
-              ))}
+            {errors && 
+             <p className='mt-1 text-red-600 self-start'>{errors[0]}</p>
+          
+              // errors.map((error) => (
+              //   <p key={error} className='mt-1 text-red-600 self-start'>
+              //     {error}
+              //   </p>
+              // ))
+              }
           </form>
         </div>
       </div>

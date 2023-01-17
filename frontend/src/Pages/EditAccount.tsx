@@ -81,10 +81,15 @@ const EditAccount = (props: Props) => {
     const newUser = { name, phone, city, profession, description, avatar }
     const response = await user.editAccount(newUser)
 
+    console.log('RR',response.status);
+    
+
+    // if(response.data.message)
+
     if (response.status === 200) navigate('/account')
     if (response.status === 401) setErrors(['Unathorized. Please log in'])
     if (response.status === 400) setErrors(response.errors)
-    if (response.status === 500) setErrors(['Something went wrong!'])
+    if (response.status === 500) setErrors(['Something went wrong! Image should not be larger than 1 Mb. '])
     setFetching(false)
   }
 
