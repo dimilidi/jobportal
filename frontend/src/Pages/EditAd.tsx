@@ -1,7 +1,7 @@
 // Hooks
 import { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
-import useAds from '../Hooks/useAds'
+import useAds from '../Hooks/useAd'
 import useUser from '../Hooks/useUser'
 // Components
 import UniButton from '../Components/UniButton'
@@ -13,8 +13,9 @@ import { notify } from '../utils/toastNotification'
 import 'react-toastify/dist/ReactToastify.css'
 import imagePostAd from '../assets/images/PostAd_chef.png'
 // Others
-import axiosInstance from '../api/axiosInstance'
 import { motion } from 'framer-motion'
+import BrowseJobs from '../Components/BrowseJobs'
+import useDecorationLine from '../Hooks/useDecorationLine'
 
 
 const EditAd = () => {
@@ -23,7 +24,9 @@ const EditAd = () => {
   const navigate = useNavigate()
   const user = useUser()
   const ads = useAds(`/ads/${params.id}`)
-  
+
+    // DECORATION LINE
+  const editText = useDecorationLine({orientation: 'left'})
 
   // STATES
   const [isLoading, setIsLoading] = useState(false)
@@ -37,24 +40,24 @@ const EditAd = () => {
   const [contactVia, setContactVia] = useState<
     [string, string] | [string] | [] | string | undefined
   >([])
-  const [checked, setChecked] = useState({email:false, phone: false})
+  const [checked, setChecked] = useState({ email: false, phone: false })
   // const [image, setImage] = useState('')
 
-
-// SET STATES OF AD THAT IS GOING TO BE UPDATED
-useEffect(() => {
-    if(ads.ad) {
-        setTitle(ads.ad?.title)
-        setLocation(ads.ad?.location)
-        setSector(ads.ad?.sector)
-        setDescription(ads.ad?.description)
-        setWage(ads.ad?.wage)
-        setCategory(ads.ad?.category)
-        setChecked({ email: ads.ad?.contactVia.includes('email'), phone: ads.ad?.contactVia.includes('phone') })
+  // SET STATES OF AD THAT IS GOING TO BE UPDATED
+  useEffect(() => {
+    if (ads.ad) {
+      setTitle(ads.ad?.title)
+      setLocation(ads.ad?.location)
+      setSector(ads.ad?.sector)
+      setDescription(ads.ad?.description)
+      setWage(ads.ad?.wage)
+      setCategory(ads.ad?.category)
+      setChecked({
+        email: ads.ad?.contactVia.includes('email'),
+        phone: ads.ad?.contactVia.includes('phone'),
+      })
     }
-  },[ads.ad])
-  
-
+  }, [ads.ad])
 
   // HANDLE CONTACT_VIA (according checkbox)
   useEffect(() => {
@@ -74,10 +77,11 @@ useEffect(() => {
   }, [checked])
 
 
-  // HANDLE SUBMIT
-  const handleSubmit = async (e: React.SyntheticEvent) => {
+
+  // HANDLE EDIT
+  const handleEdit = async (e: React.SyntheticEvent) => {
     e.preventDefault()
-     setIsLoading(true)
+    setIsLoading(true)
 
     const ad = {
       title,
@@ -86,39 +90,13 @@ useEffect(() => {
       description,
       location,
       wage,
-      contactVia,
+      contactVia
     }
 
-    const response = await axiosInstance
-      .put(`/ads/${params.id}`, ad)
-      .catch((e) => e.response)
+    ads.updateAd(ad)
 
-    if (response.status === 200) {
-      const id = response.data._id
-      navigate('/ad/' + id)
-    } else if (response.status === 400) {
-      const error = response.data.message[0]
-      const key = Object.keys(error)[0]
-      const message = error[key]
-      setError(message)
-      notify(message)
-      console.log(message)
-    } else if (response.status === 401) {
-      setError('You can edit only your ads.')
-      notify(error)
-    } else {
-      setError('Something went wrong')
-      notify(error)
-    }
     setIsLoading(false)
   }
-
-
-  // POST AD BTN NAVIGATE TO /auth-req when user not logged in
-  const handleNavigateifUserNotLoggedIn = () => {
-    if (user.isLoggedIn === false) navigate('/auth-required')
-  }
-
 
 
   return (
@@ -146,33 +124,43 @@ useEffect(() => {
           area-label='main'
           className='relative  h-full min-h-[920px] w-[85%] max-w-[1000px]  md:w-[70%] flex flex-col justify-center'
         >
-          {/* TITLE MOBILE (with line) */}
-          <div>
-            <h1
-              area-label='title-mobile'
-              className='text-4xl font-medium text-textBlack md:hidden lg:hidden'
-            >
-              <span className='italic font-medium text-lightGreen md:hidden lg:hidden'>
-                Edit{' '}
-              </span>
-              your Ad
-            </h1>
-            <div
-              area-label='line'
-              className='w-[140px] absolute top-[%] left-0 border-b-[3px] border-lightGreen md:hidden lg:hidden'
-            />
-          </div>
+
+        {/* BACK TO ACCOUNT */}
+        <div className='hidden md:block'>
+        <BrowseJobs/>
+        </div>
+
 
           {/* AD FORM */}
           <form
             area-label='form'
             className='mt-8 gap-6 md:flex-col lg:flex-row md:gap-10 lg:gap-20 z-10 '
-            onSubmit={handleSubmit}
+            onSubmit={handleEdit}
           >
             <div
               area-label='ad'
               className='p-5 pt-10  flex flex-col items-center rounded-[21px] bg-white shadow-standard  sm:p-10 '
             >
+            {/* TITLE MOBILE (with line) */}
+              <div>
+                <h1
+                  area-label='title-mobile'
+                  className='text-4xl mb-3 font-medium text-textBlack md:hidden lg:hidden'
+                >
+                  <span
+                  ref={editText} 
+                  className='italic font-medium text-lightGreen md:hidden lg:hidden'>
+                    Edit{' '}
+                  </span>
+                  your Ad
+                </h1>
+                
+                {/* <div
+                  area-label='line'
+                  className='w-[140px] absolute top-[%] left-0 border-b-[3px] border-lightGreen md:hidden lg:hidden'
+                /> */}
+              </div>
+
               {/* TITLE DESKTOP */}
               <div
                 area-label='text left'
@@ -198,7 +186,7 @@ useEffect(() => {
                     <input
                       type='radio'
                       value='offering'
-                      checked={category=='offering'}
+                      checked={category == 'offering'}
                       name='case'
                       id='case'
                       className='accent-darkGreen'
@@ -211,7 +199,7 @@ useEffect(() => {
                     <input
                       type='radio'
                       value='searching'
-                      checked={category=='searching'}
+                      checked={category == 'searching'}
                       id='case'
                       name='case'
                       className='accent-darkGreen'
@@ -308,7 +296,6 @@ useEffect(() => {
                   >
                     <p className='text-lightGray'>How to reach you:</p>
 
-            
                     <div
                       area-label='email-phone'
                       className='flex flex-row justify-start gap-3'
@@ -371,12 +358,20 @@ useEffect(() => {
               </div>
             </div>
             {/* BUTTON - POST AD */}
+            <div className='w-full my-7 flex flex-col lg:flex-row justify-center items-center gap-5'>
             <UniButton
-            //   onClick={handleNavigateifUserNotLoggedIn}
+              style={{ backgroundColor: '#52796F', borderColor: '#52796F'}}
               area-label='postAdButton'
-              text={isLoading ? <Spinner /> : 'Post Ad'}
-              className='my-7 mx-auto w-[200px] self-center  md:mb-0 lg:w-[250px]'
+              text={isLoading ? <Spinner /> : 'Save Changes'}
+              className='self-center md:mb-0'
             />
+            {/* BUTTON - BACK TO ACCOUNT */}
+            <UniButton
+              area-label='backToAccountButton'
+              text='Back to Account'
+              className='self-center md:mb-0'
+            />
+            </div>
           </form>
         </div>
         <ToastContainer position='top-right' />

@@ -4,52 +4,59 @@ import validate from '../../middleware/validate.js'
 
 export const register = [
   body('name')
-    .isString().not().isNumeric().withMessage("Name must consist only of characters")
-    .notEmpty().withMessage('Name is required'),
+    .isString()
+    .not()
+    .isNumeric()
+    .withMessage('Name must consist only of characters')
+    .notEmpty()
+    .withMessage('Name is required'),
   body('email')
     .isEmail()
     .withMessage('email not valid')
     .custom(async (value) => {
       const user = await User.findByEmail(value)
-      if(user) throw new Error('This email already exists')
+      if (user) throw new Error('This email already exists')
       return true
     }),
   body('password')
     .isStrongPassword()
-    .withMessage("Password must include at least one special character, one uppercase letter and a number"),
-  validate
+    .withMessage(
+      'Password must include at least one special character, one uppercase and lowercase letter and a number'
+    ),
+  validate,
 ]
 
 export const login = [
-  body('password')
-    .isString(),
-  body('email')
-    .isEmail()
-    .withMessage('Email not valid'),
-  validate 
+  body('password').isString(),
+  body('email').isEmail().withMessage('Email not valid'),
+  validate,
 ]
 
-
-export const updateUser = [
+export const editAccount = [
   body('password') //?
     .isString()
     .optional(),
-  body('email') //?
-    .isEmail()
-    .optional()
-    .withMessage('Email not valid'),
+  body('newPassword').isStrongPassword().optional(),
   body('name')
+    .notEmpty().withMessage('Name is required')
+    .isString().withMessage('Name must consist only of characters')
+    .not().isNumeric().withMessage('Name must consist only of characters'),
+  body('profession')
     .isString()
-    .not().isNumeric()
-    .optional()
-    .withMessage('Name must consist only of characters'),
+    .not().isNumeric().withMessage('Profession must consist only of characters')
+    .optional(),
   body('avatar').isString().optional().withMessage('Invalid format'),
-  body('city').isString().optional(),
+  body('phone')
+    .isNumeric().withMessage('Phone must consist only of numbers')
+    .optional(),
+  body('city')
+    .isString()
+    .optional()
+    .not().isNumeric().withMessage('City must consist only of characters'),
   body('description')
     .isString()
     .isLength({ min: 10 })
     .optional()
     .withMessage('Description should have at least 10 characters'),
-  body('phone').isString().optional(),
   validate,
 ]

@@ -1,6 +1,6 @@
 // Hooks
 import { useNavigate } from 'react-router-dom'
-import useAds from '../Hooks/useAds'
+import useAdList from '../Hooks/useAdList'
 // Components
 import UniButton from '../Components/UniButton'
 import Ad from '../Components/Ad'
@@ -8,27 +8,32 @@ import UniButtonWhite from '../Components/UniButtonWhite'
 import UserCard from '../Components/UserCard'
 import { useEffect, useState } from 'react'
 import useUser from '../Hooks/useUser'
-import { Ad as AdType } from '../type'
 // framer-motion
 import { motion } from 'framer-motion'
+import useSearch from '../Hooks/useSearch'
+import PaginationButtons from '../Components/PaginationButtons'
 
 const Account = () => {
   const navigate = useNavigate()
   const { user, loading } = useUser()
-  const ads = useAds(`/ads/?userId=${user?._id}`)
+  const { pageCount, page, setPage } = useAdList(`userId=${user?._id}`)
+  const { adList } = useAdList(`userId=${user?._id}&page=${page}`)
 
+  
   useEffect(() => {
     if (!user && !loading) {
       navigate('/auth-required')
     }
   }, [user])
 
+ 
+
   return (
     <motion.div
       initial={{ width: '100%' }}
       animate={{ width: '100%' }}
       exit={{ x: window.innerWidth }}
-      className='mx-auto pb-10 w-full h-full min-h-[1200px] flex flex-col items-center justify-center gap-10 lg:pt-0 lg:min-h-[970px] lg:flex-row lg:gap-0'
+      className='mx-auto pt-[80px] pb-10 w-full h-full min-h-[1100px] flex flex-col items-center justify-center gap-10 lg:pt-0 lg:min-h-[970px] lg:flex-row lg:gap-0'
     >
       {/* SEMICIRCLE */}
       <div className='w-24 h-24 hidden absolute right-[-3rem] top-[210px] rounded-full bg-lightGreen md:hidden lg:block lg:top-[170px]' />
@@ -44,10 +49,12 @@ const Account = () => {
       {/* ADS && BUTTONS CONTAINER */}
       <div className='max-w-[650px] h-full flex flex-col justify-center items-center md:h-[540px] lg:w-[62%] lg:max-w-[800px] lg:gap-10'>
         {/* BUTTONS */}
-        <div className='w-full
+        <div
+          className='w-full
               flex flex-col justify-center items-center gap-6
               sm:justify-center sm:flex-row
-              lg:ml-20 lg:justify-start'>
+              lg:ml-20 lg:justify-start'
+        >
           <UniButtonWhite
             text='Post Ad'
             type='button'
@@ -67,16 +74,22 @@ const Account = () => {
         </h3>
 
         {/* ADS */}
-        {/* Version 2: ads ?  user.ads : 'You don't have ads yet' */}
-        <div className='mt-[30px] mb-[30px] w-full h-full flex flex-wrap justify-center items-start rounded-[21px] sm:px-5 sm:mt-3 sm:mb-20 sm:w-[600px] sm:h-[552px] sm:overflow-y-scroll md:w-[100%] md:h-[440px] lg:px-0 lg:mb-0 lg:h-[500px]'>
+        <div className='mt-[30px] mb-[30px] w-full h-full flex flex-wrap justify-center items-start rounded-[21px] sm:px-5 sm:mt-3 sm:mb-20 sm:w-[600px] sm:h-[552px]  md:w-[100%] md:h-[440px] lg:px-0 lg:mb-0 lg:h-[500px]'>
           <div className='w-full flex flex-wrap justify-center items-center'>
-            {ads.adList?.length === 0 ? (
-              <div>You have currently no ads yet</div>
+            {adList?.length === 0 ? (
+              <div
+                className='font-bold relative text-xl 
+                  top-[40px] lg:top-[80px] xl:top-[100px] md:text-4xl
+                  text-center text-darkBeige'
+              >
+                You have currently <br></br> no ads yet
+              </div>
             ) : (
-              ads.adList?.map((ad) => <Ad key={ad._id} ad={ad} />)
+              adList?.map((ad) => <Ad key={ad._id} ad={ad} />)
             )}
           </div>
         </div>
+      <PaginationButtons page ={page} setPage = {setPage} pageCount={pageCount}/>
       </div>
     </motion.div>
   )

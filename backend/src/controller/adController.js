@@ -1,23 +1,64 @@
 import Ad from '../models/Ad.js'
 
+
+// GET ADS
 /** @type {import("express").RequestHandler} */
 export async function getAds(req, res) {
-  let { userId, search } = req.query
-  let query = Ad.find()
+  let { userId, search, category, page = 1 } = req.query
+  const page_size = 3
+  let countDoc =  Ad.countDocuments({})
+  let query = Ad.find({})
 
-  if (userId) query = query.where('user').equals(userId)
+  if (userId) {
+    query = query.where('user').equals(userId).clone()
+    // count docs created by user
+    countDoc =  countDoc.where('user').equals(userId)
+  } 
 
-  // filter ads by search, if it is included in description/location/sector,
-  // ? how to set discription OR location OR sector ?
-  if (search) {
-    query = query.where('description').includes(search)
+
+  if (category) {
+    if (category !== 'all') {
+      query = query.where('category').equals(category)
+      // count docs found by choosing a category
+      countDoc =  countDoc.where('category').equals(category)
+    }
   }
 
-  const ads = await query.populate('user', 'name')
-  res.status(200).json(ads)
+  // filter ads by search, if it is included in title/description/location/sector,
+  if (search) {
+    query = query  
+    // search for the input words and give score by the number of matching words
+      .find({ $text: { $search: search } }, { score: { $meta: 'textScore' } })
+      .clone()
+    // count docs found by search
+    countDoc = countDoc.count(query)
+    // sort search
+    query = query.sort({ score: { $meta: 'textScore' } })
+   
+  } else {
+    // sort ads by update date (descending order)
+    query = query.sort({ updatedAt: -1 })
+  }
+
+  // Pagination
+  if (page) {
+    query = query
+      .find({})
+      .skip(parseInt(page) * page_size)
+      .limit(page_size)
+  }
+  
+  query.populate('user', 'name, avatar').clone()
+
+  const [count, ads] = await Promise.all([countDoc, query])
+  const pageCount = count / page_size
+ 
+  res.status(200).json({pagination:{count, pageCount},ads})
 }
 
 
+
+// POST AD
 /** @type {import("express").RequestHandler} */
 export async function postAd(req, res) {
   const user = req.user
@@ -33,16 +74,18 @@ export async function postAd(req, res) {
   res.status(201).json(newAd)
 }
 
+
+// GET AD BY ID
 /** @type {import("express").RequestHandler} */
 export async function getAdById(req, res) {
   const user = req.user
   const adId = req.params.id
 
   // if user is NOT logged in, populate only name of ad-creator
-  let ad = await Ad.findById(adId).populate('user', 'name')
+  let ad = await Ad.findById(adId).populate('user', 'name, avatar')
 
   // if user is logged in, contact data selected in contactvia
-  let itemToPopulate = 'name'
+  let itemToPopulate = 'name avatar'
   if (user) {
     for (const item of ad.contactVia) {
       itemToPopulate += ` ${item}`
@@ -54,18 +97,34 @@ export async function getAdById(req, res) {
 }
 
 
+// UPDATE AD
 /** @type {import("express").RequestHandler} */
 export const updateAd = async (req, res) => {
   const user = req.user
   const adId = req.params.id
   const ad = await Ad.findById(adId)
 
-  if(( ad.user).valueOf() === (user._id).valueOf()){
-    for(const key in req.body){
+  if (ad.user.valueOf() === user._id.valueOf()) {
+    for (const key in req.body) {
       ad[key] = req.body[key]
     }
     await ad.save()
     res.status(200).json(ad)
   }
- 
+}
+
+
+// DELETE AD
+/** @type {import("express").RequestHandler} */
+export const deleteAd = async (req, res) => {
+  const adId = req.params.id
+  const ad = await Ad.findById(adId)
+
+  const deletedAd = await Ad.deleteOne(ad)
+
+  if (deletedAd) {
+    res.status(200).json(deletedAd)
+  } else {
+    res.status(404).json('Ad: ' + ad + " doesn't exist.")
+  }
 }

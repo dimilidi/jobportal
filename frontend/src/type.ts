@@ -1,12 +1,12 @@
 export type User = {
-  _id: string
-  name: string
-  sector: string
-  email: string
-  avatar: string
-  city: string
-  description: string
-  phone: string
+  _id: string | undefined
+  name: string | undefined
+  profession?: string | undefined
+  email: string | undefined
+  avatar?: string | undefined
+  city: string | undefined
+  description: string | undefined
+  phone: string | undefined
 }
 
 export type Ad = {
@@ -21,11 +21,14 @@ export type Ad = {
   createdAt: Date
   user: {
     _id: string
-    name: string
-    email: string
-    phone: string
-    city: string
+    name?: string
+    email?: string
+    phone?: string
+    city?: string
+    avatar?:string
   }
+  // ref?:HTMLDivElement
+  // index?:any
 }
 
 export type RegisterInputs = {
@@ -36,4 +39,11 @@ export type RegisterInputs = {
 
 export type LoginInputs = Omit<RegisterInputs, 'name'>
 
-export type EditInputs = Omit<User, '_id' & 'email'>
+export type EditInputs = {
+  name: string | undefined
+  sector?: string | undefined
+  avatar?: string | undefined
+  city: string | undefined
+  description: string | undefined
+  phone: string | undefined
+}

@@ -1,8 +1,9 @@
 // Hooks
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import useAds from '../Hooks/useAds'
+import useAds from '../Hooks/useAd'
 import useUser from '../Hooks/useUser'
+import useDecorationLine from '../Hooks/useDecorationLine'
 // Components
 import UniButton from '../Components/UniButton'
 import Spinner from '../Components/Spinner'
@@ -20,6 +21,9 @@ const PostAd = () => {
   // CONSTANTS
   const navigate = useNavigate()
   const user = useUser()
+
+  // DECORATION LINE
+const createText = useDecorationLine({orientation: 'left'})
 
   // STATES
   const [isLoading, setIsLoading] = useState(false)
@@ -86,8 +90,7 @@ const PostAd = () => {
       const message = error[key]
       setError(message)
       notify(message)
-      console.log(message);
-      
+      console.log(message)
     } else if (response.status === 401) {
       setError('You are not logged in.')
       notify(error)
@@ -113,37 +116,25 @@ const PostAd = () => {
         area-label='page-postAd'
         className='h-full lg:pt-0 mt-[0px] relative flex justify-center items-center text-Black '
       >
-        {/* CIRCLE && LINES */}
+
+        {/* CIRCLE && LINE */}
         <div
           area-label='circle'
           className='hidden md:block md:w-[332px] md:h-[332px] md:absolute md:top-[50%] md:left-[-250px] md:translate-y-[-50%] md:rounded-full md:bg-lightGreen'
         />
         <div
           area-label='line'
-          className='w-screen hidden md:block md:absolute md:top-[50%] md:translate-y-[-50%] md:left-0 md:border-b-[3px] md:border-lightGreen'
+          className='w-screen hidden md:block md:absolute md:top-[50%] md:translate-y-[-50%] md:left-0 md:border-b-[3px] md:border-lightGreen sm:hidden '
         />
+        {/* CIRCLE && LINE  END*/}
+
 
         {/* MAIN */}
         <div
           area-label='main'
           className='relative  h-full min-h-[920px] w-[85%] max-w-[1000px]  md:w-[70%] flex flex-col justify-center'
         >
-          {/* TITLE MOBILE (with line) */}
-          <div>
-            <h1
-              area-label='title-mobile'
-              className='text-4xl font-medium text-textBlack md:hidden lg:hidden'
-            >
-              <span className='italic font-medium text-lightGreen md:hidden lg:hidden'>
-                Create{' '}
-              </span>
-              your Ad
-            </h1>
-            <div
-              area-label='line'
-              className='w-[140px] absolute top-[%] left-0 border-b-[3px] border-lightGreen md:hidden lg:hidden'
-            />
-          </div>
+          
 
           {/* AD FORM */}
           <form
@@ -155,16 +146,33 @@ const PostAd = () => {
               area-label='ad'
               className='p-5 pt-10  flex flex-col items-center rounded-[21px] bg-white shadow-standard  sm:p-10 '
             >
+
+              {/* TITLE MOBILE (with line) */}
+          <div>
+            <h1
+              area-label='title-mobile'
+              className='text-[1.8rem] sm:text-4xl bold  text-textBlack md:hidden'
+            >
+              <span 
+              ref={createText}
+              className='italic font-medium text-lightGreen '>
+                Create{' '}
+              </span> 
+              your Ad
+            </h1>
+          </div>
+
               {/* TITLE DESKTOP */}
               <div
                 area-label='text left'
                 className='flex flex-col items-center md:items-center lg:items-center md:gap-6'
-              >
+                >
                 <h1
                   area-label='title-md'
-                  className='hidden p-3 text-4xl font-medium text-textBlack md:block'
+                  className='md:inline-block hidden p-3 sm:text-4xl font-bold text-textBlack '
                 >
-                  <span className='italic font-medium text-lightGreen'>
+                  <span
+                  className='italic font-bold text-lightGreen'>
                     Create{' '}
                   </span>
                   your Ad
@@ -174,28 +182,30 @@ const PostAd = () => {
 
                 <div
                   area-label='index-radio'
-                  className='px-1 w-full flex justify-end items-center gap-5'
-                >
-                  <div className='flex gap-2'>
+                  className='px-1 w-full flex justify-center items-center gap-5'
+                  >
+                  <div className='flex gap-2 '>
                     <input
                       type='radio'
+                      id='offering'
                       value='offering'
                       name='case'
-                      className='accent-darkGreen'
+                      className='accent-darkGreen cursor-pointer'
                       onChange={(e) => setCategory(e.target.value)}
                     />
-                    <label className='form-label'>offering</label>
+                    <label htmlFor='offering' className='form-label cursor-pointer'>offering</label>
                   </div>
 
                   <div className='flex gap-2'>
                     <input
                       type='radio'
+                      id='searching'
                       value='searching'
                       name='case'
-                      className='accent-darkGreen'
+                      className='accent-darkGreen cursor-pointer'
                       onChange={(e) => setCategory(e.target.value)}
                     />
-                    <label className='form-label'>searching</label>
+                    <label htmlFor='searching' className='form-label cursor-pointer'>searching</label>
                   </div>
                 </div>
               </div>
@@ -293,10 +303,11 @@ const PostAd = () => {
                       <div area-label='email' className='flex flex-row gap-2'>
                         <input
                           type='checkbox'
+                          id='email'
                           value='email'
                           name='contact'
                           checked={checked.email}
-                          className='accent-darkGreen form-checkbox'
+                          className='accent-darkGreen form-checkbox cursor-pointer'
                           onChange={(e) =>
                             setChecked({
                               email: !checked.email,
@@ -304,15 +315,16 @@ const PostAd = () => {
                             })
                           }
                         />
-                        <label>Email</label>
+                        <label htmlFor='email' className='cursor-pointer'>Email</label>
                       </div>
                       <div area-label='phone' className='flex flex-row gap-2'>
                         <input
                           type='checkbox'
+                          id='phone'
                           value='phone'
                           name='contact'
                           checked={checked.phone}
-                          className='accent-darkGreen form-checkbox'
+                          className='accent-darkGreen form-checkbox cursor-pointer'
                           onChange={(e) =>
                             setChecked({
                               email: checked.email,
@@ -320,7 +332,7 @@ const PostAd = () => {
                             })
                           }
                         />
-                        <label>Phone</label>
+                        <label htmlFor='phone' className='cursor-pointer'>Phone</label>
                       </div>
                     </div>
                   </div>

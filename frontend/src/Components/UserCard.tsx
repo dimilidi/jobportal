@@ -8,17 +8,12 @@ type Props = {
   style?: {}
 }
 
-function UserCard(props: Props) {
-  // _id: string;
-  // name: string;
-  // email: string;
-  // avatar: string;
-  // city: string;
-  // description: string;
-  // phone: string;
 
+
+function UserCard(props: Props) {
   const user = useUser().user
   const navigate = useNavigate()
+
   return (
     <div
       // USER CARD
@@ -32,8 +27,7 @@ function UserCard(props: Props) {
             '
     >
       {/* AVATAR BG SEMICIRCLE */}
-      <div
-        className='flex justify-center'>
+      <div className='flex justify-center'>
         <div
           className='w-[100%] h-[13em] 
             flex justify-center absolute top-0 
@@ -52,9 +46,9 @@ function UserCard(props: Props) {
         <img
           className='w-[11em] h-[11em] mt-[2.8rem] 
             lg:w-[12rem] lg:h-[12rem] lg:mt-[1rem]
-            absolute z-10 
+            absolute z-10 object-cover
             rounded-full'
-          src={imageAccount}
+          src={user?.avatar ? user?.avatar : imageAccount}
         />
       </div>
 
@@ -67,14 +61,10 @@ function UserCard(props: Props) {
         >
           {user?.name}
         </h1>
-        {user?.sector && (
+        {user?.profession && (
           <h2
-            className='
-              mb-6 
-              flex justify-center 
-              text-[1.8rem] font-light'
-          >
-            {user.sector}
+            className='mb-6 flex justify-center text-[1.8rem] font-light'>
+            {user.profession}
           </h2>
         )}
       </div>
@@ -88,13 +78,7 @@ function UserCard(props: Props) {
       )}
 
       {/* Contact Data */}
-      <div
-        className='
-          pl-5 pr-5
-          my-6 
-          text-[17px] font-[500] 
-          min-[374px]:mx-[1em]'
-      >
+      <div className=' px-8 my-6 text-[17px] font-[500] min-[374px]:mx-[1em]'>
         <div className='flex flex-row gap-4 items-center text-gray leading-relaxed'>
           {' '}
           <MdMail /> {user?.email}

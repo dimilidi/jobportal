@@ -2,7 +2,7 @@ import mongoose from 'mongoose'
 
 const Schema = mongoose.Schema(
   {
-    title: { type: String, required: [true]},
+    title: { type: String, required: [true] },
     category: { type: String, enum: ['offering', 'searching'] },
     description: { type: String, required: true },
     location: { type: String, required: true },
@@ -10,7 +10,7 @@ const Schema = mongoose.Schema(
     sector: { type: String, required: true },
     contactVia: {
       type: [String],
-      required: true
+      required: true,
     },
     createdAt: Date,
     user: { type: mongoose.Types.ObjectId, ref: 'User' },
@@ -20,6 +20,15 @@ const Schema = mongoose.Schema(
   }
 )
 
+// index text fields
+Schema.index({
+  title: 'text',
+  description: 'text',
+  location: 'text',
+  sector: 'text',
+})
 const Ad = mongoose.model('Ad', Schema)
+// run create index
+Ad.createIndexes()
 
 export default Ad

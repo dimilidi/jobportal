@@ -1,8 +1,15 @@
-import React, { createContext, useContext, useState, useEffect } from 'react'
-import axios, { AxiosResponse } from 'axios'
+import React, {
+  createContext,
+  useContext,
+  useState,
+  useEffect,
+  useCallback,
+} from 'react'
+import { AxiosResponse } from 'axios'
 import axiosInstance from '../api/axiosInstance'
 import { User, RegisterInputs, LoginInputs, EditInputs } from '../type'
 import { getErrorArray } from '../utils/getErrorArray'
+import useSearch from './useSearch'
 
 type PromiseResult = {
   status: number
@@ -16,7 +23,7 @@ type UserHook = {
   register: (params: RegisterInputs) => Promise<PromiseResult>
   login: (params: LoginInputs) => Promise<PromiseResult>
   logout: () => void
-  editAccount: (params: EditInputs) => void
+  editAccount: (params: EditInputs) => Promise<PromiseResult>
   deleteAccount: () => void
 }
 
@@ -35,7 +42,11 @@ const UserContext = createContext<UserHook>({
     }
   },
   logout: () => null,
-  editAccount: () => null,
+  editAccount: async () => {
+    return {
+      status: 500,
+    }
+  },
   deleteAccount: () => null,
 })
 
@@ -43,27 +54,28 @@ export const UserProvider = (props: { children: React.ReactElement }) => {
   const [user, setUser] = useState<User | null>(null)
   const [loading, setLoading] = useState(true)
   const [isLoggedIn, setIsLoggedIn] = useState(false)
-
+  const { setSearchWord, setSearchCategory } = useSearch()
   console.log('user', user)
   console.log('loading', loading)
   console.log('isLoggedIn', isLoggedIn)
 
   // Check if user is logged in, if yes, setUser. If not, return null.
   useEffect(() => {
-    const getUser = (async () => {
-      try {
-        const response: AxiosResponse<any, any> = await axiosInstance.get(
-          '/user'
-        )
-        setUser(response.data)
-        setIsLoggedIn(true)
-      } catch (err) {
-        setUser(null)
-      } finally {
+    if (!isLoggedIn && loading) {
+      const getUser = (async () => {
+        try {
+          const response: AxiosResponse<any, any> = await axiosInstance.get(
+            '/user'
+          )
+          setUser(response.data)
+          setIsLoggedIn(true)
+        } catch (err) {
+          setUser(null)
+        }
         setLoading(false)
-      }
-    })()
-  }, [])
+      })()
+    }
+  }, [isLoggedIn, loading, user])
 
   const userContext = {
     user: user,
@@ -127,6 +139,8 @@ export const UserProvider = (props: { children: React.ReactElement }) => {
     logout: async () => {
       await axiosInstance.get('/user/logout')
       setUser(null)
+      setSearchWord('')
+      setSearchCategory('all')
     },
     editAccount: async (inputs: EditInputs) => {
       try {
