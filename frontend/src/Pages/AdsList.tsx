@@ -29,12 +29,10 @@ const AdsList = () => {
   const { pageCount } = useAdList(
     `search=${searchWord}&category=${searchCategory}&page=${page}`
   )
-
-
+  
   const navigate = useNavigate()
 
-  // console.log(page);
-  console.log(ads.adList)
+ 
 
   // DECORATION LINE
   const missionText = useDecorationLine({ orientation: 'right' })

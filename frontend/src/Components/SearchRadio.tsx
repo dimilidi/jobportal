@@ -4,28 +4,15 @@ import {BsFillArrowRightCircleFill} from 'react-icons/bs'
 import useSearch from '../Hooks/useSearch'
 
 
-type Props = {
-  // selectedCategory: string
-  // setSelectedCategory: React.Dispatch<React.SetStateAction<string>>
-}
+  const SearchRadio = () => {
+    const { searchCategory, setSearchCategory } =
+    useSearch()
 
-const SearchRadio = (props: Props) => {
-
-  const { searchWord, setSearchWord, searchCategory, setSearchCategory } =
-  useSearch()
-
-
-  // console.log(props.selectedCategory);
-  
-
- 
-   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchCategory(e.target.value)
-
   }
 
  
-
   return (
     <div 
     area-label='search-radio'

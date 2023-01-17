@@ -1,11 +1,8 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import Search from '../Components/Search'
 import SearchRadio from '../Components/SearchRadio'
-import useSearch from '../Hooks/useSearch'
-import UniButton from './UniButton'
-//icon
-import { BsFillArrowRightCircleFill } from 'react-icons/bs'
+
 
 type Props = {
   page: string
@@ -14,22 +11,9 @@ type Props = {
 const SearchContainer = (props: Props) => {
   const path = useLocation().pathname
   const navigate = useNavigate()
-  const { searchWord, setSearchWord, searchCategory, setSearchCategory } =
-    useSearch()
-  const [searchInput, setSearchInput] = useState<string>(searchWord)
-  // const [selectedCategory, setSelectedCategory] =
-  //   useState<string>(searchCategory)
-
-
-    // console.log('search',searchInput);
-    console.log('Word',searchWord);
-    // console.log('Word',selectedCategory);
-
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    // setSearchWord(searchInput)
-    // setSearchCategory(selectedCategory)
     if (!path.includes('/adlist')) {
       navigate('/adslist')
     }
@@ -48,13 +32,8 @@ const SearchContainer = (props: Props) => {
       className='w-full  flex justify-center flex-col items-center mx-auto
       xl:w-[30rem] '
       >
-        <Search 
-        // searchInput={searchInput} setSearchInput={setSearchInput} 
-        />
-        <SearchRadio
-          // selectedCategory={selectedCategory}
-          // setSelectedCategory={setSelectedCategory}
-        />
+        <Search />
+        <SearchRadio />
       </div>
     </form>
 
@@ -67,13 +46,8 @@ const SearchContainer = (props: Props) => {
       className='flex mt-6 w-full justify-center items-center flex-row
     '>
        <div>
-        <Search 
-        // searchInput={searchInput} setSearchInput={setSearchInput}
-         />
-        <SearchRadio
-          // selectedCategory={selectedCategory}
-          // setSelectedCategory={setSelectedCategory}
-        />
+        <Search />
+        <SearchRadio />
       </div>
     </form>
   )
