@@ -39,14 +39,15 @@ const SearchContainer = (props: Props) => {
     <form
       aria-label='search-home-form'
       className='sm:w-[27rem] mt-6 flex items-center justify-center flex-col
-      lg:pt-[0px] lg:items-start lg:w-[55%]
-      2xl:w-[42%] 2xl:items-end'
+      lg:pt-[0px] lg:w-[45%] lg:self-end lg:ml-[23%]  lg:mt-[120px]
+   xl:mt-0 xl:w-[50%] xl:ml-0
+      xl:items-start '
       onSubmit={handleSubmit}
     >
-      {/* <div
-      className='w-full  flex justify-center flex-col items-center
-      lg:w-[80%]'
-      > */}
+      <div
+      className='w-full  flex justify-center flex-col items-center mx-auto
+      xl:w-[30rem] '
+      >
         <Search 
         // searchInput={searchInput} setSearchInput={setSearchInput} 
         />
@@ -54,7 +55,7 @@ const SearchContainer = (props: Props) => {
           // selectedCategory={selectedCategory}
           // setSelectedCategory={setSelectedCategory}
         />
-      {/* </div> */}
+      </div>
     </form>
 
   ) : (

@@ -25,7 +25,7 @@ const Search = (props: Props) => {
     aria-label='search-home'
     className='flex items-center justify-center w-[20rem]
      sm:w-full
-    lg:w-full
+
      '>
 
       <label className='relative  w-full  '>

@@ -23,9 +23,10 @@ const Home = () => {
       exit={{ x: window.innerWidth }}
       className='mx-auto md:w-[90%] w-full h-full min-h-[918px] flex justify-center items-center lg:justify-end'
     >
-      <div className=' py-8  h-full   w-[100%]  sm:w-[50%] flex flex-col items-center justify-around gap-10 lg:ml-[85px] lg:gap-0  md:w-full lg:flex-row  md:flex-wrap md:justify-center  lg:justify-start  md:items-center  mx-auto'>
+      {/* <div className=' py-8  h-full   w-[100%]  sm:w-[50%] flex flex-col items-center justify-around gap-10 lg:ml-[85px] lg:gap-0  md:w-full lg:flex-row  md:flex-wrap md:justify-center  lg:justify-start  md:items-center  mx-auto'> */}
+      <div className=' py-8  h-full  w-[100%]  sm:w-[50%] flex flex-col items-center justify-around gap-10 lg:ml-[85px] lg:gap-0  md:w-full lg:flex-row  md:flex-wrap md:justify-center  lg:justify-start  md:items-center  mx-auto '>
         {/* TEXT */}
-        <div className='w-full flex flex-col items-center justify-center gap-6 md:w-[70%] lg:w-[50%]   '>
+        <div className='w-full flex flex-col items-center justify-center gap-6 md:w-[70%] lg:w-[50%]  '>
           <h1 className='text-[45px] leading-none font-medium text-textBlack sm:text-[53px] lg-text-7 xl:text-[80px] md:text-6xl '>
             Build your <br></br>
             <span
@@ -44,7 +45,7 @@ const Home = () => {
               Dream.
             </span>
           </h1>
-          <p className='w-[80%] h-[80px] hidden font-light text-gray break-words xl:max-w-[450px] xl:text-lg xl:pt-2 lg:inline-block'>
+          <p className='w-[70%] h-[80px] hidden font-light text-gray break-words lg:max-w-[350px] xl:max-w-[450px] xl:text-lg xl:pt-2 lg:inline-block'>
           Freedom is finding the right job. Don't wait to be found - apply now! Find suitable job today!
           </p>
         </div>
@@ -53,7 +54,7 @@ const Home = () => {
 
         <img
           className='w-[80%] max-w-[250px] z-30 xl:max-w-[500px]  
-          lg:max-w-[370px] lg:mb-[-100px] lg:ml-2 xl:ml-6'
+          lg:max-w-[370px] lg:mb-[-100px] lg:ml-2 '
           src={imageHome}
         ></img>
 
