@@ -73,7 +73,7 @@ const AdsList = () => {
 
 
         {/* SEMICIRCLE */}
-        <div className='w-[50px] h-24 hidden right-0 top-[160px]  rounded-tl-full rounded-bl-full bg-lightGreen lg:block absolute'></div>
+        <div className='w-[50px] h-24 hidden right-0 top-[160px] rounded-tl-full rounded-bl-full bg-lightGreen lg:block absolute'></div>
       </div>
 
       <>

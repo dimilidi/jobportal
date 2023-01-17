@@ -10,7 +10,6 @@ import { useEffect, useState } from 'react'
 import useUser from '../Hooks/useUser'
 // framer-motion
 import { motion } from 'framer-motion'
-import useSearch from '../Hooks/useSearch'
 import PaginationButtons from '../Components/PaginationButtons'
 
 const Account = () => {
@@ -33,32 +32,32 @@ const Account = () => {
       initial={{ width: '100%' }}
       animate={{ width: '100%' }}
       exit={{ x: window.innerWidth }}
-      className='mx-auto pt-[80px] pb-10 w-full h-full min-h-[1100px] flex flex-col items-center justify-center gap-10 lg:pt-0 lg:min-h-[970px] lg:flex-row lg:gap-0'
+      className='mx-auto pt-[80px] pb-10 w-full h-full min-h-[1100px] flex flex-col items-center justify-center gap-10 md:gap-3 lg:pt-0 lg:min-h-[970px] lg:flex-row lg:gap-0'
     >
       {/* SEMICIRCLE */}
-      <div className='w-24 h-24 hidden absolute right-[-3rem] top-[210px] rounded-full bg-lightGreen md:hidden lg:block lg:top-[170px]' />
-
+      <div className='w-[50px] h-24 hidden absolute right-0 rounded-tl-full rounded-bl-full bg-lightGreen md:hidden lg:block lg:top-[160px]' />
       {/* LINE */}
-      <div className='border-b-[3px] border-lightGreen absolute hidden lg:w-[20%] xl:w-[30%] md:block lg:top-[220px] lg:right-0' />
+      <div className='border-b-[3px] border-lightGreen absolute hidden lg:w-[20%] xl:w-[30%] md:block lg:top-[210px] lg:right-0' />
 
       {/* USER CARD */}
-      <div className='h-full w-[95%] relative flex justify-center lg:w-[32%]'>
+      <div className='h-full w-[95%] relative flex justify-center lg:w-[32%] md:mb-[50px]'>
         <UserCard />
       </div>
 
       {/* ADS && BUTTONS CONTAINER */}
-      <div className='max-w-[650px] h-full flex flex-col justify-center items-center md:h-[540px] lg:w-[62%] lg:max-w-[800px] lg:gap-10'>
+      <div className='max-w-[650px] h-full flex flex-col justify-center items-center md:h-[650px] lg:w-[62%] lg:max-w-[800px] lg:gap-5'>
         {/* BUTTONS */}
         <div
-          className='w-full
+          className='w-full lg:w-[90%]
               flex flex-col justify-center items-center gap-6
               sm:justify-center sm:flex-row
-              lg:ml-20 lg:justify-start'
+              lg:ml-5 lg:justify-start'
         >
           <UniButtonWhite
             text='Post Ad'
             type='button'
             onClick={() => navigate('/post-ad')}
+            style={{ z: 10 }}
           />
 
           <UniButton
@@ -69,12 +68,12 @@ const Account = () => {
           />
         </div>
 
-        <h3 className='mt-10 text-lg font-semibold text-gray text-center'>
+        <h3 className='mt-10 md:mb-[30px] lg:mt-[60px] lg:mb-[-20px] xl:mb-[-10px] text-lg font-semibold text-gray text-opacity-40 text-center lg:w-full lg:flex lg:justify-start lg:ml-[85px] xl:ml-[120px]'>
           Your Ads
         </h3>
 
         {/* ADS */}
-        <div className='mt-[30px] mb-[30px] w-full h-full flex flex-wrap justify-center items-start rounded-[21px] sm:px-5 sm:mt-3 sm:mb-20 sm:w-[600px] sm:h-[552px]  md:w-[100%] md:h-[440px] lg:px-0 lg:mb-0 lg:h-[500px]'>
+        <div className='mt-[30px] mb-[30px] w-full h-full flex flex-wrap justify-center items-start rounded-[21px] sm:px-5 sm:mt-3 sm:mb-20 sm:w-[600px] sm:h-[552px]  md:w-[100%] md:h-[250px] lg:px-0 lg:mb-0 lg:h-[310px]'>
           <div className='w-full flex flex-wrap justify-center items-center'>
             {adList?.length === 0 ? (
               <div
@@ -89,7 +88,11 @@ const Account = () => {
             )}
           </div>
         </div>
-      <PaginationButtons page ={page} setPage = {setPage} pageCount={pageCount}/>
+        <div
+          aria-label='paginationButtons'
+          className='mb-[50px] lg:mb-0 w-full lg:flex lg:justify-end xl:w-[128%]'>
+          <PaginationButtons page ={page} setPage = {setPage} pageCount={pageCount}/>
+        </div>
       </div>
     </motion.div>
   )
