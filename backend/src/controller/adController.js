@@ -9,6 +9,8 @@ export async function getAds(req, res) {
   let countDoc =  Ad.countDocuments({})
   let query = Ad.find({})
 
+
+
   if (userId) {
     query = query.where('user').equals(userId).clone()
     // count docs created by user
@@ -24,7 +26,7 @@ export async function getAds(req, res) {
     }
   }
 
-  // filter ads by search, if it is included in title/description/location/sector,
+  // Filter ads by search, if it is included in title/description/location/sector,
   if (search) {
     query = query  
     // search for the input words and give score by the number of matching words
@@ -34,10 +36,6 @@ export async function getAds(req, res) {
     countDoc = countDoc.count(query)
     // sort search
     query = query.sort({ score: { $meta: 'textScore' } })
-   
-  } else {
-    // sort ads by update date (descending order)
-    query = query.sort({ updatedAt: -1 })
   }
 
   // Pagination
@@ -47,6 +45,9 @@ export async function getAds(req, res) {
       .skip(parseInt(page) * page_size)
       .limit(page_size)
   }
+
+  // Sort ads by update date (descending order)
+  query = query.sort({ updatedAt: -1 })
   
   query.populate('user', 'name, avatar').clone()
 
