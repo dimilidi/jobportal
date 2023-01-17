@@ -1,7 +1,7 @@
 // Hooks
 import { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
-import useAds from '../Hooks/useAd'
+import useAd from '../Hooks/useAd'
 import useUser from '../Hooks/useUser'
 // Components
 import UniButton from '../Components/UniButton'
@@ -23,7 +23,7 @@ const EditAd = () => {
   const params = useParams()
   const navigate = useNavigate()
   const user = useUser()
-  const ads = useAds(`/ads/${params.id}`)
+  const ads = useAd()
 
     // DECORATION LINE
   const editText = useDecorationLine({orientation: 'left'})
