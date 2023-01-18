@@ -13,9 +13,14 @@ import { notify } from '../utils/toastNotification'
 // Style
 import 'react-toastify/dist/ReactToastify.css'
 import imagePostAd from '../assets/images/PostAd_chef.png'
+// Text editor 
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
 // Others
 import axiosInstance from '../api/axiosInstance'
 import { motion } from 'framer-motion'
+import TextEditor from '../Components/TextEditor'
+
 
 const PostAd = () => {
   // CONSTANTS
@@ -38,7 +43,8 @@ const createText = useDecorationLine({orientation: 'left'})
     [string, string] | [string] | []
   >()
   const [checked, setChecked] = useState({ email: false, phone: false })
-  // const [image, setImage] = useState('')
+  const [image, setImage] = useState('')
+
 
   // If user is not logged in, navigate to auth-required
   useEffect(() => {
@@ -62,6 +68,8 @@ const createText = useDecorationLine({orientation: 'left'})
     }
   }, [checked])
 
+
+  
   // HANDLE SUBMIT
   const handleSubmit = async (e: React.SyntheticEvent) => {
     e.preventDefault()
@@ -76,6 +84,7 @@ const createText = useDecorationLine({orientation: 'left'})
       wage,
       contactVia,
     }
+    
 
     const response = await axiosInstance
       .post('/ads/post', ad)
@@ -213,7 +222,7 @@ const createText = useDecorationLine({orientation: 'left'})
               {/* TITLE && CITY && SECTOR */}
               <div
                 area-label='inputs colum'
-                className='w-full mt-3 flex flex-col items-center justify-center'
+                className=' rounded-full mt-3 flex flex-col items-center justify-center'
               >
                 <div
                   area-label='title-city'
@@ -275,6 +284,8 @@ const createText = useDecorationLine({orientation: 'left'})
                 </div>
 
                 {/* TEXTAREA */}
+
+                {/* TEXTAREA - original*/}
                 <textarea
                   area-label='text area'
                   name='text'
@@ -285,10 +296,14 @@ const createText = useDecorationLine({orientation: 'left'})
                   onChange={(e) => setDescription(e.target.value)}
                 ></textarea>
 
+                  
+                  {/* <TextEditor description={description} setDescription={setDescription} /> */}
+
+
                 {/* CHECKBOX (email-phone) */}
                 <div
                   area-label='form-bottom'
-                  className='w-full m-2 flex flex-wrap-reverse justify-start gap-3 lg:flex-row lg:justify-between lg:gap-2 '
+                  className='w-full m-2 flex flex-wrap-reverse justify-start gap-3 lg:flex-row lg:justify-between lg:gap-2'
                 >
                   <div
                     area-label='checkbox-text '
@@ -348,6 +363,7 @@ const createText = useDecorationLine({orientation: 'left'})
                       <input
                         type='number'
                         name='wage'
+                        min={0}
                         className='py-1 px-5 w-[100px] text-sm text-gray rounded-lg border-2 border-lightGray border-opacity-50 focus:outline-none  placeholder:font-bold placeholder:opacity-50 '
                         placeholder='00'
                         value={wage}
@@ -380,3 +396,37 @@ const createText = useDecorationLine({orientation: 'left'})
 }
 
 export default PostAd
+
+
+// function App() {
+
+// return (
+//   <>
+//   <div className="App">
+//     <h2>Input</h2>
+//     <textarea
+//         value={textInput}
+//         onChange={(e) => setTextInput(e.target.value)}
+//         rows="10"/>
+//   </div>
+//   <div>
+//     <h2>Output:</h2>
+//     <div style={{display: 'flex', gap: '50px'}}>
+//         <div style={{width: '300px'}}>
+//           <h3>Als textarea</h3>
+//           <textarea value={textInput} disabled={true} />
+//         </div>
+//         <div style={{width: '300px'}}>
+//           <h3>als div</h3>
+//           {formated.map((el,i) => {
+//             return (
+//               <p key={i}>{el}</p>
+//             )
+//           })}
+//         </div>
+//       </div>
+//     </div>
+//     </>
+//   )
+// }
+
