@@ -1,8 +1,3 @@
-// Hooks
-import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
-// Components
-import UniButton from '../Components/UniButton'
 // Images & Icons
 import imageHome from '../assets/images/Home_group.png'
 // framer-motion
@@ -10,6 +5,7 @@ import { motion } from 'framer-motion'
 
 import useDecorationLine from '../Hooks/useDecorationLine'
 import SearchContainer from '../Components/SearchContainer'
+import ImageRights from '../Components/ImageRights'
 
 const Home = () => {
   // DECORATION LINE
