@@ -45,3 +45,9 @@ export type EditInputs = {
   description: string | undefined
   phone: string | undefined
 }
+
+export type messageContext = {
+  connect:(id: string) => void,  
+  sendMessage:(text: string, receiver: number) => void,
+  isConnected:boolean,
+}

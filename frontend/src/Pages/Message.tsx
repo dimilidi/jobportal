@@ -10,7 +10,7 @@ import { motion } from 'framer-motion'
 import UserMessage from '../Components/UserMessage'
 import InputMessage from '../Components/InputMessage'
 
- const Message = () => {
+const Message = () => {
   return (
     <motion.div
         initial={{ width: '100%' }}
@@ -22,10 +22,10 @@ import InputMessage from '../Components/InputMessage'
         {/* MAIN */}
         <div
           area-label='main'
-          className='w-[95%] sm:max-w-[900px] h-full
+          className='w-[95%]  h-full
           flex flex-col justify-start
-          sm:w-[80%]
-          md:min-h-[650px]md:w-[70%]
+          sm:w-[80%] sm:max-w-[900px]
+          md:min-h-[650px] md:w-[70%]
           lg:w-[50%] 
           xl:w-[800px] xl:min-h-full'
         >
@@ -33,7 +33,7 @@ import InputMessage from '../Components/InputMessage'
         {/* BOX*/}
         <div
             area-label='box'
-            className='[95%] min-h-[500px] sm:h-[400px] sm:w-[400px] xl:h-[600px]
+            className='max-[767px]:mt-[6rem] min-h-[500px] sm:h-[600px] sm: sm:w-[400px] xl:h-[600px]
             flex flex-col justify-between item-center
             self-center z-10 rounded-[21px] bg-white shadow-standard'
           >

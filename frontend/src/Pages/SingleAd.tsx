@@ -36,7 +36,8 @@ const SingleAd = () => {
 
   // HANDLE MESSAGE
   const handleMessage = () => {
-    //   if (user.isLoggedIn === false) navigate('/auth-required')
+    if (user.isLoggedIn === false) navigate('/auth-required')
+    navigate('/message')
   }
 
   // HANDLE EDIT
