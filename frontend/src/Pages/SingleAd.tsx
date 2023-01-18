@@ -16,18 +16,22 @@ import DeleteAd from '../assets/images/DeleteAd.png'
 
 // Framer-motion
 import { motion } from 'framer-motion'
-import { AiFillEdit } from 'react-icons/ai'
+import { AiFillEdit, AiFillEye } from 'react-icons/ai'
 import UniButtonWhite from '../Components/UniButtonWhite'
 import { RiDeleteBinLine } from 'react-icons/ri'
 import { useState } from 'react'
 import Modal from '../Components/Modal'
+import Spinner from '../Components/Spinner'
+import { BsFillEyeFill } from 'react-icons/bs'
 
 const SingleAd = () => {
   // CONSTANTS
   const params = useParams()
   const navigate = useNavigate()
   const user = useUser()
-  const { ad, isLoading, deleteAd } = useAd()
+  const { ad,  isLoading, deleteAd } = useAd()
+
+  console.log(ad?.views)
 
   const [modalOpen, setModalOpen] = useState(false)
   const close = () => setModalOpen(false)
@@ -55,10 +59,13 @@ const SingleAd = () => {
   // CONFIRM DELETE
   const confirmDelete = () => {
     if(ad){
+     console.log(ad.views)
       deleteAd(ad?._id)
       navigate(`/account`)
     }
   }
+ 
+  
 
   // If no ad was fetched, return div with message
   if (!ad) {
@@ -108,6 +115,23 @@ const SingleAd = () => {
             )}
           </div>
 
+           {/* VIEWS */}
+          {/* <div className="flex items-center gap-3 mt-2 justify-between">
+            <div className="flex gap-3 mt-4"> */}
+              <button className="flex items-center justify-center gap-2 text-lg text-gray opacity-50">
+                <BsFillEyeFill /> <span>{ad.views}</span>
+              </button>
+              
+              
+              {/* <button className="flex items-center justify-center gap-2 text-xs text-white opacity-50">
+                <AiOutlineMessage /> <span>{ad.likes?.length || 0}</span>
+              </button> */}
+            {/* </div>
+          </div> */}
+
+          
+        
+
           {/* IF AD IS CREATED BY USER, BUTTON "EDIT" && "DELETE" */}
           {user.user?._id === ad?.user._id && (
             <div className='px-3 flex justify-center gap-2'>
@@ -154,14 +178,12 @@ const SingleAd = () => {
 
           {/* ContactDetails MOBILE - If user exists, show ContactDetails */}
           <div className='flex justify-center '>
-            { user.user && (
               <ContactDetails
                 className=' w-[90%] max-w-[340px] pt-10 
               sm:w-[80%]
               lg:w-[800px]
               flex justify-center self-center rounded-xl xl:hidden'
               />
-            )}
           </div>
 
           {/* IF AD IS NOT CREATED BY USER, BUTTON "MESSAGE" */}

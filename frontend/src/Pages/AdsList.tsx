@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import useAdList from '../Hooks/useAdList'
 import useUser from '../Hooks/useUser'
 import useSearch from '../Hooks/useSearch'
+import { useState } from 'react'
 // Components
 import Ad from '../Components/Ad'
 import UniButton from '../Components/UniButton'
@@ -15,12 +16,15 @@ import useDecorationLine from '../Hooks/useDecorationLine'
 import SearchContainer from '../Components/SearchContainer'
 // Icons
 import PaginationButtons from '../Components/PaginationButtons'
+import useAd from '../Hooks/useAd'
+
 
 
 const AdsList = () => {
   // CONSTANTS
   const { searchWord, searchCategory } = useSearch()
   const user = useUser()
+  const {ad, updateAd} = useAd()
 
   const { pageCount, page, setPage } = useAdList(
     `search=${searchWord}&category=${searchCategory}`
@@ -30,6 +34,7 @@ const AdsList = () => {
   )
   
   const navigate = useNavigate()
+  const [views, setViews] = useState(ad?.views)
 
  
 
@@ -44,7 +49,9 @@ const AdsList = () => {
       navigate('/auth-required')
     }
   }
+  
 
+ 
 
   return (
     <motion.div

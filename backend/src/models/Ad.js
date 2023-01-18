@@ -12,6 +12,7 @@ const Schema = mongoose.Schema(
       type: [String],
       required: true,
     },
+    views: {type: Number, default: 0},
     createdAt: Date,
     user: { type: mongoose.Types.ObjectId, ref: 'User' },
   },

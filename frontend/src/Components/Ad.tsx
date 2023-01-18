@@ -9,6 +9,7 @@ import { Ad as AdType } from '../type'
 
 type Props = {
   ad: AdType
+ 
 }
 
 function Ad({ ad }: Props) {

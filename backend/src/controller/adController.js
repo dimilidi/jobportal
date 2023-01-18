@@ -9,14 +9,11 @@ export async function getAds(req, res) {
   let countDoc =  Ad.countDocuments({})
   let query = Ad.find({})
 
-
-
   if (userId) {
     query = query.where('user').equals(userId).clone()
     // count docs created by user
     countDoc =  countDoc.where('user').equals(userId)
   } 
-
 
   if (category) {
     if (category !== 'all') {
@@ -83,10 +80,10 @@ export async function getAdById(req, res) {
   const adId = req.params.id
 
   // if user is NOT logged in, populate only name of ad-creator
-  let ad = await Ad.findById(adId).populate('user', 'name, avatar')
+  let ad = await Ad.findById(adId).populate('user', 'name, avatar views')
 
   // if user is logged in, contact data selected in contactvia
-  let itemToPopulate = 'name avatar'
+  let itemToPopulate = 'name avatar views'
   if (user) {
     for (const item of ad.contactVia) {
       itemToPopulate += ` ${item}`

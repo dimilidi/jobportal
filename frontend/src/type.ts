@@ -18,6 +18,7 @@ export type Ad = {
   location: string
   wage: number
   contactVia: string
+  views: number
   createdAt: Date
   user: {
     _id: string
