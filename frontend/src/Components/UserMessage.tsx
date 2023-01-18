@@ -1,8 +1,13 @@
 import useUser from '../Hooks/useUser'
-import profileImg from '../assets/images/Account_profilOne.png'
+import profileImg from '../assets/images/Account_profilDefault.png'
+import { Ad as AdType } from '../type'
 
-function UserMessage() {
-  const user = useUser().user
+type Props = {
+  ad: AdType
+}
+
+function UserMessage({ ad }: Props) {
+  const user = useUser()
   return (
     <>
       {/* PROFILE IMAGE */}
@@ -23,12 +28,12 @@ function UserMessage() {
           self-end rounded-full
           md:w-[80px] md:h-[40px] md:mb-9'
           >
-            <img src={profileImg} alt='profileImg' />
+            <img src={ ad.user.avatar ? ad.user.avatar :  profileImg }  />
           </div>
         </div>
 
         {/* USER NAME, and SECTION */}
-        <div className='pt-5 md:pt-7'>
+        {/* <div className='pt-5 md:pt-7'>
           <h1
             className=' flex justify-center
           font-medium xl:font-semibold
@@ -47,8 +52,8 @@ function UserMessage() {
             >
               {user.profession}
             </h2>
-          )}
-        </div>
+          )} 
+        </div> */}
       </div>
     </>
   )

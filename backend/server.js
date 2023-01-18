@@ -6,7 +6,25 @@ import mongoose from 'mongoose'
 import cookieParser from 'cookie-parser'
 import userRouter from './src/routers/userRouter.js'
 import adRouter from './src/routers/adRouter.js'
+import http from 'http'
+import { Server } from 'socket.io'
 dotenv.config({ path: `.env.${process.env.NODE_ENV}` })
+
+const app = express()
+const server = http.createServer(app)
+const io = new Server(server, {cors: {origin: process.env.FRONTEND}})
+
+io.on("connection", socket => {
+  console.log(socket.id)
+  socket.on("message", (value) => {
+    console.log("value:::::", value)
+    socket.to(value.receiver).emit("message", value.text)
+  })
+  socket.on("joinRoom", (id) => {
+    console.log(id, "has entered the chat")
+    socket.join(id)
+  })
+})
 
 console.log('\x1b[36m%s\x1b[0m', `CLICK --> ${process.env.FRONTEND}`)
 
@@ -15,8 +33,6 @@ mongoose
   .connect(process.env.DB_CONN)
   .then(() => console.log('Datenbank läuft'))
   .catch(() => console.log('Datenbank Verbindung fehlgeschlagen'))
-
-const app = express()
 
 app.use(
   cors({
@@ -48,6 +64,6 @@ app.use((error, req, res, next) => {
   })
 })
 
-app.listen(process.env.PORT, () =>
+server.listen(process.env.PORT, () =>
   console.log('app listening on', process.env.PORT)
 )
