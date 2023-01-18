@@ -1,5 +1,6 @@
+
 export type User = {
-  _id: string | undefined
+  _id: string 
   name: string | undefined
   profession?: string | undefined
   email: string | undefined
@@ -47,4 +48,13 @@ export type EditInputs = {
   city: string | undefined
   description: string | undefined
   phone: string | undefined
+}
+
+export type messageContext = {
+  connect:(id: string) => void,  
+  sendMessage:(text: string, receiver: string) => void,
+  isConnected:boolean,
+  messages: [] 
+  setMessages: ((prevState: [{message:string, received:boolean}]) => void)
+ 
 }

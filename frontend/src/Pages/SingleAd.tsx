@@ -23,6 +23,8 @@ import { useState } from 'react'
 import Modal from '../Components/Modal'
 import Spinner from '../Components/Spinner'
 import { BsFillEyeFill } from 'react-icons/bs'
+import Message from './Message'
+
 
 const SingleAd = () => {
   // CONSTANTS
@@ -33,13 +35,19 @@ const SingleAd = () => {
 
   console.log(ad?.views)
 
+  console.log('AD',ad?.user.avatar);
+  
+
   const [modalOpen, setModalOpen] = useState(false)
   const close = () => setModalOpen(false)
   const open = () => setModalOpen(true)
+  const [openChat, setOpenChat] = useState(false)
 
   // HANDLE MESSAGE
   const handleMessage = () => {
-    //   if (user.isLoggedIn === false) navigate('/auth-required')
+    if (user.isLoggedIn === false) navigate('/auth-required')
+    setOpenChat(true)
+    // navigate('/message')
   }
 
   // HANDLE EDIT
@@ -65,6 +73,12 @@ const SingleAd = () => {
     }
   }
  
+  
+
+  if(openChat){
+    return <Message />
+  }
+
   
 
   // If no ad was fetched, return div with message

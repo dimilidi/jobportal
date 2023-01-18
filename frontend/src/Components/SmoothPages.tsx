@@ -14,6 +14,7 @@ import DeleteAccount from '../Pages/DeleteAccount'
 import EditAd from "../Pages/EditAd"
 // framer-motion
 import {AnimatePresence} from 'framer-motion'
+import Message from '../Pages/Message'
 
 
 const SmoothPages = () => {
@@ -33,6 +34,7 @@ const SmoothPages = () => {
             <Route path='/edit-account' element={<EditAccount />} />
             <Route path='/delete-account' element={<DeleteAccount />} />
             <Route path='/auth-required' element={<AuthRequired />} />
+            <Route path='/message' element={<Message />} />
             <Route path='*' element={<NotFound />} />
         </Routes>
     </AnimatePresence>
