@@ -38,7 +38,7 @@ const createText = useDecorationLine({orientation: 'left'})
     [string, string] | [string] | []
   >()
   const [checked, setChecked] = useState({ email: false, phone: false })
-  // const [image, setImage] = useState('')
+ 
 
   // If user is not logged in, navigate to auth-required
   useEffect(() => {

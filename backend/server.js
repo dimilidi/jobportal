@@ -18,13 +18,20 @@ io.on("connection", socket => {
   console.log(socket.id)
   socket.on("message", (value) => {
     console.log("value:::::", value)
-    socket.to(value.receiver).emit("message", value.text)
+    // socket.broadcast.emit('message-from-server', value)  
+    socket.to(value.receiver).emit("message-from-server", value.text)
   })
   socket.on("joinRoom", (id) => {
     console.log(id, "has entered the chat")
     socket.join(id)
   })
+
+  // socket.on('disconnect', (socket) => {
+  //   console.log('User left')
+  // })
 })
+
+
 
 console.log('\x1b[36m%s\x1b[0m', `CLICK --> ${process.env.FRONTEND}`)
 
