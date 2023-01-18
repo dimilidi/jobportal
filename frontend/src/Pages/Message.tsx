@@ -16,8 +16,7 @@ const Message = () => {
   const {ad} = useAd()
 
 
-  const [text, setText] = useState("")
-  const [messages, setMessages] =useState<any>([])
+  
 
 
   console.log('AD?',ad);
@@ -64,12 +63,12 @@ const Message = () => {
           aria-aria-label='history'
           className='h-full w-full
           relative flex justify-center'>
-          <MessageHistory text={text} messages={messages}/>
+          <MessageHistory />
         </div>
 
         {/* INPUT MESSAGE */}
         <div>
-          <InputMessage text={text} setText={setText} messages={messages} setMessages={setMessages} />
+          <InputMessage  />
         </div>
 
         </div>

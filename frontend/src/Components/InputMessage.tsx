@@ -1,51 +1,57 @@
 import useUser from '../Hooks/useUser'
 import UniButton from '../Components/UniButton'
 import useMessenger from '../Hooks/useMessenger'
+import { Dispatch, SetStateAction, useState } from 'react'
 
 import React from 'react'
 import useAd from '../Hooks/useAd'
 import e from 'cors'
 
-type Props= {
-  text: string
-  messages: []
-  setText: (text:string) => void
-  setMessages: (messages:[string]) => void
-}
 
 
-function InputMessage({text, setText, messages, setMessages}: Props) {
+
+
+function InputMessage() {
   const {user} = useUser()
   const {ad }= useAd()
   const chat = useMessenger()
+  const [text, setText] = useState("")
+  const [messages, setMessages] =useState<any>([])
+
+ 
+
+  
 
 
-
-
-
+  React.useEffect(() => {
+    if (user) {
+      chat.connect(user._id)
+    }
+    
+  },[user])
+  
   function inputHandler(e: any) {
     setText(e.target.value)
   }
-
-  React.useEffect(() => {
-    if(!chat.isConnected) return
-    user && chat.emit('joinRoom', user._id)
-    return chat.onMessage((message:any) => {
-      console.log(message);
-      
-    })
-   
-  },[user, chat.isConnected])
 
   
   const sendMessage = (e:React.SyntheticEvent) => {
     e.preventDefault()
     setText('')
     ad && 
-    chat.emit('message', {text, receiver: ad.user._id})
-    setMessages([...messages, text ])
+    chat.sendMessage(text, ad?.user._id)
+    // chat.setMessages((chat.messages) => [...chat.messages, {message:text, received:false}])
+    chat.setMessages([...chat.messages, {message:text, received:false}])
+    
+
   }
- 
+  
+  // console.log('CHat',chat);
+  // console.log('Text',text);
+  // console.log("Receiver:", ad?.user)
+  // console.log("Sender:", user?._id)
+  // console.log('Messages',messages);
+
  
 
   return (

@@ -2,14 +2,16 @@ import { useEffect, useState } from 'react'
 import useMessenger from '../Hooks/useMessenger'
 import useUser from '../Hooks/useUser'
 
-type Props = {
-  messages: []
-  text: string
-}
+// type Props = {
+//   messages: []
 
-function MessageHistory( {messages, text}:Props) {
+// }
+
+function MessageHistory( ) {
   const user = useUser().user
-  const chat = useMessenger()
+  const {messages} = useMessenger()
+  console.log('Msg',messages);
+  
 
 
 
@@ -19,10 +21,10 @@ function MessageHistory( {messages, text}:Props) {
 
       {/* LINE-BOX */}
       <div
-        className='w-[260px] h-[170px]
+        className='w-[260px] h-[170px] 
           md:w-[400px] xl:h-[250px]
           border-y-2 border-darkBeige'> 
-          {/* {messages.map((m) => <p>{m}</p>)} */}
+          {messages && messages.map((value, i) => <p style= {{textAlign: value['received'] ? 'left' : 'right'}} key={i}>{value['message']}</p>)}
       </div>
      
 
