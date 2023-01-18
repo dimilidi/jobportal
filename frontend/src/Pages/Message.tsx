@@ -9,8 +9,21 @@ import 'react-toastify/dist/ReactToastify.css'
 import { motion } from 'framer-motion'
 import UserMessage from '../Components/UserMessage'
 import InputMessage from '../Components/InputMessage'
+import useAd from '../Hooks/useAd'
+import { useState } from 'react'
 
 const Message = () => {
+  const {ad} = useAd()
+
+
+  const [text, setText] = useState("")
+  const [messages, setMessages] =useState<any>([])
+
+
+  console.log('AD?',ad);
+
+  
+ 
   return (
     <motion.div
         initial={{ width: '100%' }}
@@ -43,7 +56,7 @@ const Message = () => {
             aria-label='UserMessage'
             className='h-full w-full
               relative flex justify-center '>
-            <UserMessage/>
+            {ad && <UserMessage ad={ad}/>}
           </div>
 
         {/* MESSAGE HISTORY */}
@@ -51,12 +64,12 @@ const Message = () => {
           aria-aria-label='history'
           className='h-full w-full
           relative flex justify-center'>
-          <MessageHistory />
+          <MessageHistory text={text} messages={messages}/>
         </div>
 
         {/* INPUT MESSAGE */}
         <div>
-          <InputMessage />
+          <InputMessage text={text} setText={setText} messages={messages} setMessages={setMessages} />
         </div>
 
         </div>

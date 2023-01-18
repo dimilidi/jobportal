@@ -1,5 +1,5 @@
 export type User = {
-  _id: string | undefined
+  _id: string 
   name: string | undefined
   profession?: string | undefined
   email: string | undefined
@@ -49,7 +49,7 @@ export type EditInputs = {
 }
 
 export type messageContext = {
-  connect:(id: string) => void,  
-  sendMessage:(text: string, receiver: number) => void,
   isConnected:boolean,
+  onMessage: (message:any) => () => void,
+  emit: (key:string, payload:any) => void
 }

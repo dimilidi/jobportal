@@ -21,6 +21,7 @@ import UniButtonWhite from '../Components/UniButtonWhite'
 import { RiDeleteBinLine } from 'react-icons/ri'
 import { useState } from 'react'
 import Modal from '../Components/Modal'
+import Message from './Message'
 
 const SingleAd = () => {
   // CONSTANTS
@@ -29,14 +30,19 @@ const SingleAd = () => {
   const user = useUser()
   const { ad, isLoading, deleteAd } = useAd()
 
+  console.log('AD',ad?.user.avatar);
+  
+
   const [modalOpen, setModalOpen] = useState(false)
   const close = () => setModalOpen(false)
   const open = () => setModalOpen(true)
+  const [openChat, setOpenChat] = useState(false)
 
   // HANDLE MESSAGE
   const handleMessage = () => {
     if (user.isLoggedIn === false) navigate('/auth-required')
-    navigate('/message')
+    setOpenChat(true)
+    // navigate('/message')
   }
 
   // HANDLE EDIT
@@ -60,6 +66,12 @@ const SingleAd = () => {
       navigate(`/account`)
     }
   }
+
+  if(openChat){
+    return <Message />
+  }
+
+  
 
   // If no ad was fetched, return div with message
   if (!ad) {

@@ -1,13 +1,15 @@
 import useUser from '../Hooks/useUser'
 import profileImg from '../assets/images/Account_profilDefault.png'
 import { Ad as AdType } from '../type'
+import useAd from '../Hooks/useAd'
 
 type Props = {
   ad: AdType
 }
 
-function UserMessage({ ad }: Props) {
+function UserMessage({ad}:Props) {
   const user = useUser()
+
   return (
     <>
       {/* PROFILE IMAGE */}

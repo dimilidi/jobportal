@@ -42,7 +42,7 @@ const SearchContainer = (props: Props) => {
     
     // SEARCH ADS LIST
     <form
-      onClick={handleSubmit}
+      onSubmit={handleSubmit}
       aria-label='search-ads-form'
       className='w-full mt-2 md:mt-8
         flex justify-center items-center flex-row
