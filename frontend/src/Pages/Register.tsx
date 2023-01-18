@@ -86,7 +86,7 @@ const Register = () => {
       /> */}
 
       {/* GREEN SEMICIRCLE */}
-      <div className='w-[100px] h-[100px] hidden absolute right-[-50px] top-[19rem] z-10 bg-lightGreen rounded-full xl:block' />
+      <div className='w-[50px] h-[100px] hidden absolute right-0 top-[19rem] z-10 bg-lightGreen rounded-tl-full rounded-bl-full xl:block' />
 
       {/* IMAGE2 */}
       <img
@@ -98,13 +98,13 @@ const Register = () => {
       />
 
       {/*HEADING && FORM */}
-      <div className='bg-white shadow-standard rounded-[30px] 
-      lg:rounded-r-[30px]  lg:rounded-l-[0] p-10 pt-20 
-      lg:mr-[10rem] lg:aboslute lg:left-0 lg:w-[620px]
-      2xl:w-[800px] 2xl:pl-20'>
+      <div className='w-[90%] bg-white shadow-standard rounded-[30px] 
+      lg:rounded-r-[30px] lg:rounded-l-[0] p-10 pt-20 
+      lg:w-[50%] lg:mr-[10rem] xl:w-[60%] 2xl:w-[50%] 2xl:ml-[-190px] 2xl:mr-[20rem]
+      '>
         <div
-          className='mx-auto w-[100%]
-          2xl:w-[80%]
+          className='mx-auto w-[100%] md:w-[90%]
+          2xl:w-[63%] 2xl:ml-[20rem]
             flex flex-col items-center
             '
         >
@@ -113,8 +113,8 @@ const Register = () => {
             className='w-[250px] sm:pb-[40px]
           text-center text-[2.2rem] leading-none font-semibold sm:text-[2.5rem]
           lg:w-[400px] lg:text-[3rem] lg:text-left
-          xl:w-[400px] xl:text-[3.5rem]
-          2xl:w-[540px] '
+          xl:w-[550px] xl:text-[3.5rem]
+          2xl:w-[500px] '
           >
             Glad to <br /> help
             <span 
@@ -125,7 +125,7 @@ const Register = () => {
           {/* FORM */}
           <form
             onSubmit={handleSubmit}
-            className='w-[80%] flex flex-col items-center justify-between l'
+            className='w-[115%] md:w-[100%] lg:w-[109%] xl:w-[80%] 2xl:w-[90%] flex flex-col items-center justify-between'
           >
             {/* INPUTS CONTAINER */}
             <div className='mb-5 w-full relative flex flex-col items-center'>
@@ -184,15 +184,18 @@ const Register = () => {
             </div>
 
             {/* Sign Up BUTTON */}
+            <div className='w-[100%] flex flex-col justify-center items-center'>
             <UniButton
               text={fetching ? <Spinner /> : 'Sign Up'}
               className='mt-[1rem] text-lg sm:text-lg lg:self-end'
               style={{ padding: '10px' }}
             />
 
-            <p className='mt-2 w-full text-center text-lightGray underline text-[14px] lg:text-center 2xl:text-right'>
+            <p className='mt-2 w-[60%] lg:w-[90%] text-center text-lightGray underline text-[14px] lg:text-right xl:text-right'>
               <Link to='/login'>or log in here</Link>
             </p>
+            </div>
+        
             {/* ERRORS */}
             {errors && 
              <p className='mt-1 text-red-600 self-start'>{errors[0]}</p>
@@ -209,9 +212,8 @@ const Register = () => {
       {/* IMAGE 1 */}
       <img
         area-label='image1'
-        className='mb-[-45px] w-[180px] z-10 
-        lg:w-[450px] lg:ml-[50px] 
-        xl:ml-[200px] xl:w-[500px] 2xl:w-[500] 
+        className='mb-[-45px] w-[400px] z-10 
+        xl:w-[450px] 2xl:w-[550] 
         hidden sm:hidden md:hidden lg:block'
         src={RegisterCouple}
         alt='illustration'
