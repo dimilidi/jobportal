@@ -89,11 +89,13 @@ const AdsList = () => {
             className=' '
           >
             <img
-              className='hidden
-              lg:w-[600px]
-              xl:w-[790px] xl:h-[500px] xl:mt-[60px] lg:mt-[140px]
-              2xl:w-[640px] 2xl:h-[550px]
-              lg:flex h-full w-full'
+              className='
+              hidden 
+              h-full w-full
+              lg:flex lg:w-[600px] lg:mt-[130px]
+              xl:w-[760px] xl:mt-[20px] xl:ml-[20px]
+              2xl:w-[640px] 2xl:mt-[-30px] 
+              '
               src={man}
               alt='person working on computer'
             />
