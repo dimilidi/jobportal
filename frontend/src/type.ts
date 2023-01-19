@@ -52,8 +52,9 @@ export type EditInputs = {
 export type messageContext = {
   connect:(id: string) => void,  
   sendMessage:(text: string, receiver: string) => void,
-  isConnected:boolean,
+  isConnected: boolean,
   messages: [] 
   setMessages: ((prevState: [{message:string, received:boolean}]) => void)
+  typing: boolean
  
 }

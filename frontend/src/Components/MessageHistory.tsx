@@ -9,8 +9,8 @@ import useUser from '../Hooks/useUser'
 
 function MessageHistory( ) {
   const user = useUser().user
-  const {messages} = useMessenger()
-  console.log('Msg',messages);
+  const {messages, typing} = useMessenger()
+  console.log('T',typing);
   
 
 
@@ -25,6 +25,7 @@ function MessageHistory( ) {
           md:w-[400px] xl:h-[250px]
           border-y-2 border-darkBeige'> 
           {messages && messages.map((value, i) => <p style= {{textAlign: value['received'] ? 'left' : 'right'}} key={i}>{value['message']}</p>)}
+            {typing && <p>Typing...</p>}
       </div>
      
 

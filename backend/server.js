@@ -16,15 +16,34 @@ const io = new Server(server, {cors: {origin: process.env.FRONTEND}})
 
 io.on("connection", socket => {
   console.log(socket.id)
+
   socket.on("message", (value) => {
     console.log("value:::::", value)
     // socket.broadcast.emit('message-from-server', value)  
     socket.to(value.receiver).emit("message-from-server", value.text)
   })
+
+  
   socket.on("joinRoom", (id) => {
     console.log(id, "has entered the chat")
     socket.join(id)
   })
+
+  // socket.on('typing', (data)=>{
+  //   if(data.typing==true)
+  //     io.emit('display', data)
+  //   else
+  //     io.emit('display', data)
+  // })
+
+
+  socket.on('typing-started',()=>{
+    socket.broadcast.emit('typing-started-from-server')
+    console.log('type')
+    // socket.to(value.receiver).emit('getTypingStatus', 'typing!')
+  })
+
+  
 
   // socket.on('disconnect', (socket) => {
   //   console.log('User left')

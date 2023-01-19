@@ -11,13 +11,15 @@ export let socket: any;
 
 // erstelle context, speichert werte -> value (weiter unten) ist der wert der automatisch in context gespeichert wird
 // welches argument erwartet ts von createContext
-export const SocketContext = createContext<messageContext>({connect: () => {}, sendMessage: () => {}, isConnected: false, messages: [], setMessages:   ((prevState: [{}]) => [])})
+export const SocketContext = createContext<messageContext>({connect: () => {}, sendMessage: () => {}, isConnected: false, messages: [], setMessages:   ((prevState: [{}]) => []), typing: false})
 
 // props=app(child)
 export function SocketProvider (props: {children: React.ReactElement}) {
 
   const [isConnected, setIsConnected] = useState(false)
   const [messages, setMessages] = useState<any>([])
+  const [typing, setTyping] = useState(false)
+
 
 
   // muss nur einmal eröffnet werden
@@ -34,10 +36,27 @@ export function SocketProvider (props: {children: React.ReactElement}) {
     if(!socket) return
 
 
+    // socket.on('display', (data:any)=>{
+    //   if(data.typing==true)
+    //     $('.typing').text(`${data.user} is typing...`)
+    //   else
+    //     $('.typing').text("")
+    // })
+
+
     socket.on("message-from-server", (value:{}) => { //'message'
       setMessages((messages:[]) => [...messages, {message:value, received:true}])
       console.log(value)
     })
+
+    socket.on("typing-started-from-server", () => { 
+      console.log(typing);
+      
+      setTyping(true)
+    })
+
+    
+
 
     setIsConnected(true)
   }
@@ -54,7 +73,8 @@ export function SocketProvider (props: {children: React.ReactElement}) {
     sendMessage,
     isConnected,
     messages,
-    setMessages
+    setMessages,
+    typing
   }
 
   return (

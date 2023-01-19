@@ -1,12 +1,13 @@
 import useUser from '../Hooks/useUser'
 import UniButton from '../Components/UniButton'
-import useMessenger from '../Hooks/useMessenger'
-import { Dispatch, SetStateAction, useState } from 'react'
+import useMessenger, { socket } from '../Hooks/useMessenger'
+import { useState } from 'react'
+
 
 import React from 'react'
 import useAd from '../Hooks/useAd'
 import e from 'cors'
-
+import { FaNodeJs } from 'react-icons/fa'
 
 
 
@@ -16,11 +17,9 @@ function InputMessage() {
   const {ad }= useAd()
   const chat = useMessenger()
   const [text, setText] = useState("")
-  const [messages, setMessages] =useState<any>([])
+  const [typingTimeout, setTypingTimeout]= useState(0)
 
- 
 
-  
 
 
   React.useEffect(() => {
@@ -31,17 +30,28 @@ function InputMessage() {
   },[user])
   
   function inputHandler(e: any) {
+    let timeout:NodeJS.Timeout;
     setText(e.target.value)
+    socket.emit('typing-started') 
+
+  //  setTypingTimeout(timeout)
+
+  //   if (timeout) clearTimeout(timeout)
+
+  //   timeout = setTimeout(() => {
+  //     // socket.emit('typing-stopped')
+      
+  //   }, 200)
+ 
+
   }
 
   
   const sendMessage = (e:React.SyntheticEvent) => {
     e.preventDefault()
     setText('')
-    ad && 
-    chat.sendMessage(text, ad?.user._id)
-    // chat.setMessages((chat.messages) => [...chat.messages, {message:text, received:false}])
-    chat.setMessages([...chat.messages, {message:text, received:false}])
+    ad && chat.sendMessage(text, ad?.user._id)
+    chat && chat.setMessages([...chat.messages, {message:text, received:false}])
     
 
   }
