@@ -1,55 +1,64 @@
-import React  from 'react';
-import { useEffect, useState , useRef} from 'react'
-import { useQuill } from 'react-quilljs';
-import 'quill/dist/quill.snow.css'
-
+import React, { useState, useEffect } from "react";
+import { useQuill } from "react-quilljs";
+import "quill/dist/quill.snow.css";
 
 type Props ={
     description: String
     setDescription: (value:string) => void
 }
-function TextEditor(props:Props) {
 
-    // const modules = {
-    //     toolbar: [
-    //         ['bold', 'italic', 'underline'],
-    //         [{ list: 'ordered' }, { list: 'bullet' }],
-    //     ]
-    // }
-    const placeholder = 'Your description...'
+const TextEditor = (text:any) => {
+  return {
+    __html: `${text}`
+  }
+}
+export default () => {
+  const [description, setDescription] = useState('')
 
-    const { quill, quillRef } = useQuill();
+  const placeholder = "Your description..."
+  const modules = {
+    toolbar: {
+      container: [
+        [{ align: "" }, { align: "center" }, { align: "right" }],
+        ["bold", "italic", "underline", "strike", "blockquote"],
+        [
+          { list: "ordered" },
+          { list: "bullet" }
+        ],
+      ],
+    }
+  }
+  const formats = [
+    "bold",
+    "italic",
+    "underline",
+    "strike",
+    "header",
+    "align",
+    "blockquote"
+  ];
 
-    useEffect(() => {
-        if (quill) {
-            quill.clipboard.dangerouslyPasteHTML(placeholder)
+  const { quill, quillRef, Quill } = useQuill({
+    modules,
+    formats,
+    placeholder
+  });
 
-            quill.on('text-change', () => {
-            props.setDescription(quillRef.current.firstChild.innerHTML)
-
-            console.log(quillRef.current.firstChild.innerHTML);
-          });
-        }
-      }, [quill])
-
-      console.log('this is description', props.description)
-
+  useEffect(() => {
+    if (quill) {
+      quill.on("text-change", () => {
+        setDescription(quill.root.innerHTML);
+      });
+      quill.getModule("toolbar")
+      quill.getModule("toolbar")
+    }
+  }, [quill]);
 
   return (
     <div>
-        <div className='w-full mt-3 mb-3  rounded-xl resize-none caret-gray  border-lightGray border-opacity-50 focus:outline-none placeholder:text-sm placeholder:text-lightGray  lg:w-full  lg:mb-0 lg:rounded-3xl lg:placeholder:text-base '>
-            <div 
-            ref={quillRef}
-            />
-
-        </div>
+      <div ref={quillRef} />
+      <div className="ql-editor" dangerouslySetInnerHTML={TextEditor(description)} />
+      <span>{description}</span>
     </div>
   )
 }
-
-
-export default TextEditor
-
-
-
-
