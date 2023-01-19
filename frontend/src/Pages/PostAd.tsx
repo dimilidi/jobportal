@@ -13,9 +13,7 @@ import { notify } from '../utils/toastNotification'
 // Style
 import 'react-toastify/dist/ReactToastify.css'
 import imagePostAd from '../assets/images/PostAd_chef.png'
-// Text editor 
-import ReactQuill from 'react-quill';
-import 'react-quill/dist/quill.snow.css';
+
 // Others
 import axiosInstance from '../api/axiosInstance'
 import { motion } from 'framer-motion'
