@@ -11,6 +11,7 @@ import useUser from '../Hooks/useUser'
 // framer-motion
 import { motion } from 'framer-motion'
 import PaginationButtons from '../Components/PaginationButtons'
+import UniButtonDark from '../Components/UniButtonDark'
 
 const Account = () => {
   const navigate = useNavigate()
@@ -53,7 +54,7 @@ const Account = () => {
               sm:justify-center sm:flex-row
               lg:ml-5 lg:justify-start'
         >
-          <UniButtonWhite
+          <UniButtonDark
             text='Post Ad'
             type='button'
             onClick={() => navigate('/post-ad')}
@@ -68,12 +69,12 @@ const Account = () => {
           />
         </div>
 
-        <h3 className='mt-10 md:mb-[30px] lg:mt-[60px] lg:mb-[-20px] xl:mb-[-10px] text-lg font-semibold text-gray text-opacity-40 text-center lg:w-full lg:flex lg:justify-start lg:ml-[85px] xl:ml-[120px]'>
+        <h3 className='mt-10 md:mb-[30px] lg:mt-[60px] lg:mb-[-20px] xl:mb-[-10px] text-lg font-semibold text-gray text-opacity-40 text-center lg:w-[87%] lg:flex lg:justify-start xl:w-[85%]'>
           Your Ads
         </h3>
 
         {/* ADS */}
-        <div className='mt-[30px] mb-[30px] w-full h-full flex flex-wrap justify-center items-start rounded-[21px] sm:px-5 sm:mt-3 sm:mb-20 sm:w-[600px] sm:h-[552px]  md:w-[100%] md:h-[250px] lg:px-0 lg:mb-0 lg:h-[310px]'>
+        <div className='mt-[30px] mb-[30px] w-full h-full flex flex-wrap justify-center items-start rounded-[21px] sm:px-5 sm:mt-3 sm:mb-20 sm:w-[600px] sm:h-[552px] md:w-[100%] md:h-[250px] lg:px-0 lg:mb-0 lg:h-[310px]'>
           <div className='w-full flex flex-wrap justify-center items-center'>
             {adList?.length === 0 ? (
               <div
@@ -90,7 +91,7 @@ const Account = () => {
         </div>
         <div
           aria-label='paginationButtons'
-          className='mb-[50px] lg:mb-0 w-full lg:flex lg:justify-end xl:w-[128%]'>
+          className='mb-[50px] lg:mb-0 w-full lg:flex lg:justify-end xl:w-[90%]'>
           <PaginationButtons page ={page} setPage = {setPage} pageCount={pageCount}/>
         </div>
       </div>
