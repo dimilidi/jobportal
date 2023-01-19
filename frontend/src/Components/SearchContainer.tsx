@@ -46,9 +46,9 @@ const SearchContainer = (props: Props) => {
       aria-label='search-ads-form'
       className='w-full mt-2 md:mt-8
         flex justify-center items-center flex-row
-        md:w-[100%] lg:w-[99%] xl:w-[97%] 2xl:w-[70%] 
+        md:w-[100%] lg:w-[99%] xl:w-[97%] 2xl:w-[71%] 
     '>
-       <div className='lg:mt-[40px] lg:ml-[30px] flex flex-col lg:flex-row gap-3 2xl:gap-5'>
+       <div className='lg:mt-[40px] lg:ml-[30px] flex flex-col lg:flex-row gap-3 2xl:gap-9'>
         <Search />
         <SearchRadioAdsList />
       </div>

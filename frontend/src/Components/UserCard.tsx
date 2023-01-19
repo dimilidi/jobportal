@@ -16,7 +16,7 @@ function UserCard(props: Props) {
     <div
       // USER CARD
       style={props.style}
-      className='mt-0 w-[95%] max-w-[450px] min-h-[540px]
+      className='mt-0 w-[90%] max-w-[450px] min-h-[540px]
             flex flex-col justify-center relative  
             shadow-standard 
             rounded-bl-[65px] rounded-br-[65px]
