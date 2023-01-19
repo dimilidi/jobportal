@@ -16,7 +16,9 @@ import imagePostAd from '../assets/images/PostAd_chef.png'
 import { motion } from 'framer-motion'
 import BrowseJobs from '../Components/BrowseJobs'
 import useDecorationLine from '../Hooks/useDecorationLine'
+import TextEditorEdit from '../Components/TextEditorEdit'
 import UniButtonDark from '../Components/UniButtonDark'
+
 
 
 const EditAd = () => {
@@ -76,7 +78,6 @@ const EditAd = () => {
       setContactVia([])
     }
   }, [checked])
-
 
 
   // HANDLE EDIT
@@ -277,6 +278,9 @@ const EditAd = () => {
                 </div>
 
                 {/* TEXTAREA */}
+                {/* <TextEditorEdit description={description} setDescription={setDescription}/> */}
+
+                {/* TEXTAREA - ORIGINAL */}
                 <textarea
                   area-label='text area'
                   name='text'

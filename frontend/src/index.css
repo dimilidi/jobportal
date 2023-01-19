@@ -161,3 +161,9 @@
 body {
   overflow-x: hidden;
 }
+.ql-toolbar, .ql-snow, .ql-editor{ 
+  border: rgba(109, 95, 95, 0.685) 0.5;
+  margin-top: 10px;
+  border-radius: 0.5rem;
+
+}
