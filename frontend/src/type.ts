@@ -1,5 +1,6 @@
+
 export type User = {
-  _id: string | undefined
+  _id: string 
   name: string | undefined
   profession?: string | undefined
   email: string | undefined
@@ -18,6 +19,7 @@ export type Ad = {
   location: string
   wage: number
   contactVia: string
+  views: number
   createdAt: Date
   user: {
     _id: string
@@ -27,8 +29,8 @@ export type Ad = {
     city?: string
     avatar?:string
   }
-  ref?:HTMLDivElement
-  index?:any
+  // ref?:HTMLDivElement
+  // index?:any
 }
 
 export type RegisterInputs = {
@@ -46,4 +48,13 @@ export type EditInputs = {
   city: string | undefined
   description: string | undefined
   phone: string | undefined
+}
+
+export type messageContext = {
+  connect:(id: string) => void,  
+  sendMessage:(text: string, receiver: string) => void,
+  isConnected:boolean,
+  messages: [] 
+  setMessages: ((prevState: [{message:string, received:boolean}]) => void)
+ 
 }

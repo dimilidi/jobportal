@@ -1,6 +1,6 @@
 // Hooks
 import { useState, useEffect, useCallback } from 'react'
-import { useParams, useNavigate } from 'react-router-dom'
+import { useParams, useNavigate, useLocation } from 'react-router-dom'
 // Axios
 import axiosInstance from '../api/axiosInstance'
 // type
@@ -78,6 +78,19 @@ function useAd(): AdHook {
       fetchAds()
     }
   }, [params.id])
+
+  // const location = useLocation()
+  // const path = location.pathname.split('/')[2]
+  // console.log('V',ad?.views);
+  
+
+  // useEffect(() => {
+  //   if(path === ad?._id){
+  //     updateAd({
+  //     ...ad,
+  //     views: ad?.views + 1,
+  //   })
+  // }}, [path])
 
   return { ad, deleteAd, updateAd, error, isLoading }
 }

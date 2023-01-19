@@ -46,6 +46,7 @@ const createText = useDecorationLine({orientation: 'left'})
   const [image, setImage] = useState('')
 
 
+
   // If user is not logged in, navigate to auth-required
   useEffect(() => {
     if (!user) navigate('/auth-required')
@@ -131,36 +132,36 @@ const createText = useDecorationLine({orientation: 'left'})
           area-label='circle'
           className='hidden md:block md:w-[332px] md:h-[332px] md:absolute md:top-[50%] md:left-[-250px] md:translate-y-[-50%] md:rounded-full md:bg-lightGreen'
         />
-        <div
+        {/* <div
           area-label='line'
           className='w-screen hidden md:block md:absolute md:top-[50%] md:translate-y-[-50%] md:left-0 md:border-b-[3px] md:border-lightGreen sm:hidden '
-        />
+        /> */}
         {/* CIRCLE && LINE  END*/}
 
 
         {/* MAIN */}
         <div
           area-label='main'
-          className='relative  h-full min-h-[920px] w-[85%] max-w-[1000px]  md:w-[70%] flex flex-col justify-center'
+          className='relative h-full min-h-[920px] w-[90%] max-w-[1000px]  md:w-[70%] flex flex-col justify-center'
         >
           
 
           {/* AD FORM */}
           <form
             area-label='form'
-            className='mt-8 gap-6 md:flex-col lg:flex-row md:gap-10 lg:gap-20 z-10 '
+            className='gap-6 md:flex-col lg:flex-row md:gap-10 lg:gap-20 z-10 '
             onSubmit={handleSubmit}
           >
             <div
               area-label='ad'
-              className='p-5 pt-10  flex flex-col items-center rounded-[21px] bg-white shadow-standard  sm:p-10 '
+              className='p-5 flex flex-col items-center rounded-[21px] bg-white shadow-standard  sm:p-10 '
             >
 
               {/* TITLE MOBILE (with line) */}
           <div>
             <h1
               area-label='title-mobile'
-              className='text-[1.8rem] sm:text-4xl bold  text-textBlack md:hidden'
+              className='text-[1.8rem] sm:text-4xl font-bold text-textBlack md:hidden'
             >
               <span 
               ref={createText}
@@ -396,37 +397,3 @@ const createText = useDecorationLine({orientation: 'left'})
 }
 
 export default PostAd
-
-
-// function App() {
-
-// return (
-//   <>
-//   <div className="App">
-//     <h2>Input</h2>
-//     <textarea
-//         value={textInput}
-//         onChange={(e) => setTextInput(e.target.value)}
-//         rows="10"/>
-//   </div>
-//   <div>
-//     <h2>Output:</h2>
-//     <div style={{display: 'flex', gap: '50px'}}>
-//         <div style={{width: '300px'}}>
-//           <h3>Als textarea</h3>
-//           <textarea value={textInput} disabled={true} />
-//         </div>
-//         <div style={{width: '300px'}}>
-//           <h3>als div</h3>
-//           {formated.map((el,i) => {
-//             return (
-//               <p key={i}>{el}</p>
-//             )
-//           })}
-//         </div>
-//       </div>
-//     </div>
-//     </>
-//   )
-// }
-

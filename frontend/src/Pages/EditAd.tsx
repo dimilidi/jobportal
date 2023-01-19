@@ -1,7 +1,7 @@
 // Hooks
 import { useEffect, useState } from 'react'
-import { useNavigate, useParams } from 'react-router-dom'
-import useAds from '../Hooks/useAd'
+import { Link, useNavigate, useParams } from 'react-router-dom'
+import useAd from '../Hooks/useAd'
 import useUser from '../Hooks/useUser'
 // Components
 import UniButton from '../Components/UniButton'
@@ -17,6 +17,8 @@ import { motion } from 'framer-motion'
 import BrowseJobs from '../Components/BrowseJobs'
 import useDecorationLine from '../Hooks/useDecorationLine'
 import TextEditorEdit from '../Components/TextEditorEdit'
+import UniButtonDark from '../Components/UniButtonDark'
+
 
 
 const EditAd = () => {
@@ -24,7 +26,7 @@ const EditAd = () => {
   const params = useParams()
   const navigate = useNavigate()
   const user = useUser()
-  const ads = useAds(`/ads/${params.id}`)
+  const ads = useAd()
 
     // DECORATION LINE
   const editText = useDecorationLine({orientation: 'left'})
@@ -97,6 +99,7 @@ const EditAd = () => {
 
     setIsLoading(false)
   }
+
 
 
   return (
@@ -230,7 +233,7 @@ const EditAd = () => {
                       type='text'
                       name='title'
                       className=' form-control py-1 px-5 w-full block text-gray border-2 rounded-lg border-lightGray border-opacity-50 placeholder:text-sm 
-              focus:outline-lightGray '
+                    focus:outline-lightGray '
                       placeholder='Title'
                       value={title}
                       onChange={(e) => setTitle(e.target.value)}
@@ -362,18 +365,21 @@ const EditAd = () => {
             </div>
             {/* BUTTON - POST AD */}
             <div className='w-full my-7 flex flex-col lg:flex-row justify-center items-center gap-5'>
-            <UniButton
-              style={{ backgroundColor: '#52796F', borderColor: '#52796F'}}
+            <UniButtonDark
+            type='submit'
               area-label='postAdButton'
               text={isLoading ? <Spinner /> : 'Save Changes'}
               className='self-center md:mb-0'
             />
             {/* BUTTON - BACK TO ACCOUNT */}
+            <Link to='/account'>
             <UniButton
+              type='button'
               area-label='backToAccountButton'
               text='Back to Account'
               className='self-center md:mb-0'
             />
+            </Link>
             </div>
           </form>
         </div>

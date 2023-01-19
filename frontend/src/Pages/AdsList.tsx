@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import useAdList from '../Hooks/useAdList'
 import useUser from '../Hooks/useUser'
 import useSearch from '../Hooks/useSearch'
-import { useCallback, useRef, useState } from 'react'
+import { useState } from 'react'
 // Components
 import Ad from '../Components/Ad'
 import UniButton from '../Components/UniButton'
@@ -15,26 +15,28 @@ import man from '../assets/images/Ads_man_working.png'
 import useDecorationLine from '../Hooks/useDecorationLine'
 import SearchContainer from '../Components/SearchContainer'
 // Icons
-import { GrPrevious, GrNext } from 'react-icons/gr'
+import PaginationButtons from '../Components/PaginationButtons'
+import useAd from '../Hooks/useAd'
+
+
 
 const AdsList = () => {
   // CONSTANTS
-  const [page, setPage] = useState(0)
-
   const { searchWord, searchCategory } = useSearch()
   const user = useUser()
+  const {ad, updateAd} = useAd()
+
+  const { pageCount, page, setPage } = useAdList(
+    `search=${searchWord}&category=${searchCategory}`
+  )
   const ads = useAdList(
     `search=${searchWord}&category=${searchCategory}&page=${page}`
   )
-  const { pageCount } = useAdList(
-    `search=${searchWord}&category=${searchCategory}&page=${page}`
-  )
-
-
+  
   const navigate = useNavigate()
+  const [views, setViews] = useState(ad?.views)
 
-  // console.log(page);
-  console.log(ads.adList)
+ 
 
   // DECORATION LINE
   const missionText = useDecorationLine({ orientation: 'right' })
@@ -47,10 +49,9 @@ const AdsList = () => {
       navigate('/auth-required')
     }
   }
+  
 
-  // const handleSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
-  //   setPage(Number(e.target.value))
-  // }
+ 
 
   return (
     <motion.div
@@ -59,7 +60,7 @@ const AdsList = () => {
       exit={{ x: window.innerWidth }}
       className='pt-[70px] pb-[80px] h-full w-full min-h-[920px]'
     >
-      {/* Heading with underline  */}
+      {/* HEADING WITH UNDERLINE  */}
       <div className='mx-auto mt-[30px] h-[100px] w-[250px] lg:w-[270px] flex justify-end'>
         <h2 className='text-left text-[45px] font-semibold leading-tight'>
           Be part of
@@ -75,36 +76,38 @@ const AdsList = () => {
           </p>
         </h2>
 
-        {/* Semicircle */}
-        <div className='w-24 h-24 hidden  right-[-3rem] top-[160px]  rounded-full bg-lightGreen lg:block absolute'></div>
+
+        {/* SEMICIRCLE */}
+        <div className='w-[50px] h-24 hidden right-0 top-[160px] rounded-tl-full rounded-bl-full bg-lightGreen lg:block absolute'></div>
       </div>
 
       <>
-        {/* Main Container */}
-        <div className='mx-auto  w-full h-full  flex justify-center items-start gap-10 '>
+        {/* MAIN CONTAINER*/}
+        <div className='w-full md:w-[100%] h-full 2xl:ml-[150px] flex justify-center items-start'>
           {/* Image */}
           <div
-            className=' hidden
-              lg:w-[500px] lg:mt-[100px]
-              xl:h-[500px] lg:flex'
+            className=' '
           >
             <img
-              className='h-full w-full'
+              className='hidden
+              lg:w-[600px]
+              xl:w-[790px] xl:h-[500px] xl:mt-[60px] lg:mt-[140px]
+              2xl:w-[640px] 2xl:h-[550px]
+              lg:flex h-full w-full'
               src={man}
               alt='person working on computer'
             />
           </div>
 
           {/* SEARCH UND ADS */}
-          <div className='h-full py-5'>
-            {/* className='flex flex-col justify-center items-center
-              lg:justify-end lg:items-end' */}
 
+          <div className='h-full w-[100%] xl:w-[80%] 2xl:w-[65%] py-3'>
             {/* Search */}
+            
             <SearchContainer page='AdsList' />
         
               
-            {/* Ads Container */}
+            {/* ADS CONTAINER */}
             {ads.adList.length === 0 ? (
               <div
                 className='mt-[30px] h-[150px] text-center sm:px-5 sm:w-[600px] md:w-[900px] font-bold relative text-3xl 
@@ -115,11 +118,11 @@ const AdsList = () => {
               </div>
             ) : (
               <div
-                className='mt-[10px] w-full h-full
+                className='mt-[25px] w-full h-full
                 flex flex-col justify-items-center items-start 
                 sm:px-5 lg:px-0 sm:w-[600px] sm:h-[460px] 
-                md:w-[900px] md:h-[435px] 
-                lg:w-[700px] 
+                md:w-[700px] md:h-[435px] 
+                lg:w-[95%] 
                 xl:w-[900px]'
               >
                 {/* LOADING SPINNER */}
@@ -129,63 +132,33 @@ const AdsList = () => {
                   </div>
                 
               ) : (
-                <div className='mx-auto  md:h-[600px] p-1 flex flex-wrap justify-center'>
+                <div className='md:h-[600px] p-1 flex flex-wrap justify-center items-center md:relative'>
                   {/* ADS */}
-                  {ads.adList?.map((ad, index) => (
-                    <Ad index={index} key={ad._id} ad={ad} />
+                  {ads.adList?.map((ad) => (
+                    <Ad  key={ad._id} ad={ad} />
                   ))}
-
-                  {/* NEXT & PREV PAGE  */}
-                  <div
-                    area-label='pages-counter'
-                    className=' mx-auto w-[60%] h-fit py-2 mt-2  flex items-center justify-center lg:justify-end self-end  lg:w-[70%] 
-          sm:mb'
-                  >
-                    <button
-                      className='w-[32px] h-[32px] flex justify-center items-center bg-darkBeige p-2 rounded-full border-darkBeige border-2
-             hover:bg-background
-            '
-                      disabled={page === 0}
-                      onClick={() => setPage(page === 0 ? page : page - 1)}
-                    >
-                      <GrPrevious />
-                    </button>
-
-                    <span 
-                      className='px-3 text-[16px]'>
-                        {`${page + 1} / ${pageCount}`}
-                    </span>
-                  
-                    <button
-                      className='w-[32px] h-[32px] flex justify-center items-center bg-darkBeige p-2 rounded-full border-darkBeige border-2
-
-          hover:bg-background
-          '
-                      disabled={page === pageCount - 1}
-                      onClick={() =>
-                        setPage(page === pageCount ? page : page + 1)
-                      }
-                    >
-                      <GrNext />
-                    </button>
+                    
+                  {/* BUTTON AD-POST & NEXT-PREV PAGE*/}
+                  <div className='flex flex-col-reverse lg:flex-row justify-around items-center
+                    w-[80%] md:w-[50%] md:ml-[60px] lg:ml-0 lg:w-[90%] xl:w-[80%] mt-4 gap-4 self-end'>
+                    {/* BUTTON AD POST */}
+                    <div>
+                      <UniButton
+                        text='Post Ad'
+                        onClick={handleClick}
+                        className='
+                        flex justify-center items-center lg:w-[100%] xl:w-[85%] mx-auto w-[250px] self-end'
+                      />
+                    </div>
+                    {/* NEXT & PREV PAGE  */}
+                    <PaginationButtons page ={page} setPage = {setPage} pageCount={pageCount} />
                   </div>
-                  {/* NEXT & PREV PAGE END */}
                 </div>
                 )}
               </div>
             )}
           </div>
-        </div>
-
-        {/* Button Ad Post */}
-        <div className='mb-2'>
-          <UniButton
-            text='Post Ad'
-            onClick={handleClick}
-            className='
-              flex justify-center items-center lg:w-[50%] mx-auto   w-[250px] '
-          />
-        </div>
+          </div>
       </>
     </motion.div>
   )

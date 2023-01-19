@@ -5,16 +5,14 @@ import Dropdown from './Dropdown'
 import { useState } from 'react'
 import DotMenu from './DotMenu'
 import { Ad as AdType } from '../type'
-import useSearch from '../Hooks/useSearch'
-import useAdList from '../Hooks/useAdList'
+
 
 type Props = {
   ad: AdType
-  index:any
-  
+ 
 }
 
-function Ad({ ad, index }: Props) {
+function Ad({ ad }: Props) {
   const params = useParams()
   const navigate = useNavigate()
   const user = useUser()
@@ -28,7 +26,7 @@ function Ad({ ad, index }: Props) {
   return (
     
     <div  className='w-full cursor-pointer sm:px-[0px] md:py-1 max-w-[550px] xl:max-w-[680px]'>
-      <div className='mx-auto h-[110px] w-[100%] flex justify-between items-center border-lightBeige border-t-2 text-[14px] hover:shadow-lg hover:border-0 hover:bg-white md:h-[100px] md:border-y-2'>
+      <div className='mx-auto h-[110px] w-[100%] flex justify-between items-center border-lightBeige border-t-2 text-[14px] transition duration:1000 hover:ease-in-out hover:shadow-lg hover:bg-white hover:bg-opacity-50 hover:border-y-2 md:h-[100px] md:border-y-2'>
         {/* LEFT SECTION */}
         <div className='h-full  flex justify-start sm:gap-3'>
           {/* PROFILE IMAGE */}

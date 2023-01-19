@@ -3,17 +3,13 @@ import { GoSearch } from 'react-icons/go'
 import { IoMdClose } from 'react-icons/io'
 import useSearch from '../Hooks/useSearch'
 
-type Props = {
-  // searchInput: string
-  // setSearchInput: React.Dispatch<React.SetStateAction<string>>
-}
 
-const Search = (props: Props) => {
+const Search = () => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchWord(e.target.value)    
   }
 
-  const { searchWord, setSearchWord, searchCategory, setSearchCategory } =
+  const { searchWord, setSearchWord } =
   useSearch()
 
   const handleClick = (e: React.FormEvent) => {
@@ -25,7 +21,7 @@ const Search = (props: Props) => {
     aria-label='search-home'
     className='flex items-center justify-center w-[20rem]
      sm:w-full
-    lg:w-full
+
      '>
 
       <label className='relative  w-full  '>
