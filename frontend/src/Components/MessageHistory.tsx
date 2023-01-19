@@ -21,7 +21,7 @@ function MessageHistory( ) {
 
       {/* LINE-BOX */}
       <div
-        className='px-[30px] w-[260px] h-[170px] 
+        className='w-[260px] h-[170px] px-[30px]
           md:w-[400px] xl:h-[250px]
           border-y-2 border-darkBeige'> 
           {messages && messages.map((value, i) => <p style= {{textAlign: value['received'] ? 'left' : 'right'}} key={i}>{value['message']}</p>)}
