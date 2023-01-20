@@ -289,14 +289,14 @@ const createText = useDecorationLine({orientation: 'left'})
                 <textarea
                   area-label='text area'
                   name='text'
-                  id='textarea-quill'
-                  className='hidden h-[170px]  w-full mt-3 mb-3 p-5 rounded-xl resize-none caret-gray border-2 border-lightGray border-opacity-50 focus:outline-none placeholder:text-sm placeholder:text-lightGray  lg:w-full  lg:mb-0 lg:rounded-3xl lg:placeholder:text-base'
+                  id='text'
+                  className='h-[170px] w-full mt-3 mb-3 p-5 rounded-xl resize-none caret-gray border-2 border-lightGray border-opacity-50 focus:outline-none placeholder:text-sm placeholder:text-lightGray  lg:w-full  lg:mb-0 lg:rounded-3xl lg:placeholder:text-base'
                   placeholder='Your description..'
                   value={description}
                   onChange={(e) => setDescription(e.target.value)}
-                >
-                </textarea>
-              {/* <TextEditor  />  */}
+                ></textarea>
+                <TextEditor  description={description} setDescription={setDescription}  /> 
+              
         
 
                   

@@ -4,61 +4,61 @@ import "quill/dist/quill.snow.css";
 
 type Props ={
     description: String
-    setDescription: (value:string) => void
+    setDescription: (value: String) => void
 }
 
-const TextEditor = (text:any) => {
+const FormatedText = (myDescription:any) => {
   return {
-    __html: `${text}`
+    __html: `${myDescription}`
   }
 }
-export default () => {
-  const [description, setDescription] = useState('')
+const Editor = (props:Props) => {
 
-  const placeholder = "Your description..."
+  const placeholder = 'Your description...'
   const modules = {
     toolbar: {
       container: [
-        [{ align: "" }, { align: "center" }, { align: "right" }],
-        ["bold", "italic", "underline", "strike", "blockquote"],
+        [{ align: '' }, { align: 'center'}, { align: 'right' }],
+        ['bold', 'italic', 'underline', 'strike'],
         [
-          { list: "ordered" },
-          { list: "bullet" }
+          { list: 'ordered' },
+          { list: 'bullet'}
         ],
       ],
     }
   }
   const formats = [
-    "bold",
-    "italic",
-    "underline",
-    "strike",
-    "header",
-    "align",
-    "blockquote"
+    'bold',
+    'italic',
+    'underline',
+    'strike',
+    'align',
+    'list'
   ];
 
   const { quill, quillRef, Quill } = useQuill({
     modules,
     formats,
     placeholder
-  });
+  })
 
   useEffect(() => {
     if (quill) {
       quill.on("text-change", () => {
-        setDescription(quill.root.innerHTML);
-      });
-      quill.getModule("toolbar")
-      quill.getModule("toolbar")
+        props.setDescription(quill.root.innerHTML)
+      })
     }
-  }, [quill]);
+  }, [quill])
 
   return (
-    <div>
+    <div style={{width: '100%'}}>
       <div ref={quillRef} />
-      <div className="ql-editor" dangerouslySetInnerHTML={TextEditor(description)} />
-      <span>{description}</span>
+      <div className="ql-editor" dangerouslySetInnerHTML={FormatedText(props.description)} />
     </div>
   )
 }
+export default Editor
+
+//dangerouslySetInnerHTML is React’s replacement for using innerHTML
+// Set HTML directly from React, but you have to type out dangerouslySetInnerHTML and pass an object with a __html key.
+
