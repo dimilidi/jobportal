@@ -52,6 +52,7 @@ export type EditInputs = {
 export type messageContext = {
   connect:(id: string) => void,  
   sendMessage:(text: string, receiver: string) => void,
+  joinChat: (id:string) => void
   isConnected: boolean,
   messages: [] 
   setMessages: ((prevState: [{message:string, received:boolean}]) => void)

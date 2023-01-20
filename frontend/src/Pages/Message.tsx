@@ -10,18 +10,24 @@ import { motion } from 'framer-motion'
 import UserMessage from '../Components/UserMessage'
 import InputMessage from '../Components/InputMessage'
 import useAd from '../Hooks/useAd'
-import { useState } from 'react'
+import { useEffect } from 'react'
+import useMessenger from '../Hooks/useMessenger'
 
 const Message = () => {
   const {ad} = useAd()
+  const {user} = useUser()
+  const chat = useMessenger()
 
 
-  
+  useEffect(() => {
+    if (user) {
+      chat.connect(user._id)
+    } 
+    ad && chat.joinChat(ad.user._id)
+
+  },[user])
 
 
-  console.log('AD?',ad);
-
-  
  
   return (
     <motion.div

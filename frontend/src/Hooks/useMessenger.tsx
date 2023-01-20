@@ -5,13 +5,15 @@
 import { io } from "socket.io-client";
 import React, { createContext, useState, useContext, useEffect } from "react";
 import { messageContext } from "../type";
+import useAd from "./useAd";
+
 
 // implicit type assignment:
 export let socket: any;
 
 // erstelle context, speichert werte -> value (weiter unten) ist der wert der automatisch in context gespeichert wird
 // welches argument erwartet ts von createContext
-export const SocketContext = createContext<messageContext>({connect: () => {}, sendMessage: () => {}, isConnected: false, messages: [], setMessages:   ((prevState: [{}]) => []), typing: false})
+export const SocketContext = createContext<messageContext>({connect: () => {}, sendMessage: () => {}, joinChat: () => {}, isConnected: false, messages: [], setMessages:   ((prevState: [{}]) => []), typing: false})
 
 // props=app(child)
 export function SocketProvider (props: {children: React.ReactElement}) {
@@ -19,7 +21,6 @@ export function SocketProvider (props: {children: React.ReactElement}) {
   const [isConnected, setIsConnected] = useState(false)
   const [messages, setMessages] = useState<any>([])
   const [typing, setTyping] = useState(false)
-
 
 
   // muss nur einmal eröffnet werden
@@ -31,17 +32,10 @@ export function SocketProvider (props: {children: React.ReactElement}) {
       socket.emit("joinRoom", id)
     })
 
+
     // receive 
 
     if(!socket) return
-
-
-    // socket.on('display', (data:any)=>{
-    //   if(data.typing==true)
-    //     $('.typing').text(`${data.user} is typing...`)
-    //   else
-    //     $('.typing').text("")
-    // })
 
 
     socket.on("message-from-server", (value:{}) => { //'message'
@@ -49,17 +43,19 @@ export function SocketProvider (props: {children: React.ReactElement}) {
       console.log(value)
     })
 
-    socket.on("typing-started-from-server", () => { 
-      console.log(typing);
-      
-      setTyping(true)
-    })
+    socket.on("typing-started-from-server", () => setTyping(true))
 
-    
-
+    socket.on("typing-stopped-from-server",() => setTyping(false))
 
     setIsConnected(true)
   }
+
+
+   // join chat
+   function joinChat(id:string) {
+    socket.emit('join chat', id )
+  }
+
 
   function sendMessage (text: string, receiver: string) {
     // emit schickt immer ins BE, egal ob im backend aufgefangen wird oder nicht
@@ -74,7 +70,8 @@ export function SocketProvider (props: {children: React.ReactElement}) {
     isConnected,
     messages,
     setMessages,
-    typing
+    typing,
+    joinChat
   }
 
   return (

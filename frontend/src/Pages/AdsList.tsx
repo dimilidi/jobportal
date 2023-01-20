@@ -15,23 +15,41 @@ import useDecorationLine from '../Hooks/useDecorationLine'
 import SearchContainer from '../Components/SearchContainer'
 // Icons
 import PaginationButtons from '../Components/PaginationButtons'
+import useAd from '../Hooks/useAd'
 
 
 const AdsList = () => {
   // CONSTANTS
-  const { searchWord, searchCategory } = useSearch()
-  const user = useUser()
-
-  const { pageCount, page, setPage } = useAdList(
-    `search=${searchWord}&category=${searchCategory}`
-  )
-  const ads = useAdList(
-    `search=${searchWord}&category=${searchCategory}&page=${page}`
-  )
-  
   const navigate = useNavigate()
+  const user = useUser()
+  const {ad} = useAd()
+  const { searchWord, setSearchWord, searchCategory} = useSearch()
 
- 
+    
+  // const ads= useAdList(`search=${searchWord})
+  const { pageCount, page, setPage, adList, filteredAds } = useAdList(
+    `search=${searchWord}&category=${searchCategory}`
+    )
+
+
+  const ads = useAdList(
+      `search=${searchWord}&category=${searchCategory}&page=${page}`
+      )
+
+
+  //     const res =  adList.filter((ad) => {
+  //       return  ad.user.name?.includes(searchUser)
+  //      })
+
+
+  //      useEffect(() => {
+  //       setFoundItem(res)
+  //    }, [searchWord])
+
+    //  console.log('SEARCH-USER',filteredAds &&filteredAds.map((a:any) => a));
+
+     
+
 
   // DECORATION LINE
   const missionText = useDecorationLine({ orientation: 'right' })
@@ -130,6 +148,16 @@ const AdsList = () => {
                   {ads.adList?.map((ad) => (
                     <Ad  key={ad._id} ad={ad} />
                   ))}
+                 
+
+                  {/* { filteredAds.length >0 ? filteredAds.map((a:any) =><div>{a}</div> 
+                  )
+                  :
+                  ads.adList?.map((ad) => (
+                    <Ad  key={ad._id} ad={ad} />
+                  ))
+
+                  } */}
                     
                   {/* BUTTON AD-POST & NEXT-PREV PAGE*/}
                   <div className='flex flex-col-reverse lg:flex-row justify-around items-center

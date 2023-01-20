@@ -18,6 +18,7 @@ export const SearchProvider = (props: { children: React.ReactElement }) => {
   const [searchWord, setSearchWord] = useState<string>('')
   const [searchCategory, setSearchCategory] = useState('all')
 
+
   const ctx = {
     searchWord,
     setSearchWord,

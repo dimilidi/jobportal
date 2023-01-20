@@ -17,34 +17,26 @@ function InputMessage() {
   const {ad }= useAd()
   const chat = useMessenger()
   const [text, setText] = useState("")
-  const [typingTimeout, setTypingTimeout]= useState(0)
+  const [typingTimeout, setTypingTimeout]= useState(null) as any
 
 
 
-
-  React.useEffect(() => {
-    if (user) {
-      chat.connect(user._id)
-    }
-    
-  },[user])
   
   function inputHandler(e: any) {
-    let timeout:NodeJS.Timeout;
+   
     setText(e.target.value)
-    socket.emit('typing-started') 
+    socket.emit('typing-started', ad?.user._id) 
 
-  //  setTypingTimeout(timeout)
+    if (typingTimeout) clearTimeout(typingTimeout)
+    
+  
+     setTypingTimeout(setTimeout(() => {      
+      socket.emit('typing-stopped')
+    },1000))
 
-  //   if (timeout) clearTimeout(timeout)
-
-  //   timeout = setTimeout(() => {
-  //     // socket.emit('typing-stopped')
-      
-  //   }, 200)
- 
 
   }
+ 
 
   
   const sendMessage = (e:React.SyntheticEvent) => {

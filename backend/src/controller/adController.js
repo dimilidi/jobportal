@@ -1,22 +1,25 @@
 import Ad from '../models/Ad.js'
 
 
+
+
 // GET ADS
 /** @type {import("express").RequestHandler} */
 export async function getAds(req, res) {
-  let { userId, search, category, page = 1 } = req.query
+  let { userId, userName, search, category, page = 0} = req.query
   const page_size = 3
   let countDoc =  Ad.countDocuments({})
   let query = Ad.find({})
 
-
-
   if (userId) {
-    query = query.where('user').equals(userId).clone()
+    query = query.where('user').equals(userId)
     // count docs created by user
     countDoc =  countDoc.where('user').equals(userId)
-  } 
+  }
 
+  if(userName) {
+    // query= query.where('user').equals(userName)
+  }
 
   if (category) {
     if (category !== 'all') {
@@ -48,11 +51,18 @@ export async function getAds(req, res) {
 
   // Sort ads by update date (descending order)
   query = query.sort({ updatedAt: -1 })
+
+  query.populate('user', 'name avatar').clone()
   
-  query.populate('user', 'name, avatar').clone()
+  
 
   const [count, ads] = await Promise.all([countDoc, query])
   const pageCount = count / page_size
+  // const users =  ads.map((a) => a.user.name)
+  // console.log(users[1])
+  // users.find({}).where('user').equals(user)
+
+
  
   res.status(200).json({pagination:{count, pageCount},ads})
 }
