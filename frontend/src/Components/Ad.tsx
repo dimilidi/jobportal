@@ -70,7 +70,7 @@ function Ad({ ad }: Props) {
                 <p className='truncate  text-[14px] sm:text-[18px] text-textBlack'>
                   {ad.title}
                 </p>
-                <p className='z-40  absolute top-0 p-2 opacity-0 transition hover:visible  hover:ease-in-out hover:opacity-100  bg-background text-darkGray  text-[14px] shadow-standard rounded-md sm:text-[18px]'>{ad.title}</p>
+                <p className='z-40  absolute top-0 p-2 opacity-0 transition hover:visible bg-background text-darkGray text-[14px] rounded-md sm:text-[18px]'>{ad.title}</p>
                 {/* SECTOR */}
                 <p className='text-[16px] text-textBlack text-opacity-50'>
                   {ad.sector}
@@ -82,7 +82,7 @@ function Ad({ ad }: Props) {
               {/* LOCATION */}
               <div className='p-1 w-[90px] relative flex justify-center items-center border-2 border-lightBeige rounded-full text-[12px]  text-textBlack text-opacity-50  sm:w-[100px] sm:text-[14px] md:text-[16px]'>
                 <p className='truncate'>{ad.location}</p>
-                <p className='z-40  absolute top-0 p-1 opacity-0 transition hover:visible  hover:ease-in-out hover:opacity-100  bg-background text-darkGray shadow-standard rounded-md'>{ad.location}</p>
+                <p className='z-40  absolute top-0 p-1 opacity-0 transition hover:visible bg-background text-darkGray shadow-standard rounded-md'>{ad.location}</p>
               
               </div>
               {/* CATEGORY */}
