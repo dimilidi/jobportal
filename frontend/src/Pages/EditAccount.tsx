@@ -25,7 +25,7 @@ const EditAccount = (props: Props) => {
   const user = useUser()
 
   //DECORATION LINE
-  const editText = useDecorationLine({ orientation: 'left' })
+  // const editText = useDecorationLine({ orientation: 'left' })
   const [fetching, setFetching] = useState(false)
   const [errors, setErrors] = useState<string[] | undefined[] | undefined>([])
 
@@ -81,10 +81,15 @@ const EditAccount = (props: Props) => {
     const newUser = { name, phone, city, profession, description, avatar }
     const response = await user.editAccount(newUser)
 
+    console.log('RR',response.status);
+    
+
+    // if(response.data.message)
+
     if (response.status === 200) navigate('/account')
     if (response.status === 401) setErrors(['Unathorized. Please log in'])
     if (response.status === 400) setErrors(response.errors)
-    if (response.status === 500) setErrors(['Something went wrong!'])
+    if (response.status === 500) setErrors(['Something went wrong! Image should not be larger than 1 Mb. '])
     setFetching(false)
   }
 
@@ -93,14 +98,14 @@ const EditAccount = (props: Props) => {
     <div
       area-label='main-container'
       className='
-      md:h-[900px]
-      pt-[80px] md:p-[150px] xl:pt-[290]
+      md:h-[920px]
+      pt-[110px] xl:pt-[290]
       flex flex-col items-center
       '
       onClick={() => open && setOpen(false)}
     >
       {/* GREEN SEMICIRCLE */}
-      <div
+      {/* <div
         area-label='green-semicircle'
         className='
         hidden 
@@ -109,17 +114,17 @@ const EditAccount = (props: Props) => {
         rounded-full 
         bg-lightGreen 
         xl:block'
-      />
+      /> */}
 
       {/* HEADING & IMAGE */}
       <div
         aria-label='headline'
         className='w-[85%] mb-2
           flex justify-between items-end
-          md:mb-5 md:w-[65%] lg:w-[70%] xl:w-[48%]'
+          md:mb-5 md:w-[65%] lg:w-[68%] xl:w-[48%] 2xl:w-[36%]'
       >
-        {/* TITLE & BROWSER-B */}
-        <div
+         {/* TITLE & BROWSER-B */}
+         <div
           className='w-[100%]
       flex flex-row justify-between items-end'
         >
@@ -132,7 +137,7 @@ const EditAccount = (props: Props) => {
           lg:w-[50%]
           '
           >
-            <span ref={editText} className='text-lightGreen italic'>
+            <span className='text-lightGreen italic'>
               Edit
             </span>{' '}
             Profile
@@ -148,7 +153,7 @@ const EditAccount = (props: Props) => {
       <div
         aria-label='main-form-ctn'
         className='
-        w-[90%] md:w-[700px]  
+        w-[90%] h-[550px] md:w-[700px] md:h-[660px]
         flex flex-col items-center justify-center 
         relative rounded-[30px] shadow-standard bg-white 
         '
@@ -174,7 +179,7 @@ const EditAccount = (props: Props) => {
           onSubmit={handleSubmit}
           className='
               w-[80%] h-fit translate-y-[-12%] 
-              flex flex-col items-start xl:items-stretch justify-between md:translate-y-0 md:pt-10
+              flex flex-col items-start xl:items-stretch justify-between md:translate-y-0
               '
         >
           {/* IMAGE LG - In form */}
@@ -188,7 +193,7 @@ const EditAccount = (props: Props) => {
               flex flex-col items-end md:flex-row-reverse md:justify-between md:items-center'
             >
               {/* IMAGE */}
-              <div className='h-[150px] relative mb-5  flex flex-col sm:h-[11em]'>
+              <div className='h-[100px] relative mb-5  flex flex-col sm:h-[11em]'>
                 <img
                   aria-label='image'
                   className=' h-[8em] w-[8em] object-cover rounded-full  shadow-standard 
@@ -240,7 +245,7 @@ const EditAccount = (props: Props) => {
                 )}
               </div>
 
-              <div className='md:w-[350px]'>
+              <div className='md:w-[350px] mt-5'>
                 {/* USERNAME */}
                 <label
                   aria-label='username'
@@ -381,7 +386,7 @@ const EditAccount = (props: Props) => {
                 py-[11px] px-3
                 box-border border border-lightGray rounded-[1rem] 
                 text-sm font-medium text-textBlack
-                min-[425px]:py-[10px] 
+                min-[425px]
                 focus:outline-lightGreen 
                 sm:text-[1.1rem] border-opacity-[50%]'
             value={description}

@@ -5,6 +5,7 @@ import { MdEmail } from 'react-icons/md'
 import { BsTelephoneFill } from 'react-icons/bs'
 import { FaMapMarkerAlt } from 'react-icons/fa'
 import { useParams } from 'react-router-dom'
+import Spinner from './Spinner'
 
 type Props = {
   className?: string
@@ -19,6 +20,8 @@ const ContactDetails = (props: Props) => {
     window.location.href = `mailto:${ad.ad?.user.email}`;
   }
 
+
+
   return (
     // DIV WITH PROPS STYLING
     <div className={props.className}>
@@ -31,10 +34,14 @@ const ContactDetails = (props: Props) => {
    
         xl:items-start xl:px-0 '
       >
+       
         {/* NAME */}
         <h3 className='p-1 self-center text-lg font-bold text-center w-[90%]'>
           {ad.ad?.user.name}
         </h3>
+
+     { ad.isLoading && <div className='mx-auto'> <Spinner /></div>}
+
 
         {/* EMAIL, PHONE, CITY */}
         <div

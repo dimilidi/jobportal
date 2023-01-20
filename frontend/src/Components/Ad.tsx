@@ -9,6 +9,7 @@ import { Ad as AdType } from '../type'
 
 type Props = {
   ad: AdType
+ 
 }
 
 function Ad({ ad }: Props) {
@@ -25,9 +26,9 @@ function Ad({ ad }: Props) {
   return (
     
     <div  className='w-full cursor-pointer sm:px-[0px] md:py-1 max-w-[550px] xl:max-w-[680px]'>
-      <div className='mx-auto h-[110px] w-[100%] flex justify-between items-center border-lightBeige border-t-2 text-[14px] transition duration:1000 hover:ease-in-out hover:shadow-lg hover:bg-white hover:bg-opacity-50 hover:border-y-2 md:h-[100px] md:border-y-2'>
+      <div className='h-[110px] flex justify-between items-center border-lightBeige border-t-2 text-[14px] transition duration:1000 hover:ease-in-out hover:shadow-lg hover:bg-white hover:bg-opacity-50 hover:border-y-2 md:h-[100px] md:border-y-2'>
         {/* LEFT SECTION */}
-        <div className='h-full  flex justify-start sm:gap-3'>
+        <div className='h-full flex justify-start sm:gap-3'>
           {/* PROFILE IMAGE */}
           <div className='w-[60px] flex flex-col items-start justify-start xl:w-[80px]'>
             <div className='pt-5 w-[60px] 
@@ -69,7 +70,7 @@ function Ad({ ad }: Props) {
                 <p className='truncate  text-[14px] sm:text-[18px] text-textBlack'>
                   {ad.title}
                 </p>
-                <p className='z-40  absolute top-0 p-2 opacity-0 transition hover:visible  hover:ease-in-out hover:opacity-100  bg-background text-darkGray  text-[14px] shadow-standard rounded-md sm:text-[18px]'>{ad.title}</p>
+                <p className='z-40  absolute top-0 p-2 opacity-0 transition hover:visible bg-background text-darkGray text-[14px] rounded-md sm:text-[18px]'>{ad.title}</p>
                 {/* SECTOR */}
                 <p className='text-[16px] text-textBlack text-opacity-50'>
                   {ad.sector}
@@ -77,11 +78,11 @@ function Ad({ ad }: Props) {
               </div>
             </div>
 
-            <div className='w-[180px] flex sm:flex-col justify-end gap-1 md:w-[80px] sm:gap-2'>
+            <div className='w-[180px] flex sm:flex-col justify-end gap-1 md:w-[100px] sm:gap-2'>
               {/* LOCATION */}
               <div className='p-1 w-[90px] relative flex justify-center items-center border-2 border-lightBeige rounded-full text-[12px]  text-textBlack text-opacity-50  sm:w-[100px] sm:text-[14px] md:text-[16px]'>
                 <p className='truncate'>{ad.location}</p>
-                <p className='z-40  absolute top-0 p-1 opacity-0 transition hover:visible  hover:ease-in-out hover:opacity-100  bg-background text-darkGray shadow-standard rounded-md'>{ad.location}</p>
+                <p className='z-40  absolute top-0 p-1 opacity-0 transition hover:visible bg-background text-darkGray shadow-standard rounded-md'>{ad.location}</p>
               
               </div>
               {/* CATEGORY */}
@@ -93,7 +94,10 @@ function Ad({ ad }: Props) {
         </div>
 
         {/* RIGHT SECTION */}
-        <div onClick={() => navigate(`/ad/${ad?._id}`)} className='w-[70px] h-full flex self-end flex-col justify-end  items-start gap-1 md:w-[180px] md:flex-row md:self-center md:items-center md:justify-between '>
+        <div
+          onClick={() => navigate(`/ad/${ad?._id}`)}
+          className='w-[70px] h-full flex self-end flex-col justify-end  items-start gap-1
+          md:w-[180px] md:flex-row md:self-center md:items-center md:justify-between '>
           {/* CREATED AT */}
           <div className='text-[14px] text-textBlack text-opacity-50 md:ml-[40px] md:text-[16px]'>
             <p>{new Date(ad.createdAt).toLocaleDateString()}</p>
@@ -101,9 +105,10 @@ function Ad({ ad }: Props) {
 
           {/* WAGE */}
           <div 
-          className=' 
-          w-[70px] h-[60px] flex justify-center items-center rounded-t-[20px] text-[14px]  text-textBlack text-opacity-70 bg-lightBeige 
-          md:mr-[-15px] md:h-[100px] md:w-[70px] md:rounded-r-[20px] md:rounded-tl-[0px] md:text-[16px]'>
+          className='w-[60px] h-[60px] flex justify-center items-center rounded-t-[20px] text-[14px]
+          text-textBlack text-opacity-70 bg-lightBeige 
+          md:mr-[-15px] md:h-[100px] md:w-[70px] md:rounded-r-[20px]
+          md:rounded-tl-[0px] md:text-[16px]'>
             <div className='text-[18px] font-medium'>
               {ad.wage}€
               <p className='text-[14px] font-medium text-textBlack text-opacity-50'>

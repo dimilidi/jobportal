@@ -12,7 +12,7 @@ function AdMobile() {
 
   return (
     <div className='w-[100%] sm:px-3 '>
-      <div className='sm:h-[130px]  w-full flex justify-around items-center  text-[14px] border-y-2 border-lightBeige'>
+      <div className='sm:h-[130px] h-[110px]  w-full flex justify-around items-center  text-[14px] border-y-2 border-lightBeige'>
         {/* Left */}
         <div className='w-full h-full flex self-start justify-start '>
       {/* Profile Image*/}
@@ -41,7 +41,7 @@ function AdMobile() {
               </div>
             </div>
 
-            <div className='w-[150px] p-2 md:p-0 md:py-2 flex  gap-1 sm:w-[200px]'>
+            <div className='w-[150px] p-2 md:p-0 md:py-2 flex  gap-1 sm:w-[200px] mt-[15px]'>
               {/* Location */}
               <div className='px-2 py-1 w-[100px] flex justify-center items-center  border-2  text-[12px] text-textBlack text-opacity-50 text-center border-lightBeige rounded-full md:w-[120px] sm:text-[14px]'>
                 <p className='truncate hover:text-clip'>{ad.ad?.location}</p>
@@ -62,7 +62,7 @@ function AdMobile() {
           </div>
 
           {/* Wage */}
-          <div className='w-[60px] h-[60px] mt-14 flex justify-center items-center text-[14px] text-textBlack text-opacity-70 rounded-t-[20px] bg-lightBeige sm:w-[80px] 
+          <div className='w-[60px] h-[60px] mt-[20px] flex justify-center items-center text-[14px] text-textBlack text-opacity-70 rounded-t-[20px] bg-lightBeige sm:w-[80px] 
           sm:mt-10
           md:text-[16px] md:w-[70px]
           '>

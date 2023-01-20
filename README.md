@@ -60,7 +60,7 @@ Project is: _in progress_
 - Axios (1.2.1)
 - Framer Motion (8.0.1)
 
-**Design:**
+**Design:git add **
 - Figma  [-> see design](https://www.figma.com/file/cmWtNE21nByCtTRUkoR2uS/Wireframing-DT?node-id=112%3A2815&t=uVB5Ez63DIcXSe0U-0)
 
 **Backend**
@@ -131,6 +131,7 @@ Provide various use cases and code examples here.
 
 - [ ] Add new feature for user to network each other
 - [ ] Add new feature for user to manage ads created by other users in his/her account. eg. save and categorize ads (favorits, contacting)
+- [ ] Infinitive scroll in Mobile Version when browsing ads.
 
 To do:
 
@@ -150,4 +151,8 @@ To do:
 5. **Timon Hosch** (Backend, Frontend) [LinkedIn](https://www.linkedin.com/in/timon-hosch-3a1463236/)
 3. **Paulina Hryszko** (Design, Frontend) [LinkedIn](https://www.linkedin.com/in/paulina-hryszko/)
 4. **Oriana Quintero** (Design, Frontend) [LinkedIn](https://www.linkedin.com/in/oriana-quintero/)
+
+
+
+Images credits to: https://icons8.com/illustrations 
 
