@@ -1,5 +1,7 @@
+
 // Hooks
-import { useEffect, useState } from 'react'
+import React from 'react'
+import { useEffect, useState} from 'react'
 import { useNavigate } from 'react-router-dom'
 import useAds from '../Hooks/useAd'
 import useUser from '../Hooks/useUser'
@@ -32,7 +34,7 @@ const createText = useDecorationLine({orientation: 'left'})
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState('')
   const [title, setTitle] = useState('')
-  const [description, setDescription] = useState('')
+  const [description, setDescription] = useState<any>('')
   const [location, setLocation] = useState('')
   const [wage, setWage] = useState<number | string>('')
   const [category, setCategory] = useState('')
@@ -365,10 +367,10 @@ const createText = useDecorationLine({orientation: 'left'})
                       <input
                         type='number'
                         name='wage'
-                        min={0}
-                        className='py-1 px-5 w-[100px] text-sm text-gray rounded-lg border-2 border-lightGray border-opacity-50 focus:outline-none  placeholder:font-bold placeholder:opacity-50 '
+                        min={1}
+                        className=' py-1 px-5 w-[100px] text-sm text-gray rounded-lg border-2 border-lightGray border-opacity-50 focus:outline-none  placeholder:font-bold placeholder:opacity-50 '
                         placeholder='00'
-                        value={wage}
+                        value={wage.toString()}
                         onChange={(e) => setWage(Number(e.target.value) || 0)}
                       />
                       <span className='text-lightGray ml-1'>€</span>
