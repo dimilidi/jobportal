@@ -19,11 +19,12 @@ import { motion } from 'framer-motion'
 import { AiFillEdit, AiFillEye } from 'react-icons/ai'
 import UniButtonWhite from '../Components/UniButtonWhite'
 import { RiDeleteBinLine } from 'react-icons/ri'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Modal from '../Components/Modal'
 import Spinner from '../Components/Spinner'
 import { BsFillEyeFill } from 'react-icons/bs'
 import Message from './Message'
+import useMessenger from '../Hooks/useMessenger'
 
 
 const SingleAd = () => {
@@ -32,11 +33,7 @@ const SingleAd = () => {
   const navigate = useNavigate()
   const user = useUser()
   const { ad,  isLoading, deleteAd } = useAd()
-
-  console.log(ad?.views)
-
-  console.log('AD',ad?.user.avatar);
-  
+  const { setIsConnected, connect, setRoom, room } = useMessenger()
 
   const [modalOpen, setModalOpen] = useState(false)
   const close = () => setModalOpen(false)
@@ -46,9 +43,15 @@ const SingleAd = () => {
   // HANDLE MESSAGE
   const handleMessage = () => {
     if (user.isLoggedIn === false) navigate('/auth-required')
+    //Connect && join a room
     setOpenChat(true)
-    // navigate('/message')
+    if(user.user) {
+      connect(user.user._id)
+     } 
+      ad && setRoom(ad.user._id)
+      setIsConnected(true)
   }
+ 
 
   // HANDLE EDIT
   const handleEdit = () => {

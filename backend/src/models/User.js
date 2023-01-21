@@ -3,7 +3,7 @@ import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
 
 const userSchema = mongoose.Schema({
-  name: { type: String, required: true },
+  name: { type: String, text:true,  required: true },
   email: { type: String, required: true, unique: true },
   password: { type: String, required: true },
   tokens: [String],
@@ -12,6 +12,7 @@ const userSchema = mongoose.Schema({
   city: String,
   description: String,
   phone: String,
+  ads: [{type: mongoose.Schema.Types.ObjectId, ref: 'Ad'}]
 })
 
 userSchema.statics.findByEmail = function (email) {

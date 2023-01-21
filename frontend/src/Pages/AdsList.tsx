@@ -19,24 +19,22 @@ import PaginationButtons from '../Components/PaginationButtons'
 import useAd from '../Hooks/useAd'
 
 
-
 const AdsList = () => {
   // CONSTANTS
-  const { searchWord, searchCategory } = useSearch()
-  const user = useUser()
-  const {ad, updateAd} = useAd()
-
-  const { pageCount, page, setPage } = useAdList(
-    `search=${searchWord}&category=${searchCategory}`
-  )
-  const ads = useAdList(
-    `search=${searchWord}&category=${searchCategory}&page=${page}`
-  )
-  
   const navigate = useNavigate()
+  const user = useUser()
+  const {searchCategory, searchWord} = useSearch()
+  const {ad, updateAd} = useAd()
+  const { pageCount, page, setPage, adList, filteredAds } = useAdList(
+    `search=${searchWord}&category=${searchCategory}`
+    )
+  const ads = useAdList(
+      `search=${searchWord}&category=${searchCategory}&page=${page}`
+    )
+
+
   const [views, setViews] = useState(ad?.views)
 
- 
 
   // DECORATION LINE
   const missionText = useDecorationLine({ orientation: 'right' })
@@ -137,6 +135,16 @@ const AdsList = () => {
                   {ads.adList?.map((ad) => (
                     <Ad  key={ad._id} ad={ad} />
                   ))}
+                 
+
+                  {/* { filteredAds.length >0 ? filteredAds.map((a:any) =><div>{a}</div> 
+                  )
+                  :
+                  ads.adList?.map((ad) => (
+                    <Ad  key={ad._id} ad={ad} />
+                  ))
+
+                  } */}
                     
                   {/* BUTTON AD-POST & NEXT-PREV PAGE*/}
                   <div className='flex flex-col-reverse lg:flex-row justify-around items-center

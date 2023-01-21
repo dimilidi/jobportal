@@ -10,42 +10,38 @@ import { motion } from 'framer-motion'
 import UserMessage from '../Components/UserMessage'
 import InputMessage from '../Components/InputMessage'
 import useAd from '../Hooks/useAd'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import useMessenger, { socket } from '../Hooks/useMessenger'
 
 const Message = () => {
   const {ad} = useAd()
+  const {user} = useUser()
+  const chat = useMessenger()
 
 
-  
-
-
-  console.log('AD?',ad);
-
-  
- 
   return (
     <motion.div
         initial={{ width: '100%' }}
         animate={{ width: '100%' }}
         exit={{ x: window.innerWidth }}
         area-label='message'
-        className='lg:pt-[120px] pb-20 w-[95%] h-full  min-h-[700px] lg:min-h-[900px] flex flex-col items-center justify-center text-textBlack md:pt-[140px] xl:pt-[120px]'
+        className='lg:pt-[120px] pt-10 pb-20 h-full  min-h-[700px] lg:min-h-[900px] flex flex-col items-center justify-center text-textBlack md:pt-[140px] xl:pt-[120px]'
       >
         {/* MAIN */}
         <div
           area-label='main'
-          className='w-[95%]  h-full
+          className='w-full h-full
           flex flex-col justify-start
-          sm:w-[80%] sm:max-w-[900px]
-          md:min-h-[650px] md:w-[70%]
-          lg:w-[50%] 
+           sm:max-w-[900px]
+          md:min-h-[650px] 
+          
           xl:w-[800px] xl:min-h-full'
         >
 
         {/* BOX*/}
         <div
             area-label='box'
-            className='max-[767px]:mt-[6rem] min-h-[500px] sm:h-[600px] sm: sm:w-[400px] xl:h-[600px]
+            className='w-[300px] max-[767px]:mt-[6rem] min-h-[500px] sm:h-[600px] sm: sm:w-[400px] xl:h-[600px]
             flex flex-col justify-between item-center
             self-center z-10 rounded-[21px] bg-white shadow-standard'
           >
