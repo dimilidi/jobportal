@@ -25,14 +25,11 @@ function UserMessage({ad}:Props) {
           rounded-b-[40px] bg-lightBeige
           w-[90px]'
         >
-            
           
           <div
             className=' mx-auto  w-[80px] h-[80px] relative flex justify-center
-          self-end rounded-full
-           '
+          self-end rounded-full'
           >
-
             <img 
                className='mb-1 w-[80px] h-[80px]  rounded-full object-cover'
               src={ ad.user.avatar ? ad.user.avatar :  profileImg }  /> 

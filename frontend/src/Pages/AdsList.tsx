@@ -18,7 +18,6 @@ import SearchContainer from '../Components/SearchContainer'
 import PaginationButtons from '../Components/PaginationButtons'
 import useAd from '../Hooks/useAd'
 
-
 const AdsList = () => {
   // CONSTANTS
   const navigate = useNavigate()
@@ -35,7 +34,6 @@ const AdsList = () => {
 
   const [views, setViews] = useState(ad?.views)
 
-
   // DECORATION LINE
   const missionText = useDecorationLine({ orientation: 'right' })
 
@@ -47,9 +45,6 @@ const AdsList = () => {
       navigate('/auth-required')
     }
   }
-  
-
- 
 
   return (
     <motion.div
@@ -58,8 +53,11 @@ const AdsList = () => {
       exit={{ x: window.innerWidth }}
       className='pt-[70px] pb-[80px] h-full w-full min-h-[920px]'
     >
+      {/* SEMICIRCLE */}
+      <div className='w-[50px] h-24 hidden right-0 top-[160px] rounded-tl-full rounded-bl-full bg-lightGreen lg:block absolute'></div>
+
       {/* HEADING WITH UNDERLINE  */}
-      <div className='mx-auto mt-[30px] h-[100px] w-[250px] lg:w-[270px] flex justify-end'>
+      <div className='mx-auto mt-[30px] h-[100px] w-[250px] lg:w-[320px] xl:w-[370px] flex justify-end'>
         <h2 className='text-left text-[45px] font-semibold leading-tight'>
           Be part of
           <p>
@@ -73,55 +71,45 @@ const AdsList = () => {
             </span>
           </p>
         </h2>
-
-
-        {/* SEMICIRCLE */}
-        <div className='w-[50px] h-24 hidden right-0 top-[160px] rounded-tl-full rounded-bl-full bg-lightGreen lg:block absolute'></div>
       </div>
 
-      <>
         {/* MAIN CONTAINER*/}
-        <div className='w-full md:w-[100%] h-full 2xl:ml-[150px] flex justify-center items-start'>
+        <div className='w-full md:w-[100%] h-full flex justify-center items-center'>
           {/* Image */}
-          <div
-            className=' '
-          >
             <img
-              className='hidden
-              lg:w-[600px]
-              xl:w-[790px] xl:h-[500px] xl:mt-[60px] lg:mt-[140px]
-              2xl:w-[640px] 2xl:h-[550px]
-              lg:flex h-full w-full'
+              className='
+              hidden 
+              h-full w-full
+              lg:flex lg:w-[600px] lg:mt-[30px]
+              xl:w-[560px]
+              '
               src={man}
               alt='person working on computer'
             />
-          </div>
 
-          {/* SEARCH UND ADS */}
-
-          <div className='h-full w-[100%] xl:w-[80%] 2xl:w-[65%] py-3'>
-            {/* Search */}
-            
+          {/* SEARCH - ADS - BUTTONS*/}
+          <div className='w-[60%] h-full flex flex-col justify-between items-center lg:mr-5'>
+            {/* SEARCH */}
+            <div className='w-full flex justify-center items-center'>
             <SearchContainer page='AdsList' />
-        
-              
+            </div>
+            {/* SEARCH END */}
+
             {/* ADS CONTAINER */}
+            <div className='flex justify-start items-center lg:ml-[-42px]'>
             {ads.adList.length === 0 ? (
               <div
-                className='mt-[30px] h-[150px] text-center sm:px-5 sm:w-[600px] md:w-[900px] font-bold relative text-3xl 
-              top-[40px] lg:top-[150px] xl:top-[200px] md:text-4xl
+                className='mt-[130px] xl:mt-[230px] h-[150px] text-center sm:px-5 sm:w-[600px] md:w-[770px] lg:w-[600px] font-bold relative text-3xl 
+                md:text-4xl
               text-darkBeige'
               >
                 No ads found
               </div>
             ) : (
               <div
-                className='mt-[25px] w-full h-full
-                flex flex-col justify-items-center items-start 
-                sm:px-5 lg:px-0 sm:w-[600px] sm:h-[460px] 
-                md:w-[700px] md:h-[435px] 
-                lg:w-[95%] 
-                xl:w-[900px]'
+                className='w-full h-full md:h-[380px] mt-5 md:mt-0
+                flex flex-col justify-center items-start lg:w-[80%] 
+              '
               >
                 {/* LOADING SPINNER */}
                 {ads.isLoading ? (
@@ -130,44 +118,39 @@ const AdsList = () => {
                   </div>
                 
               ) : (
-                <div className='md:h-[600px] p-1 flex flex-wrap justify-center items-center md:relative'>
+                <div className='md:p-1 flex flex-col justify-start items-center'>
                   {/* ADS */}
                   {ads.adList?.map((ad) => (
                     <Ad  key={ad._id} ad={ad} />
                   ))}
-                 
-
-                  {/* { filteredAds.length >0 ? filteredAds.map((a:any) =><div>{a}</div> 
-                  )
-                  :
-                  ads.adList?.map((ad) => (
-                    <Ad  key={ad._id} ad={ad} />
-                  ))
-
-                  } */}
-                    
-                  {/* BUTTON AD-POST & NEXT-PREV PAGE*/}
-                  <div className='flex flex-col-reverse lg:flex-row justify-around items-center
-                    w-[80%] md:w-[50%] md:ml-[60px] lg:ml-0 lg:w-[90%] xl:w-[80%] mt-4 gap-4 self-end'>
-                    {/* BUTTON AD POST */}
-                    <div>
-                      <UniButton
-                        text='Post Ad'
-                        onClick={handleClick}
-                        className='
-                        flex justify-center items-center lg:w-[100%] xl:w-[85%] mx-auto w-[250px] self-end'
-                      />
-                    </div>
-                    {/* NEXT & PREV PAGE  */}
-                    <PaginationButtons page ={page} setPage = {setPage} pageCount={pageCount} />
-                  </div>
                 </div>
                 )}
               </div>
             )}
+            </div>
+            {/* ADS END */}
+
+            {/* BUTTON AD-POST & NEXT-PREV PAGE*/}
+            <div className='pt-3 flex flex-col-reverse lg:flex-row justify-center lg:justify-between items-center
+              w-full lg:w-[37rem] xl:w-[40rem] xl:ml-[-30px]'>
+              {/* BUTTON AD POST */}
+              <div>
+                <UniButton
+                  text='Post Ad'
+                  onClick={handleClick}
+                  className='
+                  flex justify-center items-center lg:w-[100%] w-[250px] lg:mt-0 mt-8 self-end'
+                />
+              </div>
+              {/* NEXT & PREV PAGE  */}
+              <div 
+                className='flex justify-center items-center w-[250px]'>
+              <PaginationButtons page ={page} setPage = {setPage} pageCount={pageCount} />
+              </div>
+            </div>
+            {/* BUTTON END */}
           </div>
-          </div>
-      </>
+        </div>
     </motion.div>
   )
 }

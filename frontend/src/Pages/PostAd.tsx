@@ -1,5 +1,7 @@
+
 // Hooks
-import { useEffect, useState } from 'react'
+import React from 'react'
+import { useEffect, useState} from 'react'
 import { useNavigate } from 'react-router-dom'
 import useAds from '../Hooks/useAd'
 import useUser from '../Hooks/useUser'
@@ -13,9 +15,12 @@ import { notify } from '../utils/toastNotification'
 // Style
 import 'react-toastify/dist/ReactToastify.css'
 import imagePostAd from '../assets/images/PostAd_chef.png'
+
 // Others
 import axiosInstance from '../api/axiosInstance'
 import { motion } from 'framer-motion'
+import TextEditor from '../Components/TextEditor'
+
 
 const PostAd = () => {
   // CONSTANTS
@@ -29,7 +34,7 @@ const createText = useDecorationLine({orientation: 'left'})
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState('')
   const [title, setTitle] = useState('')
-  const [description, setDescription] = useState('')
+  const [description, setDescription] = useState<any>('')
   const [location, setLocation] = useState('')
   const [wage, setWage] = useState<number | string>('')
   const [category, setCategory] = useState('')
@@ -38,7 +43,9 @@ const createText = useDecorationLine({orientation: 'left'})
     [string, string] | [string] | []
   >()
   const [checked, setChecked] = useState({ email: false, phone: false })
- 
+  const [image, setImage] = useState('')
+
+
 
   // If user is not logged in, navigate to auth-required
   useEffect(() => {
@@ -62,6 +69,8 @@ const createText = useDecorationLine({orientation: 'left'})
     }
   }, [checked])
 
+
+  
   // HANDLE SUBMIT
   const handleSubmit = async (e: React.SyntheticEvent) => {
     e.preventDefault()
@@ -76,6 +85,7 @@ const createText = useDecorationLine({orientation: 'left'})
       wage,
       contactVia,
     }
+    
 
     const response = await axiosInstance
       .post('/ads/post', ad)
@@ -122,36 +132,36 @@ const createText = useDecorationLine({orientation: 'left'})
           area-label='circle'
           className='hidden md:block md:w-[332px] md:h-[332px] md:absolute md:top-[50%] md:left-[-250px] md:translate-y-[-50%] md:rounded-full md:bg-lightGreen'
         />
-        <div
+        {/* <div
           area-label='line'
           className='w-screen hidden md:block md:absolute md:top-[50%] md:translate-y-[-50%] md:left-0 md:border-b-[3px] md:border-lightGreen sm:hidden '
-        />
+        /> */}
         {/* CIRCLE && LINE  END*/}
 
 
         {/* MAIN */}
         <div
           area-label='main'
-          className='relative  h-full min-h-[920px] w-[85%] max-w-[1000px]  md:w-[70%] flex flex-col justify-center'
+          className='relative h-full min-h-[920px] w-[90%] max-w-[1000px]  md:w-[70%] flex flex-col justify-center'
         >
           
 
           {/* AD FORM */}
           <form
             area-label='form'
-            className='mt-8 gap-6 md:flex-col lg:flex-row md:gap-10 lg:gap-20 z-10 '
+            className='gap-6 md:flex-col lg:flex-row md:gap-10 lg:gap-20 z-10 '
             onSubmit={handleSubmit}
           >
             <div
               area-label='ad'
-              className='p-5 pt-10  flex flex-col items-center rounded-[21px] bg-white shadow-standard  sm:p-10 '
+              className='p-5 flex flex-col items-center rounded-[21px] bg-white shadow-standard  sm:p-10 '
             >
 
               {/* TITLE MOBILE (with line) */}
           <div>
             <h1
               area-label='title-mobile'
-              className='text-[1.8rem] sm:text-4xl bold  text-textBlack md:hidden'
+              className='text-[1.8rem] sm:text-4xl font-bold text-textBlack md:hidden'
             >
               <span 
               ref={createText}
@@ -213,7 +223,7 @@ const createText = useDecorationLine({orientation: 'left'})
               {/* TITLE && CITY && SECTOR */}
               <div
                 area-label='inputs colum'
-                className='w-full mt-3 flex flex-col items-center justify-center'
+                className=' rounded-full mt-3 flex flex-col items-center justify-center'
               >
                 <div
                   area-label='title-city'
@@ -275,6 +285,9 @@ const createText = useDecorationLine({orientation: 'left'})
                 </div>
 
                 {/* TEXTAREA */}
+
+                {/* TEXTAREA - original*/}
+
                 <textarea
                   area-label='text area'
                   name='text'
@@ -284,11 +297,17 @@ const createText = useDecorationLine({orientation: 'left'})
                   value={description}
                   onChange={(e) => setDescription(e.target.value)}
                 ></textarea>
+                <TextEditor  description={description} setDescription={setDescription}  /> 
+              
+        
+
+                  
+
 
                 {/* CHECKBOX (email-phone) */}
                 <div
                   area-label='form-bottom'
-                  className='w-full m-2 flex flex-wrap-reverse justify-start gap-3 lg:flex-row lg:justify-between lg:gap-2 '
+                  className='w-full m-2 flex flex-wrap-reverse justify-start gap-3 lg:flex-row lg:justify-between lg:gap-2'
                 >
                   <div
                     area-label='checkbox-text '
@@ -348,9 +367,10 @@ const createText = useDecorationLine({orientation: 'left'})
                       <input
                         type='number'
                         name='wage'
-                        className='py-1 px-5 w-[100px] text-sm text-gray rounded-lg border-2 border-lightGray border-opacity-50 focus:outline-none  placeholder:font-bold placeholder:opacity-50 '
+                        min={1}
+                        className=' py-1 px-5 w-[100px] text-sm text-gray rounded-lg border-2 border-lightGray border-opacity-50 focus:outline-none  placeholder:font-bold placeholder:opacity-50 '
                         placeholder='00'
-                        value={wage}
+                        value={wage.toString()}
                         onChange={(e) => setWage(Number(e.target.value) || 0)}
                       />
                       <span className='text-lightGray ml-1'>€</span>

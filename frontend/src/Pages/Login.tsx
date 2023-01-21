@@ -1,6 +1,6 @@
 // Hooks
 import React, { useState, useEffect } from 'react'
-import { Link, Navigate, useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import useUser from '../Hooks/useUser'
 import useDecorationLine from '../Hooks/useDecorationLine'
 // Types
@@ -79,7 +79,7 @@ const Login = (props: Props) => {
       className='pt-5 h-full min-h-[950px] flex flex-col items-center justify-center lg:flex-row '>
         
       {/* GREEN SEMICIRCLE */}
-      <div className='w-[100px] h-[100px] hidden absolute right-[-50px] top-[21rem] z-10 bg-lightGreen rounded-full xl:block' />
+      <div className='w-[50px] h-[100px] hidden absolute right-[0] top-[21rem] z-10 bg-lightGreen rounded-tl-full rounded-bl-full xl:block' />
 
       {/* IMAGE */}
       <img
@@ -90,13 +90,13 @@ const Login = (props: Props) => {
       />
 
       {/*HEADING && FORM */}
-      <div className='  py-[20px] h-[600px] w-[90%] max-w-[500px]  
+      <div className='py-[20px] h-[600px] w-[90%] max-w-[500px]  
       flex flex-col justify-center   border-radius  shadow-standard  
       bg-white rounded-[30px]
-      lg:max-w-[1000px] lg:w-[50%] lg:h-[650px] lg:ml-[15rem] lg:rounded-l-[30px] lg:rounded-r-none
-      2xl:ml-[10rem]'>
+      lg:max-w-[1000px] lg:w-[50%] lg:h-[650px] lg:ml-[16rem] lg:rounded-l-[30px] lg:rounded-r-none
+      xl:ml-[20rem]'>
 
-        <div className=' mx-auto w-[100%] flex flex-col items-center lg:mx-20  lg:items-start'>
+        <div className='mx-auto w-[100%] lg:w-[80%] xl:w-[70%] flex flex-col items-center lg:mx-20  lg:items-start'>
 
           <h1 className='w-[250px] text-center text-[2.2rem] leading-none  font-semibold pb-12
           sm:text-[2.5rem] 
@@ -121,12 +121,12 @@ const Login = (props: Props) => {
             <div className='mb-5 w-full relative  flex flex-col items-center'>
               <label
                 htmlFor='email'
-                className='self-start text-gray font-extralight sm:font-light sm:text-[1.1rem] lg:self-start'
+                className='self-start text-gray font-extraLight sm:font-light sm:text-[1.1rem] lg:self-start'
               >
                 Email
               </label>
               <input
-                className=' py-[11px] px-5 mb-2 w-full box-border border border-lightGray rounded-[15rem] text-sm  focus:outline-lightGreen sm:text-[1.1rem]'
+                className='py-[11px] px-5 mb-2 w-full box-border border border-lightGray rounded-[15rem] text-sm  focus:outline-lightGreen sm:text-[1.1rem]'
                 type='email'
                 name='email'
                 value={inputs.email}

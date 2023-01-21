@@ -11,7 +11,6 @@ function MessageHistory( ) {
   return (
 
     <div className='w-full h-full'>
-
       {/* LINE-BOX */}
       <div
         className=' p-3 pt-2 w-full h-[300px] 
@@ -54,12 +53,9 @@ function MessageHistory( ) {
             })}
        
             {typing && <p className='m-3 h-[50px] self-end justify-end text-lightGray text-right'>Typing...</p>}
-            </ScrollToBottom>
-          
+            </ScrollToBottom>     
       </div>
-     
-
-    </div>
+   </div>
   )
 }
 

@@ -44,11 +44,10 @@ const SearchContainer = (props: Props) => {
     <form
       onSubmit={handleSubmit}
       aria-label='search-ads-form'
-      className='w-full mt-2 md:mt-8
-        flex justify-center items-center flex-row
-        md:w-[100%] lg:w-[99%] xl:w-[97%] 2xl:w-[70%] 
+      className='w-full mt-8 lg:mt-[60px]
+        flex justify-center items-center flex-row 
     '>
-       <div className='lg:mt-[40px] lg:ml-[30px] flex flex-col lg:flex-row gap-3 2xl:gap-5'>
+       <div className='flex flex-col justify-center lg:flex-row gap-3 xl:w-[39rem] xl:ml-[-40px] 2xl:w-[39.5rem]'>
         <Search />
         <SearchRadioAdsList />
       </div>

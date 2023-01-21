@@ -1,8 +1,3 @@
-// Hooks
-import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
-// Components
-import UniButton from '../Components/UniButton'
 // Images & Icons
 import imageHome from '../assets/images/Home_group.png'
 // framer-motion
@@ -23,8 +18,11 @@ const Home = () => {
       exit={{ x: window.innerWidth }}
       className='mx-auto md:w-[90%] w-full h-full min-h-[918px] flex justify-center items-center lg:justify-end'
     >
-      {/* <div className=' py-8  h-full   w-[100%]  sm:w-[50%] flex flex-col items-center justify-around gap-10 lg:ml-[85px] lg:gap-0  md:w-full lg:flex-row  md:flex-wrap md:justify-center  lg:justify-start  md:items-center  mx-auto'> */}
-      <div className=' py-8  h-full  w-[100%]  sm:w-[50%] flex flex-col items-center justify-around gap-10 lg:ml-[85px] lg:gap-0  md:w-full lg:flex-row  md:flex-wrap md:justify-center  lg:justify-start  md:items-center  mx-auto '>
+      <div
+        className='py-8 h-full w-[100%] mx-auto 
+          sm:w-[50%] flex flex-col items-center justify-around gap-10
+          lg:ml-[85px] lg:gap-0  md:w-full lg:flex-row lg:justify-start
+          md:flex-wrap md:justify-center md:items-center'>
         {/* TEXT */}
         <div className='w-full flex flex-col items-center justify-center gap-6 md:w-[70%] lg:w-[50%]  '>
           <h1 className='text-[45px] leading-none font-medium text-textBlack sm:text-[53px] lg-text-7 xl:text-[80px] md:text-6xl '>
@@ -58,15 +56,16 @@ const Home = () => {
           src={imageHome}
         ></img>
 
+        {/* SEARCH */}
         <SearchContainer page='Home' />
-
       </div>
 
-      {/* ELEMENTS (circle) */}
+      {/* CIRCLE */}
 
       <div
         area-label='circle'
-        className='hidden xl:block w-[332px] h-[332px] absolute top-[460px] right-[-250px] translate-y-[-50%] rounded-full md:bg-lightGreen'
+        className='hidden xl:block w-[332px] h-[332px]
+        absolute top-[460px] right-[-250px] translate-y-[-50%] rounded-full md:bg-lightGreen'
       />
     </motion.div>
   )
