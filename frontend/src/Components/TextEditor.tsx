@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useQuill } from "react-quilljs";
 import "quill/dist/quill.snow.css";
+import parse from 'html-react-parser'
 
 type Props ={
     description: String
@@ -12,6 +13,12 @@ const FormatedText = (myDescription:any) => {
     __html: `${myDescription}`
   }
 }
+
+const parsedText = (description:any) =>{
+  console.log("desc"+description);
+  return parse(description);
+}
+
 const Editor = (props:Props) => {
 
   const placeholder = 'Your description...'
@@ -24,6 +31,7 @@ const Editor = (props:Props) => {
           { list: 'ordered' },
           { list: 'bullet'}
         ],
+        ['link']
       ],
     }
   }
@@ -33,7 +41,8 @@ const Editor = (props:Props) => {
     'underline',
     'strike',
     'align',
-    'list'
+    'list',
+    'link'
   ];
 
   const { quill, quillRef, Quill } = useQuill({
