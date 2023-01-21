@@ -13,15 +13,14 @@
 
 ## Table of Contents
 
-1. [General Info](#1-general-information)
-2. [Project Status](#7-project-status)
-3. [Technologies Used](#2-technologies-used)
+1. [Project Status](#1-project-status)
+2. [General Info](#2-general-information)
+3. [Technologies Used](#3-technologies-used)
 4. [Screenshots](#4-screenshots)
-5. [Setup](#5-setup)
-6. [Usage](#6-usage)
-7. [Room for Improvement](#8-room-for-improvement)
-8. [Acknowledgements](#9-acknowledgements)
-9. [Contact](#10-contact)
+5. [Room for Improvement](#5-room-for-improvement)
+6. [Acknowledgements](#6-acknowledgements)
+7. [Setup](#7-setup)
+8. [Contact](#8-contact)
 
 <!-- * [License](#license) -->
 
@@ -51,6 +50,10 @@ Project is: _in progress_
 
 - Node.js (v18.12.1)
 
+
+**Design:git add **
+- Figma  [-> see design](https://www.figma.com/file/cmWtNE21nByCtTRUkoR2uS/Wireframing-DT?node-id=112%3A2815&t=uVB5Ez63DIcXSe0U-0)
+
 **Frontend:**
 
 - React (^18.2.0)
@@ -59,9 +62,6 @@ Project is: _in progress_
 - Tailwind (3.2.4)
 - Axios (1.2.1)
 - Framer Motion (8.0.1)
-
-**Design:git add **
-- Figma  [-> see design](https://www.figma.com/file/cmWtNE21nByCtTRUkoR2uS/Wireframing-DT?node-id=112%3A2815&t=uVB5Ez63DIcXSe0U-0)
 
 **Backend**
 
@@ -102,30 +102,7 @@ List the ready features here:
 
 
 
-
-## 5. Setup
-
-To run this project, install it locally using npm:
-
-```
-$ git clone git@github.com:dimilidi/jobportal.git
-$ cd backend
-$ npm install
-$ npm run dev
-$ cd ../frontend
-$ npm install
-$ npm run dev
-```
-
-## 6. Usage
-
-How does one go about using it?
-Provide various use cases and code examples here.
-
-`write-your-code-here`
-
-
-## 7. Room for Improvement
+## 6. Room for Improvement
 
  Improvements for future development:
 
@@ -142,9 +119,24 @@ To do:
 
 - This is the final project of one year MERN Stack Course by Digital Career Institute.
 - This project was inspired by LinkedIn, makes communication as easy as possible with direct messeges.
-- Many thanks to Christoph Muck, Jan Laskowski, Manuel Jung and whole DCI Team. 
+- Many thanks to our teachers Christoph Muck, Jan Laskowski, Manuel Jung and whole DCI Team. 
 
-## 9. Our Team: 
+## 7. Setup
+
+To run this project, install it locally using npm:
+
+```
+$ git clone git@github.com:dimilidi/jobportal.git
+$ cd backend
+$ npm install
+$ npm run dev
+$ cd ../frontend
+$ npm install
+$ npm run dev
+```
+
+
+## 8. Our Team: 
 
 1. **Miki Gerlach** (Backend, Frontend) [LinkedIn](https://www.linkedin.com/in/mikigerlach/)
 2. **Lidiya Dimitrova** (Backend, Frontend) [LinkedIn](https://www.linkedin.com/in/dimitrovalidiya/)
