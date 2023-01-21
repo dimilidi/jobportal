@@ -6,8 +6,8 @@ import { useState } from 'react'
 
 import React from 'react'
 import useAd from '../Hooks/useAd'
-import e from 'cors'
-import { FaNodeJs } from 'react-icons/fa'
+import { RiSendPlane2Line } from 'react-icons/ri'
+
 
 
 
@@ -25,56 +25,58 @@ function InputMessage() {
   function inputHandler(e: any) {
    
     setText(e.target.value)
-    socket.emit('typing-started', ad?.user._id) 
 
+    socket.emit('typing-started', ad?.user._id) 
     if (typingTimeout) clearTimeout(typingTimeout)
-    
-  
-     setTypingTimeout(setTimeout(() => {      
+      setTypingTimeout(setTimeout(() => {      
       socket.emit('typing-stopped')
     },1000))
 
-
   }
  
 
+
   
-  const sendMessage = (e:React.SyntheticEvent) => {
+  const sendMessage =  (e:React.SyntheticEvent) => {
     e.preventDefault()
     setText('')
-    ad && chat.sendMessage(text, ad?.user._id)
-    chat && chat.setMessages([...chat.messages, {message:text, received:false}])
-    
-
+    if(text !== '') {
+      const messageData = {
+        room: chat.room,
+        author: user?.name,
+        message: text,
+        date: new Date(Date.now()).toDateString(),
+        time: 
+          new Date(Date.now()).getHours() + 
+          ':' + 
+          new Date(Date.now()).getMinutes()
+      }
+      ad &&  chat.sendMessage(messageData)
+      chat && chat.setMessages([...chat.messages, {message:messageData, received:false}])
+    }
   }
   
-  // console.log('CHat',chat);
-  // console.log('Text',text);
-  // console.log("Receiver:", ad?.user)
-  // console.log("Sender:", user?._id)
-  // console.log('Messages',messages);
-
  
-
   return (
-    <div>
+    <div className='p-2 mb-2  w-full h-[100px] flex items-center'>
       {/* INPUT MESSAGE */}
       <form 
         onSubmit={sendMessage}
-        className='flex flex-col justify-center items-center gap-4'
+        className='mx-auto   w-[100%]  flex flex-col justify-center items-center gap-1 '
       >
-        <div>
+        <div className='w-[95%] flex bg-darkBeige  rounded-lg  ' >
           <input
-            className='w-[230px] h-[100px] mt-4
-            md:w-[350px]
-            bg-darkBeige rounded-lg
-            focus:outline-lightGray p-3'
+            className='w-full h-[70px] bg-darkBeige focus:outline-none p-3 rounded-lg '
             type='text'
             name='message'
             onChange={inputHandler}
             value={text}
             placeholder='Write your message ...'
           />
+          {/* BUTTON - SEND */}
+          <button type='submit' className='p-2 text-gray opacity-50 self-center border-l-2 border-left border-lightGray hover:opacity-100  ease-in-out duration-300'>
+            <RiSendPlane2Line size={26} />
+          </button>
         </div>
 
       {/* BUTTON - SEND */}
@@ -82,15 +84,17 @@ function InputMessage() {
       {/* soll verschickt werden an user der die anzeige gestellt hat */}
       {/* wo entsteht diese information und wo wird sie gespeichert ? */}
       {/* in der datenbank ? */}
-      <div
+      {/* <div
         className='flex justify-center items-center mb-10'>
         <UniButton
               area-label='SendMessageButton'
               text='Send'
               type='button'
-              // onClick={sendMessage} 
+              style = {{height:'50px'}}
               />
-        </div>
+        </div> */}
+
+      
       {/* BUTTON - SEND - END*/}
       </form>
     </div>

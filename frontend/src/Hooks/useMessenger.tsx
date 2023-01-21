@@ -10,10 +10,12 @@ import useAd from "./useAd";
 
 // implicit type assignment:
 export let socket: any;
+socket = io("localhost:3001")
+
 
 // erstelle context, speichert werte -> value (weiter unten) ist der wert der automatisch in context gespeichert wird
 // welches argument erwartet ts von createContext
-export const SocketContext = createContext<messageContext>({connect: () => {}, sendMessage: () => {}, joinChat: () => {}, isConnected: false, messages: [], setMessages:   ((prevState: [{}]) => []), typing: false})
+export const SocketContext = createContext<messageContext>({connect: () => {}, sendMessage: () => {}, joinChat: () => {}, isConnected: false, setIsConnected: () => false,messages: [], setMessages:   ((prevState: [{}]) => []), typing: false, setRoom: () => '', room:'' })
 
 // props=app(child)
 export function SocketProvider (props: {children: React.ReactElement}) {
@@ -21,16 +23,21 @@ export function SocketProvider (props: {children: React.ReactElement}) {
   const [isConnected, setIsConnected] = useState(false)
   const [messages, setMessages] = useState<any>([])
   const [typing, setTyping] = useState(false)
+  const [room, setRoom ] = useState('')
 
 
   // muss nur einmal eröffnet werden
   function connect (id: string) {
     // baue verbindung zu websocket server auf
-    socket = io("localhost:3001")
-    socket.on("connect", () => {
-      // console.log("connected");s
-      socket.emit("joinRoom", id)
-    })
+    // socket.on("connect", () => {
+      // console.log("connected");
+      // socket.emit("joinRoom", id)
+    socket.emit('join chat', id )
+    
+    
+    
+
+    // })
 
 
     // receive 
@@ -40,8 +47,11 @@ export function SocketProvider (props: {children: React.ReactElement}) {
 
     socket.on("message-from-server", (value:{}) => { //'message'
       setMessages((messages:[]) => [...messages, {message:value, received:true}])
-      console.log(value)
+      
     })
+
+
+    
 
     socket.on("typing-started-from-server", () => setTyping(true))
 
@@ -53,25 +63,28 @@ export function SocketProvider (props: {children: React.ReactElement}) {
 
    // join chat
    function joinChat(id:string) {
-    socket.emit('join chat', id )
+    // socket.emit('join chat', id )
   }
 
 
-  function sendMessage (text: string, receiver: string) {
+  async function sendMessage (data:{}) {
     // emit schickt immer ins BE, egal ob im backend aufgefangen wird oder nicht
     // das event für emit kann beliebig benannt werden
     // mitgesendet als argument wird jegliche beliebige information. in diesem fall ein objekt mit text und receiver
-    socket.emit("message", {text, receiver}) 
+    await socket.emit("message", data) 
   }
 
   const exportData = {
     connect,  
     sendMessage,
     isConnected,
+    setIsConnected,
     messages,
     setMessages,
     typing,
-    joinChat
+    joinChat,
+    setRoom,
+    room
   }
 
   return (

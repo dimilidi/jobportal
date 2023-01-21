@@ -15,24 +15,31 @@ function UserMessage({ad}:Props) {
       {/* PROFILE IMAGE */}
       <div
         className='
-          flex flex-row items-start justify-around md:justify-center
-          sm:gap-5 
+          flex flex-row items-start justify-center
+        
           w-full'
       >
         <div
-          className='mb-[20px] pt-8 w-[60px] 
-          flex self-start justify-center items-end
+          className='p-1  h-[100px]
+          flex flex-col justify-end items-end
           rounded-b-[40px] bg-lightBeige
-          md:w-[80px]'
+          w-[90px]'
         >
+            
+          
           <div
-            className='mb-4 mx-1 w-[50px] h-[40px]
+            className=' mx-auto  w-[80px] h-[80px] relative flex justify-center
           self-end rounded-full
-          md:w-[80px] md:h-[40px] md:mb-9'
+           '
           >
-            <img src={ ad.user.avatar ? ad.user.avatar :  profileImg }  />
+
+            <img 
+               className='mb-1 w-[80px] h-[80px]  rounded-full object-cover'
+              src={ ad.user.avatar ? ad.user.avatar :  profileImg }  /> 
           </div>
+
         </div>
+          <div className=' w-[15px] h-[15px] absolute top-20 right-[167px] rounded-full bg-green-500' />
 
         {/* USER NAME, and SECTION */}
         {/* <div className='pt-5 md:pt-7'>
