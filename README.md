@@ -24,7 +24,11 @@
 
 <!-- * [License](#license) -->
 
-## 1. General Information
+## 1. Project Status
+
+Project is: _in progress_ 
+
+## 2. General Information
 
 
 ## Not logged in user: 
@@ -40,22 +44,18 @@
 * can see his ads and edit/deleting them
 * can delete profile with all his ads
 
-## 2. Project Status
 
-Project is: _in progress_ 
 
 ## 3. Technologies Used
 
-**General:**
+**Design:**
+- Figma  [-> see design](https://www.figma.com/file/cmWtNE21nByCtTRUkoR2uS/Wireframing-DT?node-id=112%3A2815&t=uVB5Ez63DIcXSe0U-0)
 
+**General:**
 - Node.js (v18.12.1)
 
 
-**Design:git add **
-- Figma  [-> see design](https://www.figma.com/file/cmWtNE21nByCtTRUkoR2uS/Wireframing-DT?node-id=112%3A2815&t=uVB5Ez63DIcXSe0U-0)
-
 **Frontend:**
-
 - React (^18.2.0)
 - TypeScript (4.9.3)
 - Vite (4.0.0)
@@ -63,18 +63,24 @@ Project is: _in progress_
 - Axios (1.2.1)
 - Framer Motion (8.0.1)
 
-**Backend**
 
+**Backend**
 - Express (^4.18.2)
 - Mongoose (^6.8.0)
 - Eslint (^8.29.0)
 - bcrypt (^5.1.0)
 - jswebtoken (^8.5.1)
 - Cloudinary (^1.33.0)
+- Socket.io (^4.5.4)
 
-**4. Data base**
 
+**Data base:**
 - MongoDB
+
+
+**Deployment:**
+-Frontend: Netlify
+-Bckend: Render
 <!-- 
 ## 3. Features
 
@@ -138,11 +144,11 @@ $ npm run dev
 
 ## 8. Our Team: 
 
-1. **Miki Gerlach** (Backend, Frontend) [LinkedIn](https://www.linkedin.com/in/mikigerlach/)
-2. **Lidiya Dimitrova** (Backend, Frontend) [LinkedIn](https://www.linkedin.com/in/dimitrovalidiya/)
-5. **Timon Hosch** (Backend, Frontend) [LinkedIn](https://www.linkedin.com/in/timon-hosch-3a1463236/)
-3. **Paulina Hryszko** (Design, Frontend) [LinkedIn](https://www.linkedin.com/in/paulina-hryszko/)
-4. **Oriana Quintero** (Design, Frontend) [LinkedIn](https://www.linkedin.com/in/oriana-quintero/)
+1. ::woman_mechanic: **Miki Gerlach** (Backend, Frontend) [LinkedIn](https://www.linkedin.com/in/mikigerlach/)
+2. :ninja: **Lidiya Dimitrova** (Backend, Frontend) [LinkedIn](https://www.linkedin.com/in/dimitrovalidiya/)
+5. :sunglasses: **Timon Hosch** (Backend, Frontend) [LinkedIn](https://www.linkedin.com/in/timon-hosch-3a1463236/)
+3. :cartwheeling: **Paulina Hryszko** (Design, Frontend) [LinkedIn](https://www.linkedin.com/in/paulina-hryszko/)
+4. :lotus_position_woman: **Oriana Quintero** (Design, Frontend) [LinkedIn](https://www.linkedin.com/in/oriana-quintero/)
 
 
 
