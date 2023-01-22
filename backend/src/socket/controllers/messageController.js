@@ -1,4 +1,5 @@
 import BaseController from './BaseController.js'
+import Message from '../models/Message.js'
 
 export default class MessageController extends BaseController {
   sendMessage = (value) => {
@@ -9,3 +10,29 @@ export default class MessageController extends BaseController {
   }
  
 }
+
+
+// /** @type {import("express").RequestHandler} */
+export const addMessage = async(req, res) => {
+  const {chatId, senderId, text} = req.body
+
+  const newMessage = new Message({
+    chatId, 
+    senderId, 
+    text
+  })
+
+  const message = await newMessage.save()
+  res.status(201).json(message)
+}
+
+
+// /** @type {import("express").RequestHandler} */
+export const getMessages = async(req, res) => {
+  const {chatId} = req.params
+
+  const message = await Message.find({chatId})
+  res.status(200).json(message)
+}
+
+

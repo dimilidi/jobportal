@@ -49,18 +49,11 @@ export async function getAds(req, res) {
   // Sort ads by update date (descending order)
   query = query.sort({ updatedAt: -1 })
 
-  query.populate('user', 'name avatar').clone()
+  query.populate('user', 'name email avatar').clone()
   
-  
-
   const [count, ads] = await Promise.all([countDoc, query])
   const pageCount = count / page_size
-  // const users =  ads.map((a) => a.user.name)
-  // console.log(users[1])
-  // users.find({}).where('user').equals(user)
-
-
- 
+  
   res.status(200).json({pagination:{count, pageCount},ads})
 }
 

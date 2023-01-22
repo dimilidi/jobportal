@@ -12,11 +12,34 @@ import InputMessage from '../Components/InputMessage'
 import useAd from '../Hooks/useAd'
 import { useEffect, useState } from 'react'
 import useMessenger, { socket } from '../Hooks/useMessenger'
+import axiosInstance from '../api/axiosInstance'
+import Conversation from '../Components/Conversation'
 
 const Message = () => {
   const {ad} = useAd()
   const {user} = useUser()
   const chat = useMessenger()
+  const [chats, setChats] = useState<any[]>([])
+
+
+  // GET CHATS
+  const getChats = async() => {
+    try {
+      const {data} = await axiosInstance.get(`/chat/${user?._id}`)
+      setChats(data)
+      console.log(data);
+      
+    } catch (error) {
+      console.log(error);
+      
+    }
+  }
+
+  useEffect(() => {
+    getChats()
+  },[user])
+
+
 
 
   return (
@@ -25,8 +48,19 @@ const Message = () => {
         animate={{ width: '100%' }}
         exit={{ x: window.innerWidth }}
         area-label='message'
-        className='lg:pt-[120px] pt-10 pb-20 h-full  min-h-[700px] lg:min-h-[900px] flex flex-col items-center justify-center text-textBlack md:pt-[140px] xl:pt-[120px]'
+        className='pt-10 pb-20 h-full  min-h-[700px]   flex flex-row items-center justify-center text-textBlack md:pt-[140px] lg:pt-[120px] lg:min-h-[900px]  xl:pt-[120px]'
       >
+        {/* CHAT LIST SIDEBAR */}
+        <div>
+          <h2>Chats</h2>
+          <div>
+            {chats.map((chat:any) => (
+              <div>
+                <Conversation data = {chat} />
+              </div>
+            ))}
+          </div>
+        </div>
         {/* MAIN */}
         <div
           area-label='main'
