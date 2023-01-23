@@ -43,7 +43,7 @@ function UserCard(props: Props) {
       >
         <img
           className='w-[11em] h-[11em] mt-[2.8rem] 
-            lg:w-[12rem] lg:h-[12rem] lg:mt-[1rem]
+            lg:w-[12rem] lg:h-[12rem] lg:mt-[2.5rem]
             absolute z-10 object-cover
             rounded-full'
           src={user?.avatar ? user?.avatar : imageAccount}
@@ -69,7 +69,7 @@ function UserCard(props: Props) {
 
       {/* Description Heading and Description */}
       {user?.description && (
-        <div className='pl-9 pr-9'>
+        <div className='pl-9 pr-9 overflow-scroll h-[90px] w-full md:h-[10rem] lg:h-[6rem]'>
           <h3 className='mb-1 text-[16px] font-[600]'>Description</h3>
           <p className='text-[15px] text-[gray]'>{user?.description}</p>
         </div>
