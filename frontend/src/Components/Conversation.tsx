@@ -35,7 +35,7 @@ function Conversation({data}: Props) {
     <div>Conversation 
         <img src={userData?.avatar} alt="" />
         <p>{userData?.name}</p>
-        <p>{userData?.title}</p>
+      
     </div>
   )
 }
