@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useQuill } from "react-quilljs";
 import "quill/dist/quill.snow.css";
-// import parse from 'html-react-parser'
+import parse from 'html-react-parser'
 
 type Props ={
     description: String
@@ -14,10 +14,10 @@ const FormatedText = (myDescription:any) => {
   }
 }
 
-// const parsedText = (description:any) =>{
-//   console.log("desc"+description);
-//   return parse(description);
-// }
+const parsedText = (description:any) =>{
+  console.log("desc"+description);
+  return parse(description);
+}
 
 const Editor = (props:Props) => {
 
@@ -60,7 +60,7 @@ const Editor = (props:Props) => {
   return (
     <div style={{width: '100%'}}>
       <div ref={quillRef} />
-      <div className="ql-editor" dangerouslySetInnerHTML={FormatedText(props.description)} />
+      <div className="fotmated" dangerouslySetInnerHTML={FormatedText(props.description)} />
     </div>
   )
 }
