@@ -31,7 +31,6 @@ const Editor = (props:Props) => {
           { list: 'ordered' },
           { list: 'bullet'}
         ],
-        ['link']
       ],
     }
   }
@@ -42,7 +41,6 @@ const Editor = (props:Props) => {
     'strike',
     'align',
     'list',
-    'link'
   ];
 
   const { quill, quillRef, Quill } = useQuill({
