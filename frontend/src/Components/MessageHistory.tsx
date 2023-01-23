@@ -15,21 +15,21 @@ function MessageHistory( {currentChat}:Props) {
 
   // console.log(messages)
 
-  const fetchMessages = async () => {
-    try {
-      const {data} = await axiosInstance.get(`/message/${currentChat?._id}`)
-      console.log(data);
+  // const fetchMessages = async () => {
+  //   try {
+  //     const {data} = await axiosInstance.get(`/message/${currentChat?._id}`)
+  //     console.log(data);
       
-      setMessages(data)
-    } catch (error) {
-      console.log(error);
+  //     setMessages(data)
+  //   } catch (error) {
+  //     console.log(error);
       
-    }
-  }
+  //   }
+  // }
 
-  useEffect(() => {
-   if(currentChat != null) fetchMessages()
-  }, [currentChat])
+  // useEffect(() => {
+  //  if(currentChat != null) fetchMessages()
+  // }, [currentChat])
 
   return (
 
@@ -39,7 +39,7 @@ function MessageHistory( {currentChat}:Props) {
         className=' p-3 pt-2 w-full h-[300px] 
           border-y-2 border-darkBeige sm:h-[400px]'> 
           <ScrollToBottom className='pb-3 h-[98%] w-full flex flex-col  overflow-x-hidden'>
-          {messages && 
+          {/* {messages && 
             messages.map((value, i) => {
               // ///////////// Stopped here
               return (
@@ -74,9 +74,9 @@ function MessageHistory( {currentChat}:Props) {
               </div> 
                  
               )
-            })}
+            })} */}
 
-          {/* {messages && 
+          {messages && 
             messages.map((value, i) => {
               return (
               <div key={i} className='flex flex-col px-2'>
@@ -110,7 +110,7 @@ function MessageHistory( {currentChat}:Props) {
               </div> 
               
               )
-            })} */}
+            })}
        
             {typing && <p className='m-3 h-[50px] self-end justify-end text-lightGray text-right'>Typing...</p>}
             </ScrollToBottom>     
