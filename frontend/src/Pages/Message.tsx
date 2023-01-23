@@ -14,12 +14,32 @@ import { useEffect, useState } from 'react'
 import useMessenger, { socket } from '../Hooks/useMessenger'
 import axiosInstance from '../api/axiosInstance'
 import Conversation from '../Components/Conversation'
+import useAdList from '../Hooks/useAdList'
 
 const Message = () => {
   const {ad} = useAd()
+  const {adList} = useAdList('')
   const {user} = useUser()
   const chat = useMessenger()
   const [chats, setChats] = useState<any[]>([])
+  const [currentChat, setCurrentChat] = useState<any>(null)
+  const [userData, setUserData] = useState({})
+
+
+  // Get Second Chat Member 
+  const getUserData = () => {
+  let userId = currentChat?.members?.find((id:string) => id !== user?._id)
+  const adOfSecondMember = adList.find((ad) =>  userId == ad.user._id)
+  adOfSecondMember && setUserData(adOfSecondMember.user)
+  }
+  
+  
+  useEffect(() => {
+    if(currentChat !=null) getUserData()
+    
+  },[user, currentChat, adList])
+  console.log(userData);
+  
 
 
   // GET CHATS
@@ -55,7 +75,7 @@ const Message = () => {
           <h2>Chats</h2>
           <div>
             {chats.map((chat:any) => (
-              <div>
+              <div className='bg-green-300 w-[200px] h-[400px]' onClick={()=>setCurrentChat(chat)}>
                 <Conversation data = {chat} />
               </div>
             ))}
@@ -72,7 +92,9 @@ const Message = () => {
           xl:w-[800px] xl:min-h-full'
         >
 
-        {/* BOX*/}
+          {currentChat ? (
+            <>
+             {/* BOX*/}
         <div
             area-label='box'
             className='w-[300px] max-[767px]:mt-[6rem] min-h-[500px] sm:h-[600px] sm: sm:w-[400px] xl:h-[600px]
@@ -93,7 +115,7 @@ const Message = () => {
           aria-aria-label='history'
           className='h-full w-full
           relative flex justify-center'>
-          <MessageHistory />
+          <MessageHistory currentChat = {currentChat} />
         </div>
 
         {/* INPUT MESSAGE */}
@@ -118,6 +140,12 @@ const Message = () => {
             className='hidden md:block lg:absolute lg:top-[475px] lg:translate-y-[-50%] lg:left-0 lg:border-b-2 lg:border-lightGreen w-screen z-0'
           />
           {/* CIRCLE & LINE - END */}
+          </>
+          ) : (
+            <h2>Tap on a Chat to start Conversation...</h2>
+          )}
+
+       
         </div>
 
     </motion.div>
