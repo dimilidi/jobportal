@@ -47,7 +47,6 @@ const PostAd = () => {
   const [image, setImage] = useState('')
 
 
-
   // If user is not logged in, navigate to auth-required
   useEffect(() => {
     if (!user) navigate('/auth-required')
@@ -292,7 +291,7 @@ const PostAd = () => {
                 {/* TEXTAREA */}
 
                 {/* TEXTAREA - original*/}
-
+{/* 
                 <textarea
                   area-label='text area'
                   name='text'
@@ -301,9 +300,12 @@ const PostAd = () => {
                   placeholder='Your description..'
                   value={description}
                   onChange={(e) => setDescription(e.target.value)}
-                ></textarea>
-                <TextEditor  description={description} setDescription={setDescription}  /> 
-              
+
+                >
+
+                </textarea> */}
+                <TextEditor description={description} setDescription={setDescription}  /> 
+                
         
 
                   

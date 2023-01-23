@@ -25,20 +25,24 @@ import { BsFillEyeFill } from 'react-icons/bs'
 import Message from './Message'
 import useMessenger from '../Hooks/useMessenger'
 import UniButtonDark from '../Components/UniButtonDark'
+import TextEditorRender from '../Components/TextEditorRender'
+
 
 
 const SingleAd = () => {
+
   // CONSTANTS
   const params = useParams()
   const navigate = useNavigate()
   const user = useUser()
   const { ad,  isLoading, deleteAd } = useAd()
   const { setIsConnected, connect, setRoom, room } = useMessenger()
-
   const [modalOpen, setModalOpen] = useState(false)
   const close = () => setModalOpen(false)
   const open = () => setModalOpen(true)
   const [openChat, setOpenChat] = useState(false)
+
+
 
   // HANDLE MESSAGE
   const handleMessage = () => {
@@ -82,13 +86,11 @@ const SingleAd = () => {
     }
   }
  
-  
 
   if(openChat){
     return <Message />
   }
 
-  
 
   // If no ad was fetched, return div with message
   if (!ad) {
@@ -132,7 +134,8 @@ const SingleAd = () => {
               >
                 <h3 className='text-[20px]'>Description</h3>
                 <p className='text-[14px] text-justify mt-2 text-gray/80'>
-                  {ad?.description}
+                  {/* Formated text */}
+                  <TextEditorRender />
                 </p>
               </div>
             )}
