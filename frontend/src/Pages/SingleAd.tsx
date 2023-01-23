@@ -24,6 +24,7 @@ import Modal from '../Components/Modal'
 import { BsFillEyeFill } from 'react-icons/bs'
 import Message from './Message'
 import useMessenger from '../Hooks/useMessenger'
+import UniButtonDark from '../Components/UniButtonDark'
 
 
 const SingleAd = () => {
@@ -49,6 +50,12 @@ const SingleAd = () => {
      } 
       ad && setRoom(ad.user._id)
       setIsConnected(true)
+  }
+
+    // HANDLE CONTACT
+    const handleContact = () => {
+      if (user.isLoggedIn === false) navigate('/auth-required')
+      // if(user.user?._id === ad?.user._id){}
   }
  
 
@@ -202,15 +209,26 @@ const SingleAd = () => {
               />
           </div>
 
-          {/* IF AD IS NOT CREATED BY USER, BUTTON "MESSAGE" */}
+          <div className='flex justify-center gap-2'>
+            {/* IF AD IS NOT CREATED BY USER, BUTTON "MESSAGE" */}
+            { user.user?._id !== ad?.user._id && (
+              <UniButton
+                text='Message'
+                onClick={handleMessage}
+                className='my-7 self-center mb-2 lg:mb-0'
+              />
+            )}
 
-          { user.user?._id !== ad?.user._id && (
-            <UniButton
-              text='Message'
-              onClick={handleMessage}
+
+            {/* IF AD IS NOT CREATED BY USER, BUTTON "CONTACT" */}
+            { user.user?._id !== ad?.user._id && (
+              <UniButtonDark
+              text='Contact'
+              onClick={handleContact}
               className='my-7 self-center mb-2 lg:mb-0'
             />
-          )}
+            )}
+          </div>
         </div>
         {/* Ad - END */}
 

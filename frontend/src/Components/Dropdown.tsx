@@ -57,7 +57,7 @@ function Dropdown(props: Props) {
           onClick={handleEdit}
          >Edit</p>
          <p
-          className='w-[100px] text-center rounded-lg bg-lightGreen hover:bg-darkGreen'
+          className='w-[100px] text-center rounded-lg bg-darkGreen hover:bg-lightGreen'
           onClick={handleDelete}
           >Delete</p>
     </div>
