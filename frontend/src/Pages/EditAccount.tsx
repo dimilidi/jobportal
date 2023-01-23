@@ -254,7 +254,7 @@ const EditAccount = (props: Props) => {
                   className='
                   hidden md:inline-block
                   self-start
-                  font-light text-lightGray  
+                  font-regular text-lightGray  
                   sm:text-[1.1rem] 
                   lg:self-start'
                 >
@@ -282,7 +282,7 @@ const EditAccount = (props: Props) => {
                   className='
                   hidden md:inline-block
                   self-start 
-                  font-light text-lightGray  
+                  font-regular text-lightGray  
                   sm:text-[1.1rem] 
                   lg:self-start'
                 >
@@ -293,7 +293,7 @@ const EditAccount = (props: Props) => {
                   w-full mb-2 py-[5px] px-3
                   box-border border border-lightGray
                   border-opacity-[50%] rounded-[15rem] 
-                  text-sm font-medium text-textBlack
+                  text-sm font-medium text-gray
                   min-[425px]:py-[10px]   
                   sm:text-[1.1rem]
                   focus:outline-lightGreen'
@@ -312,7 +312,7 @@ const EditAccount = (props: Props) => {
                   className='
                   hidden md:inline-block
                   self-start 
-                  font-light text-lightGray   
+                  font-regular text-lightGray   
                   sm:text-[1.1rem] 
                   lg:self-start'
                 >
@@ -325,7 +325,7 @@ const EditAccount = (props: Props) => {
                   box-border border border-lightGray
                   rounded-[15rem] focus:outline-lightGreen 
                   sm:text-[1.1rem] border-opacity-[50%]
-                  text-sm font-medium text-textBlack
+                  text-sm font-medium  text-gray
                   min-[425px]:py-[10px]'
                   placeholder='Phone'
                   type='text'
@@ -341,7 +341,7 @@ const EditAccount = (props: Props) => {
                   className='
                   hidden md:inline-block
                   self-start 
-                  font-light text-lightGray   
+                  font-regular text-lightGray   
                   sm:text-[1.1rem] 
                   lg:self-start'
                 >
@@ -354,7 +354,7 @@ const EditAccount = (props: Props) => {
                   box-border border border-lightGray
                   rounded-[15rem] focus:outline-lightGreen
                   sm:text-[1.1rem] border-opacity-[50%]
-                  text-sm font-medium text-textBlack
+                  text-sm font-medium  text-gray
                   min-[425px]:py-[10px]'
                   placeholder='City'
                   type='text'
@@ -371,7 +371,7 @@ const EditAccount = (props: Props) => {
             htmlFor='description'
             className='hidden
                 self-start 
-                font-light text-lightGray  
+                font-regular text-lightGray  
                 sm:text-[1.1rem] md:inline-block
                 lg:self-start'
           >
@@ -386,7 +386,7 @@ const EditAccount = (props: Props) => {
                 w-full mb-2 h-[150px]
                 py-[11px] px-3
                 box-border border border-lightGray rounded-[1rem] 
-                text-sm font-medium text-textBlack
+                text-sm font-medium text-gray
                 min-[425px]
                 focus:outline-lightGreen 
                 sm:text-[1.1rem] border-opacity-[50%] resize-none'

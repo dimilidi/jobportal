@@ -20,6 +20,7 @@ import imagePostAd from '../assets/images/PostAd_chef.png'
 import axiosInstance from '../api/axiosInstance'
 import { motion } from 'framer-motion'
 import TextEditor from '../Components/TextEditor'
+import BrowseJobs from '../Components/BrowseJobs'
 
 
 const PostAd = () => {
@@ -28,7 +29,7 @@ const PostAd = () => {
   const user = useUser()
 
   // DECORATION LINE
-const createText = useDecorationLine({orientation: 'left'})
+// const createText = useDecorationLine({orientation: 'left'})
 
   // STATES
   const [isLoading, setIsLoading] = useState(false)
@@ -124,7 +125,7 @@ const createText = useDecorationLine({orientation: 'left'})
     >
       <div
         area-label='page-postAd'
-        className='h-full lg:pt-0 mt-[0px] relative flex justify-center items-center text-Black '
+        className='h-full lg:pt-0 pt-[50px] relative flex justify-center items-center text-Black '
       >
 
         {/* CIRCLE && LINE */}
@@ -132,19 +133,23 @@ const createText = useDecorationLine({orientation: 'left'})
           area-label='circle'
           className='hidden md:block md:w-[332px] md:h-[332px] md:absolute md:top-[50%] md:left-[-250px] md:translate-y-[-50%] md:rounded-full md:bg-lightGreen'
         />
-        {/* <div
+        <div
           area-label='line'
           className='w-screen hidden md:block md:absolute md:top-[50%] md:translate-y-[-50%] md:left-0 md:border-b-[3px] md:border-lightGreen sm:hidden '
-        /> */}
+        />
         {/* CIRCLE && LINE  END*/}
 
 
         {/* MAIN */}
         <div
           area-label='main'
-          className='relative h-full min-h-[920px] w-[90%] max-w-[1000px]  md:w-[70%] flex flex-col justify-center'
+          className='relative h-full md:h-[1050px] min-h-[960px] w-[90%] max-w-[1000px]  md:w-[70%] flex flex-col justify-center'
         >
-          
+          <div
+          aria-label='Browser Button'
+          className='pb-2'>
+            <BrowseJobs />
+          </div>
 
           {/* AD FORM */}
           <form
@@ -164,7 +169,7 @@ const createText = useDecorationLine({orientation: 'left'})
               className='text-[1.8rem] sm:text-4xl font-bold text-textBlack md:hidden'
             >
               <span 
-              ref={createText}
+              // ref={createText}
               className='italic font-medium text-lightGreen '>
                 Create{' '}
               </span> 
@@ -223,7 +228,7 @@ const createText = useDecorationLine({orientation: 'left'})
               {/* TITLE && CITY && SECTOR */}
               <div
                 area-label='inputs colum'
-                className=' rounded-full mt-3 flex flex-col items-center justify-center'
+                className='w-[100%] rounded-full mt-3 flex flex-col items-center justify-center'
               >
                 <div
                   area-label='title-city'
