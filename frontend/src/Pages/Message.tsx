@@ -10,42 +10,94 @@ import { motion } from 'framer-motion'
 import UserMessage from '../Components/UserMessage'
 import InputMessage from '../Components/InputMessage'
 import useAd from '../Hooks/useAd'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import useMessenger, { socket } from '../Hooks/useMessenger'
+import axiosInstance from '../api/axiosInstance'
+import Conversation from '../Components/Conversation'
+import useAdList from '../Hooks/useAdList'
 
 const Message = () => {
   const {ad} = useAd()
+  const {adList} = useAdList('')
+  const {user} = useUser()
+  const chat = useMessenger()
+  const [chats, setChats] = useState<any[]>([])
+  const [currentChat, setCurrentChat] = useState<any>(null)
+  const [userData, setUserData] = useState({})
 
 
+  // Get Second Chat Member 
+  const getUserData = () => {
+  let userId = currentChat?.members?.find((id:string) => id !== user?._id)
+  const adOfSecondMember = adList.find((ad) =>  userId == ad.user._id)
+  adOfSecondMember && setUserData(adOfSecondMember.user)
+  }
+  
+  
+  useEffect(() => {
+    if(currentChat !=null) getUserData()
+    
+  },[user, currentChat, adList])
+  console.log(userData);
   
 
 
-  console.log('AD?',ad);
+  // GET CHATS
+  const getChats = async() => {
+    try {
+      const {data} = await axiosInstance.get(`/chat/${user?._id}`)
+      setChats(data)
+      console.log(data);
+      
+    } catch (error) {
+      console.log(error);
+      
+    }
+  }
 
-  
- 
+  useEffect(() => {
+    getChats()
+  },[user])
+
+
+
+
   return (
     <motion.div
         initial={{ width: '100%' }}
         animate={{ width: '100%' }}
         exit={{ x: window.innerWidth }}
         area-label='message'
-        className='lg:pt-[120px] pb-20 w-[95%] h-full  min-h-[700px] lg:min-h-[900px] flex flex-col items-center justify-center text-textBlack md:pt-[140px] xl:pt-[120px]'
+        className='pt-10 pb-20 h-full  min-h-[700px]   flex flex-row items-center justify-center text-textBlack md:pt-[140px] lg:pt-[120px] lg:min-h-[900px]  xl:pt-[120px]'
       >
+        {/* CHAT LIST SIDEBAR */}
+        <div>
+          <h2>Chats</h2>
+          <div>
+            {chats.map((chat:any) => (
+              <div className='bg-green-300 w-[200px] h-[400px]' onClick={()=>setCurrentChat(chat)}>
+                <Conversation data = {chat} />
+              </div>
+            ))}
+          </div>
+        </div>
         {/* MAIN */}
         <div
           area-label='main'
-          className='w-[95%]  h-full
+          className='w-full h-full
           flex flex-col justify-start
-          sm:w-[80%] sm:max-w-[900px]
-          md:min-h-[650px] md:w-[70%]
-          lg:w-[50%] 
+           sm:max-w-[900px]
+          md:min-h-[650px] 
+          
           xl:w-[800px] xl:min-h-full'
         >
 
-        {/* BOX*/}
+          {currentChat ? (
+            <>
+             {/* BOX*/}
         <div
             area-label='box'
-            className='max-[767px]:mt-[6rem] min-h-[500px] sm:h-[600px] sm: sm:w-[400px] xl:h-[600px]
+            className='w-[300px] max-[767px]:mt-[6rem] min-h-[500px] sm:h-[600px] sm: sm:w-[400px] xl:h-[600px]
             flex flex-col justify-between item-center
             self-center z-10 rounded-[21px] bg-white shadow-standard'
           >
@@ -63,7 +115,7 @@ const Message = () => {
           aria-aria-label='history'
           className='h-full w-full
           relative flex justify-center'>
-          <MessageHistory />
+          <MessageHistory currentChat = {currentChat} />
         </div>
 
         {/* INPUT MESSAGE */}
@@ -88,6 +140,12 @@ const Message = () => {
             className='hidden md:block lg:absolute lg:top-[475px] lg:translate-y-[-50%] lg:left-0 lg:border-b-2 lg:border-lightGreen w-screen z-0'
           />
           {/* CIRCLE & LINE - END */}
+          </>
+          ) : (
+            <h2>Tap on a Chat to start Conversation...</h2>
+          )}
+
+       
         </div>
 
     </motion.div>

@@ -12,6 +12,8 @@ type AdHook = {
   pageCount: number
   page: number
   setPage: (page:number) => void
+  filteredAds: any
+  setFilteredAds: (filteredAds: any) => void
 }
 
 function useAdList(queries: string): AdHook {
@@ -20,6 +22,7 @@ function useAdList(queries: string): AdHook {
   const [error, setError] = useState('')
   const [pageCount, setPageCount] = useState(0)
   const [page, setPage] = useState(0)
+  const [filteredAds, setFilteredAds] = useState([])
 
 
 
@@ -30,6 +33,7 @@ function useAdList(queries: string): AdHook {
       const res = await axiosInstance.get(`ads?${queries}`)
       const data = res.data
       setAdList(data.ads)
+      filteredAds.length > 0 && setAdList(filteredAds)
       setPageCount(Math.ceil(data.pagination.pageCount))
       
     } catch (error) {
@@ -43,7 +47,7 @@ function useAdList(queries: string): AdHook {
     fetchAdList()
   }, [queries, adList.length])
 
-  return { adList, error, isLoading, pageCount, page, setPage}
+  return { adList, error, isLoading, pageCount, page, setPage, filteredAds, setFilteredAds}
 
 }
 
