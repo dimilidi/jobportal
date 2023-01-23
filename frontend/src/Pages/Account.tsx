@@ -36,9 +36,9 @@ const Account = () => {
       className='mx-auto pt-[80px] pb-10 w-full h-full min-h-[1100px] flex flex-col items-center justify-center gap-10 md:gap-3 lg:pt-0 lg:min-h-[970px] lg:flex-row lg:gap-0'
     >
       {/* SEMICIRCLE */}
-      <div className='w-[50px] h-24 hidden absolute right-0 rounded-tl-full rounded-bl-full bg-lightGreen md:hidden lg:block lg:top-[160px]' />
+      <div className='w-[50px] h-24 hidden absolute right-0 rounded-tl-full rounded-bl-full bg-lightGreen md:hidden lg:block lg:top-[170px]' />
       {/* LINE */}
-      <div className='border-b-[3px] border-lightGreen absolute hidden lg:w-[20%] xl:w-[30%] md:block lg:top-[210px] lg:right-0' />
+      <div className='border-b-[3px] border-lightGreen absolute hidden lg:w-[20%] xl:w-[30%] md:block lg:top-[215px] lg:right-0' />
 
       {/* USER CARD */}
       <div className='h-full w-[95%] relative flex justify-center lg:w-[32%] md:mb-[50px]'>
@@ -50,7 +50,7 @@ const Account = () => {
         {/* BUTTONS */}
         <div
           className='w-full lg:w-[90%]
-              flex flex-col justify-center items-center gap-6
+              flex flex-row justify-center items-center gap-2 md:gap-6
               sm:justify-center sm:flex-row
               lg:ml-5 lg:justify-start'
         >

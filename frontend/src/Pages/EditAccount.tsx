@@ -37,7 +37,7 @@ const EditAccount = (props: Props) => {
   const [description, setDescription] = useState(user.user?.description)
   const [avatar, setAvatar] = useState<any>(user.user?.avatar)
   const [open, setOpen] = useState(false)
-  const [maxLength, setMaxLength] = useState(330)
+  const [maxLength, setMaxLength] = useState(300)
 
   const defaultAvatar =
     'https://res.cloudinary.com/dmdjfvwkd/image/upload/v1673676247/Account_profilDefault_eqka4e.png'
@@ -381,7 +381,7 @@ const EditAccount = (props: Props) => {
             area-label='description'
             name='description'
             placeholder='Description'
-            maxLength={330}
+            maxLength={300}
             className='
                 w-full mb-2 h-[150px]
                 py-[11px] px-3

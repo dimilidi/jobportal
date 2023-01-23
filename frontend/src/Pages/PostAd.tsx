@@ -142,7 +142,7 @@ const PostAd = () => {
         {/* MAIN */}
         <div
           area-label='main'
-          className='relative h-full md:h-[1050px] min-h-[960px] w-[90%] max-w-[1000px]  md:w-[70%] flex flex-col justify-center'
+          className='relative h-full md:h-[1000px] min-h-[960px] w-[90%] max-w-[1000px]  md:w-[70%] flex flex-col justify-center'
         >
           <div
           aria-label='Browser Button'
