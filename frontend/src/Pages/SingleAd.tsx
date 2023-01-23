@@ -110,6 +110,7 @@ const SingleAd = () => {
           area-label='main'
           className='w-[95%] sm:max-w-[900px]  h-full flex flex-col justify-start sm:w-[80%] md:w-[70%]  lg:w-[50%] xl:w-[800px] md:min-h-[650px]  xl:min-h-full'
         >
+          <div className='flex justify-between w-full md:w-[600px] md:ml-[-30px] xl:w-full xl:ml-0'>
           <BrowseJobs
             style={{
               paddingLeft: '10px',
@@ -117,6 +118,21 @@ const SingleAd = () => {
               alignSelf: 'start',
             }}
           />
+
+                     {/* VIEWS */}
+          {/* <div className="flex items-center gap-3 mt-2 justify-between">
+            <div className="flex gap-3 mt-4"> */}
+              <div className="w-[50px] h-[25px] pr-[20px] mt-2 flex items-center justify-center gap-1 text-sm text-gray opacity-50">
+                <BsFillEyeFill /> <span>{ad.views}</span>
+              </div>
+              
+              
+              {/* <button className="flex items-center justify-center gap-2 text-xs text-white opacity-50">
+                <AiOutlineMessage /> <span>{ad.likes?.length || 0}</span>
+              </button> */}
+            {/* </div>
+          </div> */}
+          </div>
 
           {/* Ad */}
           <div
@@ -140,22 +156,6 @@ const SingleAd = () => {
               </div>
             )}
           </div>
-
-           {/* VIEWS */}
-          {/* <div className="flex items-center gap-3 mt-2 justify-between">
-            <div className="flex gap-3 mt-4"> */}
-              <button className="flex items-center justify-center gap-2 text-lg text-gray opacity-50">
-                <BsFillEyeFill /> <span>{ad.views}</span>
-              </button>
-              
-              
-              {/* <button className="flex items-center justify-center gap-2 text-xs text-white opacity-50">
-                <AiOutlineMessage /> <span>{ad.likes?.length || 0}</span>
-              </button> */}
-            {/* </div>
-          </div> */}
-
-          
         
 
           {/* IF AD IS CREATED BY USER, BUTTON "EDIT" && "DELETE" */}
@@ -256,8 +256,8 @@ const SingleAd = () => {
         {/* ContactDetails DESKTOP - If user exists, show ContactDetails */}
         {user.user && (
           <ContactDetails
-            className='hidden xl:block
-        w-[250px] m-8 absolute lg:items-center  -right-14 top-[435px] rounded-l-[65px] translate-y-[-50%] 
+            className='hidden sm:hidden xl:block
+        w-[250px] m-8 absolute lg:items-center -right-10 top-[435px] rounded-l-[65px] translate-y-[-50%] 
         xl:min-w-[230px]'
           />
         )}

@@ -30,7 +30,7 @@ const AuthRequired = () => {
     animate={ {width: '100%'}}
     exit={{x:window.innerWidth}} 
    >
-      <div className='pb-20 mx-auto pr-2 w-[90%] h-full min-h-[910px] flex justify-center flex-col items-center sm:w-[60%] lg:w-[50%] md:pt-[0]'>
+      <div className='pb-20 pt-[60px] md:pt-[120px] xl:pt-[150px] mx-auto pr-2 w-[90%] h-full flex justify-center flex-col items-center sm:w-[60%] lg:w-[50%]'>
 
       
       {/* ICON & BROWSE JOBS */}
@@ -65,9 +65,9 @@ const AuthRequired = () => {
         {/* Circle */}
         <div
           area-label='circle'
-          className='w-24 h-24 hidden 
-                right-[-3rem] top-[280px]  
-                rounded-full bg-lightGreen 
+          className='w-[50px] h-24 hidden 
+                right-[0rem] top-[280px]  
+                rounded-tl-full rounded-bl-full bg-lightGreen 
                 lg:block absolute'
         ></div>
         {/* ELEMENTS END*/}
