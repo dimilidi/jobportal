@@ -22,7 +22,7 @@ const io = new Server(server, {
   cors: {origin: process.env.FRONTEND}})
 
 // Socket Connection
-io.on("connection", sockets )
+// io.on("connection", sockets )
 
 
 console.log('\x1b[36m%s\x1b[0m', `CLICK --> ${process.env.FRONTEND}`)
