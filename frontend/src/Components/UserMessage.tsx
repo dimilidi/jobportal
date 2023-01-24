@@ -2,13 +2,45 @@ import useUser from '../Hooks/useUser'
 import profileImg from '../assets/images/Account_profilDefault.png'
 import { Ad as AdType } from '../type'
 import useAd from '../Hooks/useAd'
+import useMessenger from '../Hooks/useMessenger'
+import { useEffect, useState } from 'react'
+import useAdList from '../Hooks/useAdList'
 
 type Props = {
   ad: AdType
+  userData: {
+    avatar: string
+    name:string
+  }
+  receiverInfo: {
+    avatar: string
+    name:string
+  }
 }
 
-function UserMessage({ad}:Props) {
+function UserMessage({ad, userData, receiverInfo}:Props) {
+
   const user = useUser()
+  const {adList} = useAdList('')
+const{currentChat} = useMessenger()
+const [ userUserInfo, setUserInfo]  = useState({})
+
+
+  // Get Second Chat Member 
+  const getUserData = () => {
+    let userId = currentChat?.members?.find((id:string) => id !== user.user?._id)
+    const adOfSecondMember = adList.find((ad) =>  userId == ad.user._id)
+    adOfSecondMember && setUserInfo(adOfSecondMember.user)
+    }
+
+    useEffect(() => {
+      if(currentChat !=null) getUserData()
+      
+    },[user, adList])
+
+  console.log('USERDATA', userData);
+  // console.log('INFO', receiverInfo);
+  console.log('INFO', currentChat)
 
   return (
     <>
@@ -30,9 +62,12 @@ function UserMessage({ad}:Props) {
             className=' mx-auto  w-[80px] h-[80px] relative flex justify-center
           self-end rounded-full'
           >
-            <img 
+             <img 
                className='mb-1 w-[80px] h-[80px]  rounded-full object-cover'
-              src={ ad.user.avatar ? ad.user.avatar :  profileImg }  /> 
+              src={ receiverInfo.avatar ? receiverInfo.avatar :  profileImg }  />  
+          </div>
+          <div>
+            <p>{userData.name}</p>
           </div>
 
         </div>

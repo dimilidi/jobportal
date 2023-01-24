@@ -1,16 +1,21 @@
 import useUser from '../Hooks/useUser'
 import UniButton from '../Components/UniButton'
 import useMessenger, { socket } from '../Hooks/useMessenger'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import React from 'react'
 import useAd from '../Hooks/useAd'
 import { RiSendPlane2Line } from 'react-icons/ri'
 import EmojiPicker from 'emoji-picker-react';
 import {Emoji, EmojiStyle} from 'emoji-picker-react';
 import { BsEmojiSmile } from 'react-icons/bs'
+import axiosInstance from '../api/axiosInstance'
 
 
-function InputMessage() {
+type Props = {
+  currentChat: any | null
+}
+
+function InputMessage({currentChat}:Props) {
 
   const {user} = useUser()
   const {ad }= useAd()
@@ -20,6 +25,7 @@ function InputMessage() {
   const [isPickerVisible, setPickerVisible] = useState(false)
   const [currentEmoji, setCurrentEmoji] = useState('')
  
+console.log(currentChat);
 
   
 
@@ -38,27 +44,60 @@ function InputMessage() {
   }
  
   
-  const sendMessage =  (e:React.SyntheticEvent) => {
+  const sendMessage =  async (e:React.SyntheticEvent) => {
     e.preventDefault()
     setText('')
     if(text !== '') {
       const messageData = {
-        room: chat.room,
-        author: user?.name,
-        message: text,
-        date: new Date(Date.now()).toDateString(),
-        time: 
-          new Date(Date.now()).getHours() + 
-          ':' + 
-          new Date(Date.now()).getMinutes()
+        senderId: user?._id,
+        text: text,
+        chatId: chat.currentChat._id
       }
-      ad &&  chat.sendMessage(messageData)
-      chat && chat.setMessages([...chat.messages, {message:messageData, received:false}])
+
+      useEffect(() => {
+        if(currentChat !=null) getUserData()
+        
+      },[user, adList])
+    
+
+
+    // send Message to Database
+      const response = await axiosInstance
+        .post(`/message`, messageData)
+        .catch((e) => e.response)
+      chat.setMessages([...chat.messages, response.data])
+
+    // send Message to socket server
+    const receiverId = currentChat.members.find((id:string) => id != user?._id)
+    chat.setSendMessage({...messageData, receiverId })
+
+
+    
+
+      // const messageData = {
+      //   room: chat.room,
+      //   author: user?.name,
+      //   message: text,
+      //   date: new Date(Date.now()).toDateString(),
+      //   time: 
+      //     new Date(Date.now()).getHours() + 
+      //     ':' + 
+      //     new Date(Date.now()).getMinutes()
+      // }
+      // ad &&  chat.sendMessage(messageData)
+      // chat && chat.setMessages([...chat.messages, {message:messageData, received:false}])
     }
   }
 
 
+  // Send Message to the Socket Server
+  useEffect(() => {
+    chat.sendMessageToSocket(sendMessage)
+  },[sendMessage])
+  
 
+
+  //HANDLE EMOJI 
   const handleEmoji = ( emojiObject:any, e:MouseEvent) => {
     setText(prevInput => prevInput + emojiObject.emoji)
     setPickerVisible(!isPickerVisible)
@@ -105,25 +144,6 @@ function InputMessage() {
             <RiSendPlane2Line size={26} />
           </button>
         </div>
-     
-
-      {/* BUTTON - SEND */}
-      {/* onclick soll passieren: der input aus inputfeld soll verschickt werden. */}
-      {/* soll verschickt werden an user der die anzeige gestellt hat */}
-      {/* wo entsteht diese information und wo wird sie gespeichert ? */}
-      {/* in der datenbank ? */}
-      {/* <div
-        className='flex justify-center items-center mb-10'>
-        <UniButton
-              area-label='SendMessageButton'
-              text='Send'
-              type='button'
-              style = {{height:'50px'}}
-              />
-        </div> */}
-
-      
-      {/* BUTTON - SEND - END*/}
       </form>
     </div>
   )

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import axiosInstance from '../api/axiosInstance'
 import useAd from '../Hooks/useAd'
 import useAdList from '../Hooks/useAdList'
+import useMessenger from '../Hooks/useMessenger'
 import useUser from '../Hooks/useUser'
 import AdsList from '../Pages/AdsList'
 
@@ -9,12 +10,14 @@ type Props = {
     data: {
         members: []
     }
+    setReceiverInfo: (receiverInfo:{}) =>void
 }
 
-function Conversation({data}: Props) {
+function Conversation({data, setReceiverInfo}: Props) {
     // Hooks
     const {user} = useUser()
     const {adList} = useAdList('')
+    const {currentChat} = useMessenger()
     // States
     const [userData, setUserData] = useState<any | null>(null)
 
@@ -22,13 +25,18 @@ function Conversation({data}: Props) {
     const getUserData = () => {
         const userId = data?.members.find((id) => id !== user?._id)
         const adOfSecondMember = adList.find((ad) =>  userId == ad.user._id)
-        adOfSecondMember && setUserData(adOfSecondMember.user)
+       if(adOfSecondMember) {
+        setUserData(adOfSecondMember.user)
+        setReceiverInfo(adOfSecondMember.user)
+        } 
     }
     
     
     useEffect(() => {
       getUserData()
-    },[data, adList])
+    },[data, adList, user])
+
+
 
 
   return (

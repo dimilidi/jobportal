@@ -24,6 +24,7 @@ import Modal from '../Components/Modal'
 import { BsFillEyeFill } from 'react-icons/bs'
 import Message from './Message'
 import useMessenger from '../Hooks/useMessenger'
+import axiosInstance from '../api/axiosInstance'
 
 
 const SingleAd = () => {
@@ -32,24 +33,39 @@ const SingleAd = () => {
   const navigate = useNavigate()
   const user = useUser()
   const { ad,  isLoading, deleteAd } = useAd()
-  const { setIsConnected, connect, setRoom, room } = useMessenger()
+  const chat = useMessenger()
 
   const [modalOpen, setModalOpen] = useState(false)
   const close = () => setModalOpen(false)
   const open = () => setModalOpen(true)
   const [openChat, setOpenChat] = useState(false)
 
+  const sender = user.user?._id
+  console.log('Sender',sender);
+  
+
   // HANDLE MESSAGE
   const handleMessage = () => {
     if (user.isLoggedIn === false) navigate('/auth-required')
-    //Connect && join a room
     setOpenChat(true)
-    if(user.user) {
-      connect(user.user._id)
-     } 
-      ad && setRoom(ad.user._id)
-      setIsConnected(true)
+
+    if(user.user) createChat()
   }
+
+ // CREATE CHAT
+
+  const createChat = async () => {
+    const chat ={
+      senderId: user.user?._id,
+      receiverId: ad?.user._id
+    }
+
+    const response = await axiosInstance
+      .post(`/chat`,chat )
+      .catch((e) => e.response)
+
+  }
+
  
 
   // HANDLE EDIT

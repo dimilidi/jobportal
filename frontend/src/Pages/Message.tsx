@@ -16,14 +16,31 @@ import axiosInstance from '../api/axiosInstance'
 import Conversation from '../Components/Conversation'
 import useAdList from '../Hooks/useAdList'
 
+
 const Message = () => {
   const {ad} = useAd()
   const {adList} = useAdList('')
   const {user} = useUser()
   const chat = useMessenger()
+  const { setIsConnected, connect, currentChat, setCurrentChat} = useMessenger()
+
   const [chats, setChats] = useState<any[]>([])
-  const [currentChat, setCurrentChat] = useState<any>(null)
-  const [userData, setUserData] = useState({})
+  const [userData, setUserData] = useState<any>({})
+  const [receiverInfo, setReceiverInfo] = useState<any>({})
+
+
+  //Connect chat && join a room
+  useEffect(() => {
+    if(user) { 
+      connect(user._id)
+     } 
+      // ad && setRoom(ad.user._id)
+      
+      setIsConnected(true)
+  },[user])
+
+console.log('ONLINE',chat.onlineUsers);
+
 
 
   // Get Second Chat Member 
@@ -32,14 +49,15 @@ const Message = () => {
   const adOfSecondMember = adList.find((ad) =>  userId == ad.user._id)
   adOfSecondMember && setUserData(adOfSecondMember.user)
   }
-  
+
   
   useEffect(() => {
     if(currentChat !=null) getUserData()
     
-  },[user, currentChat, adList])
-  console.log(userData);
+  },[user, adList])
+
   
+  console.log('userdata',userData);
 
 
   // GET CHATS
@@ -47,7 +65,6 @@ const Message = () => {
     try {
       const {data} = await axiosInstance.get(`/chat/${user?._id}`)
       setChats(data)
-      console.log(data);
       
     } catch (error) {
       console.log(error);
@@ -59,6 +76,17 @@ const Message = () => {
     getChats()
   },[user])
 
+
+    // Receive Message from the Socket Server
+    useEffect(() => {
+      // if(chat.receiveMessage  && chat.receiveMessage.chatId === currentChat._id){
+        chat.setMessages([...chat.messages, chat.receiveMessage])
+        console.log('TEST',chat.receiveMessage);
+        
+      // }
+       
+     },[])
+  
 
 
 
@@ -74,9 +102,9 @@ const Message = () => {
         <div>
           <h2>Chats</h2>
           <div>
-            {chats.map((chat:any) => (
+            {chats.map((chat:any) => ( //chats
               <div className='bg-green-300 w-[200px] h-[400px]' onClick={()=>setCurrentChat(chat)}>
-                <Conversation data = {chat} />
+                <Conversation key={chat._id} data = {chat} setReceiverInfo= {setReceiverInfo} />
               </div>
             ))}
           </div>
@@ -92,7 +120,7 @@ const Message = () => {
           xl:w-[800px] xl:min-h-full'
         >
 
-          {currentChat ? (
+          {/* {currentChat ? ( */}
             <>
              {/* BOX*/}
         <div
@@ -107,7 +135,7 @@ const Message = () => {
             aria-label='UserMessage'
             className='h-full w-full
               relative flex justify-center '>
-            {ad && <UserMessage ad={ad}/>}
+            {ad && <UserMessage ad={ad} userData = {userData} receiverInfo={receiverInfo}/>}
           </div>
 
         {/* MESSAGE HISTORY */}
@@ -115,12 +143,12 @@ const Message = () => {
           aria-aria-label='history'
           className='h-full w-full
           relative flex justify-center'>
-          <MessageHistory currentChat = {currentChat} />
+          <MessageHistory currentChat = {chat.currentChat} />
         </div>
 
         {/* INPUT MESSAGE */}
         <div>
-          <InputMessage  />
+          <InputMessage currentChat = {chat.currentChat} />
         </div>
 
         </div>
@@ -141,9 +169,9 @@ const Message = () => {
           />
           {/* CIRCLE & LINE - END */}
           </>
-          ) : (
-            <h2>Tap on a Chat to start Conversation...</h2>
-          )}
+          {/* ) : ( */}
+            {/* <h2>Tap on a Chat to start Conversation...</h2>
+          )} */}
 
        
         </div>
