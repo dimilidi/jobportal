@@ -265,8 +265,8 @@ const EditAccount = (props: Props) => {
                   w-full mb-2  px-3 py-[5px]  
                   box-border border border-lightGray rounded-[15rem] 
                   text-sm text-textBlack font-bold border-opacity-[50%]
-                  min-[425px]:py-[10px]  
-                  sm:text-[1.1rem]
+                  min-[425px]:py-[10px] 
+                  sm:text-[1.1rem] md:placeholder:invisible
                   focus:outline-lightGreen'
                   placeholder='Username'
                   type='text'
@@ -294,8 +294,8 @@ const EditAccount = (props: Props) => {
                   box-border border border-lightGray
                   border-opacity-[50%] rounded-[15rem] 
                   text-sm font-medium text-gray
-                  min-[425px]:py-[10px]   
-                  sm:text-[1.1rem]
+                  min-[425px]:py-[10px] placeholder:font-normal placeholder:opacity-40   
+                  sm:text-[1.1rem] md:placeholder:invisible
                   focus:outline-lightGreen'
                   placeholder='Profession'
                   type='text'
@@ -324,8 +324,8 @@ const EditAccount = (props: Props) => {
                   py-[5px] px-3
                   box-border border border-lightGray
                   rounded-[15rem] focus:outline-lightGreen 
-                  sm:text-[1.1rem] border-opacity-[50%]
-                  text-sm font-medium  text-gray
+                  sm:text-[1.1rem] border-opacity-[50%] placeholder:font-normal placeholder:opacity-40 
+                  text-sm font-medium  text-gray md:placeholder:invisible
                   min-[425px]:py-[10px]'
                   placeholder='Phone'
                   type='text'
@@ -353,8 +353,8 @@ const EditAccount = (props: Props) => {
                   py-[5px] px-3
                   box-border border border-lightGray
                   rounded-[15rem] focus:outline-lightGreen
-                  sm:text-[1.1rem] border-opacity-[50%]
-                  text-sm font-medium  text-gray
+                  sm:text-[1.1rem] border-opacity-[50%] placeholder:font-normal placeholder:opacity-40 
+                  text-sm font-medium  text-gray md:placeholder:invisible
                   min-[425px]:py-[10px]'
                   placeholder='City'
                   type='text'
@@ -386,14 +386,23 @@ const EditAccount = (props: Props) => {
                 w-full mb-2 h-[150px]
                 py-[11px] px-3
                 box-border border border-lightGray rounded-[1rem] 
-                text-sm font-medium text-gray
-                min-[425px]
+                text-sm font-medium text-gray md:placeholder:invisible
+                min-[425px] placeholder:font-normal placeholder:opacity-40 
                 focus:outline-lightGreen 
                 sm:text-[1.1rem] border-opacity-[50%] resize-none'
             value={description}
             onChange={(e) => setDescription(e.target.value)}
           ></textarea>
-          <span className='text-gray text-sm text-opacity-50 text-right'>{description?.length}/{maxLength-(description?.length)}</span>
+
+          {description?.length >= 0 ? (
+            <span className='w-full text-gray text-sm text-opacity-50 text-right'>
+             {description?.length}/{maxLength-(description?.length)}
+            </span>
+          ) : (
+            <span className='w-full text-gray text-sm text-opacity-50 text-right'>
+              0/300
+            </span>
+          )}
 
           {/* ERRORS */}
           {errors &&

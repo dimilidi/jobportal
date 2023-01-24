@@ -220,7 +220,7 @@ const SingleAd = () => {
 
 
             {/* IF AD IS NOT CREATED BY USER, BUTTON "CONTACT" */}
-            { user.user?._id !== ad?.user._id && (
+            { user.isLoggedIn === false && (
               <UniButtonDark
               text='Contact'
               onClick={handleContact}
