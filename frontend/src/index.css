@@ -163,13 +163,12 @@ body {
 }
 .ql-toolbar, .ql-snow, .ql-editor{ 
   border: rgba(109, 95, 95, 0.685) 0.5;
-  margin-top: 10px;
+  margin-top: 5px;
   border-radius: 0.5rem;
+  color: #515151;
+
 }
 
-.ql-editor, .ql-blank {
-  height: 120px;
-}
 .ql-blank{
   height: 120px;
 }

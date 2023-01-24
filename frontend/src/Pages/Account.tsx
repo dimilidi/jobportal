@@ -89,11 +89,12 @@ const Account = () => {
             )}
           </div>
         </div>
+        {pageCount >0 &&
         <div
           aria-label='paginationButtons'
           className='mb-[50px] lg:mb-0 w-full lg:flex lg:justify-end xl:w-[90%]'>
           <PaginationButtons page ={page} setPage = {setPage} pageCount={pageCount}/>
-        </div>
+        </div>}
       </div>
     </motion.div>
   )
