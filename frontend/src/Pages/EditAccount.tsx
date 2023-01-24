@@ -393,7 +393,13 @@ const EditAccount = (props: Props) => {
             value={description}
             onChange={(e) => setDescription(e.target.value)}
           ></textarea>
-          <span className='text-gray text-sm text-opacity-50 text-right'>{description?.length}/{maxLength-(description?.length)}</span>
+
+          {description?.length !== 0 ? (
+            
+            <span className='text-gray text-sm text-opacity-50 text-right'>0/300</span>
+          ) : (
+            <span className='text-gray text-sm text-opacity-50 text-right'>{description?.length}/{maxLength-(description?.length)}</span>
+          )}
 
           {/* ERRORS */}
           {errors &&
