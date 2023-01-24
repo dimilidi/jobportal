@@ -18,7 +18,7 @@ dotenv.config({ path: `.env.${process.env.NODE_ENV}` })
 const app = express()
 const server = http.createServer(app)
 const io = new Server(server, {
-  pingTimeout: 600000, // closing connection after certain time
+  // pingTimeout: 600000, // closing connection after certain time
   cors: {origin: process.env.FRONTEND}})
 
 // Socket Connection
