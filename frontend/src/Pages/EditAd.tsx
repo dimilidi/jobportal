@@ -18,6 +18,7 @@ import BrowseJobs from '../Components/BrowseJobs'
 import useDecorationLine from '../Hooks/useDecorationLine'
 import TextEditorEdit from '../Components/TextEditorEdit'
 import UniButtonDark from '../Components/UniButtonDark'
+import TextEditorRender from '../Components/TextEditorRender'
 
 
 
@@ -278,10 +279,13 @@ const EditAd = () => {
                 </div>
 
                 {/* TEXTAREA */}
-                {/* <TextEditorEdit description={description} setDescription={setDescription}/> */}
+              
+                 {/* <TextEditorEdit description={description} setDescription={setDescription}/> */}
+                {/* <div className='mt-3 border-t-2'>this is TextEditorRender: <TextEditorRender /></div>  */}
 
-                {/* TEXTAREA - ORIGINAL */}
-                <textarea
+
+                {/* TEXTAREA - ORIGINAL */} 
+                 <textarea
                   area-label='text area'
                   name='text'
                   id='text'
