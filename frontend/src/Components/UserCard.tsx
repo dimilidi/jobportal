@@ -68,6 +68,7 @@ function UserCard(props: Props) {
       </div>
 
       {/* Description Heading and Description */}
+
       {user?.description && (
         <div className='px-6 min-h-[100px] w-full md:h-[10rem]  lg:h-auto'>
           <p className='p-2 text-sm font-medium text-[gray]'>{user?.description}</p>
@@ -96,8 +97,10 @@ function UserCard(props: Props) {
 
       {/* Edit Profile Button Wrapper */}
       <div className='flex justify-center mb-10'>
-        <p className='mt-1 py-2 px-8 rounded-full border-lightBeige border-2 bg-darkBeige md:bg-darkBeige shadow-inner
-        text-textBlack font-medium text-opacity-20 hover:bg-lightBeige hover:bg-opacity-30 hover:text-gray ease-in-out duration-300 
+
+        <p className='mt-1 py-2 px-8 rounded-full  border-lightBeige border-2 bg-darkBeige md:bg-darkBeige shadow-md cursor-pointer
+        text-textBlack font-medium text-opacity-50 hover:bg-lightBeige hover:bg-opacity-30 hover:text-textBlack ease-in-out duration-300 
+
         text-[16px] flex items-center sm:justify-center lg:justify-start'>
         <Link to='/edit-account'>Edit Profile</Link>
         </p>
