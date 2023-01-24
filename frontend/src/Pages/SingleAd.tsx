@@ -139,7 +139,7 @@ const SingleAd = () => {
             area-label='ad'
             className='py-10 px-2 sm:px-5 sm:mx-0 sm:p-5 mt-0 mx-2 w-[90%] min-h-[400px] sm:h-[400px] 
             sm:w-[600px] xl:w-[100%] xl:h-[450px]
-            flex flex-col  justify-start item-center self-center z-10 rounded-[21px] bg-white shadow-standard'
+            flex flex-col item-center self-center z-10 rounded-[21px] bg-white shadow-standard'
           >
             <AdMobile />
 
@@ -148,13 +148,12 @@ const SingleAd = () => {
                 area-label='description'
                 className='mt-3 px-3 sm:max-h-[230px] sm:overflow-y-scroll'
               >
-                <h3 className='text-[20px]'>Description</h3>
                 <p className='text-[14px] text-justify mt-2 text-gray/80'>
                   {/* Formated text */}
-                  <TextEditorRender />
                 </p>
               </div>
-            )}
+                  )}
+                  <TextEditorRender />
           </div>
         
 

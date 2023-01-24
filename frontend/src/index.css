@@ -167,9 +167,7 @@ body {
   border-radius: 0.5rem;
 }
 
-.ql-editor, .ql-blank {
-  height: 120px;
-}
+
 .ql-blank{
   height: 120px;
 }

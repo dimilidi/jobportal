@@ -11,8 +11,8 @@ function TextEditorRender() {
         }
       }
       return (
-        <div>
-          <div className="ql-editor" dangerouslySetInnerHTML={FormatedText(ad?.description)} />
+        <div className='h-full w-full'>
+          <div className="ql-editor h-full w-full  " dangerouslySetInnerHTML={FormatedText(ad?.description)} />
         </div>
       )
 }
