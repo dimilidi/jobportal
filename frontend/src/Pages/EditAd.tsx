@@ -280,8 +280,8 @@ const EditAd = () => {
 
                 {/* TEXTAREA */}
               
-                 <TextEditorEdit description={description} setDescription={setDescription}/>
-                <div className='mt-3 border-t-2'>this is TextEditorRender: <TextEditorRender /></div> 
+                 {/* <TextEditorEdit description={description} setDescription={setDescription}/>
+                <div className='mt-3 border-t-2'>this is TextEditorRender: <TextEditorRender /></div>  */}
 
 
                 {/* TEXTAREA - ORIGINAL */} 

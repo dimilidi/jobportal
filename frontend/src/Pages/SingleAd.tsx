@@ -22,8 +22,6 @@ import { RiDeleteBinLine } from 'react-icons/ri'
 import { useEffect, useState } from 'react'
 import Modal from '../Components/Modal'
 import { BsFillEyeFill } from 'react-icons/bs'
-import Message from './Message'
-import useMessenger from '../Hooks/useMessenger'
 import UniButtonDark from '../Components/UniButtonDark'
 import TextEditorRender from '../Components/TextEditorRender'
 
@@ -36,7 +34,6 @@ const SingleAd = () => {
   const navigate = useNavigate()
   const user = useUser()
   const { ad,  isLoading, deleteAd } = useAd()
-  const { setIsConnected, connect, setRoom, room } = useMessenger()
   const [modalOpen, setModalOpen] = useState(false)
   const close = () => setModalOpen(false)
   const open = () => setModalOpen(true)
@@ -47,13 +44,12 @@ const SingleAd = () => {
   // HANDLE MESSAGE
   const handleMessage = () => {
     if (user.isLoggedIn === false) navigate('/auth-required')
-    //Connect && join a room
+   
     setOpenChat(true)
-    if(user.user) {
-      connect(user.user._id)
-     } 
-      ad && setRoom(ad.user._id)
-      setIsConnected(true)
+
+   
+
+  
   }
 
     // HANDLE CONTACT
@@ -87,9 +83,7 @@ const SingleAd = () => {
   }
  
 
-  if(openChat){
-    return <Message />
-  }
+
 
 
   // If no ad was fetched, return div with message
@@ -136,14 +130,10 @@ const SingleAd = () => {
 
           {/* Ad */}
           <div
-            area-label='single-ad'
-            className='py-10 px-2 sm:px-5 sm:mx-0 sm:p-5 mt-0 mx-2 
-            w-[90%] 
-            sm:w-[600px] sm:max-h-[600px] min-h-[400px] sm:h-[500px] 
-            md:w-[100%]
-            lg:min-h-[550px] 
-            xl:w-[100%] xl:min-h-[400px]
-            flex flex-col item-center self-center z-10 rounded-[21px] bg-white shadow-standard'
+            area-label='ad'
+            className='py-10 px-2 sm:px-5 sm:mx-0 sm:p-5 mt-0 mx-2 w-[90%] min-h-[400px] sm:h-[400px] 
+            sm:w-[600px] xl:w-[100%] xl:h-[450px]
+            flex flex-col  justify-start item-center self-center z-10 rounded-[21px] bg-white shadow-standard'
           >
             <AdMobile />
 
@@ -152,12 +142,14 @@ const SingleAd = () => {
                 area-label='description'
                 className='mt-3 px-3 sm:max-h-[230px] sm:overflow-y-scroll'
               >
+                <h3 className='text-[20px]'>Description</h3>
                 <p className='text-[14px] text-justify mt-2 text-gray/80'>
+                  {ad.description}
                   {/* Formated text */}
+                  {/* <TextEditorRender /> */}
                 </p>
               </div>
-                  )}
-                  <TextEditorRender />
+            )}
           </div>
         
 
