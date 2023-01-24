@@ -3,7 +3,7 @@
 import React from 'react'
 import { useEffect, useState} from 'react'
 import { useNavigate } from 'react-router-dom'
-import useAds from '../Hooks/useAd'
+
 import useUser from '../Hooks/useUser'
 import useDecorationLine from '../Hooks/useDecorationLine'
 // Components
