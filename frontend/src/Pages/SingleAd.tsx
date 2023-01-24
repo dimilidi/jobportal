@@ -136,9 +136,13 @@ const SingleAd = () => {
 
           {/* Ad */}
           <div
-            area-label='ad'
-            className='py-10 px-2 sm:px-5 sm:mx-0 sm:p-5 mt-0 mx-2 w-[90%] min-h-[400px] sm:h-[400px] 
-            sm:w-[600px] xl:w-[100%] xl:h-[450px]
+            area-label='single-ad'
+            className='py-10 px-2 sm:px-5 sm:mx-0 sm:p-5 mt-0 mx-2 
+            w-[90%] 
+            sm:w-[600px] sm:max-h-[600px] min-h-[400px] sm:h-[500px] 
+            md:w-[100%]
+            lg:min-h-[550px] 
+            xl:w-[100%] xl:min-h-[400px]
             flex flex-col item-center self-center z-10 rounded-[21px] bg-white shadow-standard'
           >
             <AdMobile />
