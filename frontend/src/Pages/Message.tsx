@@ -22,11 +22,12 @@ const Message = () => {
   const {adList} = useAdList('')
   const {user} = useUser()
   const chat = useMessenger()
-  const { setIsConnected, connect, currentChat, setCurrentChat} = useMessenger()
-
-  const [chats, setChats] = useState<any[]>([])
+  const { sendMessage, setIsConnected, connect, currentChat, setCurrentChat, chats, setChats, setReceiveMessage, receiveMessage, receiveMessageFromSocket} = useMessenger()
   const [userData, setUserData] = useState<any>({})
   const [receiverInfo, setReceiverInfo] = useState<any>({})
+
+  console.log('RRRRRRRRRRR',sendMessage);
+
 
 
   //Connect chat && join a room
@@ -57,7 +58,7 @@ console.log('ONLINE',chat.onlineUsers);
   },[user, adList])
 
   
-  console.log('userdata',userData);
+  // console.log('userdata',userData);
 
 
   // GET CHATS
@@ -77,16 +78,36 @@ console.log('ONLINE',chat.onlineUsers);
   },[user])
 
 
-    // Receive Message from the Socket Server
+    // Send Message to the Socket Server
     useEffect(() => {
-      // if(chat.receiveMessage  && chat.receiveMessage.chatId === currentChat._id){
-        chat.setMessages([...chat.messages, chat.receiveMessage])
-        console.log('TEST',chat.receiveMessage);
+      if(sendMessage !==null ) {
+        chat.sendMessageToSocket(sendMessage)
         
-      // }
-       
-     },[])
-  
+      }
+    },[sendMessage])
+
+
+    // Receive Message from the Socket Server
+
+
+    
+  //   useEffect(() => {
+  //     if(receiveMessage  && receiveMessage.chatId === currentChat._id){
+  //       chat.setMessages([...chat.messages, receiveMessage])
+    
+  //     }
+    
+  // },[receiveMessage])
+
+
+  if(!socket) return
+    socket.on("receive-message", (data:any) => {
+      console.log('DAAAATA', data);
+      
+      setReceiveMessage(data)
+      chat.setMessages([...chat.messages, receiveMessage])
+    }) 
+    console.log('TEST',receiveMessage);
 
 
 
@@ -103,7 +124,7 @@ console.log('ONLINE',chat.onlineUsers);
           <h2>Chats</h2>
           <div>
             {chats.map((chat:any) => ( //chats
-              <div className='bg-green-300 w-[200px] h-[400px]' onClick={()=>setCurrentChat(chat)}>
+              <div className='bg-green-300 w-[200px] h-[50px]' onClick={()=>setCurrentChat(chat)}>
                 <Conversation key={chat._id} data = {chat} setReceiverInfo= {setReceiverInfo} />
               </div>
             ))}
@@ -120,7 +141,7 @@ console.log('ONLINE',chat.onlineUsers);
           xl:w-[800px] xl:min-h-full'
         >
 
-          {/* {currentChat ? ( */}
+          {currentChat ? (
             <>
              {/* BOX*/}
         <div
@@ -169,9 +190,9 @@ console.log('ONLINE',chat.onlineUsers);
           />
           {/* CIRCLE & LINE - END */}
           </>
-          {/* ) : ( */}
-            {/* <h2>Tap on a Chat to start Conversation...</h2>
-          )} */}
+          ) : ( 
+             <h2>Tap on a Chat to start Conversation...</h2>
+          )}
 
        
         </div>

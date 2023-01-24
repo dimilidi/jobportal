@@ -31,12 +31,12 @@ const sockets = (socket) => {
   socket.on('send-message', (data)=> {
     const {receiverId} = data
     const user = activeUsers.find((user) => user.userId === receiverId)
-    console.log('From socket to:', receiverId)
-    console.log('Data',data)
-
+    
     if(user) {
       socket.to(user.socketId).emit('receive-message', data)
     }
+    console.log('From socket to:', receiverId)
+    console.log('Data',data)
   })
   
 

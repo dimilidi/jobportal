@@ -28,7 +28,9 @@ export const SocketContext = createContext<messageContext>({
   typing: false,
   currentChat: {members:[], _id: ''},
   setCurrentChat: () => {},
-  onlineUsers: []
+  onlineUsers: [],
+  chats: [],
+  setChats: () => []
   // joinChat: () => {}, 
   // setRoom: () => '', room:'' 
 })
@@ -44,6 +46,8 @@ export function SocketProvider (props: {children: React.ReactElement}) {
   const [sendMessage, setSendMessage] = useState({})
   const [receiveMessage, setReceiveMessage] =useState<any | {chatId:''} | null>({})
   const [currentChat, setCurrentChat] = useState<any>(null)
+  const [chats, setChats] = useState<any[]>([])
+
   
 // Connect to Socket 
   function connect (id: string) {
@@ -55,20 +59,23 @@ export function SocketProvider (props: {children: React.ReactElement}) {
   }
   
   // Send message to Socket Server
-  function sendMessageToSocket(data:{}) {
-    if(sendMessage !==null ) {
+  function sendMessageToSocket(data:any) {
       socket.emit("send-message", data) 
-    }
+    
   }
 
   // Receive message from Socket Server
- 
-    function receiveMessageFromSocket(data:any) {
+    // function receiveMessageFromSocket() {
     if(!socket) return
     socket.on("receive-message", (data:any) => {
       setReceiveMessage(data)
+      setMessages([...messages, receiveMessage])
+
     }) 
-  } 
+  // } 
+
+ 
+
  
   
 
@@ -94,11 +101,13 @@ export function SocketProvider (props: {children: React.ReactElement}) {
     messages,
     setMessages,
     sendMessageToSocket,
-    receiveMessageFromSocket,
+    // receiveMessageFromSocket,
     typing,
     currentChat,
     setCurrentChat,
-    onlineUsers
+    onlineUsers,
+    chats, 
+    setChats
     // joinChat,
     // setRoom,
     // room

@@ -20,6 +20,7 @@ function InputMessage({currentChat}:Props) {
   const {user} = useUser()
   const {ad }= useAd()
   const chat = useMessenger()
+  const {setSendMessage} = useMessenger()
   const [text, setText] = useState("")
   const [typingTimeout, setTypingTimeout]= useState(null) as any
   const [isPickerVisible, setPickerVisible] = useState(false)
@@ -43,31 +44,31 @@ console.log(currentChat);
 
   }
  
-  
-  const sendMessage =  async (e:React.SyntheticEvent) => {
-    e.preventDefault()
-    setText('')
-    if(text !== '') {
-      const messageData = {
-        senderId: user?._id,
-        text: text,
-        chatId: chat.currentChat._id
-      }
 
-  
-    
+      
+      
+    const sendMessage =  async (e:React.SyntheticEvent) => {
+      e.preventDefault()
+      setText('')
+        if(text !== '') {
 
+        const messageData = {
+          senderId: user?._id,
+          text: text,
+          chatId: chat.currentChat._id
+        }
 
+          
+        // send Message to socket server
+        const receiverId = currentChat.members.find((id:string) => id != user?._id)
+        setSendMessage({ ...messageData,receiverId} )
+
+     
     // send Message to Database
       const response = await axiosInstance
         .post(`/message`, messageData)
         .catch((e) => e.response)
       chat.setMessages([...chat.messages, response.data])
-
-    // send Message to socket server
-    const receiverId = currentChat.members.find((id:string) => id != user?._id)
-    chat.setSendMessage({...messageData, receiverId })
-
 
     
 
@@ -87,11 +88,6 @@ console.log(currentChat);
   }
 
 
-  // Send Message to the Socket Server
-  useEffect(() => {
-    chat.sendMessageToSocket(sendMessage)
-  },[sendMessage])
-  
 
 
   //HANDLE EMOJI 

@@ -33,7 +33,7 @@ const SingleAd = () => {
   const navigate = useNavigate()
   const user = useUser()
   const { ad,  isLoading, deleteAd } = useAd()
-  const chat = useMessenger()
+  const {chats, setChats, currentChat} = useMessenger()
 
   const [modalOpen, setModalOpen] = useState(false)
   const close = () => setModalOpen(false)
@@ -49,22 +49,41 @@ const SingleAd = () => {
     if (user.isLoggedIn === false) navigate('/auth-required')
     setOpenChat(true)
 
-    if(user.user) createChat()
   }
 
  // CREATE CHAT
-
   const createChat = async () => {
     const chat ={
       senderId: user.user?._id,
       receiverId: ad?.user._id
     }
-
+    
     const response = await axiosInstance
       .post(`/chat`,chat )
       .catch((e) => e.response)
 
   }
+
+  // useEffect(() => {
+
+  //   chats?.map((chat:any) =>{
+  //     console.log('OOOOOOOOOOOOO', chat.members.includes(ad?.user._id));
+  //     // console.log(chat.members.senderId);
+       
+      
+  //    if((chat.members.includes(ad?.user._id) ) ) {
+  //     return
+  //    }
+  //    createChat()
+  //    setChats([...chats,chat])
+  //   })
+  // },[onclick, ad])
+
+  console.log('CHATS',chats);
+  console.log('CURR',currentChat);
+
+
+  
 
  
 
