@@ -22,8 +22,6 @@ import { RiDeleteBinLine } from 'react-icons/ri'
 import { useEffect, useState } from 'react'
 import Modal from '../Components/Modal'
 import { BsFillEyeFill } from 'react-icons/bs'
-import Message from './Message'
-import useMessenger from '../Hooks/useMessenger'
 import UniButtonDark from '../Components/UniButtonDark'
 import TextEditorRender from '../Components/TextEditorRender'
 
@@ -36,7 +34,6 @@ const SingleAd = () => {
   const navigate = useNavigate()
   const user = useUser()
   const { ad,  isLoading, deleteAd } = useAd()
-  const { setIsConnected, connect, setRoom, room } = useMessenger()
   const [modalOpen, setModalOpen] = useState(false)
   const close = () => setModalOpen(false)
   const open = () => setModalOpen(true)
@@ -47,13 +44,9 @@ const SingleAd = () => {
   // HANDLE MESSAGE
   const handleMessage = () => {
     if (user.isLoggedIn === false) navigate('/auth-required')
-    //Connect && join a room
+   
     setOpenChat(true)
-    if(user.user) {
-      connect(user.user._id)
-     } 
-      ad && setRoom(ad.user._id)
-      setIsConnected(true)
+   
   }
 
     // HANDLE CONTACT
@@ -87,9 +80,7 @@ const SingleAd = () => {
   }
  
 
-  if(openChat){
-    return <Message />
-  }
+
 
 
   // If no ad was fetched, return div with message
