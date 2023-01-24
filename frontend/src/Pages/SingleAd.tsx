@@ -46,7 +46,10 @@ const SingleAd = () => {
     if (user.isLoggedIn === false) navigate('/auth-required')
    
     setOpenChat(true)
+
    
+
+  
   }
 
     // HANDLE CONTACT
