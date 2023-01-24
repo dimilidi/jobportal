@@ -32,7 +32,7 @@ export function SocketProvider (props: {children: React.ReactElement}) {
     // socket.on("connect", () => {
       // console.log("connected");
       // socket.emit("joinRoom", id)
-    socket.emit('join chat', id )
+    // socket.emit('join chat', id )
     
     
     
@@ -42,22 +42,22 @@ export function SocketProvider (props: {children: React.ReactElement}) {
 
     // receive 
 
-    if(!socket) return
+    // if(!socket) return
 
 
     socket.on("message-from-server", (value:{}) => { //'message'
-      setMessages((messages:[]) => [...messages, {message:value, received:true}])
+      // setMessages((messages:[]) => [...messages, {message:value, received:true}])
       
     })
 
 
     
 
-    socket.on("typing-started-from-server", () => setTyping(true))
+    // socket.on("typing-started-from-server", () => setTyping(true))
 
-    socket.on("typing-stopped-from-server",() => setTyping(false))
+    // socket.on("typing-stopped-from-server",() => setTyping(false))
 
-    setIsConnected(true)
+    // setIsConnected(true)
   }
 
 
@@ -71,7 +71,7 @@ export function SocketProvider (props: {children: React.ReactElement}) {
     // emit schickt immer ins BE, egal ob im backend aufgefangen wird oder nicht
     // das event für emit kann beliebig benannt werden
     // mitgesendet als argument wird jegliche beliebige information. in diesem fall ein objekt mit text und receiver
-    await socket.emit("message", data) 
+    // await socket.emit("message", data) 
   }
 
   const exportData = {
