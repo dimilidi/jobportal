@@ -54,10 +54,7 @@ console.log(currentChat);
         chatId: chat.currentChat._id
       }
 
-      useEffect(() => {
-        if(currentChat !=null) getUserData()
-        
-      },[user, adList])
+  
     
 
 
