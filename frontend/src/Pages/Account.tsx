@@ -19,7 +19,7 @@ const Account = () => {
   const { user, loading } = useUser()
   const { pageCount, page, setPage } = useAdList(`userId=${user?._id}`)
   const { adList } = useAdList(`userId=${user?._id}&page=${page}`)
-  const browseText = useDecorationLine({ orientation: 'right' })
+
 
 
 
@@ -65,15 +65,13 @@ const Account = () => {
             onClick={() => navigate('/post-ad')}
             style={{ z: 10 }}
           />
-        <span >
           <UniButton
-            ref={browseText}
             text='Browse Ads'
             type='button'
             onClick={() => navigate('/adslist')}
             style={{ z: 10 }}
           />
-        </span>
+        
         </div>
         <h3   className='mt-10 md:mb-[30px] lg:mt-[60px] lg:mb-[-20px] xl:mb-[-10px] text-lg font-semibold text-gray text-opacity-40 text-center lg:w-[87%] lg:flex lg:justify-start xl:w-[85%]'>
           Your Ads
@@ -95,9 +93,10 @@ const Account = () => {
             )}
           </div>
         </div>
-        {pageCount >0 &&
+        {
         <div
           aria-label='paginationButtons'
+          style={{visibility: pageCount >0 ? 'visible' : 'hidden'}}
           className='mb-[50px] lg:mb-0 w-full lg:flex lg:justify-end xl:w-[90%]'>
           <PaginationButtons page ={page} setPage = {setPage} pageCount={pageCount}/>
         </div>}
