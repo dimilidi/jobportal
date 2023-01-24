@@ -198,6 +198,7 @@ const SingleAd = () => {
           )}
 
           {/* ContactDetails MOBILE - If user exists, show ContactDetails */}
+          {user.user && 
           <div className='flex justify-center '>
               <ContactDetails
                 className=' w-[90%] max-w-[340px] pt-10 
@@ -206,6 +207,7 @@ const SingleAd = () => {
               flex justify-center self-center rounded-xl xl:hidden'
               />
           </div>
+          }
 
           <div className='flex justify-center gap-2'>
             {/* IF AD IS NOT CREATED BY USER, BUTTON "MESSAGE" */}
@@ -219,7 +221,7 @@ const SingleAd = () => {
 
 
             {/* IF AD IS NOT CREATED BY USER, BUTTON "CONTACT" */}
-            { user.user?._id !== ad?.user._id && (
+            { user.isLoggedIn === false && (
               <UniButtonDark
               text='Contact'
               onClick={handleContact}

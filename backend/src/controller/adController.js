@@ -52,7 +52,9 @@ export async function getAds(req, res) {
   query.populate('user', 'name email avatar').clone()
   
   const [count, ads] = await Promise.all([countDoc, query])
-  const pageCount = count / page_size
+  let pageCount = count / page_size
+  // pageCount=  count === 0 | count ===1  ? 1 : count / page_size
+
   
   res.status(200).json({pagination:{count, pageCount},ads})
 }
