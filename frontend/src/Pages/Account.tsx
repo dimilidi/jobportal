@@ -12,12 +12,17 @@ import useUser from '../Hooks/useUser'
 import { motion } from 'framer-motion'
 import PaginationButtons from '../Components/PaginationButtons'
 import UniButtonDark from '../Components/UniButtonDark'
+import useDecorationLine from '../Hooks/useDecorationLine'
 
 const Account = () => {
   const navigate = useNavigate()
   const { user, loading } = useUser()
   const { pageCount, page, setPage } = useAdList(`userId=${user?._id}`)
   const { adList } = useAdList(`userId=${user?._id}&page=${page}`)
+  const browseText = useDecorationLine({ orientation: 'right' })
+
+
+
 
   
   useEffect(() => {
@@ -60,21 +65,22 @@ const Account = () => {
             onClick={() => navigate('/post-ad')}
             style={{ z: 10 }}
           />
-
+        <span >
           <UniButton
+            ref={browseText}
             text='Browse Ads'
             type='button'
             onClick={() => navigate('/adslist')}
             style={{ z: 10 }}
           />
+        </span>
         </div>
-
-        <h3 className='mt-10 md:mb-[30px] lg:mt-[60px] lg:mb-[-20px] xl:mb-[-10px] text-lg font-semibold text-gray text-opacity-40 text-center lg:w-[87%] lg:flex lg:justify-start xl:w-[85%]'>
+        <h3   className='mt-10 md:mb-[30px] lg:mt-[60px] lg:mb-[-20px] xl:mb-[-10px] text-lg font-semibold text-gray text-opacity-40 text-center lg:w-[87%] lg:flex lg:justify-start xl:w-[85%]'>
           Your Ads
         </h3>
 
         {/* ADS */}
-        <div className='mt-[30px] mb-[30px] w-full h-full flex flex-wrap justify-center items-start rounded-[21px] sm:px-5 sm:mt-3 sm:mb-20 sm:w-[600px] sm:h-[552px] md:w-[100%] md:h-[250px] lg:px-0 lg:mb-0 lg:h-[310px]'>
+        <div className='mt-[30px] mb-[30px] w-full h-full flex flex-wrap justify-center items-start rounded-[21px] sm:px-5 sm:mt-3 sm:mb-20 sm:w-[600px] sm:h-[552px] md:w-[100%] md:h-[250px]  lg:px-0 lg:mb-0 lg:h-[310px]'>
           <div className='w-full flex flex-wrap justify-center items-center'>
             {adList?.length === 0 ? (
               <div

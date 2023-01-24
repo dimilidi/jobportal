@@ -1,8 +1,10 @@
 // Animation
 import { motion } from 'framer-motion'
 import { ReactNode } from 'react'
+import useDecorationLine from '../Hooks/useDecorationLine'
 
 type Props = {
+  ref?: {} | any
   text: string | ReactNode
   style?: {}
   type?: string
@@ -14,9 +16,12 @@ type Props = {
 }
 
 const UniButton = ( props: Props ) => {
+
+  const line = useDecorationLine({orientation:'right'})
   return (
     <div className={ props.className }>
       <motion.button
+        ref={props.ref}
         whileTap={{ scale: 0.8 }}
         transition={{ duration: 0.5 }}
         onClick={props.onClick}
