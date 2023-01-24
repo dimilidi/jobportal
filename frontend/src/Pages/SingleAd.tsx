@@ -50,7 +50,7 @@ const SingleAd = () => {
     //Connect && join a room
     setOpenChat(true)
     if(user.user) {
-      connect(user.user._id)
+      // connect(user.user._id)
      } 
       ad && setRoom(ad.user._id)
       setIsConnected(true)
