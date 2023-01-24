@@ -1,7 +1,6 @@
 // Hooks
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import useAds from '../Hooks/useAds'
 import useUser from '../Hooks/useUser'
 // Components
 import UniButton from '../Components/UniButton'
