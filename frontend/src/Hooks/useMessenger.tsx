@@ -65,14 +65,14 @@ export function SocketProvider (props: {children: React.ReactElement}) {
   }
 
   // Receive message from Socket Server
-    // function receiveMessageFromSocket() {
+    function receiveMessageFromSocket() {
     if(!socket) return
     socket.on("receive-message", (data:any) => {
       setReceiveMessage(data)
       setMessages([...messages, receiveMessage])
 
     }) 
-  // } 
+  } 
 
  
 
@@ -101,7 +101,7 @@ export function SocketProvider (props: {children: React.ReactElement}) {
     messages,
     setMessages,
     sendMessageToSocket,
-    // receiveMessageFromSocket,
+    receiveMessageFromSocket,
     typing,
     currentChat,
     setCurrentChat,
