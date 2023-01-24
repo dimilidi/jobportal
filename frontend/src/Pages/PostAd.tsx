@@ -274,6 +274,9 @@ const PostAd = () => {
                   value={description}
                   onChange={(e) => setDescription(e.target.value)}
                 ></textarea>
+                
+                 {/* <TextEditorEdit description={description} setDescription={setDescription}/>
+
 
                 {/* CHECKBOX (email-phone) */}
                 <div
