@@ -51,7 +51,7 @@ app.use(cookieParser())
 app.use('/ads', adRouter)
 app.use('/user', userRouter)
 app.use('/chat', chatRouter)
-app.use('/message', messageRouter)
+// app.use('/message', messageRouter)
 
 // Error Handler
 app.use((req, res, next) => {
