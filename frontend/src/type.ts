@@ -50,25 +50,3 @@ export type EditInputs = {
   phone: string | undefined
 }
 
-export type messageContext = {
-  connect:(id: string) => void,  
-  sendMessage:({}) => void,
-  joinChat: (id:string) => void
-  isConnected: boolean,
-  setIsConnected: (isConnected: boolean) => void
-  messages: [] 
-  setMessages: ((prevState:
-    [
-    {message:
-      {room: string; 
-        author: string | undefined; 
-        message: string; time: string;
-      }, 
-      received: boolean 
-    }]
-    ) => void)
-  typing: boolean
-  room: string
-  setRoom: (room:string) => void
-  
-}

@@ -2,7 +2,7 @@ import axios, { AxiosInstance } from 'axios'
 
 let BASE_URL
 if (import.meta.env.PROD) {
-  BASE_URL = 'https://jobsy-jobportal.onrender.com'
+  BASE_URL = 'https://jobportal-jobsy.onrender.com'
 } else {
   BASE_URL = 'http://localhost:3001'
 }
