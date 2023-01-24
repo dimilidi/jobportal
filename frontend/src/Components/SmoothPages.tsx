@@ -1,4 +1,4 @@
-import { Routes, Route, useLocation } from 'react-router-dom'
+import { Routes, Route, useLocation, Navigate } from 'react-router-dom'
 // Pages
 import Account from '../Pages/Account'
 import AdsList from '../Pages/AdsList'
@@ -15,10 +15,13 @@ import EditAd from "../Pages/EditAd"
 // framer-motion
 import {AnimatePresence} from 'framer-motion'
 import Message from '../Pages/Message'
+import useUser from '../Hooks/useUser'
 
 
 const SmoothPages = () => {
   const location = useLocation()
+  const { user } = useUser()
+
 
   return (
     <AnimatePresence>
@@ -34,7 +37,7 @@ const SmoothPages = () => {
             <Route path='/edit-account' element={<EditAccount />} />
             <Route path='/delete-account' element={<DeleteAccount />} />
             <Route path='/auth-required' element={<AuthRequired />} />
-            <Route path='/message' element={<Message />} />
+            <Route path='/message' element={user ? <Message /> : < AuthRequired />} />
             <Route path='*' element={<NotFound />} />
         </Routes>
     </AnimatePresence>

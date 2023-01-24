@@ -158,7 +158,7 @@ const Login = (props: Props) => {
                 />
               )}
 
-              <p className='mt-1 w-full text-lightGray underline text-[14px]sm:justify-center lg:justify-start'>
+              <p className='mt-1 w-full text-lightGray underline text-[14px] sm:justify-center lg:justify-start'>
                 <Link to='/edit-userdata'>Forgot your password?</Link>
               </p>
             </div>

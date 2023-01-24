@@ -1,12 +1,16 @@
-import { UserProvider } from './Hooks/useUser'
+import useUser, { UserProvider } from './Hooks/useUser'
 import { SearchProvider } from './Hooks/useSearch'
 // Components
 import Layout from '../src/Components/Layout'
 import SmoothPages from './Components/SmoothPages'
-import Modal from './Components/Modal'
-import { useState } from 'react'
+
 
 function App() {
+
+  const {user} = useUser()
+  console.log('UUUUUUUUU',user);
+  
+
   return (
     <SearchProvider>
       <UserProvider>

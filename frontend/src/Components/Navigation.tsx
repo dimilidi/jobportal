@@ -61,6 +61,12 @@ const Navigation = () => {
       navCategory: 'loggedIn',
     },
     {
+      icon: <CgProfile />,
+      name: 'Chat',
+      url: user ? '/message' : '/auth-required',
+      navCategory: 'base',
+    },
+    {
       icon: <AiOutlineLogin />,
       name: 'Login',
       url: '/login',

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { useQuill } from "react-quilljs";
 import "quill/dist/quill.snow.css";
 
@@ -7,11 +7,7 @@ type Props ={
     setDescription: (value: String) => void
 }
 
-const FormatedText = (myDescription:any) => {
-  return {
-    __html: `${myDescription}`
-  }
-}
+
 const Editor = (props:Props) => {
 
   const placeholder = 'Your description...'
@@ -33,7 +29,7 @@ const Editor = (props:Props) => {
     'underline',
     'strike',
     'align',
-    'list'
+    'list',
   ];
 
   const { quill, quillRef, Quill } = useQuill({
@@ -53,12 +49,9 @@ const Editor = (props:Props) => {
   return (
     <div style={{width: '100%'}}>
       <div ref={quillRef} />
-      <div className="ql-editor" dangerouslySetInnerHTML={FormatedText(props.description)} />
     </div>
   )
 }
 export default Editor
 
-//dangerouslySetInnerHTML is React’s replacement for using innerHTML
-// Set HTML directly from React, but you have to type out dangerouslySetInnerHTML and pass an object with a __html key.
 

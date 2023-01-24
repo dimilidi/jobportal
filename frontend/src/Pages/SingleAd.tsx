@@ -19,35 +19,49 @@ import { motion } from 'framer-motion'
 import { AiFillEdit } from 'react-icons/ai'
 import UniButtonWhite from '../Components/UniButtonWhite'
 import { RiDeleteBinLine } from 'react-icons/ri'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Modal from '../Components/Modal'
 import { BsFillEyeFill } from 'react-icons/bs'
 import Message from './Message'
+import useMessenger from '../Hooks/useMessenger'
+import UniButtonDark from '../Components/UniButtonDark'
+import TextEditorRender from '../Components/TextEditorRender'
+
 
 
 const SingleAd = () => {
+
   // CONSTANTS
   const params = useParams()
   const navigate = useNavigate()
   const user = useUser()
   const { ad,  isLoading, deleteAd } = useAd()
-
-  console.log(ad?.views)
-
-  console.log('AD',ad?.user.avatar);
-  
-
+  const { setIsConnected, connect, setRoom, room } = useMessenger()
   const [modalOpen, setModalOpen] = useState(false)
   const close = () => setModalOpen(false)
   const open = () => setModalOpen(true)
   const [openChat, setOpenChat] = useState(false)
 
+
+
   // HANDLE MESSAGE
   const handleMessage = () => {
     if (user.isLoggedIn === false) navigate('/auth-required')
+    //Connect && join a room
     setOpenChat(true)
-    // navigate('/message')
+    if(user.user) {
+      connect(user.user._id)
+     } 
+      ad && setRoom(ad.user._id)
+      setIsConnected(true)
   }
+
+    // HANDLE CONTACT
+    const handleContact = () => {
+      if (user.isLoggedIn === false) navigate('/auth-required')
+      // if(user.user?._id === ad?.user._id){}
+  }
+ 
 
   // HANDLE EDIT
   const handleEdit = () => {
@@ -72,13 +86,11 @@ const SingleAd = () => {
     }
   }
  
-  
 
   if(openChat){
     return <Message />
   }
 
-  
 
   // If no ad was fetched, return div with message
   if (!ad) {
@@ -98,6 +110,7 @@ const SingleAd = () => {
           area-label='main'
           className='w-[95%] sm:max-w-[900px]  h-full flex flex-col justify-start sm:w-[80%] md:w-[70%]  lg:w-[50%] xl:w-[800px] md:min-h-[650px]  xl:min-h-full'
         >
+          <div className='flex justify-between w-full md:w-[600px] md:ml-[-30px] xl:w-full xl:ml-0'>
           <BrowseJobs
             style={{
               paddingLeft: '10px',
@@ -105,6 +118,21 @@ const SingleAd = () => {
               alignSelf: 'start',
             }}
           />
+
+                     {/* VIEWS */}
+          {/* <div className="flex items-center gap-3 mt-2 justify-between">
+            <div className="flex gap-3 mt-4"> */}
+              <div className="w-[50px] h-[25px] pr-[20px] mt-2 flex items-center justify-center gap-1 text-sm text-gray opacity-50">
+                <BsFillEyeFill /> <span>{ad.views}</span>
+              </div>
+              
+              
+              {/* <button className="flex items-center justify-center gap-2 text-xs text-white opacity-50">
+                <AiOutlineMessage /> <span>{ad.likes?.length || 0}</span>
+              </button> */}
+            {/* </div>
+          </div> */}
+          </div>
 
           {/* Ad */}
           <div
@@ -122,27 +150,12 @@ const SingleAd = () => {
               >
                 <h3 className='text-[20px]'>Description</h3>
                 <p className='text-[14px] text-justify mt-2 text-gray/80'>
-                  {ad?.description}
+                  {/* Formated text */}
+                  <TextEditorRender />
                 </p>
               </div>
             )}
           </div>
-
-           {/* VIEWS */}
-          {/* <div className="flex items-center gap-3 mt-2 justify-between">
-            <div className="flex gap-3 mt-4"> */}
-              <button className="flex items-center justify-center gap-2 text-lg text-gray opacity-50">
-                <BsFillEyeFill /> <span>{ad.views}</span>
-              </button>
-              
-              
-              {/* <button className="flex items-center justify-center gap-2 text-xs text-white opacity-50">
-                <AiOutlineMessage /> <span>{ad.likes?.length || 0}</span>
-              </button> */}
-            {/* </div>
-          </div> */}
-
-          
         
 
           {/* IF AD IS CREATED BY USER, BUTTON "EDIT" && "DELETE" */}
@@ -199,15 +212,26 @@ const SingleAd = () => {
               />
           </div>
 
-          {/* IF AD IS NOT CREATED BY USER, BUTTON "MESSAGE" */}
+          <div className='flex justify-center gap-2'>
+            {/* IF AD IS NOT CREATED BY USER, BUTTON "MESSAGE" */}
+            { user.user?._id !== ad?.user._id && (
+              <UniButton
+                text='Message'
+                onClick={handleMessage}
+                className='my-7 self-center mb-2 lg:mb-0'
+              />
+            )}
 
-          { user.user?._id !== ad?.user._id && (
-            <UniButton
-              text='Message'
-              onClick={handleMessage}
+
+            {/* IF AD IS NOT CREATED BY USER, BUTTON "CONTACT" */}
+            { user.user?._id !== ad?.user._id && (
+              <UniButtonDark
+              text='Contact'
+              onClick={handleContact}
               className='my-7 self-center mb-2 lg:mb-0'
             />
-          )}
+            )}
+          </div>
         </div>
         {/* Ad - END */}
 
@@ -232,8 +256,8 @@ const SingleAd = () => {
         {/* ContactDetails DESKTOP - If user exists, show ContactDetails */}
         {user.user && (
           <ContactDetails
-            className='hidden xl:block
-        w-[250px] m-8 absolute lg:items-center  -right-14 top-[435px] rounded-l-[65px] translate-y-[-50%] 
+            className='hidden sm:hidden xl:block
+        w-[250px] m-8 absolute lg:items-center -right-10 top-[435px] rounded-l-[65px] translate-y-[-50%] 
         xl:min-w-[230px]'
           />
         )}

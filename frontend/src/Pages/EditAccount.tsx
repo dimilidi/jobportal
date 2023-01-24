@@ -37,6 +37,7 @@ const EditAccount = (props: Props) => {
   const [description, setDescription] = useState(user.user?.description)
   const [avatar, setAvatar] = useState<any>(user.user?.avatar)
   const [open, setOpen] = useState(false)
+  const [maxLength, setMaxLength] = useState(300)
 
   const defaultAvatar =
     'https://res.cloudinary.com/dmdjfvwkd/image/upload/v1673676247/Account_profilDefault_eqka4e.png'
@@ -193,7 +194,7 @@ const EditAccount = (props: Props) => {
               flex flex-col items-end md:flex-row-reverse md:justify-between md:items-center'
             >
               {/* IMAGE */}
-              <div className='h-[100px] relative mb-5  flex flex-col sm:h-[11em]'>
+              <div className='h-[100px] relative mb-5 flex flex-col sm:h-[11em]'>
                 <img
                   aria-label='image'
                   className=' h-[8em] w-[8em] object-cover rounded-full  shadow-standard 
@@ -253,7 +254,7 @@ const EditAccount = (props: Props) => {
                   className='
                   hidden md:inline-block
                   self-start
-                  font-light text-lightGray  
+                  font-regular text-lightGray  
                   sm:text-[1.1rem] 
                   lg:self-start'
                 >
@@ -281,7 +282,7 @@ const EditAccount = (props: Props) => {
                   className='
                   hidden md:inline-block
                   self-start 
-                  font-light text-lightGray  
+                  font-regular text-lightGray  
                   sm:text-[1.1rem] 
                   lg:self-start'
                 >
@@ -292,7 +293,7 @@ const EditAccount = (props: Props) => {
                   w-full mb-2 py-[5px] px-3
                   box-border border border-lightGray
                   border-opacity-[50%] rounded-[15rem] 
-                  text-sm font-medium text-textBlack
+                  text-sm font-medium text-gray
                   min-[425px]:py-[10px]   
                   sm:text-[1.1rem]
                   focus:outline-lightGreen'
@@ -311,7 +312,7 @@ const EditAccount = (props: Props) => {
                   className='
                   hidden md:inline-block
                   self-start 
-                  font-light text-lightGray   
+                  font-regular text-lightGray   
                   sm:text-[1.1rem] 
                   lg:self-start'
                 >
@@ -324,7 +325,7 @@ const EditAccount = (props: Props) => {
                   box-border border border-lightGray
                   rounded-[15rem] focus:outline-lightGreen 
                   sm:text-[1.1rem] border-opacity-[50%]
-                  text-sm font-medium text-textBlack
+                  text-sm font-medium  text-gray
                   min-[425px]:py-[10px]'
                   placeholder='Phone'
                   type='text'
@@ -340,7 +341,7 @@ const EditAccount = (props: Props) => {
                   className='
                   hidden md:inline-block
                   self-start 
-                  font-light text-lightGray   
+                  font-regular text-lightGray   
                   sm:text-[1.1rem] 
                   lg:self-start'
                 >
@@ -353,7 +354,7 @@ const EditAccount = (props: Props) => {
                   box-border border border-lightGray
                   rounded-[15rem] focus:outline-lightGreen
                   sm:text-[1.1rem] border-opacity-[50%]
-                  text-sm font-medium text-textBlack
+                  text-sm font-medium  text-gray
                   min-[425px]:py-[10px]'
                   placeholder='City'
                   type='text'
@@ -370,7 +371,7 @@ const EditAccount = (props: Props) => {
             htmlFor='description'
             className='hidden
                 self-start 
-                font-light text-lightGray  
+                font-regular text-lightGray  
                 sm:text-[1.1rem] md:inline-block
                 lg:self-start'
           >
@@ -379,19 +380,20 @@ const EditAccount = (props: Props) => {
           <textarea
             area-label='description'
             name='description'
-            rows={7}
             placeholder='Description'
+            maxLength={300}
             className='
-                w-full mb-2
+                w-full mb-2 h-[150px]
                 py-[11px] px-3
                 box-border border border-lightGray rounded-[1rem] 
-                text-sm font-medium text-textBlack
+                text-sm font-medium text-gray
                 min-[425px]
                 focus:outline-lightGreen 
-                sm:text-[1.1rem] border-opacity-[50%]'
+                sm:text-[1.1rem] border-opacity-[50%] resize-none'
             value={description}
             onChange={(e) => setDescription(e.target.value)}
           ></textarea>
+          <span className='text-gray text-sm text-opacity-50 text-right'>{description?.length}/{maxLength-(description?.length)}</span>
 
           {/* ERRORS */}
           {errors &&

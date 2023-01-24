@@ -20,18 +20,18 @@ import useAd from '../Hooks/useAd'
 
 const AdsList = () => {
   // CONSTANTS
-  const { searchWord, searchCategory } = useSearch()
-  const user = useUser()
-  const {ad, updateAd} = useAd()
-
-  const { pageCount, page, setPage } = useAdList(
-    `search=${searchWord}&category=${searchCategory}`
-  )
-  const ads = useAdList(
-    `search=${searchWord}&category=${searchCategory}&page=${page}`
-  )
-  
   const navigate = useNavigate()
+  const user = useUser()
+  const {searchCategory, searchWord} = useSearch()
+  const {ad, updateAd} = useAd()
+  const { pageCount, page, setPage, adList, filteredAds } = useAdList(
+    `search=${searchWord}&category=${searchCategory}`
+    )
+  const ads = useAdList(
+      `search=${searchWord}&category=${searchCategory}&page=${page}`
+    )
+
+
   const [views, setViews] = useState(ad?.views)
 
   // DECORATION LINE

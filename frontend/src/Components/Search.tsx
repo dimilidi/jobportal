@@ -1,20 +1,35 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { GoSearch } from 'react-icons/go'
 import { IoMdClose } from 'react-icons/io'
+import useAd from '../Hooks/useAd'
+import useAdList from '../Hooks/useAdList'
 import useSearch from '../Hooks/useSearch'
+import Ad from '../Components/Ad'
+
 
 
 const Search = () => {
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchWord(e.target.value)    
-  }
+  const {adList, setFilteredAds, filteredAds} = useAdList(``)
+  
+  const { searchWord, setSearchWord} = useSearch()
 
-  const { searchWord, setSearchWord } =
-  useSearch()
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchWord(e.target.value)  
+
+    const filteredAdsByUserName = adList.filter(
+      (ad) => ad.user.name?.toLowerCase().includes(e.target.value.toLowerCase())
+    );
+    setFilteredAds(filteredAdsByUserName)
+    console.log(filteredAds);
+    
+  }
 
   const handleClick = (e: React.FormEvent) => {
     setSearchWord('')
   }
+
+
 
   return (
     <div 
@@ -39,6 +54,9 @@ const Search = () => {
           onChange={(e) => handleChange(e)}
         />
       </label>
+
+      {/* {filteredAds.length >0 && filteredAds.map((a:any) =><div><Ad ad={a} /></div> )} */}
+                  
   
     </div>
   )
