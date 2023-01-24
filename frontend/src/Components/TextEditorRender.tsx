@@ -5,7 +5,7 @@ import useAds from '../Hooks/useAd'
 function TextEditorRender() {
     const {ad} = useAds() 
 
-    const FormatedText = (myDescription:any) => {
+    const FormatedText = (myDescription:string | undefined) => {
         return {
           __html: `${myDescription}`
         }
