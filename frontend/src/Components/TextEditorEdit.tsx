@@ -20,7 +20,7 @@ const Editor = (props:Props) => {
         }
       }
 
-  const defaultValue = FormatedText(props.description)
+  const defaultValue = ad?.description
   console.log('defaultValue: ',  defaultValue)
   const modules = {
     toolbar: {
@@ -51,7 +51,7 @@ const Editor = (props:Props) => {
   useEffect(() => {
     if (quill) {
       quill.on("text-change", () => {
-        props.setDescription(quill.root.innerHTML)
+        quill.root.innerHTML.append(defaultValue)
       })
     }
   }, [quill])

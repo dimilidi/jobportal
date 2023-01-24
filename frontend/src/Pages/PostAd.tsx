@@ -1,8 +1,7 @@
-
 // Hooks
-import React from 'react'
-import { useEffect, useState} from 'react'
+import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import useAds from '../Hooks/useAds'
 import useUser from '../Hooks/useUser'
 // Components
 import UniButton from '../Components/UniButton'
@@ -13,27 +12,20 @@ import { notify } from '../utils/toastNotification'
 // Style
 import 'react-toastify/dist/ReactToastify.css'
 import imagePostAd from '../assets/images/PostAd_chef.png'
-
 // Others
 import axiosInstance from '../api/axiosInstance'
 import { motion } from 'framer-motion'
-import TextEditor from '../Components/TextEditor'
-import BrowseJobs from '../Components/BrowseJobs'
-
 
 const PostAd = () => {
   // CONSTANTS
   const navigate = useNavigate()
   const user = useUser()
 
-  // DECORATION LINE
-// const createText = useDecorationLine({orientation: 'left'})
-
   // STATES
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState('')
   const [title, setTitle] = useState('')
-  const [description, setDescription] = useState<any>('')
+  const [description, setDescription] = useState('')
   const [location, setLocation] = useState('')
   const [wage, setWage] = useState<number | string>('')
   const [category, setCategory] = useState('')
@@ -42,8 +34,7 @@ const PostAd = () => {
     [string, string] | [string] | []
   >()
   const [checked, setChecked] = useState({ email: false, phone: false })
-  const [image, setImage] = useState('')
-
+  // const [image, setImage] = useState('')
 
   // If user is not logged in, navigate to auth-required
   useEffect(() => {
@@ -67,8 +58,6 @@ const PostAd = () => {
     }
   }, [checked])
 
-
-  
   // HANDLE SUBMIT
   const handleSubmit = async (e: React.SyntheticEvent) => {
     e.preventDefault()
@@ -83,7 +72,6 @@ const PostAd = () => {
       wage,
       contactVia,
     }
-    
 
     const response = await axiosInstance
       .post('/ads/post', ad)
@@ -98,7 +86,8 @@ const PostAd = () => {
       const message = error[key]
       setError(message)
       notify(message)
-      console.log(message)
+      console.log(message);
+      
     } else if (response.status === 401) {
       setError('You are not logged in.')
       notify(error)
@@ -122,69 +111,60 @@ const PostAd = () => {
     >
       <div
         area-label='page-postAd'
-        className='h-full lg:pt-0 pt-[50px] relative flex justify-center items-center text-Black '
+        className='h-full lg:pt-0 mt-[0px] relative flex justify-center items-center text-Black '
       >
-
-        {/* CIRCLE && LINE */}
+        {/* CIRCLE && LINES */}
         <div
           area-label='circle'
           className='hidden md:block md:w-[332px] md:h-[332px] md:absolute md:top-[50%] md:left-[-250px] md:translate-y-[-50%] md:rounded-full md:bg-lightGreen'
         />
         <div
           area-label='line'
-          className='w-screen hidden md:block md:absolute md:top-[50%] md:translate-y-[-50%] md:left-0 md:border-b-[3px] md:border-lightGreen sm:hidden '
+          className='w-screen hidden md:block md:absolute md:top-[50%] md:translate-y-[-50%] md:left-0 md:border-b-[3px] md:border-lightGreen'
         />
-        {/* CIRCLE && LINE  END*/}
-
 
         {/* MAIN */}
         <div
           area-label='main'
-          className='relative h-full md:h-[1000px] min-h-[960px] w-[90%] max-w-[1000px]  md:w-[70%] flex flex-col justify-center'
+          className='relative  h-full min-h-[920px] w-[85%] max-w-[1000px]  md:w-[70%] flex flex-col justify-center'
         >
-          <div
-          aria-label='Browser Button'
-          className='pb-2'>
-            <BrowseJobs />
+          {/* TITLE MOBILE (with line) */}
+          <div>
+            <h1
+              area-label='title-mobile'
+              className='text-4xl font-medium text-textBlack md:hidden lg:hidden'
+            >
+              <span className='italic font-medium text-lightGreen md:hidden lg:hidden'>
+                Create{' '}
+              </span>
+              your Ad
+            </h1>
+            <div
+              area-label='line'
+              className='w-[140px] absolute top-[%] left-0 border-b-[3px] border-lightGreen md:hidden lg:hidden'
+            />
           </div>
 
           {/* AD FORM */}
           <form
             area-label='form'
-            className='gap-6 md:flex-col lg:flex-row md:gap-10 lg:gap-20 z-10 '
+            className='mt-8 gap-6 md:flex-col lg:flex-row md:gap-10 lg:gap-20 z-10 '
             onSubmit={handleSubmit}
           >
             <div
               area-label='ad'
-              className='p-5 flex flex-col items-center rounded-[21px] bg-white shadow-standard  sm:p-10 '
+              className='p-5 pt-10  flex flex-col items-center rounded-[21px] bg-white shadow-standard sm:p-10 '
             >
-
-              {/* TITLE MOBILE (with line) */}
-          <div>
-            <h1
-              area-label='title-mobile'
-              className='text-[1.8rem] sm:text-4xl font-bold text-textBlack md:hidden'
-            >
-              <span 
-              // ref={createText}
-              className='italic font-medium text-lightGreen '>
-                Create{' '}
-              </span> 
-              your Ad
-            </h1>
-          </div>
-
               {/* TITLE DESKTOP */}
               <div
                 area-label='text left'
                 className='flex flex-col items-center md:items-center lg:items-center md:gap-6'
-                >
+              >
                 <h1
                   area-label='title-md'
-                  className='md:inline-block hidden p-3 sm:text-4xl font-bold text-textBlack '
+                  className='hidden p-3 text-4xl font-medium text-textBlack md:block'
                 >
-                  <span
-                  className='italic font-bold text-lightGreen'>
+                  <span className='italic font-medium text-lightGreen'>
                     Create{' '}
                   </span>
                   your Ad
@@ -194,30 +174,28 @@ const PostAd = () => {
 
                 <div
                   area-label='index-radio'
-                  className='px-1 w-full flex justify-center items-center gap-5'
-                  >
-                  <div className='flex gap-2 '>
+                  className='px-1 w-full flex justify-end items-center gap-5'
+                >
+                  <div className='flex gap-2'>
                     <input
                       type='radio'
-                      id='offering'
                       value='offering'
                       name='case'
-                      className='accent-darkGreen cursor-pointer'
+                      className='accent-darkGreen'
                       onChange={(e) => setCategory(e.target.value)}
                     />
-                    <label htmlFor='offering' className='form-label cursor-pointer'>offering</label>
+                    <label className='form-label'>offering</label>
                   </div>
 
                   <div className='flex gap-2'>
                     <input
                       type='radio'
-                      id='searching'
                       value='searching'
                       name='case'
-                      className='accent-darkGreen cursor-pointer'
+                      className='accent-darkGreen'
                       onChange={(e) => setCategory(e.target.value)}
                     />
-                    <label htmlFor='searching' className='form-label cursor-pointer'>searching</label>
+                    <label className='form-label'>searching</label>
                   </div>
                 </div>
               </div>
@@ -225,7 +203,7 @@ const PostAd = () => {
               {/* TITLE && CITY && SECTOR */}
               <div
                 area-label='inputs colum'
-                className='w-[100%] rounded-full mt-3 flex flex-col items-center justify-center'
+                className='w-full mt-3 flex flex-col items-center justify-center'
               >
                 <div
                   area-label='title-city'
@@ -287,9 +265,6 @@ const PostAd = () => {
                 </div>
 
                 {/* TEXTAREA */}
-
-                {/* TEXTAREA - original*/}
-{/* 
                 <textarea
                   area-label='text area'
                   name='text'
@@ -298,21 +273,15 @@ const PostAd = () => {
                   placeholder='Your description..'
                   value={description}
                   onChange={(e) => setDescription(e.target.value)}
-
-                >
-
-                </textarea> */}
-                <TextEditor description={description} setDescription={setDescription}  /> 
+                ></textarea>
                 
-        
-
-                  
+                 {/* <TextEditorEdit description={description} setDescription={setDescription}/>
 
 
                 {/* CHECKBOX (email-phone) */}
                 <div
                   area-label='form-bottom'
-                  className='w-full m-2 flex flex-wrap-reverse justify-start gap-3 lg:flex-row lg:justify-between lg:gap-2'
+                  className='w-full m-2 flex flex-wrap-reverse justify-start gap-3 lg:flex-row lg:justify-between lg:gap-2 '
                 >
                   <div
                     area-label='checkbox-text '
@@ -327,11 +296,10 @@ const PostAd = () => {
                       <div area-label='email' className='flex flex-row gap-2'>
                         <input
                           type='checkbox'
-                          id='email'
                           value='email'
                           name='contact'
                           checked={checked.email}
-                          className='accent-darkGreen form-checkbox cursor-pointer'
+                          className='accent-darkGreen form-checkbox'
                           onChange={(e) =>
                             setChecked({
                               email: !checked.email,
@@ -339,16 +307,15 @@ const PostAd = () => {
                             })
                           }
                         />
-                        <label htmlFor='email' className='cursor-pointer'>Email</label>
+                        <label>Email</label>
                       </div>
                       <div area-label='phone' className='flex flex-row gap-2'>
                         <input
                           type='checkbox'
-                          id='phone'
                           value='phone'
                           name='contact'
                           checked={checked.phone}
-                          className='accent-darkGreen form-checkbox cursor-pointer'
+                          className='accent-darkGreen form-checkbox'
                           onChange={(e) =>
                             setChecked({
                               email: checked.email,
@@ -356,7 +323,7 @@ const PostAd = () => {
                             })
                           }
                         />
-                        <label htmlFor='phone' className='cursor-pointer'>Phone</label>
+                        <label>Phone</label>
                       </div>
                     </div>
                   </div>
@@ -372,10 +339,9 @@ const PostAd = () => {
                       <input
                         type='number'
                         name='wage'
-                        min={1}
-                        className=' py-1 px-5 w-[100px] text-sm text-gray rounded-lg border-2 border-lightGray border-opacity-50 focus:outline-none  placeholder:font-bold placeholder:opacity-50 '
+                        className='py-1 px-5 w-[100px] text-sm text-gray rounded-lg border-2 border-lightGray border-opacity-50 focus:outline-none  placeholder:font-bold placeholder:opacity-50 '
                         placeholder='00'
-                        value={wage.toString()}
+                        value={wage}
                         onChange={(e) => setWage(Number(e.target.value) || 0)}
                       />
                       <span className='text-lightGray ml-1'>€</span>
