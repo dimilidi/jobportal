@@ -127,10 +127,10 @@ const SingleAd = () => {
                      {/* VIEWS */}
           {/* <div className="flex items-center gap-3 mt-2 justify-between">
             <div className="flex gap-3 mt-4"> */}
-              <div className="w-[50px] h-[25px] pr-[20px] mt-2 flex items-center justify-center gap-1 text-sm text-gray opacity-50">
+              {/* <div className="w-[50px] h-[25px] pr-[20px] mt-2 flex items-center justify-center gap-1 text-sm text-gray opacity-50">
                 <BsFillEyeFill /> <span>{ad.views}</span>
               </div>
-              
+               */}
               
               {/* <button className="flex items-center justify-center gap-2 text-xs text-white opacity-50">
                 <AiOutlineMessage /> <span>{ad.likes?.length || 0}</span>
