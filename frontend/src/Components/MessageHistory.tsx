@@ -11,7 +11,7 @@ type Props = {
 
 function MessageHistory( {currentChat}:Props) {
   const user = useUser().user
-  const {messages, setMessages, typing} = useMessenger()
+  const {messages, setMessages, typing, receiveMessage} = useMessenger()
 
   
 

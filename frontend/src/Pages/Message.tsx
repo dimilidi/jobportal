@@ -22,12 +22,9 @@ const Message = () => {
   const {adList} = useAdList('')
   const {user} = useUser()
   const chat = useMessenger()
-  const { sendMessage, setIsConnected, connect, currentChat, setCurrentChat, chats, setChats, setReceiveMessage, receiveMessage, receiveMessageFromSocket} = useMessenger()
+  const { onlineUsers, sendMessage, setIsConnected, connect, currentChat, setCurrentChat, chats, setChats, setReceiveMessage, receiveMessage, receiveMessageFromSocket} = useMessenger()
   const [userData, setUserData] = useState<any>({})
   const [receiverInfo, setReceiverInfo] = useState<any>({})
-
-  console.log('RRRRRRRRRRR',sendMessage);
-
 
 
   //Connect chat && join a room
@@ -35,8 +32,7 @@ const Message = () => {
     if(user) { 
       connect(user._id)
      } 
-      // ad && setRoom(ad.user._id)
-      
+    
       setIsConnected(true)
   },[user])
 
@@ -58,8 +54,6 @@ console.log('ONLINE',chat.onlineUsers);
   },[user, adList])
 
   
-  // console.log('userdata',userData);
-
 
   // GET CHATS
   const getChats = async() => {
@@ -82,32 +76,29 @@ console.log('ONLINE',chat.onlineUsers);
     useEffect(() => {
       if(sendMessage !==null ) {
         chat.sendMessageToSocket(sendMessage)
-        
       }
     },[sendMessage])
 
 
     // Receive Message from the Socket Server
-
-
-    
-  //   useEffect(() => {
-  //     if(receiveMessage  && receiveMessage.chatId === currentChat._id){
-  //       chat.setMessages([...chat.messages, receiveMessage])
-    
-  //     }
-    
-  // },[receiveMessage])
-
-
-  if(!socket) return
-    socket.on("receive-message", (data:any) => {
-      console.log('DAAAATA', data);
-      
+    useEffect(() => {
+      socket.on("receive-message", (data:any) => {
       setReceiveMessage(data)
+    })
+     },[socket])
+
+
+    useEffect(() => {
       chat.setMessages([...chat.messages, receiveMessage])
-    }) 
-    console.log('TEST',receiveMessage);
+    }, [receiveMessage])
+
+
+    const checkOnlineStatus = (chat:any) => {
+      const chatMember = chat.members.find((member:any) => member !== user?._id)
+      const online = onlineUsers?.find((user:any) => user.userId === chatMember)
+      return online ? true : false
+    }
+  
 
 
 
@@ -125,7 +116,7 @@ console.log('ONLINE',chat.onlineUsers);
           <div>
             {chats.map((chat:any) => ( //chats
               <div className='bg-green-300 w-[200px] h-[50px]' onClick={()=>setCurrentChat(chat)}>
-                <Conversation key={chat._id} data = {chat} setReceiverInfo= {setReceiverInfo} />
+                <Conversation key={chat._id} data = {chat} setReceiverInfo= {setReceiverInfo} online={checkOnlineStatus(chat)} />
               </div>
             ))}
           </div>

@@ -11,9 +11,10 @@ type Props = {
         members: []
     }
     setReceiverInfo: (receiverInfo:{}) =>void
+    online: boolean
 }
 
-function Conversation({data, setReceiverInfo}: Props) {
+function Conversation({data, setReceiverInfo, online}: Props) {
     // Hooks
     const {user} = useUser()
     const {adList} = useAdList('')
@@ -41,6 +42,7 @@ function Conversation({data, setReceiverInfo}: Props) {
 
   return (
     <div>Conversation 
+       <div>{online ? 'Online' : 'Offline'}</div> 
         <img src={userData?.avatar} alt="" />
         <p>{userData?.name}</p>
       

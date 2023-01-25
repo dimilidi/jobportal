@@ -19,7 +19,7 @@ export const SocketContext = createContext<messageContext>({
   receiveMessageFromSocket: () => {}, 
   setSendMessage: () => {}, 
   sendMessage: {}, 
-  receiveMessage: {chatId:''},
+  receiveMessage: {},
   setReceiveMessage: () => {},
   isConnected: false, 
   setIsConnected: () => false,
@@ -39,12 +39,12 @@ export const SocketContext = createContext<messageContext>({
 export function SocketProvider (props: {children: React.ReactElement}) {
 
   const [isConnected, setIsConnected] = useState(false)
-  const [messages, setMessages] = useState<any>([{}])
+  const [messages, setMessages] = useState<any>([])
   const [typing, setTyping] = useState(false)
   const [room, setRoom ] = useState('')
   const [onlineUsers, setOnlineUsers ] = useState<any>([])
   const [sendMessage, setSendMessage] = useState({})
-  const [receiveMessage, setReceiveMessage] =useState<any | {chatId:''} | null>({})
+  const [receiveMessage, setReceiveMessage] =useState<any | {} | null>({})
   const [currentChat, setCurrentChat] = useState<any>(null)
   const [chats, setChats] = useState<any[]>([])
 
@@ -65,10 +65,10 @@ export function SocketProvider (props: {children: React.ReactElement}) {
   }
 
   // Receive message from Socket Server
-    function receiveMessageFromSocket() {
+    function receiveMessageFromSocket(data:{}) {
     if(!socket) return
     socket.on("receive-message", (data:any) => {
-      setReceiveMessage(data)
+      setReceiveMessage(data.text)
       setMessages([...messages, receiveMessage])
 
     }) 
