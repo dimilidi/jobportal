@@ -13,9 +13,9 @@ const Home = () => {
 
   return (
     <motion.div
-      initial={{ width: '100%' }}
-      animate={{ width: '100%' }}
-      exit={{ x: window.innerWidth }}
+      // initial={{ width: '100%' }}
+      // animate={{ width: '100%' }}
+      // exit={{ x: window.innerWidth }}
       className='mx-auto md:w-[90%] w-full h-full min-h-[918px] flex justify-center items-center lg:justify-end'
     >
       <div

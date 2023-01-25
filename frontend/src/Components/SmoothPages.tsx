@@ -23,7 +23,7 @@ const SmoothPages = () => {
 
 
   return (
-    <AnimatePresence>
+    // <AnimatePresence>
         <Routes location={location} key={location.pathname}>
             <Route path='/login' element={<Login />} />
             <Route path='/register' element={<Register />} />
@@ -38,7 +38,7 @@ const SmoothPages = () => {
             <Route path='/auth-required' element={<AuthRequired />} />
             <Route path='*' element={<NotFound />} />
         </Routes>
-    </AnimatePresence>
+    // </AnimatePresence>
   )
 }
 
