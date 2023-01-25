@@ -66,7 +66,7 @@ const AuthRequired = () => {
         <div
           area-label='circle'
           className='w-[50px] h-24 hidden 
-                right-[0rem] top-[280px]  
+                right-[0rem] xl:top-[300px]  lg:top-[270px]  
                 rounded-tl-full rounded-bl-full bg-lightGreen 
                 lg:block absolute'
         ></div>

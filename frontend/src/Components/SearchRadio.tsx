@@ -78,10 +78,13 @@ import useSearch from '../Hooks/useSearch'
           style={{width:'140px', height:'40px'}}
           />
         {/* ARROW IN MOBILE */}
+        <button type='submit' className='md:hidden' >
           <BsFillArrowRightCircleFill
           size={28}
           className=' md:hidden  ml-2  text-lightGreen cursor-pointer '
-          />
+        />
+        </button>
+          
       </div>
     </div>
   )

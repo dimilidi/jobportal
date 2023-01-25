@@ -1,4 +1,5 @@
 import Ad from '../models/Ad.js'
+import mongoose from 'mongoose'
 
 
 
@@ -86,6 +87,11 @@ export async function getAdById(req, res) {
 
   // if user is NOT logged in, populate only name of ad-creator
   let ad = await Ad.findById(adId).populate('user', 'name, avatar views')
+
+  // await Ad.findByIdAndUpdate(adId, {
+  //   $inc: {views: 1},
+  // })
+
 
   // if user is logged in, contact data selected in contactvia
   let itemToPopulate = 'name avatar views'

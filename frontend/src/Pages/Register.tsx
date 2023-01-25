@@ -98,7 +98,7 @@ const Register = () => {
       />
 
       {/*HEADING && FORM */}
-      <div className='w-[90%] bg-white shadow-standard rounded-[30px] 
+      <div className='w-[90%] bg-white max-w-[500px] shadow-standard rounded-[30px] lg:max-w-[1000px]
       lg:rounded-r-[30px] lg:rounded-l-[0] p-10 pt-20 
       lg:w-[50%] lg:mr-[10rem] xl:w-[60%] 2xl:w-[50%] 2xl:ml-[-190px] 2xl:mr-[20rem]
       '>
@@ -125,7 +125,7 @@ const Register = () => {
           {/* FORM */}
           <form
             onSubmit={handleSubmit}
-            className='w-[115%] md:w-[100%] lg:w-[109%] xl:w-[80%] 2xl:w-[90%] flex flex-col items-center justify-between'
+            className='w-[110%] sm:w-[90%] md:w-[100%] lg:w-[109%] xl:w-[80%] 2xl:w-[90%] flex flex-col items-center justify-between'
           >
             {/* INPUTS CONTAINER */}
             <div className='mb-5 w-full relative flex flex-col items-center'>

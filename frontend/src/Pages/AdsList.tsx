@@ -1,9 +1,9 @@
 // Hooks
-import { useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import useAdList from '../Hooks/useAdList'
 import useUser from '../Hooks/useUser'
 import useSearch from '../Hooks/useSearch'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 // Components
 import Ad from '../Components/Ad'
 import UniButton from '../Components/UniButton'
@@ -32,7 +32,6 @@ const AdsList = () => {
     )
 
 
-  const [views, setViews] = useState(ad?.views)
 
   // DECORATION LINE
   const missionText = useDecorationLine({ orientation: 'right' })
@@ -45,6 +44,8 @@ const AdsList = () => {
       navigate('/auth-required')
     }
   }
+
+  
 
   return (
     <motion.div
@@ -121,7 +122,7 @@ const AdsList = () => {
                 <div className='md:p-1 flex flex-col justify-start items-center'>
                   {/* ADS */}
                   {ads.adList?.map((ad) => (
-                    <Ad  key={ad._id} ad={ad} />
+                    <Ad key={ad._id} ad={ad} />
                   ))}
                 </div>
                 )}
@@ -144,6 +145,7 @@ const AdsList = () => {
               </div>
               {/* NEXT & PREV PAGE  */}
               <div 
+                style={{visibility: pageCount >0 ? 'visible' : 'hidden'}}
                 className='flex justify-center items-center w-[250px]'>
               <PaginationButtons page ={page} setPage = {setPage} pageCount={pageCount} />
               </div>

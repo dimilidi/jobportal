@@ -1,10 +1,12 @@
 // Hooks
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import useAd from '../Hooks/useAd'
 import useUser from '../Hooks/useUser'
 // Components
 import UniButton from '../Components/UniButton'
 import Spinner from '../Components/Spinner'
+import TextEditor from '../Components/TextEditor'
 // Notification
 import { ToastContainer } from 'react-toastify'
 import { notify } from '../utils/toastNotification'
@@ -131,17 +133,13 @@ const PostAd = () => {
           <div>
             <h1
               area-label='title-mobile'
-              className='text-4xl font-medium text-textBlack md:hidden lg:hidden'
+              className='text-4xl font-medium flex justify-center gap-3 text-textBlack md:hidden lg:hidden'
             >
               <span className='italic font-medium text-lightGreen md:hidden lg:hidden'>
                 Create{' '}
               </span>
               your Ad
             </h1>
-            <div
-              area-label='line'
-              className='w-[140px] absolute top-[%] left-0 border-b-[3px] border-lightGreen md:hidden lg:hidden'
-            />
           </div>
 
           {/* AD FORM */}
@@ -218,7 +216,7 @@ const PostAd = () => {
                     <input
                       type='text'
                       name='title'
-                      className=' form-control py-1 px-5 w-full block text-gray border-2 rounded-lg border-lightGray border-opacity-50 placeholder:text-sm 
+                      className='form-control py-1 px-5 w-full block text-gray border-2 rounded-lg border-lightGray border-opacity-50 placeholder:text-sm 
                 focus:outline-lightGray '
                       placeholder='Title'
                       value={title}
@@ -264,7 +262,7 @@ const PostAd = () => {
                 </div>
 
                 {/* TEXTAREA */}
-                <textarea
+                {/* <textarea
                   area-label='text area'
                   name='text'
                   id='text'
@@ -273,8 +271,8 @@ const PostAd = () => {
                   value={description}
                   onChange={(e) => setDescription(e.target.value)}
                 ></textarea>
-                
-                 {/* <TextEditorEdit description={description} setDescription={setDescription}/>
+                 */}
+                <TextEditor description={description} setDescription={setDescription}/>
 
 
                 {/* CHECKBOX (email-phone) */}
@@ -354,7 +352,7 @@ const PostAd = () => {
               onClick={handleNavigateifUserNotLoggedIn}
               area-label='postAdButton'
               text={isLoading ? <Spinner /> : 'Post Ad'}
-              className='my-7 mx-auto w-[200px] self-center  md:mb-0 lg:w-[250px]'
+              className='my-7 mx-auto w-full self-center flex justify-center md:mb-0 lg:w-[250px]'
             />
           </form>
         </div>
@@ -362,7 +360,7 @@ const PostAd = () => {
       </div>
       {/* IMAGE */}
       <img
-        className='w-[200]  lg:w-[260px] lg:h-[330px] hidden absolute bottom-[0px] right-[0px]  sm:block z-30 lg:right-[20px] xl:right-[60px]'
+        className='w-[200] lg:w-[260px] lg:h-[330px] hidden absolute bottom-[0px] right-[0px]  sm:block z-30 lg:right-[20px] xl:right-[60px]'
         src={imagePostAd}
       ></img>
     </motion.div>
