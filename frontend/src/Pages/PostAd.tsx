@@ -1,11 +1,12 @@
 // Hooks
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import useAds from '../Hooks/useAds'
+import useAd from '../Hooks/useAd'
 import useUser from '../Hooks/useUser'
 // Components
 import UniButton from '../Components/UniButton'
 import Spinner from '../Components/Spinner'
+import TextEditor from '../Components/TextEditor'
 // Notification
 import { ToastContainer } from 'react-toastify'
 import { notify } from '../utils/toastNotification'
@@ -265,7 +266,7 @@ const PostAd = () => {
                 </div>
 
                 {/* TEXTAREA */}
-                <textarea
+                {/* <textarea
                   area-label='text area'
                   name='text'
                   id='text'
@@ -274,8 +275,8 @@ const PostAd = () => {
                   value={description}
                   onChange={(e) => setDescription(e.target.value)}
                 ></textarea>
-                
-                 {/* <TextEditorEdit description={description} setDescription={setDescription}/>
+                 */}
+                <TextEditor description={description} setDescription={setDescription}/>
 
 
                 {/* CHECKBOX (email-phone) */}

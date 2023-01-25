@@ -4,7 +4,7 @@ import "quill/dist/quill.snow.css";
 
 type Props ={
     description: String
-    setDescription: (value: String) => void
+    setDescription: (value: any) => void
 }
 
 
