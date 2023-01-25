@@ -22,8 +22,8 @@ function UserMessage({ad, userData, receiverInfo}:Props) {
 
   const user = useUser()
   const {adList} = useAdList('')
-const{currentChat} = useMessenger()
-const [ userUserInfo, setUserInfo]  = useState({})
+  const{currentChat} = useMessenger()
+  const [ userInfo, setUserInfo]  = useState<any>({})
 
 
   // Get Second Chat Member 
@@ -36,18 +36,18 @@ const [ userUserInfo, setUserInfo]  = useState({})
     useEffect(() => {
       if(currentChat !=null) getUserData()
       
-    },[user, adList])
+    },[user, adList, ad, currentChat])
 
-  console.log('USERDATA', userData);
-  // console.log('INFO', receiverInfo);
-  console.log('INFO', currentChat)
+  console.log('USERDATA', userInfo);
+  console.log('INFO', receiverInfo);
+  // console.log('INFO', currentChat)
 
   return (
     <>
       {/* PROFILE IMAGE */}
       <div
         className='
-          flex flex-row items-start justify-center
+          flex flex-col items-center justify-start
         
           w-full'
       >
@@ -59,42 +59,20 @@ const [ userUserInfo, setUserInfo]  = useState({})
         >
           
           <div
-            className=' mx-auto  w-[80px] h-[80px] relative flex justify-center
+            className=' mx-auto  w-[80px] h-[80px] relative flex flex-col justify-center
           self-end rounded-full'
           >
              <img 
                className='mb-1 w-[80px] h-[80px]  rounded-full object-cover'
-              src={ receiverInfo.avatar ? receiverInfo.avatar :  profileImg }  />  
-          </div>
-          <div>
-            <p>{userData.name}</p>
+              src={ userInfo.avatar ? userInfo.avatar :  profileImg }  />  
           </div>
 
         </div>
           <div className=' w-[15px] h-[15px] absolute top-20 right-[167px] rounded-full bg-green-500' />
-
-        {/* USER NAME, and SECTION */}
-        {/* <div className='pt-5 md:pt-7'>
-          <h1
-            className=' flex justify-center
-          font-medium xl:font-semibold
-          min-w-[150px] 
-          text-[1.3rem] md:text-[1.7rem]'
-          >
-            {user?.name}
-          </h1>
-          {user?.profession && (
-            <h2
-              className='
-          mb-6 
-          flex justify-center 
-          text-[1rem]
-          font-light'
-            >
-              {user.profession}
-            </h2>
-          )} 
-        </div> */}
+          <div>
+              <p>{userInfo.name}</p>
+          </div>
+    
       </div>
     </>
   )

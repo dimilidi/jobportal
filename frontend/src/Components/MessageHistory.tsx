@@ -31,7 +31,7 @@ function MessageHistory( {currentChat}:Props) {
    if(currentChat != null) fetchMessages()
   }, [currentChat])
 
-  messages && console.log(messages)
+  messages && console.log('MEEEEEEEEEEEEEESSAGES',messages)
 
   return (
 
@@ -43,11 +43,11 @@ function MessageHistory( {currentChat}:Props) {
           <ScrollToBottom className='pb-3 h-[98%] w-full flex flex-col  overflow-x-hidden'>
           {messages && 
             messages.map((value, i) => {
-             
-              
-             
+          
               return (
+                
               <div key={i} className='flex flex-col px-2'>
+
                 <div 
                     style= {{alignSelf: value['senderId'] !== user?._id  ? 'start' : 'end',}} 
                 >

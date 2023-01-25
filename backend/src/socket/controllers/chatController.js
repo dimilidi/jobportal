@@ -4,12 +4,17 @@ import Chat from '../models/Chat.js'
 
 /** @type {import("express").RequestHandler} */
 export const createChat = async(req, res) => {
+  const { senderId, receiverId  } = req.body
+  const user = req.user
+
   const newChat = new Chat({
-    members: [req.body.senderId, req.body.receiverId]
+    members: [senderId, receiverId],
+
+    user: user._id
   })
 
-  const chat = await newChat.save()
-  res.status(201).json(chat)
+  await newChat.save()
+  res.status(201).json(newChat)
 }
 
 
@@ -21,6 +26,7 @@ export const userChats = async(req, res) => {
   })
   res.status(200).json(chats)
 }
+
 
 /** @type {import("express").RequestHandler} */
 export const findChat = async(req, res) => {

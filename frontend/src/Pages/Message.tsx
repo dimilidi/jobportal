@@ -60,6 +60,8 @@ console.log('ONLINE',chat.onlineUsers);
     try {
       const {data} = await axiosInstance.get(`/chat/${user?._id}`)
       setChats(data)
+      console.log('CHAAAAAAAAAAAAAAAAAAAAAAATA',data);
+      
       
     } catch (error) {
       console.log(error);

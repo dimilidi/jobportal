@@ -41,9 +41,9 @@ function Conversation({data, setReceiverInfo, online}: Props) {
 
 
   return (
-    <div>Conversation 
+    <div>
        <div>{online ? 'Online' : 'Offline'}</div> 
-        <img src={userData?.avatar} alt="" />
+        {/* <img src={userData?.avatar} alt="" /> */}
         <p>{userData?.name}</p>
       
     </div>
