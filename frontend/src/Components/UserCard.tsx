@@ -69,7 +69,7 @@ function UserCard(props: Props) {
 
       {/* Description Heading and Description */}
       {user?.description && (
-        <div className='px-6 min-h-[100px] w-full md:h-[10rem]  lg:h-auto'>
+        <div className='px-6 min-h-[100px] w-full h-[8rem] overflow-y-scroll'>
           <p className='p-2 text-sm font-medium text-[gray]'>{user?.description}</p>
         </div>
       )}

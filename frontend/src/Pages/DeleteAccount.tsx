@@ -87,7 +87,7 @@ const DeleteAccount = () => {
           src={DeleteAccountImage}
           alt='box'
           className='w-[180px] top-[34rem] scale-x-[-1] absolute 
-            left-[20%]
+            left-[20%] 
             sm:left-[3%]
             md:left-[6%] md:w-[230px] md:top-[30rem] md:scale-x-[-1] md:-rotate-[20deg]
             lg:left-[16%]
