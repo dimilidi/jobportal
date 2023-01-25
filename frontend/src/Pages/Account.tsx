@@ -19,10 +19,6 @@ const Account = () => {
   const { pageCount, page, setPage } = useAdList(`userId=${user?._id}`)
   const { adList } = useAdList(`userId=${user?._id}&page=${page}`)
 
-
-
-
-
   
   useEffect(() => {
     if (!user && !loading) {
@@ -37,7 +33,7 @@ const Account = () => {
       initial={{ width: '100%' }}
       animate={{ width: '100%' }}
       exit={{ x: window.innerWidth }}
-      className='mx-auto pt-[80px] pb-10 w-full h-full min-h-[1100px] flex flex-col items-center justify-center gap-10 md:gap-3 lg:min-h-[970px] lg:flex-row lg:gap-0'
+      className='mx-auto pt-[80px] w-full h-full flex flex-col items-center md:gap-3 lg:min-h-[970px] lg:flex-row lg:gap-0'
     >
       {/* SEMICIRCLE */}
       <div className='w-[50px] h-24 hidden absolute right-0 rounded-tl-full rounded-bl-full bg-lightGreen md:hidden lg:block lg:top-[125px] xl:top-[130px]' />
@@ -50,44 +46,22 @@ const Account = () => {
       </div>
 
       {/* ADS && BUTTONS CONTAINER */}
-      <div className='max-w-[650px] h-full flex flex-col justify-start items-start md:h-[650px] lg:h-[703px] lg:w-[62%] lg:max-w-[800px] lg:gap-5'>
-        {/* BUTTONS */}
-        <div
-          className='
-              w-full flex flex-row justify-center items-center gap-2 md:gap-3
-              sm:justify-center sm:flex-row md:justify-center
-              lg:justify-start md:mt-14 lg:mt-0'
-        >
-          <UniButtonDark
-            text='Post Ad'
-            type='button'
-            onClick={() => navigate('/post-ad')}
-            style={{ z: 10  }}
-          />
-          <UniButton
-            text='Browse Ads'
-            type='button'
-            onClick={() => navigate('/adslist')}
-            style={{ z: 10 }}
-          />
+      <div className='w-[90%] min-w-fit max-w-[650px]  flex flex-col justify-start items-center lg:h-[700px] lg:max-w-[800px] lg:gap-5'>
         
-        </div>
-        <h3   className='mt-10 md:mb-[30px] lg:mt-[60px] lg:mb-[-20px] xl:mb-[-10px] text-lg font-semibold text-gray text-opacity-40 text-center lg:w-[87%] lg:flex lg:justify-start xl:w-[85%]'>
-          Your Ads
+        <h3 className='w-[80%] py-2 mt-8 self-center shadow rounded-lg text-center text-xl font-semibold text-gray text-opacity-100 lg:mb-[-20px] xl:mb-[-10px] lg:w-[87%] lg:flex lg:justify-start xl:w-[85%]'>
+          All Active Ads:
         </h3>
 
         {/* ADS */}
-
-        <div className='bg-darkBeige pt-14 bg-opacity-30 mt-[30px] mb-[30px] w-full h-full flex flex-wrap justify-center items-start md:rounded-[21px] sm:px-5 sm:mt-3 sm:mb-20 sm:w-[600px] sm:h-[552px] md:w-[100%] md:h-[250px] lg:px-0 lg:mb-0 lg:h-[450px]'>
+        <div className='w-full max-w-[600px] h-fit my-[5px] py-10 flex flex-wrap justify-center items-start rounded-xl text-gray bg-darkBeige bg-opacity-36 md:rounded-[21px] lg:px-0 lg:mb-0 lg:h-[450px]'>
           <div className='w-full flex flex-wrap justify-center items-center md:justify-start lg:justify-center'>
 
             {adList?.length === 0 ? (
               <div
-                className='font-bold relative text-xl sm:text-xl
-                  top-[0px] md:top-[80px] lg:top-[180px] xl:top-[130px] md:text-4xl
-                  text-center text-darkBeige'
-              >
-                You have currently <br></br> no ads yet
+                className='w-full relative text-center font-bold text-gray text-opacity-60 
+                  md:text-2xl lg:top-[180px] xl:top-[130px] 
+                  '>
+                You currently don't have <br></br> any ads 
               </div>
             ) : (
               adList?.map((ad) => <Ad key={ad._id} ad={ad} />)
@@ -98,10 +72,30 @@ const Account = () => {
         <div
           aria-label='paginationButtons'
           style={{visibility: pageCount >0 ? 'visible' : 'hidden'}}
-          className='mb-[50px] lg:mb-0 w-full lg:flex lg:justify-end xl:w-[90%]'>
+          className='w-full lg:mb-0 lg:flex lg:justify-end xl:w-[90%]'>
           <PaginationButtons page ={page} setPage = {setPage} pageCount={pageCount}/>
         </div>}
-      </div>
+        {/* BUTTONS */}
+        <div
+            className='
+                w-full flex flex-row justify-center items-center gap-2 md:gap-3
+                sm:justify-center sm:flex-row md:justify-center
+                lg:justify-start md:mt-14 lg:mt-0'
+          >
+            <UniButtonDark
+              text='Post Ad'
+              type='button'
+              onClick={() => navigate('/post-ad')}
+            
+            />
+            <UniButton
+              text='Browse Ads'
+              type='button'
+              onClick={() => navigate('/adslist')}
+              
+            />
+          </div>
+        </div>
     </motion.div>
   )
 }

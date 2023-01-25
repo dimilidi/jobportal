@@ -16,8 +16,8 @@ function UserCard(props: Props) {
     <div
       // USER CARD
       style={props.style}
-      className='mt-0 w-[90%] max-w-[450px] min-h-[540px]
-            flex flex-col justify-center relative  
+      className='w-[90%] max-w-[500px] min-h-fit
+            flex flex-col justify-start relative  
             shadow-standard 
             rounded-bl-[65px] rounded-br-[65px]
             bg-white
@@ -27,8 +27,8 @@ function UserCard(props: Props) {
       {/* AVATAR BG SEMICIRCLE */}
       <div className='flex justify-center'>
         <div
-          className='w-[100%] h-[13em] 
-            flex justify-center absolute top-0 
+          className='w-[100%] h-[9em] 
+            flex justify-center absolute top-[.1em] 
             rounded-b-[200px]
             bg-darkBeige'
         ></div>
@@ -38,11 +38,11 @@ function UserCard(props: Props) {
       {/* AVATAR CIRCLE CONTAINER */}
       <div
         className='
-            w-[100%] h-[6em] 
+            w-[100%] mt-4
             flex justify-center'
       >
         <img
-          className='w-[11em] h-[11em] mt-[2.8rem] 
+          className='w-[10em] h-[10em] 
             lg:w-[12rem] lg:h-[12rem] lg:mt-[2.5rem]
             absolute z-10 object-cover
             rounded-full'
@@ -51,7 +51,7 @@ function UserCard(props: Props) {
       </div>
 
       {/* User Name-, and Section */}
-      <div className='mt-[9em]'>
+      <div className='mt-[10.5em] lg:mt-[15em]'>
         <h1
           className='
             flex justify-center text-gray
@@ -76,7 +76,7 @@ function UserCard(props: Props) {
       )}
 
       {/* Contact Data */}
-      <div className=' px-8 my-6 text-[17px] font-[500] min-[374px]:mx-[1em]'>
+      <div className='px-4 m-4 text-[17px] font-[500]'>
         <div className='flex flex-row gap-4 items-center  text-gray text-opacity-80 leading-relaxed'>
           {' '}
           <MdMail className='opacity-50'/> {user?.email}
@@ -96,7 +96,7 @@ function UserCard(props: Props) {
       </div>
 
       {/* Edit Profile Button Wrapper */}
-      <div className='flex justify-center mb-10'>
+      <div className='flex justify-center mb-4 mt-6'>
 
         <p className='mt-1 py-2 px-8 rounded-full  border-lightBeige border-2 bg-darkBeige md:bg-darkBeige shadow-md cursor-pointer
         text-textBlack font-medium text-opacity-50 hover:bg-lightBeige hover:bg-opacity-30 hover:text-textBlack ease-in-out duration-300 
