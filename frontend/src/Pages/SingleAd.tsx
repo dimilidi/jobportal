@@ -1,5 +1,5 @@
 // Hooks
-import { useNavigate, useParams } from 'react-router-dom'
+import { useLocation, useNavigate, useParams } from 'react-router-dom'
 import useUser from '../Hooks/useUser'
 import useAd from '../Hooks/useAd'
 // Components
@@ -33,23 +33,20 @@ const SingleAd = () => {
   const params = useParams()
   const navigate = useNavigate()
   const user = useUser()
-  const { ad,  isLoading, deleteAd } = useAd()
+  const { ad,  isLoading, deleteAd, updateAd } = useAd()
   const [modalOpen, setModalOpen] = useState(false)
   const close = () => setModalOpen(false)
   const open = () => setModalOpen(true)
   const [openChat, setOpenChat] = useState(false)
+  const [views, setViews] = useState(0)
+
 
 
 
   // HANDLE MESSAGE
   const handleMessage = () => {
     if (user.isLoggedIn === false) navigate('/auth-required')
-   
     setOpenChat(true)
-
-   
-
-  
   }
 
     // HANDLE CONTACT
@@ -81,9 +78,23 @@ const SingleAd = () => {
       navigate(`/account`)
     }
   }
- 
 
+  // const location = useLocation()
+  // const path = location.pathname.split('/')[2]
+  // console.log('V',path===ad?._id);
+  console.log('Views',ad?.views);
+  
 
+  // useEffect(() => {
+  //   if(path === ad?._id){
+  //     setViews(views =>views + 1)
+  //     updateAd({
+  //     ...ad,
+  //     views: path + 1,
+  //   })
+  // }}, [])
+
+  
 
 
   // If no ad was fetched, return div with message

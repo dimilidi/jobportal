@@ -87,7 +87,7 @@ const Account = () => {
                     md:text-4xl
                   text-center text-darkBeige'
               >
-                You have currently <br></br> no ads 
+                You have currently <br></br> no ads yet
               </div>
             ) : (
               adList?.map((ad) => <Ad key={ad._id} ad={ad} />)

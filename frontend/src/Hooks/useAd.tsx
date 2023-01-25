@@ -79,18 +79,7 @@ function useAd(): AdHook {
     }
   }, [params.id])
 
-  // const location = useLocation()
-  // const path = location.pathname.split('/')[2]
-  // console.log('V',ad?.views);
   
-
-  // useEffect(() => {
-  //   if(path === ad?._id){
-  //     updateAd({
-  //     ...ad,
-  //     views: ad?.views + 1,
-  //   })
-  // }}, [path])
 
   return { ad, deleteAd, updateAd, error, isLoading }
 }
