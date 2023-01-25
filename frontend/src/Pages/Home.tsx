@@ -12,7 +12,7 @@ const Home = () => {
   const dreamText = useDecorationLine({ orientation: 'right' })
 
   return (
-    <div
+    <motion.div
       // initial={{ width: '100%' }}
       // animate={{ width: '100%' }}
       // exit={{ x: window.innerWidth }}
@@ -67,7 +67,7 @@ const Home = () => {
         className='hidden xl:block w-[332px] h-[332px]
         absolute top-[460px] right-[-250px] translate-y-[-50%] rounded-full md:bg-lightGreen'
       />
-    </div>
+    </motion.div>
   )
 }
 
