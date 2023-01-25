@@ -30,7 +30,7 @@ const EditAd = () => {
   const ads = useAd()
 
     // DECORATION LINE
-  const editText = useDecorationLine({orientation: 'left'})
+  // const editText = useDecorationLine({orientation: 'left'})
 
   // STATES
   const [isLoading, setIsLoading] = useState(false)
@@ -126,11 +126,11 @@ const EditAd = () => {
         {/* MAIN */}
         <div
           area-label='main'
-          className='relative  h-full min-h-[920px] w-[85%] max-w-[1000px]  md:w-[70%] flex flex-col justify-center'
+          className='relative pt-[100px] h-full min-h-[920px] w-[85%] max-w-[1000px]  md:w-[70%] flex flex-col justify-center lg:pt-0'
         >
 
         {/* BACK TO ACCOUNT */}
-        <div className='hidden md:block'>
+        <div className='hidden md:block py-3'>
         <BrowseJobs/>
         </div>
 
@@ -138,21 +138,21 @@ const EditAd = () => {
           {/* AD FORM */}
           <form
             area-label='form'
-            className='mt-8 gap-6 md:flex-col lg:flex-row md:gap-10 lg:gap-20 z-10 '
+            className=' lg:h-[550px] gap-6 md:flex-col lg:flex-row md:gap-10 lg:gap-20 z-10 '
             onSubmit={handleEdit}
           >
             <div
               area-label='ad'
-              className='p-5 pt-10  flex flex-col items-center rounded-[21px] bg-white shadow-standard  sm:p-10 '
+              className='p-5 pt-10   flex flex-col items-center  rounded-[21px] bg-white shadow-standard  sm:p-10 md:py-3 '
             >
             {/* TITLE MOBILE (with line) */}
-              <div>
+              <div className='py-5'>
                 <h1
                   area-label='title-mobile'
                   className='text-4xl mb-3 font-medium text-textBlack md:hidden lg:hidden'
                 >
                   <span
-                  ref={editText} 
+                  // ref={editText} 
                   className='italic font-medium text-lightGreen md:hidden lg:hidden'>
                     Edit{' '}
                   </span>
@@ -217,7 +217,7 @@ const EditAd = () => {
               {/* TITLE && CITY && SECTOR */}
               <div
                 area-label='inputs colum'
-                className='w-full mt-3 flex flex-col items-center justify-center'
+                className='pb-5 w-full mt-3 flex flex-col items-center justify-center'
               >
                 <div
                   area-label='title-city'
@@ -368,12 +368,13 @@ const EditAd = () => {
               </div>
             </div>
             {/* BUTTON - POST AD */}
-            <div className='w-full my-7 flex flex-col lg:flex-row justify-center items-center gap-5'>
+            <div className=' py-7 mb-20 flex flex-col lg:flex-row justify-center items-center gap-5'>
             <UniButtonDark
-            type='submit'
+              type='submit'
               area-label='postAdButton'
               text={isLoading ? <Spinner /> : 'Save Changes'}
-              className='self-center md:mb-0'
+              className=' self-center md:mb-0'
+              style={{width:'220px'}}
             />
             {/* BUTTON - BACK TO ACCOUNT */}
             <Link to='/account'>
@@ -382,6 +383,8 @@ const EditAd = () => {
               area-label='backToAccountButton'
               text='Back to Account'
               className='self-center md:mb-0'
+              style={{width:'220px'}}
+
             />
             </Link>
             </div>

@@ -30,7 +30,7 @@ const AuthRequired = () => {
     animate={ {width: '100%'}}
     exit={{x:window.innerWidth}} 
    >
-      <div className='pb-20 pt-[60px] md:pt-[120px] xl:pt-[150px] mx-auto pr-2 w-[90%] h-full flex justify-center flex-col items-center sm:w-[60%] lg:w-[50%]'>
+      <div className='h-screen pb-20 pt-[100px] md:pt-[120px] xl:pt-[150px] mx-auto pr-2 w-[90%]  flex justify-top flex-col items-center sm:h-full sm:w-[60%] lg:w-[50%]'>
 
       
       {/* ICON & BROWSE JOBS */}
@@ -73,7 +73,7 @@ const AuthRequired = () => {
         {/* ELEMENTS END*/}
 
         {/* IMAGES */}
-        <div>
+        <div className=''>
           <img
             src={DeliveryGuy}
             alt='postman'
