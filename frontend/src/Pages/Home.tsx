@@ -65,7 +65,7 @@ const Home = () => {
       <div
         area-label='circle'
         className='hidden xl:block w-[332px] h-[332px]
-        absolute top-[460px] right-[-250px] translate-y-[-50%] rounded-full md:bg-lightGreen'
+        absolute top-[465px] right-[-250px] translate-y-[-50%] rounded-full md:bg-lightGreen'
       />
     </motion.div>
   )
