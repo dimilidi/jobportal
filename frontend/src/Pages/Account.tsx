@@ -37,7 +37,7 @@ const Account = () => {
       initial={{ width: '100%' }}
       animate={{ width: '100%' }}
       exit={{ x: window.innerWidth }}
-      className='mx-auto pt-[80px] pb-10 w-full h-full min-h-[1100px] flex flex-col items-center justify-center gap-10 md:gap-3 lg:min-h-[970px] lg:flex-row lg:gap-0'
+      className='mx-auto pt-[80px] pb-10 w-full h-full flex flex-col items-center justify-center gap-10 md:gap-3 lg:min-h-[970px] lg:flex-row lg:gap-0'
     >
       {/* SEMICIRCLE */}
       <div className='w-[50px] h-24 hidden absolute right-0 rounded-tl-full rounded-bl-full bg-lightGreen md:hidden lg:block lg:top-[125px] xl:top-[130px]' />
