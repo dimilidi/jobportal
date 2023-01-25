@@ -10,12 +10,18 @@ import useUser from '../Hooks/useUser'
 // framer-motion
 import { motion } from 'framer-motion'
 import PaginationButtons from '../Components/PaginationButtons'
+import UniButtonDark from '../Components/UniButtonDark'
+import useDecorationLine from '../Hooks/useDecorationLine'
 
 const Account = () => {
   const navigate = useNavigate()
   const { user, loading } = useUser()
   const { pageCount, page, setPage } = useAdList(`userId=${user?._id}`)
   const { adList } = useAdList(`userId=${user?._id}&page=${page}`)
+
+
+
+
 
   
   useEffect(() => {
@@ -58,22 +64,23 @@ const Account = () => {
             onClick={() => navigate('/post-ad')}
             style={{ z: 10, border:'white' }}
           />
-
           <UniButton
             text='Browse Ads'
             type='button'
             onClick={() => navigate('/adslist')}
             style={{ z: 10 }}
           />
+        
         </div>
-
-        <h3 className='mt-10 md:mb-[30px] lg:mt-[60px] lg:mb-[-20px] xl:mb-[-10px] text-lg font-semibold text-gray text-opacity-40 text-center lg:w-[87%] lg:flex lg:justify-start xl:w-[85%]'>
+        <h3   className='mt-10 md:mb-[30px] lg:mt-[60px] lg:mb-[-20px] xl:mb-[-10px] text-lg font-semibold text-gray text-opacity-40 text-center lg:w-[87%] lg:flex lg:justify-start xl:w-[85%]'>
           Your Ads
         </h3>
 
         {/* ADS */}
+
         <div className='bg-darkBeige pt-14 bg-opacity-30 mt-[30px] mb-[30px] w-full h-full flex flex-wrap justify-center items-start md:rounded-[21px] sm:px-5 sm:mt-3 sm:mb-20 sm:w-[600px] sm:h-[552px] md:w-[100%] md:h-[250px] lg:px-0 lg:mb-0 lg:h-[450px]'>
           <div className='w-full flex flex-wrap justify-center items-center md:justify-start lg:justify-center'>
+
             {adList?.length === 0 ? (
               <div
                 className='font-bold relative text-xl sm:text-xl
@@ -87,9 +94,10 @@ const Account = () => {
             )}
           </div>
         </div>
-        {pageCount >0 &&
+        {
         <div
           aria-label='paginationButtons'
+          style={{visibility: pageCount >0 ? 'visible' : 'hidden'}}
           className='mb-[50px] lg:mb-0 w-full lg:flex lg:justify-end xl:w-[90%]'>
           <PaginationButtons page ={page} setPage = {setPage} pageCount={pageCount}/>
         </div>}

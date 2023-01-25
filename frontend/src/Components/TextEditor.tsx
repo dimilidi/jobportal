@@ -4,7 +4,7 @@ import "quill/dist/quill.snow.css";
 
 type Props ={
     description: String
-    setDescription: (value: String) => void
+    setDescription: (value: any) => void
 }
 
 
@@ -47,7 +47,7 @@ const Editor = (props:Props) => {
   }, [quill])
 
   return (
-    <div style={{width: '100%'}}>
+    <div style={{width: '100%',}}>
       <div ref={quillRef} />
     </div>
   )

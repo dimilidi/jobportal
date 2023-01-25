@@ -144,7 +144,8 @@ const SingleAd = () => {
               >
                 <h3 className='text-[20px]'>Description</h3>
                 <p className='text-[14px] text-justify mt-2 text-gray/80'>
-                  {/* Formated text */}
+                  {/* {ad.description} */}
+                  {/* Formated text mit Text Editor */}
                   <TextEditorRender />
                 </p>
               </div>

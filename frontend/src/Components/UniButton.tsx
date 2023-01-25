@@ -2,6 +2,7 @@
 import { motion } from 'framer-motion'
 import { ReactNode } from 'react'
 
+
 type Props = {
   text: string | ReactNode
   style?: {}
@@ -14,6 +15,7 @@ type Props = {
 }
 
 const UniButton = ( props: Props ) => {
+
   return (
     <div className={ props.className }>
       <motion.button
