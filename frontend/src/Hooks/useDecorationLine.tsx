@@ -26,7 +26,7 @@ export default function useDecorationLine(props: Props) {
 
       const line = document.createElement('div')
       line.style.position = 'absolute'
-      line.style.top = rect.bottom - 5 + 'px'
+      line.style.top = (ref.current.offsetTop + rect.height) - 5 + 'px'
       if (wWidth > 1024 && thicknessDesktop) {
         line.style.borderBottom = thicknessDesktop + 'px solid ' + color
       } else {
