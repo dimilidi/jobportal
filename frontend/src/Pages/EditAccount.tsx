@@ -98,10 +98,10 @@ const EditAccount = (props: Props) => {
     // CONTAINER WHOLE PAGE CONTENT
     <div
       area-label='main-container'
-      className='
+      className='h-screen
       md:h-[920px]
-      pt-[110px] xl:pt-[290]
-      flex flex-col items-center
+      pt-[0px] xl:pt-[290]
+      flex flex-col items-center justify-center
       '
       onClick={() => open && setOpen(false)}
     >
@@ -154,7 +154,7 @@ const EditAccount = (props: Props) => {
       <div
         aria-label='main-form-ctn'
         className='
-        w-[90%] h-[550px] md:w-[700px] md:h-[660px]
+        w-[90%] h-[550px]md:w-[700px] sm:h-[600px] md:h-[660px]
         flex flex-col items-center justify-center 
         relative rounded-[30px] shadow-standard bg-white 
         '
@@ -412,7 +412,7 @@ const EditAccount = (props: Props) => {
                 className='mt-1 
                 text-red-600  
                 w-[100%] 
-                text-center'
+                text-center text-sm'
               >
                 {error}
               </p>
