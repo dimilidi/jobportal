@@ -121,20 +121,20 @@ const EditAccount = (props: Props) => {
       <div
         aria-label='headline'
         className='w-[85%] mb-2
-          flex justify-between items-end
+          flex justify-between items-end 
           md:mb-5 md:w-[65%] lg:w-[68%] xl:w-[48%] 2xl:w-[36%]'
       >
          {/* TITLE & BROWSER-B */}
          <div
           className='w-[100%]
-      flex flex-row justify-between items-end'
+      flex flex-row justify-between items-end sm:mt-[70px] md:mt-5'
         >
           <h1
             className='
           w-[30%]
           text-left text-[2rem] font-semibold 
           sm:text-[2.5rem] leading-none
-          md:w-[80%] md:text-[3rem]
+          sm:w-[100%] md:text-center
           lg:w-[50%]
           '
           >
@@ -194,10 +194,10 @@ const EditAccount = (props: Props) => {
               flex flex-col items-end md:flex-row-reverse md:justify-between md:items-center'
             >
               {/* IMAGE */}
-              <div className='h-[100px] relative mb-5 flex flex-col sm:h-[11em]'>
+              <div className='mt-[70px] h-[8em] w-auto  rounded-full relative mb-5 flex flex-col  sm:h-[11em] '>
                 <img
                   aria-label='image'
-                  className=' h-[8em] w-[8em] object-cover rounded-full  shadow-standard 
+                  className=' h-full w-[8em] object-cover rounded-full  shadow-standard 
                 top-[40px] right-5
                 z-20 block sm:h-[11em] sm:w-[11em]
                 '
@@ -420,17 +420,17 @@ const EditAccount = (props: Props) => {
 
           {/* SAVE CHANGES BUTTON */}
           <UniButton
-            text={fetching ? <Spinner /> : 'Save Changes'}
+            text={fetching ? <Spinner /> : 'Save '}
             className='
                 mt-2
                 w-full
                 flex flex-wrap justify-center
-                text-lg'
+                text-lg '
             style={{ padding: '10px' }}
           />
 
           {/* DELETE-ACCOUNT */}
-          <p className='my-4 w-full text-center text-lightGray underline text-[14px] lg:text-center'>
+          <p className='my-4 w-full text-center text-lightGray underline text-[14px]  lg:text-center sm:pb-1'>
             <Link to='/delete-account'>Delete account</Link>
           </p>
         </form>
