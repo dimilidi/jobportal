@@ -91,7 +91,7 @@ const Login = (props: Props) => {
 
       {/*HEADING && FORM */}
       <div className='py-[20px] h-[600px] w-[90%] max-w-[500px]  
-      flex flex-col justify-center   border-radius  shadow-standard  
+      flex flex-col justify-center border-radius  shadow-standard  
       bg-white rounded-[30px]
       lg:max-w-[1000px] lg:w-[50%] lg:h-[650px] lg:ml-[16rem] lg:rounded-l-[30px] lg:rounded-r-none
       xl:ml-[20rem]'>
