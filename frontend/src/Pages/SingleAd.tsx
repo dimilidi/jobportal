@@ -156,7 +156,7 @@ const SingleAd = () => {
           {/* IF AD IS CREATED BY USER, BUTTON "EDIT" && "DELETE" */}
           {user.user?._id === ad?.user._id && (
             <div className='px-3 flex justify-center gap-2'>
-              <UniButtonWhite
+              <UniButtonDark
                 text={
                   <AiFillEdit style={{ width: '40px', fontSize: '20px' }} />
                 }
