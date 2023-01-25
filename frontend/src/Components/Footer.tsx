@@ -23,12 +23,12 @@ function Footer() {
           text-l text-center text-gray text-opacity-30 font-light'>
           {' '}
           &copy; 2022 All rights reserved{' '}
-          <span className='font-bold mr-2'> Jobsy.</span>
+          <span className='font-bold mr-2 hidden md:inline'> Jobsy.</span>
 
-          <div className="hidden md:inline">
+          <div className=" hidden md:inline">
           <span>Image credits to</span>
-          <span className="relative left-2 mr-4 bg-gray bg-opacity-30 text-background font-black rounded-full p-1 text-xs cursor-pointer" onClick={handleClick}>O!</span>
           </div>
+          <span className="inline relative left-2 mr-4 bg-gray bg-opacity-30 text-background font-black rounded-full p-1 text-xs cursor-pointer" onClick={handleClick}>O!</span>
         </p>
       </div>
     </footer>

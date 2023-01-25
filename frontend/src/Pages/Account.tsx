@@ -58,11 +58,11 @@ const Account = () => {
               sm:justify-center sm:flex-row md:justify-center
               lg:justify-start md:mt-14 lg:mt-0'
         >
-          <UniButton
+          <UniButtonDark
             text='Post Ad'
             type='button'
             onClick={() => navigate('/post-ad')}
-            style={{ z: 10, border:'white' }}
+            style={{ z: 10  }}
           />
           <UniButton
             text='Browse Ads'
