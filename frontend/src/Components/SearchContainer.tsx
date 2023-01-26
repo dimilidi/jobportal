@@ -23,8 +23,8 @@ const SearchContainer = (props: Props) => {
     // SEARCH HOME
     <form
       aria-label='search-home-form'
-      className='sm:w-[27rem] mt-6 flex items-center justify-center flex-col
-      lg:pt-[0px] lg:w-[45%] lg:self-end lg:ml-[23%]  lg:mt-[120px]
+      className='sm:w-[27rem] flex items-center justify-center flex-col
+      lg:pt-[0px] lg:w-[45%] lg:self-end lg:ml-[23%] lg:mt-[120px]
    xl:mt-0 xl:w-[50%] xl:ml-0
       xl:items-start '
       onSubmit={handleSubmit}
