@@ -54,9 +54,7 @@ export async function getAds(req, res) {
   
   const [count, ads] = await Promise.all([countDoc, query])
   let pageCount = count / page_size
-  // pageCount=  count === 0 | count ===1  ? 1 : count / page_size
 
-  
   res.status(200).json({pagination:{count, pageCount},ads})
 }
 
@@ -88,12 +86,6 @@ export async function getAdById(req, res) {
   // if user is NOT logged in, populate only name of ad-creator
   let ad = await Ad.findById(adId).populate('user', 'name, avatar views')
 
-//   const resultUpdate = await Ad.findByIdAndUpdate(adId, {
-//     $inc: {views: 1},
-//   })
-// console.log(resultUpdate)
-
-
 
   // if user is logged in, contact data selected in contactvia
   let itemToPopulate = 'name avatar views'
@@ -106,6 +98,23 @@ export async function getAdById(req, res) {
 
   res.status(200).json(ad)
 }
+
+
+//INCREMENT VIEWS
+/** @type {import("express").RequestHandler} */
+export async function incrementViews(req, res) {
+  const user = req.user
+  const adId = req.params.id
+
+  const resultUpdate = await Ad.findByIdAndUpdate(adId, {
+    $inc: {views: 1},
+  })
+  console.log(resultUpdate)
+
+
+  res.status(200).json(resultUpdate)
+}
+
 
 
 // UPDATE AD
