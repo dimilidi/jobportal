@@ -41,7 +41,7 @@ const SingleAd = () => {
   const [openChat, setOpenChat] = useState(false)
 
   const sender = user.user?._id
-  console.log('Sender',sender);
+
   
 
   // HANDLE MESSAGE

@@ -31,7 +31,8 @@ function MessageHistory( {currentChat}:Props) {
    if(currentChat != null) fetchMessages()
   }, [currentChat])
 
-  messages && console.log('MEEEEEEEEEEEEEESSAGES',messages)
+ console.log(currentChat.members[0]);
+ 
 
   return (
 
