@@ -98,7 +98,7 @@ const EditAccount = (props: Props) => {
     // CONTAINER WHOLE PAGE CONTENT
     <div
       area-label='main-container'
-      className='h-screen
+      className='h-screen 
       md:h-[920px]
       pt-[0px] xl:pt-[290]
       flex flex-col items-center justify-center
@@ -154,7 +154,7 @@ const EditAccount = (props: Props) => {
       <div
         aria-label='main-form-ctn'
         className='
-        w-[90%] h-[550px]md:w-[700px] sm:h-[600px] md:h-[660px]
+        w-[90%] h-[550px] py-50 md:w-[700px] sm:h-[600px] md:h-[660px]
         flex flex-col items-center justify-center 
         relative rounded-[30px] shadow-standard bg-white 
         '
@@ -188,7 +188,7 @@ const EditAccount = (props: Props) => {
             {/* INPUTS CONTAINER */}
             <div
               aria-label='inputs-ctn'
-              className='w-full 
+              className='pt-[40px] w-full 
               lg:w-full
                
               flex flex-col items-end md:flex-row-reverse md:justify-between md:items-center'
@@ -430,7 +430,7 @@ const EditAccount = (props: Props) => {
           />
 
           {/* DELETE-ACCOUNT */}
-          <p className='my-4 w-full text-center text-lightGray underline text-[14px]  lg:text-center sm:pb-1'>
+          <p className='py-4 mb-5 w-full text-center text-lightGray underline text-[14px]  lg:text-center sm:pb-1'>
             <Link to='/delete-account'>Delete account</Link>
           </p>
         </form>
