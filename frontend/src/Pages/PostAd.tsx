@@ -181,7 +181,7 @@ const PostAd = () => {
                       className='accent-darkGreen'
                       onChange={(e) => setCategory(e.target.value)}
                     />
-                    <label className='form-label'>offering</label>
+                    <label htmlFor='case' className='form-label'>offering</label>
                   </div>
 
                   <div className='flex gap-2'>

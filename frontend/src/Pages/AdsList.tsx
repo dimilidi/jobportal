@@ -37,7 +37,6 @@ const AdsList = () => {
     },[searchWord])
 
 
-
   // DECORATION LINE
   const missionText = useDecorationLine({ orientation: 'right' })
 
