@@ -98,9 +98,9 @@ const EditAccount = (props: Props) => {
     // CONTAINER WHOLE PAGE CONTENT
     <div
       area-label=' main-container'
-      className='h-full min-h-[800px]
+      className='h-full min-h-[900px]
       md:h-[920px]
-      pt-[150px] 
+      pt-[100px] 
       flex flex-col items-center justify-center
       '
       onClick={() => open && setOpen(false)}
