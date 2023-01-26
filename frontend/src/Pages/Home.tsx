@@ -16,7 +16,7 @@ const Home = () => {
       // initial={{ width: '100%' }}
       // animate={{ width: '100%' }}
       // exit={{ x: window.innerWidth }}
-      className='mx-auto md:w-[90%] w-full h-full min-h-[918px] flex justify-center items-center lg:justify-end'
+      className='mx-auto md:w-[90%] w-full h-full min-h-[700px] md:min-h-[918px] flex justify-center items-center lg:justify-end'
     >
       <div
         className='py-8 h-full w-[100%] mx-auto 
