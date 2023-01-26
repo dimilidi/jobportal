@@ -82,7 +82,7 @@ const AuthRequired = () => {
                 md:max-h-full  md:top-[360px] md:-left-4 
                 lg:left-32 lg:top-[300px] 
                 xl:left-56 xl:top-[260px] 
-                2xl:left-96  z-10'
+                2xl:left-96  z-50'
           />
         </div>
         {/* IMAGES END */}
