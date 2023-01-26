@@ -71,7 +71,7 @@ const Register = () => {
       initial={{ width: '100%' }}
       animate={{ width: '100%' }}
       exit={{ x: window.innerWidth }}
-      className='pt-5 h-full min-h-[950px] flex flex-col items-center justify-center lg:flex-row lg:relative'
+      className='h-full sm:h-[850px] min-h-[800px] md:h-[880px] lg:h-[950px] flex flex-col items-center justify-center lg:flex-row lg:relative'
     >
       {/* Line */}
       {/* <div
@@ -86,7 +86,7 @@ const Register = () => {
       /> */}
 
       {/* GREEN SEMICIRCLE */}
-      <div className='w-[50px] h-[100px] hidden absolute right-0 top-[19rem] z-10 bg-lightGreen rounded-tl-full rounded-bl-full xl:block' />
+      <div className='w-[50px] h-[100px] hidden absolute right-0 top-[18.5rem] xl:top-[19rem] z-10 bg-lightGreen rounded-tl-full rounded-bl-full lg:block' />
 
       {/* IMAGE2 */}
       <img
