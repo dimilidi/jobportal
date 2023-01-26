@@ -182,7 +182,7 @@ const PostAd = () => {
                       className='accent-darkGreen'
                       onChange={(e) => setCategory(e.target.value)}
                     />
-                    <label htmlFor='offering' className='form-label'>offering</label>
+                    <label htmlFor='offering' className='form-label cursor-pointer'>offering</label>
                   </div>
 
                   <div className='flex gap-2'>
@@ -194,7 +194,7 @@ const PostAd = () => {
                       className='accent-darkGreen'
                       onChange={(e) => setCategory(e.target.value)}
                     />
-                    <label htmlFor='searching' className='form-label'>searching</label>
+                    <label htmlFor='searching' className='form-label cursor-pointer'>searching</label>
                   </div>
                 </div>
               </div>
