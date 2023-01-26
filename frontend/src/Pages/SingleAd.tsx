@@ -123,20 +123,6 @@ const SingleAd = () => {
               alignSelf: 'start',
             }}
           />
-
-                     {/* VIEWS */}
-          {/* <div className="flex items-center gap-3 mt-2 justify-between">
-            <div className="flex gap-3 mt-4"> */}
-              <div className="w-[50px] h-[25px] pr-[20px] mt-2 flex items-center justify-center gap-1 text-sm text-gray opacity-50">
-                <BsFillEyeFill /> <span>{ad.views}</span>
-              </div>
-              
-              
-              {/* <button className="flex items-center justify-center gap-2 text-xs text-white opacity-50">
-                <AiOutlineMessage /> <span>{ad.likes?.length || 0}</span>
-              </button> */}
-            {/* </div>
-          </div> */}
           </div>
 
           {/* Ad */}
@@ -153,15 +139,20 @@ const SingleAd = () => {
                 area-label='description'
                 className='mt-3 px-3 sm:max-h-[230px] sm:overflow-y-scroll'
               >
-                <h3 className='text-[20px]'>Description</h3>
-                <p className='text-[14px] text-justify mt-2 text-gray/80'>
+                {/* <h3 className='text-[20px]'>Description</h3> */}
+                <p className='text-[14px] text-justify text-gray/80'>
                   {/* {ad.description} */}
                   {/* Formated text mit Text Editor */}
                   <TextEditorRender />
                 </p>
               </div>
             )}
+                {/* VIEWS */}
+                <div className=" h-[25px] pr-[20px] mt-5 flex items-center justify-end gap-1 text-sm text-gray opacity-50">
+                <BsFillEyeFill /> <span>{ad.views}</span>
+              </div>
           </div>
+
         
 
           {/* IF AD IS CREATED BY USER, BUTTON "EDIT" && "DELETE" */}
@@ -227,6 +218,7 @@ const SingleAd = () => {
                 text='Message'
                 onClick={handleMessage}
                 className='my-7 self-center mb-2 lg:mb-0'
+                style={{ width: '140px' }}
               />
             )}
 
@@ -237,6 +229,7 @@ const SingleAd = () => {
               text='Contact'
               onClick={handleContact}
               className='my-7 self-center mb-2 lg:mb-0'
+              style={{ width: '140px' }}
             />
             )}
           </div>
