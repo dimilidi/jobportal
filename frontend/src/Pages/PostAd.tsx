@@ -176,6 +176,7 @@ const PostAd = () => {
                   <div className='flex gap-2'>
                     <input
                       type='radio'
+                      id='offering'
                       value='offering'
                       name='case'
                       className='accent-darkGreen'
@@ -187,6 +188,7 @@ const PostAd = () => {
                   <div className='flex gap-2'>
                     <input
                       type='radio'
+                      id='searching'
                       value='searching'
                       name='case'
                       className='accent-darkGreen'
