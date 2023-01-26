@@ -33,7 +33,7 @@ const SingleAd = () => {
   const params = useParams()
   const navigate = useNavigate()
   const user = useUser()
-  const { ad,  isLoading, deleteAd, updateAd } = useAd()
+  const { ad,  isLoading, deleteAd, updateAd, fetchAds } = useAd()
   const [modalOpen, setModalOpen] = useState(false)
   const close = () => setModalOpen(false)
   const open = () => setModalOpen(true)
@@ -42,6 +42,13 @@ const SingleAd = () => {
 
 
 
+  // useEffect(() => {
+  //   // if (params.id) {
+  //     fetchAds()
+  //   // }
+  //   // console.log(params.id);
+    
+  // }, [])
 
   // HANDLE MESSAGE
   const handleMessage = () => {
