@@ -88,9 +88,11 @@ export async function getAdById(req, res) {
   // if user is NOT logged in, populate only name of ad-creator
   let ad = await Ad.findById(adId).populate('user', 'name, avatar views')
 
-  // await Ad.findByIdAndUpdate(adId, {
-  //   $inc: {views: 1},
-  // })
+//   const resultUpdate = await Ad.findByIdAndUpdate(adId, {
+//     $inc: {views: 1},
+//   })
+// console.log(resultUpdate)
+
 
 
   // if user is logged in, contact data selected in contactvia

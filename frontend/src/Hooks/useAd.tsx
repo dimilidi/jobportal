@@ -13,6 +13,7 @@ type AdHook = {
   error: string
   deleteAd: (adId: string) => void
   updateAd: (newAd: {}) => {}
+  fetchAds: () => void
 }
 
 function useAd(): AdHook {
@@ -73,15 +74,18 @@ function useAd(): AdHook {
     }
   }
 
-  useEffect(() => {
-    if (params.id) {
-      fetchAds()
-    }
-  }, [params.id])
+  // useEffect(() => {
+  //   if (params.id) {
+  //     fetchAds()
+  //   }
+  //   console.log(params.id);
+    
+  // }, [params.id])
+  
 
   
 
-  return { ad, deleteAd, updateAd, error, isLoading }
+  return { ad, deleteAd, updateAd, error, isLoading, fetchAds }
 }
 
 export default useAd
