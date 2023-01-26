@@ -24,6 +24,7 @@ import Modal from '../Components/Modal'
 import { BsFillEyeFill } from 'react-icons/bs'
 import UniButtonDark from '../Components/UniButtonDark'
 import TextEditorRender from '../Components/TextEditorRender'
+import axiosInstance from '../api/axiosInstance'
 
 
 
@@ -42,13 +43,18 @@ const SingleAd = () => {
 
 
 
+
+ //HANDLE VIEWS
  useEffect(() => {
- if (params.id) {
-     fetchAds()
- }
- console.log(params.id);
-    
-}, [])
+  const updateViews = async () => {
+    const response = await axiosInstance
+    .get(`/ads/${params.id}/increment-view`)
+    .catch((e) => e.response)
+  }
+  updateViews()
+},[params.id])
+
+
 
   // HANDLE MESSAGE
   const handleMessage = () => {
@@ -86,21 +92,8 @@ const SingleAd = () => {
     }
   }
 
-  // const location = useLocation()
-  // const path = location.pathname.split('/')[2]
-  // console.log('V',path===ad?._id);
+
   console.log('Views',ad?.views);
-  
-
-  // useEffect(() => {
-  //   if(path === ad?._id){
-  //     setViews(views =>views + 1)
-  //     updateAd({
-  //     ...ad,
-  //     views: path + 1,
-  //   })
-  // }}, [])
-
   
 
 
@@ -134,10 +127,10 @@ const SingleAd = () => {
                      {/* VIEWS */}
           {/* <div className="flex items-center gap-3 mt-2 justify-between">
             <div className="flex gap-3 mt-4"> */}
-              {/* <div className="w-[50px] h-[25px] pr-[20px] mt-2 flex items-center justify-center gap-1 text-sm text-gray opacity-50">
+              <div className="w-[50px] h-[25px] pr-[20px] mt-2 flex items-center justify-center gap-1 text-sm text-gray opacity-50">
                 <BsFillEyeFill /> <span>{ad.views}</span>
               </div>
-               */}
+              
               
               {/* <button className="flex items-center justify-center gap-2 text-xs text-white opacity-50">
                 <AiOutlineMessage /> <span>{ad.likes?.length || 0}</span>
