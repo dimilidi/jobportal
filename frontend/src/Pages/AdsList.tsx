@@ -62,7 +62,7 @@ const AdsList = () => {
       <div className='w-[50px] h-24 hidden right-0 top-[160px] rounded-tl-full rounded-bl-full bg-lightGreen lg:block absolute'></div>
 
       {/* HEADING WITH UNDERLINE  */}
-      <div className='mx-auto mt-[30px] h-[100px] w-[250px] lg:w-[320px] xl:w-[370px] flex justify-end'>
+      <div className='mx-auto md:mt-[30px] h-[100px] w-[250px] lg:w-[320px] xl:w-[370px] flex justify-end'>
         <h2 className='text-left text-[45px] font-semibold leading-tight'>
           Be part of
           <p>
