@@ -31,6 +31,11 @@ const AdsList = () => {
       `search=${searchWord}&category=${searchCategory}&page=${page}`
     )
 
+  // RESET PAGE NUMBER BY SEARCH 
+    useEffect(() => {
+      if(searchWord) setPage(0)
+    },[searchWord])
+
 
 
   // DECORATION LINE
