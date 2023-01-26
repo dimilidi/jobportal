@@ -74,13 +74,13 @@ function useAd(): AdHook {
     }
   }
 
-  // useEffect(() => {
-  //   if (params.id) {
-  //     fetchAds()
-  //   }
-  //   console.log(params.id);
+  useEffect(() => {
+    if (params.id) {
+      fetchAds()
+    }
+    console.log(params.id);
     
-  // }, [params.id])
+  }, [params.id])
   
 
   
