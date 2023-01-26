@@ -75,11 +75,6 @@ export function SocketProvider (props: {children: React.ReactElement}) {
   } 
 
  
-
- 
-  
-
- 
     // socket.on("message-from-server", (value:{}) => { //'message'
     //   setMessages((messages:[]) => [...messages, {message:value, received:true}])
     
