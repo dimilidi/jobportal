@@ -100,7 +100,7 @@ const EditAccount = (props: Props) => {
       area-label=' main-container'
       className='h-full min-h-[900px]
       md:h-[920px]
-      pt-[100px] 
+      pt-[20px] 
       flex flex-col items-center justify-center
       '
       onClick={() => open && setOpen(false)}
