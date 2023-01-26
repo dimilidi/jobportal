@@ -42,13 +42,13 @@ const SingleAd = () => {
 
 
 
-  // useEffect(() => {
-  //   // if (params.id) {
-  //     fetchAds()
-  //   // }
-  //   // console.log(params.id);
+ useEffect(() => {
+ if (params.id) {
+     fetchAds()
+ }
+ console.log(params.id);
     
-  // }, [])
+}, [])
 
   // HANDLE MESSAGE
   const handleMessage = () => {
