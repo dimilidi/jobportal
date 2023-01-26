@@ -17,7 +17,6 @@ import DeleteAd from '../assets/images/DeleteAd.png'
 // Framer-motion
 import { motion } from 'framer-motion'
 import { AiFillEdit } from 'react-icons/ai'
-import UniButtonWhite from '../Components/UniButtonWhite'
 import { RiDeleteBinLine } from 'react-icons/ri'
 import { useEffect, useState } from 'react'
 import Modal from '../Components/Modal'
@@ -107,7 +106,7 @@ const SingleAd = () => {
         animate={{ width: '100%' }}
         exit={{ x: window.innerWidth }}
         area-label='page-singleAd'
-        className='pt-[120px]  pb-20 w-[95%] h-full  min-h-[900px] flex flex-col items-center justify-center text-textBlack md:pt-[140px] xl:pt-[120px] '
+        className='pb-20 w-[95%] h-full min-h-[900px] flex flex-col items-center justify-center text-textBlack md:pt-[140px] xl:pt-[120px] '
       >
         {/* MAIN PART OF SINGLE AD */}
 
