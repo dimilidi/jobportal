@@ -35,14 +35,18 @@ const TextEditor = (props:Props) => {
   const { quill, quillRef, Quill } = useQuill({
     modules,
     formats,
-    placeholder
+    placeholder,
+    // defaultValue: props.description
   })
 
   useEffect(() => {
     if (quill) {
-      quill.on("text-change", () => {
-        props.setDescription(quill.root.innerHTML)
-      })
+      setTimeout(() => {
+        quill.on("text-change", () => {
+          console.log('DESC UE: ',props.description);
+          props.setDescription(quill.root.innerHTML)
+        })
+      }, 1000);
     }
   }, [quill])
 
