@@ -6,6 +6,7 @@ import useDecorationLine from '../Hooks/useDecorationLine'
 // Component
 import UniButton from '../Components/UniButton'
 import Spinner from '../Components/Spinner'
+import FileUploader from '../Components/FileUpload'
 // Images
 import image from '../assets/images/Account_profil.png'
 // Toaster
@@ -38,6 +39,7 @@ const EditAccount = (props: Props) => {
   const [avatar, setAvatar] = useState<any>(user.user?.avatar)
   const [open, setOpen] = useState(false)
   const [maxLength, setMaxLength] = useState(300)
+  const [file, setFile] = useState<any>(user.user?.file)
 
   const defaultAvatar =
     'https://res.cloudinary.com/dmdjfvwkd/image/upload/v1673676247/Account_profilDefault_eqka4e.png'
@@ -79,7 +81,7 @@ const EditAccount = (props: Props) => {
     e.preventDefault()
     setFetching(true)
     setErrors([])
-    const newUser = { name, phone, city, profession, description, avatar }
+    const newUser = { name, phone, city, profession, description, avatar ,file}
     const response = await user.editAccount(newUser)
 
     console.log('RR',response.status);
@@ -94,6 +96,7 @@ const EditAccount = (props: Props) => {
     setFetching(false)
   }
 
+  
   return (
     // CONTAINER WHOLE PAGE CONTENT
     <div
@@ -365,6 +368,7 @@ const EditAccount = (props: Props) => {
               </div>
             </div>
           </div>
+          <FileUploader file={file} setFile={setFile} />
 
           {/* DESCRIPTION */}
           <label

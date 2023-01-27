@@ -3,12 +3,12 @@ import { useQuill } from "react-quilljs";
 import "quill/dist/quill.snow.css";
 
 type Props ={
-    description: String
+    description: string
     setDescription: (value: any) => void
 }
 
 
-const Editor = (props:Props) => {
+const TextEditor = (props:Props) => {
 
   const placeholder = 'Your description...'
   const modules = {
@@ -52,6 +52,6 @@ const Editor = (props:Props) => {
     </div>
   )
 }
-export default Editor
+export default TextEditor
 
 

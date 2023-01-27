@@ -95,6 +95,14 @@ function UserCard(props: Props) {
         )}
       </div>
 
+      {/* file upload */}
+      <div>
+        <p>here is the file:</p>
+        {user?.file &&
+        <div>{user?.file}</div>
+        }
+      </div>
+
       {/* Edit Profile Button Wrapper */}
       <div className='flex justify-center mb-10'>
 
