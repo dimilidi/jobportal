@@ -8,17 +8,17 @@ import useAdList from '../Hooks/useAdList'
 
 type Props = {
   ad: AdType
+  c: any
   userData: {
     avatar: string
     name:string
   }
-  receiverInfo: {
-    avatar: string
-    name:string
-  }
+  receiverInfo: {}
+  online: boolean
+ 
 }
 
-function UserMessage({ad, userData, receiverInfo}:Props) {
+function UserMessage({c, ad, userData, receiverInfo, online}:Props) {
 
   const user = useUser()
   const {adList} = useAdList('')
@@ -38,9 +38,19 @@ function UserMessage({ad, userData, receiverInfo}:Props) {
       
     },[user, adList, ad, currentChat])
 
-  console.log('USERDATA', userInfo);
-  console.log('INFO', receiverInfo);
-  // console.log('INFO', currentChat)
+
+console.log(online);
+
+
+
+useEffect(() => {
+  
+  getUserData()
+},[currentChat, adList, user])
+
+
+
+
 
   return (
     <>
@@ -68,7 +78,8 @@ function UserMessage({ad, userData, receiverInfo}:Props) {
           </div>
 
         </div>
-          <div className=' w-[15px] h-[15px] absolute top-20 right-[167px] rounded-full bg-green-500' />
+        {/* Online Status */}
+          {online && <div className=' w-[15px] h-[15px] absolute top-20 right-[167px] rounded-full bg-green-500' />}
           <div>
               <p>{userInfo.name}</p>
           </div>

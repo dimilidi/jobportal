@@ -33,59 +33,46 @@ const SingleAd = () => {
   const navigate = useNavigate()
   const user = useUser()
   const { ad,  isLoading, deleteAd } = useAd()
-  const {chats, setChats, currentChat} = useMessenger()
+  const {chats, setChats, setC, currentChat, setCurrentChat} = useMessenger()
+  const [openChat, setOpenChat] = useState(false)
 
   const [modalOpen, setModalOpen] = useState(false)
   const close = () => setModalOpen(false)
   const open = () => setModalOpen(true)
-  const [openChat, setOpenChat] = useState(false)
 
   const sender = user.user?._id
 
+  // CREATE CHAT
+ const createChat = async () => {
+  const chat ={
+    senderId: user.user?._id,
+    receiverId: ad?.user._id
+  }
+  
+  const response = await axiosInstance
+    .post(`/chat`,chat )
+    .catch((e) => e.response)
+    setChats([...chats, chat]) 
+}
   
 
   // HANDLE MESSAGE
   const handleMessage = () => {
     if (user.isLoggedIn === false) navigate('/auth-required')
     setOpenChat(true)
+    // create chat if chat doesn't already  exist                 // USEEFFECT ???????
+    chats.find((chat:any) => {
+      // if( !(chat.members.includes(ad?.user._id)) && 
+      //     !(chat.members.includes(ad?.user._id)) )  {
 
-  }
-
- // CREATE CHAT
-  const createChat = async () => {
-    const chat ={
-      senderId: user.user?._id,
-      receiverId: ad?.user._id
-    }
+      //     }
+         
     
-    const response = await axiosInstance
-      .post(`/chat`,chat )
-      .catch((e) => e.response)
-
-  }
-
-  // useEffect(() => {
-
-  //   chats?.map((chat:any) =>{
-  //     console.log('OOOOOOOOOOOOO', chat.members.includes(ad?.user._id));
-  //     // console.log(chat.members.senderId);
-       
-      
-  //    if((chat.members.includes(ad?.user._id) ) ) {
-  //     return
-  //    }
-  //    createChat()
-  //    setChats([...chats,chat])
-  //   })
-  // },[onclick, ad])
-
-  console.log('CHATS',chats);
-  console.log('CURR',currentChat);
-
-
+    } )
+  createChat() 
   
 
- 
+  }
 
   // HANDLE EDIT
   const handleEdit = () => {
@@ -109,8 +96,7 @@ const SingleAd = () => {
       navigate(`/account`)
     }
   }
- 
-  
+
 
   if(openChat){
     return <Message />
@@ -241,6 +227,7 @@ const SingleAd = () => {
 
           { user.user?._id !== ad?.user._id && (
             <UniButton
+           
               text='Message'
               onClick={handleMessage}
               className='my-7 self-center mb-2 lg:mb-0'

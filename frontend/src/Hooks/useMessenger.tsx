@@ -3,10 +3,13 @@
 // create context, useContext
 
 import { io } from "socket.io-client";
-import React, { createContext, useState, useContext, useEffect } from "react";
+import {useParams} from 'react-router-dom'
+import React, { createContext, useState, useContext, useEffect, useCallback } from "react";
 import { messageContext } from "../type";
 import useAd from "./useAd";
 import useUser from "./useUser";
+import axiosInstance from "../api/axiosInstance";
+import { notify } from "../utils/toastNotification";
 
 
 export let socket: any;
@@ -30,13 +33,18 @@ export const SocketContext = createContext<messageContext>({
   setCurrentChat: () => {},
   onlineUsers: [],
   chats: [],
-  setChats: () => []
+  setChats: () => [],
+  c: {},
+  setC: () => {},
   // joinChat: () => {}, 
   // setRoom: () => '', room:'' 
 })
 
 // props=app(child)
 export function SocketProvider (props: {children: React.ReactElement}) {
+  
+  const params = useParams()
+  const user = useUser()
 
   const [isConnected, setIsConnected] = useState(false)
   const [messages, setMessages] = useState<any>([])
@@ -47,6 +55,10 @@ export function SocketProvider (props: {children: React.ReactElement}) {
   const [receiveMessage, setReceiveMessage] =useState<any | {} | null>({})
   const [currentChat, setCurrentChat] = useState<any>(null)
   const [chats, setChats] = useState<any[]>([])
+  const [c, setC] = useState<any | null >({})
+
+ 
+
 
   
 // Connect to Socket 
@@ -74,17 +86,23 @@ export function SocketProvider (props: {children: React.ReactElement}) {
     }) 
   } 
 
- 
-    // socket.on("message-from-server", (value:{}) => { //'message'
-    //   setMessages((messages:[]) => [...messages, {message:value, received:true}])
-    
 
+  // GET CHAT
+  const fetchChat = useCallback(async () => {
+    try {
+      const {data} = await axiosInstance.get(`/chat/find/${user.user?._id}/${currentChat.members[1]}`)
+      setC(data)
+    } catch (error) {
+      notify('Something went wrong!')
+    }
+  }, [c])
+
+  
+ 
   socket.on("typing-started-from-server", () => setTyping(true))
   socket.on("typing-stopped-from-server",() => setTyping(false))
 
    
-  
-
   const exportData = {
     connect,  
     sendMessage,
@@ -102,12 +120,17 @@ export function SocketProvider (props: {children: React.ReactElement}) {
     setCurrentChat,
     onlineUsers,
     chats, 
-    setChats
+    setChats,
+    c, 
+    setC
     // joinChat,
     // setRoom,
     // room
   }
   
+ 
+  
+
 
 
   return (

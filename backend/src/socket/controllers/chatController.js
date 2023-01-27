@@ -36,3 +36,21 @@ export const findChat = async(req, res) => {
   res.status(200).json(chat)
 }
 
+/** @type {import("express").RequestHandler} */
+export const deleteChat = async(req, res) => {
+  const chatId = req.params.id
+  const chat = await Chat.findById(chatId)
+
+  const deletedChat = await Chat.deleteOne(chat)
+
+  if (deletedChat) {
+    res.status(200).json(deletedChat)
+  } else {
+    res.status(404).json('Chat: ' + chat + " doesn't exist.")
+  }
+}
+
+
+
+
+

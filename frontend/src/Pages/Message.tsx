@@ -1,20 +1,22 @@
 // Hooks
 import useUser from '../Hooks/useUser'
+import useAdList from '../Hooks/useAdList'
+import useAd from '../Hooks/useAd'
+import { useEffect, useState, useCallback } from 'react'
+import { useParams, useLocation } from 'react-router-dom'
+import useMessenger, { socket } from '../Hooks/useMessenger'
 // Components
 import AdMobile from '../Components/AdMobile'
 import MessageHistory from '../Components/MessageHistory'
+import Conversation from '../Components/Conversation'
+import UserMessage from '../Components/UserMessage'
+import InputMessage from '../Components/InputMessage'
 // Libraries
 import 'react-toastify/dist/ReactToastify.css'
 // Framer-motion
 import { motion } from 'framer-motion'
-import UserMessage from '../Components/UserMessage'
-import InputMessage from '../Components/InputMessage'
-import useAd from '../Hooks/useAd'
-import { useEffect, useState } from 'react'
-import useMessenger, { socket } from '../Hooks/useMessenger'
 import axiosInstance from '../api/axiosInstance'
-import Conversation from '../Components/Conversation'
-import useAdList from '../Hooks/useAdList'
+import { notify } from '../utils/toastNotification'
 
 
 const Message = () => {
@@ -22,21 +24,31 @@ const Message = () => {
   const {adList} = useAdList('')
   const {user} = useUser()
   const chat = useMessenger()
-  const { onlineUsers, sendMessage, setIsConnected, connect, currentChat, setCurrentChat, chats, setChats, setReceiveMessage, receiveMessage, receiveMessageFromSocket} = useMessenger()
+  const { setC, c, onlineUsers, sendMessage, setIsConnected, connect, currentChat, setCurrentChat, chats, setChats, setReceiveMessage, receiveMessage, receiveMessageFromSocket} = useMessenger()
   const [userData, setUserData] = useState<any>({})
   const [receiverInfo, setReceiverInfo] = useState<any>({})
+  const [openChatBox, setOpenChatBox] = useState(false)
+  const params = useParams()
+  const path  = useLocation()
 
+  
+  
+  // useEffect(() => {
+  //   console.log('path',location.pathname);
+  //   (location.pathname != 'path /message')
+   
+    
+  // },[path])
 
-  //Connect chat && join a room
+  //Connect chat 
   useEffect(() => {
     if(user) { 
       connect(user._id)
      } 
-    
       setIsConnected(true)
   },[user])
 
-console.log('ONLINE',chat.onlineUsers);
+// console.log('ONLINE',chat.onlineUsers);
 
 
 
@@ -51,7 +63,7 @@ console.log('ONLINE',chat.onlineUsers);
   useEffect(() => {
     if(currentChat !=null) getUserData()
     
-  },[user, adList])
+  },[user, adList, ad,  c])
 
   
 
@@ -60,18 +72,37 @@ console.log('ONLINE',chat.onlineUsers);
     try {
       const {data} = await axiosInstance.get(`/chat/${user?._id}`)
       setChats(data)
-      console.log('CHAAAAAAAAAAAAAAAAAAAAAAATA',data);
-      
-      
     } catch (error) {
       console.log(error);
-      
     }
   }
 
   useEffect(() => {
     getChats()
-  },[user])
+  },[user, ad])
+
+
+   // GET CHAT
+   const fetchChat = useCallback(async () => {
+    try {
+      const {data} = await axiosInstance.get(`/chat/find/${user?._id}/${currentChat.members[1]}`)
+      setC(data)
+    } catch (error) {
+      notify('Something went wrong!')
+    }
+  }, [c])
+
+
+  useEffect(() => {
+    if (currentChat) {
+      fetchChat()
+    }
+  }, [currentChat])
+ 
+  
+  console.log('CCCCCCCCCCCCC',c);
+  console.log('CCCCCCCCCCCCC',`/chat/find/${user?._id}/${currentChat?.members[1]}`);
+  
 
 
     // Send Message to the Socket Server
@@ -96,33 +127,38 @@ console.log('ONLINE',chat.onlineUsers);
 
 
     const checkOnlineStatus = (chat:any) => {
-      const chatMember = chat.members.find((member:any) => member !== user?._id)
+      const chatMember = chat.members?.find((member:any) => member !== user?._id)
       const online = onlineUsers?.find((user:any) => user.userId === chatMember)
       return online ? true : false
     }
-  
+
 
 
 
   return (
+   
     <motion.div
         initial={{ width: '100%' }}
         animate={{ width: '100%' }}
         exit={{ x: window.innerWidth }}
         area-label='message'
-        className='pt-10 pb-20 h-full  min-h-[700px]   flex flex-row items-center justify-center text-textBlack md:pt-[140px] lg:pt-[120px] lg:min-h-[900px]  xl:pt-[120px]'
+        className='pt-10 pb-20 h-full  min-h-[700px]   flex flex-col items-center justify-center text-textBlack md:pt-[140px] lg:pt-[120px] lg:min-h-[900px]  xl:pt-[120px]'
       >
+         <h3 className='text-xl' >Hello {user?.name}!</h3>
+
+           
         {/* CHAT LIST SIDEBAR */}
         <div>
           <h2>Chats</h2>
           <div>
             {chats.map((chat:any) => ( //chats
-              <div className='bg-green-300 w-[200px] h-[50px]' onClick={()=>setCurrentChat(chat)}>
-                <Conversation key={chat._id} data = {chat} setReceiverInfo= {setReceiverInfo} online={checkOnlineStatus(chat)} />
+              <div className=' w-[200px] h-[50px]' onClick={()=>setCurrentChat(chat)}>
+               {c && <Conversation key={chat._id} data = {chat} setReceiverInfo= {setReceiverInfo} receiverInfo={receiverInfo} online={checkOnlineStatus(chat)}/>} 
               </div>
             ))}
           </div>
         </div>
+
         {/* MAIN */}
         <div
           area-label='main'
@@ -134,7 +170,7 @@ console.log('ONLINE',chat.onlineUsers);
           xl:w-[800px] xl:min-h-full'
         >
 
-          {currentChat ? (
+          { currentChat  ? (
             <>
              {/* BOX*/}
         <div
@@ -149,7 +185,7 @@ console.log('ONLINE',chat.onlineUsers);
             aria-label='UserMessage'
             className='h-full w-full
               relative flex justify-center '>
-            {ad && <UserMessage ad={ad} userData = {userData} receiverInfo={receiverInfo}/>}
+            { <UserMessage c={c} ad={ad} userData = {userData}   receiverInfo={receiverInfo} online={checkOnlineStatus(currentChat)}/>}
           </div>
 
         {/* MESSAGE HISTORY */}
@@ -189,8 +225,11 @@ console.log('ONLINE',chat.onlineUsers);
 
        
         </div>
+       
+
 
     </motion.div>
+   
   )
 }
 

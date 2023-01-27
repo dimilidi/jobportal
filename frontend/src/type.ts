@@ -50,6 +50,14 @@ export type EditInputs = {
   phone: string | undefined
 }
 
+
+export type Chat = {
+  _id:string
+  receiverId: string
+  senderId: string
+
+}
+
 export type messageContext = {
   connect:(id: string) => void, 
   sendMessageToSocket: (data:{}) => void
@@ -58,17 +66,21 @@ export type messageContext = {
   // joinChat: (id:string) => void
   isConnected: boolean,
   setIsConnected: (isConnected: boolean) => void
-  messages: [] 
-  setMessages: (messages:[{}]) => void
+  messages: [] | any
+  setMessages: (messages:[] | any) => void
   sendMessage: {}
   setSendMessage: ({}) => void
   receiveMessage: {} | any
   setReceiveMessage: (receiveMessage:{}) => void
-  currentChat: {members:[], _id:string}
-  setCurrentChat: (currentChat:{}) => void
+  currentChat: {members:any, _id:string}
+  setCurrentChat: (currentChat: null | {}) => void
   onlineUsers: [] | null,
-  chats: [] | any
-  setChats: (chat:any) => void
+  chats: [] | any | null
+  setChats: (chat:any | null) => void
+  c:   {} | null,
+  setC: (c:null) =>  void
+  
+
   // setMessages: ((prevState:
   //   [
   //   {message:

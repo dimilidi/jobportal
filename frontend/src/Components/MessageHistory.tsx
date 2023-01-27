@@ -31,7 +31,7 @@ function MessageHistory( {currentChat}:Props) {
    if(currentChat != null) fetchMessages()
   }, [currentChat])
 
- console.log(currentChat.members[0]);
+ console.log('CURR-CHAT-ID',currentChat._id);
  
 
   return (
@@ -43,7 +43,10 @@ function MessageHistory( {currentChat}:Props) {
           border-y-2 border-darkBeige sm:h-[400px]'> 
           <ScrollToBottom className='pb-3 h-[98%] w-full flex flex-col  overflow-x-hidden'>
           {messages && 
-            messages.map((value, i) => {
+            messages.map((value:any, i:any) => {
+ console.log('CHAT-ID',value.chatId);
+ if(currentChat._id === value.chatId )
+
           
               return (
                 
