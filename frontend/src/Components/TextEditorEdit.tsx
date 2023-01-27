@@ -1,27 +1,17 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useQuill } from "react-quilljs";
 import "quill/dist/quill.snow.css";
 import useAds from '../Hooks/useAd'
 
-
 type Props ={
-    description: String
-    setDescription: (value: String) => void
+    description: string
+    setDescription: (value: any) => void
 }
 
-
 const Editor = (props:Props) => {
-
   const {ad} = useAds() 
+  const [newAd,setNewAd] = useState<any>(ad?.description)
 
-    const FormatedText = (myDescription:any) => {
-        return {
-          __html: `${myDescription}`
-        }
-      }
-
-  const defaultValue = ad?.description
-  console.log('defaultValue: ',  defaultValue)
   const modules = {
     toolbar: {
       container: [
@@ -49,21 +39,22 @@ const Editor = (props:Props) => {
   })
 
   useEffect(() => {
-    if (quill) {
+    if (typeof quill !== 'undefined' && ad?.description) {
+      quill.root.innerHTML = ad?.description
+    } else if (typeof quill !== 'undefined') {
+      quill.root.innerHTML = ''
+    }
+    if(typeof quill !== 'undefined'){
       quill.on("text-change", () => {
-        quill.root.innerHTML.append(defaultValue)
+        props.setDescription(quill.root.innerHTML) 
       })
     }
-  }, [quill])
+  }, [quill, ad])
 
   return (
     <div style={{width: '100%'}}>
       <div ref={quillRef} />
-      <div className="ql-editor" dangerouslySetInnerHTML={FormatedText(ad?.description)} />
-
     </div>
   )
 }
 export default Editor
-
-

@@ -3,9 +3,12 @@ import { useEffect, useState } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import useAd from '../Hooks/useAd'
 import useUser from '../Hooks/useUser'
+import useDecorationLine from '../Hooks/useDecorationLine'
 // Components
 import UniButton from '../Components/UniButton'
 import Spinner from '../Components/Spinner'
+import TextEditorEdit from '../Components/TextEditorEdit'
+import UniButtonDark from '../Components/UniButtonDark'
 // Notification
 import { ToastContainer } from 'react-toastify'
 import { notify } from '../utils/toastNotification'
@@ -15,10 +18,6 @@ import imagePostAd from '../assets/images/PostAd_chef.png'
 // Others
 import { motion } from 'framer-motion'
 import BrowseJobs from '../Components/BrowseJobs'
-import useDecorationLine from '../Hooks/useDecorationLine'
-import TextEditorEdit from '../Components/TextEditorEdit'
-import UniButtonDark from '../Components/UniButtonDark'
-import TextEditorRender from '../Components/TextEditorRender'
 
 
 
@@ -280,12 +279,12 @@ const EditAd = () => {
 
                 {/* TEXTAREA */}
               
-                 {/* <TextEditorEdit description={description} setDescription={setDescription}/>
-                <div className='mt-3 border-t-2'>this is TextEditorRender: <TextEditorRender /></div>  */}
+                 <TextEditorEdit description={description} setDescription={setDescription}/>
+                {/* <div className='mt-3 border-t-2'>this is TextEditorRender: <TextEditorRender /></div>   */}
 
 
                 {/* TEXTAREA - ORIGINAL */} 
-                 <textarea
+                 {/* <textarea
                   area-label='text area'
                   name='text'
                   id='text'
@@ -293,7 +292,7 @@ const EditAd = () => {
                   placeholder='Your description..'
                   value={description}
                   onChange={(e) => setDescription(e.target.value)}
-                ></textarea>
+                ></textarea> */}
 
                 {/* CHECKBOX (email-phone) */}
                 <div
