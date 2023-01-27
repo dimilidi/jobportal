@@ -1,16 +1,16 @@
-import TypingController from "./controllers/typingController.js"
-// import RoomController from "./controllers/roomController.js"
-import MessageController from "./controllers/messageController.js"
-import JoinChatController from "./controllers/joinChatController.js"
+// import TypingController from "./controllers/typingController.js"
+// // import RoomController from "./controllers/roomController.js"
+// import MessageController from "./controllers/messageController.js"
+// import JoinChatController from "./controllers/joinChatController.js"
 
 
 let activeUsers = []
 
 const sockets = (socket) => {
-  const typingController = new TypingController(socket)
-  // const roomController = new RoomController(socket)
-  const messageController = new MessageController(socket)
-  const joinChatController = new JoinChatController(socket)
+  // const typingController = new TypingController(socket)
+  // // const roomController = new RoomController(socket)
+  // const messageController = new MessageController(socket)
+  // const joinChatController = new JoinChatController(socket)
 
 
   //add new User 

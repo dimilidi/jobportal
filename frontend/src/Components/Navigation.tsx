@@ -60,12 +60,12 @@ const Navigation = () => {
       url: '/account',
       navCategory: 'loggedIn',
     },
-    // {
-    //   icon: <CgProfile />,
-    //   name: 'Chat',
-    //   url: user ? '/message' : '/auth-required',
-    //   navCategory: 'base',
-    // },
+    {
+      icon: <CgProfile />,
+      name: 'Chat',
+      url: user ? '/message' : '/auth-required',
+      navCategory: 'base',
+    },
     {
       icon: <AiOutlineLogin />,
       name: 'Login',
