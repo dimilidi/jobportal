@@ -279,7 +279,9 @@ const EditAd = () => {
 
                 {/* TEXTAREA */}
               
-                 <TextEditorEdit description={description} setDescription={setDescription}/>
+                <div className='w-full max-h-[198px] min-h-[180px] overflow-y-scroll'>
+                  <TextEditorEdit description={description} setDescription={setDescription}/>
+                </div>
                 {/* <div className='mt-3 border-t-2'>this is TextEditorRender: <TextEditorRender /></div>   */}
 
 
