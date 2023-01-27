@@ -52,3 +52,51 @@ export type EditInputs = {
   file: string | undefined 
 }
 
+
+
+export type Chat = {
+  _id:string
+  receiverId: string
+  senderId: string
+
+}
+
+export type messageContext = {
+  connect:(id: string) => void, 
+  sendMessageToSocket: (data:{}) => void
+  receiveMessageFromSocket: (data:{}) => void
+  // sendMessage:({}) => void,
+  // joinChat: (id:string) => void
+  isConnected: boolean,
+  setIsConnected: (isConnected: boolean) => void
+  messages: [] | any
+  setMessages: (messages:[] | any) => void
+  sendMessage: {}
+  setSendMessage: ({}) => void
+  receiveMessage: {} | any
+  setReceiveMessage: (receiveMessage:{}) => void
+  currentChat: {members:any, _id:string}
+  setCurrentChat: (currentChat: null | {}) => void
+  onlineUsers: [] | null,
+  chats: [] | any | null
+  setChats: (chat:any | null) => void
+  c:   {} | null,
+  setC: (c:null) =>  void
+  
+
+  // setMessages: ((prevState:
+  //   [
+  //   {message:
+  //     {room: string; 
+  //       author: string | undefined; 
+  //       message: string; time: string;
+  //     }, 
+  //     received: boolean 
+  //   }]
+  //   ) => void)
+  typing: boolean
+  // room: string
+  // setRoom: (room:string) => void
+  
+}
+

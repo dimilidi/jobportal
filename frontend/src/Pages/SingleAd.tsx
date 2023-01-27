@@ -24,6 +24,8 @@ import { BsFillEyeFill } from 'react-icons/bs'
 import UniButtonDark from '../Components/UniButtonDark'
 import TextEditorRender from '../Components/TextEditorRender'
 import axiosInstance from '../api/axiosInstance'
+import Message from './Message'
+import useMessenger from '../Hooks/useMessenger'
 
 
 
@@ -33,13 +35,14 @@ const SingleAd = () => {
   const params = useParams()
   const navigate = useNavigate()
   const user = useUser()
+
   const { ad,  isLoading, deleteAd, updateAd, fetchAds } = useAd()
   const [modalOpen, setModalOpen] = useState(false)
   const close = () => setModalOpen(false)
   const open = () => setModalOpen(true)
   const [openChat, setOpenChat] = useState(false)
   const [views, setViews] = useState(0)
-
+  const {chats, setChats, setC, currentChat, setCurrentChat} = useMessenger()
 
 
 
@@ -54,19 +57,49 @@ const SingleAd = () => {
 },[params.id])
 
 
+  const sender = user.user?._id
+
+  // CREATE CHAT
+ const createChat = async () => {
+  const chat ={
+    senderId: user.user?._id,
+    receiverId: ad?.user._id
+  }
+  
+  const response = await axiosInstance
+    .post(`/chat`,chat )
+    .catch((e) => e.response)
+    setChats([...chats, chat]) 
+}
+  
+
 
   // HANDLE MESSAGE
   const handleMessage = () => {
     if (user.isLoggedIn === false) navigate('/auth-required')
     setOpenChat(true)
+
   }
 
     // HANDLE CONTACT
     const handleContact = () => {
       if (user.isLoggedIn === false) navigate('/auth-required')
       // if(user.user?._id === ad?.user._id){}
+
+    // create chat if chat doesn't already  exist                 // USEEFFECT ???????
+    chats.find((chat:any) => {
+      // if( !(chat.members.includes(ad?.user._id)) && 
+      //     !(chat.members.includes(ad?.user._id)) )  {
+
+      //     }
+         
+    
+    } )
+  createChat() 
+  
+
+
   }
- 
 
   // HANDLE EDIT
   const handleEdit = () => {
@@ -90,6 +123,7 @@ const SingleAd = () => {
       navigate(`/account`)
     }
   }
+
 
 
   console.log('Views',ad?.views);

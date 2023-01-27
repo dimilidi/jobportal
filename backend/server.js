@@ -6,12 +6,25 @@ import mongoose from 'mongoose'
 import cookieParser from 'cookie-parser'
 import userRouter from './src/routers/userRouter.js'
 import adRouter from './src/routers/adRouter.js'
+import {Server} from 'socket.io'
+import http from 'http'
+import sockets from './src/socket/sockets.js'
+
 
 
 dotenv.config({ path: `.env.${process.env.NODE_ENV}` })
 
 // Server
 const app = express()
+
+const server = http.createServer(app)
+const io = new Server(server, {
+  // pingTimeout: 600000, // closing connection after certain time
+  cors: {origin: process.env.FRONTEND}})
+
+// Socket Connection
+io.on("connection", sockets )
+
 
 
 console.log('\x1b[36m%s\x1b[0m', `CLICK --> ${process.env.FRONTEND}`)
@@ -57,6 +70,6 @@ app.use((error, req, res, next) => {
   })
 })
 
-app.listen(process.env.PORT, () =>
+server.listen(process.env.PORT, () =>
   console.log('app listening on', process.env.PORT)
 )

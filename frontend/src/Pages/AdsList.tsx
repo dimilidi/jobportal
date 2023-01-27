@@ -1,13 +1,19 @@
 // Hooks
+
 import { useLocation, useNavigate } from 'react-router-dom'
 import useAdList from '../Hooks/useAdList'
 import useUser from '../Hooks/useUser'
 import useSearch from '../Hooks/useSearch'
 import { useEffect, useState } from 'react'
+import { useParams } from 'react-router-dom'
+import useAd from '../Hooks/useAd'
+
+
 // Components
 import Ad from '../Components/Ad'
 import UniButton from '../Components/UniButton'
 import Spinner from '../Components/Spinner'
+import PaginationButtons from '../Components/PaginationButtons'
 // framer-motion
 import { motion } from 'framer-motion'
 // Images
@@ -15,12 +21,13 @@ import man from '../assets/images/Ads_man_working.png'
 import useDecorationLine from '../Hooks/useDecorationLine'
 import SearchContainer from '../Components/SearchContainer'
 // Icons
-import PaginationButtons from '../Components/PaginationButtons'
-import useAd from '../Hooks/useAd'
+import axiosInstance from '../api/axiosInstance'
+import useMessenger from '../Hooks/useMessenger'
 
 const AdsList = () => {
   // CONSTANTS
   const navigate = useNavigate()
+  const params = useParams()
   const user = useUser()
   const {searchCategory, searchWord} = useSearch()
   const {ad, updateAd} = useAd()
@@ -30,6 +37,9 @@ const AdsList = () => {
   const ads = useAdList(
       `search=${searchWord}&category=${searchCategory}&page=${page}`
     )
+  const {chats, setChats, currentChat} = useMessenger()
+  
+
 
   // RESET PAGE NUMBER BY SEARCH 
     useEffect(() => {
@@ -49,7 +59,7 @@ const AdsList = () => {
     }
   }
 
-  
+
 
   return (
     <motion.div
