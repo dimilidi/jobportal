@@ -22,7 +22,7 @@ const UniButton = ( props: Props ) => {
         whileTap={{ scale: 0.8 }}
         transition={{ duration: 0.5 }}
         onClick={props.onClick}
-        className='w-[190px] font-medium flex items-center justify-center rounded-full bg-lightGreen hover:border-darkGreen border-lightGreen border-[2.5px] text-white hover:bg-darkGreen ease-in-out duration-300 px-[24px] py-[12px] shadow-inner md:w-[250px]'
+        className='w-[190px] font-medium flex items-center justify-center rounded-full bg-lightGreen border-lightGreen hover:border-darkGreen2 border-[2.5px] shadow-inner text-white hover:bg-darkGreen2 ease-in-out duration-300 px-[24px] py-[12px] md:w-[250px]'
         style={props.style}
       >
         {props.text}

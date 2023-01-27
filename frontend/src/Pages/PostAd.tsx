@@ -171,7 +171,7 @@ const PostAd = () => {
 
                 <div
                   area-label='index-radio'
-                  className='px-1 w-full flex justify-end items-center gap-5'
+                  className='px-1 w-full flex justify-center items-center gap-5'
                 >
                   <div className='flex gap-2'>
                     <input
@@ -274,8 +274,9 @@ const PostAd = () => {
                   onChange={(e) => setDescription(e.target.value)}
                 ></textarea>
                  */}
-                <TextEditor description={description} setDescription={setDescription}/>
-
+                 <div className='w-full max-h-[198px] min-h-[198px] overflow-y-scroll'>
+                  <TextEditor description={description} setDescription={setDescription}/>
+                </div>
 
                 {/* CHECKBOX (email-phone) */}
                 <div
