@@ -274,9 +274,8 @@ const PostAd = () => {
                   onChange={(e) => setDescription(e.target.value)}
                 ></textarea>
                  */}
-                 <div className='w-full max-h-[198px] min-h-[198px] overflow-y-scroll'>
+
                   <TextEditor description={description} setDescription={setDescription}/>
-                </div>
 
                 {/* CHECKBOX (email-phone) */}
                 <div
