@@ -96,12 +96,14 @@ function UserCard(props: Props) {
       </div>
 
       {/* file upload */}
-      <div>
-        <p>here is the file:</p>
-        {user?.file &&
-        <div>{user?.file}</div>
-        }
-      </div>
+      {user?.file && (
+        <a 
+        href={URL.createObjectURL(user.file)} 
+        target="_blank" 
+        className=' underline text-lightGray pb-5'>
+          View your file here
+        </a>
+      )}
 
       {/* Edit Profile Button Wrapper */}
       <div className='flex justify-center mb-10'>

@@ -1,28 +1,46 @@
 import React, { useState } from 'react'
 
 type Props ={
-    file: string
+    file: any
     setFile: (value: any) => void
 }
 
 const FileUploader =(props:Props) => {
-//   const [file, setFile] = useState(null);
+  const [errorMessage, setErrorMessage] = useState('')
 
   const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     const selectedFile = e.target.files?.[0];
     if (!selectedFile) {
-      return;
+      return
     }
-    console.log(selectedFile)
-    props.setFile(selectedFile)
-  };
+    // const setFileToBase = (file: File) => {
+    //   const reader = new FileReader()
+    //   reader.readAsDataURL(file)
+    //   reader.onloadend = () => {
+    //     props.setFile(reader.result)
+    // }
+    props.setFile(selectedFile) 
+
+    // ACCEPT ONLY PDF OR DOC FILE
+    const fileEnd = selectedFile.name.substring(selectedFile.name.lastIndexOf('.')+1)
+    if(fileEnd !== 'pdf' && fileEnd !== 'doc'){
+      setErrorMessage('please upload a pdf or doc file')
+      return
+    }
+    setErrorMessage('')
+  }
+  
 
   return (
     <>
-    <label htmlFor="file-upload" className=" bg-lightGreen text-white rounded-md p-1 cursor-pointer"> choose file
-     </label>
-      <input type="file" onChange={handleFileUpload}/>
-      {props.file && (
+    <label htmlFor="file-upload" className=" text-lightGray rounded-md p-1 cursor-pointer"> 
+      <input type='file'
+      className='' 
+      onChange={handleFileUpload} id="file-upload" accept='.pdf, .doc'
+      />
+    </label>
+    {errorMessage && <p className='text-rot'>{errorMessage}</p>}
+    {props.file && (
         <a 
         href={URL.createObjectURL(props.file)} 
         target="_blank" 
@@ -31,7 +49,7 @@ const FileUploader =(props:Props) => {
         </a>
       )}
     </>
-  );
-};
+  )
+}
 
-export default FileUploader;
+export default FileUploader
