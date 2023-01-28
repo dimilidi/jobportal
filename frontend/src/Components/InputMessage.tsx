@@ -70,24 +70,8 @@ console.log(currentChat);
         .catch((e) => e.response)
       chat.setMessages([...chat.messages, response.data])
 
-    
-
-      // const messageData = {
-      //   room: chat.room,
-      //   author: user?.name,
-      //   message: text,
-      //   date: new Date(Date.now()).toDateString(),
-      //   time: 
-      //     new Date(Date.now()).getHours() + 
-      //     ':' + 
-      //     new Date(Date.now()).getMinutes()
-      // }
-      // ad &&  chat.sendMessage(messageData)
-      // chat && chat.setMessages([...chat.messages, {message:messageData, received:false}])
     }
   }
-
-
 
 
   //HANDLE EMOJI 
@@ -98,11 +82,11 @@ console.log(currentChat);
   
  
   return (
-    <div className='p-2 mb-2  w-full h-[100px] flex items-center'>
+    <div className='p-2  w-full h-full flex items-center'>
       {/* INPUT MESSAGE */}
       <form 
         onSubmit={sendMessage}
-        className='mx-auto   w-[100%]  flex flex-col justify-center items-center gap-1 '
+        className='mx-auto  w-[100%]  flex flex-col justify-center items-center gap-1 '
       >
           {/* EMOJI */}
           <div 
@@ -112,7 +96,7 @@ console.log(currentChat);
             <EmojiPicker  height={385}  onEmojiClick={handleEmoji} />
           </div>
          
-        <div className='w-[95%] flex bg-darkBeige  rounded-lg  ' >
+        <div className='w-[95%] flex bg-darkBeige rounded-lg  ' >
           <input
             className='w-full h-[70px] bg-darkBeige focus:outline-none p-3 rounded-lg '
             type='text'

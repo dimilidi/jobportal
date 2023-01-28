@@ -17,6 +17,7 @@ import 'react-toastify/dist/ReactToastify.css'
 import { motion } from 'framer-motion'
 import axiosInstance from '../api/axiosInstance'
 import { notify } from '../utils/toastNotification'
+import ChatList from '../Components/ChatList'
 
 
 const Message = () => {
@@ -47,6 +48,15 @@ const Message = () => {
      } 
       setIsConnected(true)
   },[user])
+
+
+
+
+  const checkOnlineStatus = (chat:any) => {
+    const chatMember = chat.members?.find((member:any) => member !== user?._id)
+    const online = onlineUsers?.find((user:any) => user.userId === chatMember)
+    return online ? true : false
+  }
 
 // console.log('ONLINE',chat.onlineUsers);
 
@@ -82,27 +92,6 @@ const Message = () => {
   },[user, ad])
 
 
-   // GET CHAT
-   const fetchChat = useCallback(async () => {
-    try {
-      const {data} = await axiosInstance.get(`/chat/find/${user?._id}/${currentChat.members[1]}`)
-      setC(data)
-    } catch (error) {
-      notify('Something went wrong!')
-    }
-  }, [c])
-
-
-  useEffect(() => {
-    if (currentChat) {
-      fetchChat()
-    }
-  }, [currentChat])
- 
-  
-  console.log('CCCCCCCCCCCCC',c);
-  console.log('CCCCCCCCCCCCC',`/chat/find/${user?._id}/${currentChat?.members[1]}`);
-  
 
 
     // Send Message to the Socket Server
@@ -126,11 +115,7 @@ const Message = () => {
     }, [receiveMessage])
 
 
-    const checkOnlineStatus = (chat:any) => {
-      const chatMember = chat.members?.find((member:any) => member !== user?._id)
-      const online = onlineUsers?.find((user:any) => user.userId === chatMember)
-      return online ? true : false
-    }
+   
 
 
 
@@ -142,45 +127,37 @@ const Message = () => {
         animate={{ width: '100%' }}
         exit={{ x: window.innerWidth }}
         area-label='message'
-        className='pt-10 pb-20 h-full  min-h-[700px]   flex flex-col items-center justify-center text-textBlack md:pt-[140px] lg:pt-[120px] lg:min-h-[900px]  xl:pt-[120px]'
+        className='pt-10 pb-20 h-full  min-h-[700px]   flex  items-center justify-center text-textBlack md:pt-[140px] lg:pt-[120px] lg:min-h-[900px]  xl:pt-[120px]'
       >
          <h3 className='text-xl' >Hello {user?.name}!</h3>
 
            
-        {/* CHAT LIST SIDEBAR */}
-        <div>
-          <h2>Chats</h2>
-          <div>
-            {chats.map((chat:any) => ( //chats
-              <div className=' w-[200px] h-[50px]' onClick={()=>setCurrentChat(chat)}>
-               {c && <Conversation key={chat._id} data = {chat} setReceiverInfo= {setReceiverInfo} receiverInfo={receiverInfo} online={checkOnlineStatus(chat)}/>} 
-              </div>
-            ))}
-          </div>
-        </div>
+        {/* CHAT LIST */}   
+          <ChatList setReceiverInfo = {setReceiverInfo} receiverInfo={receiverInfo} />
+        
 
         {/* MAIN */}
         <div
           area-label='main'
-          className='w-full h-full
+          className=' h-full
           flex flex-col justify-start
-           sm:max-w-[900px]
+           
           md:min-h-[650px] 
           
-          xl:w-[800px] xl:min-h-full'
+           xl:min-h-full'
         >
 
-          { currentChat  ? (
-            <>
              {/* BOX*/}
         <div
             area-label='box'
             className='w-[300px] max-[767px]:mt-[6rem] min-h-[500px] sm:h-[600px] sm: sm:w-[400px] xl:h-[600px]
-            flex flex-col justify-between item-center
-            self-center z-10 rounded-[21px] bg-white shadow-standard'
+            flex flex-col justify-center item-center
+            self-center z-10 rounded-r-[21px] bg-white shadow-standard'
           >
 
-        {/* USER-MESSAGE*/}
+          {/* USER-MESSAGE*/}   
+      { currentChat  ? (
+        <>
           <div 
             aria-label='UserMessage'
             className='h-full w-full
@@ -197,9 +174,13 @@ const Message = () => {
         </div>
 
         {/* INPUT MESSAGE */}
-        <div>
+     
           <InputMessage currentChat = {chat.currentChat} />
-        </div>
+          </>
+          ) : ( 
+            <p className='self-center text-xl text-lightGray'>Choose a chat</p>
+            
+          )}
 
         </div>
 
@@ -218,10 +199,7 @@ const Message = () => {
             className='hidden md:block lg:absolute lg:top-[475px] lg:translate-y-[-50%] lg:left-0 lg:border-b-2 lg:border-lightGreen w-screen z-0'
           />
           {/* CIRCLE & LINE - END */}
-          </>
-          ) : ( 
-             <h2>Tap on a Chat to start Conversation...</h2>
-          )}
+         
 
        
         </div>

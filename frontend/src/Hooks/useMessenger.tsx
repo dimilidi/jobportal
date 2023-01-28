@@ -34,7 +34,7 @@ export const SocketContext = createContext<messageContext>({
   onlineUsers: [],
   chats: [],
   setChats: () => [],
-  c: {},
+  c: {members:[]},
   setC: () => {},
   // joinChat: () => {}, 
   // setRoom: () => '', room:'' 

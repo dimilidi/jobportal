@@ -77,7 +77,7 @@ export type messageContext = {
   onlineUsers: [] | null,
   chats: [] | any | null
   setChats: (chat:any | null) => void
-  c:   {} | null,
+  c:   {members:[]} | null,
   setC: (c:null) =>  void
   
 

@@ -18,7 +18,7 @@ type Props = {
  
 }
 
-function UserMessage({c, ad, userData, receiverInfo, online}:Props) {
+function UserMessage({ ad, online }:Props) {
 
   const user = useUser()
   const {adList} = useAdList('')
