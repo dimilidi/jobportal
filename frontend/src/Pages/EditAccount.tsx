@@ -369,7 +369,7 @@ const EditAccount = (props: Props) => {
               </div>
             </div>
           </div>
-          <FileUploader file={file} setFile={setFile} />
+          {/* <FileUploader file={file} setFile={setFile} /> */}
 
           {/* DESCRIPTION */}
           <label
