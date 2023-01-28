@@ -21,7 +21,7 @@ function ChatList({ setReceiverInfo, receiverInfo }: Props) {
   return (
     <div className='w-[300px] max-[767px]:mt-[6rem] min-h-[500px] sm:h-[600px] sm: sm:w-[300px] xl:h-[600px]
     flex flex-col item-center
-    self-center z-10 rounded-l-[21px] bg-white shadow-standard'>
+    self-center z-10 rounded-l-[21px] bg-white shadow-standard overflow-y-scroll'>
          
         {chats.map((chat:any) => ( //chats
             <div className='w-full h-[90px]' onClick={()=>setCurrentChat(chat)}>

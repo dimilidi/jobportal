@@ -56,24 +56,24 @@ useEffect(() => {
     <>
       {/* PROFILE IMAGE */}
       <div
-        className='
-          flex flex-col items-center justify-start
+        className=' ml-4
+          flex  items-center justify-start gap-5
         
           w-full'
       >
         <div
-          className='p-1  h-[100px]
-          flex flex-col justify-end items-end
+          className='p-1  h-[80px] self-start
+          flex flex-col justify-end items-center
           rounded-b-[40px] bg-lightBeige
-          w-[90px]'
+          w-[85px]'
         >
           
           <div
-            className=' mx-auto  w-[80px] h-[80px] relative flex flex-col justify-center
+            className=' mx-auto  w-[75px] h-[75px] relative flex flex-col  justify-center
           self-end rounded-full'
           >
              <img 
-               className='mb-1 w-[80px] h-[80px]  rounded-full object-cover'
+               className='mt-1 w-[75px] h-[75px]  rounded-full object-cover'
               src={ userInfo.avatar ? userInfo.avatar :  profileImg }  />  
           </div>
 
@@ -81,7 +81,9 @@ useEffect(() => {
         {/* Online Status */}
           {online && <div className=' w-[15px] h-[15px] absolute top-20 right-[167px] rounded-full bg-green-500' />}
           <div>
-              <p>{userInfo.name}</p>
+              <p className='text-xl'>{userInfo.name}</p>
+              <p className=' text-lightGray'>{userInfo?.profession}</p>
+
           </div>
     
       </div>

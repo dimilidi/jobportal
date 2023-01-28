@@ -103,10 +103,10 @@ function Conversation({data, setReceiverInfo, online, receiverInfo, }: Props) {
       <div  className='relative ml-5 p-1  h-[70px]
           flex flex-col justify-end items-end
           rounded-b-[70px] bg-lightBeige
-          w-[60px]'>
+          w-[66px]'>
 
        <div className=' h-[3.5rem] w-[3.5rem]'>
-          <img className='h-full w-auto object-cover rounded-full' src={userData?.avatar ? userData?.avatar  : profileImg } alt="" />
+          <img className=' h-full w-auto object-cover rounded-full' src={userData?.avatar ? userData?.avatar  : profileImg } alt="" />
         </div> 
           {/* Online Status */}
          {online && <div className='z-10 w-[15px] h-[15px] absolute top-[53px] right-[40px] rounded-full bg-green-500' />}
