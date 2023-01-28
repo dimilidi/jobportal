@@ -33,34 +33,89 @@ const Account = () => {
       initial={{ width: '100%' }}
       animate={{ width: '100%' }}
       exit={{ x: window.innerWidth }}
-      className='mx-auto pt-[80px] w-full h-full flex flex-col items-center md:gap-3 lg:min-h-[970px] lg:flex-row lg:gap-0'
-    >
-      {/* SEMICIRCLE */}
-      <div className='w-[50px] h-24 hidden absolute right-0 rounded-tl-full rounded-bl-full bg-lightGreen md:hidden lg:block lg:top-[125px] xl:top-[130px]' />
+      className='
+      min-h-[885px]
+      flex flex-col items-center justify-evenly gap-10
+      lg:flex-row
+      2xl:gap-0'>
+
+      {/* SEMICIRCLE RIGHT SIDE*/}
+      <div className='
+      w-[60px] h-24 
+      hidden absolute right-0 
+      rounded-tl-full rounded-bl-full bg-lightGreen 
+      xl:block
+      xl:top-[5.9rem]'/>
+     
       {/* LINE */}
-      <div className='border-b-[3px] border-lightGreen absolute hidden lg:w-[20%] xl:w-[30%] md:block lg:top-[175px] xl:top-[180px] lg:right-0' />
+      <div className='
+      border-b-[3px] border-lightGreen absolute hidden 
+      md:block md:top-[8.8rem]
+      lg:w-[10%] lg:right-0 
+      xl:w-[32%] 
+      2xl:w-[35%]'/>
 
-      {/* USER CARD */}
-      <div className='h-full w-[95%] relative flex justify-center lg:w-[32%]'>
-        <UserCard />
-      </div>
+        {/* USER CARD */}
+        <div className='
+        w-[95%] h-full 
+        relative 
+        flex justify-center
+        lg:flex-1 lg:min-w-[420px] lg:max-w-[300px] lg:max-h-[600px]'>
+          <UserCard />
+        </div>
 
-      {/* ADS && BUTTONS CONTAINER */}
-      <div className='w-[90%] min-w-fit max-w-[650px]  flex flex-col justify-start items-center lg:h-[700px] lg:max-w-[800px] lg:gap-5'>
-        
-        <h3 className='w-[80%] py-2 mt-8 self-center shadow rounded-lg text-center text-xl font-semibold text-gray text-opacity-100 lg:mb-[-20px] xl:mb-[-10px] lg:w-[87%] lg:flex lg:justify-start xl:w-[85%]'>
-          All Active Ads:
-        </h3>
+        {/* ADS && BUTTONS CONTAINER */}
+        <div className='
+        min-h-fit min-w-fit 
+        w-[90%] max-w-[950px] lg:pt-[7.4rem]
+        lg:h-[48rem] lg:w-[300px] lg:flex-1'>
 
-        {/* ADS */}
-        <div className='w-full max-w-[600px] h-fit my-[5px] py-10 flex flex-wrap justify-center items-start rounded-xl text-gray bg-darkBeige bg-opacity-36 md:rounded-[21px] lg:px-0 lg:mb-0 lg:h-[450px]'>
-          <div className='w-full flex flex-wrap justify-center items-center md:justify-start lg:justify-center'>
+          {/* BUTTONS */}
+          <div
+            className='
+                w-full 
+                flex justify-center items-center gap-2
+                min-[500px]:gap-3
+                sm:justify-center md:justify-center
+                lg:justify-start'>
+            <UniButtonDark
+              text='Post Ad'
+              type='button'
+              onClick={() => navigate('/post-ad')}/>
+            <UniButton
+              text='Browse Ads'
+              type='button'
+              onClick={() => navigate('/adslist')}/>
+          </div>
+          
+          <h3 className='
+          w-full py-2 md:mt-8 mb-[-10px]
+          flex self-center max-md:justify-center flex-1
+          underline-offset-8 text-center text-xl 
+          font-semibold text-gray text-opacity-100 
+          lg:w-[90%]'>
+            All Active Ads:
+          </h3>
 
+          {/* ADS */}
+          <div className='
+          h-fit my-[5px] py-10 
+          flex flex-wrap justify-center items-center
+          rounded-xl
+          text-gray bg-darkBeige bg-opacity-36 
+          md:rounded-[21px] 
+          lg:w-[90%] lg:px-0 lg:mb-0 '>
+
+          <div className='
+          w-full 
+          flex flex-wrap justify-center items-center'>
             {adList?.length === 0 ? (
               <div
-                className='w-full relative text-center font-bold text-gray text-opacity-60 
-                  md:text-2xl lg:top-[180px] xl:top-[130px] 
-                  '>
+                className='
+                w-full 
+                relative 
+                text-center font-bold text-gray text-opacity-60 
+                md:text-2xl'>
                 You currently don't have <br></br> any ads 
               </div>
             ) : (
@@ -72,29 +127,10 @@ const Account = () => {
         <div
           aria-label='paginationButtons'
           style={{visibility: pageCount >0 ? 'visible' : 'hidden'}}
-          className='w-full lg:mb-0 lg:flex lg:justify-end xl:w-[90%]'>
+          className='w-full h-3 lg:flex lg:justify-end xl:w-[90%]'>
           <PaginationButtons page ={page} setPage = {setPage} pageCount={pageCount}/>
         </div>}
-        {/* BUTTONS */}
-        <div
-            className='
-                w-full flex flex-row justify-center items-center gap-2 md:gap-3
-                sm:justify-center sm:flex-row md:justify-center
-                lg:justify-start md:mt-14 lg:mt-0'
-          >
-            <UniButtonDark
-              text='Post Ad'
-              type='button'
-              onClick={() => navigate('/post-ad')}
-            
-            />
-            <UniButton
-              text='Browse Ads'
-              type='button'
-              onClick={() => navigate('/adslist')}
-              
-            />
-          </div>
+        
         </div>
     </motion.div>
   )

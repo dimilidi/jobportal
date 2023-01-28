@@ -8,8 +8,8 @@ function Footer() {
 
   return (
     <footer className='
-      w-full mx-auto
-      absolute bottom-0
+      w-full mx-auto max-lg:mt-[2rem]
+      relative bottom-0
       flex justify-center flex-row items-center'>
       <div className='
         w-full 

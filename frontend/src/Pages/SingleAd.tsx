@@ -39,17 +39,11 @@ const SingleAd = () => {
   const open = () => setModalOpen(true)
   const [openChat, setOpenChat] = useState(false)
 
-
-
   // HANDLE MESSAGE
   const handleMessage = () => {
     if (user.isLoggedIn === false) navigate('/auth-required')
    
     setOpenChat(true)
-
-   
-
-  
   }
 
     // HANDLE CONTACT
@@ -58,7 +52,6 @@ const SingleAd = () => {
       // if(user.user?._id === ad?.user._id){}
   }
  
-
   // HANDLE EDIT
   const handleEdit = () => {
     if (user.isLoggedIn === false) navigate('/auth-required')

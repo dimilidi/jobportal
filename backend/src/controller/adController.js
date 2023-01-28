@@ -1,8 +1,5 @@
 import Ad from '../models/Ad.js'
 
-
-
-
 // GET ADS
 /** @type {import("express").RequestHandler} */
 export async function getAds(req, res) {
