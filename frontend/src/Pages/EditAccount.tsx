@@ -85,6 +85,7 @@ const EditAccount = (props: Props) => {
     const response = await user.editAccount(newUser)
 
     console.log('RR',response.status);
+    console.log('newUser DATA: ',newUser);
     
 
     // if(response.data.message)
@@ -101,8 +102,8 @@ const EditAccount = (props: Props) => {
     // CONTAINER WHOLE PAGE CONTENT
     <div
       area-label=' main-container'
-      className='h-full min-h-[880px]
-      md:h-[920px]
+      className='h-full min-h-[900px]
+      md:h-[920px] md:max-h-[1200px]
 
       flex flex-col items-center justify-center
       '
@@ -157,7 +158,7 @@ const EditAccount = (props: Props) => {
       <div
         aria-label='main-form-ctn'
         className='
-        w-[90%] h-[550px] md:mb-10  py-50 md:w-[700px] sm:h-[600px] md:h-[660px]
+        w-[90%] h-[650px]  md:mb-10  py-50 md:w-[700px] sm:h-[700px] md:h-[800px]
         flex flex-col items-center justify-center 
         relative rounded-[30px] shadow-standard bg-white 
         '
