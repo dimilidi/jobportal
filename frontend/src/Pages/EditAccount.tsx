@@ -6,6 +6,7 @@ import useDecorationLine from '../Hooks/useDecorationLine'
 // Component
 import UniButton from '../Components/UniButton'
 import Spinner from '../Components/Spinner'
+import FileUploader from '../Components/FileUpload'
 // Images
 import image from '../assets/images/Account_profil.png'
 // Toaster
@@ -38,6 +39,7 @@ const EditAccount = (props: Props) => {
   const [avatar, setAvatar] = useState<any>(user.user?.avatar)
   const [open, setOpen] = useState(false)
   const [maxLength, setMaxLength] = useState(300)
+  const [file, setFile] = useState<any>(user.user?.file)
 
   const defaultAvatar =
     'https://res.cloudinary.com/dmdjfvwkd/image/upload/v1673676247/Account_profilDefault_eqka4e.png'
@@ -79,10 +81,11 @@ const EditAccount = (props: Props) => {
     e.preventDefault()
     setFetching(true)
     setErrors([])
-    const newUser = { name, phone, city, profession, description, avatar }
+    const newUser = { name, phone, city, profession, description, avatar ,file}
     const response = await user.editAccount(newUser)
 
     console.log('RR',response.status);
+    console.log('newUser DATA: ',newUser);
     
 
     // if(response.data.message)
@@ -94,14 +97,15 @@ const EditAccount = (props: Props) => {
     setFetching(false)
   }
 
+  
   return (
     // CONTAINER WHOLE PAGE CONTENT
     <div
-      area-label='main-container'
-      className='
-      md:h-[920px]
-      pt-[110px] xl:pt-[290]
-      flex flex-col items-center
+      area-label=' main-container'
+      className='h-full min-h-[900px]
+      md:h-[920px] md:max-h-[1200px]
+
+      flex flex-col items-center justify-center
       '
       onClick={() => open && setOpen(false)}
     >
@@ -121,20 +125,20 @@ const EditAccount = (props: Props) => {
       <div
         aria-label='headline'
         className='w-[85%] mb-2
-          flex justify-between items-end
+          flex justify-between items-end 
           md:mb-5 md:w-[65%] lg:w-[68%] xl:w-[48%] 2xl:w-[36%]'
       >
          {/* TITLE & BROWSER-B */}
          <div
           className='w-[100%]
-      flex flex-row justify-between items-end'
+      flex flex-row justify-between items-end sm:mt-[70px] md:mt-5'
         >
           <h1
             className='
           w-[30%]
           text-left text-[2rem] font-semibold 
           sm:text-[2.5rem] leading-none
-          md:w-[80%] md:text-[3rem]
+          sm:w-[100%] md:text-center
           lg:w-[50%]
           '
           >
@@ -154,7 +158,7 @@ const EditAccount = (props: Props) => {
       <div
         aria-label='main-form-ctn'
         className='
-        w-[90%] h-[550px] md:w-[700px] md:h-[660px]
+        w-[90%] h-[650px]  md:mb-10  py-50 md:w-[700px] sm:h-[700px] md:h-[800px]
         flex flex-col items-center justify-center 
         relative rounded-[30px] shadow-standard bg-white 
         '
@@ -188,16 +192,16 @@ const EditAccount = (props: Props) => {
             {/* INPUTS CONTAINER */}
             <div
               aria-label='inputs-ctn'
-              className='w-full 
+              className='pt-[40px] w-full 
               lg:w-full
                
               flex flex-col items-end md:flex-row-reverse md:justify-between md:items-center'
             >
               {/* IMAGE */}
-              <div className='h-[100px] relative mb-5 flex flex-col sm:h-[11em]'>
+              <div className='mt-[70px] h-[8em] w-auto  rounded-full relative mb-5 flex flex-col  sm:h-[11em] '>
                 <img
                   aria-label='image'
-                  className=' h-[8em] w-[8em] object-cover rounded-full  shadow-standard 
+                  className=' h-full w-[8em] object-cover rounded-full  shadow-standard 
                 top-[40px] right-5
                 z-20 block sm:h-[11em] sm:w-[11em]
                 '
@@ -365,6 +369,7 @@ const EditAccount = (props: Props) => {
               </div>
             </div>
           </div>
+          {/* <FileUploader file={file} setFile={setFile} /> */}
 
           {/* DESCRIPTION */}
           <label
@@ -412,7 +417,7 @@ const EditAccount = (props: Props) => {
                 className='mt-1 
                 text-red-600  
                 w-[100%] 
-                text-center'
+                text-center text-sm'
               >
                 {error}
               </p>
@@ -420,17 +425,17 @@ const EditAccount = (props: Props) => {
 
           {/* SAVE CHANGES BUTTON */}
           <UniButton
-            text={fetching ? <Spinner /> : 'Save Changes'}
+            text={fetching ? <Spinner /> : 'Save '}
             className='
                 mt-2
                 w-full
                 flex flex-wrap justify-center
-                text-lg'
+                text-lg '
             style={{ padding: '10px' }}
           />
 
           {/* DELETE-ACCOUNT */}
-          <p className='my-4 w-full text-center text-lightGray underline text-[14px] lg:text-center'>
+          <p className='py-4 mb-5 w-full text-center text-lightGray underline text-[14px]  lg:text-center sm:pb-1'>
             <Link to='/delete-account'>Delete account</Link>
           </p>
         </form>

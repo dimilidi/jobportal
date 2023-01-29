@@ -3,12 +3,12 @@ import { useQuill } from "react-quilljs";
 import "quill/dist/quill.snow.css";
 
 type Props ={
-    description: String
+    description: string
     setDescription: (value: any) => void
 }
 
 
-const Editor = (props:Props) => {
+const TextEditor = (props:Props) => {
 
   const placeholder = 'Your description...'
   const modules = {
@@ -35,14 +35,18 @@ const Editor = (props:Props) => {
   const { quill, quillRef, Quill } = useQuill({
     modules,
     formats,
-    placeholder
+    placeholder,
+    // defaultValue: props.description
   })
 
   useEffect(() => {
     if (quill) {
-      quill.on("text-change", () => {
-        props.setDescription(quill.root.innerHTML)
-      })
+      setTimeout(() => {
+        quill.on("text-change", () => {
+          console.log('DESC UE: ',props.description);
+          props.setDescription(quill.root.innerHTML)
+        })
+      }, 1000);
     }
   }, [quill])
 
@@ -52,6 +56,6 @@ const Editor = (props:Props) => {
     </div>
   )
 }
-export default Editor
+export default TextEditor
 
 

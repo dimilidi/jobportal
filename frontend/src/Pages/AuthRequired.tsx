@@ -4,12 +4,12 @@ import useDecorationLine from '../Hooks/useDecorationLine'
 
 // Components
 import UniButton from '../Components/UniButton'
-import UniButtonWhite from '../Components/UniButtonWhite'
 import BrowseJobs from '../Components/BrowseJobs'
 // framer-motion
 import {motion} from 'framer-motion'
 // Images
 import DeliveryGuy from '../assets/images/AuthRequired_delivery_guy.png'
+import UniButtonDark from '../Components/UniButtonDark'
 
 const AuthRequired = () => {
   const navigate = useNavigate()
@@ -30,7 +30,7 @@ const AuthRequired = () => {
     animate={ {width: '100%'}}
     exit={{x:window.innerWidth}} 
    >
-      <div className='pb-20 pt-[60px] md:pt-[120px] xl:pt-[150px] mx-auto pr-2 w-[90%] h-full flex justify-center flex-col items-center sm:w-[60%] lg:w-[50%]'>
+      <div className='h-full pb-20 pt-[100px] min-h-[920px] md:pt-[120px] xl:pt-[150px] mx-auto pr-2 w-[90%]  flex justify-top flex-col items-center sm:h-full sm:w-[60%] lg:w-[50%]'>
 
       
       {/* ICON & BROWSE JOBS */}
@@ -59,21 +59,21 @@ const AuthRequired = () => {
 
         <UniButton text='Login' onClick={navigateToLogin} className='my-5 ' />
 
-        <UniButtonWhite text='Sign up' onClick={navigateToRegister} />
+        <UniButtonDark text='Sign up' onClick={navigateToRegister} />
 
         {/* ELEMENTS */}
         {/* Circle */}
         <div
           area-label='circle'
           className='w-[50px] h-24 hidden 
-                right-[0rem] top-[280px]  
+                right-[0rem] xl:top-[300px]  lg:top-[270px]  
                 rounded-tl-full rounded-bl-full bg-lightGreen 
                 lg:block absolute'
         ></div>
         {/* ELEMENTS END*/}
 
         {/* IMAGES */}
-        <div>
+        <div className=''>
           <img
             src={DeliveryGuy}
             alt='postman'
@@ -82,7 +82,7 @@ const AuthRequired = () => {
                 md:max-h-full  md:top-[360px] md:-left-4 
                 lg:left-32 lg:top-[300px] 
                 xl:left-56 xl:top-[260px] 
-                2xl:left-96  '
+                2xl:left-96  z-50'
           />
         </div>
         {/* IMAGES END */}

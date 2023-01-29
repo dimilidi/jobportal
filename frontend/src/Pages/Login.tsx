@@ -76,7 +76,7 @@ const Login = (props: Props) => {
       initial={{ width: '100%'}}
       animate={ {width: '100%'}}
       exit={{x:window.innerWidth}} 
-      className='pt-5 h-full min-h-[950px] flex flex-col items-center justify-center lg:flex-row '>
+      className='pt- h-full min-h-[870px] lg:min-h-[980px] flex flex-col items-center justify-center lg:flex-row '>
         
       {/* GREEN SEMICIRCLE */}
       <div className='w-[50px] h-[100px] hidden absolute right-[0] top-[21rem] z-10 bg-lightGreen rounded-tl-full rounded-bl-full xl:block' />

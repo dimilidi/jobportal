@@ -1,5 +1,5 @@
 // Hooks
-import { useNavigate, useParams } from 'react-router-dom'
+import { useLocation, useNavigate, useParams } from 'react-router-dom'
 import useUser from '../Hooks/useUser'
 import useAd from '../Hooks/useAd'
 // Components
@@ -17,13 +17,13 @@ import DeleteAd from '../assets/images/DeleteAd.png'
 // Framer-motion
 import { motion } from 'framer-motion'
 import { AiFillEdit } from 'react-icons/ai'
-import UniButtonWhite from '../Components/UniButtonWhite'
 import { RiDeleteBinLine } from 'react-icons/ri'
 import { useEffect, useState } from 'react'
 import Modal from '../Components/Modal'
 import { BsFillEyeFill } from 'react-icons/bs'
 import UniButtonDark from '../Components/UniButtonDark'
 import TextEditorRender from '../Components/TextEditorRender'
+import axiosInstance from '../api/axiosInstance'
 
 
 
@@ -33,16 +33,29 @@ const SingleAd = () => {
   const params = useParams()
   const navigate = useNavigate()
   const user = useUser()
-  const { ad,  isLoading, deleteAd } = useAd()
+  const { ad,  isLoading, deleteAd, updateAd, fetchAds } = useAd()
   const [modalOpen, setModalOpen] = useState(false)
   const close = () => setModalOpen(false)
   const open = () => setModalOpen(true)
   const [openChat, setOpenChat] = useState(false)
+  const [views, setViews] = useState(0)
+
+
+
+
+ //HANDLE VIEWS
+ useEffect(() => {
+  const updateViews = async () => {
+    const response = await axiosInstance
+    .get(`/ads/${params.id}/increment-view`)
+    .catch((e) => e.response)
+  }
+  updateViews()
+},[params.id])
 
   // HANDLE MESSAGE
   const handleMessage = () => {
     if (user.isLoggedIn === false) navigate('/auth-required')
-   
     setOpenChat(true)
   }
 
@@ -74,9 +87,10 @@ const SingleAd = () => {
       navigate(`/account`)
     }
   }
- 
 
 
+  console.log('Views',ad?.views);
+  
 
 
   // If no ad was fetched, return div with message
@@ -89,7 +103,7 @@ const SingleAd = () => {
         animate={{ width: '100%' }}
         exit={{ x: window.innerWidth }}
         area-label='page-singleAd'
-        className='pt-[120px]  pb-20 w-[95%] h-full  min-h-[900px] flex flex-col items-center justify-center text-textBlack md:pt-[140px] xl:pt-[120px] '
+        className='pb-20 w-[95%] h-full min-h-[900px] flex flex-col items-center justify-center text-textBlack md:pt-[140px] xl:pt-[120px] '
       >
         {/* MAIN PART OF SINGLE AD */}
 
@@ -105,20 +119,6 @@ const SingleAd = () => {
               alignSelf: 'start',
             }}
           />
-
-                     {/* VIEWS */}
-          {/* <div className="flex items-center gap-3 mt-2 justify-between">
-            <div className="flex gap-3 mt-4"> */}
-              <div className="w-[50px] h-[25px] pr-[20px] mt-2 flex items-center justify-center gap-1 text-sm text-gray opacity-50">
-                <BsFillEyeFill /> <span>{ad.views}</span>
-              </div>
-              
-              
-              {/* <button className="flex items-center justify-center gap-2 text-xs text-white opacity-50">
-                <AiOutlineMessage /> <span>{ad.likes?.length || 0}</span>
-              </button> */}
-            {/* </div>
-          </div> */}
           </div>
 
           {/* Ad */}
@@ -135,15 +135,20 @@ const SingleAd = () => {
                 area-label='description'
                 className='mt-3 px-3 sm:max-h-[230px] sm:overflow-y-scroll'
               >
-                <h3 className='text-[20px]'>Description</h3>
-                <p className='text-[14px] text-justify mt-2 text-gray/80'>
+                {/* <h3 className='text-[20px]'>Description</h3> */}
+                <p className='text-[14px] text-justify text-gray/80'>
                   {/* {ad.description} */}
                   {/* Formated text mit Text Editor */}
                   <TextEditorRender />
                 </p>
               </div>
             )}
+                {/* VIEWS */}
+                <div className=" h-[25px] pr-[20px] mt-5 flex items-center justify-end gap-1 text-sm text-gray opacity-50">
+                <BsFillEyeFill /> <span>{ad.views}</span>
+              </div>
           </div>
+
         
 
           {/* IF AD IS CREATED BY USER, BUTTON "EDIT" && "DELETE" */}
@@ -209,6 +214,7 @@ const SingleAd = () => {
                 text='Message'
                 onClick={handleMessage}
                 className='my-7 self-center mb-2 lg:mb-0'
+                style={{ width: '140px' }}
               />
             )}
 
@@ -219,6 +225,7 @@ const SingleAd = () => {
               text='Contact'
               onClick={handleContact}
               className='my-7 self-center mb-2 lg:mb-0'
+              style={{ width: '140px' }}
             />
             )}
           </div>

@@ -13,10 +13,10 @@ const Home = () => {
 
   return (
     <motion.div
-      initial={{ width: '100%' }}
-      animate={{ width: '100%' }}
-      exit={{ x: window.innerWidth }}
-      className='mx-auto md:w-[90%] w-full h-full min-h-[918px] flex justify-center items-center lg:justify-end'
+      // initial={{ width: '100%' }}
+      // animate={{ width: '100%' }}
+      // exit={{ x: window.innerWidth }}
+      className='mx-auto md:w-[90%] w-full h-full min-h-[700px] md:min-h-[918px] flex justify-center items-center lg:justify-end'
     >
       <div
         className='py-8 h-full w-[100%] mx-auto 
@@ -65,7 +65,7 @@ const Home = () => {
       <div
         area-label='circle'
         className='hidden xl:block w-[332px] h-[332px]
-        absolute top-[460px] right-[-250px] translate-y-[-50%] rounded-full md:bg-lightGreen'
+        absolute top-[465px] right-[-250px] translate-y-[-50%] rounded-full md:bg-lightGreen'
       />
     </motion.div>
   )

@@ -169,7 +169,7 @@ body {
 
 }
 
-.ql-blank{
+.ql-blank, .ql-editor{
   height: 120px;
 }
 @layer base {
