@@ -30,7 +30,6 @@ const Account = () => {
     }
   }, [user])
 
- 
 
   return (
     <motion.div
