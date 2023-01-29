@@ -1,9 +1,6 @@
 import Ad from '../models/Ad.js'
 import mongoose from 'mongoose'
 
-
-
-
 // GET ADS
 /** @type {import("express").RequestHandler} */
 export async function getAds(req, res) {

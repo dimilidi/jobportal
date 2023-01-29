@@ -53,8 +53,6 @@ const SingleAd = () => {
   updateViews()
 },[params.id])
 
-
-
   // HANDLE MESSAGE
   const handleMessage = () => {
     if (user.isLoggedIn === false) navigate('/auth-required')
@@ -67,7 +65,6 @@ const SingleAd = () => {
       // if(user.user?._id === ad?.user._id){}
   }
  
-
   // HANDLE EDIT
   const handleEdit = () => {
     if (user.isLoggedIn === false) navigate('/auth-required')
