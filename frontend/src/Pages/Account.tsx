@@ -35,7 +35,8 @@ const Account = () => {
       className='
       min-h-[885px]
       flex flex-col items-center justify-evenly gap-10
-      lg:flex-row
+      lg:flex-row 
+      xl:justify-center
       2xl:gap-0'>
 
       {/* SEMICIRCLE RIGHT SIDE*/}
@@ -44,22 +45,26 @@ const Account = () => {
       hidden absolute right-0 
       rounded-tl-full rounded-bl-full bg-lightGreen 
       xl:block
-      xl:top-[5.9rem]'/>
+      xl:top-[6.5rem]'/>
      
       {/* LINE */}
       <div className='
-      border-b-[3px] border-lightGreen absolute hidden 
-      md:block md:top-[8.8rem]
+      absolute hidden 
+      border-b-[3px] border-lightGreen 
+      md:block md:top-[9.4rem]
       lg:w-[10%] lg:right-0 
-      xl:w-[32%] 
-      2xl:w-[35%]'/>
+      min-[1088px]:w-[17%] min-[1180px]:w-[23%] min-[1270px]:w-[29%]
+      xl:w-[30%] min-[1389px]:w-[36%]
+      2xl:w-[38%] min-[1440px]:w-[45%]
+      '/>
 
         {/* USER CARD */}
         <div className='
         w-[95%] h-full 
         relative 
         flex justify-center
-        lg:flex-1 lg:min-w-[420px] lg:max-w-[300px] lg:max-h-[600px]'>
+        lg:flex-1 lg:min-w-[420px] lg:max-w-[300px] lg:max-h-[600px] 
+        2xl:max-w-[450px]'>
           <UserCard />
         </div>
 
@@ -88,11 +93,11 @@ const Account = () => {
           </div>
           
           <h3 className='
-          w-full py-2 md:mt-8 mb-[-10px]
+          w-full py-2 mt-6 mb-[-10px]
           flex self-center max-md:justify-center flex-1
           underline-offset-8 text-center text-xl 
           font-semibold text-gray text-opacity-100 
-          lg:w-[90%]'>
+          md:mt-8 lg:w-[90%]'>
             All Active Ads:
           </h3>
 
