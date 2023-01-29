@@ -88,14 +88,14 @@ export function SocketProvider (props: {children: React.ReactElement}) {
 
 
   // GET CHAT
-  const fetchChat = useCallback(async () => {
-    try {
-      const {data} = await axiosInstance.get(`/chat/find/${user.user?._id}/${currentChat.members[1]}`)
-      setC(data)
-    } catch (error) {
-      notify('Something went wrong!')
-    }
-  }, [c])
+  // const fetchChat = useCallback(async () => {
+  //   try {
+  //     const {data} = await axiosInstance.get(`/chat/find/${user.user?._id}/${currentChat.members[1]}`)
+  //     setC(data)
+  //   } catch (error) {
+  //     notify('Something went wrong!')
+  //   }
+  // }, [c])
 
   
  
@@ -128,8 +128,7 @@ export function SocketProvider (props: {children: React.ReactElement}) {
     // room
   }
   
- 
-  
+
 
 
 

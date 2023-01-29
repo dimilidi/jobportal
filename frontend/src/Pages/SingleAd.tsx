@@ -25,6 +25,7 @@ import { BsFillEyeFill } from 'react-icons/bs'
 import Message from './Message'
 import useMessenger from '../Hooks/useMessenger'
 import axiosInstance from '../api/axiosInstance'
+import e from 'cors'
 
 
 const SingleAd = () => {
@@ -52,27 +53,27 @@ const SingleAd = () => {
   const response = await axiosInstance
     .post(`/chat`,chat )
     .catch((e) => e.response)
-    setChats([...chats, chat]) 
+
+  setChats([...chats, chat]) 
+  setCurrentChat(chat)
 }
-  
 
-  // HANDLE MESSAGE
+
+
+  // HANDLE MESSAGE 
   const handleMessage = () => {
-    if (user.isLoggedIn === false) navigate('/auth-required')
-    setOpenChat(true)
-    // create chat if chat doesn't already  exist                 // USEEFFECT ???????
-    chats.find((chat:any) => {
-      // if( !(chat.members.includes(ad?.user._id)) && 
-      //     !(chat.members.includes(ad?.user._id)) )  {
-
-      //     }
-         
     
-    } )
-  createChat() 
+    if (user.isLoggedIn === false) navigate('/auth-required')
+    console.log(chats.find((chat:any) => chat.members?.includes( ad?.user?._id) ));
+    
+    // setOpenChat(true)
+    // create chat if chat doesn't already exist
+   !(chats.find((chat:any) => chat.members?.includes( ad?.user?._id) )) && createChat()
+  console.log('CHATS--------------------',chats);
+  navigate('/message')
   
-
   }
+
 
   // HANDLE EDIT
   const handleEdit = () => {
@@ -97,10 +98,10 @@ const SingleAd = () => {
     }
   }
 
-
-  if(openChat){
-    return <Message />
-  }
+ // OPEN CHAT 
+  // if(openChat){
+  //   return <Message />
+  // }
 
   
 

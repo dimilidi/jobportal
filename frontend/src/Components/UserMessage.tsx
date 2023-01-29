@@ -39,7 +39,7 @@ function UserMessage({ ad, online }:Props) {
     },[user, adList, ad, currentChat])
 
 
-console.log(online);
+// console.log(online);
 
 
 
@@ -79,7 +79,7 @@ useEffect(() => {
 
         </div>
         {/* Online Status */}
-          {online && <div className=' w-[15px] h-[15px] absolute top-20 right-[167px] rounded-full bg-green-500' />}
+          {online && <div className=' w-[15px] h-[15px] absolute top-[60px] left-[27px] rounded-full bg-green-500' />}
           <div>
               <p className='text-xl'>{userInfo.name}</p>
               <p className=' text-lightGray'>{userInfo?.profession}</p>

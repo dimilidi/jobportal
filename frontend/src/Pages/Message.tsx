@@ -49,6 +49,7 @@ const Message = () => {
       setIsConnected(true)
   },[user])
 
+console.log('CHAT',c);
 
 
 
@@ -92,7 +93,7 @@ const Message = () => {
   },[user, ad])
 
 
-
+ 
 
     // Send Message to the Socket Server
     useEffect(() => {

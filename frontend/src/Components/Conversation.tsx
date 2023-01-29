@@ -33,24 +33,24 @@ function Conversation({data, setReceiverInfo, online, receiverInfo, }: Props) {
     const getUserData = () => {
         const userId = data?.members?.find((id) => id !== user?._id)
         const adOfSecondMember = adList.find((ad) =>  userId == ad.user._id)
-        console.log(adOfSecondMember);
+        // console.log(adOfSecondMember);
         
        if(adOfSecondMember) {
         setUserData(adOfSecondMember.user)
         setReceiverInfo(adOfSecondMember.user._id)
-        console.log(receiverInfo);
+        // console.log(receiverInfo);
         
       } 
     }
     
     const location = useLocation()
-    console.log(location.pathname);
+    // console.log(location.pathname);
     
     useEffect(() => {
       getUserData()
     },[data, adList])
 
-    console.log('CCCC',currentChat);
+    // console.log('CCCC',currentChat);
 
 
 
@@ -92,7 +92,7 @@ function Conversation({data, setReceiverInfo, online, receiverInfo, }: Props) {
     deleteChat(data._id)
   }
 
-  console.log('6666666666666666666',userData);
+  // console.log('6666666666666666666',userData);
   
   
 

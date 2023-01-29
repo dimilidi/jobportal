@@ -26,7 +26,7 @@ function InputMessage({currentChat}:Props) {
   const [isPickerVisible, setPickerVisible] = useState(false)
   const [currentEmoji, setCurrentEmoji] = useState('')
  
-console.log(currentChat);
+// console.log(currentChat);
 
   
 
