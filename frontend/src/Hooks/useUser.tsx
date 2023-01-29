@@ -10,6 +10,7 @@ import axiosInstance from '../api/axiosInstance'
 import { User, RegisterInputs, LoginInputs, EditInputs } from '../type'
 import { getErrorArray } from '../utils/getErrorArray'
 import useSearch from './useSearch'
+import { useNavigate } from 'react-router-dom'
 
 type PromiseResult = {
   status: number
@@ -51,13 +52,12 @@ const UserContext = createContext<UserHook>({
 })
 
 export const UserProvider = (props: { children: React.ReactElement }) => {
+  const navigate = useNavigate()
   const [user, setUser] = useState<User | null>(null)
   const [loading, setLoading] = useState(true)
   const [isLoggedIn, setIsLoggedIn] = useState(false)
   const { setSearchWord, setSearchCategory } = useSearch()
-  console.log('user', user)
-  console.log('loading', loading)
-  console.log('isLoggedIn', isLoggedIn)
+
 
   // Check if user is logged in, if yes, setUser. If not, return null.
   useEffect(() => {
@@ -111,7 +111,6 @@ export const UserProvider = (props: { children: React.ReactElement }) => {
           '/user/login',
           inputs
         )
-        console.log(response)
         setUser(response.data)
         setIsLoggedIn(true)
         return {
@@ -141,6 +140,7 @@ export const UserProvider = (props: { children: React.ReactElement }) => {
       setUser(null)
       setSearchWord('')
       setSearchCategory('all')
+      navigate('/')
     },
     editAccount: async (inputs: EditInputs) => {
       try {

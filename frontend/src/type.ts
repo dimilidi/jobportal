@@ -8,6 +8,7 @@ export type User = {
   city: string | undefined
   description: string | [] | undefined | any
   phone: string | undefined
+  file?: string | undefined | any
 }
 
 export type Ad = {
@@ -48,5 +49,6 @@ export type EditInputs = {
   city: string | undefined
   description: string | undefined
   phone: string | undefined
+  file: string | undefined 
 }
 

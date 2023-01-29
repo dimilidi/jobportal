@@ -133,17 +133,13 @@ const PostAd = () => {
           <div>
             <h1
               area-label='title-mobile'
-              className='text-4xl font-medium text-textBlack md:hidden lg:hidden'
+              className='text-4xl font-medium flex justify-center gap-3 text-textBlack md:hidden lg:hidden'
             >
               <span className='italic font-medium text-lightGreen md:hidden lg:hidden'>
                 Create{' '}
               </span>
               your Ad
             </h1>
-            <div
-              area-label='line'
-              className='w-[140px] absolute top-[%] left-0 border-b-[3px] border-lightGreen md:hidden lg:hidden'
-            />
           </div>
 
           {/* AD FORM */}
@@ -175,28 +171,30 @@ const PostAd = () => {
 
                 <div
                   area-label='index-radio'
-                  className='px-1 w-full flex justify-end items-center gap-5'
+                  className='px-1 w-full flex justify-center items-center gap-5'
                 >
                   <div className='flex gap-2'>
                     <input
                       type='radio'
+                      id='offering'
                       value='offering'
                       name='case'
                       className='accent-darkGreen'
                       onChange={(e) => setCategory(e.target.value)}
                     />
-                    <label className='form-label'>offering</label>
+                    <label htmlFor='offering' className='form-label cursor-pointer'>offering</label>
                   </div>
 
                   <div className='flex gap-2'>
                     <input
                       type='radio'
+                      id='searching'
                       value='searching'
                       name='case'
                       className='accent-darkGreen'
                       onChange={(e) => setCategory(e.target.value)}
                     />
-                    <label className='form-label'>searching</label>
+                    <label htmlFor='searching' className='form-label cursor-pointer'>searching</label>
                   </div>
                 </div>
               </div>
@@ -220,7 +218,7 @@ const PostAd = () => {
                     <input
                       type='text'
                       name='title'
-                      className=' form-control py-1 px-5 w-full block text-gray border-2 rounded-lg border-lightGray border-opacity-50 placeholder:text-sm 
+                      className='form-control py-1 px-5 w-full block text-gray border-2 rounded-lg border-lightGray border-opacity-50 placeholder:text-sm 
                 focus:outline-lightGray '
                       placeholder='Title'
                       value={title}
@@ -276,8 +274,8 @@ const PostAd = () => {
                   onChange={(e) => setDescription(e.target.value)}
                 ></textarea>
                  */}
-                <TextEditor description={description} setDescription={setDescription}/>
 
+                  <TextEditor description={description} setDescription={setDescription}/>
 
                 {/* CHECKBOX (email-phone) */}
                 <div
@@ -356,7 +354,7 @@ const PostAd = () => {
               onClick={handleNavigateifUserNotLoggedIn}
               area-label='postAdButton'
               text={isLoading ? <Spinner /> : 'Post Ad'}
-              className='my-7 mx-auto w-[200px] self-center  md:mb-0 lg:w-[250px]'
+              className='my-7 mx-auto w-full self-center flex justify-center md:mb-0 lg:w-[250px]'
             />
           </form>
         </div>
@@ -364,7 +362,7 @@ const PostAd = () => {
       </div>
       {/* IMAGE */}
       <img
-        className='w-[200]  lg:w-[260px] lg:h-[330px] hidden absolute bottom-[0px] right-[0px]  sm:block z-30 lg:right-[20px] xl:right-[60px]'
+        className='w-[200] lg:w-[260px] lg:h-[330px] hidden absolute bottom-[0px] right-[0px]  sm:block z-30 lg:right-[20px] xl:right-[60px]'
         src={imagePostAd}
       ></img>
     </motion.div>
