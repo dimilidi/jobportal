@@ -12,6 +12,7 @@ const userSchema = mongoose.Schema({
   city: String,
   description: String,
   phone: String,
+  file: String, 
   ads: [{type: mongoose.Schema.Types.ObjectId, ref: 'Ad'}]
 })
 
@@ -61,6 +62,7 @@ userSchema.methods.toJSON = function () {
     city: user.city,
     description: user.description,
     phone: user.phone,
+    file: user.file,
   }
   return result
 }

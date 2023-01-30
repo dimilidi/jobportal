@@ -60,12 +60,12 @@ const Navigation = () => {
       url: '/account',
       navCategory: 'loggedIn',
     },
-    {
-      icon: <CgProfile />,
-      name: 'Chat',
-      url: user ? '/message' : '/auth-required',
-      navCategory: 'base',
-    },
+    // {
+    //   icon: <CgProfile />,
+    //   name: 'Chat',
+    //   url: user ? '/message' : '/auth-required',
+    //   navCategory: 'base',
+    // },
     {
       icon: <AiOutlineLogin />,
       name: 'Login',
@@ -135,7 +135,7 @@ const Navigation = () => {
                 to={page.url!}
                 className={({ isActive }) =>
                   isActive && !page.deactivateActive
-                    ? 'text-darkGreen decoration-2 decoration-darkGreen underline underline-offset-8'
+                    ? 'text-darkGreen decoration-2 font-medium decoration-darkGreen underline underline-offset-8'
                     : ''
                 }
                 onClick={page.onClick}
@@ -160,7 +160,7 @@ const Navigation = () => {
                   to='/login'
                   className={({ isActive }) =>
                     isActive
-                      ? 'text-darkGreen  decoration-2 decoration-lightGreen underline underline-offset-8'
+                      ? 'text-darkGreen  decoration-2 decoration-lightGreen underline underline-offset-8 font-medium'
                       : ''
                   }
                 >
@@ -179,7 +179,7 @@ const Navigation = () => {
                   to='/register'
                   className={({ isActive }) =>
                     isActive
-                      ? 'text-darkGreen  decoration-2 decoration-lightGreen underline underline-offset-8'
+                      ? 'text-darkGreen  decoration-2 decoration-lightGreen underline underline-offset-8 font-medium'
                       : ''
                   }
                 >

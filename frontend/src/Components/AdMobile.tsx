@@ -33,15 +33,15 @@ function AdMobile() {
           <div className='py:2 md:pl-[80px] pt-1 w-[70%] md:w-[100%] flex flex-col justify-center items-start sm:w-[70%]'>
             <div className='w-[100%] flex'>
               {/* Title, Sector */}
-              <div className='self-start text-textBlack ml-[50px] sm:ml-[90px] md:ml-0 '>
-                <p className='w-full sm:text-[18px] text-textBlack'>{ad.ad?.title}</p>
+              <div className='self-start text-textBlack ml-[50px] sm:ml-[90px] md:ml-0'>
+                <p className='w-[150px] sm:text-[16px] text-textBlack'>{ad.ad?.title}</p>
                 <p className='sm:text-[16px] text-textBlack text-opacity-50'>
                   {ad.ad?.sector}
                 </p>
               </div>
             </div>
 
-            <div className='w-[150px] p-2 md:p-0 md:py-2 flex  gap-1 sm:w-[200px] mt-[15px]'>
+            <div className='w-[150px] p-2 md:p-0 md:py-2 flex  gap-1 sm:w-[200px]'>
               {/* Location */}
               <div className='px-2 py-1 w-[100px] flex justify-center items-center  border-2  text-[12px] text-textBlack text-opacity-50 text-center border-lightBeige rounded-full md:w-[120px] sm:text-[14px]'>
                 <p className='truncate hover:text-clip'>{ad.ad?.location}</p>

@@ -6,6 +6,7 @@ import useDecorationLine from '../Hooks/useDecorationLine'
 // Component
 import UniButton from '../Components/UniButton'
 import Spinner from '../Components/Spinner'
+import FileUploader from '../Components/FileUpload'
 // Images
 import image from '../assets/images/Account_profil.png'
 // Toaster
@@ -37,6 +38,8 @@ const EditAccount = (props: Props) => {
   const [description, setDescription] = useState(user.user?.description)
   const [avatar, setAvatar] = useState<any>(user.user?.avatar)
   const [open, setOpen] = useState(false)
+  const [maxLength, setMaxLength] = useState(300)
+  const [file, setFile] = useState<any>(user.user?.file)
 
   const defaultAvatar =
     'https://res.cloudinary.com/dmdjfvwkd/image/upload/v1673676247/Account_profilDefault_eqka4e.png'
@@ -78,10 +81,11 @@ const EditAccount = (props: Props) => {
     e.preventDefault()
     setFetching(true)
     setErrors([])
-    const newUser = { name, phone, city, profession, description, avatar }
+    const newUser = { name, phone, city, profession, description, avatar ,file}
     const response = await user.editAccount(newUser)
 
     console.log('RR',response.status);
+    console.log('newUser DATA: ',newUser);
     
 
     // if(response.data.message)
@@ -93,14 +97,15 @@ const EditAccount = (props: Props) => {
     setFetching(false)
   }
 
+  
   return (
     // CONTAINER WHOLE PAGE CONTENT
     <div
-      area-label='main-container'
-      className='
-      md:h-[920px]
-      pt-[110px] xl:pt-[290]
-      flex flex-col items-center
+      area-label=' main-container'
+      className='h-full min-h-[900px]
+      md:h-[920px] md:max-h-[1200px]
+
+      flex flex-col items-center justify-center
       '
       onClick={() => open && setOpen(false)}
     >
@@ -120,20 +125,20 @@ const EditAccount = (props: Props) => {
       <div
         aria-label='headline'
         className='w-[85%] mb-2
-          flex justify-between items-end
+          flex justify-between items-end 
           md:mb-5 md:w-[65%] lg:w-[68%] xl:w-[48%] 2xl:w-[36%]'
       >
          {/* TITLE & BROWSER-B */}
          <div
           className='w-[100%]
-      flex flex-row justify-between items-end'
+      flex flex-row justify-between items-end sm:mt-[70px] md:mt-5'
         >
           <h1
             className='
           w-[30%]
           text-left text-[2rem] font-semibold 
           sm:text-[2.5rem] leading-none
-          md:w-[80%] md:text-[3rem]
+          sm:w-[100%] md:text-center
           lg:w-[50%]
           '
           >
@@ -153,7 +158,7 @@ const EditAccount = (props: Props) => {
       <div
         aria-label='main-form-ctn'
         className='
-        w-[90%] h-[550px] md:w-[700px] md:h-[660px]
+        w-[90%] h-[650px]  md:mb-10  py-50 md:w-[700px] sm:h-[700px] md:h-[800px]
         flex flex-col items-center justify-center 
         relative rounded-[30px] shadow-standard bg-white 
         '
@@ -187,16 +192,16 @@ const EditAccount = (props: Props) => {
             {/* INPUTS CONTAINER */}
             <div
               aria-label='inputs-ctn'
-              className='w-full 
+              className='pt-[40px] w-full 
               lg:w-full
                
               flex flex-col items-end md:flex-row-reverse md:justify-between md:items-center'
             >
               {/* IMAGE */}
-              <div className='h-[100px] relative mb-5  flex flex-col sm:h-[11em]'>
+              <div className='mt-[70px] h-[8em] w-auto  rounded-full relative mb-5 flex flex-col  sm:h-[11em] '>
                 <img
                   aria-label='image'
-                  className=' h-[8em] w-[8em] object-cover rounded-full  shadow-standard 
+                  className=' h-full w-[8em] object-cover rounded-full  shadow-standard 
                 top-[40px] right-5
                 z-20 block sm:h-[11em] sm:w-[11em]
                 '
@@ -245,7 +250,7 @@ const EditAccount = (props: Props) => {
                 )}
               </div>
 
-              <div className='md:w-[350px] mt-5'>
+              <div className='md:w-[350px] mt-5 mb-5'>
                 {/* USERNAME */}
                 <label
                   aria-label='username'
@@ -253,7 +258,7 @@ const EditAccount = (props: Props) => {
                   className='
                   hidden md:inline-block
                   self-start
-                  font-light text-lightGray  
+                  font-regular text-lightGray  
                   sm:text-[1.1rem] 
                   lg:self-start'
                 >
@@ -261,11 +266,11 @@ const EditAccount = (props: Props) => {
                 </label>
                 <input
                   className='
-                  w-full mb-2  px-3 py-[5px]  
+                  w-full mb-2 px-3 py-[5px]  
                   box-border border border-lightGray rounded-[15rem] 
-                  text-sm text-textBlack font-bold border-opacity-[50%]
-                  min-[425px]:py-[10px]  
-                  sm:text-[1.1rem]
+                  text-sm text-gray font-bold border-opacity-[50%]
+                  min-[425px]:py-[8px] 
+                  sm:text-[1rem] md:placeholder:invisible
                   focus:outline-lightGreen'
                   placeholder='Username'
                   type='text'
@@ -281,7 +286,7 @@ const EditAccount = (props: Props) => {
                   className='
                   hidden md:inline-block
                   self-start 
-                  font-light text-lightGray  
+                  font-regular text-lightGray  
                   sm:text-[1.1rem] 
                   lg:self-start'
                 >
@@ -292,9 +297,9 @@ const EditAccount = (props: Props) => {
                   w-full mb-2 py-[5px] px-3
                   box-border border border-lightGray
                   border-opacity-[50%] rounded-[15rem] 
-                  text-sm font-medium text-textBlack
-                  min-[425px]:py-[10px]   
-                  sm:text-[1.1rem]
+                  text-sm font-medium text-gray text-opacity-60
+                  min-[425px]:py-[8px] placeholder:font-normal placeholder:opacity-40  
+                  sm:text-[1rem] md:placeholder:invisible
                   focus:outline-lightGreen'
                   placeholder='Profession'
                   type='text'
@@ -311,7 +316,7 @@ const EditAccount = (props: Props) => {
                   className='
                   hidden md:inline-block
                   self-start 
-                  font-light text-lightGray   
+                  font-regular text-lightGray   
                   sm:text-[1.1rem] 
                   lg:self-start'
                 >
@@ -323,9 +328,9 @@ const EditAccount = (props: Props) => {
                   py-[5px] px-3
                   box-border border border-lightGray
                   rounded-[15rem] focus:outline-lightGreen 
-                  sm:text-[1.1rem] border-opacity-[50%]
-                  text-sm font-medium text-textBlack
-                  min-[425px]:py-[10px]'
+                  sm:text-[1rem] border-opacity-[50%] placeholder:font-normal placeholder:opacity-40 
+                  text-sm font-medium text-gray text-opacity-60 md:placeholder:invisible
+                  min-[425px]:py-[8px]'
                   placeholder='Phone'
                   type='text'
                   name='phone'
@@ -340,7 +345,7 @@ const EditAccount = (props: Props) => {
                   className='
                   hidden md:inline-block
                   self-start 
-                  font-light text-lightGray   
+                  font-regular text-lightGray   
                   sm:text-[1.1rem] 
                   lg:self-start'
                 >
@@ -352,9 +357,9 @@ const EditAccount = (props: Props) => {
                   py-[5px] px-3
                   box-border border border-lightGray
                   rounded-[15rem] focus:outline-lightGreen
-                  sm:text-[1.1rem] border-opacity-[50%]
-                  text-sm font-medium text-textBlack
-                  min-[425px]:py-[10px]'
+                  sm:text-[1rem] border-opacity-[50%] placeholder:font-normal placeholder:opacity-40 
+                  text-sm font-medium text-gray text-opacity-60 md:placeholder:invisible
+                  min-[425px]:py-[8px]'
                   placeholder='City'
                   type='text'
                   name='city'
@@ -364,13 +369,14 @@ const EditAccount = (props: Props) => {
               </div>
             </div>
           </div>
+          {/* <FileUploader file={file} setFile={setFile} /> */}
 
           {/* DESCRIPTION */}
           <label
             htmlFor='description'
             className='hidden
                 self-start 
-                font-light text-lightGray  
+                font-regular text-lightGray  
                 sm:text-[1.1rem] md:inline-block
                 lg:self-start'
           >
@@ -379,19 +385,29 @@ const EditAccount = (props: Props) => {
           <textarea
             area-label='description'
             name='description'
-            rows={7}
             placeholder='Description'
+            maxLength={300}
             className='
-                w-full mb-2
+                w-full mb-2 h-[130px]
                 py-[11px] px-3
                 box-border border border-lightGray rounded-[1rem] 
-                text-sm font-medium text-textBlack
-                min-[425px]
+                text-sm font-medium text-gray text-opacity-80 md:placeholder:invisible
+                min-[425px] placeholder:font-normal placeholder:opacity-40 
                 focus:outline-lightGreen 
-                sm:text-[1.1rem] border-opacity-[50%]'
+                sm:text-[1rem] border-opacity-[50%] resize-none'
             value={description}
             onChange={(e) => setDescription(e.target.value)}
           ></textarea>
+
+          {description?.length >= 0 ? (
+            <span className='w-full text-gray text-sm text-opacity-50 text-right'>
+             {description?.length}/{maxLength-(description?.length)}
+            </span>
+          ) : (
+            <span className='w-full text-gray text-sm text-opacity-50 text-right'>
+              0/300
+            </span>
+          )}
 
           {/* ERRORS */}
           {errors &&
@@ -401,7 +417,7 @@ const EditAccount = (props: Props) => {
                 className='mt-1 
                 text-red-600  
                 w-[100%] 
-                text-center'
+                text-center text-sm'
               >
                 {error}
               </p>
@@ -409,17 +425,17 @@ const EditAccount = (props: Props) => {
 
           {/* SAVE CHANGES BUTTON */}
           <UniButton
-            text={fetching ? <Spinner /> : 'Save Changes'}
+            text={fetching ? <Spinner /> : 'Save '}
             className='
                 mt-2
                 w-full
                 flex flex-wrap justify-center
-                text-lg'
+                text-lg '
             style={{ padding: '10px' }}
           />
 
           {/* DELETE-ACCOUNT */}
-          <p className='my-4 w-full text-center text-lightGray underline text-[14px] lg:text-center'>
+          <p className='py-4 mb-5 w-full text-center text-lightGray underline text-[14px]  lg:text-center sm:pb-1'>
             <Link to='/delete-account'>Delete account</Link>
           </p>
         </form>

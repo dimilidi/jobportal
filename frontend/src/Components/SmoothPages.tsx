@@ -14,7 +14,6 @@ import DeleteAccount from '../Pages/DeleteAccount'
 import EditAd from "../Pages/EditAd"
 // framer-motion
 import {AnimatePresence} from 'framer-motion'
-import Message from '../Pages/Message'
 import useUser from '../Hooks/useUser'
 
 
@@ -24,7 +23,7 @@ const SmoothPages = () => {
 
 
   return (
-    <AnimatePresence>
+    // <AnimatePresence>
         <Routes location={location} key={location.pathname}>
             <Route path='/login' element={<Login />} />
             <Route path='/register' element={<Register />} />
@@ -37,10 +36,9 @@ const SmoothPages = () => {
             <Route path='/edit-account' element={<EditAccount />} />
             <Route path='/delete-account' element={<DeleteAccount />} />
             <Route path='/auth-required' element={<AuthRequired />} />
-            <Route path='/message' element={user ? <Message /> : < AuthRequired />} />
             <Route path='*' element={<NotFound />} />
         </Routes>
-    </AnimatePresence>
+    // </AnimatePresence>
   )
 }
 

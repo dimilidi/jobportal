@@ -1,7 +1,5 @@
 import Ad from '../models/Ad.js'
-
-
-
+import mongoose from 'mongoose'
 
 // GET ADS
 /** @type {import("express").RequestHandler} */
@@ -53,8 +51,8 @@ export async function getAds(req, res) {
 
   
   const [count, ads] = await Promise.all([countDoc, query])
-  const pageCount = count / page_size
-  
+  let pageCount = count / page_size
+
   res.status(200).json({pagination:{count, pageCount},ads})
 }
 
@@ -86,6 +84,7 @@ export async function getAdById(req, res) {
   // if user is NOT logged in, populate only name ...of ad-creator
   let ad = await Ad.findById(adId).populate('user', 'name, avatar  profession')
 
+
   // if user is logged in, contact data selected in contactvia
   let itemToPopulate = 'profession name avatar  '
   if (user) {
@@ -97,6 +96,23 @@ export async function getAdById(req, res) {
 
   res.status(200).json(ad)
 }
+
+
+//INCREMENT VIEWS
+/** @type {import("express").RequestHandler} */
+export async function incrementViews(req, res) {
+  const user = req.user
+  const adId = req.params.id
+
+  const resultUpdate = await Ad.findByIdAndUpdate(adId, {
+    $inc: {views: 1},
+  })
+  console.log(resultUpdate)
+
+
+  res.status(200).json(resultUpdate)
+}
+
 
 
 // UPDATE AD

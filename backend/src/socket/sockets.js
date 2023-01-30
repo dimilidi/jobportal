@@ -53,6 +53,7 @@ const sockets = (socket) => {
   //   activeUsers = activeUsers.filter((user) => user.socketId !== socket.id)
   //   console.log('User left', activeUsers)
   //   socket.emit('get-users', activeUsers) 
+  
   // })
 }
 

@@ -6,8 +6,9 @@ export type User = {
   email: string | undefined
   avatar?: string | undefined
   city: string | undefined
-  description: string | undefined | []
+  description: string | [] | undefined | any
   phone: string | undefined
+  file?: string | undefined | any
 }
 
 export type Ad = {
@@ -48,7 +49,9 @@ export type EditInputs = {
   city: string | undefined
   description: string | undefined
   phone: string | undefined
+  file: string | undefined 
 }
+
 
 
 export type Chat = {

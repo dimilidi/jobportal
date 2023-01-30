@@ -76,7 +76,7 @@ const Login = (props: Props) => {
       initial={{ width: '100%'}}
       animate={ {width: '100%'}}
       exit={{x:window.innerWidth}} 
-      className='pt-5 h-full min-h-[950px] flex flex-col items-center justify-center lg:flex-row '>
+      className='pt- h-full min-h-[870px] lg:min-h-[980px] flex flex-col items-center justify-center lg:flex-row '>
         
       {/* GREEN SEMICIRCLE */}
       <div className='w-[50px] h-[100px] hidden absolute right-[0] top-[21rem] z-10 bg-lightGreen rounded-tl-full rounded-bl-full xl:block' />
@@ -91,7 +91,7 @@ const Login = (props: Props) => {
 
       {/*HEADING && FORM */}
       <div className='py-[20px] h-[600px] w-[90%] max-w-[500px]  
-      flex flex-col justify-center   border-radius  shadow-standard  
+      flex flex-col justify-center border-radius  shadow-standard  
       bg-white rounded-[30px]
       lg:max-w-[1000px] lg:w-[50%] lg:h-[650px] lg:ml-[16rem] lg:rounded-l-[30px] lg:rounded-r-none
       xl:ml-[20rem]'>
@@ -158,7 +158,7 @@ const Login = (props: Props) => {
                 />
               )}
 
-              <p className='mt-1 w-full text-lightGray underline text-[14px]sm:justify-center lg:justify-start'>
+              <p className='mt-1 w-full text-lightGray underline text-[14px] sm:justify-center lg:justify-start'>
                 <Link to='/edit-userdata'>Forgot your password?</Link>
               </p>
             </div>

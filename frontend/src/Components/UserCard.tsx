@@ -1,8 +1,12 @@
+// Hooks
+import { Link, useNavigate } from 'react-router-dom'
+import useUser from '../Hooks/useUser'
+
 import UniButton from './UniButton'
 import imageAccount from '../assets/images/Account_profilDefault.png'
 import { MdMail, MdCall, MdLocationOn } from 'react-icons/md'
-import useUser from '../Hooks/useUser'
-import { useNavigate } from 'react-router-dom'
+import UniButtonDark from './UniButtonDark'
+import { AiFillEdit } from 'react-icons/ai'
 
 type Props = {
   style?: {}
@@ -14,23 +18,48 @@ function UserCard(props: Props) {
 
   return (
     <div
+
       // USER CARD
       style={props.style}
-      className='mt-0 w-[90%] max-w-[450px] min-h-[540px]
-            flex flex-col justify-center relative  
-            shadow-standard 
-            rounded-bl-[65px] rounded-br-[65px]
-            bg-white
-            sm:justify-center lg:justify-self-center
-            '
-    >
+      className='
+      w-[90%] pb-8 max-w-[500px] min-h-fit 
+      flex flex-col justify-start relative  
+      shadow-standard 
+      rounded-bl-[65px] rounded-br-[65px]
+      bg-white
+      sm:justify-center 
+      max-lg:mt-20
+      lg:justify-self-center'>
+
+      {/* Edit Profile Icon*/}
+      <Link className='
+      w-full h-full 
+      flex justify-center items-end
+      absolute z-[10] -bottom-5
+      sm:mt-10 sm:pt-2 sm:px-6 
+      sm:justify-end
+      sm:bottom-8 sm:right-6
+      lg:right-3
+      ' 
+      to="/edit-account">
+
+        <UniButtonDark
+          text={
+            <AiFillEdit style={{ width: '40px', fontSize: '20px' }} />
+          }
+          className='lg:mb-0'
+          style={{ width: '80px', height: '40px' }}
+        />
+      </Link>
+
       {/* AVATAR BG SEMICIRCLE */}
       <div className='flex justify-center'>
         <div
-          className='w-[100%] h-[13em] 
-            flex justify-center absolute top-0 
-            rounded-b-[200px]
-            bg-darkBeige'
+          className='
+          w-full h-[9em] 
+          flex justify-center absolute top-[.1em] 
+          rounded-b-[200px]
+          bg-darkBeige'
         ></div>
       </div>
       {/* .................... */}
@@ -38,12 +67,12 @@ function UserCard(props: Props) {
       {/* AVATAR CIRCLE CONTAINER */}
       <div
         className='
-            w-[100%] h-[6em] 
+            w-[100%] mt-4
             flex justify-center'
       >
         <img
-          className='w-[11em] h-[11em] mt-[2.8rem] 
-            lg:w-[12rem] lg:h-[12rem] lg:mt-[1rem]
+          className='w-[10em] h-[10em]
+            lg:w-[11rem] lg:h-[11rem] lg:mt-[.5rem]
             absolute z-10 object-cover
             rounded-full'
           src={user?.avatar ? user?.avatar : imageAccount}
@@ -51,17 +80,18 @@ function UserCard(props: Props) {
       </div>
 
       {/* User Name-, and Section */}
-      <div className='mt-[9em]'>
+      <div className='mt-[10.5em] lg:mt-[12em]'>
         <h1
           className='
-            flex justify-center 
-            font-[700] text-[2rem] md:text-[2.5]'
+            h-10
+            flex justify-center text-gray
+            font-[600] text-[1.9rem] md:text-[2.5]'
         >
           {user?.name}
         </h1>
         {user?.profession && (
           <h2
-            className='mb-6 flex justify-center text-[1.8rem] font-light'>
+            className='flex text-gray text-opacity-60 justify-center text-[1.5rem] font-light'>
             {user.profession}
           </h2>
         )}
@@ -69,41 +99,42 @@ function UserCard(props: Props) {
 
       {/* Description Heading and Description */}
       {user?.description && (
-        <div className='pl-9 pr-9'>
-          <h3 className='mb-1 text-[16px] font-[600]'>Description</h3>
-          <p className='text-[15px] text-[gray]'>{user?.description}</p>
+        <div className='min-h-[100px] w-[90%] h-[8rem] mt-4 mb-7 px-6 overflow-y-scroll'>
+          <p className='p-2 text-sm font-medium text-[gray]'>{user?.description}</p>
         </div>
       )}
 
       {/* Contact Data */}
-      <div className=' px-8 my-6 text-[17px] font-[500] min-[374px]:mx-[1em]'>
-        <div className='flex flex-row gap-4 items-center text-gray leading-relaxed'>
+      <div className='px-4 mx-4 text-sm font-[400]'>
+        <div className='flex flex-row gap-4 items-center text-gray text-opacity-80 leading-relaxed'>
           {' '}
-          <MdMail /> {user?.email}
+          <MdMail className='opacity-50'/> {user?.email}
         </div>
         {user?.phone && (
-          <div className='flex flex-row gap-4 items-center text-gray leading-relaxed'>
+          <div className='flex flex-row gap-4 items-center text-gray text-opacity-80 leading-relaxed'>
             {' '}
-            <MdCall /> {user?.phone}
+            <MdCall className='opacity-50'/> {user?.phone}
           </div>
         )}
         {user?.city && (
-          <div className='flex flex-row gap-4 items-center text-gray leading-relaxed'>
+          <div className='flex flex-row gap-4 items-center text-gray text-opacity-80 leading-relaxed'>
             {' '}
-            <MdLocationOn /> {user?.city}
+            <MdLocationOn className='opacity-50'/> {user?.city}
           </div>
         )}
       </div>
 
-      {/* Edit Profile Button Wrapper */}
-      <div className='flex justify-center mb-10'>
-        <UniButton
-          area-label='EditProfileButton'
-          text='Edit Profile'
-          type='button'
-          onClick={() => navigate('/edit-account')}
-        />
-      </div>
+      
+      {/* file upload */}
+      {user?.file && (
+        <a 
+        href={URL.createObjectURL(user.file)} 
+        target="_blank" 
+        className=' underline text-lightGray pb-5'>
+          View your file here
+        </a>
+      )}
+
     </div>
   )
 }

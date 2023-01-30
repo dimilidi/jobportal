@@ -1,4 +1,5 @@
 // Hooks
+<<<<<<< HEAD
 import { useNavigate, useParams } from 'react-router-dom'
 import useAdList from '../Hooks/useAdList'
 import useUser from '../Hooks/useUser'
@@ -6,6 +7,13 @@ import useSearch from '../Hooks/useSearch'
 import { useState } from 'react'
 import useAd from '../Hooks/useAd'
 
+=======
+import { useLocation, useNavigate } from 'react-router-dom'
+import useAdList from '../Hooks/useAdList'
+import useUser from '../Hooks/useUser'
+import useSearch from '../Hooks/useSearch'
+import { useEffect, useState } from 'react'
+>>>>>>> dev4
 // Components
 import Ad from '../Components/Ad'
 import UniButton from '../Components/UniButton'
@@ -38,6 +46,10 @@ const AdsList = () => {
   
 
 
+  // RESET PAGE NUMBER BY SEARCH 
+    useEffect(() => {
+      if(searchWord) setPage(0)
+    },[searchWord])
 
 
   // DECORATION LINE
@@ -52,9 +64,13 @@ const AdsList = () => {
     }
   }
 
+<<<<<<< HEAD
 
 
  
+=======
+  
+>>>>>>> dev4
 
   return (
     <motion.div
@@ -67,7 +83,7 @@ const AdsList = () => {
       <div className='w-[50px] h-24 hidden right-0 top-[160px] rounded-tl-full rounded-bl-full bg-lightGreen lg:block absolute'></div>
 
       {/* HEADING WITH UNDERLINE  */}
-      <div className='mx-auto mt-[30px] h-[100px] w-[250px] lg:w-[320px] xl:w-[370px] flex justify-end'>
+      <div className='mx-auto md:mt-[30px] h-[100px] w-[250px] lg:w-[320px] xl:w-[370px] flex justify-end'>
         <h2 className='text-left text-[45px] font-semibold leading-tight'>
           Be part of
           <p>
@@ -131,7 +147,7 @@ const AdsList = () => {
                 <div className='md:p-1 flex flex-col justify-start items-center'>
                   {/* ADS */}
                   {ads.adList?.map((ad) => (
-                    <Ad  key={ad._id} ad={ad} />
+                    <Ad key={ad._id} ad={ad} />
                   ))}
                 </div>
                 )}
@@ -154,6 +170,7 @@ const AdsList = () => {
               </div>
               {/* NEXT & PREV PAGE  */}
               <div 
+                style={{visibility: pageCount >0 ? 'visible' : 'hidden'}}
                 className='flex justify-center items-center w-[250px]'>
               <PaginationButtons page ={page} setPage = {setPage} pageCount={pageCount} />
               </div>

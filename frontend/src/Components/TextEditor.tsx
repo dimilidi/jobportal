@@ -1,18 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { useQuill } from "react-quilljs";
 import "quill/dist/quill.snow.css";
 
 type Props ={
-    description: String
-    setDescription: (value: String) => void
+    description: string
+    setDescription: (value: any) => void
 }
 
-const FormatedText = (myDescription:any) => {
-  return {
-    __html: `${myDescription}`
-  }
-}
-const Editor = (props:Props) => {
+
+const TextEditor = (props:Props) => {
 
   const placeholder = 'Your description...'
   const modules = {
@@ -33,32 +29,33 @@ const Editor = (props:Props) => {
     'underline',
     'strike',
     'align',
-    'list'
+    'list',
   ];
 
   const { quill, quillRef, Quill } = useQuill({
     modules,
     formats,
-    placeholder
+    placeholder,
+    // defaultValue: props.description
   })
 
   useEffect(() => {
     if (quill) {
-      quill.on("text-change", () => {
-        props.setDescription(quill.root.innerHTML)
-      })
+      setTimeout(() => {
+        quill.on("text-change", () => {
+          console.log('DESC UE: ',props.description);
+          props.setDescription(quill.root.innerHTML)
+        })
+      }, 1000);
     }
   }, [quill])
 
   return (
-    <div style={{width: '100%'}}>
+    <div style={{width: '100%',}}>
       <div ref={quillRef} />
-      <div className="ql-editor" dangerouslySetInnerHTML={FormatedText(props.description)} />
     </div>
   )
 }
-export default Editor
+export default TextEditor
 
-//dangerouslySetInnerHTML is React’s replacement for using innerHTML
-// Set HTML directly from React, but you have to type out dangerouslySetInnerHTML and pass an object with a __html key.
 
