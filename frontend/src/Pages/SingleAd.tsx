@@ -103,7 +103,7 @@ const SingleAd = () => {
         animate={{ width: '100%' }}
         exit={{ x: window.innerWidth }}
         area-label='page-singleAd'
-        className='pb-20 w-[95%] h-full min-h-[900px] flex flex-col items-center justify-center text-textBlack md:pt-[140px] xl:pt-[120px] '
+        className='w-[95%] h-full min-h-[860px] flex flex-col items-center justify-center text-textBlack xl:pt-[120px] '
       >
         {/* MAIN PART OF SINGLE AD */}
 
@@ -124,19 +124,19 @@ const SingleAd = () => {
           {/* Ad */}
           <div
             area-label='ad'
-            className='py-10 px-2 sm:px-5 sm:mx-0 sm:p-5 mt-0 mx-2 w-[90%] min-h-[400px] sm:h-[400px] 
+            className='pt-10 sm:mx-0 sm:p-5 mt-0 mx-2 w-[90%] min-h-[380px] sm:h-[400px] 
             sm:w-[600px] xl:w-[100%] xl:h-[450px]
-            flex flex-col  justify-start item-center self-center z-10 rounded-[21px] bg-white shadow-standard'
+            flex flex-col justify-start item-center self-center z-10 rounded-[21px] bg-white shadow-standard'
           >
             <AdMobile />
 
             {!isLoading && (
               <div
                 area-label='description'
-                className='mt-3 px-3 sm:max-h-[230px] sm:overflow-y-scroll'
+                className='mt-2 px-3'
               >
                 {/* <h3 className='text-[20px]'>Description</h3> */}
-                <p className='text-[14px] text-justify text-gray/80'>
+                <p className='text-[14px] mt-3 md:mt-0 text-justify text-gray/80'>
                   {/* {ad.description} */}
                   {/* Formated text mit Text Editor */}
                   <TextEditorRender />
@@ -144,7 +144,7 @@ const SingleAd = () => {
               </div>
             )}
                 {/* VIEWS */}
-                <div className=" h-[25px] pr-[20px] mt-5 flex items-center justify-end gap-1 text-sm text-gray opacity-50">
+                <div className=" h-[25px] pr-[20px] mt-3 mb-3  xl:mt-[40px] flex items-center justify-end gap-1 text-sm text-gray opacity-50">
                 <BsFillEyeFill /> <span>{ad.views}</span>
               </div>
           </div>
