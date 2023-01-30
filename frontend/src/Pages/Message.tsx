@@ -25,12 +25,14 @@ const Message = () => {
   const {adList} = useAdList('')
   const {user} = useUser()
   const chat = useMessenger()
-  const { setC, c, onlineUsers, sendMessage, setIsConnected, connect, currentChat, setCurrentChat, chats, setChats, setReceiveMessage, receiveMessage, receiveMessageFromSocket} = useMessenger()
+  const { setC, c, onlineUsers, sendMessage, setIsConnected, isConnected, connect, currentChat, setCurrentChat, chats, setChats, setReceiveMessage, receiveMessage, receiveMessageFromSocket} = useMessenger()
   const [userData, setUserData] = useState<any>({})
   const [receiverInfo, setReceiverInfo] = useState<any>({})
   const [openChatBox, setOpenChatBox] = useState(false)
   const params = useParams()
   const path  = useLocation()
+  const [msg, setMsg] = useState<any[]>([])
+
 
   
   
@@ -45,6 +47,12 @@ const Message = () => {
   useEffect(() => {
     if(user) { 
       connect(user._id)
+
+      // socket.emit('new-user-add', id) //user._id
+      // socket.on('get-users', (users:[]) => {
+        // setOnlineUsers(users)
+    //   })
+    // setIsConnected(true)
      } 
       setIsConnected(true)
   },[user])
@@ -82,6 +90,7 @@ console.log('CHAT',c);
   const getChats = async() => {
     try {
       const {data} = await axiosInstance.get(`/chat/${user?._id}`)
+      setMsg(data)
       setChats(data)
     } catch (error) {
       console.log(error);
@@ -92,6 +101,8 @@ console.log('CHAT',c);
     getChats()
   },[user, ad])
 
+console.log('MSG', chats);
+console.log('-------CON------', isConnected);
 
  
 

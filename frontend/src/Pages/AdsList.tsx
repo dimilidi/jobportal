@@ -1,19 +1,12 @@
 // Hooks
-<<<<<<< HEAD
+
 import { useNavigate, useParams } from 'react-router-dom'
 import useAdList from '../Hooks/useAdList'
 import useUser from '../Hooks/useUser'
 import useSearch from '../Hooks/useSearch'
-import { useState } from 'react'
 import useAd from '../Hooks/useAd'
-
-=======
-import { useLocation, useNavigate } from 'react-router-dom'
-import useAdList from '../Hooks/useAdList'
-import useUser from '../Hooks/useUser'
-import useSearch from '../Hooks/useSearch'
 import { useEffect, useState } from 'react'
->>>>>>> dev4
+
 // Components
 import Ad from '../Components/Ad'
 import UniButton from '../Components/UniButton'
@@ -64,13 +57,6 @@ const AdsList = () => {
     }
   }
 
-<<<<<<< HEAD
-
-
- 
-=======
-  
->>>>>>> dev4
 
   return (
     <motion.div

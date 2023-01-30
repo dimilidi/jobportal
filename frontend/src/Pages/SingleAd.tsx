@@ -21,17 +21,12 @@ import { RiDeleteBinLine } from 'react-icons/ri'
 import { useEffect, useState } from 'react'
 import Modal from '../Components/Modal'
 import { BsFillEyeFill } from 'react-icons/bs'
-<<<<<<< HEAD
 import Message from './Message'
 import useMessenger from '../Hooks/useMessenger'
 import axiosInstance from '../api/axiosInstance'
 import e from 'cors'
-=======
-import UniButtonDark from '../Components/UniButtonDark'
 import TextEditorRender from '../Components/TextEditorRender'
-import axiosInstance from '../api/axiosInstance'
-
->>>>>>> dev4
+import UniButtonDark from '../Components/UniButtonDark'
 
 
 const SingleAd = () => {
@@ -40,35 +35,15 @@ const SingleAd = () => {
   const params = useParams()
   const navigate = useNavigate()
   const user = useUser()
-<<<<<<< HEAD
   const { ad,  isLoading, deleteAd } = useAd()
   const {chats, setChats, setC, currentChat, setCurrentChat} = useMessenger()
   const [openChat, setOpenChat] = useState(false)
+  const [msg, setMsg] = useState<any[]>([])
+
 
   const [modalOpen, setModalOpen] = useState(false)
   const close = () => setModalOpen(false)
   const open = () => setModalOpen(true)
-=======
-  const { ad,  isLoading, deleteAd, updateAd, fetchAds } = useAd()
-  const [modalOpen, setModalOpen] = useState(false)
-  const close = () => setModalOpen(false)
-  const open = () => setModalOpen(true)
-  const [openChat, setOpenChat] = useState(false)
-  const [views, setViews] = useState(0)
-
-
-
-
- //HANDLE VIEWS
- useEffect(() => {
-  const updateViews = async () => {
-    const response = await axiosInstance
-    .get(`/ads/${params.id}/increment-view`)
-    .catch((e) => e.response)
-  }
-  updateViews()
-},[params.id])
->>>>>>> dev4
 
   const sender = user.user?._id
 
@@ -83,6 +58,7 @@ const SingleAd = () => {
     .post(`/chat`,chat )
     .catch((e) => e.response)
 
+  setMsg([...chats, chat]) 
   setChats([...chats, chat]) 
   setCurrentChat(chat)
 }
@@ -93,28 +69,17 @@ const SingleAd = () => {
   const handleMessage = () => {
     
     if (user.isLoggedIn === false) navigate('/auth-required')
-<<<<<<< HEAD
     console.log(chats.find((chat:any) => chat.members?.includes( ad?.user?._id) ));
     
     // setOpenChat(true)
     // create chat if chat doesn't already exist
-   !(chats.find((chat:any) => chat.members?.includes( ad?.user?._id) )) && createChat()
-  console.log('CHATS--------------------',chats);
+   !(msg.find((chat:any) => chat.members?.includes( ad?.user?._id) )) && createChat()
+  console.log('CHATS--------------------',msg);
   navigate('/message')
   
   }
 
-=======
-    setOpenChat(true)
-  }
->>>>>>> dev4
 
-    // HANDLE CONTACT
-    const handleContact = () => {
-      if (user.isLoggedIn === false) navigate('/auth-required')
-      // if(user.user?._id === ad?.user._id){}
-  }
- 
   // HANDLE EDIT
   const handleEdit = () => {
     if (user.isLoggedIn === false) navigate('/auth-required')
@@ -138,17 +103,12 @@ const SingleAd = () => {
     }
   }
 
-<<<<<<< HEAD
  // OPEN CHAT 
   // if(openChat){
   //   return <Message />
   // }
-=======
->>>>>>> dev4
 
-  console.log('Views',ad?.views);
   
-
 
   // If no ad was fetched, return div with message
   if (!ad) {
@@ -264,33 +224,14 @@ const SingleAd = () => {
           </div>
           }
 
+          {/* IF AD IS NOT CREATED BY USER, BUTTON "MESSAGE" */}
           <div className='flex justify-center gap-2'>
-            {/* IF AD IS NOT CREATED BY USER, BUTTON "MESSAGE" */}
-            { user.user?._id !== ad?.user._id && (
-              <UniButton
-                text='Message'
-                onClick={handleMessage}
-                className='my-7 self-center mb-2 lg:mb-0'
-                style={{ width: '140px' }}
-              />
-            )}
-
-
-<<<<<<< HEAD
           { user.user?._id !== ad?.user._id && (
             <UniButton
            
               text='Message'
               onClick={handleMessage}
-=======
-            {/* IF AD IS NOT CREATED BY USER, BUTTON "CONTACT" */}
-            { user.isLoggedIn === false && (
-              <UniButtonDark
-              text='Contact'
-              onClick={handleContact}
->>>>>>> dev4
               className='my-7 self-center mb-2 lg:mb-0'
-              style={{ width: '140px' }}
             />
             )}
           </div>
