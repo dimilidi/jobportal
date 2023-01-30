@@ -358,7 +358,13 @@ const PostAd = () => {
             />
           </form>
         </div>
-        <ToastContainer position='top-right' />
+        <ToastContainer
+          position='top-center'
+          bodyClassName='toastBody'
+          progressClassName='toastProgress'
+          toastClassName='toast'
+          autoClose={3000}
+          />
       </div>
       {/* IMAGE */}
       <img

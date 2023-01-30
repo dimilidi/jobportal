@@ -75,7 +75,7 @@ const DeleteAccount = () => {
           <div
             area-label='circle'
             className='w-24 h-24 hidden 
-              right-[-3rem] top-[280px]  
+              right-[-3rem] top-[290px] xl:top-[295px] 
               rounded-full bg-lightGreen 
               lg:block absolute'
           ></div>
