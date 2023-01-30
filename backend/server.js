@@ -11,6 +11,9 @@ import messageRouter from './src/socket/routers/messageRouter.js'
 import http from 'http'
 import { Server } from 'socket.io'
 import sockets from './src/socket/sockets.js'
+import MessageController from './src/socket/controllers/messageController.js'
+import TypingController from './src/socket/controllers/typingController.js'
+import JoinChatController from './src/socket/controllers/joinChatController.js'
 
 dotenv.config({ path: `.env.${process.env.NODE_ENV}` })
 
@@ -22,7 +25,73 @@ const io = new Server(server, {
   cors: {origin: process.env.FRONTEND}})
 
 // Socket Connection
-io.on("connection", sockets )
+// io.on("connection", sockets )
+
+
+let activeUsers = []
+
+io.on("connection", socket  => {
+
+
+  // if(!activeUsers.some((user)=> user.id === socket.id)){
+  //   activeUsers.push({
+  //     // userId: newUserId,
+  //     socketId: socket.id
+  //   })
+  // }
+  // console.log('Connected Users', activeUsers)
+  // socket.emit('get-users', activeUsers) //io?
+
+  // console.log('active', activeUsers)
+  const typingController = new TypingController(socket)
+  // const roomController = new RoomController(socket)
+  const messageController = new MessageController(socket)
+  const joinChatController = new JoinChatController(socket)
+
+
+  //add new User 
+  socket.on('new-user-add', (newUserId) => {
+    // if user is not added previously
+    if(!activeUsers.some((user)=> user.userId === newUserId)){
+      activeUsers.push({
+        userId: newUserId,
+        socketId: socket.id
+      })
+    }
+    console.log('Connected Users', activeUsers)
+    io.emit('get-users', activeUsers) //io?
+  })
+
+
+  // send message
+  socket.on('send-message', (data)=> {
+    const {receiverId} = data
+    const user = activeUsers.find((user) => user.userId === receiverId)
+    
+    if(user) {
+      socket.to(user.socketId).emit('receive-message', data)
+    }
+    console.log('From socket to:', receiverId)
+    console.log('Data',data)
+  })
+  
+
+
+
+
+  // socket.on("message", messageController.sendMessage )    
+  // // socket.on("joinRoom", roomController.joinRoom)
+  // socket.on('typing-started',typingController.typingStarted)
+  // socket.on('typing-stopped',typingController.typingStopped)
+  // socket.on('join chat', joinChatController.joinChat)
+
+  socket.on('disconnect', () => {
+    activeUsers = activeUsers.filter((user) => user.socketId !== socket.id)
+    console.log('User left', activeUsers)
+    socket.emit('get-users', activeUsers) 
+  
+  })
+})
 
 
 console.log('\x1b[36m%s\x1b[0m', `CLICK --> ${process.env.FRONTEND}`)

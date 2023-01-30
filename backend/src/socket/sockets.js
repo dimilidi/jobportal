@@ -7,6 +7,9 @@ import JoinChatController from "./controllers/joinChatController.js"
 let activeUsers = []
 
 const sockets = (socket) => {
+
+  console.log('socket', socket.id)
+  console.log('active', activeUsers)
   const typingController = new TypingController(socket)
   // const roomController = new RoomController(socket)
   const messageController = new MessageController(socket)
@@ -16,12 +19,12 @@ const sockets = (socket) => {
   //add new User 
   socket.on('new-user-add', (newUserId) => {
     // if user is not added previously
-    if(!activeUsers.some((user)=> user.userId === newUserId)){
+    // if(!activeUsers.some((user)=> user.userId === newUserId)){
       activeUsers.push({
         userId: newUserId,
         socketId: socket.id
       })
-    }
+    // }
     console.log('Connected Users', activeUsers)
     socket.emit('get-users', activeUsers) //io?
   })
