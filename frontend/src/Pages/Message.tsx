@@ -4,7 +4,7 @@ import useAdList from '../Hooks/useAdList'
 import useAd from '../Hooks/useAd'
 import { useEffect, useState, useCallback } from 'react'
 import { useParams, useLocation } from 'react-router-dom'
-import useMessenger, { socket } from '../Hooks/useMessenger'
+import useMessenger from '../Hooks/useMessenger'
 // Components
 import AdMobile from '../Components/AdMobile'
 import MessageHistory from '../Components/MessageHistory'
@@ -34,6 +34,7 @@ const Message = () => {
   const [msg, setMsg] = useState<any[]>([])
 
 
+  console.log('CHAT',chat);
   
   
   // useEffect(() => {
@@ -45,10 +46,12 @@ const Message = () => {
 
   //Connect chat 
   useEffect(() => {
+    
     if(user) { 
+      console.log(connect);
       connect(user._id)
 
-      // socket.emit('new-user-add', id) //user._id
+      // socket.emit('new-user-add', user._id) //user._id
       // socket.on('get-users', (users:[]) => {
         // setOnlineUsers(users)
     //   })
@@ -101,7 +104,7 @@ console.log('CHAT',c);
     getChats()
   },[user, ad])
 
-console.log('MSG', chats);
+console.log('CHATS', chats);
 console.log('-------CON------', isConnected);
 
  
@@ -115,11 +118,11 @@ console.log('-------CON------', isConnected);
 
 
     // Receive Message from the Socket Server
-    useEffect(() => {
-      socket.on("receive-message", (data:any) => {
-      setReceiveMessage(data)
-    })
-     },[socket])
+    // useEffect(() => {
+    //   socket.on("receive-message", (data:any) => {
+    //   setReceiveMessage(data)
+    // })
+    //  },[socket])
 
 
     useEffect(() => {

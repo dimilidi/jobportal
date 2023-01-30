@@ -61,6 +61,11 @@ export type Chat = {
 
 }
 
+export type chatContext = {
+  connect:(id: string) => void, 
+
+}
+
 export type messageContext = {
   connect:(id: string) => void, 
   sendMessageToSocket: (data:{}) => void
