@@ -102,7 +102,7 @@ const Account = () => {
           md:mt-6 lg:w-[90%]'>
             All Active Ads:
           </h3>
-
+{/* kommentar */}
           {/* ADS */}
           <div className='
           w-full max-h-[400px] my-[8px]
