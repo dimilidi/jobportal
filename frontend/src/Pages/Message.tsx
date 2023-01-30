@@ -21,7 +21,7 @@ import ChatList from '../Components/ChatList'
 
 
 const Message = () => {
-  const {ad} = useAd()
+  const {ad }  = useAd()
   const {adList} = useAdList('')
   const {user} = useUser()
   const chat = useMessenger()
@@ -151,7 +151,7 @@ const Message = () => {
             aria-label='UserMessage'
             className='h-full w-full
               relative flex justify-center '>
-            { <UserMessage c={c} ad={ad} userData = {userData}   receiverInfo={receiverInfo} online={checkOnlineStatus(currentChat)}/>}
+            { <UserMessage c={c} ad={ad}  userData = {userData}   receiverInfo={receiverInfo} online={checkOnlineStatus(currentChat)}/>}
           </div>
 
         {/* MESSAGE HISTORY */}

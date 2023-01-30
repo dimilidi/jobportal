@@ -7,7 +7,7 @@ import { useEffect, useState } from 'react'
 import useAdList from '../Hooks/useAdList'
 
 type Props = {
-  ad: AdType
+  ad: AdType | undefined | null
   c: any
   userData: {
     avatar: string
