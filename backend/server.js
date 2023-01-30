@@ -11,9 +11,7 @@ import messageRouter from './src/socket/routers/messageRouter.js'
 import http from 'http'
 import { Server } from 'socket.io'
 import sockets from './src/socket/sockets.js'
-import MessageController from './src/socket/controllers/messageController.js'
-import TypingController from './src/socket/controllers/typingController.js'
-import JoinChatController from './src/socket/controllers/joinChatController.js'
+
 
 dotenv.config({ path: `.env.${process.env.NODE_ENV}` })
 
@@ -32,13 +30,6 @@ let activeUsers = []
 
 io.on("connection", socket  => {
 
-  // console.log('active', activeUsers)
-  const typingController = new TypingController(socket)
-  // const roomController = new RoomController(socket)
-  const messageController = new MessageController(socket)
-  const joinChatController = new JoinChatController(socket)
-
-
   //add new User 
   socket.on('new-user-add', (newUserId) => {
     // if user is not added previously
@@ -49,7 +40,7 @@ io.on("connection", socket  => {
       })
     }
     console.log('Connected Users', activeUsers)
-    io.emit('get-users', activeUsers) //io?
+    io.emit('get-users', activeUsers) 
   })
 
 
@@ -64,16 +55,30 @@ io.on("connection", socket  => {
     console.log('From socket to:', receiverId)
     console.log('Data',data)
   })
+
+
+  // typing started
+  socket.on("typing-started", () => {
+    socket.broadcast.emit('typing-started-from-server')
+    // receiver && this.socket.to(receiver).emit("typing-started-from-server")
+    console.log('type')
+  })
   
 
+  // tying stopped
+  socket.on("typing-stopped", () => {
+    socket.broadcast.emit('typing-stopped-from-server')
+  // socket.to(value.receiver).emit('getTypingStatus', 'typing!')
+  })
+  
+  
+  // disconnect
   socket.on('disconnect', () => {
     activeUsers = activeUsers.filter((user) => user.socketId !== socket.id)
     console.log('User left', activeUsers)
     io.emit('get-users', activeUsers) 
   
   })
-
-
 
   // socket.on("message", messageController.sendMessage )    
   // // socket.on("joinRoom", roomController.joinRoom)

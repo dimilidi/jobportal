@@ -87,20 +87,6 @@ export type messageContext = {
   setChats: (chat:any | null) => void
   c:   {members:[]} | null,
   setC: (c:null) =>  void
-  
-
-  // setMessages: ((prevState:
-  //   [
-  //   {message:
-  //     {room: string; 
-  //       author: string | undefined; 
-  //       message: string; time: string;
-  //     }, 
-  //     received: boolean 
-  //   }]
-  //   ) => void)
   typing: boolean
-  // room: string
-  // setRoom: (room:string) => void
   
 }

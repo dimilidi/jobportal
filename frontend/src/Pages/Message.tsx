@@ -52,8 +52,6 @@ const Message = () => {
     return online ? true : false
   }
 
-// console.log('ONLINE',chat.onlineUsers);
-
 
 
   // Get Second Chat Member 
@@ -66,7 +64,6 @@ const Message = () => {
   
   useEffect(() => {
     if(currentChat !=null) getUserData()
-    
   },[user, adList, ad,  c])
 
   
@@ -107,10 +104,7 @@ const Message = () => {
       chat.setMessages([...chat.messages, receiveMessage])
     }, [receiveMessage])
 
-    console.log('ONLINE',onlineUsers);
-    
-
-
+  
   return (
    
     <motion.div
@@ -120,14 +114,15 @@ const Message = () => {
         area-label='message'
         className='pt-10 pb-20 h-full  min-h-[700px]   flex  items-center justify-center text-textBlack md:pt-[140px] lg:pt-[120px] lg:min-h-[900px]  xl:pt-[120px]'
       >
-         <h3 className='text-xl' >Hello {user?.name}!</h3>
-
+        <button onClick={()=>setOpenChatBox(false)}>back</button>
            
         {/* CHAT LIST */}   
+        {!openChatBox &&
           <ChatList setReceiverInfo = {setReceiverInfo} receiverInfo={receiverInfo} />
-        
+        }
 
         {/* MAIN */}
+        
         <div
           area-label='main'
           className=' h-full
@@ -139,6 +134,8 @@ const Message = () => {
         >
 
              {/* BOX*/}
+             { currentChat  ? (
+        <>
         <div
             area-label='box'
             className='w-[300px] max-[767px]:mt-[6rem] min-h-[500px] sm:h-[600px] sm: sm:w-[400px] xl:h-[600px]
@@ -147,14 +144,14 @@ const Message = () => {
           >
 
           {/* USER-MESSAGE*/}   
-      { currentChat  ? (
-        <>
+      
           <div 
             aria-label='UserMessage'
             className='h-full w-full
               relative flex justify-center '>
             { <UserMessage c={c} ad={ad}  userData = {userData}   receiverInfo={receiverInfo} online={checkOnlineStatus(currentChat)}/>}
           </div>
+
 
         {/* MESSAGE HISTORY */}
         <div
@@ -167,13 +164,17 @@ const Message = () => {
         {/* INPUT MESSAGE */}
      
           <InputMessage currentChat = {chat.currentChat} />
+          </div>
           </>
           ) : ( 
-            <p className='self-center text-xl text-lightGray'>Choose a chat</p>
+
+            <p className='hidden self-center text-xl text-lightGray'>Choose a chat</p>
             
           )}
 
-        </div>
+      
+      
+
 
         {/* BOX - END*/}
 

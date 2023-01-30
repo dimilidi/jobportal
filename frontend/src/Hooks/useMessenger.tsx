@@ -13,7 +13,8 @@ import { notify } from "../utils/toastNotification";
 
 
 export let socket: any;
-socket = io("https://jobportal-jobsy.onrender.com" )
+// socket = io("https://jobportal-jobsy.onrender.com" || "localhost:3001" )
+socket = io("localhost:3001" )
 
 
 export const SocketContext = createContext<messageContext>({
@@ -36,8 +37,6 @@ export const SocketContext = createContext<messageContext>({
   setChats: () => [],
   c: {members:[]},
   setC: () => {},
-  // joinChat: () => {}, 
-  // setRoom: () => '', room:'' 
 })
 
 // props=app(child)
@@ -87,18 +86,6 @@ export function SocketProvider (props: {children: React.ReactElement}) {
   } 
 
 
-  // GET CHAT
-  // const fetchChat = useCallback(async () => {
-  //   try {
-  //     const {data} = await axiosInstance.get(`/chat/find/${user.user?._id}/${currentChat.members[1]}`)
-  //     setC(data)
-  //   } catch (error) {
-  //     notify('Something went wrong!')
-  //   }
-  // }, [c])
-
-  
- 
   socket.on("typing-started-from-server", () => setTyping(true))
   socket.on("typing-stopped-from-server",() => setTyping(false))
 
@@ -123,9 +110,6 @@ export function SocketProvider (props: {children: React.ReactElement}) {
     setChats,
     c, 
     setC
-    // joinChat,
-    // setRoom,
-    // room
   }
   
 
