@@ -57,8 +57,6 @@ const SingleAd = () => {
   const response = await axiosInstance
     .post(`/chat`,chat )
     .catch((e) => e.response)
-
-  setMsg([...chats, chat]) 
   setChats([...chats, chat]) 
   setCurrentChat(chat)
 }
@@ -73,8 +71,8 @@ const SingleAd = () => {
     
     // setOpenChat(true)
     // create chat if chat doesn't already exist
-   !(msg.find((chat:any) => chat.members?.includes( ad?.user?._id) )) && createChat()
-  console.log('CHATS--------------------',msg);
+   !(chats.find((chat:any) => chat.members?.includes( ad?.user?._id) )) && createChat()
+  console.log('CHATS--------------------',chats);
   navigate('/message')
   
   }

@@ -3,7 +3,6 @@ import { SearchProvider } from './Hooks/useSearch'
 // Components
 import Layout from '../src/Components/Layout'
 import SmoothPages from './Components/SmoothPages'
-import { SocketProvider } from './Hooks/useMessenger'
 
 
 function App() {
@@ -13,7 +12,7 @@ function App() {
   
 
   return (
-    <SocketProvider>
+   
     <SearchProvider>
       <UserProvider>
         <Layout className=' bg-background min-h-screen relative'>
@@ -21,8 +20,7 @@ function App() {
         </Layout>
       </UserProvider>
     </SearchProvider>
-    </SocketProvider>
-
+  
   )
 }
 

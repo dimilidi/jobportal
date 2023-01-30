@@ -63,15 +63,12 @@ export function SocketProvider (props: {children: React.ReactElement}) {
   
 // Connect to Socket 
   function connect (id: string) {
-    console.log('Connect');
-    
     socket.emit('new-user-add', id) //user._id
     socket.on('get-users', (users:[]) => {
       setOnlineUsers(users)
     })
   setIsConnected(true)
   }
-
   
   // Send message to Socket Server
   function sendMessageToSocket(data:any) {
@@ -131,7 +128,6 @@ export function SocketProvider (props: {children: React.ReactElement}) {
     // room
   }
   
-
 
 
 

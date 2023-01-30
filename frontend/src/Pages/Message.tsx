@@ -4,7 +4,7 @@ import useAdList from '../Hooks/useAdList'
 import useAd from '../Hooks/useAd'
 import { useEffect, useState, useCallback } from 'react'
 import { useParams, useLocation } from 'react-router-dom'
-import useMessenger from '../Hooks/useMessenger'
+import useMessenger, { socket } from '../Hooks/useMessenger'
 // Components
 import AdMobile from '../Components/AdMobile'
 import MessageHistory from '../Components/MessageHistory'
@@ -25,24 +25,15 @@ const Message = () => {
   const {adList} = useAdList('')
   const {user} = useUser()
   const chat = useMessenger()
-  const { setC, c, onlineUsers, sendMessage, setIsConnected, isConnected, connect, currentChat, setCurrentChat, chats, setChats, setReceiveMessage, receiveMessage, receiveMessageFromSocket} = useMessenger()
+  const {  c, onlineUsers, sendMessage, setIsConnected, isConnected, connect, currentChat, setCurrentChat, chats, setChats, setReceiveMessage, receiveMessage, receiveMessageFromSocket} = useMessenger()
   const [userData, setUserData] = useState<any>({})
   const [receiverInfo, setReceiverInfo] = useState<any>({})
   const [openChatBox, setOpenChatBox] = useState(false)
   const params = useParams()
   const path  = useLocation()
-  const [msg, setMsg] = useState<any[]>([])
+ 
 
 
-  console.log('CHAT',chat);
-  
-  
-  // useEffect(() => {
-  //   console.log('path',location.pathname);
-  //   (location.pathname != 'path /message')
-   
-    
-  // },[path])
 
   //Connect chat 
   useEffect(() => {
@@ -50,18 +41,9 @@ const Message = () => {
     if(user) { 
       console.log(connect);
       connect(user._id)
-
-      // socket.emit('new-user-add', user._id) //user._id
-      // socket.on('get-users', (users:[]) => {
-        // setOnlineUsers(users)
-    //   })
-    // setIsConnected(true)
      } 
       setIsConnected(true)
   },[user])
-
-console.log('CHAT',c);
-
 
 
   const checkOnlineStatus = (chat:any) => {
@@ -93,7 +75,6 @@ console.log('CHAT',c);
   const getChats = async() => {
     try {
       const {data} = await axiosInstance.get(`/chat/${user?._id}`)
-      setMsg(data)
       setChats(data)
     } catch (error) {
       console.log(error);
@@ -104,10 +85,7 @@ console.log('CHAT',c);
     getChats()
   },[user, ad])
 
-console.log('CHATS', chats);
-console.log('-------CON------', isConnected);
 
- 
 
     // Send Message to the Socket Server
     useEffect(() => {
@@ -118,20 +96,16 @@ console.log('-------CON------', isConnected);
 
 
     // Receive Message from the Socket Server
-    // useEffect(() => {
-    //   socket.on("receive-message", (data:any) => {
-    //   setReceiveMessage(data)
-    // })
-    //  },[socket])
+    useEffect(() => {
+      socket.on("receive-message", (data:any) => {
+      setReceiveMessage(data)
+    })
+     },[socket])
 
 
     useEffect(() => {
       chat.setMessages([...chat.messages, receiveMessage])
     }, [receiveMessage])
-
-
-   
-
 
 
 
@@ -214,13 +188,9 @@ console.log('-------CON------', isConnected);
             className='hidden md:block lg:absolute lg:top-[475px] lg:translate-y-[-50%] lg:left-0 lg:border-b-2 lg:border-lightGreen w-screen z-0'
           />
           {/* CIRCLE & LINE - END */}
-         
-
-       
+    
         </div>
-       
-
-
+     
     </motion.div>
    
   )
