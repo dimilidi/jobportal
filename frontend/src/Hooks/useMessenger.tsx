@@ -13,7 +13,7 @@ import { notify } from "../utils/toastNotification";
 
 
 export let socket: any;
-socket = io("localhost:3001")
+socket = io("https://jobportal-jobsy.onrender.com" )
 
 
 export const SocketContext = createContext<messageContext>({

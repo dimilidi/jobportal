@@ -107,6 +107,8 @@ const Message = () => {
       chat.setMessages([...chat.messages, receiveMessage])
     }, [receiveMessage])
 
+    console.log('ONLINE',onlineUsers);
+    
 
 
   return (

@@ -58,9 +58,9 @@ io.on("connection", socket  => {
     const {receiverId} = data
     const user = activeUsers.find((user) => user.userId === receiverId)
     
-    // if(user) {
+    if(user) {
       socket.to(user.socketId).emit('receive-message', data)
-    // }
+    }
     console.log('From socket to:', receiverId)
     console.log('Data',data)
   })
@@ -69,7 +69,7 @@ io.on("connection", socket  => {
   socket.on('disconnect', () => {
     activeUsers = activeUsers.filter((user) => user.socketId !== socket.id)
     console.log('User left', activeUsers)
-    socket.emit('get-users', activeUsers) 
+    io.emit('get-users', activeUsers) 
   
   })
 
