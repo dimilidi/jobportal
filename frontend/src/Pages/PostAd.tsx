@@ -129,7 +129,7 @@ const PostAd = () => {
           area-label='main'
           className='relative h-full min-h-[880px] w-[85%] max-w-[1000px] md:w-[70%] flex flex-col justify-center'
         >
-          {/* TITLE MOBILE (with line) */}
+          {/* TITLE MOBILE */}
           <div>
             <h1
               area-label='title-mobile'
@@ -218,7 +218,7 @@ const PostAd = () => {
                       type='text'
                       name='title'
                       className='form-control py-1 px-5 w-full block text-gray
-                      border-2 rounded-lg border-lightGray border-opacity-50 placeholder:text-sm 
+                      border-[1px] rounded-lg border-lightGray border-opacity-50 placeholder:text-sm 
                       focus:outline-lightGray '
                       placeholder='Title'
                       value={title}
@@ -238,7 +238,7 @@ const PostAd = () => {
                       type='text'
                       name='city'
                       className='py-1 px-5 form-control box-border  text-gray rounded-lg
-                      border-2 border-lightGray border-opacity-50 placeholder:text-sm  focus:outline-lightGray'
+                      border-[1px] border-lightGray border-opacity-50 placeholder:text-sm  focus:outline-lightGray'
                       placeholder='City'
                       value={location}
                       onChange={(e) => setLocation(e.target.value)}
@@ -257,7 +257,7 @@ const PostAd = () => {
                       type='text'
                       name='city'
                       className='py-1 px-5 form-control box-border  text-gray rounded-lg
-                      border-2 border-lightGray border-opacity-50 placeholder:text-sm  focus:outline-lightGray'
+                      border-[1px] border-lightGray border-opacity-50 placeholder:text-sm  focus:outline-lightGray'
                       placeholder='Sector'
                       value={sector}
                       onChange={(e) => setSector(e.target.value)}
@@ -340,7 +340,7 @@ const PostAd = () => {
                       <input
                         type='number'
                         name='wage'
-                        className='py-1 px-5 w-[100px] text-sm text-gray rounded-lg border-2 border-lightGray border-opacity-50 focus:outline-none  placeholder:font-bold placeholder:opacity-50 '
+                        className='py-1 px-5 w-[100px] text-sm text-gray rounded-lg border-[1px] border-lightGray border-opacity-50 focus:outline-none  placeholder:font-bold placeholder:opacity-50 '
                         placeholder='00'
                         value={wage}
                         onChange={(e) => setWage(Number(e.target.value) || 0)}
