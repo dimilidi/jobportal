@@ -180,3 +180,36 @@ body {
     margin: 0;
   }
 }
+
+:root {
+  --toastify-toast-width: 320px;
+  --toastify-toast-min-height: 64px;
+  --toastify-toast-max-height: 800px;
+  --toastify-font-family: sans-serif;
+  --toastify-z-index: 9999;
+}
+
+.toastBody {
+  /* color: #354F52; */
+  color: white;
+  text-align: center;
+  font-weight: bold;
+  content: "\f071";
+}
+
+.toastProgress {
+  background: linear-gradient(
+    to right,
+    #84A98C,
+    #354F52,
+    #ff9100,
+    #ffbb00,
+    #ffdf85
+ 
+  );
+}
+
+.toast {
+  background-color: #52796f;
+  /* background-color: #EEECE5; */
+}

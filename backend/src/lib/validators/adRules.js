@@ -11,7 +11,7 @@ export const post = [
   body('location')
     .isString().withMessage('City should be a text.')
     .not().isNumeric().withMessage('City should be a text.')
-    .notEmpty().withMessage('Location is required.'),
+    .notEmpty().withMessage('City is required.'),
   body('description')
     .isString().withMessage('Description should be a text.')
     .notEmpty().withMessage('Description is required.'),
