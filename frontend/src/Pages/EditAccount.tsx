@@ -101,7 +101,7 @@ const EditAccount = (props: Props) => {
   return (
     // CONTAINER WHOLE PAGE CONTENT
     <div
-      area-label=' main-container'
+      area-label='main-container'
       className='h-full min-h-[900px]
       md:h-[920px] md:max-h-[1200px]
 

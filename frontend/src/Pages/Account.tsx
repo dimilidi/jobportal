@@ -45,17 +45,20 @@ const Account = () => {
       hidden absolute right-0 
       rounded-tl-full rounded-bl-full bg-lightGreen 
       xl:block
-      xl:top-[6.5rem]'/>
+      xl:top-[7.2rem]'/>
      
       {/* LINE */}
       <div className='
       absolute hidden 
       border-b-[3px] border-lightGreen 
-      md:block md:top-[9.4rem]
-      lg:w-[10%] lg:right-0 
+      md:block md:top-[10.2rem]
+      lg:w-[10%] right-0
       min-[1088px]:w-[17%] min-[1180px]:w-[23%] min-[1270px]:w-[29%]
-      xl:w-[30%] min-[1389px]:w-[36%]
-      2xl:w-[38%] min-[1440px]:w-[45%]
+      xl:w-[20rem] min-[1440px]:w-[27rem]
+      min-[1460px]:w-[30rem]
+      min-[1518px]:w-[34rem]
+      min-[1572px]:w-[36rem]
+      min-[1586px]:w-[50%]
       '/>
 
         {/* USER CARD */}
@@ -70,9 +73,8 @@ const Account = () => {
 
         {/* ADS && BUTTONS CONTAINER */}
         <div className='
-        min-h-fit min-w-fit 
-        w-[90%] max-w-[950px] lg:pt-[7.4rem]
-        lg:h-[48rem] lg:w-[300px] lg:flex-1'>
+        min-h-fit w-[90%]
+        lg:pt-[8.3rem] lg:h-[48rem] lg:w-[300px] lg:flex-1'>
 
           {/* BUTTONS */}
           <div
@@ -97,21 +99,22 @@ const Account = () => {
           flex self-center max-md:justify-center flex-1
           underline-offset-8 text-center text-xl 
           font-semibold text-gray text-opacity-100 
-          md:mt-8 lg:w-[90%]'>
+          md:mt-6 lg:w-[90%]'>
             All Active Ads:
           </h3>
 
           {/* ADS */}
           <div className='
-          h-fit my-[5px] py-10 
-          flex flex-wrap justify-center items-center
+          w-full max-h-[400px] my-[8px]
+          flex flex-wrap justify-center items-start
           rounded-xl
           text-gray bg-darkBeige bg-opacity-36 
+          
           md:rounded-[21px] 
           lg:w-[90%] lg:px-0 lg:mb-0 '>
 
           <div className='
-          w-full 
+          w-full
           flex flex-wrap justify-center items-center'>
             {adList?.length === 0 ? (
               <div
@@ -131,7 +134,7 @@ const Account = () => {
         <div
           aria-label='paginationButtons'
           style={{visibility: pageCount >0 ? 'visible' : 'hidden'}}
-          className='w-full h-3 lg:flex lg:justify-end xl:w-[90%]'>
+          className='w-full mt-2 h-3 lg:w-[90%] mb-5'>
           <PaginationButtons page ={page} setPage = {setPage} pageCount={pageCount}/>
         </div>}
         
