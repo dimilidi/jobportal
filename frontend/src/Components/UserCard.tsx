@@ -1,6 +1,3 @@
-
-import imageAccount from '../assets/images/Account_profilDefault.png'
-import { MdMail, MdCall, MdLocationOn } from 'react-icons/md'
 import {GrDocumentText} from 'react-icons/gr'
 // Hooks
 import { Link, useNavigate } from 'react-router-dom'
@@ -124,18 +121,6 @@ function UserCard(props: Props) {
       )}
           {/* USER FILE END */}
 
-      </div>
-
-     
-      {/* Edit Profile Button Wrapper */}
-      <div className='flex justify-center mb-10'>
-
-        <p className='mt-1 py-2 px-8 rounded-full  border-lightBeige border-2 bg-darkBeige md:bg-darkBeige shadow-md cursor-pointer
-        text-textBlack font-medium text-opacity-50 hover:bg-lightBeige hover:bg-opacity-30 hover:text-textBlack ease-in-out duration-300 
-
-        text-[16px] flex items-center sm:justify-center lg:justify-start'>
-        <Link to='/edit-account'>Edit Profile</Link>
-        </p>
       </div>
 
         {/* Edit Profile Icon*/}
