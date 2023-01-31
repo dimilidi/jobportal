@@ -1,11 +1,8 @@
 // Hooks
 import { Link, useNavigate } from 'react-router-dom'
 import useUser from '../Hooks/useUser'
-
-import UniButton from './UniButton'
 import imageAccount from '../assets/images/Account_profilDefault.png'
 import { MdMail, MdCall, MdLocationOn } from 'react-icons/md'
-import UniButtonDark from './UniButtonDark'
 import { AiFillEdit } from 'react-icons/ai'
 
 type Props = {
@@ -22,35 +19,14 @@ function UserCard(props: Props) {
       // USER CARD
       style={props.style}
       className='
-      w-[90%] pb-8 max-w-[500px] min-h-fit 
+      w-[90%] pb-8 max-w-[500px] min-h-[540px] max-h-[570px]
       flex flex-col justify-start relative  
       shadow-standard 
       rounded-bl-[65px] rounded-br-[65px]
       bg-white
-      sm:justify-center 
+      sm:justify-between 
       max-lg:mt-20
       lg:justify-self-center'>
-
-      {/* Edit Profile Icon*/}
-      <Link className='
-      w-full h-full 
-      flex justify-center items-end
-      absolute z-[10] -bottom-5
-      sm:mt-10 sm:pt-2 sm:px-6 
-      sm:justify-end
-      sm:bottom-8 sm:right-6
-      lg:right-3
-      ' 
-      to="/edit-account">
-
-        <UniButtonDark
-          text={
-            <AiFillEdit style={{ width: '40px', fontSize: '20px' }} />
-          }
-          className='lg:mb-0'
-          style={{ width: '80px', height: '40px' }}
-        />
-      </Link>
 
       {/* AVATAR BG SEMICIRCLE */}
       <div className='flex justify-center'>
@@ -99,7 +75,7 @@ function UserCard(props: Props) {
 
       {/* Description Heading and Description */}
       {user?.description && (
-        <div className='min-h-[100px] w-[90%] h-[8rem] mt-4 mb-7 px-6 overflow-y-scroll'>
+        <div className='w-[90%] min-h-[2rem] mt-4 mb-7 px-6 max-h-[8rem] overflow-y-scroll'>
           <p className='p-2 text-sm font-medium text-[gray]'>{user?.description}</p>
         </div>
       )}
@@ -135,6 +111,15 @@ function UserCard(props: Props) {
         </a>
       )}
 
+        {/* Edit Profile Icon*/}
+        <div className='flex justify-end relative right-[40px]'>
+          <Link
+          to={'/edit-account'}
+          className='w-[40px] h-[40px] rounded-full border-lightBeige border-2 bg-darkBeige md:bg-darkBeige shadow-inner cursor-pointer
+          text-textBlack text-opacity-50 hover:bg-lightBeige hover:bg-opacity-30 hover:text-textBlack ease-in-out duration-300 
+          text-[18px] flex items-center justify-center'
+          ><AiFillEdit /></Link>
+        </div>
     </div>
   )
 }
