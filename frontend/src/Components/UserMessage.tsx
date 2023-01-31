@@ -56,21 +56,21 @@ useEffect(() => {
     <>
       {/* PROFILE IMAGE */}
       <div
-        className=' ml-4
+        className=' ml-4 h-full
           flex  items-center justify-start gap-5
         
           w-full'
       >
         <div
-          className='p-1  h-[80px] self-start
-          flex flex-col justify-end items-center
+          className='p-1  h-[80px] self-start 
+          flex flex-col items-center
           rounded-b-[40px] bg-lightBeige
           w-[85px]'
         >
           
           <div
-            className=' mx-auto  w-[75px] h-[75px] relative flex flex-col  justify-center
-          self-end rounded-full'
+            className=' mx-auto  w-[75px] h-[75px] relative flex flex-col  justify-center 
+         rounded-full'
           >
              <img 
                className='mt-1 w-[75px] h-[75px]  rounded-full object-cover'

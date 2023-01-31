@@ -18,9 +18,10 @@ type Props = {
     setReceiverInfo: (receiverInfo:{}) =>void
     online: any
     receiverInfo: {}
+    setOpenChatBox: (openChatBox:boolean) => void
 }
 
-function Conversation({data, setReceiverInfo, online, receiverInfo, }: Props) {
+function Conversation({data, setReceiverInfo, online, receiverInfo, setOpenChatBox}: Props) {
     // Hooks
     const {user} = useUser()
     const {adList} = useAdList('')
@@ -79,7 +80,8 @@ function Conversation({data, setReceiverInfo, online, receiverInfo, }: Props) {
       
      const newChats = chats.filter((chat:any)=> chat._id !== chatId )
      setChats(newChats)
-     chatId == data._id && setCurrentChat(null)
+    //  chatId == data._id && 
+     setOpenChatBox(false)
      
 
     } catch (error) {
@@ -92,7 +94,7 @@ function Conversation({data, setReceiverInfo, online, receiverInfo, }: Props) {
     deleteChat(data._id)
   }
 
-  // console.log('6666666666666666666',userData);
+
   
   
 
@@ -119,7 +121,7 @@ function Conversation({data, setReceiverInfo, online, receiverInfo, }: Props) {
       </div>
       {/* Delete Chat Icon */}
       <div className='h-full flex '>
-        <span className='p-3 top-0 self-start' onClick={handleDelete}>x</span> 
+        <span className='p-3 top-0 self-start' onClick={handleDelete}>X</span> 
       </div>
    
       

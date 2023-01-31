@@ -18,11 +18,9 @@ import { motion } from 'framer-motion'
 import axiosInstance from '../api/axiosInstance'
 import { notify } from '../utils/toastNotification'
 import ChatList from '../Components/ChatList'
-import MessageDesktop from './MessageDesktop'
-import MessageMobile from './MessageMobile'
 
 
-const Message = () => {
+const MessageMobile = () => {
   const {ad }  = useAd()
   const {adList} = useAdList('')
   const {user} = useUser()
@@ -108,17 +106,97 @@ const Message = () => {
 
   
   return (
-    <>
-    <div className='hidden md:block'>
-      <MessageDesktop />
-    </div>
-    <div className='md:hidden'>
-      <MessageMobile />
-    </div>
-    </>
-  )
    
+    <motion.div
+        initial={{ width: '100%' }}
+        animate={{ width: '100%' }}
+        exit={{ x: window.innerWidth }}
+        area-label='message'
+        className='pt-0 pb-20 h-full  min-h-[880px]   flex flex-col items-center justify-center text-textBlack md:pt-[140px] lg:pt-[120px] lg:min-h-[900px]  xl:pt-[120px]'
+      >
+        <button className='pt-[100px]' onClick={()=>setOpenChatBox(false)}>back</button>
+           
+        {/* CHAT LIST */}   
+        {!openChatBox &&
+          <ChatList setOpenChatBox={setOpenChatBox} setReceiverInfo = {setReceiverInfo} receiverInfo={receiverInfo} />
+        }
+
+        {/* MAIN */}
+        
+        <div
+          area-label='main'
+          className=' h-full
+          flex flex-col justify-start
+           
+          md:min-h-[650px] 
+          
+           xl:min-h-full'
+        >
+
+             {/* BOX*/}
+             { openChatBox  ? (
+        <>
+        <div
+            area-label='box'
+            className='w-[300px]  mt-[1rem] h-[600px] sm: lg:w-[400px] xl:h-[600px]
+            flex flex-col justify-center item-center
+            self-center z-10 rounded-r-[21px] bg-white shadow-standard'
+          >
+
+          {/* USER-MESSAGE*/}   
+      
+          <div 
+            aria-label='UserMessage'
+            className='h-full w-full 
+              relative flex justify-center items-center self-center '>
+            { <UserMessage c={c} ad={ad}  userData = {userData}   receiverInfo={receiverInfo} online={checkOnlineStatus(currentChat)}/>}
+          </div>
+
+
+        {/* MESSAGE HISTORY */}
+        <div
+          aria-aria-label='history'
+          className='h-full w-full
+          relative flex justify-center'>
+          <MessageHistory currentChat = {chat.currentChat} />
+        </div>
+
+        {/* INPUT MESSAGE */}
+     
+          <InputMessage currentChat = {chat.currentChat} />
+          </div>
+          </>
+          ) : ( 
+
+            <p className='hidden self-center text-xl text-lightGray'>Choose a chat</p>
+            
+          )}
+
+      
+      
+
+
+        {/* BOX - END*/}
+
+        {/* CIRCLE & LINE */}
+        <div
+            area-label='circle'
+            className='hidden 
+          w-[332px] h-[332px] absolute lg:top-[470px] lg:left-[-230px] lg:translate-y-[-50%] lg:rounded-full  lg:bg-lightGreen z-0
+          md:block'
+          />
+
+          <div
+            area-label='line'
+            className='hidden md:block lg:absolute lg:top-[475px] lg:translate-y-[-50%] lg:left-0 lg:border-b-2 lg:border-lightGreen w-screen z-0'
+          />
+          {/* CIRCLE & LINE - END */}
     
+        </div>
+     
+    </motion.div>
+   
+  )
 }
 
-export default Message
+export default MessageMobile

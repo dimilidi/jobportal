@@ -39,8 +39,8 @@ function MessageHistory( {currentChat}:Props) {
     <div className='w-full h-full'>
       {/* LINE-BOX */}
       <div
-        className=' p-3 pt-2 w-full h-[300px] 
-          border-y-2 border-darkBeige sm:h-[390px]'> 
+        className=' p-3 pt-2 w-full 
+          border-y-2 border-darkBeige h-[390px]'> 
           <ScrollToBottom className='pb-3 h-[98%] w-full flex flex-col  overflow-x-hidden'>
           {messages && 
             messages.map((value:any, i:any) => {
