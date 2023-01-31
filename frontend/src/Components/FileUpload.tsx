@@ -1,55 +1,96 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
+import { FaTrashAlt } from 'react-icons/fa'
 
-type Props ={
-    file: any
-    setFile: (value: any) => void
+type Props = {
+  file: any
+  setFile: (value: any) => void
 }
 
-const FileUploader =(props:Props) => {
-  const [errorMessage, setErrorMessage] = useState('')
 
-  const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const selectedFile = e.target.files?.[0];
-    if (!selectedFile) {
-      return
-    }
-    // const setFileToBase = (file: File) => {
-    //   const reader = new FileReader()
-    //   reader.readAsDataURL(file)
-    //   reader.onloadend = () => {
-    //     props.setFile(reader.result)
-    // }
-    props.setFile(selectedFile) 
+// FILE UPLOADER COMPONENT
+const FileUploader: React.FC<Props> = ({ file, setFile }) => {
+  const [files, setFiles] = useState<any[]>(JSON.parse(localStorage.getItem('files') || '[]'))
+  const [inputRef, setInputRef] = useState<any>()
 
-    // ACCEPT ONLY PDF OR DOC FILE
-    const fileEnd = selectedFile.name.substring(selectedFile.name.lastIndexOf('.')+1)
-    if(fileEnd !== 'pdf' && fileEnd !== 'doc'){
-      setErrorMessage('please upload a pdf or doc file')
-      return
+  useEffect(() => {
+    localStorage.setItem('files', JSON.stringify(files))
+  }, [files])
+
+  const handleFileChange = (event: any) => {
+    // MAX 1 FILES
+    if (files.length >= 1) return
+      
+    const selectedFile = event.target.files[0]
+
+    const reader = new FileReader()
+    reader.readAsDataURL(selectedFile)
+    reader.onloadend = () => {
+      setFile(reader.result)
+      console.log(reader.result)
+      setFiles([...files, { name: selectedFile.name, file: reader.result }])
+      console.log('file name: ',selectedFile.name, 'all files: ', ...files)
     }
-    setErrorMessage('')
   }
-  
+
+  // REMOVE FILE
+  const handleRemoveFile = (index: number) => {
+    const newFiles = [...files]
+    newFiles.splice(index, 1)
+    setFiles(newFiles)
+  }
+
+  // CLEAR INPUT 
+  const clearInput = () => {
+    setFile(null)
+    inputRef.value = null
+  }
+
+
+
 
   return (
-    <>
-    <label htmlFor="file-upload" className=" text-lightGray rounded-md p-1 cursor-pointer"> 
-      <input type='file'
-      className='' 
-      onChange={handleFileUpload} id="file-upload" accept='.pdf, .doc'
+    <div aria-label='file-upload-container'>
+      {/* FILE INPUT */}
+      <input
+        type='file'
+        accept='.pdf, .doc'
+        onChange={handleFileChange}
+        ref={(ref) => setInputRef(ref)}
       />
-    </label>
-    {errorMessage && <p className='text-rot'>{errorMessage}</p>}
-    {props.file && (
-        <a 
-        href={URL.createObjectURL(props.file)} 
-        target="_blank" 
-        className=' underline text-lightGray pb-5'>
-          View your file here
-        </a>
-      )}
-    </>
+
+
+      {/* CLEAR INPUT */}
+      {
+        file &&  
+        <button
+        className=' px-1 rounded-md text-lightGray' 
+        onClick={clearInput}>Clear
+        </button>
+      }
+      
+      <p className='text-[12px] text-gray'>Add your CV or Cover Letter to get more job opportunities (max 1 file)</p>
+
+      <div>
+      {
+        files.map((file, i) => (
+          <div key={i} className='flex'>
+            <p 
+            className='underline text-lightGray '
+            >
+              {file.name}
+            </p>
+            <FaTrashAlt
+              className='text-gray ml-2 cursor-pointer'
+              onClick={() => handleRemoveFile(i)}
+            />
+          </div>
+        ))
+      }
+    </div>
+    </div>
   )
 }
 
+
 export default FileUploader
+

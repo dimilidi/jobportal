@@ -13,17 +13,21 @@ import image from '../assets/images/Account_profil.png'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import BrowseJobs from '../Components/BrowseJobs'
-import { AiFillEdit } from 'react-icons/ai'
 import { motion } from 'framer-motion'
 import { HiOutlineCamera } from 'react-icons/hi'
-import { MdAddAPhoto, MdOutlineAddAPhoto } from 'react-icons/md'
+import {  MdOutlineAddAPhoto } from 'react-icons/md'
+
+
+
 import { RiDeleteBinLine } from 'react-icons/ri'
 
-type Props = {}
+type Props= {
+}
 
-const EditAccount = (props: Props) => {
+const EditAccount = (props:Props) => {
   const navigate = useNavigate()
   const user = useUser()
+
 
   //DECORATION LINE
   // const editText = useDecorationLine({ orientation: 'left' })
@@ -369,7 +373,9 @@ const EditAccount = (props: Props) => {
               </div>
             </div>
           </div>
-          {/* <FileUploader file={file} setFile={setFile} /> */}
+
+          {/* FILE*/}
+          <FileUploader file={file} setFile={setFile} />
 
           {/* DESCRIPTION */}
           <label

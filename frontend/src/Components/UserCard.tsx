@@ -1,3 +1,7 @@
+
+import imageAccount from '../assets/images/Account_profilDefault.png'
+import { MdMail, MdCall, MdLocationOn } from 'react-icons/md'
+import {GrDocumentText} from 'react-icons/gr'
 // Hooks
 import { Link, useNavigate } from 'react-router-dom'
 import useUser from '../Hooks/useUser'
@@ -5,9 +9,12 @@ import imageAccount from '../assets/images/Account_profilDefault.png'
 import { MdMail, MdCall, MdLocationOn } from 'react-icons/md'
 import { AiFillEdit } from 'react-icons/ai'
 
+
 type Props = {
   style?: {}
 }
+
+
 
 function UserCard(props: Props) {
   const user = useUser().user
@@ -98,18 +105,38 @@ function UserCard(props: Props) {
             <MdLocationOn className='opacity-50'/> {user?.city}
           </div>
         )}
+
+
+
+          {/* USER FILE*/}
+          {user?.file && (
+          <div className='flex flex-row  gap-4 items-center text-gray text-opacity-80 leading-relaxed'>
+            <GrDocumentText className='opacity-50 '/> 
+            <a
+              className=' flex flex-row cursor-pointer underline'
+              target="_blank"
+              href={user.file}
+              > 
+              {user.name} Documents
+            </a>
+          </div>
+
+      )}
+          {/* USER FILE END */}
+
       </div>
 
-      
-      {/* file upload */}
-      {user?.file && (
-        <a 
-        href={URL.createObjectURL(user.file)} 
-        target="_blank" 
-        className=' underline text-lightGray pb-5'>
-          View your file here
-        </a>
-      )}
+     
+      {/* Edit Profile Button Wrapper */}
+      <div className='flex justify-center mb-10'>
+
+        <p className='mt-1 py-2 px-8 rounded-full  border-lightBeige border-2 bg-darkBeige md:bg-darkBeige shadow-md cursor-pointer
+        text-textBlack font-medium text-opacity-50 hover:bg-lightBeige hover:bg-opacity-30 hover:text-textBlack ease-in-out duration-300 
+
+        text-[16px] flex items-center sm:justify-center lg:justify-start'>
+        <Link to='/edit-account'>Edit Profile</Link>
+        </p>
+      </div>
 
         {/* Edit Profile Icon*/}
         <div className='flex justify-end relative right-[40px]'>
@@ -120,6 +147,7 @@ function UserCard(props: Props) {
           text-[18px] flex items-center justify-center'
           ><AiFillEdit /></Link>
         </div>
+
     </div>
   )
 }
