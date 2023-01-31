@@ -78,8 +78,8 @@ export type messageContext = {
   setMessages: (messages:[] | any) => void
   sendMessage: {}
   setSendMessage: ({}) => void
-  receiveMessage: {} | any
-  setReceiveMessage: (receiveMessage:{}) => void
+  receiveMessage: {} | any | null
+  setReceiveMessage: (receiveMessage:{} | any | null) => void
   currentChat: {members:any, _id:string}
   setCurrentChat: (currentChat: null | {}) => void
   onlineUsers: [] | null,
@@ -88,7 +88,7 @@ export type messageContext = {
   c:   {members:[]} | null,
   setC: (c:null) =>  void
   typing: boolean,
-  notification: [] | any,
-  setNotification: (notification:[] | any) => void
+  notification: [] | any[],
+  setNotification: (notification:[] | any[]) => void
   
 }

@@ -9,6 +9,7 @@ import profileImg from '../assets/images/Account_profilDefault.png'
 import { notify } from '../utils/toastNotification'
 import UserCard from './UserCard'
 import UserMessage from './UserMessage'
+import { FaCircle } from 'react-icons/fa'
 
 type Props = {
     data: {
@@ -26,7 +27,7 @@ function Conversation({data, setReceiverInfo, online, receiverInfo, setOpenChatB
     const {user} = useUser()
     const {adList} = useAdList('')
     const {ad} = useAd()
-    const {currentChat, setCurrentChat, setC, chats, setChats, c} = useMessenger()
+    const {currentChat, setCurrentChat, setC, chats, setChats, c, notification, setNotification} = useMessenger()
     // States
     const [userData, setUserData] = useState<any | null>(null)
 
@@ -94,13 +95,23 @@ function Conversation({data, setReceiverInfo, online, receiverInfo, setOpenChatB
     deleteChat(data._id)
   }
 
+  const handleNotification = () => {
+    notification?.map((notif:any) => {
+      if(notif.senderId == userData?._id ){
+        setNotification(notification.filter((n:any) => n != notif ))
+      }
+    })
+  }
 
+
+
+  console.log(userData?._id);
   
   
 
 
   return (
-    <div className=' h-full w-full flex gap-5  border-b-2 border-darkBeige '>
+    <div onClick={handleNotification} className=' h-full w-full flex gap-5  border-b-2 border-darkBeige '>
      {/* Image */}
       <div  className='relative ml-5 p-1  h-[70px]
           flex flex-col justify-end items-end
@@ -114,11 +125,20 @@ function Conversation({data, setReceiverInfo, online, receiverInfo, setOpenChatB
          {online && <div className='z-10 w-[15px] h-[15px] absolute top-[53px] right-[40px] rounded-full bg-green-500' />}
       </div>
 
-     {/* User Info */}
+     {/* User Info &&  Notification */}
       <div className=' w-full flex flex-col justify-center items-start '>
-        <h3 className=' text-bold text-lg'>{userData?.name}</h3>
+        <div className=' flex'>
+          <h3 className=' text-bold text-lg'>
+            {userData?.name}
+          </h3>
+          { notification?.map((notif:any) => {
+                return notif?.senderId == userData?._id && <FaCircle className='m-1 text-red-400' size={12} />
+                
+              })}
+        </div>
         <p className=' text-lightGray'>{userData?.profession}</p>
       </div>
+      
       {/* Delete Chat Icon */}
       <div className='h-full flex '>
         <span className='p-3 top-0 self-start' onClick={handleDelete}>X</span> 

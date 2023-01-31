@@ -3,7 +3,7 @@
 // create context, useContext
 
 import { io } from "socket.io-client";
-import {useParams} from 'react-router-dom'
+import { useLocation, useParams} from 'react-router-dom'
 import React, { createContext, useState, useContext, useEffect, useCallback } from "react";
 import { messageContext } from "../type";
 import useAd from "./useAd";
@@ -46,6 +46,9 @@ export function SocketProvider (props: {children: React.ReactElement}) {
   
   const params = useParams()
   const user = useUser()
+ 
+
+  
 
   const [isConnected, setIsConnected] = useState(false)
   const [messages, setMessages] = useState<any>([])
@@ -53,7 +56,7 @@ export function SocketProvider (props: {children: React.ReactElement}) {
   const [room, setRoom ] = useState('')
   const [onlineUsers, setOnlineUsers ] = useState<any>([])
   const [sendMessage, setSendMessage] = useState({})
-  const [receiveMessage, setReceiveMessage] =useState<any | {} | null>({})
+  const [receiveMessage, setReceiveMessage] =useState<any | {} | null>(null)
   const [currentChat, setCurrentChat] = useState<any>(null)
   const [chats, setChats] = useState<any[]>([])
   const [c, setC] = useState<any | null >({})
@@ -116,10 +119,30 @@ export function SocketProvider (props: {children: React.ReactElement}) {
     notification,
     setNotification
   }
-  
 
 
+    // Receive Message from the Socket Server + Notification
+    useEffect(() => {
+      socket.on("receive-message", (data:any) => {
+      setReceiveMessage(data)
+    })
+     },[socket])
 
+
+    useEffect(() => {
+      console.log(notification);
+      
+      // if new Message and chat is closed or current chat with other user, notify
+      if(!currentChat || currentChat._id !== receiveMessage.chatId) {
+        if(!notification.includes(receiveMessage)){
+          setNotification([receiveMessage, ...notification])
+          // getChats()
+        }
+      }else {
+        setMessages([...messages, receiveMessage])
+      }
+    }, [receiveMessage])
+   
 
   return (
     <SocketContext.Provider value={exportData}>

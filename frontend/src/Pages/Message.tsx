@@ -32,7 +32,7 @@ const Message = () => {
   const [receiverInfo, setReceiverInfo] = useState<any>({})
   const [openChatBox, setOpenChatBox] = useState(false)
   const params = useParams()
-  const path  = useLocation()
+  const {pathname}  = useLocation()
  
 
 
@@ -94,24 +94,10 @@ const Message = () => {
     },[sendMessage])
 
 
-    // Receive Message from the Socket Server
-    useEffect(() => {
-      socket.on("receive-message", (data:any) => {
-      setReceiveMessage(data)
-    })
-     },[socket])
 
 
-    useEffect(() => {
-      if(!currentChat || currentChat._id !== receiveMessage.chatId) {
-        if(!notification.includes(receiveMessage)){
-          setNotification([receiveMessage, ...notification])
-          getChats()
-        }
-      }else {
-        chat.setMessages([...chat.messages, receiveMessage])
-      }
-    }, [receiveMessage])
+
+  
 
     console.log('RECEIVE-MESSAGE',receiveMessage);
     console.log('NOTIFICATION',notification);

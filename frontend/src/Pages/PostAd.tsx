@@ -36,7 +36,10 @@ const PostAd = () => {
     [string, string] | [string] | []
   >()
   const [checked, setChecked] = useState({ email: false, phone: false })
-  // const [image, setImage] = useState('')
+ const chat = useMessenger()
+
+ console.log('CHAT---->',chat);
+ 
 
 
   // If user is not logged in, navigate to auth-required
