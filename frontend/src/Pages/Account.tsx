@@ -45,13 +45,13 @@ const Account = () => {
       hidden absolute right-0 
       rounded-tl-full rounded-bl-full bg-lightGreen 
       xl:block
-      xl:top-[7.2rem]'/>
+      xl:top-[8.6rem]'/>
      
       {/* LINE */}
       <div className='
       absolute hidden 
       border-b-[3px] border-lightGreen 
-      xl:block md:top-[10.2rem]
+      xl:block md:top-[11.6rem]
       lg:w-[10%] right-0
       min-[1088px]:w-[17%] min-[1180px]:w-[23%] min-[1270px]:w-[29%]
       xl:w-[20rem] min-[1440px]:w-[27rem]
@@ -61,7 +61,7 @@ const Account = () => {
       min-[1586px]:w-[38%]
       '/>
 
-      <div className='w-full md:w-[85%] xl:w-[70%] flex flex-col lg:flex-row justify-center md:pt-[60px] gap-10 lg:gap-0 xl:gap-10'>
+      <div className='w-full md:w-[85%] xl:w-[70%] lg:mt-[50px] flex flex-col lg:flex-row justify-center md:pt-[60px] gap-10 lg:gap-0 xl:gap-10'>
         {/* USER CARD */}
         <div className='
         w-full h-full 
@@ -119,7 +119,7 @@ const Account = () => {
             {adList?.length === 0 ? (
               <div
                 className='
-                w-full md:pt-[150px]
+                w-full lg:pt-[130px]
                 relative 
                 text-center font-bold text-gray text-opacity-40 
                 md:text-2xl'>
