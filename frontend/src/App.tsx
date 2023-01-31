@@ -3,12 +3,20 @@ import { SearchProvider } from './Hooks/useSearch'
 // Components
 import Layout from '../src/Components/Layout'
 import SmoothPages from './Components/SmoothPages'
+import useMessenger from './Hooks/useMessenger'
+import { useLocation } from 'react-router-dom'
+import { useEffect } from 'react'
 
 
 function App() {
 
-  const {user} = useUser()
-  console.log('UUUUUUUUU',user);
+  const {setCurrentChat} = useMessenger()
+  const location = useLocation()
+  
+  // Close Chat Box if user is not on /message page
+  useEffect(() => {
+    location.pathname !== '/message' && setCurrentChat(null)
+  },[location])
   
 
   return (

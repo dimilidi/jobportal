@@ -12,7 +12,8 @@ const Schema = mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
       required: true},
-    text: {type: String}
+    text: {type: String},
+    is_read: {type: Boolean}
   },
   {
     timestamps: true,

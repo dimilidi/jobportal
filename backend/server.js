@@ -50,27 +50,29 @@ io.on("connection", socket  => {
     const user = activeUsers?.find((user) => user.userId === receiverId)
     
     if(user) {
-      socket.to(user.socketId).emit('receive-message', data)
+      socket.to(user?.socketId).emit('receive-message', data)
     }
     console.log('From socket to:', receiverId)
     console.log('Data',data)
   })
 
 
+
   // typing started
-  // socket.on("typing-started", () => {
-  //   socket.broadcast.emit('typing-started-from-server')
-  //   // receiver && this.socket.to(receiver).emit("typing-started-from-server")
-  //   console.log('type')
-  // })
+  socket.on("typing-started", (receiver) => {
+    const user = activeUsers?.find((user) => user.userId === receiver)
+    socket.to(user?.socketId).emit('typing-started-from-server')
+    //   // receiver && this.socket.to(receiver).emit("typing-started-from-server")
+    console.log('type')
+  })
   
 
   // tying stopped
-  // socket.on("typing-stopped", () => {
-  //   socket.broadcast.emit('typing-stopped-from-server')
-  // // socket.to(value.receiver).emit('getTypingStatus', 'typing!')
-
-  // })
+  socket.on("typing-stopped", (receiver) => {
+    const user = activeUsers?.find((user) => user.userId === receiver)
+    socket.to(user?.socketId).emit('typing-stopped-from-server')
+    // socket.to(value.receiver).emit('getTypingStatus', 'typing!')
+  })
   
   
   // disconnect

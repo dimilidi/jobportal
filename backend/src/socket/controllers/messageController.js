@@ -14,12 +14,13 @@ export default class MessageController extends BaseController {
 
 // /** @type {import("express").RequestHandler} */
 export const addMessage = async(req, res) => {
-  const {chatId, senderId, text} = req.body
+  const {chatId, senderId, text, is_read} = req.body
 
   const newMessage = new Message({
     chatId, 
     senderId, 
-    text
+    text,
+    is_read
   })
 
   const message = await newMessage.save()

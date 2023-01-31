@@ -19,7 +19,7 @@ import { HiOutlineUserAdd } from 'react-icons/hi'
 import { motion } from 'framer-motion'
 import { BsChatDots } from 'react-icons/bs'
 import { FaCircle } from 'react-icons/fa'
-import useMessenger from '../Hooks/useMessenger'
+import useMessenger, { socket } from '../Hooks/useMessenger'
 
 const Navigation = () => {
   // CONSTANTS
@@ -123,6 +123,9 @@ const Navigation = () => {
       setBurgerNavToShow(notLoggedInBurgerNav)
     }
   }, [user])
+
+
+
 
   return (
     <section className='mr-8 md:mr-0'>

@@ -44,11 +44,8 @@ export const SocketContext = createContext<messageContext>({
 // props=app(child)
 export function SocketProvider (props: {children: React.ReactElement}) {
   
-  const params = useParams()
   const user = useUser()
  
-
-  
 
   const [isConnected, setIsConnected] = useState(false)
   const [messages, setMessages] = useState<any>([])
@@ -64,8 +61,6 @@ export function SocketProvider (props: {children: React.ReactElement}) {
 
  
 
-
-  
 // Connect to Socket 
   function connect (id: string) {
     socket.emit('new-user-add', id) //user._id
@@ -132,7 +127,7 @@ export function SocketProvider (props: {children: React.ReactElement}) {
     useEffect(() => {
       console.log(notification);
       
-      // if new Message and chat is closed or current chat with other user, notify
+      // if there is new Message and if chat is closed, or if current chat with other user, notify unread message
       if(!currentChat || currentChat._id !== receiveMessage.chatId) {
         if(!notification.includes(receiveMessage)){
           setNotification([receiveMessage, ...notification])
@@ -142,8 +137,10 @@ export function SocketProvider (props: {children: React.ReactElement}) {
         setMessages([...messages, receiveMessage])
       }
     }, [receiveMessage])
-   
 
+
+
+    
   return (
     <SocketContext.Provider value={exportData}>
       {props.children}

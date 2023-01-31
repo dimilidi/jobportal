@@ -26,26 +26,19 @@ function InputMessage({currentChat}:Props) {
   const [isPickerVisible, setPickerVisible] = useState(false)
   const [currentEmoji, setCurrentEmoji] = useState('')
  
-// console.log(currentChat);
 
-  
-
-
-  
   function inputHandler(e: any) {
-   
     setText(e.target.value)
-
-    socket.emit('typing-started', ad?.user._id) 
+   
+    let receiver =  currentChat.members.find((member:any)=> member != user?._id)
+    socket.emit('typing-started', receiver) 
     if (typingTimeout) clearTimeout(typingTimeout)
       setTypingTimeout(setTimeout(() => {      
-      socket.emit('typing-stopped')
+      socket.emit('typing-stopped', receiver)
     },1000))
 
   }
  
-
-      
       
     const sendMessage =  async (e:React.SyntheticEvent) => {
       e.preventDefault()
@@ -55,7 +48,8 @@ function InputMessage({currentChat}:Props) {
         const messageData = {
           senderId: user?._id,
           text: text,
-          chatId: chat.currentChat._id
+          chatId: chat.currentChat._id,
+          is_read: false
         }
 
           
