@@ -37,15 +37,23 @@ const SingleAd = () => {
   const user = useUser()
   const { ad,  isLoading, deleteAd } = useAd()
   const {chats, setChats, setC, currentChat, setCurrentChat} = useMessenger()
-  const [openChat, setOpenChat] = useState(false)
-  const [msg, setMsg] = useState<any[]>([])
-
-
+  // const [openChat, setOpenChat] = useState(false)
   const [modalOpen, setModalOpen] = useState(false)
   const close = () => setModalOpen(false)
   const open = () => setModalOpen(true)
 
-  const sender = user.user?._id
+ 
+
+ //HANDLE VIEWS
+ useEffect(() => {
+  const updateViews = async () => {
+    const response = await axiosInstance
+    .get(`/ads/${params.id}/increment-view`)
+    .catch((e) => e.response)
+  }
+  updateViews()
+},[params.id])
+
 
   // CREATE CHAT
  const createChat = async () => {
@@ -62,19 +70,16 @@ const SingleAd = () => {
 }
 
 
-
   // HANDLE MESSAGE 
   const handleMessage = () => {
-    
     if (user.isLoggedIn === false) navigate('/auth-required')
     console.log(chats.find((chat:any) => chat.members?.includes( ad?.user?._id) ));
-    
     // setOpenChat(true)
+
     // create chat if chat doesn't already exist
-   !(chats.find((chat:any) => chat.members?.includes( ad?.user?._id) )) && createChat()
-  console.log('CHATS--------------------',chats);
-  navigate('/message')
-  
+    !(chats.find((chat:any) => chat.members?.includes( ad?.user?._id) )) && createChat()
+
+    navigate('/message')
   }
 
 
