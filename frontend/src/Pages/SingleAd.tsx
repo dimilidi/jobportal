@@ -136,7 +136,7 @@ const SingleAd = () => {
             {!isLoading && (
               <div
                 area-label='description'
-                className='mt-3 px-3 sm:max-h-[230px] sm:overflow-y-scroll'
+                className='mt-3 px-3 sm:max-h-[230px] h-full sm:overflow-y-scroll'
               >
                 {/* <h3 className='text-[20px]'>Description</h3> */}
                 <p className='text-[14px] text-justify text-gray/80'>

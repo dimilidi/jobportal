@@ -20,7 +20,7 @@
 5. [Room for Improvement](#5-room-for-improvement)
 6. [Acknowledgements](#6-acknowledgements)
 7. [Setup](#7-setup)
-8. [Contact](#8-contact)
+8. [Our Team](#8-out-team)
 
 <!-- * [License](#license) -->
 
@@ -41,8 +41,8 @@ Project is: _in progress_
 * publishes own advertisements (searching or offering)
 * has a user profile where has the possibility of giving a contact (email and/or phone), profession, short description about himself
 * can edit his profile (about section, add a profile photo)
-* can see his ads and edit/deleting them
-* can delete profile with all his ads
+* can see his and edit/delete them
+* can delete profile with all ads
 
 
 
@@ -61,7 +61,10 @@ Project is: _in progress_
 - Vite (4.0.0)
 - Tailwind (3.2.4)
 - Axios (1.2.1)
+- Quill Rich Text Editor (^1.3.6)
+- Emoji Picker React (^4.4.7)
 - Framer Motion (8.0.1)
+- React Tostify (^9.1.1)
 
 
 **Backend**
@@ -81,14 +84,7 @@ Project is: _in progress_
 **Deployment:**
 -Frontend: Netlify
 -Bckend: Render
-<!-- 
-## 3. Features
 
-List the ready features here:
-
-- Awesome feature 1
-- Awesome feature 2
-- Awesome feature 3 -->
 
 ## 4. Screenshots
 

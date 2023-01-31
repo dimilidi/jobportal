@@ -1,12 +1,14 @@
-import UniButton from './UniButton'
 import imageAccount from '../assets/images/Account_profilDefault.png'
 import { MdMail, MdCall, MdLocationOn } from 'react-icons/md'
+import {GrDocumentText} from 'react-icons/gr'
 import useUser from '../Hooks/useUser'
 import { Link, useNavigate } from 'react-router-dom'
 
 type Props = {
   style?: {}
 }
+
+
 
 function UserCard(props: Props) {
   const user = useUser().user
@@ -93,18 +95,26 @@ function UserCard(props: Props) {
             <MdLocationOn className='opacity-50'/> {user?.city}
           </div>
         )}
+
+
+          {/* USER FILE*/}
+          {user?.file && (
+          <div className='flex flex-row  gap-4 items-center text-gray text-opacity-80 leading-relaxed'>
+            <GrDocumentText className='opacity-50 '/> 
+            <a
+              className=' flex flex-row cursor-pointer underline'
+              target="_blank"
+              href={user.file}
+              > 
+              {user.name} Documents
+            </a>
+          </div>
+      )}
+          {/* USER FILE END */}
+
       </div>
 
-      {/* file upload */}
-      {user?.file && (
-        <a 
-        href={URL.createObjectURL(user.file)} 
-        target="_blank" 
-        className=' underline text-lightGray pb-5'>
-          View your file here
-        </a>
-      )}
-
+     
       {/* Edit Profile Button Wrapper */}
       <div className='flex justify-center mb-10'>
 
