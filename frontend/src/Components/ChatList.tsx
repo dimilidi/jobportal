@@ -27,7 +27,7 @@ function ChatList({ setReceiverInfo, receiverInfo, setOpenChatBox }: Props) {
 
 
   return (
-    <div className='w-[300px] xl:w-[400px] mt-0 min-h-[500px] sm:h-[600px]  sm:w-[300px] xl:h-[600px]
+    <div className='w-[300px] xl:w-[400px] mt-0 h-[600px]  sm:w-[300px] xl:h-[600px]
     flex flex-col items-center
     rounded-l-[21px] bg-white shadow-standard overflow-y-scroll z-10'>
          
