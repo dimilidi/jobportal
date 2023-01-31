@@ -6,21 +6,22 @@ import { useEffect, useState, useCallback } from 'react'
 import { useParams, useLocation } from 'react-router-dom'
 import useMessenger, { socket } from '../Hooks/useMessenger'
 // Components
-import AdMobile from '../Components/AdMobile'
-import MessageHistory from '../Components/MessageHistory'
-import Conversation from '../Components/Conversation'
-import UserMessage from '../Components/UserMessage'
-import InputMessage from '../Components/InputMessage'
+import AdMobile from './AdMobile'
+import MessageHistory from './MessageHistory'
+import Conversation from './Conversation'
+import UserMessage from './UserMessage'
+import InputMessage from './InputMessage'
 // Libraries
 import 'react-toastify/dist/ReactToastify.css'
 // Framer-motion
 import { motion } from 'framer-motion'
 import axiosInstance from '../api/axiosInstance'
 import { notify } from '../utils/toastNotification'
-import ChatList from '../Components/ChatList'
+import ChatList from './ChatList'
+import BrowseJobs from './BrowseJobs'
 
 
-const MessageMobile = () => {
+const MessageDesktop = () => {
   const {ad }  = useAd()
   const {adList} = useAdList('')
   const {user} = useUser()
@@ -35,74 +36,12 @@ const MessageMobile = () => {
 
 
 
-  //Connect chat 
-  useEffect(() => {
-    
-    if(user) { 
-      console.log(connect);
-      connect(user._id)
-     } 
-      setIsConnected(true)
-  },[user])
-
-
   const checkOnlineStatus = (chat:any) => {
     const chatMember = chat.members?.find((member:any) => member !== user?._id)
     const online = onlineUsers?.find((user:any) => user.userId === chatMember)
     return online ? true : false
   }
 
-
-
-  // Get Second Chat Member 
-  const getUserData = () => {
-  let userId = currentChat?.members?.find((id:string) => id !== user?._id)
-  const adOfSecondMember = adList.find((ad) =>  userId == ad.user._id)
-  adOfSecondMember && setUserData(adOfSecondMember.user)
-  }
-
-  
-  useEffect(() => {
-    if(currentChat !=null) getUserData()
-  },[user, adList, ad,  c])
-
-  
-
-  // GET CHATS
-  const getChats = async() => {
-    try {
-      const {data} = await axiosInstance.get(`/chat/${user?._id}`)
-      setChats(data)
-    } catch (error) {
-      console.log(error);
-    }
-  }
-
-  useEffect(() => {
-    getChats()
-  },[user, ad])
-
-
-
-    // Send Message to the Socket Server
-    useEffect(() => {
-      if(sendMessage !==null ) {
-        chat.sendMessageToSocket(sendMessage)
-      }
-    },[sendMessage])
-
-
-    // Receive Message from the Socket Server
-    useEffect(() => {
-      socket.on("receive-message", (data:any) => {
-      setReceiveMessage(data)
-    })
-     },[socket])
-
-
-    useEffect(() => {
-      chat.setMessages([...chat.messages, receiveMessage])
-    }, [receiveMessage])
 
   
   return (
@@ -112,21 +51,24 @@ const MessageMobile = () => {
         animate={{ width: '100%' }}
         exit={{ x: window.innerWidth }}
         area-label='message'
-        className='pt-0 pb-20 h-full  min-h-[880px]   flex flex-col items-center justify-center text-textBlack md:pt-[140px] lg:pt-[120px] lg:min-h-[900px]  xl:pt-[120px]'
+        className='z-10 mx-auto w-[800px] h-full  min-h-[918px] flex flex-col justify-center items-center'
+        // className='pt-10 pb-20  h-full   min-h-[700px]   flex  flex-wrap items-center justify-center text-textBlack md:pt-[140px] lg:pt-[120px] lg:min-h-[900px]  xl:pt-[120px]'
       >
-        <button className='pt-[100px]' onClick={()=>setOpenChatBox(false)}>back</button>
+    
+
+        
+        <BrowseJobs style={{padding:'10px', width:'700px'}}/>
            
+        <div className='w-[800px] mx-auto flex justify-center items-center'>    
         {/* CHAT LIST */}   
-        {!openChatBox &&
           <ChatList setOpenChatBox={setOpenChatBox} setReceiverInfo = {setReceiverInfo} receiverInfo={receiverInfo} />
-        }
 
         {/* MAIN */}
-        
+    
         <div
           area-label='main'
-          className=' h-full
-          flex flex-col justify-start
+          className=' h-full 
+          flex flex-col justify-center items-center
            
           md:min-h-[650px] 
           
@@ -134,21 +76,21 @@ const MessageMobile = () => {
         >
 
              {/* BOX*/}
-             { openChatBox  ? (
-        <>
+        
         <div
             area-label='box'
-            className='w-[300px]  mt-[1rem] h-[600px] sm: lg:w-[400px] xl:h-[600px]
+            className='w-[300px] max-[767px]:mt-[6rem] min-h-[500px] sm:h-[600px]  md:w-[400px] xl:w-[500px] xl:h-[600px]
             flex flex-col justify-center item-center
-            self-center z-10 rounded-r-[21px] bg-white shadow-standard'
+            self-center rounded-r-[21px] bg-white shadow-standard z-10'
           >
 
           {/* USER-MESSAGE*/}   
-      
+           { currentChat  ? (
+        <>
           <div 
             aria-label='UserMessage'
-            className='h-full w-full 
-              relative flex justify-center items-center self-center '>
+            className='h-full 
+              relative flex justify-center '>
             { <UserMessage c={c} ad={ad}  userData = {userData}   receiverInfo={receiverInfo} online={checkOnlineStatus(currentChat)}/>}
           </div>
 
@@ -156,7 +98,7 @@ const MessageMobile = () => {
         {/* MESSAGE HISTORY */}
         <div
           aria-aria-label='history'
-          className='h-full w-full
+          className='h-full 
           relative flex justify-center'>
           <MessageHistory currentChat = {chat.currentChat} />
         </div>
@@ -164,13 +106,13 @@ const MessageMobile = () => {
         {/* INPUT MESSAGE */}
      
           <InputMessage currentChat = {chat.currentChat} />
-          </div>
           </>
           ) : ( 
-
-            <p className='hidden self-center text-xl text-lightGray'>Choose a chat</p>
-            
-          )}
+              
+              <p className=' self-center text-xl text-lightGray'>Choose a chat</p>
+              
+              )}
+        </div>
 
       
       
@@ -183,15 +125,17 @@ const MessageMobile = () => {
             area-label='circle'
             className='hidden 
           w-[332px] h-[332px] absolute lg:top-[470px] lg:left-[-230px] lg:translate-y-[-50%] lg:rounded-full  lg:bg-lightGreen z-0
-          md:block'
+    xl:block'
           />
 
           <div
             area-label='line'
-            className='hidden md:block lg:absolute lg:top-[475px] lg:translate-y-[-50%] lg:left-0 lg:border-b-2 lg:border-lightGreen w-screen z-0'
+            className='hidden xl:block lg:absolute lg:top-[475px] lg:translate-y-[-50%] lg:left-0 lg:border-b-2 lg:border-lightGreen w-screen z-0'
           />
           {/* CIRCLE & LINE - END */}
     
+        </div>
+
         </div>
      
     </motion.div>
@@ -199,4 +143,4 @@ const MessageMobile = () => {
   )
 }
 
-export default MessageMobile
+export default MessageDesktop

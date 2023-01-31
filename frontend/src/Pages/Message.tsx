@@ -18,8 +18,8 @@ import { motion } from 'framer-motion'
 import axiosInstance from '../api/axiosInstance'
 import { notify } from '../utils/toastNotification'
 import ChatList from '../Components/ChatList'
-import MessageDesktop from './MessageDesktop'
-import MessageMobile from './MessageMobile'
+import MessageDesktop from '../Components/MessageDesktop'
+import MessageMobile from '../Components/MessageMobile'
 
 
 const Message = () => {
@@ -27,7 +27,7 @@ const Message = () => {
   const {adList} = useAdList('')
   const {user} = useUser()
   const chat = useMessenger()
-  const {  c, onlineUsers, sendMessage, setIsConnected, isConnected, connect, currentChat, setCurrentChat, chats, setChats, setReceiveMessage, receiveMessage, receiveMessageFromSocket} = useMessenger()
+  const { notification, setNotification,  c, onlineUsers, sendMessage, setIsConnected, isConnected, connect, currentChat, setCurrentChat, chats, setChats, setReceiveMessage, receiveMessage, receiveMessageFromSocket} = useMessenger()
   const [userData, setUserData] = useState<any>({})
   const [receiverInfo, setReceiverInfo] = useState<any>({})
   const [openChatBox, setOpenChatBox] = useState(false)
@@ -103,8 +103,20 @@ const Message = () => {
 
 
     useEffect(() => {
-      chat.setMessages([...chat.messages, receiveMessage])
+      if(!currentChat || currentChat._id !== receiveMessage.chatId) {
+        if(!notification.includes(receiveMessage)){
+          setNotification([receiveMessage, ...notification])
+          getChats()
+        }
+      }else {
+        chat.setMessages([...chat.messages, receiveMessage])
+      }
     }, [receiveMessage])
+
+    console.log('RECEIVE-MESSAGE',receiveMessage);
+    console.log('NOTIFICATION',notification);
+    
+    
 
   
   return (
@@ -117,8 +129,6 @@ const Message = () => {
     </div>
     </>
   )
-   
-    
 }
 
 export default Message

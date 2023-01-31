@@ -87,6 +87,8 @@ export type messageContext = {
   setChats: (chat:any | null) => void
   c:   {members:[]} | null,
   setC: (c:null) =>  void
-  typing: boolean
+  typing: boolean,
+  notification: [] | any,
+  setNotification: (notification:[] | any) => void
   
 }

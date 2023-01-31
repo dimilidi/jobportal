@@ -58,19 +58,19 @@ io.on("connection", socket  => {
 
 
   // typing started
-  socket.on("typing-started", () => {
-    socket.broadcast.emit('typing-started-from-server')
-    // receiver && this.socket.to(receiver).emit("typing-started-from-server")
-    console.log('type')
-  })
+  // socket.on("typing-started", () => {
+  //   socket.broadcast.emit('typing-started-from-server')
+  //   // receiver && this.socket.to(receiver).emit("typing-started-from-server")
+  //   console.log('type')
+  // })
   
 
   // tying stopped
-  socket.on("typing-stopped", () => {
-    socket.broadcast.emit('typing-stopped-from-server')
-  // socket.to(value.receiver).emit('getTypingStatus', 'typing!')
+  // socket.on("typing-stopped", () => {
+  //   socket.broadcast.emit('typing-stopped-from-server')
+  // // socket.to(value.receiver).emit('getTypingStatus', 'typing!')
 
-  })
+  // })
   
   
   // disconnect

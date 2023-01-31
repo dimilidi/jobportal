@@ -13,8 +13,8 @@ import { notify } from "../utils/toastNotification";
 
 
 export let socket: any;
-socket = io("https://jobportal-jobsy.onrender.com" )
-// socket = io("localhost:3001" )
+// socket = io("https://jobportal-jobsy.onrender.com" )
+socket = io("localhost:3001" )
 
 
 export const SocketContext = createContext<messageContext>({
@@ -37,6 +37,8 @@ export const SocketContext = createContext<messageContext>({
   setChats: () => [],
   c: {members:[]},
   setC: () => {},
+  notification: [],
+  setNotification: () => []
 })
 
 // props=app(child)
@@ -55,6 +57,7 @@ export function SocketProvider (props: {children: React.ReactElement}) {
   const [currentChat, setCurrentChat] = useState<any>(null)
   const [chats, setChats] = useState<any[]>([])
   const [c, setC] = useState<any | null >({})
+  const [notification, setNotification] = useState<any | null | []>([])
 
  
 
@@ -109,7 +112,9 @@ export function SocketProvider (props: {children: React.ReactElement}) {
     chats, 
     setChats,
     c, 
-    setC
+    setC,
+    notification,
+    setNotification
   }
   
 

@@ -8,8 +8,8 @@ let activeUsers = []
 
 const sockets = (socket) => {
 
-  console.log('socket', socket.id)
-  console.log('active', activeUsers)
+  // console.log('socket', socket.id)
+  // console.log('active', activeUsers)
   const typingController = new TypingController(socket)
   // const roomController = new RoomController(socket)
   const messageController = new MessageController(socket)
@@ -17,30 +17,30 @@ const sockets = (socket) => {
 
 
   //add new User 
-  socket.on('new-user-add', (newUserId) => {
-    // if user is not added previously
-    // if(!activeUsers.some((user)=> user.userId === newUserId)){
-      activeUsers.push({
-        userId: newUserId,
-        socketId: socket.id
-      })
-    // }
-    console.log('Connected Users', activeUsers)
-    socket.emit('get-users', activeUsers) //io?
-  })
+  // socket.on('new-user-add', (newUserId) => {
+  //   // if user is not added previously
+  //   // if(!activeUsers.some((user)=> user.userId === newUserId)){
+  //     activeUsers.push({
+  //       userId: newUserId,
+  //       socketId: socket.id
+  //     })
+  //   // }
+  //   console.log('Connected Users', activeUsers)
+  //   socket.emit('get-users', activeUsers) //io?
+  // })
 
 
   // send message
-  socket.on('send-message', (data)=> {
-    const {receiverId} = data
-    const user = activeUsers.find((user) => user.userId === receiverId)
+  // socket.on('send-message', (data)=> {
+  //   const {receiverId} = data
+  //   const user = activeUsers.find((user) => user.userId === receiverId)
     
-    if(user) {
-      socket.to(user.socketId).emit('receive-message', data)
-    }
-    console.log('From socket to:', receiverId)
-    console.log('Data',data)
-  })
+  //   if(user) {
+  //     socket.to(user.socketId).emit('receive-message', data)
+  //   }
+  //   console.log('From socket to:', receiverId)
+  //   console.log('Data',data)
+  // })
   
 
 

@@ -17,10 +17,14 @@ import { HiOutlineUserAdd } from 'react-icons/hi'
 
 // Animation
 import { motion } from 'framer-motion'
+import { BsChatDots } from 'react-icons/bs'
+import { FaCircle } from 'react-icons/fa'
+import useMessenger from '../Hooks/useMessenger'
 
 const Navigation = () => {
   // CONSTANTS
   const { user, logout } = useUser()
+  const { receiveMessage, notification, setNotification } = useMessenger() 
 
   // STATES
   const [navigation, setNavigation] = useState(false)
@@ -39,6 +43,7 @@ const Navigation = () => {
     onClick?: () => void
     navCategory: string
     deactivateActive?: boolean
+    extraIcon?: React.ReactNode
   }
   const pages: Page[] = [
     { icon: <AiOutlineHome />, name: 'Home', url: '/', navCategory: 'base' },
@@ -61,10 +66,11 @@ const Navigation = () => {
       navCategory: 'loggedIn',
     },
     {
-      icon: <CgProfile />,
+      icon: <BsChatDots />,
       name: 'Chat',
       url: user ? '/message' : '/auth-required',
       navCategory: 'base',
+      extraIcon: <FaCircle size={12} /> ,
     },
     {
       icon: <AiOutlineLogin />,
@@ -143,6 +149,7 @@ const Navigation = () => {
                 <div className='pl-6 flex items-center gap-8'>
                   <span className='text-[18px]'>{page.name}</span>
                 </div>
+               {notification.length > 1 && <span className='absolute top-5 right-[132px] text-red-400'>{page.extraIcon}</span>}
               </NavLink>
             </motion.li>
           ))}
@@ -159,7 +166,7 @@ const Navigation = () => {
                 <NavLink
                   to='/login'
                   className={({ isActive }) =>
-                    isActive
+                    isActive 
                       ? 'text-darkGreen  decoration-2 decoration-lightGreen underline underline-offset-8 font-medium'
                       : ''
                   }
@@ -229,7 +236,7 @@ const Navigation = () => {
                 <NavLink
                   to={page.url!}
                   className={({ isActive }) =>
-                    isActive ? 'text-lightGreen' : ''
+                    isActive && !page.deactivateActive ? 'text-lightGreen' : ''
                   }
                   onClick={page.onClick}
                 >

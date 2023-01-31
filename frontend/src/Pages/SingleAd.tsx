@@ -73,7 +73,6 @@ const SingleAd = () => {
   // HANDLE MESSAGE 
   const handleMessage = () => {
     if (user.isLoggedIn === false) navigate('/auth-required')
-    console.log(chats.find((chat:any) => chat.members?.includes( ad?.user?._id) ));
     // setOpenChat(true)
 
     // create chat if chat doesn't already exist
