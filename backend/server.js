@@ -47,7 +47,7 @@ io.on("connection", socket  => {
   // send message
   socket.on('send-message', (data)=> {
     const {receiverId} = data
-    const user = activeUsers.find((user) => user.userId === receiverId)
+    const user = activeUsers?.find((user) => user.userId === receiverId)
     
     if(user) {
       socket.to(user.socketId).emit('receive-message', data)
@@ -69,7 +69,7 @@ io.on("connection", socket  => {
   socket.on("typing-stopped", () => {
     socket.broadcast.emit('typing-stopped-from-server')
   // socket.to(value.receiver).emit('getTypingStatus', 'typing!')
-  
+
   })
   
   

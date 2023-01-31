@@ -78,7 +78,7 @@ function Conversation({data, setReceiverInfo, online, receiverInfo, setOpenChatB
     try {
       await axiosInstance.delete(`/chat/${chatId}`)
       
-     const newChats = chats.filter((chat:any)=> chat._id !== chatId )
+     const newChats = chats?.filter((chat:any)=> chat._id !== chatId )
      setChats(newChats)
     //  chatId == data._id && 
      setOpenChatBox(false)
