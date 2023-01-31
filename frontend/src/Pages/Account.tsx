@@ -48,7 +48,7 @@ return (
     <div className='
       absolute hidden 
       border-b-[3px] border-lightGreen 
-      xl:block md:top-[11.6rem]
+      lg:block md:top-[11.6rem]
       lg:w-[10%] right-0
       min-[1088px]:w-[17%] min-[1180px]:w-[23%] min-[1270px]:w-[29%]
       xl:w-[20rem] min-[1440px]:w-[27rem]
@@ -81,16 +81,16 @@ return (
       min-[500px]:gap-3
       md:justify-center
       lg:justify-start'>
-    <UniButtonDark
-    text='Post Ad'
-    type='button'
-    style={{z: '10'}}
-    onClick={() => navigate('/post-ad')}/>
-    <UniButton
-    text='Browse Ads'
-    type='button'
-    style={{z: 10}}
-    onClick={() => navigate('/adslist')}/>
+      <UniButtonDark
+        text='Post Ad'
+        type='button'
+        style={{z: '10'}}
+        onClick={() => navigate('/post-ad')}/>
+      <UniButton
+        text='Browse Ads'
+        type='button'
+        style={{z: 10}}
+        onClick={() => navigate('/adslist')}/>
     </div>
 
     <h3 className='
