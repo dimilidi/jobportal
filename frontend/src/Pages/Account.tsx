@@ -19,10 +19,6 @@ const Account = () => {
   const { pageCount, page, setPage } = useAdList(`userId=${user?._id}`)
   const { adList } = useAdList(`userId=${user?._id}&page=${page}`)
 
-
-
-
-
   
   useEffect(() => {
     if (!user && !loading) {
@@ -30,64 +26,104 @@ const Account = () => {
     }
   }, [user])
 
- 
 
   return (
     <motion.div
       initial={{ width: '100%' }}
       animate={{ width: '100%' }}
       exit={{ x: window.innerWidth }}
-      className='mx-auto pt-[80px] pb-10 w-full h-full  flex flex-col items-center justify-center gap-10 md:gap-3 lg:min-h-[970px] lg:flex-row lg:gap-0'
-    >
-      {/* SEMICIRCLE */}
-      <div className='w-[50px] h-24 hidden absolute right-0 rounded-tl-full rounded-bl-full bg-lightGreen md:hidden lg:block lg:top-[125px] xl:top-[130px]' />
+      className='
+      min-h-[885px] pb-[70px]
+      flex flex-col items-center justify-evenly gap-10
+      lg:flex-row 
+      xl:justify-center
+      2xl:gap-0'>
+
+      {/* SEMICIRCLE RIGHT SIDE*/}
+      <div className='
+      w-[50px] h-24 
+      hidden absolute right-0 
+      rounded-tl-full rounded-bl-full bg-lightGreen 
+      xl:block
+      xl:top-[8.6rem]'/>
+     
       {/* LINE */}
-      <div className='border-b-[3px] border-lightGreen absolute hidden lg:w-[20%] xl:w-[30%] md:block lg:top-[175px] xl:top-[180px] lg:right-0' />
+      <div className='
+      absolute hidden 
+      border-b-[3px] border-lightGreen 
+      xl:block md:top-[11.6rem]
+      lg:w-[10%] right-0
+      min-[1088px]:w-[17%] min-[1180px]:w-[23%] min-[1270px]:w-[29%]
+      xl:w-[20rem] min-[1440px]:w-[27rem]
+      min-[1460px]:w-[30rem]
+      min-[1518px]:w-[34rem]
+      min-[1572px]:w-[36rem]
+      min-[1586px]:w-[38%]
+      '/>
 
-      {/* USER CARD */}
-      <div className='h-full w-[95%] relative flex justify-center lg:w-[32%]'>
-        <UserCard />
-      </div>
-
-      {/* ADS && BUTTONS CONTAINER */}
-      <div className='max-w-[650px] h-full flex flex-col justify-start items-start md:h-[650px] lg:h-[703px] lg:w-[62%] lg:max-w-[800px] lg:gap-5'>
-        {/* BUTTONS */}
-        <div
-          className='
-              w-full flex flex-row justify-center items-center gap-2 md:gap-3
-              sm:justify-center sm:flex-row md:justify-center
-              lg:justify-start md:mt-14 lg:mt-0'
-        >
-          <UniButton
-            text='Post Ad'
-            type='button'
-            onClick={() => navigate('/post-ad')}
-            style={{ z: 10, border:'white' }}
-          />
-          <UniButton
-            text='Browse Ads'
-            type='button'
-            onClick={() => navigate('/adslist')}
-            style={{ z: 10 }}
-          />
-        
+      <div className='w-full md:w-[85%] xl:w-[70%] lg:mt-[50px] flex flex-col lg:flex-row justify-center md:pt-[60px] gap-10 lg:gap-0 xl:gap-10'>
+        {/* USER CARD */}
+        <div className='
+        w-full h-full 
+        relative 
+        flex justify-center
+        lg:flex-1 lg:min-w-[420px] lg:max-w-[300px] lg:max-h-[600px] 
+        2xl:max-w-[450px]'>
+          <UserCard />
         </div>
-        <h3   className='mt-10 md:mb-[30px] lg:mt-[60px] lg:mb-[-20px] xl:mb-[-10px] text-lg font-semibold text-gray text-opacity-40 text-center lg:w-[87%] lg:flex lg:justify-start xl:w-[85%]'>
-          Your Ads
-        </h3>
 
-        {/* ADS */}
+        {/* ADS && BUTTONS CONTAINER */}
+        <div className='w-full min-h-[250px] max-w-[700px] lg:h-[600px]'>
 
-        <div className='bg-darkBeige pt-14 bg-opacity-30 mt-[30px] mb-[30px] w-full h-full flex flex-wrap justify-center items-start md:rounded-[21px] sm:px-5 sm:mt-3 sm:mb-20 sm:w-[600px] sm:h-[552px] md:w-[100%] md:h-[250px] lg:px-0 lg:mb-0 lg:h-[450px]'>
-          <div className='w-full flex flex-wrap justify-center items-center md:justify-start lg:justify-center'>
+          {/* BUTTONS */}
+          <div
+            className='
+                w-full 
+                flex justify-center items-center gap-2
+                min-[500px]:gap-3
+                md:justify-center
+                lg:justify-start'>
+            <UniButtonDark
+              text='Post Ad'
+              type='button'
+              style={{z: '10'}}
+              onClick={() => navigate('/post-ad')}/>
+            <UniButton
+              text='Browse Ads'
+              type='button'
+              style={{z: 10}}
+              onClick={() => navigate('/adslist')}/>
+          </div>
+          
+          <h3 className='
+          w-full py-2 mt-6 mb-[-10px]
+          flex self-center max-md:justify-center flex-1
+          underline-offset-8 text-center text-xl 
+          font-semibold text-gray text-opacity-100 
+          md:mt-6 lg:w-[90%]'>
+            All Active Ads:
+          </h3>
 
+          {/* ADS */}
+          <div className='
+          w-full lg:min-h-[380px] md:max-h-[400px] my-[8px] p-4
+          flex flex-col justify-start items-start
+          rounded-xl
+          text-gray bg-darkBeige bg-opacity-30
+          md:rounded-[21px] 
+          lg:px-0 lg:mb-0 '>
+
+          <div className='
+          w-full p-3
+          flex flex-col justify-center items-center'>
             {adList?.length === 0 ? (
               <div
-                className='flex mx-auto items-center pb-10 h-[100px] sm:h-[382px] md:h-[150px] lg:h-[300px] font-bold  text-xl sm:text-2xl
-                    md:text-4xl
-                  text-center text-darkBeige'
-              >
-                You have currently <br></br> no ads yet
+                className='
+                w-full lg:pt-[130px]
+                relative 
+                text-center font-bold text-gray text-opacity-40 
+                md:text-2xl'>
+                You currently don't have <br></br> any ads 
               </div>
             ) : (
               adList?.map((ad) => <Ad key={ad._id} ad={ad} />)
@@ -98,10 +134,12 @@ const Account = () => {
         <div
           aria-label='paginationButtons'
           style={{visibility: pageCount >0 ? 'visible' : 'hidden'}}
-          className='mb-[50px] lg:mb-0 w-full lg:flex lg:justify-end xl:w-[90%]'>
+          className='w-full mt-6 h-3 mb-5'>
           <PaginationButtons page ={page} setPage = {setPage} pageCount={pageCount}/>
         </div>}
-      </div>
+        
+        </div>
+        </div>
     </motion.div>
   )
 }

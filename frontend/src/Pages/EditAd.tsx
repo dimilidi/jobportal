@@ -125,11 +125,24 @@ const EditAd = () => {
         {/* MAIN */}
         <div
           area-label='main'
-          className='relative pt-[100px] h-full min-h-[920px] w-[85%] max-w-[1000px]  md:w-[70%] flex flex-col justify-center lg:pt-0'
+          className='relative h-full min-h-[880px] pt-[70px] w-[85%] max-w-[1000px] md:w-[70%] flex flex-col justify-center'
         >
+          {/* TITLE MOBILE */}
+            <div>
+              <h1
+                area-label='title-mobile'
+                className='text-4xl flex justify-center gap-3 mb-5 font-medium text-textBlack md:hidden lg:hidden'
+              >
+                <span
+                className='italic font-medium text-lightGreen md:hidden lg:hidden'>
+                  Edit{' '}
+                </span>
+                your Ad
+              </h1>
+            </div>
 
         {/* BACK TO ACCOUNT */}
-        <div className='hidden md:block py-3'>
+        <div className='hidden md:block pb-[20px]'>
         <BrowseJobs/>
         </div>
 
@@ -137,81 +150,59 @@ const EditAd = () => {
           {/* AD FORM */}
           <form
             area-label='form'
-            className=' lg:h-[550px] gap-6 md:flex-col lg:flex-row md:gap-10 lg:gap-20 z-10 '
+            className='gap-6 md:flex-col lg:flex-row md:gap-10 lg:gap-20 z-10 '
             onSubmit={handleEdit}
           >
             <div
               area-label='ad'
-              className='p-5 pt-10   flex flex-col items-center  rounded-[21px] bg-white shadow-standard  sm:p-10 md:py-3 '
+              className='p-5 pt-5 flex flex-col items-center rounded-[21px] bg-white shadow-standard sm:p-10 md:py-3 '
             >
-            {/* TITLE MOBILE (with line) */}
-              <div className='py-5'>
-                <h1
-                  area-label='title-mobile'
-                  className='text-4xl mb-3 font-medium text-textBlack md:hidden lg:hidden'
-                >
-                  <span
-                  // ref={editText} 
-                  className='italic font-medium text-lightGreen md:hidden lg:hidden'>
-                    Edit{' '}
-                  </span>
-                  your Ad
-                </h1>
-                
-                {/* <div
-                  area-label='line'
-                  className='w-[140px] absolute top-[%] left-0 border-b-[3px] border-lightGreen md:hidden lg:hidden'
-                /> */}
-              </div>
 
               {/* TITLE DESKTOP */}
-              <div
-                area-label='text left'
-                className='flex flex-col items-center md:items-center lg:items-center md:gap-6'
-              >
-                <h1
+              <h1
                   area-label='title-md'
-                  className='hidden p-3 text-4xl font-medium text-textBlack md:block'
+                  className='hidden text-[45px] font-semibold text-textBlack md:block mt-8'
                 >
-                  <span className='italic font-medium text-lightGreen'>
+                  <span className='italic font-semibold text-lightGreen xl:text-[3.5rem]'>
                     Edit{' '}
                   </span>
                   your Ad
                 </h1>
 
-                {/* RADIO (offering- searching) */}
+              {/* RADIO (offering- searching) */}
 
-                <div
-                  area-label='index-radio'
-                  className='px-1 w-full flex justify-end items-center gap-5'
-                >
-                  <div className='flex gap-2'>
-                    <input
-                      type='radio'
-                      value='offering'
-                      checked={category == 'offering'}
-                      name='case'
-                      id='case'
-                      className='accent-darkGreen'
-                      onChange={(e) => setCategory(e.target.value)}
-                    />
-                    <label className='form-label'>offering</label>
-                  </div>
-
-                  <div className='flex gap-2'>
-                    <input
-                      type='radio'
-                      value='searching'
-                      checked={category == 'searching'}
-                      id='case'
-                      name='case'
-                      className='accent-darkGreen'
-                      onChange={(e) => setCategory(e.target.value)}
-                    />
-                    <label className='form-label'>searching</label>
-                  </div>
-                </div>
+              <div
+                area-label='index-radio'
+                className='w-full flex justify-center '
+              >
+                <div className='md:mt-2 lg:mb-[20px] md:py-2 px-5 gap-5 flex justify-center items-center
+                w-[330px] md:rounded-full md:bg-lightGreen md:bg-opacity-10 md:shadow-inner'>
+              <label className='hidden lg:inline-block font-semibold text-gray'>Category</label>
+              <div className='flex gap-2'>
+                <input
+                  type='radio'
+                  id='offering'
+                  value='offering'
+                  name='case'
+                  className='accent-darkGreen'
+                  onChange={(e) => setCategory(e.target.value)}
+                />
+                <label htmlFor='offering' className='form-label cursor-pointer text-gray text-opacity-70'>offering</label>
               </div>
+
+              <div className='flex gap-2'>
+                <input
+                  type='radio'
+                  id='searching'
+                  value='searching'
+                  name='case'
+                  className='accent-darkGreen'
+                  onChange={(e) => setCategory(e.target.value)}
+                />
+                <label htmlFor='searching' className='form-label cursor-pointer text-gray text-opacity-70'>searching</label>
+              </div>
+              </div>
+            </div>
 
               {/* TITLE && CITY && SECTOR */}
               <div
@@ -232,7 +223,7 @@ const EditAd = () => {
                     <input
                       type='text'
                       name='title'
-                      className=' form-control py-1 px-5 w-full block text-gray border-2 rounded-lg border-lightGray border-opacity-50 placeholder:text-sm 
+                      className=' form-control py-1 px-5 w-full block text-gray border-[1px] rounded-lg border-lightGray border-opacity-50 placeholder:text-sm 
                     focus:outline-lightGray '
                       placeholder='Title'
                       value={title}
@@ -251,7 +242,7 @@ const EditAd = () => {
                     <input
                       type='text'
                       name='city'
-                      className='py-1 px-5 form-control box-border  text-gray rounded-lg border-2 border-lightGray border-opacity-50 placeholder:text-sm  focus:outline-lightGray'
+                      className='py-1 px-5 form-control box-border  text-gray rounded-lg border-[1px] border-lightGray border-opacity-50 placeholder:text-sm  focus:outline-lightGray'
                       placeholder='City'
                       value={location}
                       onChange={(e) => setLocation(e.target.value)}
@@ -269,7 +260,7 @@ const EditAd = () => {
                     <input
                       type='text'
                       name='city'
-                      className='py-1 px-5 form-control box-border  text-gray rounded-lg border-2 border-lightGray border-opacity-50 placeholder:text-sm  focus:outline-lightGray'
+                      className='py-1 px-5 form-control box-border  text-gray rounded-lg border-[1px] border-lightGray border-opacity-50 placeholder:text-sm  focus:outline-lightGray'
                       placeholder='Sector'
                       value={sector}
                       onChange={(e) => setSector(e.target.value)}
@@ -279,9 +270,7 @@ const EditAd = () => {
 
                 {/* TEXTAREA */}
               
-                 <TextEditorEdit description={description} setDescription={setDescription}/>
-                {/* <div className='mt-3 border-t-2'>this is TextEditorRender: <TextEditorRender /></div>   */}
-
+                  <TextEditorEdit description={description} setDescription={setDescription}/>
 
                 {/* TEXTAREA - ORIGINAL */} 
                  {/* <textarea
@@ -297,11 +286,11 @@ const EditAd = () => {
                 {/* CHECKBOX (email-phone) */}
                 <div
                   area-label='form-bottom'
-                  className='w-full m-2 flex flex-wrap-reverse justify-start gap-3 lg:flex-row lg:justify-between lg:gap-2 '
+                  className='w-full mt-4 flex flex-wrap-reverse justify-start gap-3 lg:flex-row lg:justify-between lg:gap-2 '
                 >
                   <div
                     area-label='checkbox-text '
-                    className=' w-[300px] flex  flex-wrap justify-start  gap-1 sm:gap-3 lg:flex-row lg:justify-center lg:items-center'
+                    className='w-[300px] flex  flex-wrap justify-start  gap-1 sm:gap-3 lg:flex-row lg:justify-center lg:items-center'
                   >
                     <p className='text-lightGray'>How to reach you:</p>
 
@@ -355,10 +344,10 @@ const EditAd = () => {
                       <input
                         type='number'
                         name='wage'
-                        className='py-1 px-5 w-[100px] text-sm text-gray rounded-lg border-2 border-lightGray border-opacity-50 focus:outline-none  placeholder:font-bold placeholder:opacity-50 '
+                        className='py-1 px-5 w-[100px] text-sm text-gray rounded-lg border-[1px] border-lightGray border-opacity-50 focus:outline-none  placeholder:font-bold placeholder:opacity-50 '
                         placeholder='00'
                         value={wage}
-                        onChange={(e) => setWage(Number(e.target.value) || 0)}
+                        onChange={(e) => setWage(Number(e.target.value) || '')}
                       />
                       <span className='text-lightGray ml-1'>€</span>
                     </div>
@@ -367,7 +356,7 @@ const EditAd = () => {
               </div>
             </div>
             {/* BUTTON - POST AD */}
-            <div className=' py-7 mb-20 flex flex-col lg:flex-row justify-center items-center gap-5'>
+            <div className='pt-7 mb-20 flex flex-col md:flex-row justify-start lg:justify-center items-center gap-5'>
             <UniButtonDark
               type='submit'
               area-label='postAdButton'
