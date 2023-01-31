@@ -343,7 +343,7 @@ const PostAd = () => {
                         className='py-1 px-5 w-[100px] text-sm text-gray rounded-lg border-[1px] border-lightGray border-opacity-50 focus:outline-none  placeholder:font-bold placeholder:opacity-50 '
                         placeholder='00'
                         value={wage}
-                        onChange={(e) => setWage(Number(e.target.value) || 0)}
+                        onChange={(e) => setWage(Number(e.target.value))}
                       />
                       <span className='text-lightGray ml-1'>€</span>
                     </div>
