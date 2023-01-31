@@ -69,6 +69,7 @@ io.on("connection", socket  => {
   socket.on("typing-stopped", () => {
     socket.broadcast.emit('typing-stopped-from-server')
   // socket.to(value.receiver).emit('getTypingStatus', 'typing!')
+  
   })
   
   
