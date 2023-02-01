@@ -92,7 +92,7 @@ Jobsy uses the latest technologies and tools to deliver a fast, secure, and user
 
 **Deployment:**
 - Frontend: Netlify
-- Bckend: Render
+- Backend: Render
 
 
 ## 4. Screenshots
