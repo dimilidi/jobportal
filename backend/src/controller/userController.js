@@ -84,7 +84,7 @@ export async function editAccount(req, res) {
 
   // Delete File
   if (!file) {
-    user.file = null
+    user.file = ''
   }
 
   // Change other items
