@@ -6,7 +6,7 @@ import { MdOutlineAddAPhoto } from "react-icons/md"
 import useUser from '../Hooks/useUser'
 import { RiDeleteBinLine } from 'react-icons/ri'
 import { HiOutlineCamera } from 'react-icons/hi'
-import e from 'cors'
+
 
 type Props = {
   file: any
@@ -30,6 +30,7 @@ const FileUploader: React.FC<Props> = ({ file, setFile, fileName, setFileName })
     const target = e.target as HTMLInputElement
     const files = target.files
     files && setFileToBase(files[0])
+    files && setFileName(files[0].name)
 
     files && console.log(files[0])
   }
@@ -40,10 +41,8 @@ const FileUploader: React.FC<Props> = ({ file, setFile, fileName, setFileName })
     reader.onloadend = () => {
       setFile(reader.result)
     }
-    setOpen(!open)
+    user.user?.file !== '' && setOpen(!open)
   }
-
-
 
 
  // EDIT FILE
@@ -55,42 +54,84 @@ const FileUploader: React.FC<Props> = ({ file, setFile, fileName, setFileName })
  
     const deleteFile = () => {
     setFile('')
+    setFileName('')
     setOpen(!open)
   }
 
-  // CLEAR INPUT 
-  // const clearInput = () => {
-  //   setFile('')
-    // inputRef.value = null
-  // }
-
-
-
-
+ 
   return (
-    <>
-        <p 
-          className='underline text-lightGray text-[13px]'
+  
+    <div className='flex flex-col '>
+        <h3
+          className='
+          hidden md:inline-block
+          self-start
+          font-regular text-lightGray  
+          sm:text-[1.1rem] 
+          lg:self-start'
         >
+          File
+        </h3>
 
-          {file}
-
+        <p 
+          className='truncate underline  w-full h-[40px] mb-2 px-3 py-[5px]  
+          box-border border border-lightGray rounded-[15rem] 
+          text-sm text-gray border-opacity-[50%]
+          min-[425px]:py-[8px] 
+          sm:text-[1rem]
+        '
+        >
+          {fileName ? fileName : file}
         </p>
      {/*  Edit File */}
-     <div className='h-[30px] w-[30px] mt-[-20px] mr-5 flex items-center justify-center self-end z-20 text-lightGreen text-[16px] rounded-full bg-white  border-2 border-lightGreen hover:border-darkGreen hover:text-darkGreen   ease-in-out duration-300 shadow-lg md:mt-[-30px] '>
+       {/* If no file, choose file */}
+       {user?.user?.file === '' && 
+    <div 
+      className='w-[120px] h-[30px]  flex items-center justify-center self-end z-20 text-lightGreen text-[14px] rounded-full bg-white  border-2 border-lightGreen hover:border-darkGreen hover:text-darkGreen   ease-in-out duration-300 shadow-lg  '>
+      <input
+         style={{ display: 'none' }}
+         type='file'
+         name='doc'
+         id='file_upload'
+         onChange={handleFileChange}
+       />
+      
+     <motion.label
+        htmlFor='file_upload'
+       whileTap={{ scale: 0.8 }}
+       transition={{ duration: 0.5 }}
+       onClick={()=>user?.user?.file !== '' && editFile()}
+       
+     >
+      Choose File
+     </motion.label>
+     </div>
+     }
+     
+     {/* If there is a file, open edit file drop-down  */}
+     {user?.user?.file !== '' && 
+      <div
+      onClick={()=>user?.user?.file !== '' && editFile()} 
+      style={{display: open ? 'none' : 'flex'}}
+      className='w-[120px] h-[40px]  flex items-center justify-center self-end z-20 text-lightGreen text-[14px] rounded-full bg-white  border-2 border-lightGreen hover:border-darkGreen hover:text-darkGreen   ease-in-out duration-300 shadow-lg cursor-pointer'>
      <motion.button
        type='button'
        whileTap={{ scale: 0.8 }}
        transition={{ duration: 0.5 }}
-       onClick={editFile}
+       
      >
-       <HiOutlineCamera />
+       Edit File
      </motion.button>
+     
    </div>
+   }
+
+
    {open && (
      <div
-       className='w-[80%] mt-[-40px]  p-[8px] mx-auto  z-30 bg-background shadow-standard rounded-md flex justify-center gap-5 '
-       onClick={(e) => e.stopPropagation()}
+     onClick={(e) => e.stopPropagation()}
+     className=' w-[120px]   p-[8px] self-end z-40 bg-background shadow-standard rounded-md flex justify-center gap-5 '
+       
      >
        <input
          style={{ display: 'none' }}
@@ -116,62 +157,10 @@ const FileUploader: React.FC<Props> = ({ file, setFile, fileName, setFileName })
        </button>
      </div>
    )}
-   </>
+   </div>
+
   )
-    // <div aria-label='file-upload-container'>
-    //   <p className='text-[12px] text-gray text-opacity-50 text-center leading-[12px] pb-2'>Add your CV or Cover Letter to get more job opportunities (1 file, max 50kB)</p>
-    //   <div className='flex flex-row justify-center'>
-    //   {/* FILE INPUT */}
-    //   <input
-    //     style={{ display: 'none' }}
-    //     id='file-upload-container'
-    //     type='file'
-    //     accept='.pdf, .doc'
-    //     className='w-full text-gray text-sm'
-    //     onChange={handleFileChange}
-    //     ref={(ref) => setInputRef(ref)}
-    //   />
-      
-    //   <div className='flex justify-center'>
-    //   <motion.label
-    //     htmlFor='file-upload-container'
-    //     whileTap={{ scale: 0.8 }}
-    //     transition={{ duration: 0.5 }}
-    //     className='cursor-pointer text-[15px] font-medium underline text-darkGreen hover:text-lightGreen'
-    //   >
-    //     Choose file
-    //   </motion.label>
-
-
-    //   {/* CLEAR INPUT */}
-    //   {
-    //     file &&  
-    //     <button
-    //     className='text-xs px-1 rounded-md text-darkGreen hover:text-lightGreen' 
-    //     onClick={clearInput}><FaCheckSquare/>
-    //     </button>
-    //   }
-    //   </div>
-    //   <div>
-    //   {/* {
-    //     // files.map((file, i) => ( */}
-    //         <p 
-    //         className='underline text-lightGray text-[13px]'
-    //         >
-
-    //           {fileName ? fileName : user?.user?.file}
-
-    //         </p>
-    //         <FaTrashAlt
-    //           className='text-xs mt-[6px] mx-1 cursor-pointer text-darkGreen hover:text-lightGreen'
-    //           onClick={()=>handleRemoveFile()}
-    //         />
-    //       </div>
-    //     {/* // ))
-    //   // } */}
-    // </div>
-    // </div>
-  
+    
 }
 
 

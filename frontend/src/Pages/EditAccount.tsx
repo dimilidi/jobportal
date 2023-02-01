@@ -234,7 +234,7 @@ const EditAccount = (props:Props) => {
                 )}
               </div>
 
-              <div className='md:w-[350px] mt-5 mb-5'>
+              <div className='md:w-[350px] mt-5'>
                 {/* USERNAME */}
                 <label
                   aria-label='username'
