@@ -95,7 +95,7 @@ return (
 
     <h3 className='
       w-full py-2 mt-6 mb-[-10px]
-      flex self-center max-md:justify-center flex-1
+      flex self-center max-lg:justify-center flex-1
       underline-offset-8 text-center text-xl 
       font-semibold text-gray text-opacity-100 
       md:mt-6 lg:w-[90%]'>
@@ -107,12 +107,12 @@ return (
       w-full lg:min-h-[380px] md:max-h-[400px] my-[8px] 
       flex flex-col justify-start items-start
       rounded-xl
-      text-gray bg-darkBeige bg-opacity-30
+      text-gray 
       md:rounded-[21px] 
       lg:px-0 lg:mb-0 '>
 
     <div className='
-      w-full p-0
+      w-full md:pr-16 lg:pr-0
       flex flex-col justify-center items-center'>
       {adList?.length === 0 ? (
     <div
@@ -120,7 +120,7 @@ return (
       w-full lg:pt-[130px]
       relative 
       text-center font-bold text-gray text-opacity-40 
-      md:text-2xl'>
+      md:text-2xl '>
       You currently don't have <br></br> any ads 
       </div>
       ) : (
