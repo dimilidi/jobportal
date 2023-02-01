@@ -45,7 +45,7 @@ function useAdList(queries: string): AdHook {
 
   useEffect(() => {
     fetchAdList()
-  }, [queries, adList.length])
+  }, [queries, adList?.length])
 
   return { adList, error, isLoading, pageCount, page, setPage, filteredAds, setFilteredAds}
 

@@ -22,8 +22,8 @@ function PaginationButtons({page, setPage, pageCount}: Props) {
       >
         <GrPrevious />
       </button>
-    
-      <span className='px-3 text-[16px] text-gray text-opacity-50'>{`${page + 1} / ${pageCount}`}</span>
+
+          <span className='px-3 text-[16px] text-gray text-opacity-50'>{`${page + 1} / ${pageCount}`}</span>
 
       <button
         className='w-[32px] h-[32px] flex justify-center items-center bg-darkBeige p-2 rounded-full border-darkBeige border-2 hover:bg-background'
