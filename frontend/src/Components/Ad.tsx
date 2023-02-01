@@ -63,7 +63,7 @@ function Ad({ ad }: Props) {
               />
             )}
           </div>
-
+{/* commenting */}
           {/* LINK TO SINGLE AD  */}
           <div onClick={() => navigate(`/ad/${ad?._id}`)}
             className='w-[200px] flex flex-col sm:flex-row justify-center items-center sm:w-[350px] md:flex-row md:justify-start'
