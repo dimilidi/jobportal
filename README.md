@@ -5,6 +5,7 @@
 
 **Jobsy.** is a modern, user-friendly job portal that connects job seekers with potential employers. The website is built with the latest technologies, including MERN Stack and is designed to be accessible to all. Whether you're looking for a new job or looking to hire, Jobsy makes the process simple and straightforward.
  <br/>
+ <br/>
  This project marks our debut as developers, as well as our first team effort. Throughout the course of this project, we have honed our skills and learned a wealth of new technologies and problem-solving techniques. From the challenges we faced to the solutions we devised, this project has been a valuable learning experience that has prepared us for future projects and opportunities.
  <br/>
 
