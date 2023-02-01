@@ -5,7 +5,7 @@ import { motion } from 'framer-motion'
 import { MdOutlineAddAPhoto } from "react-icons/md"
 import useUser from '../Hooks/useUser'
 import { RiDeleteBinLine } from 'react-icons/ri'
-import { HiOutlineCamera } from 'react-icons/hi'
+import { VscNewFile } from 'react-icons/vsc'
 
 
 type Props = {
@@ -146,7 +146,7 @@ const FileUploader: React.FC<Props> = ({ file, setFile, fileName, setFileName })
          transition={{ duration: 0.5 }}
          className='cursor-pointer text-[24px] text-darkGreen hover:text-lightGreen'
        >
-         <MdOutlineAddAPhoto />
+         <VscNewFile />
        </motion.label>
        <button
          type='button'
@@ -154,7 +154,7 @@ const FileUploader: React.FC<Props> = ({ file, setFile, fileName, setFileName })
          onClick={deleteFile}
        >
          <RiDeleteBinLine />
-         
+
        </button>
      </div>
    )}
