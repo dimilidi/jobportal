@@ -37,24 +37,24 @@ This project is the final project of a one-year MERN Stack course by DCI, offici
 
 **For job seekers, they can:**
 
-*Browse job advertisements
-*View contact information for the advertiser
-*Send messages to the advertiser
-*Create their own job advertisements (searching for a job or offering their services)
-*Update their profile with information about themselves, including a contact email and *phone number, profession, and a short description
-*Edit their profile (about section, add a profile photo)
-*View and manage their own job advertisements
-*Delete their profile and all associated advertisements
+- Browse job advertisements
+- View contact information for the advertiser
+- Send messages to the advertiser
+- Create their own job advertisements (searching for a job or offering their services)
+- Update their profile with information about themselves, including a contact email and *phone number, profession, and a short description
+- Edit their profile (about section, add a profile photo)
+- View and manage their own job advertisements
+- Delete their profile and all associated advertisements
 
 
 **For employers, they can:**
 
-*Browse job seekers' profiles
-*View contact information for job seekers
-*Send messages to job seekers
-*Create job advertisements
-*View and manage their own job advertisements
-*Delete job advertisements
+- Browse job seekers' profiles
+- View contact information for job seekers
+- Send messages to job seekers
+- Create job advertisements
+- View and manage their own job advertisements
+- Delete job advertisements
 
 
 
@@ -95,8 +95,8 @@ Jobsy uses the latest technologies and tools to deliver a fast, secure, and user
 
 
 **Deployment:**
--Frontend: Netlify
--Bckend: Render
+- Frontend: Netlify
+- Bckend: Render
 
 
 ## 4. Screenshots
