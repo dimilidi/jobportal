@@ -7,7 +7,6 @@
  <br/>
  <br/>
 
-> Checkout our project: [GitHub Repo](https://github.com/dimilidi/jobportal)<br/>
 > Visit our website: [Jobsy Website](https://jobsy-jobportal.netlify.app)<br/> <br/>
 
 
@@ -22,7 +21,7 @@
 7. [Setup](#7-setup)
 8. [Our Team](#8-out-team)
 
-<!-- * [License](#license) -->
+<br/>
 
 ## 1. Project Status
 
@@ -30,31 +29,28 @@ Project is: _in progress_
 The project is currently in progress and actively being developed by a dedicated team of developers. We are continuously adding new features and fixing any bugs to ensure a seamless user experience.
 
 This project is the final project of a one-year MERN Stack course by DCI, officially presented on 02.02.2023. 
+<br/>
 
 ## 2. Features
 
 ## Jobsy provides several key features to both job seekers and employers. 
 
-**For job seekers, they can:**
+**For Not Logged In Users:**
 
-*Browse job advertisements
-*View contact information for the advertiser
-*Send messages to the advertiser
-*Create their own job advertisements (searching for a job or offering their services)
-*Update their profile with information about themselves, including a contact email and *phone number, profession, and a short description
-*Edit their profile (about section, add a profile photo)
-*View and manage their own job advertisements
-*Delete their profile and all associated advertisements
+- View advertisements without the need to log in
+- Opportunity to Sign Up
 
 
-**For employers, they can:**
+**For Logged In Users:**
 
-*Browse job seekers' profiles
-*View contact information for job seekers
-*Send messages to job seekers
-*Create job advertisements
-*View and manage their own job advertisements
-*Delete job advertisements
+- Access advertisements and view the contact details of the publisher
+- Send messages to the publisher of the advertisements
+- Create and publish own advertisements (searching or offering)
+- Manage a user profile, including the ability to provide contact information (email and/or phone), profession, and a brief description about themselves
+- Edit their profile, including the ability to add a profile photo and update their "about" section
+- Monitor and manage their own advertisements, including the ability to edit and delete them
+- Delete their profile and all associated advertisements
+ <br />
 
 
 
@@ -95,8 +91,8 @@ Jobsy uses the latest technologies and tools to deliver a fast, secure, and user
 
 
 **Deployment:**
--Frontend: Netlify
--Bckend: Render
+- Frontend: Netlify
+- Backend: Render
 
 
 ## 4. Screenshots
