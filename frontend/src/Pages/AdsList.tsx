@@ -130,10 +130,10 @@ const AdsList = () => {
                   </div>
                 
               ) : (
-                <div className='md:p-1 flex flex-col justify-start items-center'>
+                <div className='md:p-1 flex flex-col justify-start items-center w-full lg:w-[670px]'>
                   {/* ADS */}
                   {ads.adList?.map((ad) => (
-                    <Ad key={ad._id} ad={ad} />
+                    <Ad key={ad._id} ad={ad}/>
                   ))}
                 </div>
                 )}
