@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { FaTrashAlt } from 'react-icons/fa'
+import { FaCheckSquare } from "react-icons/fa"
+import { motion } from 'framer-motion'
+import { MdOutlineAddAPhoto } from "react-icons/md"
 
 type Props = {
   file: any
@@ -52,37 +55,49 @@ const FileUploader: React.FC<Props> = ({ file, setFile }) => {
 
   return (
     <div aria-label='file-upload-container'>
+      <p className='text-[12px] text-gray text-opacity-50 text-center leading-[12px] pb-2'>Add your CV or Cover Letter to get more job opportunities (1 file, max 50kB)</p>
+      <div className='flex flex-row justify-center'>
       {/* FILE INPUT */}
       <input
+        style={{ display: 'none' }}
+        id='file-upload-container'
         type='file'
         accept='.pdf, .doc'
+        className='w-full text-gray text-sm'
         onChange={handleFileChange}
         ref={(ref) => setInputRef(ref)}
       />
+      
+      <motion.label
+        htmlFor='file-upload-container'
+        whileTap={{ scale: 0.8 }}
+        transition={{ duration: 0.5 }}
+        className='cursor-pointer text-[15px] font-medium text-darkGreen hover:text-lightGreen'
+      >
+        Datei auswählen
+      </motion.label>
 
 
       {/* CLEAR INPUT */}
       {
         file &&  
         <button
-        className=' px-1 rounded-md text-lightGray' 
-        onClick={clearInput}>Clear
+        className='text-xs px-1 rounded-md text-darkGreen hover:text-lightGreen' 
+        onClick={clearInput}><FaCheckSquare/>
         </button>
       }
-      
-      <p className='text-[12px] text-gray'>Add your CV or Cover Letter to get more job opportunities (1 file, max 50kB)</p>
-
+      </div>
       <div>
       {
         files.map((file, i) => (
-          <div key={i} className='flex'>
+          <div key={i} className='flex justify-center'>
             <p 
-            className='underline text-lightGray '
+            className='underline text-lightGray text-[13px]'
             >
               {file.name}
             </p>
             <FaTrashAlt
-              className='text-gray ml-2 cursor-pointer'
+              className='text-xs mt-1 mx-1 cursor-pointer text-darkGreen hover:text-lightGreen'
               onClick={() => handleRemoveFile(i)}
             />
           </div>
