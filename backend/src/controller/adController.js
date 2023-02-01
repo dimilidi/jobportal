@@ -85,6 +85,7 @@ export async function getAdById(req, res) {
 
 
   // if user is logged in, contact data selected in contactvia
+  //test
   let itemToPopulate = 'name file avatar '
   if (user) {
     for (const item of ad.contactVia) {
