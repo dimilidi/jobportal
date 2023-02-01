@@ -1,5 +1,6 @@
 // Hooks
 import useAd from '../Hooks/useAd'
+import useUser from '../Hooks/useUser'
 // Icons
 import { MdEmail } from 'react-icons/md'
 import { BsTelephoneFill } from 'react-icons/bs'
@@ -16,6 +17,7 @@ type Props = {
 const ContactDetails = (props: Props) => {
   const params = useParams()
   const ad = useAd()
+  const user = useUser()
   console.log('AD',ad);
   
   const mailMe = () => {

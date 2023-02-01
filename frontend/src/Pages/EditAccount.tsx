@@ -191,6 +191,7 @@ const EditAccount = (props:Props) => {
               flex flex-col items-start xl:items-stretch justify-between md:translate-y-0
               '
         >
+
           {/* IMAGE LG - In form */}
           <div className='w-full flex flex-row items-center gap-8 '>
             {/* INPUTS CONTAINER */}
@@ -310,7 +311,6 @@ const EditAccount = (props:Props) => {
                   name='Profession'
                   value={profession}
                   onChange={(e) => setProffesion(e.target.value)}
-                  // test
                 />
 
                 {/* PHONE */}
@@ -375,7 +375,7 @@ const EditAccount = (props:Props) => {
           </div>
 
           {/* FILE*/}
-          <FileUploader file={file} setFile={setFile} />
+          <FileUploader file={file} setFile={setFile} />        
 
           {/* DESCRIPTION */}
           <label
