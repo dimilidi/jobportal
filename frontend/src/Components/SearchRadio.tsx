@@ -16,10 +16,8 @@ import useSearch from '../Hooks/useSearch'
   return (
     <div 
     area-label='search-radio'
-    className='p-2 flex flex-row justify-between items-center rounded-full border-darkBeige border-2 md:gap-10 lg:gap-5
-    py-2 mt-2
-    md:pl-4 md:p 
-    lg:w-[100%] lg:max-w-full lg:items-baseline lg:py-1
+    className='py-1 px-2 md:px-1 w-full flex flex-row justify-between items-center rounded-full border-darkBeige border-2 md:gap-10 xl:gap-5
+    mt-2 md:pl-4 md:p
     '>
       <div
         className='flex justify-center items-center gap-2'
@@ -80,8 +78,8 @@ import useSearch from '../Hooks/useSearch'
         {/* ARROW IN MOBILE */}
         <button type='submit' className='md:hidden' >
           <BsFillArrowRightCircleFill
-          size={28}
-          className=' md:hidden  ml-2  text-lightGreen cursor-pointer '
+          size={30}
+          className='relative top-1 md:hidden text-lightGreen cursor-pointer '
         />
         </button>
           

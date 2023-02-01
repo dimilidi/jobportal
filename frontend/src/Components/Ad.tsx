@@ -25,10 +25,14 @@ function Ad({ ad }: Props) {
 
   return (
     
-    <div  className='w-full cursor-pointer sm:px-[0px] md:py-1 max-w-[550px] xl:max-w-[680px]'>
-      <div className='h-[110px] flex justify-between items-center border-lightBeige border-t-2 text-[14px] transition duration:1000 hover:ease-in-out hover:shadow-lg hover:bg-white hover:bg-opacity-50 hover:border-y-2 md:h-[100px] md:border-y-2'>
+    <div  className='w-full cursor-pointer md:py-1 max-w-[550px] xl:max-w-[680px]'>
+      <div className='
+      h-[110px] 
+      flex
+      border-lightBeige border-t-2 text-[14px] transition duration:1000 hover:ease-in-out hover:shadow-lg hover:bg-white        hover:bg-opacity-50 hover:border-y-2 
+      md:h-[100px] md:border-y-2'>
         {/* LEFT SECTION */}
-        <div className='h-full flex justify-start sm:gap-3'>
+        <div className='w-full h-full flex justify-center sm:gap-3'>
           {/* PROFILE IMAGE */}
           <div className='w-[60px] flex flex-col items-start justify-start xl:w-[80px]'>
             <div className='pt-5 w-[60px] 
@@ -62,7 +66,7 @@ function Ad({ ad }: Props) {
 
           {/* LINK TO SINGLE AD  */}
           <div onClick={() => navigate(`/ad/${ad?._id}`)}
-            className='w-[200px] flex flex-col sm:flex-row justify-center items-center  sm:w-[350px] md:flex-row md:justify-start'
+            className='w-[200px] flex flex-col sm:flex-row justify-center items-center sm:w-[350px] md:flex-row md:justify-start'
           >
             <div className='w-[180px] flex sm:w-[190px] xl:w-[300px]'>
               {/* TITLE, SECTOR */}
@@ -91,12 +95,11 @@ function Ad({ ad }: Props) {
               </div>
             </div>
           </div>
-        </div>
 
         {/* RIGHT SECTION */}
         <div
           onClick={() => navigate(`/ad/${ad?._id}`)}
-          className='w-[70px] h-full flex self-end flex-col justify-end  items-start gap-1
+          className='w-[70px] h-full flex self-end flex-col justify-end items-start gap-1
           md:w-[180px] md:flex-row md:self-center md:items-center md:justify-between '>
           {/* CREATED AT */}
           <div className='text-[14px] text-textBlack text-opacity-50 md:ml-[40px] md:text-[16px]'>
@@ -117,6 +120,9 @@ function Ad({ ad }: Props) {
             </div>
           </div>
         </div>
+      </div>
+
+        
       </div>
     </div>
   )

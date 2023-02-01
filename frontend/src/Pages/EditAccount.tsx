@@ -2,7 +2,6 @@
 import React, { useState, useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import useUser from '../Hooks/useUser'
-import useDecorationLine from '../Hooks/useDecorationLine'
 // Component
 import UniButton from '../Components/UniButton'
 import Spinner from '../Components/Spinner'
@@ -13,20 +12,20 @@ import image from '../assets/images/Account_profil.png'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import BrowseJobs from '../Components/BrowseJobs'
-import { AiFillEdit } from 'react-icons/ai'
 import { motion } from 'framer-motion'
 import { HiOutlineCamera } from 'react-icons/hi'
-import { MdAddAPhoto, MdOutlineAddAPhoto } from 'react-icons/md'
+import {  MdOutlineAddAPhoto } from 'react-icons/md'
+
+
+
 import { RiDeleteBinLine } from 'react-icons/ri'
 
-type Props = {}
+type Props= {
+}
 
-const EditAccount = (props: Props) => {
+const EditAccount = (props:Props) => {
   const navigate = useNavigate()
   const user = useUser()
-
-  //DECORATION LINE
-  // const editText = useDecorationLine({ orientation: 'left' })
   const [fetching, setFetching] = useState(false)
   const [errors, setErrors] = useState<string[] | undefined[] | undefined>([])
 
@@ -39,7 +38,11 @@ const EditAccount = (props: Props) => {
   const [avatar, setAvatar] = useState<any>(user.user?.avatar)
   const [open, setOpen] = useState(false)
   const [maxLength, setMaxLength] = useState(300)
-  const [file, setFile] = useState<any>(user.user?.file)
+  const [file, setFile] = useState<any>()
+  const [fileName, setFileName] = useState<any>()
+
+  
+  
 
   const defaultAvatar =
     'https://res.cloudinary.com/dmdjfvwkd/image/upload/v1673676247/Account_profilDefault_eqka4e.png'
@@ -81,13 +84,15 @@ const EditAccount = (props: Props) => {
     e.preventDefault()
     setFetching(true)
     setErrors([])
-    const newUser = { name, phone, city, profession, description, avatar ,file}
+    const newUser = { name, phone, city, profession, description, avatar, file}
+
+
     const response = await user.editAccount(newUser)
 
     console.log('RR',response.status);
     console.log('newUser DATA: ',newUser);
+ 
     
-
     // if(response.data.message)
 
     if (response.status === 200) navigate('/account')
@@ -101,45 +106,34 @@ const EditAccount = (props: Props) => {
   return (
     // CONTAINER WHOLE PAGE CONTENT
     <div
-      area-label=' main-container'
-      className='h-full min-h-[900px]
-      md:h-[920px] md:max-h-[1200px]
+      area-label='main-container'
+      className='h-full min-h-[930px]
+      md:h-[970px] md:max-h-[1200px] md:pb-[50px]
 
       flex flex-col items-center justify-center
       '
       onClick={() => open && setOpen(false)}
     >
-      {/* GREEN SEMICIRCLE */}
-      {/* <div
-        area-label='green-semicircle'
-        className='
-        hidden 
-        w-[100px] h-[100px]  
-        absolute right-[-50px] top-[20.4rem] z-10 
-        rounded-full 
-        bg-lightGreen 
-        xl:block'
-      /> */}
 
       {/* HEADING & IMAGE */}
       <div
         aria-label='headline'
         className='w-[85%] mb-2
-          flex justify-between items-end 
-          md:mb-5 md:w-[65%] lg:w-[68%] xl:w-[48%] 2xl:w-[36%]'
+          flex justify-between items-center 
+          md:mb-5 lg:w-[68%] xl:w-[48%] 2xl:w-[36%]'
       >
          {/* TITLE & BROWSER-B */}
          <div
           className='w-[100%]
-      flex flex-row justify-between items-end sm:mt-[70px] md:mt-5'
+      flex flex-row justify-between items-end sm:mt-[70px]'
         >
           <h1
             className='
           w-[30%]
           text-left text-[2rem] font-semibold 
           sm:text-[2.5rem] leading-none
-          sm:w-[100%] md:text-center
-          lg:w-[50%]
+          sm:w-[100%] md:text-left
+          md:w-[50%]
           '
           >
             <span className='text-lightGreen italic'>
@@ -148,7 +142,7 @@ const EditAccount = (props: Props) => {
             Profile
           </h1>
 
-          <div className='hidden lg:flex'>
+          <div className='hidden md:flex'>
             <BrowseJobs />
           </div>
         </div>
@@ -158,47 +152,34 @@ const EditAccount = (props: Props) => {
       <div
         aria-label='main-form-ctn'
         className='
-        w-[90%] h-[650px]  md:mb-10  py-50 md:w-[700px] sm:h-[700px] md:h-[800px]
+        w-[90%] h-[650px] mb-[30px] py-50 md:w-[700px] sm:h-[700px] md:h-[800px]
         flex flex-col items-center justify-center 
         relative rounded-[30px] shadow-standard bg-white 
         '
       >
-        {/* LINE */}
-        {/* <span
-          aria-label='line'
-          className='
-            hidden
-            w-[50%] pb-10  
-            top-[180px] right-0 z-10 self-end
-            border-t-[3px] border-lightGreen 
-            sm:top-[45%] 
-            md:top-[300px] 
-            lg:w-[87%] 
-            lg:top-[370px] 
-            xl:w-[87%]'
-        /> */}
 
         {/* FORM */}
         <form
           aria-label='form'
           onSubmit={handleSubmit}
           className='
-              w-[80%] h-fit translate-y-[-12%] 
+              w-[80%] h-fit translate-y-[-6%] 
               flex flex-col items-start xl:items-stretch justify-between md:translate-y-0
               '
         >
+
           {/* IMAGE LG - In form */}
           <div className='w-full flex flex-row items-center gap-8 '>
             {/* INPUTS CONTAINER */}
             <div
               aria-label='inputs-ctn'
-              className='pt-[40px] w-full 
+              className='w-full 
               lg:w-full
                
               flex flex-col items-end md:flex-row-reverse md:justify-between md:items-center'
             >
               {/* IMAGE */}
-              <div className='mt-[70px] h-[8em] w-auto  rounded-full relative mb-5 flex flex-col  sm:h-[11em] '>
+              <div className='mt-[30px] h-[8em] w-auto  rounded-full relative mb-5 flex flex-col  sm:h-[11em] '>
                 <img
                   aria-label='image'
                   className=' h-full w-[8em] object-cover rounded-full  shadow-standard 
@@ -306,7 +287,6 @@ const EditAccount = (props: Props) => {
                   name='Profession'
                   value={profession}
                   onChange={(e) => setProffesion(e.target.value)}
-                  // test
                 />
 
                 {/* PHONE */}
@@ -369,7 +349,11 @@ const EditAccount = (props: Props) => {
               </div>
             </div>
           </div>
-          {/* <FileUploader file={file} setFile={setFile} /> */}
+
+          {/* FILE*/}
+          <div className='w-full pb-5 md:pb-0'>
+            <FileUploader file={file} setFile={setFile} fileName={fileName} setFileName={setFileName} />        
+          </div>
 
           {/* DESCRIPTION */}
           <label

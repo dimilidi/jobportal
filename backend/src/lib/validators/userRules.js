@@ -48,7 +48,7 @@ export const editAccount = [
     .not().isNumeric().withMessage('Profession must consist only of characters')
     .optional(),
   body('avatar').isString().optional().withMessage('Invalid format'),
-  body('file').isString().optional().withMessage('Invalid file format: message from userRules, in newUser data (editAccount) file exists'),
+  body('file').isString().optional().withMessage('Invalid file format'),
   body('phone')
     .isNumeric().withMessage('Phone must consist only of numbers')
     .optional(),

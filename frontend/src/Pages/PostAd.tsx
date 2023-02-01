@@ -132,9 +132,9 @@ const PostAd = () => {
         {/* MAIN */}
         <div
           area-label='main'
-          className='relative  h-full min-h-[920px] w-[85%] max-w-[1000px]  md:w-[70%] flex flex-col justify-center'
+          className='relative h-full min-h-[880px] w-[85%] max-w-[1000px] md:w-[70%] flex flex-col justify-center'
         >
-          {/* TITLE MOBILE (with line) */}
+          {/* TITLE MOBILE */}
           <div>
             <h1
               area-label='title-mobile'
@@ -150,59 +150,58 @@ const PostAd = () => {
           {/* AD FORM */}
           <form
             area-label='form'
-            className='mt-8 gap-6 md:flex-col lg:flex-row md:gap-10 lg:gap-20 z-10 '
+            className='mt-5 md:mt-8 gap-6 md:flex-col lg:flex-row md:gap-10 lg:gap-20 z-10 '
             onSubmit={handleSubmit}
           >
             <div
               area-label='ad'
-              className='p-5 pt-10  flex flex-col items-center rounded-[21px] bg-white shadow-standard sm:p-10 '
+              className='p-5 pt-5 md:pt-10 flex flex-col items-center rounded-[21px] bg-white shadow-standard sm:p-10 '
             >
               {/* TITLE DESKTOP */}
-              <div
-                area-label='text left'
-                className='flex flex-col items-center md:items-center lg:items-center md:gap-6'
-              >
                 <h1
                   area-label='title-md'
-                  className='hidden p-3 text-4xl font-medium text-textBlack md:block'
+                  className='hidden text-[45px] font-semibold text-textBlack md:block xl:text-[3.5rem]'
                 >
-                  <span className='italic font-medium text-lightGreen'>
+                  <span className='italic font-semibold text-lightGreen xl:text-[3.5rem]'>
                     Create{' '}
                   </span>
                   your Ad
                 </h1>
 
-                {/* RADIO (offering- searching) */}
+              {/* RADIO (offering- searching) */}
 
-                <div
-                  area-label='index-radio'
-                  className='px-1 w-full flex justify-center items-center gap-5'
-                >
-                  <div className='flex gap-2'>
-                    <input
-                      type='radio'
-                      id='offering'
-                      value='offering'
-                      name='case'
-                      className='accent-darkGreen'
-                      onChange={(e) => setCategory(e.target.value)}
-                    />
-                    <label htmlFor='offering' className='form-label cursor-pointer'>offering</label>
-                  </div>
-
-                  <div className='flex gap-2'>
-                    <input
-                      type='radio'
-                      id='searching'
-                      value='searching'
-                      name='case'
-                      className='accent-darkGreen'
-                      onChange={(e) => setCategory(e.target.value)}
-                    />
-                    <label htmlFor='searching' className='form-label cursor-pointer'>searching</label>
-                  </div>
-                </div>
+              <div
+                area-label='index-radio'
+                className='w-full flex justify-center '
+              >
+                <div className='md:mt-2 lg:mb-[20px] md:py-2 px-5 gap-5 flex justify-center items-center
+                w-[330px] md:rounded-full md:bg-lightGreen md:bg-opacity-10 md:shadow-inner'>
+              <label className='hidden md:inline-block font-semibold text-gray'>Category</label>
+              <div className='flex gap-2'>
+                <input
+                  type='radio'
+                  id='offering'
+                  value='offering'
+                  name='case'
+                  className='accent-darkGreen'
+                  onChange={(e) => setCategory(e.target.value)}
+                />
+                <label htmlFor='offering' className='form-label cursor-pointer text-gray text-opacity-70'>offering</label>
               </div>
+
+              <div className='flex gap-2'>
+                <input
+                  type='radio'
+                  id='searching'
+                  value='searching'
+                  name='case'
+                  className='accent-darkGreen'
+                  onChange={(e) => setCategory(e.target.value)}
+                />
+                <label htmlFor='searching' className='form-label cursor-pointer text-gray text-opacity-70'>searching</label>
+              </div>
+              </div>
+            </div>
 
               {/* TITLE && CITY && SECTOR */}
               <div
@@ -223,8 +222,9 @@ const PostAd = () => {
                     <input
                       type='text'
                       name='title'
-                      className='form-control py-1 px-5 w-full block text-gray border-2 rounded-lg border-lightGray border-opacity-50 placeholder:text-sm 
-                focus:outline-lightGray '
+                      className='form-control py-1 px-5 w-full block text-gray
+                      border-[1px] rounded-lg border-lightGray border-opacity-50 placeholder:text-sm 
+                      focus:outline-lightGray '
                       placeholder='Title'
                       value={title}
                       onChange={(e) => setTitle(e.target.value)}
@@ -242,7 +242,8 @@ const PostAd = () => {
                     <input
                       type='text'
                       name='city'
-                      className='py-1 px-5 form-control box-border  text-gray rounded-lg border-2 border-lightGray border-opacity-50 placeholder:text-sm  focus:outline-lightGray'
+                      className='py-1 px-5 form-control box-border  text-gray rounded-lg
+                      border-[1px] border-lightGray border-opacity-50 placeholder:text-sm  focus:outline-lightGray'
                       placeholder='City'
                       value={location}
                       onChange={(e) => setLocation(e.target.value)}
@@ -260,7 +261,8 @@ const PostAd = () => {
                     <input
                       type='text'
                       name='city'
-                      className='py-1 px-5 form-control box-border  text-gray rounded-lg border-2 border-lightGray border-opacity-50 placeholder:text-sm  focus:outline-lightGray'
+                      className='py-1 px-5 form-control box-border  text-gray rounded-lg
+                      border-[1px] border-lightGray border-opacity-50 placeholder:text-sm  focus:outline-lightGray'
                       placeholder='Sector'
                       value={sector}
                       onChange={(e) => setSector(e.target.value)}
@@ -343,10 +345,10 @@ const PostAd = () => {
                       <input
                         type='number'
                         name='wage'
-                        className='py-1 px-5 w-[100px] text-sm text-gray rounded-lg border-2 border-lightGray border-opacity-50 focus:outline-none  placeholder:font-bold placeholder:opacity-50 '
+                        className='py-1 px-5 w-[100px] text-sm text-gray rounded-lg border-[1px] border-lightGray border-opacity-50 focus:outline-none  placeholder:font-bold placeholder:opacity-50 '
                         placeholder='00'
                         value={wage}
-                        onChange={(e) => setWage(Number(e.target.value) || 0)}
+                        onChange={(e) => setWage(Number(e.target.value))}
                       />
                       <span className='text-lightGray ml-1'>€</span>
                     </div>
@@ -363,7 +365,13 @@ const PostAd = () => {
             />
           </form>
         </div>
-        <ToastContainer position='top-right' />
+        <ToastContainer
+          position='top-center'
+          bodyClassName='toastBody'
+          progressClassName='toastProgress'
+          toastClassName='toast'
+          autoClose={3000}
+          />
       </div>
       {/* IMAGE */}
       <img
