@@ -28,7 +28,8 @@ function UserCard(props: Props) {
       shadow-standard 
       rounded-bl-[65px] rounded-br-[65px]
       bg-white
-      sm:justify-between 
+      sm:justify-between sm:w-[55%]
+      lg:w-[90%]
       max-lg:mt-20
       lg:justify-self-center'>
 
