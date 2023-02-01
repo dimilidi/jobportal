@@ -71,7 +71,7 @@ return (
     </div>
 
   {/* ADS && BUTTONS CONTAINER */}
-    <div className='w-full min-h-[250px] max-w-[700px] lg:h-[600px]'>
+    <div className='mx-auto w-full min-h-[250px] max-w-[700px] lg:h-[600px]'>
 
   {/* BUTTONS */}
     <div
