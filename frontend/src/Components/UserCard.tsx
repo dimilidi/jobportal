@@ -130,7 +130,7 @@ function UserCard(props: Props) {
       </div>
 
         {/* Edit Profile Icon*/}
-        <div className='h-full flex justify-end items-end relative right-[40px]'>
+        <div className='flex justify-end items-end relative right-[40px]'>
           <Link
           to={'/edit-account'}
           className='w-[40px] h-[40px] rounded-full border-lightBeige border-2 bg-darkBeige md:bg-darkBeige shadow-inner cursor-pointer
