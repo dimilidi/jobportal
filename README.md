@@ -1,9 +1,9 @@
-# Jobsy. - job portal website
+# Jobsy. - A Job Portal Website
 
  <br/>
 
-**Jobsy.** is a MERN Stack based web application. <br>
-**Goal:** The application is free and available to all. Created to help find an employee and an employer. 
+
+**Jobsy.** is a modern, user-friendly job portal that connects job seekers with potential employers. The website is built with the latest technologies, including MERN Stack and is designed to be accessible to all. Whether you're looking for a new job or looking to hire, Jobsy makes the process simple and straightforward.
  <br/>
  <br/>
 
@@ -14,7 +14,7 @@
 ## Table of Contents
 
 1. [Project Status](#1-project-status)
-2. [General Info](#2-general-information)
+2. [Features](#2-features)
 3. [Technologies Used](#3-technologies-used)
 4. [Screenshots](#4-screenshots)
 5. [Room for Improvement](#5-room-for-improvement)
@@ -27,26 +27,39 @@
 ## 1. Project Status
 
 Project is: _in progress_ 
+The project is currently in progress and actively being developed by a dedicated team of developers. We are continuously adding new features and fixing any bugs to ensure a seamless user experience.
 
-## 2. General Information
+This project is the final project of a one-year MERN Stack course by DCI, officially presented on 02.02.2023. 
+
+## 2. Features
+
+## Jobsy provides several key features to both job seekers and employers. 
+
+**For job seekers, they can:**
+
+*Browse job advertisements
+*View contact information for the advertiser
+*Send messages to the advertiser
+*Create their own job advertisements (searching for a job or offering their services)
+*Update their profile with information about themselves, including a contact email and *phone number, profession, and a short description
+*Edit their profile (about section, add a profile photo)
+*View and manage their own job advertisements
+*Delete their profile and all associated advertisements
 
 
-## Not logged in user: 
-* can view ads without logging in
- <br/>
+**For employers, they can:**
 
-## Logged in user:
-* views the ads and sees the contact to the person who published the ad
-* has the ability to send a message to the person who published the ad
-* publishes own advertisements (searching or offering)
-* has a user profile where has the possibility of giving a contact (email and/or phone), profession, short description about himself
-* can edit his profile (about section, add a profile photo)
-* can see his and edit/delete them
-* can delete profile with all ads
+*Browse job seekers' profiles
+*View contact information for job seekers
+*Send messages to job seekers
+*Create job advertisements
+*View and manage their own job advertisements
+*Delete job advertisements
 
 
 
 ## 3. Technologies Used
+Jobsy uses the latest technologies and tools to deliver a fast, secure, and user-friendly experience. Some of the key technologies used in the project include:
 
 **Design:**
 - Figma  [-> see design](https://www.figma.com/file/cmWtNE21nByCtTRUkoR2uS/Wireframing-DT?node-id=112%3A2815&t=uVB5Ez63DIcXSe0U-0)
@@ -139,6 +152,7 @@ $ npm run dev
 
 
 ## 8. Our Team: 
+Jobsy is developed and maintained by a team of dedicated developers with a passion for building great products. Our team is constantly working to improve and enhance the website to provide the best experience for users.
 
 1. :woman_mechanic: **Miki Gerlach** (Backend, Frontend) [LinkedIn](https://www.linkedin.com/in/mikigerlach/)
 2. :ninja: **Lidiya Dimitrova** (Backend, Frontend) [LinkedIn](https://www.linkedin.com/in/dimitrovalidiya/)
