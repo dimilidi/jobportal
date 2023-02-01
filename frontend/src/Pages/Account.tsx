@@ -108,12 +108,13 @@ return (
       flex flex-col justify-start items-start
       rounded-xl
       text-gray 
-      md:rounded-[21px] 
+      md:rounded-[21px] md:max-w-fit
       lg:px-0 lg:mb-0 '>
 
     <div className='
       w-full 
-      flex flex-col justify-center items-center ' >
+      flex flex-col justify-center
+      md:items-start' >
       {adList?.length === 0 ? (
     <div
       className='
