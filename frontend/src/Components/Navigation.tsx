@@ -65,11 +65,12 @@ const Navigation = () => {
       url: '/account',
       navCategory: 'loggedIn',
     },
+    
     {
       icon: <BsChatDots />,
       name: 'Chat',
-      url: user ? '/message' : '/auth-required',
-      navCategory: 'base',
+      url:  '/message',
+      navCategory: 'loggedIn',
       extraIcon: <FaCircle size={12} /> ,
     },
     {
