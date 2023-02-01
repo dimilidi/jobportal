@@ -104,7 +104,7 @@ return (
 
     {/* ADS */}
     <div className='
-      w-full lg:min-h-[380px] md:max-h-[400px] my-[8px] p-4
+      w-full lg:min-h-[380px] md:max-h-[400px] my-[8px] 
       flex flex-col justify-start items-start
       rounded-xl
       text-gray bg-darkBeige bg-opacity-30
@@ -112,7 +112,7 @@ return (
       lg:px-0 lg:mb-0 '>
 
     <div className='
-      w-full p-3
+      w-full p-0
       flex flex-col justify-center items-center'>
       {adList?.length === 0 ? (
     <div
