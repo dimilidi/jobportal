@@ -2,8 +2,8 @@
 import { useNavigate } from 'react-router-dom'
 import useAdList from '../Hooks/useAdList'
 // Components
+import Ad from '../Components/Ad'
 import UniButton from '../Components/UniButton'
-import AdAccount from '../Components/AdAccount'
 import UserCard from '../Components/UserCard'
 import { useEffect } from 'react'
 import useUser from '../Hooks/useUser'
@@ -58,8 +58,8 @@ return (
       min-[1586px]:w-[38%]
     '/>
 
-  <div className='w-full md:w-[85%] xl:w-[70%] lg:mt-[50px] flex flex-col
-    lg:flex-row justify-center md:pt-[60px]  gap-10 lg:gap-0 xl:gap-10'>
+  <div className='w-full md:w-[85%] xl:w-[65%] lg:mt-[50px] flex flex-col
+    lg:flex-row justify-center md:pt-[60px] gap-10 lg:gap-0'>
   {/* USER CARD */}
     <div className='
       w-full h-full 
@@ -71,7 +71,7 @@ return (
     </div>
 
   {/* ADS && BUTTONS CONTAINER */}
-    <div className='mx-auto  w-full min-h-[250px] max-w-[700px] lg:h-[600px] '>
+    <div className='mx-auto w-full min-h-[250px] max-w-[700px] lg:h-[600px] '>
 
   {/* BUTTONS */}
     <div
@@ -122,7 +122,7 @@ return (
       You currently don't have <br></br> any ads 
       </div>
       ) : (
-      adList?.map((ad) => <AdAccount key={ad._id} ad={ad} />)
+      adList?.map((ad) => <Ad key={ad._id} ad={ad} />)
       )}
       </div>
       </div>
