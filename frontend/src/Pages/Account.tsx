@@ -58,7 +58,7 @@ return (
       min-[1586px]:w-[38%]
     '/>
 
-  <div className='w-full md:w-[85%] xl:w-[70%] lg:mt-[50px] flex flex-col
+  <div className='w-full md:max-w-[950px] xl:max-w-[1100px] lg:mt-[50px] flex flex-col
     lg:flex-row justify-center md:pt-[60px]  gap-10 lg:gap-0 xl:gap-10'>
   {/* USER CARD */}
     <div className='
@@ -109,18 +109,19 @@ return (
       rounded-xl
       text-gray 
       md:rounded-[21px] 
-      lg:px-0 lg:mb-0 '>
+      '>
 
     <div className='
       w-full 
-      flex flex-col justify-center items-center ' >
+      flex flex-col justify-center
+      items-center' >
       {adList?.length === 0 ? (
     <div
       className='
       w-full lg:pt-[130px]
       relative 
       text-center font-bold text-gray text-opacity-40 
-      md:text-2xl  '>
+      md:text-2xl '>
       You currently don't have <br></br> any ads 
       </div>
       ) : (

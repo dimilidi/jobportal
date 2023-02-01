@@ -66,7 +66,7 @@ function UserCard(props: Props) {
       <div className='mt-[10.5em] lg:mt-[12em]'>
         <h1
           className='
-            h-10
+            h-10 mb-4
             flex justify-center text-gray
             font-[600] text-[1.9rem] md:text-[2.5]'
         >
@@ -130,7 +130,7 @@ function UserCard(props: Props) {
       </div>
 
         {/* Edit Profile Icon*/}
-        <div className='flex justify-end relative right-[40px]'>
+        <div className='h-full flex justify-end items-end relative right-[40px]'>
           <Link
           to={'/edit-account'}
           className='w-[40px] h-[40px] rounded-full border-lightBeige border-2 bg-darkBeige md:bg-darkBeige shadow-inner cursor-pointer

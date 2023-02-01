@@ -17,8 +17,12 @@ type Props = {
 const FileUploader: React.FC<Props> = ({ file, setFile, fileName, setFileName }) => {
 
   const user = useUser()
+
   console.log('FILE',file);
   
+
+  // const [fileName, setFileName] = useState<any>()
+
 
 
   // const [files, setFiles] = useState<any[]>(JSON.parse(localStorage.getItem('files') || '[]'))
@@ -43,6 +47,7 @@ const FileUploader: React.FC<Props> = ({ file, setFile, fileName, setFileName })
     reader.onloadend = () => {
       setFile(reader.result)
       console.log(reader.result)
+      setFileName(selectedFile)
       // setFiles([...files, { name: selectedFile.name, file: reader.result }])
       // console.log('file name: ',selectedFile.name, 'all files: ', ...files)
     }
@@ -101,9 +106,9 @@ const FileUploader: React.FC<Props> = ({ file, setFile, fileName, setFileName })
         htmlFor='file-upload-container'
         whileTap={{ scale: 0.8 }}
         transition={{ duration: 0.5 }}
-        className='cursor-pointer text-[15px] font-medium text-darkGreen hover:text-lightGreen'
+        className='cursor-pointer text-[15px] font-medium underline text-darkGreen hover:text-lightGreen'
       >
-        Datei auswählen
+        Choose file
       </motion.label>
 
 
@@ -123,7 +128,9 @@ const FileUploader: React.FC<Props> = ({ file, setFile, fileName, setFileName })
             <p 
             className='underline text-lightGray text-[13px]'
             >
+
               {fileName ? fileName : user?.user?.file}
+
             </p>
             <FaTrashAlt
               className='text-xs mt-1 mx-1 cursor-pointer text-darkGreen hover:text-lightGreen'
@@ -139,4 +146,3 @@ const FileUploader: React.FC<Props> = ({ file, setFile, fileName, setFileName })
 
 
 export default FileUploader
-
