@@ -20,7 +20,14 @@ const UniButtonDark = ( props: Props ) => {
         whileTap={{ scale: 0.8 }}
         transition={{ duration: 0.5 }}
         onClick={props.onClick}
-        className='w-[190px] font-medium flex items-center justify-center rounded-full bg-darkGreen border-darkGreen hover:border-darkGreen2 border-[2.5px] text-white hover:bg-darkGreen2 ease-in-out duration-300 px-[24px] py-[12px] fontSize-[16px] shadow-inner md:w-[250px]'
+        className='
+        min-[600px]:w-[250px]
+        w-[140px] px-[24px] py-[12px] 
+        flex items-center justify-center
+        font-small text-[.9em] fontSize-[16px] text-white bg-darkGreen
+        border-[2.5px] rounded-full  border-darkGreen shadow-inner
+        hover:border-darkGreen2 hover:bg-darkGreen2 
+        ease-in-out duration-300'
         style={props.style}
       >
         {props.text}

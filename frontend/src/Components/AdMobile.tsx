@@ -62,7 +62,8 @@ function AdMobile() {
           </div>
 
           {/* Wage */}
-          <div className='w-[60px] h-[60px] mt-[20px] flex justify-center items-center text-[14px] text-textBlack text-opacity-70 rounded-t-[20px] bg-lightBeige sm:w-[80px] 
+          <div className='w-[60px] h-[60px] mt-[20px] flex justify-center items-center
+          text-[14px] text-textBlack text-opacity-70 rounded-t-[20px] bg-lightBeige sm:w-[80px] 
           sm:mt-10
           md:text-[16px] md:w-[70px]
           '>

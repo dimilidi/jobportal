@@ -55,7 +55,7 @@ export async function login(req, res) {
 /** @type {import("express").RequestHandler} */
 export async function editAccount(req, res) {
   const user = req.user
-  const { password, newPassword, avatar, ...others } = req.body
+  const { password, newPassword, avatar, file, ...others } = req.body
 
   // Change password
   if (password && newPassword) {
@@ -74,6 +74,17 @@ export async function editAccount(req, res) {
   if (avatar) {
     const upload = await cloudinary.v2.uploader.upload(avatar)
     user.avatar = upload.secure_url
+  }
+
+  // Upload file
+  if (file) {
+    const upload = await cloudinary.v2.uploader.upload(file)
+    user.file = upload.secure_url
+  }
+
+  // Delete File
+  if (!file) {
+    user.file = ''
   }
 
   // Change other items

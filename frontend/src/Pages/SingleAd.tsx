@@ -17,15 +17,16 @@ import DeleteAd from '../assets/images/DeleteAd.png'
 // Framer-motion
 import { motion } from 'framer-motion'
 import { AiFillEdit } from 'react-icons/ai'
-import UniButtonWhite from '../Components/UniButtonWhite'
 import { RiDeleteBinLine } from 'react-icons/ri'
 import { useEffect, useState } from 'react'
 import Modal from '../Components/Modal'
 import { BsFillEyeFill } from 'react-icons/bs'
-import UniButtonDark from '../Components/UniButtonDark'
-import TextEditorRender from '../Components/TextEditorRender'
+import Message from './Message'
+import useMessenger from '../Hooks/useMessenger'
 import axiosInstance from '../api/axiosInstance'
-
+import e from 'cors'
+import TextEditorRender from '../Components/TextEditorRender'
+import UniButtonDark from '../Components/UniButtonDark'
 
 
 const SingleAd = () => {
@@ -34,15 +35,14 @@ const SingleAd = () => {
   const params = useParams()
   const navigate = useNavigate()
   const user = useUser()
-  const { ad,  isLoading, deleteAd, updateAd, fetchAds } = useAd()
+  const { ad,  isLoading, deleteAd } = useAd()
+  const {chats, setChats, setC, currentChat, setCurrentChat} = useMessenger()
+  // const [openChat, setOpenChat] = useState(false)
   const [modalOpen, setModalOpen] = useState(false)
   const close = () => setModalOpen(false)
   const open = () => setModalOpen(true)
-  const [openChat, setOpenChat] = useState(false)
-  const [views, setViews] = useState(0)
 
-
-
+ 
 
  //HANDLE VIEWS
  useEffect(() => {
@@ -55,19 +55,32 @@ const SingleAd = () => {
 },[params.id])
 
 
+  // CREATE CHAT
+ const createChat = async () => {
+  const chat ={
+    senderId: user.user?._id,
+    receiverId: ad?.user._id
+  }
+  
+  const response = await axiosInstance
+    .post(`/chat`,chat )
+    .catch((e) => e.response)
+  setChats([...chats, chat]) 
+  setCurrentChat(chat)
+}
 
-  // HANDLE MESSAGE
+
+  // HANDLE MESSAGE 
   const handleMessage = () => {
     if (user.isLoggedIn === false) navigate('/auth-required')
-    setOpenChat(true)
+    // setOpenChat(true)
+
+    // create chat if chat doesn't already exist
+    !(chats.find((chat:any) => chat.members?.includes( ad?.user?._id) )) && createChat()
+
+    navigate('/message')
   }
 
-    // HANDLE CONTACT
-    const handleContact = () => {
-      if (user.isLoggedIn === false) navigate('/auth-required')
-      // if(user.user?._id === ad?.user._id){}
-  }
- 
 
   // HANDLE EDIT
   const handleEdit = () => {
@@ -92,10 +105,12 @@ const SingleAd = () => {
     }
   }
 
+ // OPEN CHAT 
+  // if(openChat){
+  //   return <Message />
+  // }
 
-  console.log('Views',ad?.views);
   
-
 
   // If no ad was fetched, return div with message
   if (!ad) {
@@ -107,7 +122,7 @@ const SingleAd = () => {
         animate={{ width: '100%' }}
         exit={{ x: window.innerWidth }}
         area-label='page-singleAd'
-        className='pt-[120px]  pb-20 w-[95%] h-full  min-h-[900px] flex flex-col items-center justify-center text-textBlack md:pt-[140px] xl:pt-[120px] '
+        className='w-[95%] h-full min-h-[860px] flex flex-col items-center justify-center text-textBlack xl:pt-[120px] '
       >
         {/* MAIN PART OF SINGLE AD */}
 
@@ -123,45 +138,36 @@ const SingleAd = () => {
               alignSelf: 'start',
             }}
           />
-
-                     {/* VIEWS */}
-          {/* <div className="flex items-center gap-3 mt-2 justify-between">
-            <div className="flex gap-3 mt-4"> */}
-              <div className="w-[50px] h-[25px] pr-[20px] mt-2 flex items-center justify-center gap-1 text-sm text-gray opacity-50">
-                <BsFillEyeFill /> <span>{ad.views}</span>
-              </div>
-              
-              
-              {/* <button className="flex items-center justify-center gap-2 text-xs text-white opacity-50">
-                <AiOutlineMessage /> <span>{ad.likes?.length || 0}</span>
-              </button> */}
-            {/* </div>
-          </div> */}
           </div>
 
           {/* Ad */}
           <div
             area-label='ad'
-            className='py-10 px-2 sm:px-5 sm:mx-0 sm:p-5 mt-0 mx-2 w-[90%] min-h-[400px] sm:h-[400px] 
+            className='pt-10 sm:mx-0 sm:p-5 mt-0 mx-2 w-[90%] min-h-[380px] sm:h-[400px] 
             sm:w-[600px] xl:w-[100%] xl:h-[450px]
-            flex flex-col  justify-start item-center self-center z-10 rounded-[21px] bg-white shadow-standard'
+            flex flex-col justify-start item-center self-center z-10 rounded-[21px] bg-white shadow-standard'
           >
             <AdMobile />
 
             {!isLoading && (
               <div
                 area-label='description'
-                className='mt-3 px-3 sm:max-h-[230px] sm:overflow-y-scroll'
+                className='mt-2 px-3'
               >
-                <h3 className='text-[20px]'>Description</h3>
-                <p className='text-[14px] text-justify mt-2 text-gray/80'>
+                {/* <h3 className='text-[20px]'>Description</h3> */}
+                <p className='text-[14px] mt-3 md:mt-0 text-justify text-gray/80'>
                   {/* {ad.description} */}
                   {/* Formated text mit Text Editor */}
                   <TextEditorRender />
                 </p>
               </div>
             )}
+                {/* VIEWS */}
+                <div className=" h-[25px] pr-[20px] mt-3 mb-3  xl:mt-[40px] flex items-center justify-end gap-1 text-sm text-gray opacity-50">
+                <BsFillEyeFill /> <span>{ad.views}</span>
+              </div>
           </div>
+
         
 
           {/* IF AD IS CREATED BY USER, BUTTON "EDIT" && "DELETE" */}
@@ -220,22 +226,13 @@ const SingleAd = () => {
           </div>
           }
 
+          {/* IF AD IS NOT CREATED BY USER, BUTTON "MESSAGE" */}
           <div className='flex justify-center gap-2'>
-            {/* IF AD IS NOT CREATED BY USER, BUTTON "MESSAGE" */}
-            { user.user?._id !== ad?.user._id && (
-              <UniButton
-                text='Message'
-                onClick={handleMessage}
-                className='my-7 self-center mb-2 lg:mb-0'
-              />
-            )}
-
-
-            {/* IF AD IS NOT CREATED BY USER, BUTTON "CONTACT" */}
-            { user.isLoggedIn === false && (
-              <UniButtonDark
-              text='Contact'
-              onClick={handleContact}
+          { user.user?._id !== ad?.user._id && (
+            <UniButton
+           
+              text='Message'
+              onClick={handleMessage}
               className='my-7 self-center mb-2 lg:mb-0'
             />
             )}
