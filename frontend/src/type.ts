@@ -29,6 +29,7 @@ export type Ad = {
     phone?: string
     city?: string
     avatar?:string
+    file?: string
   }
   // ref?:HTMLDivElement
   // index?:any
