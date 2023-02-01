@@ -154,6 +154,7 @@ const FileUploader: React.FC<Props> = ({ file, setFile, fileName, setFileName })
          onClick={deleteFile}
        >
          <RiDeleteBinLine />
+         
        </button>
      </div>
    )}
