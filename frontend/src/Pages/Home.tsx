@@ -44,7 +44,7 @@ const Home = () => {
             </span>
           </h1>
           <p className='w-[70%] h-[80px] hidden font-light text-gray break-words lg:max-w-[350px] xl:max-w-[450px] xl:text-lg xl:pt-2 lg:inline-block'>
-          Freedom is finding the right job. Don't wait to be found - apply now! Find suitable job today!
+          Freedom is finding the right job. Don't wait to be found - apply now! Find a suitable job today!
           </p>
         </div>
 

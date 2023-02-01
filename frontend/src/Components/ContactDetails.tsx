@@ -7,6 +7,8 @@ import { BsTelephoneFill } from 'react-icons/bs'
 import { FaMapMarkerAlt } from 'react-icons/fa'
 import { useParams } from 'react-router-dom'
 import Spinner from './Spinner'
+import { GrDocumentText } from 'react-icons/gr'
+import { AiOutlineFilePdf } from 'react-icons/ai'
 
 type Props = {
   className?: string
@@ -23,14 +25,13 @@ const ContactDetails = (props: Props) => {
   }
 
 
-
   return (
     // DIV WITH PROPS STYLING
     <div className={props.className}>
       {/* GREEN CONTACT BOX */}
       <div
         area-label='contact-data'
-        className='px-[20px] py-[20px]  w-[100%]
+        className='px-[30px] py-[30px]  w-[100%]
         flex flex-col items-center justify-center gap-2 rounded-[inherit] 
         text-gray bg-lightBeige xl:bg-lightGreen xl:text-white
    
@@ -87,6 +88,25 @@ const ContactDetails = (props: Props) => {
               </p>
             </div>
           )}
+
+
+          {/* if creator of ad has uploaded file, show file link */}
+          {ad.ad?.user.file && ad.ad?.user.file !== '' && (
+              <a
+                className='mx-auto w-[100%] flex items-center gap-1  text-sm'
+                target="_blank"
+                href={ad.ad?.user.file}
+              > 
+              <div className='p-1'>
+                <AiOutlineFilePdf size={22} className='text:lg font-bold'/> 
+              </div>
+                {ad.ad?.user.name} 
+                <span className='pl-2 '>CV</span> 
+              </a>
+        
+          )}
+
+       
 
           {/* EMAIL, PHONE, CITY - END */}
         </div>
