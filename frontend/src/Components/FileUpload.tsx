@@ -47,7 +47,7 @@ const FileUploader: React.FC<Props> = ({ file, setFile, fileName, setFileName })
     reader.onloadend = () => {
       setFile(reader.result)
       console.log(reader.result)
-      setFileName(selectedFile)
+      // setFileName(selectedFile)
       // setFiles([...files, { name: selectedFile.name, file: reader.result }])
       // console.log('file name: ',selectedFile.name, 'all files: ', ...files)
     }
