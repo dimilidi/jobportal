@@ -47,7 +47,8 @@ export async function getAds(req, res) {
   // Sort ads by update date (descending order)
   query = query.sort({ updatedAt: -1 })
 
-  query.populate('user', 'name email avatar').clone()
+  query.populate('user', 'name email avatar profession').clone()
+
   
   const [count, ads] = await Promise.all([countDoc, query])
   let pageCount = count / page_size
@@ -80,12 +81,18 @@ export async function getAdById(req, res) {
   const user = req.user
   const adId = req.params.id
 
-  // if user is NOT logged in, populate only name of ad-creator
-  let ad = await Ad.findById(adId).populate('user', 'name, avatar')
+
+  // if user is NOT logged in, populate only name ...of ad-creator
+  let ad = await Ad.findById(adId).populate('user', 'name, avatar  profession')
 
 
   // if user is logged in, contact data selected in contactvia
-  let itemToPopulate = 'name file avatar '
+  let itemToPopulate = 'profession file name avatar  '
+
+
+
+
+
   if (user) {
     for (const item of ad.contactVia) {
       itemToPopulate += ` ${item}`

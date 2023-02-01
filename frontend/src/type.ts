@@ -53,3 +53,43 @@ export type EditInputs = {
   file: string | undefined 
 }
 
+
+
+export type Chat = {
+  _id:string
+  receiverId: string
+  senderId: string
+
+}
+
+export type chatContext = {
+  connect:(id: string) => void, 
+
+}
+
+export type messageContext = {
+  connect:(id: string) => void, 
+  sendMessageToSocket: (data:{}) => void
+  receiveMessageFromSocket: (data:{}) => void
+  // sendMessage:({}) => void,
+  // joinChat: (id:string) => void
+  isConnected: boolean,
+  setIsConnected: (isConnected: boolean) => void
+  messages: [] | any
+  setMessages: (messages:[] | any) => void
+  sendMessage: {}
+  setSendMessage: ({}) => void
+  receiveMessage: {} | any | null
+  setReceiveMessage: (receiveMessage:{} | any | null) => void
+  currentChat: {members:any, _id:string}
+  setCurrentChat: (currentChat: null | {}) => void
+  onlineUsers: [] | null,
+  chats: [] | any | null
+  setChats: (chat:any | null) => void
+  c:   {members:[]} | null,
+  setC: (c:null) =>  void
+  typing: boolean,
+  notification: [] | any[],
+  setNotification: (notification:[] | any[]) => void
+  
+}

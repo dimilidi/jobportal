@@ -21,10 +21,12 @@ import { RiDeleteBinLine } from 'react-icons/ri'
 import { useEffect, useState } from 'react'
 import Modal from '../Components/Modal'
 import { BsFillEyeFill } from 'react-icons/bs'
-import UniButtonDark from '../Components/UniButtonDark'
-import TextEditorRender from '../Components/TextEditorRender'
+import Message from './Message'
+import useMessenger from '../Hooks/useMessenger'
 import axiosInstance from '../api/axiosInstance'
-
+import e from 'cors'
+import TextEditorRender from '../Components/TextEditorRender'
+import UniButtonDark from '../Components/UniButtonDark'
 
 
 const SingleAd = () => {
@@ -33,15 +35,14 @@ const SingleAd = () => {
   const params = useParams()
   const navigate = useNavigate()
   const user = useUser()
-  const { ad,  isLoading, deleteAd, updateAd, fetchAds } = useAd()
+  const { ad,  isLoading, deleteAd } = useAd()
+  const {chats, setChats, setC, currentChat, setCurrentChat} = useMessenger()
+  // const [openChat, setOpenChat] = useState(false)
   const [modalOpen, setModalOpen] = useState(false)
   const close = () => setModalOpen(false)
   const open = () => setModalOpen(true)
-  const [openChat, setOpenChat] = useState(false)
-  const [views, setViews] = useState(0)
 
-
-
+ 
 
  //HANDLE VIEWS
  useEffect(() => {
@@ -53,18 +54,34 @@ const SingleAd = () => {
   updateViews()
 },[params.id])
 
-  // HANDLE MESSAGE
+
+  // CREATE CHAT
+ const createChat = async () => {
+  const chat ={
+    senderId: user.user?._id,
+    receiverId: ad?.user._id
+  }
+  
+  const response = await axiosInstance
+    .post(`/chat`,chat )
+    .catch((e) => e.response)
+  setChats([...chats, chat]) 
+  setCurrentChat(chat)
+}
+
+
+  // HANDLE MESSAGE 
   const handleMessage = () => {
     if (user.isLoggedIn === false) navigate('/auth-required')
-    setOpenChat(true)
+    // setOpenChat(true)
+
+    // create chat if chat doesn't already exist
+    !(chats.find((chat:any) => chat.members?.includes( ad?.user?._id) )) && createChat()
+
+    navigate('/message')
   }
 
-    // HANDLE CONTACT
-    const handleContact = () => {
-      if (user.isLoggedIn === false) navigate('/auth-required')
-      // if(user.user?._id === ad?.user._id){}
-  }
- 
+
   // HANDLE EDIT
   const handleEdit = () => {
     if (user.isLoggedIn === false) navigate('/auth-required')
@@ -88,10 +105,12 @@ const SingleAd = () => {
     }
   }
 
+ // OPEN CHAT 
+  // if(openChat){
+  //   return <Message />
+  // }
 
-  console.log('Views',ad?.views);
   
-
 
   // If no ad was fetched, return div with message
   if (!ad) {
@@ -207,25 +226,14 @@ const SingleAd = () => {
           </div>
           }
 
+          {/* IF AD IS NOT CREATED BY USER, BUTTON "MESSAGE" */}
           <div className='flex justify-center gap-2'>
-            {/* IF AD IS NOT CREATED BY USER, BUTTON "MESSAGE" */}
-            { user.user?._id !== ad?.user._id && (
-              <UniButton
-                text='Message'
-                onClick={handleMessage}
-                className='my-7 self-center mb-2 lg:mb-0'
-                style={{ width: '140px' }}
-              />
-            )}
-
-
-            {/* IF AD IS NOT CREATED BY USER, BUTTON "CONTACT" */}
-            { user.isLoggedIn === false && (
-              <UniButtonDark
-              text='Contact'
-              onClick={handleContact}
+          { user.user?._id !== ad?.user._id && (
+            <UniButton
+           
+              text='Message'
+              onClick={handleMessage}
               className='my-7 self-center mb-2 lg:mb-0'
-              style={{ width: '140px' }}
             />
             )}
           </div>
