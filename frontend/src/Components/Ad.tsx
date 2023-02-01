@@ -25,12 +25,10 @@ function Ad({ ad }: Props) {
 
   return (
     
-    <div  className='w-full cursor-pointer md:py-1 max-w-[550px] xl:max-w-[680px]'>
-      <div className='
-      h-[110px] 
-      flex
-      border-lightBeige border-t-2 text-[14px] transition duration:1000 hover:ease-in-out hover:shadow-lg hover:bg-white        hover:bg-opacity-50 hover:border-y-2 
-      md:h-[100px] md:border-y-2'>
+    <div  className='w-full xl:w-[90%] px-1 cursor-pointer sm:px-[0px] md:py-1 max-w-[550px] xl:max-w-[680px]'>
+      <div className='h-[110px] flex border-lightBeige border-t-2 text-[14px] transition duration:1000
+      hover:ease-in-out hover:shadow-lg hover:bg-white hover:bg-opacity-50 hover:border-y-2 md:h-[100px] md:border-y-2'>
+
         {/* LEFT SECTION */}
         <div className='w-full h-full flex justify-center sm:gap-3'>
           {/* PROFILE IMAGE */}

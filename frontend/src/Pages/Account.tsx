@@ -2,8 +2,8 @@
 import { useNavigate } from 'react-router-dom'
 import useAdList from '../Hooks/useAdList'
 // Components
-import UniButton from '../Components/UniButton'
 import Ad from '../Components/Ad'
+import UniButton from '../Components/UniButton'
 import UserCard from '../Components/UserCard'
 import { useEffect } from 'react'
 import useUser from '../Hooks/useUser'
@@ -58,8 +58,9 @@ return (
       min-[1586px]:w-[38%]
     '/>
 
-  <div className='w-full md:max-w-[950px] xl:max-w-[1100px] lg:mt-[50px] flex flex-col
-    lg:flex-row justify-center md:pt-[60px]  gap-10 lg:gap-0 xl:gap-10'>
+  <div className='w-full md:w-[85%] xl:w-[65%] lg:mt-[50px] flex flex-col
+    lg:flex-row justify-center md:pt-[60px] gap-10 lg:gap-0'>
+
   {/* USER CARD */}
     <div className='
       w-full h-full 
@@ -71,7 +72,7 @@ return (
     </div>
 
   {/* ADS && BUTTONS CONTAINER */}
-    <div className='mx-auto  w-full min-h-[250px] max-w-[700px] lg:h-[600px] '>
+    <div className='mx-auto w-full min-h-[250px] max-w-[700px] lg:h-[600px] '>
 
   {/* BUTTONS */}
     <div
@@ -104,12 +105,11 @@ return (
 
     {/* ADS */}
     <div className='
-      lg:min-h-[380px] md:max-h-[400px] my-[8px] 
-      flex flex-col justify-start items-start
-      rounded-xl
-      text-gray 
-      md:rounded-[21px] 
-      '>
+
+      bg-darkBeige pt-8 pb-8 bg-opacity-30 mt-[30px] mb-[30px]
+      w-full h-full flex flex-wrap justify-center items-start
+      md:rounded-[21px] sm:px-5 sm:mt-3  sm:w-[600px]
+      sm:h-[552px] md:w-[100%] md:min-h-[100px] md:max-h-[390px] lg:w-[610px] lg:px-0 lg:mb-0 lg:h-[390px] xl:min-w-[700px]'>
 
     <div className='
       w-full 
