@@ -87,7 +87,7 @@ const FileUploader: React.FC<Props> = ({ file, setFile, fileName, setFileName })
        {/* If no file, choose file */}
        {user?.user?.file === '' && 
     <div 
-      className='w-[120px] h-[30px]  flex items-center justify-center self-end z-20 text-lightGreen text-[14px] rounded-full bg-white  border-2 border-lightGreen hover:border-darkGreen hover:text-darkGreen   ease-in-out duration-300 shadow-lg  '>
+      className='w-[120px] h-[40px]  flex items-center justify-center self-end z-20 text-lightGreen text-[14px] rounded-full bg-white  border-2 border-lightGreen hover:border-darkGreen hover:text-darkGreen   ease-in-out duration-300 shadow-lg cursor-pointer  '>
       <input
          style={{ display: 'none' }}
          type='file'
@@ -97,6 +97,7 @@ const FileUploader: React.FC<Props> = ({ file, setFile, fileName, setFileName })
        />
 
      <motion.label
+     className='cursor-pointer'
         htmlFor='file_upload'
        whileTap={{ scale: 0.8 }}
        transition={{ duration: 0.5 }}
