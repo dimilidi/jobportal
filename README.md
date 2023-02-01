@@ -117,16 +117,17 @@ Jobsy uses the latest technologies and tools to deliver a fast, secure, and user
 
 ## 6. Room for Improvement
 
- Improvements for future development:
+ Improvements for future development to provide better user expierence:
 
+- [ ] Confirmation process during sign-up, which can be enhanced by implementing a confirmation link.
 - [ ] Add new feature for user to network each other
 - [ ] Add new feature for user to manage ads created by other users in his/her account. eg. save and categorize ads (favorits, contacting)
 - [ ] Infinitive scroll in Mobile Version when browsing ads.
-
-To do:
+- [ ] Ability to reset passwords
+<!-- To do:
 
 - Add 'partner' in user model to manage connected contacts
-- Add related routes with partner in backend like `/user/partners`, `/user/add-partners` or `/user/delete-partners`
+- Add related routes with partner in backend like `/user/partners`, `/user/add-partners` or `/user/delete-partners` -->
 
 ## 8. Acknowledgements
 

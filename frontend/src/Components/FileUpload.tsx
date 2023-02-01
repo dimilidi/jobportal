@@ -41,14 +41,23 @@ const FileUploader: React.FC<Props> = ({ file, setFile }) => {
   }
 
   // REMOVE FILE
+
   const handleRemoveFile = () => {
     setFile(null)
-    // const newFiles = [...files]
-    // newFiles.splice(index, 1)
-    // setFiles(newFiles)
-    // localStorage.removeItem('files')
-    // localStorage.setItem('files', JSON.stringify(newFiles))
   }
+  
+  // const handleRemoveFile = (index: number) => {
+    
+  //   const newFiles = [...files]
+  //   console.log('before: ',newFiles)
+  //   newFiles.splice(index, 1)
+  //   setFiles(newFiles)
+  //   console.log('after',newFiles)
+  //   localStorage.removeItem('files')
+  //   localStorage.setItem('files', JSON.stringify(newFiles))
+  //   console.log('after local remove', newFiles)
+
+  // }
 
   // CLEAR INPUT 
   const clearInput = () => {

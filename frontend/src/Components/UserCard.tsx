@@ -109,18 +109,20 @@ function UserCard(props: Props) {
 
 
           {/* USER FILE*/}
-          {user?.file && (
+          {user?.file == 'undefined' ? 
+          ''
+          :
           <div className='flex flex-row  gap-4 items-center text-gray text-opacity-80 leading-relaxed'>
             <GrDocumentText className='opacity-50 '/> 
             <a
               className=' flex flex-row cursor-pointer underline'
               target="_blank"
-              href={user.file}
+              href={user?.file}
               > 
-              {user.name} Documents
+              {user?.name} Documents
             </a>
-          </div> 
-          )}
+          </div>
+          }
     
 
           {/* USER FILE END */}
