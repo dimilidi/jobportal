@@ -40,7 +40,7 @@ const SmoothPages = () => {
             <Route path='/message' element={user ? <Message /> : < AuthRequired />} />
             <Route path='*' element={<NotFound />} />
         </Routes>
-    // </AnimatePresence>
+     /* </AnimatePresence> */
   )
 }
 
