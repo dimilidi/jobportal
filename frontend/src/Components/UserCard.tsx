@@ -19,8 +19,6 @@ function UserCard(props: Props) {
 
   return (
     <div
-    // jdlkjldkjgflkhjlkhflkj
-
       // USER CARD
       style={props.style}
       className='
@@ -29,6 +27,9 @@ function UserCard(props: Props) {
       shadow-standard 
       rounded-bl-[65px] rounded-br-[65px]
       bg-white
+      medium:w-[60%]
+      small:w-[80%]
+      large:w-[50%]
       sm:justify-between sm:w-[55%]
       lg:w-[90%]
       max-lg:mt-20
