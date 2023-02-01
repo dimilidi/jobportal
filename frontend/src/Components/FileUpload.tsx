@@ -8,17 +8,25 @@ import useUser from '../Hooks/useUser'
 type Props = {
   file: any
   setFile: (value: any) => void
+  fileName: string
+  setFileName: (file:string) => void
 }
 
 
 // FILE UPLOADER COMPONENT
-const FileUploader: React.FC<Props> = ({ file, setFile }) => {
+const FileUploader: React.FC<Props> = ({ file, setFile, fileName, setFileName }) => {
 
   const user = useUser()
 
+  console.log('FILE',file);
+  
+
+  // const [fileName, setFileName] = useState<any>()
+
+
 
   // const [files, setFiles] = useState<any[]>(JSON.parse(localStorage.getItem('files') || '[]'))
-  // const [inputRef, setInputRef] = useState<any>()
+  const [inputRef, setInputRef] = useState<any>()
 
   // useEffect(() => {
   //   localStorage.setItem('files', JSON.stringify(files))
@@ -29,12 +37,17 @@ const FileUploader: React.FC<Props> = ({ file, setFile }) => {
     // if (files.length >= 1) return
       
     const selectedFile = event.target.files[0]
+    setFileName(selectedFile.name)
+    // console.log('???????????????????',selectedFile);
+ 
+    
 
     const reader = new FileReader()
     reader.readAsDataURL(selectedFile)
     reader.onloadend = () => {
       setFile(reader.result)
       console.log(reader.result)
+      // setFileName(selectedFile)
       // setFiles([...files, { name: selectedFile.name, file: reader.result }])
       // console.log('file name: ',selectedFile.name, 'all files: ', ...files)
     }
@@ -86,7 +99,7 @@ const FileUploader: React.FC<Props> = ({ file, setFile }) => {
         accept='.pdf, .doc'
         className='w-full text-gray text-sm'
         onChange={handleFileChange}
-        // ref={(ref) => setInputRef(ref)}
+        ref={(ref) => setInputRef(ref)}
       />
       
       <div className='flex justify-center'>
@@ -94,9 +107,9 @@ const FileUploader: React.FC<Props> = ({ file, setFile }) => {
         htmlFor='file-upload-container'
         whileTap={{ scale: 0.8 }}
         transition={{ duration: 0.5 }}
-        className='cursor-pointer text-[15px] font-medium text-darkGreen hover:text-lightGreen'
+        className='cursor-pointer text-[15px] font-medium underline text-darkGreen hover:text-lightGreen'
       >
-        Datei auswählen
+        Choose file
       </motion.label>
 
 
@@ -115,7 +128,9 @@ const FileUploader: React.FC<Props> = ({ file, setFile }) => {
             <p 
             className='underline text-lightGray text-[13px]'
             >
-              {file?.name}
+
+              {fileName ? fileName : user?.user?.file}
+
             </p>
             <FaTrashAlt
               className='text-xs mt-[6px] mx-1 cursor-pointer text-darkGreen hover:text-lightGreen'
@@ -131,4 +146,3 @@ const FileUploader: React.FC<Props> = ({ file, setFile }) => {
 
 
 export default FileUploader
-

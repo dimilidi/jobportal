@@ -18,7 +18,7 @@ const ContactDetails = (props: Props) => {
   const params = useParams()
   const ad = useAd()
   const user = useUser()
-  console.log('AD',ad);
+
   
   const mailMe = () => {
     window.location.href = `mailto:${ad.ad?.user.email}`;

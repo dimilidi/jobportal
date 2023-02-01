@@ -66,7 +66,7 @@ function UserCard(props: Props) {
       <div className='mt-[10.5em] lg:mt-[12em]'>
         <h1
           className='
-            h-10
+            h-10 mb-4
             flex justify-center text-gray
             font-[600] text-[1.9rem] md:text-[2.5]'
         >
@@ -83,7 +83,7 @@ function UserCard(props: Props) {
       {/* Description Heading and Description */}
       {user?.description && (
         <div className='w-[90%] min-h-[2rem] mt-4 mb-7 px-6 max-h-[8rem] overflow-y-auto'>
-          <p className='p-2 text-sm font-medium text-[gray]'>{user?.description}</p>
+          <p className='p-2 text-sm font-medium text-[gray] break-all'>{user?.description}</p>
         </div>
       )}
 
@@ -130,7 +130,7 @@ function UserCard(props: Props) {
       </div>
 
         {/* Edit Profile Icon*/}
-        <div className='flex justify-end relative right-[40px]'>
+        <div className='flex justify-end items-end relative right-[40px]'>
           <Link
           to={'/edit-account'}
           className='w-[40px] h-[40px] rounded-full border-lightBeige border-2 bg-darkBeige md:bg-darkBeige shadow-inner cursor-pointer

@@ -16,6 +16,7 @@ import imagePostAd from '../assets/images/PostAd_chef.png'
 // Others
 import axiosInstance from '../api/axiosInstance'
 import { motion } from 'framer-motion'
+import useMessenger from '../Hooks/useMessenger'
 
 const PostAd = () => {
   // CONSTANTS
@@ -35,7 +36,11 @@ const PostAd = () => {
     [string, string] | [string] | []
   >()
   const [checked, setChecked] = useState({ email: false, phone: false })
-  // const [image, setImage] = useState('')
+ const chat = useMessenger()
+
+ console.log('CHAT---->',chat);
+ 
+
 
   // If user is not logged in, navigate to auth-required
   useEffect(() => {

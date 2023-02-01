@@ -39,6 +39,10 @@ const EditAccount = (props:Props) => {
   const [open, setOpen] = useState(false)
   const [maxLength, setMaxLength] = useState(300)
   const [file, setFile] = useState<any>()
+  const [fileName, setFileName] = useState<any>()
+
+  
+  
 
   const defaultAvatar =
     'https://res.cloudinary.com/dmdjfvwkd/image/upload/v1673676247/Account_profilDefault_eqka4e.png'
@@ -348,7 +352,7 @@ const EditAccount = (props:Props) => {
 
           {/* FILE*/}
           <div className='w-full pb-5 md:pb-0'>
-            <FileUploader file={file} setFile={setFile} />        
+            <FileUploader file={file} setFile={setFile} fileName={fileName} setFileName={setFileName} />        
           </div>
 
           {/* DESCRIPTION */}
