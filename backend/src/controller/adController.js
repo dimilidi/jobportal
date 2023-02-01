@@ -91,7 +91,6 @@ export async function getAdById(req, res) {
     }
     ad = await Ad.findById(adId).populate('user', itemToPopulate)
   }
-
   res.status(200).json(ad)
 }
 
