@@ -43,7 +43,7 @@ const EditAccount = (props:Props) => {
   const [avatar, setAvatar] = useState<any>(user.user?.avatar)
   const [open, setOpen] = useState(false)
   const [maxLength, setMaxLength] = useState(300)
-  const [file, setFile] = useState<any>(user.user?.file)
+  const [file, setFile] = useState<any>()
 
   const defaultAvatar =
     'https://res.cloudinary.com/dmdjfvwkd/image/upload/v1673676247/Account_profilDefault_eqka4e.png'
@@ -85,7 +85,12 @@ const EditAccount = (props:Props) => {
     e.preventDefault()
     setFetching(true)
     setErrors([])
-    const newUser = { name, phone, city, profession, description, avatar ,file}
+    const newUser = { name, phone, city, profession, description, avatar, file}
+
+    if (file !== null) {
+      newUser.file = file 
+    }
+
     const response = await user.editAccount(newUser)
 
     console.log('RR',response.status);
