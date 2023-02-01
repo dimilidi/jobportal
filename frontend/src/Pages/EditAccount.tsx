@@ -90,8 +90,8 @@ const EditAccount = (props:Props) => {
 
     console.log('RR',response.status);
     console.log('newUser DATA: ',newUser);
+ 
     
-
     // if(response.data.message)
 
     if (response.status === 200) navigate('/account')

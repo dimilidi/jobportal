@@ -82,6 +82,11 @@ export async function editAccount(req, res) {
     user.file = upload.secure_url
   }
 
+  // Delete File
+  if (!file) {
+    user.file = null
+  }
+
   // Change other items
   for (const key in others) {
     user[key] = others[key]
