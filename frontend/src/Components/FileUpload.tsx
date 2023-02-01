@@ -1,8 +1,5 @@
-import React, { useState, useEffect } from 'react'
-import { FaTrashAlt } from 'react-icons/fa'
-import { FaCheckSquare } from "react-icons/fa"
+import React, { useState } from 'react'
 import { motion } from 'framer-motion'
-import { MdOutlineAddAPhoto } from "react-icons/md"
 import useUser from '../Hooks/useUser'
 import { RiDeleteBinLine } from 'react-icons/ri'
 import { VscNewFile } from 'react-icons/vsc'
