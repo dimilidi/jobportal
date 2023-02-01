@@ -95,7 +95,7 @@ const FileUploader: React.FC<Props> = ({ file, setFile, fileName, setFileName })
          id='file_upload'
          onChange={handleFileChange}
        />
-      
+
      <motion.label
         htmlFor='file_upload'
        whileTap={{ scale: 0.8 }}
