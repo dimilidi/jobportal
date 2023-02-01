@@ -59,7 +59,7 @@ const AdsList = () => {
       className='pt-[70px] pb-[80px] h-full w-full min-h-[920px]'
     >
       {/* SEMICIRCLE */}
-      <div className='w-[50px] h-24 hidden right-0 top-[160px] rounded-tl-full rounded-bl-full bg-lightGreen lg:block absolute'></div>
+      <div className='w-[50px] h-24 hidden right-0 top-[160px] rounded-tl-full rounded-bl-full bg-lightGreen xl:block absolute'></div>
 
       {/* HEADING WITH UNDERLINE  */}
       <div className='mx-auto md:mt-[30px] h-[100px] w-[250px] lg:w-[320px] xl:w-[370px] flex justify-end'>
@@ -85,15 +85,15 @@ const AdsList = () => {
               className='
               hidden 
               h-full w-full
-              lg:flex lg:w-[600px] lg:mt-[30px]
-              xl:w-[560px]
+              lg:flex lg:w-[500px] lg:mt-[30px]
+              xl:w-[540px]
               '
               src={man}
               alt='person working on computer'
             />
 
           {/* SEARCH - ADS - BUTTONS*/}
-          <div className='w-[60%] h-full flex flex-col justify-between items-center lg:mr-5'>
+          <div className='w-[60%] h-full flex flex-col justify-between items-center lg:mr-5 xl:w-[45%]'>
             {/* SEARCH */}
             <div className='w-full flex justify-center items-center'>
             <SearchContainer page='AdsList' />

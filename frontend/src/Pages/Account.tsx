@@ -59,7 +59,7 @@ return (
     '/>
 
   <div className='w-full md:w-[85%] xl:w-[70%] lg:mt-[50px] flex flex-col
-    lg:flex-row justify-center md:pt-[60px] gap-10 lg:gap-0 xl:gap-10'>
+    lg:flex-row justify-center md:pt-[60px]  gap-10 lg:gap-0 xl:gap-10'>
   {/* USER CARD */}
     <div className='
       w-full h-full 
@@ -71,7 +71,7 @@ return (
     </div>
 
   {/* ADS && BUTTONS CONTAINER */}
-    <div className='mx-auto w-full min-h-[250px] max-w-[700px] lg:h-[600px]'>
+    <div className='mx-auto  w-full min-h-[250px] max-w-[700px] lg:h-[600px] '>
 
   {/* BUTTONS */}
     <div
@@ -98,13 +98,13 @@ return (
       flex self-center max-lg:justify-center flex-1
       underline-offset-8 text-center text-xl 
       font-semibold text-gray text-opacity-100 
-      md:mt-6 lg:w-[90%]'>
+      md:mt-6 lg:w-[90%] '>
       All Active Ads:
     </h3>
 
     {/* ADS */}
     <div className='
-      w-full lg:min-h-[380px] md:max-h-[400px] my-[8px] 
+      lg:min-h-[380px] md:max-h-[400px] my-[8px] 
       flex flex-col justify-start items-start
       rounded-xl
       text-gray 
@@ -112,15 +112,15 @@ return (
       lg:px-0 lg:mb-0 '>
 
     <div className='
-      w-full md:pr-16 lg:pr-0
-      flex flex-col justify-center items-center'>
+      w-full 
+      flex flex-col justify-center items-center ' >
       {adList?.length === 0 ? (
     <div
       className='
       w-full lg:pt-[130px]
       relative 
       text-center font-bold text-gray text-opacity-40 
-      md:text-2xl '>
+      md:text-2xl  '>
       You currently don't have <br></br> any ads 
       </div>
       ) : (
