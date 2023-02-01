@@ -42,7 +42,7 @@ const FileUploader: React.FC<Props> = ({ file, setFile }) => {
 
   // REMOVE FILE
   const handleRemoveFile = () => {
-    setFile(null)
+    setFile('')
     // const newFiles = [...files]
     // newFiles.splice(index, 1)
     // setFiles(newFiles)
