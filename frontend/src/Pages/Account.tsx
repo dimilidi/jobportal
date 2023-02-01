@@ -114,7 +114,7 @@ return (
     <div className='
       w-full 
       flex flex-col justify-center
-      md:items-start' >
+      items-center' >
       {adList?.length === 0 ? (
     <div
       className='
