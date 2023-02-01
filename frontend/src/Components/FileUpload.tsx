@@ -102,6 +102,7 @@ const FileUploader: React.FC<Props> = ({ file, setFile, fileName, setFileName })
         ref={(ref) => setInputRef(ref)}
       />
       
+      <div className='flex justify-center'>
       <motion.label
         htmlFor='file-upload-container'
         whileTap={{ scale: 0.8 }}
@@ -124,7 +125,6 @@ const FileUploader: React.FC<Props> = ({ file, setFile, fileName, setFileName })
       <div>
       {/* {
         // files.map((file, i) => ( */}
-          <div className='flex justify-center'>
             <p 
             className='underline text-lightGray text-[13px]'
             >
@@ -133,7 +133,7 @@ const FileUploader: React.FC<Props> = ({ file, setFile, fileName, setFileName })
 
             </p>
             <FaTrashAlt
-              className='text-xs mt-1 mx-1 cursor-pointer text-darkGreen hover:text-lightGreen'
+              className='text-xs mt-[6px] mx-1 cursor-pointer text-darkGreen hover:text-lightGreen'
               onClick={()=>handleRemoveFile()}
             />
           </div>
