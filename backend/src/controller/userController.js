@@ -56,6 +56,8 @@ export async function login(req, res) {
 export async function editAccount(req, res) {
   const user = req.user
   const { password, newPassword, avatar, file, ...others } = req.body
+  console.log(file)
+
 
   // Change password
   if (password && newPassword) {
@@ -80,12 +82,18 @@ export async function editAccount(req, res) {
   if (file) {
     const upload = await cloudinary.v2.uploader.upload(file)
     user.file = upload.secure_url
+   
   }
 
-  // Delete File
-  if (!file) {
-    user.file = ''
+  if(file === '' ){
+    user.file= ''
+
+    // Delete File
+    // const deleteFile = await cloudinary.v2.uploader.destroy(file)
+    // user.file= deleteFile.secure_url
   }
+
+  
 
   // Change other items
   for (const key in others) {
