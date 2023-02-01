@@ -37,6 +37,8 @@ const FileUploader: React.FC<Props> = ({ file, setFile }) => {
     const newFiles = [...files]
     newFiles.splice(index, 1)
     setFiles(newFiles)
+    localStorage.removeItem('files')
+    localStorage.setItem('files', JSON.stringify(newFiles))
   }
 
   // CLEAR INPUT 
@@ -68,7 +70,7 @@ const FileUploader: React.FC<Props> = ({ file, setFile }) => {
         </button>
       }
       
-      <p className='text-[12px] text-gray'>Add your CV or Cover Letter to get more job opportunities (max 1 file)</p>
+      <p className='text-[12px] text-gray'>Add your CV or Cover Letter to get more job opportunities (1 file, max 50kB)</p>
 
       <div>
       {

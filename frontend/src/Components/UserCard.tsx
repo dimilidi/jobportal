@@ -116,9 +116,10 @@ function UserCard(props: Props) {
               > 
               {user.name} Documents
             </a>
-          </div>
+          </div> 
+          )}
+    
 
-      )}
           {/* USER FILE END */}
 
       </div>
