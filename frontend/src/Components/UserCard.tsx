@@ -109,9 +109,7 @@ function UserCard(props: Props) {
 
 
           {/* USER FILE*/}
-          {user?.file == '' ? 
-          ''
-          :
+          {user?.file != '' &&
           <div className='flex flex-row  gap-4 items-center text-gray text-opacity-80 leading-relaxed'>
             <GrDocumentText className='opacity-50 '/> 
             <a

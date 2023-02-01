@@ -4,6 +4,9 @@ import { FaCheckSquare } from "react-icons/fa"
 import { motion } from 'framer-motion'
 import { MdOutlineAddAPhoto } from "react-icons/md"
 import useUser from '../Hooks/useUser'
+import { RiDeleteBinLine } from 'react-icons/ri'
+import { HiOutlineCamera } from 'react-icons/hi'
+
 
 type Props = {
   file: any
@@ -18,130 +21,147 @@ const FileUploader: React.FC<Props> = ({ file, setFile, fileName, setFileName })
 
   const user = useUser()
 
+  const [open, setOpen] = useState(false)
+
+
   console.log('FILE',file);
-  
 
-  // const [fileName, setFileName] = useState<any>()
+  const handleFileChange = (e: React.SyntheticEvent) => {
+    const target = e.target as HTMLInputElement
+    const files = target.files
+    files && setFileToBase(files[0])
+    files && setFileName(files[0].name)
 
+    files && console.log(files[0])
+  }
 
-
-  // const [files, setFiles] = useState<any[]>(JSON.parse(localStorage.getItem('files') || '[]'))
-  const [inputRef, setInputRef] = useState<any>()
-
-  // useEffect(() => {
-  //   localStorage.setItem('files', JSON.stringify(files))
-  // }, [files])
-
-  const handleFileChange = (event: any) => {
-    // MAX 1 FILES
-    // if (files.length >= 1) return
-      
-    const selectedFile = event.target.files[0]
-    setFileName(selectedFile.name)
-    // console.log('???????????????????',selectedFile);
- 
-    
-
+  const setFileToBase = (file: File) => {
     const reader = new FileReader()
-    reader.readAsDataURL(selectedFile)
+    reader.readAsDataURL(file)
     reader.onloadend = () => {
       setFile(reader.result)
-      console.log(reader.result)
-      // setFileName(selectedFile)
-      // setFiles([...files, { name: selectedFile.name, file: reader.result }])
-      // console.log('file name: ',selectedFile.name, 'all files: ', ...files)
     }
+    user.user?.file !== '' && setOpen(!open)
+  }
+
+
+ // EDIT FILE
+  const editFile = () => {
+    setOpen(!open)
   }
 
   // REMOVE FILE
-
-  const handleRemoveFile = () => {
+ 
+    const deleteFile = () => {
     setFile('')
-    // const newFiles = [...files]
-    // newFiles.splice(index, 1)
-    // setFiles(newFiles)
-    // localStorage.removeItem('files')
-    // localStorage.setItem('files', JSON.stringify(newFiles))
-
-  }
-  
-  // const handleRemoveFile = (index: number) => {
-    
-  //   const newFiles = [...files]
-  //   console.log('before: ',newFiles)
-  //   newFiles.splice(index, 1)
-  //   setFiles(newFiles)
-  //   console.log('after',newFiles)
-  //   localStorage.removeItem('files')
-  //   localStorage.setItem('files', JSON.stringify(newFiles))
-  //   console.log('after local remove', newFiles)
-
-  // }
-
-  // CLEAR INPUT 
-  const clearInput = () => {
-    setFile('')
-    // inputRef.value = null
+    setFileName('')
+    setOpen(!open)
   }
 
-
-
-
+ 
   return (
-    <div aria-label='file-upload-container'>
-      <p className='text-[12px] text-gray text-opacity-50 text-center leading-[12px] pb-2'>Add your CV or Cover Letter to get more job opportunities (1 file, max 50kB)</p>
-      <div className='flex flex-row justify-center'>
-      {/* FILE INPUT */}
+  
+    <div className='flex flex-col '>
+        <h3
+          className='
+          hidden md:inline-block
+          self-start
+          font-regular text-lightGray  
+          sm:text-[1.1rem] 
+          lg:self-start'
+        >
+          File
+        </h3>
+
+        <p 
+          className='truncate underline  w-full h-[40px] mb-2 px-3 py-[5px]  
+          box-border border border-lightGray rounded-[15rem] 
+          text-sm text-gray border-opacity-[50%]
+          min-[425px]:py-[8px] 
+          sm:text-[1rem]
+        '
+        >
+          {fileName ? fileName : file}
+        </p>
+     {/*  Edit File */}
+       {/* If no file, choose file */}
+       {user?.user?.file === '' && 
+    <div 
+      className='w-[120px] h-[30px]  flex items-center justify-center self-end z-20 text-lightGreen text-[14px] rounded-full bg-white  border-2 border-lightGreen hover:border-darkGreen hover:text-darkGreen   ease-in-out duration-300 shadow-lg  '>
       <input
-        style={{ display: 'none' }}
-        id='file-upload-container'
-        type='file'
-        accept='.pdf, .doc'
-        className='w-full text-gray text-sm'
-        onChange={handleFileChange}
-        ref={(ref) => setInputRef(ref)}
-      />
-      
-      <div className='flex justify-center'>
-      <motion.label
-        htmlFor='file-upload-container'
-        whileTap={{ scale: 0.8 }}
-        transition={{ duration: 0.5 }}
-        className='cursor-pointer text-[15px] font-medium underline text-darkGreen hover:text-lightGreen'
-      >
-        Choose file
-      </motion.label>
+         style={{ display: 'none' }}
+         type='file'
+         name='doc'
+         id='file_upload'
+         onChange={handleFileChange}
+       />
+
+     <motion.label
+        htmlFor='file_upload'
+       whileTap={{ scale: 0.8 }}
+       transition={{ duration: 0.5 }}
+       onClick={()=>user?.user?.file !== '' && editFile()}
+       
+     >
+      Choose File
+     </motion.label>
+     </div>
+     }
+     
+     {/* If there is a file, open edit file drop-down  */}
+     {user?.user?.file !== '' && 
+      <div
+      onClick={()=>user?.user?.file !== '' && editFile()} 
+      style={{display: open ? 'none' : 'flex'}}
+      className='w-[120px] h-[40px]  flex items-center justify-center self-end z-20 text-lightGreen text-[14px] rounded-full bg-white  border-2 border-lightGreen hover:border-darkGreen hover:text-darkGreen   ease-in-out duration-300 shadow-lg cursor-pointer'>
+     <motion.button
+       type='button'
+       whileTap={{ scale: 0.8 }}
+       transition={{ duration: 0.5 }}
+       
+     >
+       Edit File
+     </motion.button>
+     
+   </div>
+   }
 
 
-      {/* CLEAR INPUT */}
-      {
-        file &&  
-        <button
-        className='text-xs px-1 rounded-md text-darkGreen hover:text-lightGreen' 
-        onClick={clearInput}><FaCheckSquare/>
-        </button>
-      }
-      </div>
-      <div>
-      {/* {
-        // files.map((file, i) => ( */}
-            <p 
-            className='underline text-lightGray text-[13px]'
-            >
+   {open && (
+     <div
+     onClick={(e) => e.stopPropagation()}
+     className=' w-[120px]   p-[8px] self-end z-40 bg-background shadow-standard rounded-md flex justify-center gap-5 '
+       
+     >
+       <input
+         style={{ display: 'none' }}
+         type='file'
+         name='doc'
+         id='file_upload'
+         onChange={handleFileChange}
+       />
+       <motion.label
+         htmlFor='file_upload'
+         whileTap={{ scale: 0.8 }}
+         transition={{ duration: 0.5 }}
+         className='cursor-pointer text-[24px] text-darkGreen hover:text-lightGreen'
+       >
+         <MdOutlineAddAPhoto />
+       </motion.label>
+       <button
+         type='button'
+         className='cursor-pointer text-[24px] text-darkGreen hover:text-lightGreen'
+         onClick={deleteFile}
+       >
+         <RiDeleteBinLine />
+         
+       </button>
+     </div>
+   )}
+   </div>
 
-              {fileName ? fileName : user?.user?.file}
-
-            </p>
-            <FaTrashAlt
-              className='text-xs mt-[6px] mx-1 cursor-pointer text-darkGreen hover:text-lightGreen'
-              onClick={()=>handleRemoveFile()}
-            />
-          </div>
-        {/* // ))
-      // } */}
-    </div>
-    </div>
   )
+    
 }
 
 

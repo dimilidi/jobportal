@@ -38,7 +38,7 @@ const EditAccount = (props:Props) => {
   const [avatar, setAvatar] = useState<any>(user.user?.avatar)
   const [open, setOpen] = useState(false)
   const [maxLength, setMaxLength] = useState(300)
-  const [file, setFile] = useState<any>()
+  const [file, setFile] = useState<any>(user.user?.file)
   const [fileName, setFileName] = useState<any>()
 
   
@@ -54,6 +54,9 @@ const EditAccount = (props:Props) => {
     }
   }, [user])
 
+
+
+  //EDIT AVATAR
   const editAvatar = () => {
     setOpen(!open)
   }
@@ -231,7 +234,7 @@ const EditAccount = (props:Props) => {
                 )}
               </div>
 
-              <div className='md:w-[350px] mt-5 mb-5'>
+              <div className='md:w-[350px] mt-5'>
                 {/* USERNAME */}
                 <label
                   aria-label='username'
