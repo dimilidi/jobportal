@@ -3,6 +3,7 @@ import { FaTrashAlt } from 'react-icons/fa'
 import { FaCheckSquare } from "react-icons/fa"
 import { motion } from 'framer-motion'
 import { MdOutlineAddAPhoto } from "react-icons/md"
+import useUser from '../Hooks/useUser'
 
 type Props = {
   file: any
@@ -12,16 +13,20 @@ type Props = {
 
 // FILE UPLOADER COMPONENT
 const FileUploader: React.FC<Props> = ({ file, setFile }) => {
-  const [files, setFiles] = useState<any[]>(JSON.parse(localStorage.getItem('files') || '[]'))
-  const [inputRef, setInputRef] = useState<any>()
 
-  useEffect(() => {
-    localStorage.setItem('files', JSON.stringify(files))
-  }, [files])
+  const user = useUser()
+
+
+  // const [files, setFiles] = useState<any[]>(JSON.parse(localStorage.getItem('files') || '[]'))
+  // const [inputRef, setInputRef] = useState<any>()
+
+  // useEffect(() => {
+  //   localStorage.setItem('files', JSON.stringify(files))
+  // }, [files])
 
   const handleFileChange = (event: any) => {
     // MAX 1 FILES
-    if (files.length >= 1) return
+    // if (files.length >= 1) return
       
     const selectedFile = event.target.files[0]
 
@@ -30,29 +35,40 @@ const FileUploader: React.FC<Props> = ({ file, setFile }) => {
     reader.onloadend = () => {
       setFile(reader.result)
       console.log(reader.result)
-      setFiles([...files, { name: selectedFile.name, file: reader.result }])
-      console.log('file name: ',selectedFile.name, 'all files: ', ...files)
+      // setFiles([...files, { name: selectedFile.name, file: reader.result }])
+      // console.log('file name: ',selectedFile.name, 'all files: ', ...files)
     }
   }
 
   // REMOVE FILE
-  const handleRemoveFile = (index: number) => {
-    
-    const newFiles = [...files]
-    console.log('before: ',newFiles)
-    newFiles.splice(index, 1)
-    setFiles(newFiles)
-    console.log('after',newFiles)
-    localStorage.removeItem('files')
-    localStorage.setItem('files', JSON.stringify(newFiles))
-    console.log('after local remove', newFiles)
-    
+
+  const handleRemoveFile = () => {
+    setFile('')
+    // const newFiles = [...files]
+    // newFiles.splice(index, 1)
+    // setFiles(newFiles)
+    // localStorage.removeItem('files')
+    // localStorage.setItem('files', JSON.stringify(newFiles))
+
   }
+  
+  // const handleRemoveFile = (index: number) => {
+    
+  //   const newFiles = [...files]
+  //   console.log('before: ',newFiles)
+  //   newFiles.splice(index, 1)
+  //   setFiles(newFiles)
+  //   console.log('after',newFiles)
+  //   localStorage.removeItem('files')
+  //   localStorage.setItem('files', JSON.stringify(newFiles))
+  //   console.log('after local remove', newFiles)
+
+  // }
 
   // CLEAR INPUT 
   const clearInput = () => {
-    setFile(null)
-    inputRef.value = null
+    setFile('')
+    // inputRef.value = null
   }
 
 
@@ -70,7 +86,7 @@ const FileUploader: React.FC<Props> = ({ file, setFile }) => {
         accept='.pdf, .doc'
         className='w-full text-gray text-sm'
         onChange={handleFileChange}
-        ref={(ref) => setInputRef(ref)}
+        // ref={(ref) => setInputRef(ref)}
       />
       
       <motion.label
@@ -93,21 +109,21 @@ const FileUploader: React.FC<Props> = ({ file, setFile }) => {
       }
       </div>
       <div>
-      {
-        files.map((file, i) => (
-          <div key={i} className='flex justify-center'>
+      {/* {
+        // files.map((file, i) => ( */}
+          <div className='flex justify-center'>
             <p 
             className='underline text-lightGray text-[13px]'
             >
-              {file.name}
+              {file?.name}
             </p>
             <FaTrashAlt
               className='text-xs mt-1 mx-1 cursor-pointer text-darkGreen hover:text-lightGreen'
-              onClick={() => handleRemoveFile(i)}
+              onClick={()=>handleRemoveFile()}
             />
           </div>
-        ))
-      }
+        {/* // ))
+      // } */}
     </div>
     </div>
   )

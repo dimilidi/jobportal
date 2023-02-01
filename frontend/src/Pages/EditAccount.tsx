@@ -2,7 +2,6 @@
 import React, { useState, useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import useUser from '../Hooks/useUser'
-import useDecorationLine from '../Hooks/useDecorationLine'
 // Component
 import UniButton from '../Components/UniButton'
 import Spinner from '../Components/Spinner'
@@ -27,10 +26,6 @@ type Props= {
 const EditAccount = (props:Props) => {
   const navigate = useNavigate()
   const user = useUser()
-
-
-  //DECORATION LINE
-  // const editText = useDecorationLine({ orientation: 'left' })
   const [fetching, setFetching] = useState(false)
   const [errors, setErrors] = useState<string[] | undefined[] | undefined>([])
 
@@ -87,16 +82,13 @@ const EditAccount = (props:Props) => {
     setErrors([])
     const newUser = { name, phone, city, profession, description, avatar, file}
 
-    if (file !== null) {
-      newUser.file = file 
-    }
 
     const response = await user.editAccount(newUser)
 
     console.log('RR',response.status);
     console.log('newUser DATA: ',newUser);
+ 
     
-
     // if(response.data.message)
 
     if (response.status === 200) navigate('/account')
@@ -118,17 +110,6 @@ const EditAccount = (props:Props) => {
       '
       onClick={() => open && setOpen(false)}
     >
-      {/* GREEN SEMICIRCLE */}
-      {/* <div
-        area-label='green-semicircle'
-        className='
-        hidden 
-        w-[100px] h-[100px]  
-        absolute right-[-50px] top-[20.4rem] z-10 
-        rounded-full 
-        bg-lightGreen 
-        xl:block'
-      /> */}
 
       {/* HEADING & IMAGE */}
       <div
@@ -172,27 +153,13 @@ const EditAccount = (props:Props) => {
         relative rounded-[30px] shadow-standard bg-white 
         '
       >
-        {/* LINE */}
-        {/* <span
-          aria-label='line'
-          className='
-            hidden
-            w-[50%] pb-10  
-            top-[180px] right-0 z-10 self-end
-            border-t-[3px] border-lightGreen 
-            sm:top-[45%] 
-            md:top-[300px] 
-            lg:w-[87%] 
-            lg:top-[370px] 
-            xl:w-[87%]'
-        /> */}
 
         {/* FORM */}
         <form
           aria-label='form'
           onSubmit={handleSubmit}
           className='
-              w-[80%] h-fit translate-y-[-9%] 
+              w-[80%] h-fit translate-y-[-6%] 
               flex flex-col items-start xl:items-stretch justify-between md:translate-y-0
               '
         >
