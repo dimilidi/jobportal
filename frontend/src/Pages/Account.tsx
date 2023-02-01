@@ -38,24 +38,17 @@ return (
 
   {/* SEMICIRCLE RIGHT SIDE*/}
     <div className='
-      w-[50px] h-24 
-      hidden absolute right-0 
+      w-[50px] h-[100px]
+      hidden 
       rounded-tl-full rounded-bl-full bg-lightGreen 
-      xl:block
-      xl:top-[8.6rem]'/>
+      xl:block absolute right-0 top-[7.8rem]'/>
 
   {/* LINE */}
     <div className='
-      absolute hidden 
+      hidden w-[25%]
       border-b-[3px] border-lightGreen 
-      lg:block md:top-[11.6rem]
-      lg:w-[10%] right-0
-      min-[1088px]:w-[17%] min-[1180px]:w-[23%] min-[1270px]:w-[29%]
-      xl:w-[20rem] min-[1440px]:w-[27rem]
-      min-[1460px]:w-[30rem]
-      min-[1518px]:w-[34rem]
-      min-[1572px]:w-[36rem]
-      min-[1586px]:w-[38%]
+      lg:block fixed top-[10.5rem] right-0
+      xl:w-[30%]
     '/>
 
   <div className='w-full md:max-w-[950px] xl:max-w-[1100px] lg:mt-[50px] flex flex-col
