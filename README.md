@@ -5,6 +5,7 @@
 
 **Jobsy.** is a modern, user-friendly job portal that connects job seekers with potential employers. The website is built with the latest technologies, including MERN Stack and is designed to be accessible to all. Whether you're looking for a new job or looking to hire, Jobsy makes the process simple and straightforward.
  <br/>
+ This project marks our debut as developers, as well as our first team effort. Throughout the course of this project, we have honed our skills and learned a wealth of new technologies and problem-solving techniques. From the challenges we faced to the solutions we devised, this project has been a valuable learning experience that has prepared us for future projects and opportunities.
  <br/>
 
 > Visit our website: [Jobsy Website](https://jobsy-jobportal.netlify.app)<br/> <br/>
@@ -149,6 +150,7 @@ $ npm run dev
 
 ## 8. Our Team: 
 Jobsy is developed and maintained by a team of dedicated developers with a passion for building great products. Our team is constantly working to improve and enhance the website to provide the best experience for users.
+
 
 1. :woman_mechanic: **Miki Gerlach** (Backend, Frontend) [LinkedIn](https://www.linkedin.com/in/mikigerlach/)
 2. :ninja: **Lidiya Dimitrova** (Backend, Frontend) [LinkedIn](https://www.linkedin.com/in/dimitrovalidiya/)
