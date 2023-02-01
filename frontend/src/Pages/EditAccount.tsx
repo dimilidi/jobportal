@@ -87,9 +87,6 @@ const EditAccount = (props:Props) => {
     setErrors([])
     const newUser = { name, phone, city, profession, description, avatar, file}
 
-    if (file !== null) {
-      newUser.file = file 
-    }
 
     const response = await user.editAccount(newUser)
 
