@@ -86,6 +86,7 @@ const FileUploader: React.FC<Props> = ({ file, setFile, fileName, setFileName })
     <div 
       className='w-[120px] h-[40px]  flex items-center justify-center self-end z-20 text-lightGreen text-[14px] rounded-full bg-white  border-2 border-lightGreen hover:border-darkGreen hover:text-darkGreen   ease-in-out duration-300 shadow-lg cursor-pointer  '>
       <input
+        accept='.doc, .pdf'
          style={{ display: 'none' }}
          type='file'
          name='doc'
@@ -132,6 +133,7 @@ const FileUploader: React.FC<Props> = ({ file, setFile, fileName, setFileName })
        
      >
        <input
+       accept='.doc, .pdf'
          style={{ display: 'none' }}
          type='file'
          name='doc'
