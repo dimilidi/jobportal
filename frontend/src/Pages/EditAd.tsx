@@ -182,6 +182,7 @@ const EditAd = () => {
                 <input
                   type='radio'
                   id='offering'
+                  checked={category == 'offering'}
                   value='offering'
                   name='case'
                   className='accent-darkGreen'
@@ -194,6 +195,7 @@ const EditAd = () => {
                 <input
                   type='radio'
                   id='searching'
+                  checked={category == 'searching'}
                   value='searching'
                   name='case'
                   className='accent-darkGreen'
