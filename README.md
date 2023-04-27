@@ -27,8 +27,7 @@
 
 ## 1. Project Status
 
-Project is: _in progress_ 
-The project is currently in progress and actively being developed by a dedicated team of developers. We are continuously adding new features and fixing any bugs to ensure a seamless user experience.
+Project is: _done_ 
 
 This project is the final project of a one-year MERN Stack course by DCI, officially presented on 02.02.2023. 
 <br/>
